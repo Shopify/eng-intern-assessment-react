@@ -1,3 +1,10 @@
+# Technical Instructions
+1. Fork this repo to your local Github account.
+2. Create a new branch to complete all your work in.
+3. Create a Pull Request against your Main branch when you're done
+4. The Pull Request will automatically run test files to check requirements
+5. Submit a link to the Pull Request when the tests have passed
+
 # Project Overview
 The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
 
