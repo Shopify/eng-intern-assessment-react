@@ -1,7 +1,7 @@
 import React from "react";
 
 interface StopWatchInterface {
-  time: number;
+  time: string;
 }
 
 export default function StopWatch({ time }: StopWatchInterface) {
