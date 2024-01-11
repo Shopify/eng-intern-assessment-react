@@ -10,6 +10,7 @@ The goal of this project is to implement a stopwatch application using React and
 
 - Start the stopwatch to begin counting time.
 - Stop the stopwatch to pause the timer.
+- Displays Laps when a button is pressed.
 - Reset the stopwatch to zero.
 
 You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
@@ -35,6 +36,7 @@ Your specific goals for this project are as follows:
     - The stopwatch should start counting when the user clicks the start button.
     - The stopwatch should stop counting when the user clicks the stop button.
     - The stopwatch should reset to zero when the user clicks the reset button.
+    - The stopwatch should record and display laps when user clicks the lap button.
 
 2. Ensure code quality:
     - Write clean, well-structured, and maintainable code.
