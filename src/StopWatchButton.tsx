@@ -7,7 +7,7 @@ interface StopWatchButtonProps {
 
 const StopWatchButton = ({ children, onClick }: StopWatchButtonProps) => {
     return(
-        <button onClick={onClick}>
+        <button className="stop-watch-button" onClick={onClick}>
             {children}
         </button>
     )

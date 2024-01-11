@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
 import StopWatch from './StopWatch'
+import "./styles.css"
 
 const App = () => {
     const intervalId = useRef(null); 
@@ -30,11 +31,9 @@ const App = () => {
     }
 
     return(
-        <div>
-            <div>
-                <StopWatch time={time} />
-            </div>
-            <div>
+        <div className="stop-watch-container">
+            <StopWatch time={time} />
+            <div className="buttons-container">
                 <StopWatchButton onClick={handleStart}>Start</StopWatchButton>
                 <StopWatchButton onClick={handleStop}>Stop</StopWatchButton>
                 <StopWatchButton onClick={handleReset}>Reset</StopWatchButton>

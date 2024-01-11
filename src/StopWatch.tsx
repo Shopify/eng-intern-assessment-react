@@ -21,7 +21,9 @@ interface StopWatchProps {
 
 const StopWatch = ({ time }: StopWatchProps) => {
     return (
-        <div>{formatTime(time)}</div>
+        <div className="stop-watch-display">
+            {formatTime(time)}
+        </div>
     )
 }
 
