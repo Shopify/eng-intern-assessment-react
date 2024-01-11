@@ -17,14 +17,14 @@ const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
 	}
 	const formatTime = (time: number) => {
 		/** Logic and calculations used to calculate the time */
-		const getMilliseconds = `0${time % 1000}`.slice(-3);
+
 		const seconds = Math.floor(time / 1000);
 		const getSeconds = `0${seconds % 60}`.slice(-2);
 		const minutes = Math.floor(seconds / 60);
 		const getMinutes = `0${minutes % 60}`.slice(-2);
 		const getHours = `0${Math.floor(minutes / 60)}`.slice(-2);
 
-		return `${getHours}:${getMinutes}:${getSeconds}.${getMilliseconds}`;
+		return `${getHours}:${getMinutes}:${getSeconds}`;
 	};
 
 	return <div>{formatTime(time)}</div>;
