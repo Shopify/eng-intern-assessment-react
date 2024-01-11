@@ -9,6 +9,7 @@ const App = () => {
 	const [time, setTime] = useState(0);
 	const [timerOn, setTimerOn] = useState(false);
 	const [laps, setLaps] = useState<string[]>([]);
+	const [isStopped, setIsStopped] = useState(false);
 
 	useEffect(() => {
 		let interval: any = null;
@@ -25,9 +26,15 @@ const App = () => {
 	}, [timerOn]);
 
 	//Functions to start the timer, stop the timer, and reset the timer
-	const handleStart = () => setTimerOn(true);
+	const handleStart = () => {
+		setTimerOn(true);
+		setIsStopped(false);
+	};
 
-	const handleStop = () => setTimerOn(false);
+	const handleStop = () => {
+		setTimerOn(false);
+		setIsStopped(true);
+	};
 
 	const handlePause = () => setTimerOn(false);
 
@@ -62,7 +69,7 @@ const App = () => {
 	return (
 		<div>
 			{/**Pass in props to each component */}
-			<StopWatch time={time} />
+			{!isStopped && <StopWatch time={time} />}
 			<StopWatchButton
 				onStart={handleStart}
 				onStop={handleStop}
