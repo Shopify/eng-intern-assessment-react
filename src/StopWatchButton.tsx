@@ -3,7 +3,7 @@ import React from "react";
 export interface StopWatchButtonProps {
   id?: string;
   text: string;
-  pressed: Function;
+  pressed: () => void;
   disabled: boolean;
 }
 
@@ -13,7 +13,7 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
       id={props.id}
       type="button"
       disabled={props.disabled}
-      onClick={props.pressed()}
+      onClick={props.pressed}
     >
       {props.text}
     </button>
