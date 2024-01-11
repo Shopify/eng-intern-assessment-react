@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
+interface StopWatchProps {
+  time: number;
+}
+
+export default function StopWatch({ time }: StopWatchProps) {
+  return <div>{time}</div>;
 }
