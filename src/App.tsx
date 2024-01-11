@@ -1,9 +1,9 @@
 import React from 'react';
-import StopWatch from '~/components/StopWatch';
+import StopWatch from '~/components/stop-watch';
 
 export default function App() {
   return (
-    <div>
+    <div className="bg-black text-red-400">
       <StopWatch />
     </div>
   );
