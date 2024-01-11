@@ -4,9 +4,10 @@ import StopButton from './stop-button';
 import ResetButton from './reset-button';
 
 export default function StopWatch() {
-  const [time, setTime] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [time, setTime] = useState(0); // state of time elapsed
+  const [isRunning, setIsRunning] = useState(false); // state of stopwatch
 
+  // useEffect that updates stopwatch time every 10 milliseconds
   useEffect(() => {
     let intervalId: NodeJS.Timer;
 
@@ -15,14 +16,17 @@ export default function StopWatch() {
     return () => clearInterval(intervalId);
   }, [isRunning]);
 
+  // Calculate minutes from 'time'
   const minutes = Math.floor((time % 360000) / 6000)
     .toString()
     .padStart(2, '0');
 
+  // Calculate secondsfrom 'time'
   const seconds = Math.floor((time % 6000) / 100)
     .toString()
     .padStart(2, '0');
 
+  // Calculate milliseconds from 'time'
   const milliseconds = (time % 100).toString().padStart(2, '0');
 
   const handleStart = () => {
