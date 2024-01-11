@@ -1,5 +1,6 @@
 import React from 'react';
+import Button from './ui/button';
 
 export default function PauseButton() {
-  return <div>Pause</div>;
+  return <Button>Pause</Button>;
 }
