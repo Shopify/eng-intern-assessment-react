@@ -1,6 +1,6 @@
 :root {
     --sans-serif-font: system-ui, Arial, Helvetica, sans-serif;
-    
+
     --text-color: #202223;
     --border-color: #babfc3;
 
@@ -34,7 +34,7 @@ body {
 .stop-watch-display {
     color: var(--text-color);
     font-weight: 500;
-    font-size: 2rem;   
+    font-size: 2rem;
 }
 
 .stop-watch-button {
@@ -46,6 +46,7 @@ body {
     font-size: 0.8rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
     padding: 8px 16px;
+    min-width: 5rem;
     transition: background 0.1s;
 }
 
@@ -62,4 +63,15 @@ body {
 .stop-watch-button:disabled {
     background-color: var(--button-disabled);
     box-shadow: none;
+}
+
+.lap-list {
+    text-align: center;
+    list-style-position: inside;
+    padding-left: 0;
+    margin: 0;
+}
+
+.lap-list > li::marker {
+    font-weight: 500;
 }

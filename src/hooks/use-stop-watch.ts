@@ -2,27 +2,34 @@ import { useRef, useState } from "react";
 
 /**
  * Custom hook to provide stopwatch functionality.
- *
- * The hook returns the current time and running status of the
- * stopwatch timer, and it provides actions to start, stop (pause),
- * and reset the stopwatch timer to zero.
  */
 export const useStopWatch = () => {
     const intervalId = useRef(null);
 
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const [isStopped, setIsStopped] = useState(true);
+    const [isReset, setIsReset] = useState(true);
+    const [laps, setLaps] = useState([] as number[]);
 
-    const start = () => {
+    const toggleStartPause = () => {
+        setIsStopped(false);
+        setIsReset(false);
+
         if (!isRunning) {
             setIsRunning(true);
             intervalId.current = setInterval(() => {
                 setTime((time) => time + 10);
             }, 10);
+        } else {
+            setIsRunning(false);
+            clearInterval(intervalId.current);
         }
     };
 
     const stop = () => {
+        setIsStopped(true);
+        
         if (isRunning) {
             setIsRunning(false);
             clearInterval(intervalId.current);
@@ -31,14 +38,25 @@ export const useStopWatch = () => {
 
     const reset = () => {
         stop();
+        setIsReset(true);
         setTime(0);
+        setLaps([]);
+    };
+
+    const recordLap = () => { 
+        setLaps([time, ...laps]);
+        console.log(laps)
     };
 
     return {
         time,
         isRunning,
-        start,
+        isStopped,
+        isReset,
+        laps,
+        toggleStartPause,
         stop,
         reset,
+        recordLap,
     };
 };
