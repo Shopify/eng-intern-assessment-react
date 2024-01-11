@@ -1,0 +1,61 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thin-gray-circle {
+    width: 350px;
+    height: 350px;
+    border: 2px solid #ccc;
+    margin-top: 70px;
+    margin-bottom: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.icon {
+    color: #96bf48; 
+    font-size: 45px;
+}
+
+.reset-icon {
+    color: red; 
+    font-size: 45px;
+}
+
+.button-group {
+    display: flex;
+    gap: 100px;
+}
+
+.timers-container {
+    position: relative;
+    text-align: center;
+}
+  
+.main-timer {
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+}
+  
+.lap-timer {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #888;
+}
