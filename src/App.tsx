@@ -2,13 +2,13 @@ import React, { useRef, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
 import StopWatch from './StopWatch'
 
-export default function App() {
+const App = () => {
     const intervalId = useRef(null); 
 
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
-    const startTimer = () => {
+    const handleStart = () => {
         if (!isRunning) {
             setIsRunning(true);
             intervalId.current = setInterval(() => {
@@ -17,15 +17,15 @@ export default function App() {
         }
     }
 
-    const stopTimer = () => {
+    const handleStop = () => {
         if (isRunning) {
             setIsRunning(false);
             clearInterval(intervalId.current);
         }
     }
 
-    const resetTimer = () => {
-        stopTimer();
+    const handleReset = () => {
+        handleStop();
         setTime(0);
     }
 
@@ -35,10 +35,12 @@ export default function App() {
                 <StopWatch time={time} />
             </div>
             <div>
-                <StopWatchButton onClick={startTimer}>Start</StopWatchButton>
-                <StopWatchButton onClick={stopTimer}>Stop</StopWatchButton>
-                <StopWatchButton onClick={resetTimer}>Reset</StopWatchButton>
+                <StopWatchButton onClick={handleStart}>Start</StopWatchButton>
+                <StopWatchButton onClick={handleStop}>Stop</StopWatchButton>
+                <StopWatchButton onClick={handleReset}>Reset</StopWatchButton>
             </div>
         </div>
     )
 }
+
+export default App;

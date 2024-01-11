@@ -5,10 +5,12 @@ interface StopWatchButtonProps {
     onClick?: () => void;
 }
 
-export default function StopWatchButton({ children, onClick }: StopWatchButtonProps) {
+const StopWatchButton = ({ children, onClick }: StopWatchButtonProps) => {
     return(
         <button onClick={onClick}>
             {children}
         </button>
     )
 }
+
+export default StopWatchButton;
