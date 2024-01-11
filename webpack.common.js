@@ -8,7 +8,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Production',
-      template: './public/index.html'
+      template: './public/index.html',
     }),
   ],
   output: {
@@ -17,33 +17,50 @@ module.exports = {
     clean: true,
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
-    },{
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-        }
-    },{
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif|jp2|webp)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]',
+        },
+      },
+      {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
-    },{
-      test: /\.(png|jpe?g|gif|jp2|webp)$/,
-      loader: 'file-loader',
-      options: {
-        name: 'images/[name].[ext]'
-      }
-    }
-  ],
-},
-resolve: {
-  extensions: ['.tsx', '.ts', '.js'],
-},
-devServer: {
-  historyApiFallback: true,
-},
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                ident: 'postcss',
+                plugins: [require('tailwindcss'), require('autoprefixer')],
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+    alias: { '~': path.resolve(__dirname, 'src/') },
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
 };
