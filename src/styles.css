@@ -1,0 +1,35 @@
+.display {
+    padding: 4rem 2rem;
+    font-size: 2.8rem;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button {
+    padding: 0.6rem 1.2rem;
+    font-size: large;
+    font-weight: 600;
+    border: none;
+}
+
+.button:hover {
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.button.red {
+    background-color: rgb(245, 116, 116);
+}
+
+.button.green {
+    background-color: rgb(152, 248, 152);
+}
+
+.button.blue {
+    background-color: rgb(145, 145, 236);
+}

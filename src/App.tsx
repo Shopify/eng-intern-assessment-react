@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import { useState } from 'react'
+import "./styles.css"
 
 export default function App() {
     const [time, setTime] = useState<number>(0)
@@ -23,14 +24,16 @@ export default function App() {
     }, [stopWatchOn])
 
     return(
-        <div>
+        <div className='container'>
             <StopWatch time={time}/>
-            {stopWatchOn? (
-                <StopWatchButton label={"STOP"} color={"red"} onButtonClick={() => setStopWatchOn(false)}/>
-            ) : (
-                <StopWatchButton label={"START"} color={"green"} onButtonClick={() => setStopWatchOn(true)}/>
-            )}
-            <StopWatchButton label={"RESTART"} color={"blue"} onButtonClick={() => setTime(0)}/>
+            <div className='buttons'>
+                {stopWatchOn? (
+                    <StopWatchButton label={"STOP"} color={"red"} onButtonClick={() => setStopWatchOn(false)}/>
+                ) : (
+                    <StopWatchButton label={"START"} color={"green"} onButtonClick={() => setStopWatchOn(true)}/>
+                )}
+                <StopWatchButton label={"RESTART"} color={"blue"} onButtonClick={() => setTime(0)}/>
+            </div>
         </div>
     )
 }
