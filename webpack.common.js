@@ -32,15 +32,27 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(png|jpe?g|gif|jp2|webp)$/,
         loader: 'file-loader',
         options: {
           name: 'images/[name].[ext]',
         },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                ident: 'postcss',
+                plugins: [require('tailwindcss'), require('autoprefixer')],
+              },
+            },
+          },
+        ],
       },
     ],
   },
