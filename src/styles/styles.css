@@ -1,0 +1,49 @@
+.container {
+    text-align: center;
+    margin-top: 280px;
+  }
+  
+  .timer {
+    font-size: 24px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .timer::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px; 
+    border: 2px solid #333; 
+    border-radius: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  .lapItem {
+    font-size: 16px;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff; 
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3; 
+  }
+  
