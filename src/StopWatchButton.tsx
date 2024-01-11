@@ -4,31 +4,33 @@ import { faPlay, faPause, faUndo, faTrash} from '@fortawesome/free-solid-svg-ico
 import './utils/styles.css'
 
 interface StopWatchButtonProps {
-    onToggleRun: () => void;
+    onPlayOrPause: () => void
+    onLap: () => void;
+    onReset: () => void;
 }
 
-const StopWatchButton = ({onToggleRun} : StopWatchButtonProps) => {
+const StopWatchButton = ({onPlayOrPause, onLap, onReset} : StopWatchButtonProps) => {
     const [isRunning, setIsRunning] = useState(false);
-  
 
     const handlePlayOrPauseClick = () => {
         setIsRunning(!isRunning);
-        onToggleRun();
+        onPlayOrPause();
     };
 
     const handleLapCick = () => {
-        setIsRunning((prevIsRunning) => !prevIsRunning);
+        onLap();
     };
 
-    const handleTrashClick = () => {
-        setIsRunning((prevIsRunning) => !prevIsRunning);
+    const handleResetClick = () => {
+        onReset();
+        setIsRunning(false);
     };
 
     return (
         <div className="button-group">
-        <FontAwesomeIcon icon={isRunning ? faPause : faPlay} className="icon" onClick={handlePlayOrPauseClick} />
-        <FontAwesomeIcon icon={faUndo} className="icon" onClick={handleLapCick} />
-        <FontAwesomeIcon icon={faTrash} className="reset-icon" onClick={handleTrashClick} />
+            <FontAwesomeIcon icon={isRunning ? faPause : faPlay} className="icon" onClick={handlePlayOrPauseClick} />
+            <FontAwesomeIcon icon={faUndo} className="icon" onClick={handleLapCick} />
+            <FontAwesomeIcon icon={faTrash} className="reset-icon" onClick={handleResetClick} />
         </div>
     );
 };

@@ -17,7 +17,7 @@ body, html {
     height: 350px;
     border: 2px solid #ccc;
     margin-top: 70px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -44,6 +44,7 @@ body, html {
 .button-group {
     display: flex;
     gap: 100px;
+    margin-bottom: 15px;
 }
 
 .timers-container {
@@ -64,4 +65,12 @@ body, html {
     left: 50%;
     transform: translateX(-50%);
     color: #888;
+}
+
+.blue-text {
+    color: blue;
+}
+
+.black-text {
+    color: black;
 }
