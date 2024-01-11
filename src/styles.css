@@ -10,10 +10,34 @@
   width: fit-content;
 }
 
-.buttons {
+.button-container {
   display: flex;
 }
 
-.buttons > * {
+.button {
+  border: none;
+  padding: 10px 20px;
+  box-shadow: 2px 2px grey;
   margin: 10px;
+}
+
+.button.red {
+  background: red;
+}
+
+.button.blue {
+  background: rgb(172, 203, 255);
+}
+
+.button.green {
+  background: rgb(120, 241, 120);
+}
+
+.button:hover {
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.button:disabled {
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+  box-shadow: none;
 }

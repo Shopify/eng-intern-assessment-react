@@ -30,10 +30,25 @@ export default function App() {
   return (
     <div className="stopwatch-container">
       <StopWatch time={time} />
-      <div className="buttons">
-        <StopWatchButton label="Start" onButtonClick={startTimer} />
-        <StopWatchButton label="Stop" onButtonClick={stopTimer} />
-        <StopWatchButton label="Clear" onButtonClick={clearTimer} />
+      <div className="button-container">
+        <StopWatchButton
+          color="green"
+          disabled={intervalId !== null}
+          label="Start"
+          onButtonClick={startTimer}
+        />
+        <StopWatchButton
+          color="red"
+          disabled={intervalId === null}
+          label="Stop"
+          onButtonClick={stopTimer}
+        />
+        <StopWatchButton
+          color="blue"
+          disabled={time === 0}
+          label="Clear"
+          onButtonClick={clearTimer}
+        />
       </div>
     </div>
   );
