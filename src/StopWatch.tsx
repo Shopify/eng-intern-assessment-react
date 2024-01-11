@@ -41,26 +41,28 @@ export default function StopWatch() {
     const { mins, secs, msecs } = formatTime(time);
 
     return (
-        <div>
-            <h1>{mins}</h1>
-            <span>:</span>
-            <h1>{secs}</h1>
-            <span>:</span>
-            <h1>{msecs}</h1>
-            <StopWatchButton
-                type="reset"
-                running={isRunning}
-                handleStart={handleStart}
-                handleStop={handleStop}
-                handleReset={handleReset}
-            />
-            <StopWatchButton
-                type="toggle"
-                running={isRunning}
-                handleStart={handleStart}
-                handleStop={handleStop}
-                handleReset={handleReset}
-            />
+        <div style={{ display: 'flex' }}>
+            <div className="timer">
+                <h1>{mins}</h1>
+                <h1>{secs}</h1>
+                <h1>{msecs}</h1>
+            </div>
+            <div className="controls"> 
+                <StopWatchButton
+                    type="reset"
+                    running={isRunning}
+                    handleStart={handleStart}
+                    handleStop={handleStop}
+                    handleReset={handleReset}
+                />
+                <StopWatchButton
+                    type="toggle"
+                    running={isRunning}
+                    handleStart={handleStart}
+                    handleStop={handleStop}
+                    handleReset={handleReset}
+                />
+            </div>
         </div>
     );
 }

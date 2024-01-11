@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #080808;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    font-size: 20em;
+    font-style: italic;
+    line-height: 0.8;
+    margin: 0;
+    color: whitesmoke;
+}
+
+p {
+    font-weight: 300;
+    color: whitesmoke;
+}
+
+.timer {
+    margin-right: 2em;
+}
+
+.controls {
+    display: flex;
+    gap: 5px;
+    border: 1px solid whitesmoke;
+    border-radius: 25px;
+    height: 40px;
+    padding: 5px;
+}
+
+button {
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    border: none;
+    border-radius: 25px;
+    padding: 5px 20px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
