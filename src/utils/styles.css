@@ -28,11 +28,17 @@ body, html {
 .icon {
     color: #96bf48; 
     font-size: 45px;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
 }
 
 .reset-icon {
     color: red; 
     font-size: 45px;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
 }
 
 .button-group {
