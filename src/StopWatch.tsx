@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 import Styles from "./Styles/Styles";
-import padNumber from "./Helper/PadNumbers";
+import PadNumber from "./Helper/PadNumber";
 
 const StopWatch = () => {
   // Used states to hold the variables that would change during the page
@@ -38,9 +38,9 @@ const StopWatch = () => {
 
   // Calculated the types of seconds based on the current timer
   // Used a helper function to format the numbers correctly
-  const milliseconds = padNumber(time % 100, 2);
-  const seconds = padNumber((time % 6000) / 100, 2);
-  const minutes = padNumber((time % 360000) / 6000, 2);
+  const milliseconds = PadNumber(time % 100, 2);
+  const seconds = PadNumber((time % 6000) / 100, 2);
+  const minutes = PadNumber((time % 360000) / 6000, 2);
 
   // I created a style class called Styles.tsx to hold all my css
   // I wasn't sure if we were allowed to import libaries (such as styled-components)
