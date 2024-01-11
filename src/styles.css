@@ -1,0 +1,19 @@
+.stopwatch-container {
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.timer-display {
+  width: fit-content;
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttons > * {
+  margin: 10px;
+}

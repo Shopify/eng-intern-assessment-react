@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 import StopWatch from "./StopWatch";
+import "./styles.css";
 
 export default function App() {
   const [time, setTime] = useState(0);
@@ -27,11 +28,13 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="stopwatch-container">
       <StopWatch time={time} />
-      <StopWatchButton label="Start" onButtonClick={startTimer} />
-      <StopWatchButton label="Stop" onButtonClick={stopTimer} />
-      <StopWatchButton label="Clear" onButtonClick={clearTimer} />
+      <div className="buttons">
+        <StopWatchButton label="Start" onButtonClick={startTimer} />
+        <StopWatchButton label="Stop" onButtonClick={stopTimer} />
+        <StopWatchButton label="Clear" onButtonClick={clearTimer} />
+      </div>
     </div>
   );
 }
