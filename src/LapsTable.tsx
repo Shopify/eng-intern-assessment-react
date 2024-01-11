@@ -4,7 +4,7 @@ interface LapDisplayProps {
   lapTimes: string[];
 }
 
-const LapDisplay: React.FC<LapDisplayProps> = ({ lapTimes }) => {
+const LapsTable = ({ lapTimes }: LapDisplayProps) => {
   return (
     <div className="lap-display">
       <h2>Lap Times</h2>
@@ -19,4 +19,4 @@ const LapDisplay: React.FC<LapDisplayProps> = ({ lapTimes }) => {
   );
 };
 
-export default LapDisplay;
+export default LapsTable;

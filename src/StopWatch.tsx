@@ -84,6 +84,11 @@ const StopWatch = () => {
       setLapTimer(0);
       clearInterval(lapInterval);
       startLapTimer();
+    } else if (lapTimer) {
+      const formattedLapTime = formatTime(lapTimer);
+      setLapTimes((prevLapTimes) => [...prevLapTimes, formattedLapTime]);
+      setLapTimer(0);
+      clearInterval(lapInterval);
     }
   };
 
