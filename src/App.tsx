@@ -5,9 +5,10 @@ import StopWatchButton from "./StopWatchButton";
 /**
  * The main component of the application, displaying the stopwatch and buttons.
  */
-const App: React.FC = () => {
+const App = () => {
 	const [time, setTime] = useState(0);
 	const [timerOn, setTimerOn] = useState(false);
+	const [laps, setLaps] = useState<string[]>([]);
 
 	useEffect(() => {
 		let interval: any = null;
@@ -28,9 +29,34 @@ const App: React.FC = () => {
 
 	const handleStop = () => setTimerOn(false);
 
+	const handlePause = () => setTimerOn(false);
+
+	const handleResume = () => setTimerOn(true);
+
 	const handleReset = () => {
+		//Set time to 0, set the timer off and clear the laps array
 		setTime(0);
 		setTimerOn(false);
+		setLaps([]);
+	};
+
+	const handleLap = () => {
+		// Add the current time to the laps array
+		setLaps((prevLaps) => [...prevLaps, formatTime(time)]);
+
+		// Function to format time into "hh:mm:ss" string
+		const formatTime = (time: number) => {
+			//Logic and calculations used to calculate the time
+			const seconds = Math.floor(time / 1000);
+			const getSeconds = `0${seconds % 60}`.slice(-2);
+			const minutes = Math.floor(seconds / 60);
+			const getMinutes = `0${minutes % 60}`.slice(-2);
+			const getHours = `0${Math.floor(minutes / 60)}`.slice(-2);
+
+			// Return the formatted time
+			const formattedTime = `${getHours}:${getMinutes}:${getSeconds}`;
+			return formattedTime;
+		};
 	};
 
 	return (
@@ -41,7 +67,16 @@ const App: React.FC = () => {
 				onStart={handleStart}
 				onStop={handleStop}
 				onReset={handleReset}
+				onLap={handleLap}
+				onPause={handlePause}
+				onResume={handleResume}
 			/>
+			{/**Render the laps array */}
+			<div data-testid="lap-list">
+				{laps.map((lapTime, index) => (
+					<div key={index}>{lapTime}</div>
+				))}
+			</div>
 		</div>
 	);
 };
