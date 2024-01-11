@@ -25,6 +25,8 @@ export default function App() {
 		setIsRunning(false);
 	};
 
+	// In the case we want to add more buttons in the future, we 
+	// can just add them to this array of stopWatch functionalities
 	const stopwatchFunctions = [
 		{
 			id: 1,
@@ -55,7 +57,7 @@ export default function App() {
 		if (isRunning) {
 			interval = setInterval(() => {
 				setTime(prevTime => prevTime + 1);
-			}, 1000)
+			}, 1)
 		} else if (!isRunning && time !== 0) {
 			clearInterval(interval)
 		}
@@ -64,19 +66,19 @@ export default function App() {
 	}, [time, isRunning]);
 
     return(
-        <div>
-			<h1>StopWatch App ⏱️</h1>
+        <div className='appContainer'>
+			<h1 className='appHeader'>StopWatch App 🙀⏱️</h1>
 			<StopWatch time={time}/>
 			<div className='buttonContainer'>
 				{stopwatchFunctions.map((value, id) => {
-					return <StopWatchButton id={id} {...value}/>
+					return <StopWatchButton key={id} {...value}/>
 				})}
 			</div>
-			<div className='lapContainer'>
+			<ul className='lapContainer'>
 				{laps.map((value, id) => (
-					<li>{value}</li>
+					<li key={id}>{value}</li>
 				))}
-			</div>
+			</ul>
 		</div>
     )
 }

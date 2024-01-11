@@ -8,7 +8,7 @@ interface StopWatchButtonProps {
 }
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({
-	id,
+	id, // this prop isn't used but could be used in future if we wanted to do specific styling on the buttons
 	display,
 	onButtonClick,
 }) => {

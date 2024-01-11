@@ -1,0 +1,58 @@
+body, html {
+	height: 100%;
+	margin: 0;
+	background-color: aliceblue;
+}
+
+.appContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.appHeader {
+	font: caption;
+	font-weight: 600;
+	font-size: 36px;
+	text-align: center;
+}
+
+.stopWatchDisplayText {
+	width: 200px;
+	margin-top: 0;
+	font: caption;
+	font-size: 48px;
+	font-weight: 300;
+}
+
+.stopWatchButton {
+	border: none;
+	outline: none;
+	font-size: 20px;
+	font-weight: 600;
+	padding: 5px 24px;
+	cursor: pointer;
+	color: white;
+	border-radius: 10px;
+	background-color: rgb(0, 170, 255);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.stopWatchButton:hover {
+	background-color: rgb(0, 96, 214);
+}
+
+.buttonContainer {
+	display: flex;
+	gap: 16px;
+	margin-bottom: 16px;;
+}
+
+.lapContainer {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+}

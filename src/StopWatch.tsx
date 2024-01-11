@@ -11,7 +11,7 @@ const StopWatch: React.FC<StopWatchProps> = ({
 }) => {
 
     return(
-        <h2 className='stopWatchDisplay'>
+        <h2 className='stopWatchDisplayText'>
 			{formatTime(time)}
 		</h2>
     )
