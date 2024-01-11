@@ -8,6 +8,7 @@ export default function App() {
         <div className="App">
             <Stopwatch />
             <div>
+                {/* Possible improvement could be to use an SVG instead */}
                 <img src={logo} alt="ShopiTime Logo" style={{ width: '200px', height: 'auto' }} />
                 <p>
                     Created by Kevin Manka for Shopify's internship program assessment.
