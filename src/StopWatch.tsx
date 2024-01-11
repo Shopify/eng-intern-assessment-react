@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import Styles from "./Styles";
 
 const StopWatch = () => {
   const [time, setTime] = useState(0);
@@ -41,23 +42,47 @@ const StopWatch = () => {
 
   return (
     <div>
-      <div>
+      <div style={Styles.timer}>
         {minutes}:{seconds}:{milliseconds}
       </div>
-      <br />
-      <div>
-        <StopWatchButton text={"Start"} pressed={start} disabled={isRunning} />
-        <StopWatchButton text={"Stop"} pressed={stop} disabled={!isRunning} />
-        <StopWatchButton text={"Reset"} pressed={reset} disabled={false} />
-        <StopWatchButton text={"Lap"} pressed={lap} disabled={!isRunning} />
+      <div style={Styles.buttonGrid}>
+        <StopWatchButton
+          style={Styles.button}
+          text={"Start"}
+          pressed={start}
+          disabled={isRunning}
+        />
+        <StopWatchButton
+          style={Styles.button}
+          text={"Stop"}
+          pressed={stop}
+          disabled={!isRunning}
+        />
+        <StopWatchButton
+          style={Styles.button}
+          text={"Reset"}
+          pressed={reset}
+          disabled={false}
+        />
+        <StopWatchButton
+          style={Styles.button}
+          text={"Lap"}
+          pressed={lap}
+          disabled={!isRunning}
+        />
       </div>
-      {laps.map((l) => {
-        return (
-          <div>
-            {l.min}:{l.sec}:{l.ms}
-          </div>
-        );
-      })}
+      {laps.length > 0 && <div style={Styles.title}> Laps </div>}
+      {laps.length > 0 &&
+        laps.map((l, index) => {
+          return (
+            <div style={Styles.grid}>
+              <div> Lap {index}: </div>
+              <div>
+                {l.min}:{l.sec}:{l.ms}
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };
