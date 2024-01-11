@@ -5,6 +5,13 @@ interface StopWatchButtonInterface {
   label: string;
 }
 
-export default function StopWatchButton({ label }: StopWatchButtonInterface) {
-  return <div></div>;
+export default function StopWatchButton({
+  label,
+  handleClick,
+}: StopWatchButtonInterface) {
+  return (
+    <div>
+      <button onClick={handleClick}>{label}</button>
+    </div>
+  );
 }
