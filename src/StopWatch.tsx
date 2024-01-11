@@ -50,6 +50,7 @@ export default function StopWatch() {
                 <h1>{mins}</h1>
                 <h1>{secs}</h1>
                 <h1>{msecs}</h1>
+                <h3>{mins}:{secs}:{msecs}</h3>
             </div>
             <div className="controls"> 
                 <StopWatchButton
