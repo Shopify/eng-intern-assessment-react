@@ -5,12 +5,13 @@ import StopWatchButton from './StopWatchButton';
 export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-    const startTimeRef = useRef(null);
+    const startTimeRef = useRef(null); // Used for determining elapsed time
 
     useEffect(() => {
         let interval: NodeJS.Timer = null;
 
         if (isRunning) {
+            // Track the elapsed time between renders based on the current time minus the start time
             startTimeRef.current = Date.now() - time;
             interval = setInterval(() => {
                 setTime(Date.now() - startTimeRef.current);
@@ -19,17 +20,20 @@ export default function StopWatch() {
             clearInterval(interval);
         }
 
-        return () => clearInterval(interval);
+        return () => clearInterval(interval); // Clear the interval to prevent memory leaks
     }, [isRunning]);
 
+    // Stopwatch toggle handlers
     const handleStart = () => setIsRunning(true);
     const handleStop = () => setIsRunning(false);
 
+    // Stopwatch reset handler
     const handleReset = () => {
         setIsRunning(false);
         setTime(0);
     };
 
+    // Format the time into minutes, seconds, and milliseconds, and pad with 0s where necessary
     const formatTime = (time: number) => {
         const mins = Math.floor(time / 60000).toString().padStart(2, '0');
         const secs = Math.floor((time / 1000) % 60).toString().padStart(2, '0');

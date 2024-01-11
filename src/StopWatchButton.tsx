@@ -12,6 +12,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ type, running, handle
     let handleClick;
     let buttonText;
 
+    // Set handler and button text based on button type
     if (type === 'toggle') {
         handleClick = running ? handleStop : handleStart;
         buttonText = running ? 'Stop' : 'Start';
