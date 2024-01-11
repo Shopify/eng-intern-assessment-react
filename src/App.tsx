@@ -20,14 +20,17 @@ export default function App() {
         
         return () => clearInterval(interval)
 
-    }, [stopWatchOn]);
+    }, [stopWatchOn])
 
     return(
         <div>
-            <StopWatch time={time}></StopWatch>
-            <StopWatchButton label={"start"} color={""} onButtonClick={() => setStopWatchOn(true)}></StopWatchButton>
-            <StopWatchButton label={"stop"} color={""} onButtonClick={() => setStopWatchOn(false)}></StopWatchButton>
-            <StopWatchButton label={"restart"} color={""} onButtonClick={() => setTime(0)}></StopWatchButton>
+            <StopWatch time={time}/>
+            {stopWatchOn? (
+                <StopWatchButton label={"STOP"} color={"red"} onButtonClick={() => setStopWatchOn(false)}/>
+            ) : (
+                <StopWatchButton label={"START"} color={"green"} onButtonClick={() => setStopWatchOn(true)}/>
+            )}
+            <StopWatchButton label={"RESTART"} color={"blue"} onButtonClick={() => setTime(0)}/>
         </div>
     )
 }

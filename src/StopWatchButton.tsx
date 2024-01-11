@@ -8,10 +8,7 @@ interface StopwatchButtonProps {
 
 export default function StopWatchButton({ color, label, onButtonClick } : StopwatchButtonProps) {
     return(
-        <button
-        className={`button ${color}`}
-        onClick={onButtonClick}
-        >
+        <button className={`button ${color}`} onClick={onButtonClick}>
             {label}
         </button>
     )
