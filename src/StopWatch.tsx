@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import StopWatchButton from "./StopWatchButton";
+import "./styles/styles.css";
 
 const StopWatch = () => {
   const [time, setTime] = useState(0);
@@ -33,16 +34,16 @@ const StopWatch = () => {
   };
 
   return (
-    <div>
-      <div>Time: {time}s</div>
-      <StopWatchButton onClick={startStopHandler} label={isRunning ? 'Stop' : 'Start'} />
-      <StopWatchButton onClick={resetHandler} label="Reset" />
-      <StopWatchButton onClick={lapHandler} label="Lap" />
-      <ul>
+    <div className="container">
+      <div className="timer">Time: {time}s</div>
+      <div className="buttonContainer">
+        <StopWatchButton onClick={startStopHandler} label={isRunning ? 'Stop' : 'Start'} />
+        <StopWatchButton onClick={resetHandler} label="Reset" />
+        <StopWatchButton onClick={lapHandler} label="Lap" />
+      </div>
         {lapTimes.current.map((lapTime, index) => (
-          <li key={index}>Lap {index + 1}: {lapTime}s</li>
+          <div key={index} className="lapItem">Lap {index + 1}: {lapTime}s</div>
         ))}
-      </ul>
     </div>
   );
 }
