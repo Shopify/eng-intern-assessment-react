@@ -34,9 +34,15 @@ const App = () => {
         <div className="stop-watch-container">
             <StopWatch time={time} />
             <div className="buttons-container">
-                <StopWatchButton onClick={handleStart}>Start</StopWatchButton>
-                <StopWatchButton onClick={handleStop}>Stop</StopWatchButton>
-                <StopWatchButton onClick={handleReset}>Reset</StopWatchButton>
+                <StopWatchButton onClick={handleStart} isDisabled={isRunning}>
+                    Start
+                </StopWatchButton>
+                <StopWatchButton onClick={handleStop}>
+                    Stop
+                </StopWatchButton>
+                <StopWatchButton onClick={handleReset}>
+                    Reset
+                </StopWatchButton>
             </div>
         </div>
     )

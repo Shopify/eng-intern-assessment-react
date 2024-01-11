@@ -7,6 +7,7 @@
     --button: #ffffff;
     --button-hover: #f6f6f7;
     --button-active: #e0e0e0;
+    --button-disabled: #cdcdcd;
 }
 
 * {
@@ -45,6 +46,7 @@ body {
     font-size: 0.8rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
     padding: 8px 16px;
+    transition: background 0.1s;
 }
 
 .stop-watch-button:hover {
@@ -54,5 +56,10 @@ body {
 
 .stop-watch-button:active {
     background: var(--button-active);
+    box-shadow: none;
+}
+
+.stop-watch-button:disabled {
+    background-color: var(--button-disabled);
     box-shadow: none;
 }

@@ -2,12 +2,17 @@ import React, { ReactNode } from 'react'
 
 interface StopWatchButtonProps {
     children?: ReactNode;
+    isDisabled?: boolean;
     onClick?: () => void;
 }
 
-const StopWatchButton = ({ children, onClick }: StopWatchButtonProps) => {
+const StopWatchButton = ({ children, isDisabled, onClick }: StopWatchButtonProps) => {
     return(
-        <button className="stop-watch-button" onClick={onClick}>
+        <button 
+            className="stop-watch-button" 
+            disabled={isDisabled} 
+            onClick={onClick}
+        >
             {children}
         </button>
     )
