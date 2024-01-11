@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 
+/**
+ * The main component of the application.
+ * It displays a stopwatch and buttons to control the stopwatch.
+ */
 const App: React.FC = () => {
 	const [time, setTime] = useState(0);
 	const [timerOn, setTimerOn] = useState(false);
@@ -20,8 +24,11 @@ const App: React.FC = () => {
 		return () => clearInterval(interval);
 	}, [timerOn]);
 
+	//Functions to start the timer, stop the timer, and reset the timer
 	const handleStart = () => setTimerOn(true);
+
 	const handleStop = () => setTimerOn(false);
+
 	const handleReset = () => {
 		setTime(0);
 		setTimerOn(false);

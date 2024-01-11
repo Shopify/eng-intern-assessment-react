@@ -5,8 +5,18 @@ interface StopwatchProps {
 	time: number; // time in milliseconds
 }
 
+/**
+ * Stopwatch component that displays the formatted time.
+ *
+ * @param time - The time in milliseconds
+ * @returns The formatted time in the format "H:M:S.M"
+ */
 const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
+	{
+		/** Format the date and return it after passing in the time */
+	}
 	const formatTime = (time: number) => {
+		/** Logic and calculations used to calculate the time */
 		const getMilliseconds = `0${time % 1000}`.slice(-3);
 		const seconds = Math.floor(time / 1000);
 		const getSeconds = `0${seconds % 60}`.slice(-2);
