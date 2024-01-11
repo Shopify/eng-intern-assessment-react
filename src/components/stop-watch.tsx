@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import StartButton from './start-button';
-import PauseButton from './pause-button';
 import StopButton from './stop-button';
+import ResetButton from './reset-button';
 
 export default function StopWatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     let intervalId: NodeJS.Timer;
 
-    if (isRunning && !isPaused) {
+    if (isRunning) {
       intervalId = setInterval(() => setTime((prevTime) => prevTime + 1), 10);
-    } else if (!isRunning && !isPaused) {
-      clearInterval(intervalId);
-      setTime(0);
-    } else if (isPaused) {
-      clearInterval(intervalId);
     }
 
     return () => clearInterval(intervalId);
-  }, [isRunning, isPaused]);
+  }, [isRunning]);
 
   const minutes = Math.floor((time % 360000) / 6000)
     .toString()
@@ -33,30 +27,28 @@ export default function StopWatch() {
 
   const milliseconds = (time % 100).toString().padStart(2, '0');
 
-  const handleStartStopwatch = () => {
+  const handleStart = () => {
     setIsRunning(true);
-    setIsPaused(false);
   };
 
-  const handlePauseStopwatch = () => {
-    setIsPaused(true);
+  const handleStop = () => {
     setIsRunning(false);
   };
 
-  const handleStopStopwatch = () => {
+  const handleReset = () => {
     setIsRunning(false);
-    setIsPaused(false);
     setTime(0);
   };
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 p-8 rounded-xl border border-[#27272A]">
       <p className="tabular-nums text-[#FAFAFA] text-5xl">
         {minutes}:{seconds}:{milliseconds}
       </p>
       <div className="flex gap-3">
-        {isRunning ? <PauseButton onClick={handlePauseStopwatch} /> : <StartButton onClick={handleStartStopwatch} />}
-        <StopButton onClick={handleStopStopwatch} />
+        <StartButton onClick={handleStart} />
+        <StopButton onClick={handleStop} />
+        <ResetButton onClick={handleReset} />
       </div>
     </div>
   );
