@@ -24,7 +24,7 @@ export default function App() {
     }, [stopWatchOn])
 
     return(
-        <div className='container'>
+        <div>
             <StopWatch time={time}/>
             <div className='buttons'>
                 {stopWatchOn? (
