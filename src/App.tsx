@@ -3,8 +3,7 @@ import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 
 /**
- * The main component of the application.
- * It displays a stopwatch and buttons to control the stopwatch.
+ * The main component of the application, displaying the stopwatch and buttons.
  */
 const App: React.FC = () => {
 	const [time, setTime] = useState(0);
@@ -18,7 +17,7 @@ const App: React.FC = () => {
 				setTime((prevTime) => prevTime + 10); // Update time every 10 milliseconds
 			}, 10);
 		} else {
-			clearInterval(interval);
+			clearInterval(interval); // Clear interval if timer is not on
 		}
 
 		return () => clearInterval(interval);
@@ -36,6 +35,7 @@ const App: React.FC = () => {
 
 	return (
 		<div>
+			{/**Pass in props to each component */}
 			<StopWatch time={time} />
 			<StopWatchButton
 				onStart={handleStart}
