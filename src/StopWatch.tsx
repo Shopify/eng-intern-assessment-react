@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles/Stopwatch.css";
+import "./styles/StopWatch.css";
 import StopWatchButton from "./StopWatchButton";
 
 const Stopwatch: React.FC = () => {
@@ -20,7 +20,7 @@ const Stopwatch: React.FC = () => {
   }, [running]);
 
   const handleStartStop = () => {
-    setRunning(!running);
+    setRunning((prevRunning) => !prevRunning);
   };
 
   const handleReset = () => {
@@ -31,7 +31,7 @@ const Stopwatch: React.FC = () => {
 
   const handleLap = () => {
     if (running) {
-      setLaps([...laps, time]);
+      setLaps((prevLaps) => [...prevLaps, time]);
     }
   };
 
@@ -46,7 +46,12 @@ const Stopwatch: React.FC = () => {
           onClick={handleStartStop}
           buttonType={running ? "stop" : "start"}
         />
-        <StopWatchButton label="Lap" onClick={handleLap} buttonType="lap" />
+        <StopWatchButton
+          label="Lap"
+          onClick={handleLap}
+          buttonType="lap"
+          disabled={!running}
+        />
         <StopWatchButton
           label="Reset"
           onClick={handleReset}

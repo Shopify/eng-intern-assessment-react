@@ -1,6 +1,27 @@
+/* Universal reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-family: inherit; /* This makes sure that all elements use the font set on the body */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  color: #212b36; /* A default text color */
+  background-color: #f4f6f8; /* A light background color for the entire page */
+}
+
 .app {
   text-align: center;
-}
-.app__title {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertical centering */
+  align-items: center; /* Horizontal centering */
+  min-height: 100vh; /* Full viewport height, ensures the .app takes up the full height of the viewport */
+  background-color: inherit; /* Inherits the body background color */
 }

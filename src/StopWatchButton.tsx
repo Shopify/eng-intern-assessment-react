@@ -6,11 +6,13 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   label,
   onClick,
   buttonType,
+  disabled = false,
 }) => {
   return (
     <button
       className={`stopwatch-button stopwatch-button--${buttonType}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
     </button>

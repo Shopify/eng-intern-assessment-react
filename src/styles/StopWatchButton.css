@@ -1,18 +1,50 @@
-.button {
-  padding: 10px 20px;
+.stopwatch-button {
+  padding: 0.5rem 1rem; /* Tailwind equivalent: p-2 */
   border: none;
-  border-radius: 5px;
+  border-radius: 0.25rem; /* Tailwind equivalent: rounded */
   cursor: pointer;
+  font-weight: 600; /* Tailwind equivalent: font-semibold */
+  text-transform: uppercase;
+  transition: background-color 0.2s; /* Tailwind equivalent: transition-colors */
 }
-.button--start {
-  background-color: green;
-  color: white;
+
+.stopwatch-button--start {
+  background-color: #10b981; /* Tailwind Green 500 */
+  color: #fff;
 }
-.button--stop {
-  background-color: red;
-  color: white;
+
+.stopwatch-button--start:hover {
+  background-color: #059669; /* Tailwind Green 600 */
 }
-.button--reset {
-  background-color: grey;
-  color: white;
+
+.stopwatch-button--stop {
+  background-color: #ef4444; /* Tailwind Red 500 */
+  color: #fff;
+}
+
+.stopwatch-button--stop:hover {
+  background-color: #dc2626; /* Tailwind Red 600 */
+}
+
+.stopwatch-button--reset {
+  background-color: #6b7280; /* Tailwind Gray 500 */
+  color: #fff;
+}
+
+.stopwatch-button--reset:hover {
+  background-color: #4b5563; /* Tailwind Gray 600 */
+}
+
+.stopwatch-button--lap {
+  background-color: #3b82f6; /* Tailwind Blue 500 */
+  color: #fff;
+}
+
+.stopwatch-button--lap:hover {
+  background-color: #2563eb; /* Tailwind Blue 600 */
+}
+
+.stopwatch-button:disabled {
+  background-color: #9ca3af; /* Tailwind Gray 400 */
+  cursor: not-allowed;
 }
