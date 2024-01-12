@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { displayTime } from './utils';
+import { displayTime, centiSecondsToDisplayFormat } from './utils';
 import StopWatchButton from './StopWatchButton';
 import Laps from './Laps';
 
@@ -97,14 +97,6 @@ const StopWatch = () => {
         } else {
             return null;
         }
-    }
-    // convert centiseconds to hh:mm:ss.cc format
-    const centiSecondsToDisplayFormat = (totalCentiseconds: number) => {
-        const hours = Math.floor(totalCentiseconds / 360000);
-        const minutes = Math.floor((totalCentiseconds % 360000) / 6000);
-        const seconds = Math.floor((totalCentiseconds % 6000) / 100);
-        const centiseconds = totalCentiseconds % 100;
-        return displayTime(hours, minutes, seconds, centiseconds);
     }
 
     // increments time on stopwatch 
