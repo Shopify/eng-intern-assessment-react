@@ -12,13 +12,25 @@ export default function StopWatch() {
     setButtonText(newButtonText);
     setIsRunning(!isRunning);
   };
+
   const resetWatch = () => {
     setButtonText("Start");
     setTime(0);
     setIsRunning(false);
   };
+
   const showLap = () => {
     alert("show lap");
+  };
+
+  const formatTime = (time: number) => {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
+    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+      2,
+      "0"
+    )}:${String(seconds).padStart(2, "0")}`;
   };
 
   useEffect(() => {
@@ -36,7 +48,7 @@ export default function StopWatch() {
   return (
     <>
       <div>StopWatch</div>
-      {time}
+      {formatTime(time)}
       <StopWatchButton buttonText={buttonText} onClickHandler={startWatch} />
       <StopWatchButton buttonText="Reset" onClickHandler={resetWatch} />
       <StopWatchButton buttonText="Lap" onClickHandler={showLap} />
