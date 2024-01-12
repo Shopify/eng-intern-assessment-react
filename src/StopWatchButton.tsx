@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface StopwatchButtonProps {
+interface StopWatchButtonProps {
     onStart: () => void;
     onStop: () => void;
     onReset: () => void;
