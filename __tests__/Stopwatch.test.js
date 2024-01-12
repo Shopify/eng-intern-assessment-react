@@ -20,11 +20,11 @@ describe('Stopwatch', () => {
     const timeBeforeStop = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
     fireEvent.click(screen.getByText('Stop'));
     
-    // Wait for some time to ensure the stopwatch has stopped
+    // wait for some time to ensure the stopwatch has stopped
     await new Promise(r => setTimeout(r, 500));
   
     const timeAfterStop = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
-    expect(timeBeforeStop).toEqual(timeAfterStop); // Time should not change after stopping
+    expect(timeBeforeStop).toEqual(timeAfterStop); // time should not change after stopping
   });
 
   test('pauses and resumes the stopwatch', async () => {
@@ -45,7 +45,7 @@ describe('Stopwatch', () => {
     render(<Stopwatch />);
     
     fireEvent.click(screen.getByText('Start'));
-    await new Promise(r => setTimeout(r, 500)); // wait for some time to elapse
+    await new Promise(r => setTimeout(r, 500)); // wait for half a second
     fireEvent.click(screen.getByText('Lap'));
 
     await waitFor(() => {

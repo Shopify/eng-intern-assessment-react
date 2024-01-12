@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 
 export default function StopWatch() {
-    const [time, setTime] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
-    const [laps, setLaps] = useState<number[]>([]);
-    const [displayTime, setDisplayTime] = useState(true);
-    const [isPaused, setIsPaused] = useState(false);
+    const [time, setTime] = useState(0); // state to keep track of time elapsed
+    const [isRunning, setIsRunning] = useState(false); // state to manage if the stopwatch is running
+    const [laps, setLaps] = useState<number[]>([]); // state to store lap times
+    const [displayTime, setDisplayTime] = useState(true); // state to control display of time
+    const [isPaused, setIsPaused] = useState(false); // state to manage if the stopwatch is paused
 
     useEffect(() => {
         let interval: any = null;
-    
+        // sets an interval to update the time when the stopwatch is running
         if (isRunning && !isPaused) {
             interval = setInterval(() => {
                 setTime(prevTime => prevTime + 10);
@@ -18,10 +18,11 @@ export default function StopWatch() {
         } else {
             clearInterval(interval);
         }
-    
+        // clean up the interval on component unmount
         return () => clearInterval(interval);
     }, [isRunning, isPaused]);
 
+    // time formatting for readability
     const formatTime = (time: number) => {
         const milliseconds = ('0' + (Math.floor(time / 10) % 100)).slice(-2);
         const seconds = ('0' + (Math.floor(time / 1000) % 60)).slice(-2);
@@ -29,15 +30,18 @@ export default function StopWatch() {
         return `${minutes}:${seconds}:${milliseconds}`;
     };
 
+    // handles start and stop functionality
     const handleStartStop = () => {
         setIsRunning(!isRunning);
         setDisplayTime(true);
     };
     
+    // records current time as a lap
     const handleLap = () => {
         setLaps([...laps, time]);
     };
 
+    // resets stopwatch to inital state
     const handleReset = () => {
         setTime(0);
         setLaps([]);
@@ -46,6 +50,7 @@ export default function StopWatch() {
         setDisplayTime(true);
     };
 
+    // toggles the pause/resume state of the stopwatch
     const handlePauseResume = () => {
         setIsPaused(!isPaused);
     };
@@ -61,7 +66,7 @@ export default function StopWatch() {
             <div style={{ 
                 flex: '0 1 auto', 
                 marginBottom: '20px',
-                textAlign: 'center' // Center align text
+                textAlign: 'center' // center align text
             }}>
                 {displayTime && <h1 style={{ fontSize: '3em' }}>{formatTime(time)}</h1>}
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
