@@ -2,13 +2,14 @@ import { styled } from "@mui/material/styles";
 
 const PageContainer = styled("div")({
 	width: "100%",
-	height: "100vh",
+	height: "100%",
 	margin: 0,
 	zIndex: 2,
 	display: "flex",
 	flexDirection: "column",
 	alignItems: "center",
 	justifyContent: "center",
+	flex: 1,
 });
 
 const BackgroundContainer = styled("div")({
@@ -22,6 +23,7 @@ const BackgroundContainer = styled("div")({
 	backgroundRepeat: "no-repeat",
 	position: "relative",
 	overflow: "hidden",
+
 	"&::before": {
 		content: '""',
 		position: "absolute",
@@ -30,7 +32,6 @@ const BackgroundContainer = styled("div")({
 		right: 0,
 		bottom: 0,
 		background: "rgba(255, 255, 255, 0.7)",
-		backdropFilter: "blur(1px)",
 		zIndex: 1,
 	},
 });
@@ -51,4 +52,54 @@ const TitleWrap = styled("h1")({
 	gap: "35px",
 });
 
-export { PageContainer, BackgroundContainer, TitleText, TitleWrap };
+const LapContainer = styled("div")({
+	display: "flex",
+	flexDirection: "column",
+	width: "144px",
+	height: "100%",
+	gap: "5px",
+	position: "absolute",
+	right: 0,
+	top: 0,
+	overflow: "auto",
+	overscrollBehavior: "contain",
+	scrollSnapType: "y proximity",
+	paddingRight: "10px",
+});
+
+const LapTime = styled("div")({
+	display: "flex",
+	alignItems: "center",
+	justifyContent: "space-between",
+	width: "100%",
+	height: "35px",
+	flexShrink: 0,
+	borderTop: "1px solid #B1BFD3",
+	"&:first-child": {
+		border: "none",
+	},
+	"&:last-child": {
+		scrollSnapAlign: "end",
+	},
+});
+
+const LapNumText = styled("small")({
+	color: "#34445B",
+	fontWeight: 600,
+	letterSpacing: "1px",
+});
+
+const LapTimeText = styled("small")({
+	color: "#34445B",
+});
+
+export {
+	PageContainer,
+	BackgroundContainer,
+	TitleText,
+	TitleWrap,
+	LapContainer,
+	LapTime,
+	LapNumText,
+	LapTimeText,
+};

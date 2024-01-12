@@ -5,21 +5,24 @@ import {
 	BackgroundContainer,
 	TitleText,
 	TitleWrap,
+	LapContainer,
+	LapTime,
+	LapNumText,
+	LapTimeText,
 } from "./styles/app.styles";
 import StopWatchButton from "./StopWatchButton";
+
+interface TimeFormat {
+	hours: string;
+	minutes: string;
+	seconds: string;
+	centiseconds: string;
+}
 
 export default function App() {
 	const [timeElapsed, setTimeElapsed] = useState<number>(0);
 	const [isRunning, setIsRunning] = useState<boolean>(false);
-	const [lapTimes, setLapTimes] = useState<number[]>([]);
-
-	const resetTimer = () => {
-		setTimeElapsed(0);
-		setIsRunning(false);
-	};
-	const toggleTimer = () => setIsRunning((prevIsRunning) => !prevIsRunning);
-	const lapTimer = () =>
-		setLapTimes((prevLapTimes) => [...prevLapTimes, timeElapsed]);
+	const [lapTimes, setLapTimes] = useState<TimeFormat[]>([]);
 
 	const getFormattedTime = (centisecondsTime: number) => {
 		const hours = Math.floor(centisecondsTime / 360000);
@@ -40,6 +43,18 @@ export default function App() {
 			centiseconds: formattedCentiseconds,
 		};
 	};
+
+	const resetTimer = () => {
+		setTimeElapsed(0);
+		setIsRunning(false);
+		setLapTimes([]);
+	};
+	const toggleTimer = () => setIsRunning((prevIsRunning) => !prevIsRunning);
+	const lapTimer = () =>
+		setLapTimes((prevLapTimes) => [
+			...prevLapTimes,
+			getFormattedTime(timeElapsed),
+		]);
 
 	const { hours, minutes, seconds, centiseconds } =
 		getFormattedTime(timeElapsed);
@@ -83,6 +98,24 @@ export default function App() {
 					lapTimer={lapTimer}
 					resetTimer={resetTimer}
 				/>
+
+				<LapContainer>
+					{lapTimes.map(
+						({ hours, minutes, seconds, centiseconds }, i) => {
+							return (
+								<LapTime>
+									<LapNumText>{`Lap ${(i + 1)
+										.toString()
+										.padStart(2, "0")}`}</LapNumText>
+
+									<LapTimeText>
+										{`${hours}:${minutes}:${seconds}:${centiseconds}`}
+									</LapTimeText>
+								</LapTime>
+							);
+						}
+					)}
+				</LapContainer>
 			</PageContainer>
 		</BackgroundContainer>
 	);
