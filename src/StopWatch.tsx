@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import { formatTime } from "./utils";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
@@ -18,24 +19,14 @@ export default function StopWatch() {
     setButtonText("Start");
     setTime(0);
     setIsRunning(false);
+    setLapTimes([]);
   };
 
   const recordLap = () => {
-    console.log("laptime", lapTimes);
     if (isRunning) {
       setLapTimes((prev) => [...prev, time]);
       setTime(0);
     }
-  };
-
-  const formatTime = (time: number) => {
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time % 3600) / 60);
-    const seconds = time % 60;
-    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
-      2,
-      "0"
-    )}:${String(seconds).padStart(2, "0")}`;
   };
 
   useEffect(() => {
