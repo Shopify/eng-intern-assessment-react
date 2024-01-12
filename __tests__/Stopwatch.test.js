@@ -4,7 +4,6 @@ import StopWatch from "../src/StopWatch";
 
 describe('Stopwatch', () => {
   test('renders initial state correctly', () => {
-    // Render the component
     render(<StopWatch />);
 
     // Assert that the component renders with initial display time (00:00:00)
@@ -16,8 +15,7 @@ describe('Stopwatch', () => {
   });
 
   test('starts and stops the stopwatch', () => {
-    render(<StopWatch />);  // Replace with the actual component import and rendering
-
+    render(<StopWatch />);
     // Start the stopwatch
     fireEvent.click(screen.getByText('Start'));
 
@@ -39,14 +37,17 @@ describe('Stopwatch', () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
     fireEvent.click(screen.getByText('Lap'));
+
     //Check if the table header is displayed
     const lapListHeader = screen.getAllByTestId('lap-head');
     expect(lapListHeader[0].textContent).toEqual("Lap Number");
     expect(lapListHeader[1].textContent).toEqual("Time");
     expect(lapListHeader[2].textContent).toEqual("Total Time");
+
     // check laptime is in valid format hh:mm:ss
     const lapTimeText = screen.getAllByTestId('lap-time')[0].textContent;
     expect(lapTimeText).toMatch(/(\d{2}:){2}\d{2}/);
+
     //Check if new lap is added on clicking lap
     fireEvent.click(screen.getByText('Lap'));
     expect(screen.getAllByTestId('lap-time').length).toEqual(2);
@@ -57,7 +58,7 @@ describe('Stopwatch', () => {
     render(<StopWatch />);
 
     fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
+
     fireEvent.click(screen.getByText('Reset'));
 
     const displayTexts = screen.getAllByTestId('display-text');
