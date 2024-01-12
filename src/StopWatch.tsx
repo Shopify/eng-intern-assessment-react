@@ -9,16 +9,15 @@ export default function StopWatch() {
   const [buttonText, setButtonText] = useState<string>("Start");
 
   const startWatch = () => {
-    const newButtonText =
-      buttonText === "Start" || buttonText === "Resume" ? "Pause" : "Resume";
+    const newButtonText = buttonText === "Pause" ? "Resume" : "Pause";
     setButtonText(newButtonText);
     setIsRunning(!isRunning);
   };
 
   const resetWatch = () => {
+    setIsRunning(false);
     setButtonText("Start");
     setTime(0);
-    setIsRunning(false);
     setLapTimes([]);
   };
 
@@ -41,16 +40,17 @@ export default function StopWatch() {
 
     return () => clearInterval(timer);
   }, [isRunning]);
+
   return (
     <>
-      <div>StopWatch</div>
+      <h2>StopWatch</h2>
       {formatTime(time)}
       <StopWatchButton buttonText={buttonText} onClickHandler={startWatch} />
       <StopWatchButton buttonText="Reset" onClickHandler={resetWatch} />
       <StopWatchButton buttonText="Lap" onClickHandler={recordLap} />
       {lapTimes.length > 0 &&
-        lapTimes.map((lapTime) => (
-          <div key={lapTime}>{formatTime(lapTime)}</div>
+        lapTimes.map((lapTime, index) => (
+          <div key={`${index}-${lapTime}`}>{formatTime(lapTime)}</div>
         ))}
     </>
   );
