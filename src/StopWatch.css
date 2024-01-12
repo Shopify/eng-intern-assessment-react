@@ -24,3 +24,7 @@
     margin: 0 2rem 2rem;
     cursor: pointer;
 }
+.lap-row{
+    display: flex;
+    align-items: center;
+}

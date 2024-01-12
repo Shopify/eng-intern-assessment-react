@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import "./StopWatch.css"
+// import "./StopWatch.css"
 import calculateDisplayTime from "./Functions/calculateDisplayTime";
 import StopWatchButton from "./StopWatchButton";
 export default function StopWatch() {
     const [timeInSec,setTimeInSec]= useState<number>(0);
     const [timer,setTimer] = useState<Array<string>>([]);
+    const [lapArray,setLapArray] = useState([]);
+
 
     useEffect(()=>{
        setTimer(calculateDisplayTime(timeInSec));
@@ -19,7 +21,7 @@ export default function StopWatch() {
                 <p>:</p>
                 <p className="display-text">{timer[2]}</p>
             </div>
-            <StopWatchButton setTimeInSec = {setTimeInSec} />
+            <StopWatchButton setTimeInSec = {setTimeInSec} timeInSec={timeInSec}/>
 
         </div>
     )
