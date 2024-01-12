@@ -19,21 +19,35 @@ export default function StopWatch() {
 
   // function that formats the time to be displayed in hours:minutes:... format
   const formatTime = (time: number) => {
-    const hours = Math.floor(time / 360000);
-    const minutes = Math.floor((time % 360000) / 6000);
-    const seconds = Math.floor((time % 6000) / 100);
-    const milliseconds = time % 100;
+    // function that adds a leading 0 if the number is less than 10
+    const addLeadingZero = (num: number) => (num < 10 ? `0${num}` : num);
+
+    const hours = addLeadingZero(Math.floor(time / 360000));
+    const minutes = addLeadingZero(Math.floor((time % 360000) / 6000));
+    const seconds = addLeadingZero(Math.floor((time % 6000) / 100));
+    const milliseconds = addLeadingZero(time % 100);
 
     return `${hours}:${minutes}:${seconds}:${milliseconds}`;
   };
 
   return (
-    <>
-      <div>{formatTime(time)}</div>
+    <div className="stopwatch-container">
+      <div className="current-time">{formatTime(time)}</div>
       <StopWatchButton />
-      {laps.map((lap, i) => (
-        <div key={i}>{formatTime(lap)}</div>
-      ))}
-    </>
+      {laps.length > 0 && (
+        <table className="lap-table">
+          <tr>
+            <th>Lap #</th>
+            <th>Time</th>
+          </tr>
+          {laps.map((lap, i) => (
+            <tr key={i}>
+              <td>{i + 1}</td>
+              <td>{formatTime(lap)}</td>
+            </tr>
+          ))}
+        </table>
+      )}
+    </div>
   );
 }

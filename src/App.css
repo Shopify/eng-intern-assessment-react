@@ -1,0 +1,84 @@
+html {
+  font-family: sans-serif;
+}
+
+/* main stopwatch styles */
+.stopwatch-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* styles for the time display */
+.current-time {
+  color: black;
+  font-size: 9vw;
+  font-family: monospace;
+}
+
+@media (max-width: 48em) {
+  .current-time {
+    font-size: 13vw;
+  }
+}
+
+/* styles for the buttons */
+.stopwatch-btn-container {
+  display: flex;
+  gap: 20px;
+}
+
+.stopwatch-btn {
+  font-size: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 48em) {
+  .stopwatch-btn {
+    font-size: 15px;
+    width: 75px;
+    height: 75px;
+  }
+}
+
+.stopwatch-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stopwatch-btn-red {
+  background-color: red;
+  color: white;
+}
+
+.stopwatch-btn-green {
+  background-color: green;
+  color: white;
+}
+
+.stopwatch-btn-blue {
+  background-color: blue;
+  color: white;
+}
+
+.stopwatch-btn-orange {
+  background-color: orange;
+  color: white;
+}
+
+/* styles for the lap table */
+.lap-table {
+  max-width: 100%;
+  width: 200px;
+  font-size: 20px;
+}
+
+.lap-table th {
+  text-align: left;
+  border-bottom: 1px solid black;
+  border-collapse: collapse;
+}

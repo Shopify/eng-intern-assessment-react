@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import StopWatch from "./StopWatch";
 import { StopWatchContext } from "./StopWatchContext";
+import "./App.css";
 
 export default function App() {
   // stores the current time

@@ -10,7 +10,11 @@ function StartButton() {
   };
 
   return (
-    <button onClick={handleClick} disabled={isRunning}>
+    <button
+      onClick={handleClick}
+      disabled={isRunning}
+      className="stopwatch-btn stopwatch-btn-green"
+    >
       Start
     </button>
   );
@@ -25,7 +29,11 @@ function StopButton() {
   };
 
   return (
-    <button onClick={handleClick} disabled={!isRunning}>
+    <button
+      onClick={handleClick}
+      disabled={!isRunning}
+      className="stopwatch-btn stopwatch-btn-red"
+    >
       Stop
     </button>
   );
@@ -40,7 +48,11 @@ function LapButton() {
   };
 
   return (
-    <button onClick={handleClick} disabled={!isRunning}>
+    <button
+      onClick={handleClick}
+      disabled={!isRunning}
+      className="stopwatch-btn stopwatch-btn-orange"
+    >
       Lap
     </button>
   );
@@ -56,7 +68,11 @@ function ResetButton() {
   };
 
   return (
-    <button onClick={handleClick} disabled={isRunning}>
+    <button
+      onClick={handleClick}
+      disabled={isRunning}
+      className="stopwatch-btn stopwatch-btn-blue"
+    >
       Reset
     </button>
   );
@@ -67,7 +83,7 @@ export default function StopWatchButton() {
   const { isRunning } = useStopWatchContext();
 
   return (
-    <div>
+    <div className="stopwatch-btn-container">
       {isRunning ? <StopButton /> : <StartButton />}
       <LapButton />
       <ResetButton />
