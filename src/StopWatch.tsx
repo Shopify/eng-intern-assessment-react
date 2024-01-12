@@ -7,7 +7,7 @@ const padZero = (num: number) => {
 
 /**
  * @param elapsedTime the elapsed time in milliseconds
- * @returns the elapsed time in the format of "hh:mm:ss.ms"
+ * @returns the elapsed time in the format of "hh:mm:ss"
  */
 const formatElapsedTime = (elapsedTime: number): string => {
   const sec = Math.floor(elapsedTime / 1000) % 60;
@@ -67,9 +67,10 @@ const reducer = (
       };
     case StopWatchActionType.Lap:
       if (!state.isRunning) throw new Error("Stopwatch is not running");
+      const elapsedTimeBeforeLap = state.lapTimes.reduce((a, b) => a + b, 0);
       return {
         ...state,
-        lapTimes: [...state.lapTimes, state.elapsedTime],
+        lapTimes: [...state.lapTimes, state.elapsedTime - elapsedTimeBeforeLap],
       };
     case StopWatchActionType.UpdateElapsedTime:
       if (!state.isRunning) throw new Error("Stopwatch is not running");
@@ -84,6 +85,11 @@ const reducer = (
 
 export default function StopWatch() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
+  const mainButtonWhenNotRunningText =
+    state.elapsedTime > 0 ? "Resume" : "Start";
+  const mainButtonText = state.isRunning
+    ? "Stop"
+    : mainButtonWhenNotRunningText;
 
   const toggleStartPause = () => {
     dispatch(StopWatchActionType.ToggleStartPause);
@@ -104,7 +110,7 @@ export default function StopWatch() {
 
     const intervalId = setInterval(() => {
       dispatch(StopWatchActionType.UpdateElapsedTime);
-    }, 10);
+    }, 100);
 
     return () => clearInterval(intervalId);
   }, [state.isRunning]);
@@ -114,7 +120,7 @@ export default function StopWatch() {
       <h1>{formatElapsedTime(state.elapsedTime)}</h1>
       <div>
         <StopWatchButton onClick={toggleStartPause}>
-          {state.isRunning ? "Pause" : "Start"}
+          {mainButtonText}
         </StopWatchButton>
         <StopWatchButton disabled={!state.isRunning} onClick={handleLap}>
           Lap
@@ -126,10 +132,10 @@ export default function StopWatch() {
           Reset
         </StopWatchButton>
       </div>
-      <div id="lap-list">
+      <div data-testid="lap-list">
         {state.lapTimes.map((lapTime, index) => (
           <p key={index}>
-            {index + 1}: {formatElapsedTime(lapTime)}
+            Lap {index + 1}: {formatElapsedTime(lapTime)}
           </p>
         ))}
       </div>
