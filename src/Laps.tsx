@@ -26,6 +26,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
 const Laps: React.FC<LapsProps> = ({ lapList }) => {
     const listLaps = lapList.map((lap, index) => (
+        // display each lap's information as a row
         <tr key={index + 1}>
             <td style={styles.lapListTableCells}>{index + 1}</td>
             <td style={styles.lapListTableCells}>{lap.lapTime}</td>

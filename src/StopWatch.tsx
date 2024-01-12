@@ -45,19 +45,20 @@ const StopWatch = () => {
     const [lapList, setLapList] = useState([]);
 
     useEffect(() => {
+        // set or clear intervals according to whether we are counting
+        if (!intervalId && isCounting === 'counting') {
+            const intervalID = setInterval(updateTime, 10);
+            setIntervalId(intervalID);
+        }
+        if (intervalId && (isCounting === 'stopCounting' || isCounting === 'reset')) {
+            clearInterval(intervalId);
+            setIntervalId(null);
+        }
         //Clearing the interval when dismounting
         return () => clearInterval(intervalId);
-    }, []);
+    }, [isCounting]);
 
-    if (!intervalId && isCounting === 'counting') {
-        const intervalID = setInterval(updateTime, 10);
-        setIntervalId(intervalID);
-    }
-    if (intervalId && (isCounting === 'stopCounting' || isCounting === 'reset')) {
-        clearInterval(intervalId);
-        setIntervalId(null);
-    }
-
+    // reset everything
     if (isCounting === 'reset' && (centiseconds != 0 || seconds != 0 || minutes != 0 || hours != 0)) {
         setCentiseconds(0);
         setSeconds(0);
@@ -72,6 +73,7 @@ const StopWatch = () => {
         setLapList([...lapList, newLap]);
     }
 
+    // calculate time between the current lap and last lap
     const calculateLap = (currLapTime: string) => {
         const [hours, minutes, rest] = currLapTime.split(':');
         const [seconds, centiseconds] = rest.split('.');
@@ -79,11 +81,13 @@ const StopWatch = () => {
         
         const diffInCentiseconds = currTimeInCentiseconds - totalTimeAtPrevLap;
         setTotalTimeAtPrevLap(currTimeInCentiseconds);
+        // lapTime is the time for the individual lap, overallTime is total elapsed time
         return {
             lapTime: centiSecondsToDisplayFormat(diffInCentiseconds),
             overallTime: centiSecondsToDisplayFormat(currTimeInCentiseconds)
         }
     }
+    // convert centiseconds to hh:mm:ss.cc format
     const centiSecondsToDisplayFormat = (totalCentiseconds: number) => {
         const hours = Math.floor(totalCentiseconds / 360000);
         const minutes = Math.floor((totalCentiseconds % 360000) / 6000);
@@ -92,6 +96,7 @@ const StopWatch = () => {
         return displayTime(hours, minutes, seconds, centiseconds);
     }
 
+    // increments time on stopwatch 
     function updateTime() {
         setCentiseconds((prevCentiseconds) => {
             if (prevCentiseconds === 99) {
@@ -124,6 +129,7 @@ const StopWatch = () => {
                 <h1 style={styles.timeDisplay}>{displayTime(hours, minutes, seconds, centiseconds)}</h1>
             </div>
             <div style={styles.buttonsContainer}>
+                {/* button will be start if stopwatch is at 0, pause if timer is running, and resume if timer is paused i.e. not at 0 */}
                 <StopWatchButton text={isCounting === "counting" ? 'Pause' : isCounting === "stopCounting" ? 'Resume' : 'Start'} onClick={() => setIsCounting(isCounting === "counting" ? 'stopCounting' : 'counting')}></StopWatchButton>
                 <StopWatchButton text="Reset" onClick={() => setIsCounting('reset')}></StopWatchButton>
                 <StopWatchButton text="Lap" onClick={() => addLapTime(displayTime(hours, minutes, seconds, centiseconds))}></StopWatchButton>
