@@ -1,9 +1,10 @@
-pre {
+.time {
+    font-family: "Space Mono";
+    font-size: 80px;
+    font-weight: 100;
     color: white;
-}
-
-.lap {
-    font-size: 30px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .buttons {

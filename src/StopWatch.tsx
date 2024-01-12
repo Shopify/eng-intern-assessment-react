@@ -7,8 +7,8 @@ import LapHistory from "./LapHistory";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
-  const [elapsed, setElapsed] = useState(0);
-  const [lapElapsed, setLapElapsed] = useState(0);
+  const [elapsed, setElapsed] = useState(10000000);
+  const [lapElapsed, setLapElapsed] = useState(10000000);
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
 
@@ -16,10 +16,12 @@ export default function StopWatch() {
   const [worstLap, setWorstLap] = useState(-1);
 
   let intervalRef = useRef(null);
+
   const onStart = () => {
-    if (isRunning) {
-      return;
-    }
+    // do nothing if start button clicked while running
+    if (isRunning) return;
+
+    // increment overall time and lap time every 10 ms (stopwatch only shows hundreths of second)
     intervalRef.current = setInterval(() => {
       setElapsed((prevElapsed) => prevElapsed + 10);
       setLapElapsed((prevLapElapsed) => prevLapElapsed + 10);
@@ -45,13 +47,20 @@ export default function StopWatch() {
     if (worstLap < lapElapsed) {
       setWorstLap(lapElapsed);
     } else if (bestLap === -1 || bestLap > lapElapsed) {
+      // when bestLap is still default, this lap is automatically the best. otherwise compare
       setBestLap(lapElapsed);
     }
+    // add to beginning of list for easier lap history displaying
     laps.unshift(formatTime(lapElapsed));
     setLapElapsed(0);
     setLaps(laps);
   };
 
+  /**
+   * Formats milliseconds into HH:mm:ss.SS format
+   * @param ms milliseconds to format
+   * @returns HH:mm:ss.SS representation
+   */
   const formatTime = (ms: number) => {
     const hours: number = Math.floor(ms / 3600000);
     let remainder: number = ms % 3600000;
@@ -74,33 +83,35 @@ export default function StopWatch() {
 
   return (
     <div>
-      <pre className="time">{formatTime(elapsed)}</pre>
-      {isRunning ? (
-        <div className="buttons">
-          <StopWatchButton title={"Lap"} onPressed={onLap} />
-          <div className="rightButton">
-            <StopWatchButton
-              className="stopButton"
-              title={"Stop"}
-              onPressed={onStop}
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="buttons">
-          <div>
+      <p className="time">{formatTime(elapsed)}</p>
+      {/*Conditionally render buttons*/}
+      <div className="buttons">
+        {isRunning ? (
+          <>
+            <StopWatchButton title={"Lap"} onPressed={onLap} />
+            <div className="rightButton">
+              <StopWatchButton
+                className="stopButton"
+                title={"Stop"}
+                onPressed={onStop}
+              />
+            </div>
+          </>
+        ) : (
+          <>
             <StopWatchButton title={"Reset"} onPressed={onReset} />
-          </div>
-          <div className="rightButton">
-            <StopWatchButton
-              className="startButton"
-              title={"Start"}
-              onPressed={onStart}
-            />
-          </div>
-        </div>
-      )}
+            <div className="rightButton">
+              <StopWatchButton
+                className="startButton"
+                title={"Start"}
+                onPressed={onStart}
+              />
+            </div>
+          </>
+        )}
+      </div>
 
+      {/*Show current lap time once stopwatch has started*/}
       {elapsed > 0 && (
         <Lap lapElapsed={formatTime(lapElapsed)} lapIndex={laps.length + 1} />
       )}

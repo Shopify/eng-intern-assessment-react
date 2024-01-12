@@ -15,9 +15,9 @@ button {
 
 .startButton {
     background-color: #17351E;
-    color: #43BB59;
+    color: lawngreen;
 }
 .stopButton {
     background-color: #3D1416;
-    color: #C15553;
+    color: red;
 }
