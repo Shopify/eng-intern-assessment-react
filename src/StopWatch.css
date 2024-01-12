@@ -1,0 +1,11 @@
+/*StopWatch*/
+.time{
+    display: flex;
+    letter-spacing: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+.display-text{
+    font-size: 5rem;
+}

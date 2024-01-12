@@ -1,7 +1,25 @@
-import React from 'react'
-
+import React, {useEffect, useState} from 'react'
+import "./StopWatch.css"
+import calculateDisplayTime from "./Functions/calculateDisplayTime";
 export default function StopWatch() {
+    const [timeInSec,SetTimeInSec]= useState<number>(0);
+    const [timer,setTimer] = useState<Array<string>>([]);
+
+    useEffect(()=>{
+       setTimer(calculateDisplayTime(timeInSec));
+    },[timeInSec])
+
     return(
-        <div></div>
+        <div>
+            <div className="time">
+                <p className="display-text">{timer[0]}</p>
+                <p>:</p>
+                <p className="display-text">{timer[1]}</p>
+                <p>:</p>
+                <p className="display-text">{timer[2]}</p>
+
+            </div>
+
+        </div>
     )
 }
