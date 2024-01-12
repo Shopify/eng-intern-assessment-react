@@ -1,3 +1,5 @@
+import "./styles/StopWatch.css";
+
 import React, { useRef, useState } from "react";
 
 import StopWatchButton from "./StopWatchButton";
@@ -7,6 +9,7 @@ export default function StopWatch() {
   const [lapElapsed, setLapElapsed] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
+
   let intervalRef = useRef(null);
   const onStart = () => {
     if (isRunning) {
@@ -28,6 +31,7 @@ export default function StopWatch() {
   const onReset = () => {
     setElapsed(0);
     setLapElapsed(0);
+    setLaps([]);
   };
 
   const onLap = () => {
@@ -58,11 +62,42 @@ export default function StopWatch() {
 
   return (
     <div>
-      <h1>{formatTime(elapsed)}</h1>
-      <StopWatchButton title={"Start"} onPressed={onStart} />
-      <StopWatchButton title={"Stop"} onPressed={onStop} />
-      <StopWatchButton title={"Reset"} onPressed={onReset} />
-      <StopWatchButton title={"Lap"} onPressed={onLap} />
+      <p className="time">{formatTime(elapsed)}</p>
+      <div className="buttons">
+        {isRunning ? (
+          <>
+            <StopWatchButton title={"Lap"} onPressed={onLap} />
+            <StopWatchButton
+              className="stopButton"
+              title={"Stop"}
+              onPressed={onStop}
+            />
+          </>
+        ) : (
+          <>
+            <StopWatchButton title={"Reset"} onPressed={onReset} />
+            <StopWatchButton
+              className="startButton"
+              title={"Start"}
+              onPressed={onStart}
+            />
+          </>
+        )}
+      </div>
+
+      {elapsed > 0 && (
+        <p className="lap">
+          {"Lap " + (laps.length + 1) + " " + formatTime(lapElapsed)}
+        </p>
+      )}
+
+      {laps.map((lap, index) => {
+        return (
+          <p className="lap" key={index}>
+            {"Lap " + (laps.length - index) + " " + formatTime(lap)}
+          </p>
+        );
+      })}
     </div>
   );
 }

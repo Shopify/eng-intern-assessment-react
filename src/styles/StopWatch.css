@@ -1,0 +1,11 @@
+p {
+    color: white;
+}
+
+.lap {
+    font-size: 30px;
+}
+
+.buttons {
+    display: flex;
+}

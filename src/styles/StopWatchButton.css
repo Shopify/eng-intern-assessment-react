@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+button {
+    font-family: "Roboto";
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    border-width: 0;
+    background-color: #3D3D3D;
+    color: white;
+}
+
+.startButton {
+    background-color: #17351E;
+    color: #43BB59;
+}
+.stopButton {
+    background-color: #3D1416;
+    color: #C15553;
+}
