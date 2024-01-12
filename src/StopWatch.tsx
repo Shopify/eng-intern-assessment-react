@@ -1,13 +1,14 @@
 import React from "react";
+import formatTime from "./helpers/formatTime";
 
 interface StopWatchInterface {
-  time: string;
+  time: number;
 }
 
 export default function StopWatch({ time }: StopWatchInterface) {
   return (
     <div>
-      <h2>{time}</h2>
+      <h1>{formatTime(time)}</h1>
     </div>
   );
 }

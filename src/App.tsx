@@ -1,32 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import formatTime from "./helpers/formatTime";
 import "./App.css";
 
 interface lapListType {
   id: number;
   time: string;
 }
-
-const formatTime = (time: number) => {
-  // Convert milliseconds to centiseconds
-  const centiseconds = Math.floor(time / 10);
-
-  // Calculate minutes, seconds, and remaining centiseconds
-  const minutes = Math.floor(centiseconds / 6000);
-  const seconds = Math.floor((centiseconds % 6000) / 100);
-  const remainingCentiseconds = centiseconds % 100;
-
-  // Format each component with leading zeros if needed
-  const formattedMinutes = minutes.toString().padStart(2, "0");
-  const formattedSeconds = seconds.toString().padStart(2, "0");
-  const formattedCentiseconds = remainingCentiseconds
-    .toString()
-    .padStart(2, "0");
-
-  // Construct the formatted time string
-  return `${formattedMinutes}:${formattedSeconds}:${formattedCentiseconds}`;
-};
 
 export default function App() {
   const [time, setTime] = useState<number>(0);
@@ -61,20 +42,23 @@ export default function App() {
   };
 
   return (
-    <div>
-      <StopWatch time={formatTime(time)} />
+    <div className="container">
+      <StopWatch time={time} />
       <div className="btn-container">
         <StopWatchButton
+          name={isRunning ? "stop" : "start"}
           clickable={true}
           handleClick={toggleStopWatch}
           label={isRunning ? "Stop" : "Start"}
         />
         <StopWatchButton
+          name="reset"
           clickable={true}
           handleClick={resetStopWatch}
           label="Reset"
         />
         <StopWatchButton
+          name="lap"
           clickable={isRunning}
           handleClick={lapStopWatch}
           label="Lap"
@@ -82,7 +66,7 @@ export default function App() {
       </div>
       {lapList.map((lap) => (
         <p key={lap.id}>
-          {lap.id}. {lap.time}
+          <strong>Lap {lap.id}:</strong> {lap.time}
         </p>
       ))}
     </div>
