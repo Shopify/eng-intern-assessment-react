@@ -1,10 +1,8 @@
 import React from 'react';
 
 interface StopWatchButtonProps {
-    onStart: () => void;
-    onStop: () => void;
-    onReset: () => void;
-    onLap: () => void;
+    text: string;
+    onClick: () => void;
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -16,23 +14,12 @@ const styles: { [key: string]: React.CSSProperties } = {
         minHeight: '35px',
         backgroundColor: '#CCCCCC',
         border: 'none'
-    },
-
-    buttonsContainer: {
-        width: '40vw',
-        justifyContent: 'space-between',
-        display: 'flex'
     }
 };
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onStart, onStop, onReset, onLap }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ text, onClick }) => {
     return(
-        <div style={styles.buttonsContainer}>
-            <button style={styles.button} onClick={onStart}>Start</button>
-            <button style={styles.button} onClick={onStop}>Stop</button>
-            <button style={styles.button} onClick={onReset}>Reset</button>
-            <button style={styles.button} onClick={onLap}>Lap</button>
-        </div>
+        <button style={styles.button} onClick={onClick}>{text}</button>
     )
 }
 

@@ -33,20 +33,24 @@ const Laps: React.FC<LapsProps> = ({ lapList }) => {
         </tr>
     ));
     return (
-        <div style={styles.lapList}>
-            <h3>Laps</h3>
-            <table style={styles.lapListTable}>
-                <thead>
-                    <tr>
-                        <th style={styles.lapListTableCells}>Lap</th>
-                        <th style={styles.lapListTableCells}>Lap time</th>
-                        <th style={styles.lapListTableCells}>Overall time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listLaps}
-                </tbody>
-            </table>
+        <div data-testid='lap-list' style={styles.lapList}>
+            {listLaps.length > 0 && (
+                <div>
+                    <h3>Laps</h3>
+                    <table style={styles.lapListTable}>
+                        <thead>
+                            <tr>
+                                <th style={styles.lapListTableCells}>Lap</th>
+                                <th style={styles.lapListTableCells}>Lap time</th>
+                                <th style={styles.lapListTableCells}>Overall time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listLaps}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     )
 }
