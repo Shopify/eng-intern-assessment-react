@@ -8,4 +8,19 @@
 }
 .display-text{
     font-size: 5rem;
+    margin: 0;
+}
+/*StopWatchButton*/
+.buttons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-container button{
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border: none;
+    margin: 0 2rem 2rem;
+    cursor: pointer;
 }
