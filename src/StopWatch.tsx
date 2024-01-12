@@ -69,8 +69,14 @@ const StopWatch = () => {
     }
 
     const addLapTime = (lapTime: string) => {
-        const newLap = calculateLap(lapTime);
-        setLapList([...lapList, newLap]);
+        // only allow laps to be added if time is not zeroed
+        if (isCounting != 'reset') {
+            const newLap = calculateLap(lapTime);
+            // only allow laps to be added if time has ran since the last lap
+            if (newLap) {
+                setLapList([...lapList, newLap]);
+            }
+        }
     }
 
     // calculate time between the current lap and last lap
@@ -82,9 +88,14 @@ const StopWatch = () => {
         const diffInCentiseconds = currTimeInCentiseconds - totalTimeAtPrevLap;
         setTotalTimeAtPrevLap(currTimeInCentiseconds);
         // lapTime is the time for the individual lap, overallTime is total elapsed time
-        return {
-            lapTime: centiSecondsToDisplayFormat(diffInCentiseconds),
-            overallTime: centiSecondsToDisplayFormat(currTimeInCentiseconds)
+        // only allow laps to be added if time is not zeroed
+        if (diffInCentiseconds > 0) {
+            return {
+                lapTime: centiSecondsToDisplayFormat(diffInCentiseconds),
+                overallTime: centiSecondsToDisplayFormat(currTimeInCentiseconds)
+            }
+        } else {
+            return null;
         }
     }
     // convert centiseconds to hh:mm:ss.cc format
