@@ -3,6 +3,7 @@ import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
+  const [lapTimes, setLapTimes] = useState<Array<number>>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Start");
 
@@ -19,8 +20,12 @@ export default function StopWatch() {
     setIsRunning(false);
   };
 
-  const showLap = () => {
-    alert("show lap");
+  const recordLap = () => {
+    console.log("laptime", lapTimes);
+    if (isRunning) {
+      setLapTimes((prev) => [...prev, time]);
+      setTime(0);
+    }
   };
 
   const formatTime = (time: number) => {
@@ -51,7 +56,11 @@ export default function StopWatch() {
       {formatTime(time)}
       <StopWatchButton buttonText={buttonText} onClickHandler={startWatch} />
       <StopWatchButton buttonText="Reset" onClickHandler={resetWatch} />
-      <StopWatchButton buttonText="Lap" onClickHandler={showLap} />
+      <StopWatchButton buttonText="Lap" onClickHandler={recordLap} />
+      {lapTimes.length > 0 &&
+        lapTimes.map((lapTime) => (
+          <div key={lapTime}>{formatTime(lapTime)}</div>
+        ))}
     </>
   );
 }
