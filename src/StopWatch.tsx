@@ -58,13 +58,7 @@ const reducer = (
         isRunning: true,
       };
     case StopWatchActionType.Reset:
-      return {
-        ...state,
-        isRunning: false,
-        startTime: 0,
-        elapsedTime: 0,
-        lapTimes: [],
-      };
+      return initialState;
     case StopWatchActionType.Lap:
       if (!state.isRunning) throw new Error("Stopwatch is not running");
       const elapsedTimeBeforeLap = state.lapTimes.reduce((a, b) => a + b, 0);
@@ -83,25 +77,30 @@ const reducer = (
   }
 };
 
+const getMainButtonText = (state: StopWatchState): string => {
+  if (state.isRunning) {
+    return "Stop";
+  }
+  if (state.elapsedTime > 0) {
+    return "Resume";
+  }
+  return "Start";
+};
+
 export default function StopWatch() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const mainButtonWhenNotRunningText =
-    state.elapsedTime > 0 ? "Resume" : "Start";
-  const mainButtonText = state.isRunning
-    ? "Stop"
-    : mainButtonWhenNotRunningText;
 
-  const toggleStartPause = () => {
+  const toggleStartPause = React.useCallback(() => {
     dispatch(StopWatchActionType.ToggleStartPause);
-  };
+  }, [dispatch]);
 
-  const handleReset = () => {
+  const handleReset = React.useCallback(() => {
     dispatch(StopWatchActionType.Reset);
-  };
+  }, [dispatch]);
 
-  const handleLap = () => {
+  const handleLap = React.useCallback(() => {
     dispatch(StopWatchActionType.Lap);
-  };
+  }, [dispatch]);
 
   React.useEffect(() => {
     if (!state.isRunning) {
@@ -120,7 +119,7 @@ export default function StopWatch() {
       <h1>{formatElapsedTime(state.elapsedTime)}</h1>
       <div>
         <StopWatchButton onClick={toggleStartPause}>
-          {mainButtonText}
+          {getMainButtonText(state)}
         </StopWatchButton>
         <StopWatchButton disabled={!state.isRunning} onClick={handleLap}>
           Lap
