@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import StopWatch from "../src/StopWatch";
 
 describe('Stopwatch', () => {
@@ -44,7 +44,7 @@ describe('Stopwatch', () => {
     expect(lapListHeader[1].textContent).toEqual("Time");
     expect(lapListHeader[2].textContent).toEqual("Total Time");
 
-    // check laptime is in valid format hh:mm:ss
+    // check lap time is in valid format hh:mm:ss
     const lapTimeText = screen.getAllByTestId('lap-time')[0].textContent;
     expect(lapTimeText).toMatch(/(\d{2}:){2}\d{2}/);
 
