@@ -12,8 +12,8 @@ export default function StopWatch() {
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
 
-  const [bestTime, setBestTime] = useState(-1);
-  const [worstTime, setWorstTime] = useState(0);
+  const [bestLap, setBestLap] = useState(-1);
+  const [worstLap, setWorstLap] = useState(-1);
 
   let intervalRef = useRef(null);
   const onStart = () => {
@@ -37,13 +37,15 @@ export default function StopWatch() {
     setElapsed(0);
     setLapElapsed(0);
     setLaps([]);
+    setBestLap(-1);
+    setWorstLap(-1);
   };
 
   const onLap = () => {
-    if (worstTime < lapElapsed) {
-      setWorstTime(lapElapsed);
-    } else if (bestTime === -1 || bestTime > lapElapsed) {
-      setBestTime(lapElapsed);
+    if (worstLap < lapElapsed) {
+      setWorstLap(lapElapsed);
+    } else if (bestLap === -1 || bestLap > lapElapsed) {
+      setBestLap(lapElapsed);
     }
     laps.unshift(formatTime(lapElapsed));
     setLapElapsed(0);
@@ -105,8 +107,8 @@ export default function StopWatch() {
 
       <LapHistory
         laps={laps}
-        bestTime={formatTime(bestTime)}
-        worstTime={formatTime(worstTime)}
+        bestLap={formatTime(bestLap)}
+        worstLap={formatTime(worstLap)}
       />
     </div>
   );

@@ -3,12 +3,12 @@ import React from "react";
 
 export default function LapHistory({
   laps,
-  bestTime,
-  worstTime,
+  bestLap,
+  worstLap,
 }: {
   laps: string[];
-  bestTime: string;
-  worstTime: string;
+  bestLap: string;
+  worstLap: string;
 }) {
   return (
     <div>
@@ -18,8 +18,8 @@ export default function LapHistory({
             key={index}
             lapElapsed={lap}
             lapIndex={laps.length - index}
-            isBestTime={laps.length > 1 && lap === bestTime}
-            isWorstTime={laps.length > 1 && lap === worstTime}
+            isBestLap={laps.length > 1 && lap === bestLap}
+            isWorstLap={laps.length > 1 && lap === worstLap}
           />
         );
       })}

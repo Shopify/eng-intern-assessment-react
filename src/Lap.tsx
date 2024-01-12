@@ -5,19 +5,19 @@ import React from "react";
 export default function Lap({
   lapElapsed,
   lapIndex,
-  isBestTime = false,
-  isWorstTime = false,
+  isBestLap = false,
+  isWorstLap = false,
 }: {
   lapElapsed: string;
   lapIndex: number;
-  isBestTime?: boolean;
-  isWorstTime?: boolean;
+  isBestLap?: boolean;
+  isWorstLap?: boolean;
 }) {
   return (
     <>
       <div
-        className={`lap ${isBestTime && "bestTime"} ${
-          isWorstTime && "worstTime"
+        className={`lap ${isBestLap && "bestTime"} ${
+          isWorstLap && "worstTime"
         }`}
       >
         <p>{"Lap " + lapIndex}</p>
