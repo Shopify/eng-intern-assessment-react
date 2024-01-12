@@ -1,4 +1,5 @@
 import React from "react";
+import StopWatchButton from "./StopWatchButton";
 import "./app.css";
 
 type Lap = {
@@ -7,18 +8,25 @@ type Lap = {
 };
 
 type StopWatchProps = {
+  start: boolean;
+  setStart: React.Dispatch<React.SetStateAction<boolean>>;
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
+  laps: Lap[];
+  setLaps: React.Dispatch<React.SetStateAction<Lap[]>>;
   lapTime: number;
   setLapTime: React.Dispatch<React.SetStateAction<number>>;
-  laps: Lap[];
 };
 
 export default function StopWatch({
+  start,
+  setStart,
   time,
   setTime,
   laps,
+  setLaps,
   lapTime,
+  setLapTime,
 }: StopWatchProps) {
   const timeify = (time: number) => {
     const hours = Math.floor(time / 360000);
@@ -40,6 +48,16 @@ export default function StopWatch({
   return (
     <div>
       <div className="stop-watch">{timeify(time)}</div>
+      <StopWatchButton
+        start={start}
+        setStart={setStart}
+        setTime={setTime}
+        time={time}
+        laps={laps}
+        setLaps={setLaps}
+        lapTime={lapTime}
+        setLapTime={setLapTime}
+      ></StopWatchButton>
       <div>
         Laps:
         <div>

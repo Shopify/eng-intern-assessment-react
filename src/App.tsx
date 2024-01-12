@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import StopWatch from "./StopWatch";
-import StopWatchButton from "./StopWatchButton";
 
 type Lap = {
   lapTime: number;
@@ -30,22 +29,15 @@ export default function App() {
   return (
     <div>
       <StopWatch
-        time={time}
-        setTime={setTime}
-        laps={laps}
-        lapTime={lapTime}
-        setLapTime={setLapTime}
-      ></StopWatch>
-      <StopWatchButton
         start={start}
         setStart={setStart}
-        setTime={setTime}
         time={time}
+        setTime={setTime}
         laps={laps}
         setLaps={setLaps}
         lapTime={lapTime}
         setLapTime={setLapTime}
-      ></StopWatchButton>
+      ></StopWatch>
     </div>
   );
 }
