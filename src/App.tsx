@@ -3,34 +3,42 @@ import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 import "./App.css";
 
-interface listType {
+interface lapListType {
   id: number;
-  time: number;
+  time: string;
 }
 
 const formatTime = (time: number) => {
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const remainingSeconds = Math.floor(time % 60);
+  // Convert milliseconds to centiseconds
+  const centiseconds = Math.floor(time / 10);
 
-  const formattedHours = hours.toString().padStart(2, "0");
+  // Calculate minutes, seconds, and remaining centiseconds
+  const minutes = Math.floor(centiseconds / 6000);
+  const seconds = Math.floor((centiseconds % 6000) / 100);
+  const remainingCentiseconds = centiseconds % 100;
+
+  // Format each component with leading zeros if needed
   const formattedMinutes = minutes.toString().padStart(2, "0");
-  const formattedSeconds = remainingSeconds.toString().padStart(2, "0");
+  const formattedSeconds = seconds.toString().padStart(2, "0");
+  const formattedCentiseconds = remainingCentiseconds
+    .toString()
+    .padStart(2, "0");
 
-  return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  // Construct the formatted time string
+  return `${formattedMinutes}:${formattedSeconds}:${formattedCentiseconds}`;
 };
 
 export default function App() {
   const [time, setTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [lapList, setLapList] = useState<listType[]>([]);
+  const [lapList, setLapList] = useState<lapListType[]>([]);
   const intervalRef = useRef<number | undefined>(undefined);
 
   const toggleStopWatch = () => {
     if (!isRunning) {
       intervalRef.current = window.setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
     } else {
       window.clearInterval(intervalRef.current);
     }
@@ -41,30 +49,39 @@ export default function App() {
     setIsRunning(false);
     setTime(0);
     window.clearInterval(intervalRef.current);
+    setLapList([]);
   };
 
   const lapStopWatch = () => {
     const newLap = {
       id: lapList.length + 1,
-      time: time,
+      time: formatTime(time),
     };
     setLapList((prevLapList) => [...prevLapList, newLap]);
   };
 
   return (
     <div>
-      <h1>StopWatch</h1>
       <StopWatch time={formatTime(time)} />
       <div className="btn-container">
         <StopWatchButton
+          clickable={true}
           handleClick={toggleStopWatch}
           label={isRunning ? "Stop" : "Start"}
         />
-        <StopWatchButton handleClick={resetStopWatch} label="Reset" />
-        <StopWatchButton handleClick={lapStopWatch} label="Lap" />
+        <StopWatchButton
+          clickable={true}
+          handleClick={resetStopWatch}
+          label="Reset"
+        />
+        <StopWatchButton
+          clickable={isRunning}
+          handleClick={lapStopWatch}
+          label="Lap"
+        />
       </div>
       {lapList.map((lap) => (
-        <p>
+        <p key={lap.id}>
           {lap.id}. {lap.time}
         </p>
       ))}
