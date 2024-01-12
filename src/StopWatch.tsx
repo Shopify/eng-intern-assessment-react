@@ -13,8 +13,8 @@ export default function StopWatch() {
       return;
     }
     intervalRef.current = setInterval(() => {
-      setElapsed((prevElapsed) => prevElapsed + 1);
-      setLapElapsed((prevLapElapsed) => prevLapElapsed + 1);
+      setElapsed((prevElapsed) => prevElapsed + 10);
+      setLapElapsed((prevLapElapsed) => prevLapElapsed + 10);
     }, 10);
     setIsRunning(true);
   };
@@ -34,13 +34,31 @@ export default function StopWatch() {
     laps.unshift(lapElapsed);
     setLapElapsed(0);
     setLaps(laps);
-    console.log(laps);
+  };
+
+  const formatTime = (ms: number) => {
+    const hours: number = Math.floor(ms / 3600000);
+    let remainder: number = ms % 3600000;
+
+    const minutes: number = Math.floor(remainder / 60000);
+    remainder = remainder % 60000;
+
+    const seconds: number = Math.floor(remainder / 1000);
+    remainder = (remainder % 1000) / 10;
+
+    let formattedTime =
+      ("0" + minutes).slice(-2) +
+      ":" +
+      ("0" + seconds).slice(-2) +
+      "." +
+      String(remainder).padEnd(2, "0");
+
+    return hours > 0 ? hours + ":" + formattedTime : formattedTime;
   };
 
   return (
     <div>
-      <h1>{elapsed / 100 + "s"}</h1>
-      <h2>{lapElapsed / 100 + "s"}</h2>
+      <h1>{formatTime(elapsed)}</h1>
       <StopWatchButton title={"Start"} onPressed={onStart} />
       <StopWatchButton title={"Stop"} onPressed={onStop} />
       <StopWatchButton title={"Reset"} onPressed={onReset} />
