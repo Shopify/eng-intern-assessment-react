@@ -43,6 +43,11 @@ export default function StopWatch() {
                 }}
                 handleLap={() => setLaps([...laps, time])}
             />
+            <div data-testid="lap-list">
+                {laps.map((lap, index) => (
+                    <div key={index}>Lap {index + 1}: {formatTime(lap)}</div>
+                ))}
+            </div>
         </div>
     )
 }
