@@ -13,10 +13,36 @@ export default function StopWatch() {
         return `${getHours}:${getMinutes}:${getSeconds}`;
     };
 
+    useEffect(() => {
+        let interval: NodeJS.Timeout | null = null;
+
+        if (timerOn) {
+            interval = setInterval(() => {
+                setTime(prevTime => prevTime + 1);
+            }, 1000);
+        } else if(interval) {
+            clearInterval(interval);
+        }
+
+        return () => {
+            if (interval) clearInterval(interval);
+        };
+    }, [timerOn]);
+
     return(
         <div>
             <h1>{formatTime(time)}</h1>
-
+            <StopWatchButton 
+                timerOn={timerOn} 
+                handleStart={() => setTimerOn(true)} 
+                handleStop={() => setTimerOn(false)}
+                handleReset={() => {
+                    setTime(0);
+                    setTimerOn(false);
+                    setLaps([]);
+                }}
+                handleLap={() => setLaps([...laps, time])}
+            />
         </div>
     )
 }
