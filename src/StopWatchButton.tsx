@@ -52,16 +52,16 @@ export default function StopWatchButton(props: ButtonProps) {
                     <table className="lap-table">
                         <thead>
                         <tr>
-                            <th>Lap Number</th>
-                            <th>Time</th>
-                            <th>Total Time</th>
+                            <th data-testid="lap-head">Lap Number</th>
+                            <th data-testid="lap-head">Time</th>
+                            <th data-testid="lap-head">Total Time</th>
                         </tr>
                         </thead>
                         <tbody>
                         {lapTimes.map((lapTime, index) => (
                             <tr key={index} className="lap-row">
                                 <td>{`Lap ${index + 1}`}</td>
-                                <td>{calculateDisplayTime(lapTime).join(':')}</td>
+                                <td data-testid="lap-time">{calculateDisplayTime(lapTime).join(':')}</td>
                                 <td>{calculateDisplayTime(totalTime[index]).join(':')}</td>
                             </tr>
                         ))}
