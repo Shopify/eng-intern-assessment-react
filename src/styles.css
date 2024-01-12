@@ -1,0 +1,77 @@
+:root {
+    --sans-serif-font: system-ui, Arial, Helvetica, sans-serif;
+
+    --text-color: #202223;
+    --border-color: #babfc3;
+
+    --button: #ffffff;
+    --button-hover: #f6f6f7;
+    --button-active: #e0e0e0;
+    --button-disabled: #cdcdcd;
+}
+
+* {
+    font-family: var(--sans-serif-font);
+}
+
+body {
+    padding-top: 1.5rem;
+}
+
+.stop-watch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+}
+
+.stop-watch-display {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.stop-watch-button {
+    color: var(--text-color);
+    background: var(--button);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+    padding: 8px 16px;
+    min-width: 5rem;
+    transition: background 0.1s;
+}
+
+.stop-watch-button:hover {
+    background: var(--button-hover);
+    outline: 1px solid transparent;
+}
+
+.stop-watch-button:active {
+    background: var(--button-active);
+    box-shadow: none;
+}
+
+.stop-watch-button:disabled {
+    background-color: var(--button-disabled);
+    box-shadow: none;
+}
+
+.lap-list {
+    text-align: center;
+    list-style-position: inside;
+    padding-left: 0;
+    margin: 0;
+}
+
+.lap-list > li::marker {
+    font-weight: 500;
+}

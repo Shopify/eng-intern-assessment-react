@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import { formatTime } from "./helpers/format-time";
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
+interface StopWatchProps {
+    /** Time to display in milliseconds*/
+    time: number;
 }
+
+const StopWatch = ({ time }: StopWatchProps) => {
+    return <div className="stop-watch-display">{formatTime(time)}</div>;
+};
+
+export default StopWatch;
