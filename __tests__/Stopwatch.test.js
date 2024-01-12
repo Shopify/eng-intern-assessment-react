@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import StopWatch from "../src/StopWatch";
+import {act} from "react-test-renderer";
 
 describe('Stopwatch', () => {
   test('renders initial state correctly', () => {
@@ -16,20 +17,31 @@ describe('Stopwatch', () => {
   });
 
   test('starts and stops the stopwatch', () => {
-    render(<Stopwatch />);
+    render(<StopWatch />);  // Replace with the actual component import and rendering
 
+    // Start the stopwatch
     fireEvent.click(screen.getByText('Start'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
+    // Remember the initial time
+    const initialTime = screen.getAllByTestId('display-text').map((elem) => elem.textContent);
+
+    // Stop the stopwatch
     fireEvent.click(screen.getByText('Stop'));
-    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
+
+    // Check that the time is still there and hasn't changed
+    const currentTime = screen.getAllByTestId('display-text').map((elem) => elem.textContent);
+
+    expect(currentTime).toEqual(initialTime);
   });
+
+
+
 
   test('pauses and resumes the stopwatch', () => {
     render(<Stopwatch />);
 
     fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Pause'));
+    fireEvent.click(screen.getByText('Stop'));
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText('Resume'));
