@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import calculateDisplayTime from "./Functions/calculateDisplayTime";
-import './StopWatch.css'; // Import your CSS file
+import React, {useState} from 'react';
+import calculateDisplayTime from "./calculateDisplayTime";
 
 type ButtonProps = {
     setTimeInSec: Function;
@@ -8,12 +7,13 @@ type ButtonProps = {
 };
 
 export default function StopWatchButton(props: ButtonProps) {
-    const { setTimeInSec, timeInSec } = props;
-    const [intervalId, setIntervalId] = useState<number | undefined>(undefined);
-    const [lapTimes, setLapTimes] = useState<Array<number>>([]);
-    const [totalTime, setTotalTime] = useState<Array<number>>([]);
+    const {setTimeInSec, timeInSec} = props;
+    const [intervalId, setIntervalId] = useState<number | undefined>(undefined); // To Keep track of the most recent interval id for the setInterval function used to handle Start/Stop buttons dynamically
+    const [lapTimes, setLapTimes] = useState<Array<number>>([]); // Keeps track of the time elapsed between a lap and the lap before that for each of the laps
+    const [totalTime, setTotalTime] = useState<Array<number>>([]); // Keeps track of the time the stopwatch showed at the time of each lap
 
     function handleStart() {
+        // changes timeInSec to be displayed every 1 second
         const newIntervalId: any = setInterval(() => {
             setTimeInSec((previousTime: number) => previousTime + 1);
         }, 1000);
@@ -34,6 +34,8 @@ export default function StopWatchButton(props: ButtonProps) {
 
     function handleLap() {
         setTotalTime(prevState => [...prevState, timeInSec])
+        // Update lapTimes array by calculating the time for the current lap
+        // and appending it to the existing lap times, adjusting for total elapsed time.
         setLapTimes(prevLapTimes => [...prevLapTimes, timeInSec - prevLapTimes.reduce((acc, lapTime) => acc + lapTime, 0)]);
     }
 

@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react'
-// import "./StopWatch.css"
-import calculateDisplayTime from "./Functions/calculateDisplayTime";
+import calculateDisplayTime from "./calculateDisplayTime";
 import StopWatchButton from "./StopWatchButton";
+
 export default function StopWatch() {
-    const [timeInSec,setTimeInSec]= useState<number>(0);
-    const [timer,setTimer] = useState<Array<string>>([]);
-    const [lapArray,setLapArray] = useState([]);
+    // keeps track of the time to display in seconds
+    const [timeInSec, setTimeInSec] = useState<number>(0);
+    // keeps track of the time to display in the form [hh,mm,ss]
+    const [timer, setTimer] = useState<Array<string>>([]);
 
+    // updates the time displayed whenever timeInSec changes
+    useEffect(() => {
+        setTimer(calculateDisplayTime(timeInSec));
+    }, [timeInSec])
 
-    useEffect(()=>{
-       setTimer(calculateDisplayTime(timeInSec));
-    },[timeInSec])
-
-    return(
+    return (
         <div>
             <div className="time">
                 <p className="display-text">{timer[0]}</p>
@@ -21,7 +22,7 @@ export default function StopWatch() {
                 <p>:</p>
                 <p className="display-text">{timer[2]}</p>
             </div>
-            <StopWatchButton setTimeInSec = {setTimeInSec} timeInSec={timeInSec}/>
+            <StopWatchButton setTimeInSec={setTimeInSec} timeInSec={timeInSec}/>
 
         </div>
     )
