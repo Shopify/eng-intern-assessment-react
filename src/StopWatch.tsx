@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-export default function StopWatch() {
-    const [seconds, setSeconds] = useState(0);
+interface StopWatchProps {
+    seconds: number;
+}
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds(seconds => seconds + 1);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
-
+export default function StopWatch({ seconds }: StopWatchProps) {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ fontSize: '60px', fontWeight: 'bold' }}>
