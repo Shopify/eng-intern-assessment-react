@@ -46,7 +46,8 @@ export default function StopWatch() {
   const onLap = () => {
     if (worstLap < lapElapsed) {
       setWorstLap(lapElapsed);
-    } else if (bestLap === -1 || bestLap > lapElapsed) {
+    }
+    if (bestLap === -1 || bestLap > lapElapsed) {
       // when bestLap is still default, this lap is automatically the best. otherwise compare
       setBestLap(lapElapsed);
     }
