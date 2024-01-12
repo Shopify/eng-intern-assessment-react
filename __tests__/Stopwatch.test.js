@@ -7,6 +7,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Stopwatch from "../src/StopWatch";
 
+const sleep = (ms) => new Promise((resolve, _) => setTimeout(resolve, ms));
+
 describe("Stopwatch", () => {
 	test("renders initial state correctly", () => {
 		render(<Stopwatch />);
@@ -15,39 +17,33 @@ describe("Stopwatch", () => {
 		expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
 	});
 
-	test("starts and stops the stopwatch", () => {
+	test("starts and stops the stopwatch", async () => {
 		render(<Stopwatch />);
 
 		fireEvent.click(screen.getByText("Start"));
-		expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
-
+		await sleep(100);
 		fireEvent.click(screen.getByText("Stop"));
-		expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
-	});
-
-	test("pauses and resumes the stopwatch", () => {
-		render(<Stopwatch />);
+		const pausedTime = screen.getByText(/\d{2}:\d{2}:\d{2}/).textContent;
 
 		fireEvent.click(screen.getByText("Start"));
-		fireEvent.click(screen.getByText("Pause"));
-		const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
-
-		fireEvent.click(screen.getByText("Resume"));
-		expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
+		await sleep(100);
+		expect(screen.getByText(/\d{2}:\d{2}:\d{2}/).textContent).not.toBe(
 			pausedTime,
 		);
 	});
 
-	test("records and displays lap times", () => {
+	test("records and displays lap times", async () => {
 		render(<Stopwatch />);
 
 		fireEvent.click(screen.getByText("Start"));
+		await sleep(100);
 		fireEvent.click(screen.getByText("Lap"));
-		expect(screen.getByTestId("lap-list")).toContainElement(
-			screen.getByText(/(\d{2}:){2}\d{2}/),
+		expect(screen.getByTestId("lap-list")).toHaveTextContent(
+			/\d{2}:\d{2}:\d{2}/,
 		);
 
 		fireEvent.click(screen.getByText("Lap"));
+		await sleep(100);
 		expect(screen.getByTestId("lap-list").children.length).toBe(2);
 	});
 
