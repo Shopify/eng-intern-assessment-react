@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
 import { displayTime } from './utils';
 
-interface StopWatchProps {
+
+interface StopwatchProps {
     isCounting: string;
     addLapTime: (lapTime: string) => void;
     addLap: boolean;
 }
 
-const StopWatch: React.FC<StopWatchProps> = ({ isCounting, addLap, addLapTime }) => {
+const styles: { [key: string]: React.CSSProperties } = {
+    timeDisplay: {
+        fontSize: '24px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: '20px'
+    },
+    stopWatchCircle: {
+        width: '200px',
+        height: '200px',
+        borderRadius: '50%',
+        backgroundColor: '#ddd',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '24px',
+        fontWeight: 'bold'
+    }
+};
+
+const Stopwatch: React.FC<StopwatchProps> = ({ isCounting, addLap, addLapTime }) => {
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
@@ -28,7 +49,7 @@ const StopWatch: React.FC<StopWatchProps> = ({ isCounting, addLap, addLapTime })
         setHours(0);
     }
 
-    if (addLap) {
+    if (addLap && isCounting === 'counting') {
         addLapTime(displayTime(hours, minutes, seconds));
     }
 
@@ -49,10 +70,12 @@ const StopWatch: React.FC<StopWatchProps> = ({ isCounting, addLap, addLapTime })
             }
         });
     }
- 
-    return(
-        <div>{displayTime(hours, minutes, seconds)}</div>
+
+    return (
+        <div style={styles.stopWatchCircle}>
+            <h1 style={styles.timeDisplay}>{displayTime(hours, minutes, seconds)}</h1>
+        </div>
     )
 }
 
-export default StopWatch;
+export default Stopwatch;

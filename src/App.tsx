@@ -1,39 +1,57 @@
 import React, { useState } from 'react';
-import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
+import Stopwatch from './Stopwatch'
+import StopwatchButton from './StopwatchButton'
 import Laps from './Laps';
 import { displayTime } from './utils';
 
+const styles: { [key: string]: React.CSSProperties } = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    title: {
+        fontWeight: 200
+    }
+};
+
 export default function App() {
-    const [stopWatchState, setStopWatchState] = useState('reset');
+    const [stopWatchState, setStopwatchState] = useState('reset');
     const [lap, setLap] = useState(false);
-    const [prevLapTime, setPrevLapTime] = useState(0);
+    const [totalTimeAtPrevLap, setPrevLapTime] = useState(0);
     const [lapList, setLapList] = useState([]);
 
     const startCounting = () => {
-        setStopWatchState('counting');
+        setStopwatchState('counting');
     }
     const stopCounting = () => {
-        setStopWatchState('stopCounting');
+        setStopwatchState('stopCounting');
     }
     const reset = () => {
-        setStopWatchState('reset');
+        setStopwatchState('reset');
+        setPrevLapTime(0);
         setLapList([]);
     }
     const recordLap = () => {
-        setLap(true);
+        if (stopWatchState === 'counting') {
+            setLap(true);
+        }
     }
     const addLapTime = (lapTime: string) => {
-        const lapTimeDiff = calculateLap(lapTime);
-        setLapList([...lapList, lapTimeDiff]);
+        const newLap = calculateLap(lapTime);
+        setLapList([...lapList, newLap]);
         setLap(false);
     }
     const calculateLap = (currLapTime: string) => {
         const [hours, minutes, seconds] = currLapTime.split(':');
         const currTimeInSeconds = parseInt(hours, 10) * 3600 + parseInt(minutes, 10) * 60 + parseInt(seconds);
-        const diffInSeconds = currTimeInSeconds - prevLapTime;
+        const diffInSeconds = currTimeInSeconds - totalTimeAtPrevLap;
         setPrevLapTime(currTimeInSeconds);
-        return secondsToDisplayFormat(diffInSeconds);
+        return {
+            lapTime: secondsToDisplayFormat(diffInSeconds),
+            overallTime: secondsToDisplayFormat(currTimeInSeconds)
+        }
     }
     const secondsToDisplayFormat = (totalSeconds: number) => {
         const hours = Math.floor(totalSeconds / 3600);
@@ -43,9 +61,10 @@ export default function App() {
     }
 
     return(
-        <div>
-            <StopWatch isCounting={stopWatchState} addLap={lap} addLapTime={addLapTime}></StopWatch>
-            <StopWatchButton onStart={startCounting} onStop={stopCounting} onReset={reset} onLap={recordLap}></StopWatchButton>
+        <div style={styles.container}>
+            <h1 style={styles.title}>Welcome to Maggie's Stopwatch!</h1>
+            <Stopwatch isCounting={stopWatchState} addLap={lap} addLapTime={addLapTime}></Stopwatch>
+            <StopwatchButton onStart={startCounting} onStop={stopCounting} onReset={reset} onLap={recordLap}></StopwatchButton>
             <Laps lapList={lapList}></Laps>
         </div>
     )
