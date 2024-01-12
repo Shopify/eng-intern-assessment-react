@@ -16,11 +16,11 @@ export default function StopWatch() {
     return (
         <div>
             <div className="time">
-                <p className="display-text">{timer[0]}</p>
+                <p className="display-text" data-testid="display-text">{timer[0]}</p>
                 <p>:</p>
-                <p className="display-text">{timer[1]}</p>
+                <p className="display-text" data-testid="display-text">{timer[1]}</p>
                 <p>:</p>
-                <p className="display-text">{timer[2]}</p>
+                <p className="display-text" data-testid="display-text">{timer[2]}</p>
             </div>
             <StopWatchButton setTimeInSec={setTimeInSec} timeInSec={timeInSec}/>
 
