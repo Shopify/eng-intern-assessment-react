@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./app.css";
 import StopWatch from "./StopWatch";
-import { Heading } from "@chakra-ui/react";
 
 type Lap = {
   lapId: number;
