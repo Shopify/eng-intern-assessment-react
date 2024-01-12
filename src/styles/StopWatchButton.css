@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
 
 button {
-    font-family: "Roboto";
-    width: 70px;
-    height: 70px;
+    font-family: "Space Mono";
+    font-weight: bold;
+    font-size: medium;
+    width: 100px;
+    height: 100px;
     border-radius: 100%;
     border-width: 0;
     background-color: #3D3D3D;

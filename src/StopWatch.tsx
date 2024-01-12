@@ -2,6 +2,8 @@ import "./styles/StopWatch.css";
 
 import React, { useRef, useState } from "react";
 
+import Lap from "./Lap";
+import LapHistory from "./LapHistory";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
@@ -9,6 +11,9 @@ export default function StopWatch() {
   const [lapElapsed, setLapElapsed] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
+
+  const [bestTime, setBestTime] = useState(-1);
+  const [worstTime, setWorstTime] = useState(0);
 
   let intervalRef = useRef(null);
   const onStart = () => {
@@ -35,7 +40,12 @@ export default function StopWatch() {
   };
 
   const onLap = () => {
-    laps.unshift(lapElapsed);
+    if (worstTime < lapElapsed) {
+      setWorstTime(lapElapsed);
+    } else if (bestTime === -1 || bestTime > lapElapsed) {
+      setBestTime(lapElapsed);
+    }
+    laps.unshift(formatTime(lapElapsed));
     setLapElapsed(0);
     setLaps(laps);
   };
@@ -62,42 +72,42 @@ export default function StopWatch() {
 
   return (
     <div>
-      <p className="time">{formatTime(elapsed)}</p>
-      <div className="buttons">
-        {isRunning ? (
-          <>
-            <StopWatchButton title={"Lap"} onPressed={onLap} />
+      <pre className="time">{formatTime(elapsed)}</pre>
+      {isRunning ? (
+        <div className="buttons">
+          <StopWatchButton title={"Lap"} onPressed={onLap} />
+          <div className="rightButton">
             <StopWatchButton
               className="stopButton"
               title={"Stop"}
               onPressed={onStop}
             />
-          </>
-        ) : (
-          <>
+          </div>
+        </div>
+      ) : (
+        <div className="buttons">
+          <div>
             <StopWatchButton title={"Reset"} onPressed={onReset} />
+          </div>
+          <div className="rightButton">
             <StopWatchButton
               className="startButton"
               title={"Start"}
               onPressed={onStart}
             />
-          </>
-        )}
-      </div>
-
-      {elapsed > 0 && (
-        <p className="lap">
-          {"Lap " + (laps.length + 1) + " " + formatTime(lapElapsed)}
-        </p>
+          </div>
+        </div>
       )}
 
-      {laps.map((lap, index) => {
-        return (
-          <p className="lap" key={index}>
-            {"Lap " + (laps.length - index) + " " + formatTime(lap)}
-          </p>
-        );
-      })}
+      {elapsed > 0 && (
+        <Lap lapElapsed={formatTime(lapElapsed)} lapIndex={laps.length + 1} />
+      )}
+
+      <LapHistory
+        laps={laps}
+        bestTime={formatTime(bestTime)}
+        worstTime={formatTime(worstTime)}
+      />
     </div>
   );
 }
