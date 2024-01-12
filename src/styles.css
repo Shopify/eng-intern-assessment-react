@@ -1,7 +1,18 @@
-.display {
-    padding: 6rem 2rem;
-    font-size: 2.8rem;
+body {
+    background-color: whitesmoke;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.container {
+    margin: 6rem 0rem;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    gap: 2rem;
+}
+
+.display {
+    font-size: 2.8rem;
 }
 
 .buttons {
@@ -32,4 +43,15 @@
 
 .button.blue {
     background-color: rgb(132, 194, 252);
+}
+
+.button.orange {
+    background-color: rgb(255, 174, 24)
+}
+
+.lapTimes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.2rem;
 }
