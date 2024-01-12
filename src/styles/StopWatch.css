@@ -1,0 +1,17 @@
+.stopwatch {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stopwatch__display {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.stopwatch__controls {
+  display: flex;
+  gap: 10px;
+}

@@ -1,7 +1,20 @@
-import React from 'react'
+import React from "react";
+import "./styles/StopWatchButton.css";
+import { StopWatchButtonProps } from "../types/stopwatchTypes";
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
-}
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+  label,
+  onClick,
+  buttonType,
+}) => {
+  return (
+    <button
+      className={`stopwatch-button stopwatch-button--${buttonType}`}
+      onClick={onClick}
+    >
+      {label}
+    </button>
+  );
+};
+
+export default StopWatchButton;

@@ -1,0 +1,18 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button--start {
+  background-color: green;
+  color: white;
+}
+.button--stop {
+  background-color: red;
+  color: white;
+}
+.button--reset {
+  background-color: grey;
+  color: white;
+}
