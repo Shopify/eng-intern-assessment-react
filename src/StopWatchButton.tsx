@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import calculateDisplayTime from "./Functions/calculateDisplayTime";
+import './StopWatch.css'; // Import your CSS file
 
 type ButtonProps = {
     setTimeInSec: Function;
@@ -28,11 +29,11 @@ export default function StopWatchButton(props: ButtonProps) {
         clearInterval(intervalId);
         setTimeInSec(0);
         setLapTimes([]);
-        //setTotalTime(0);
+        setTotalTime([]);
     }
 
     function handleLap() {
-        setTotalTime(prevState => [...prevState,timeInSec])
+        setTotalTime(prevState => [...prevState, timeInSec])
         setLapTimes(prevLapTimes => [...prevLapTimes, timeInSec - prevLapTimes.reduce((acc, lapTime) => acc + lapTime, 0)]);
     }
 
@@ -45,27 +46,27 @@ export default function StopWatchButton(props: ButtonProps) {
                 <button onClick={handleLap}>Lap</button>
             </div>
             <div className="lap-times-container">
-                <h3>Lap Times</h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Lap Number</th>
-                        <th>Time</th>
-                        <th>Total Time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {lapTimes.map((lapTime, index) => (
-                        <tr key={index} className="lap-row">
-                            <td>{`Lap ${index + 1}`}</td>
-                            <td>{calculateDisplayTime(lapTime).join(':')}</td>
-                            <td>{calculateDisplayTime(totalTime[index]).join(':')}</td>
+                {lapTimes.length > 0 && (
+                    <table className="lap-table">
+                        <thead>
+                        <tr>
+                            <th>Lap Number</th>
+                            <th>Time</th>
+                            <th>Total Time</th>
                         </tr>
-                    ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {lapTimes.map((lapTime, index) => (
+                            <tr key={index} className="lap-row">
+                                <td>{`Lap ${index + 1}`}</td>
+                                <td>{calculateDisplayTime(lapTime).join(':')}</td>
+                                <td>{calculateDisplayTime(totalTime[index]).join(':')}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </div>
     );
 }
-
