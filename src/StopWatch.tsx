@@ -30,8 +30,8 @@ export default function StopWatch() {
     }, [timerOn]);
 
     return(
-        <div>
-            <h1>{formatTime(time)}</h1>
+        <div className="stopwatch-container">
+            <h1 className="stopwatch-display">{formatTime(time)}</h1>
             <StopWatchButton 
                 timerOn={timerOn} 
                 handleStart={() => setTimerOn(true)} 
@@ -43,7 +43,7 @@ export default function StopWatch() {
                 }}
                 handleLap={() => setLaps([...laps, time])}
             />
-            <div data-testid="lap-list">
+            <div className="lap-list" data-testid="lap-list">
                 {laps.map((lap, index) => (
                     <div key={index}>Lap {index + 1}: {formatTime(lap)}</div>
                 ))}
