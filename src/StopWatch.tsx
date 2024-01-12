@@ -8,12 +8,16 @@ export default function StopWatch() {
     const [laps, setLaps] = useState<number[]>([]);
 
     // Function to format the time into a human-readable format
-    const formatTime = (time:number) => {
-        const getSeconds = `0${(time % 60)}`.slice(-2);
-        const minutes = `${Math.floor(time / 60)}`;
-        const getMinutes = `0${parseInt(minutes, 10) % 60}`.slice(-2);
-        const getHours = `0${Math.floor(time / 3600)}`.slice(-2);
-        return `${getHours}:${getMinutes}:${getSeconds}`;
+    const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60000);
+        const seconds = Math.floor((time % 60000) / 1000);
+        const milliseconds = time % 1000;
+
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+        const formattedMilliseconds = milliseconds < 100 ? `0${Math.floor(milliseconds / 10)}` : Math.floor(milliseconds / 10);
+
+        return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
     };
 
     // useEffect hook to handle the stopwatch timing
@@ -23,10 +27,9 @@ export default function StopWatch() {
         // Start interval to update time every second when the timer is on
         if (timerOn) {
             interval = setInterval(() => {
-                setTime(prevTime => prevTime + 1);
-            }, 1000);
-        } else if(interval) {
-            // Clear interval when timer is not running
+                setTime(prevTime => prevTime + 10);
+            }, 10);
+        } else if (interval) {
             clearInterval(interval);
         }
         // Cleanup function to clear interval on component unmount
