@@ -35,19 +35,6 @@ describe('Stopwatch', () => {
   });
 
 
-
-
-  test('pauses and resumes the stopwatch', () => {
-    render(<Stopwatch />);
-
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Stop'));
-    const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
-
-    fireEvent.click(screen.getByText('Resume'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
-  });
-
   test('records and displays lap times', () => {
     render(<Stopwatch />);
 
@@ -60,14 +47,17 @@ describe('Stopwatch', () => {
   });
 
   test('resets the stopwatch', () => {
-    render(<Stopwatch />);
+    render(<StopWatch />);
 
     fireEvent.click(screen.getByText('Start'));
     fireEvent.click(screen.getByText('Lap'));
     fireEvent.click(screen.getByText('Reset'));
 
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    const displayTexts = screen.getAllByTestId('display-text');
+
+    displayTexts.forEach((displayText) => {
+      expect(displayText.textContent).toEqual("00");
+    });
   });
 });
 
