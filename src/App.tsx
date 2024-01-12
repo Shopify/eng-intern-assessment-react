@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Stopwatch from './Stopwatch'
-import StopwatchButton from './StopwatchButton'
+import StopWatch from './StopWatch'
+import StopWatchButton from './StopWatchButton'
 import Laps from './Laps';
 import { displayTime } from './utils';
 
@@ -17,20 +17,20 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 export default function App() {
-    const [stopWatchState, setStopwatchState] = useState('reset');
+    const [stopWatchState, setStopWatchState] = useState('reset');
     const [lap, setLap] = useState(false);
-    const [totalTimeAtPrevLap, setPrevLapTime] = useState(0);
+    const [totalTimeAtPrevLap, setTotalTimeAtPrevLap] = useState(0);
     const [lapList, setLapList] = useState([]);
 
     const startCounting = () => {
-        setStopwatchState('counting');
+        setStopWatchState('counting');
     }
     const stopCounting = () => {
-        setStopwatchState('stopCounting');
+        setStopWatchState('stopCounting');
     }
     const reset = () => {
-        setStopwatchState('reset');
-        setPrevLapTime(0);
+        setStopWatchState('reset');
+        setTotalTimeAtPrevLap(0);
         setLapList([]);
     }
     const recordLap = () => {
@@ -47,7 +47,7 @@ export default function App() {
         const [hours, minutes, seconds] = currLapTime.split(':');
         const currTimeInSeconds = parseInt(hours, 10) * 3600 + parseInt(minutes, 10) * 60 + parseInt(seconds);
         const diffInSeconds = currTimeInSeconds - totalTimeAtPrevLap;
-        setPrevLapTime(currTimeInSeconds);
+        setTotalTimeAtPrevLap(currTimeInSeconds);
         return {
             lapTime: secondsToDisplayFormat(diffInSeconds),
             overallTime: secondsToDisplayFormat(currTimeInSeconds)
@@ -62,9 +62,9 @@ export default function App() {
 
     return(
         <div style={styles.container}>
-            <h1 style={styles.title}>Welcome to Maggie's Stopwatch!</h1>
-            <Stopwatch isCounting={stopWatchState} addLap={lap} addLapTime={addLapTime}></Stopwatch>
-            <StopwatchButton onStart={startCounting} onStop={stopCounting} onReset={reset} onLap={recordLap}></StopwatchButton>
+            <h1 style={styles.title}>Welcome to Maggie's StopWatch!</h1>
+            <StopWatch isCounting={stopWatchState} addLap={lap} addLapTime={addLapTime}></StopWatch>
+            <StopWatchButton onStart={startCounting} onStop={stopCounting} onReset={reset} onLap={recordLap}></StopWatchButton>
             <Laps lapList={lapList}></Laps>
         </div>
     )

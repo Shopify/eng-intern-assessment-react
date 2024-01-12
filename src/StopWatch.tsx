@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { displayTime } from './utils';
 
 
-interface StopwatchProps {
+interface StopWatchProps {
     isCounting: string;
     addLapTime: (lapTime: string) => void;
     addLap: boolean;
@@ -28,7 +28,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     }
 };
 
-const Stopwatch: React.FC<StopwatchProps> = ({ isCounting, addLap, addLapTime }) => {
+const StopWatch: React.FC<StopWatchProps> = ({ isCounting, addLap, addLapTime }) => {
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
@@ -78,4 +78,4 @@ const Stopwatch: React.FC<StopwatchProps> = ({ isCounting, addLap, addLapTime })
     )
 }
 
-export default Stopwatch;
+export default StopWatch;

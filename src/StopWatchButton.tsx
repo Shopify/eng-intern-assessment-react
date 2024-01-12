@@ -25,7 +25,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     }
 };
 
-const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onReset, onLap }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onStart, onStop, onReset, onLap }) => {
     return(
         <div style={styles.buttonsContainer}>
             <button style={styles.button} onClick={onStart}>Start</button>
@@ -36,4 +36,4 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onRe
     )
 }
 
-export default StopwatchButton;
+export default StopWatchButton;
