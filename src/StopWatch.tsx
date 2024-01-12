@@ -1,8 +1,22 @@
 import React from "react";
+import {
+  Heading,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Box,
+} from "@chakra-ui/react";
 import StopWatchButton from "./StopWatchButton";
 import "./app.css";
 
 type Lap = {
+  lapId: number;
   lapTime: number;
   totalTime: number;
 };
@@ -58,17 +72,36 @@ export default function StopWatch({
         lapTime={lapTime}
         setLapTime={setLapTime}
       ></StopWatchButton>
-      <div>
-        Laps:
-        <div>
-          {laps.map(lap => (
-            <div>
-              <div>{timeify(lap.lapTime)}</div>
-              <div>{timeify(lap.totalTime)}</div>
-            </div>
-          ))}{" "}
+      {laps.length != 0 ? (
+        <div className="laps">
+          <div>
+            <TableContainer>
+              <Box overflowY="scroll" maxHeight="300px">
+                <Table variant="simple" size={"lg"}>
+                  <Thead position={"sticky"}>
+                    <Tr>
+                      <Th>Lap</Th>
+                      <Th>Time</Th>
+                      <Th>Total Time</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {laps.map(lap => (
+                      <Tr>
+                        <Th>{lap.lapId}</Th>
+                        <Th>{timeify(lap.lapTime)}</Th>
+                        <Th>{timeify(lap.totalTime)}</Th>
+                      </Tr>
+                    ))}{" "}
+                  </Tbody>
+                </Table>
+              </Box>
+            </TableContainer>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import "./app.css";
 import StopWatch from "./StopWatch";
 
 type Lap = {
+  lapId: number;
   lapTime: number;
   totalTime: number;
 };
@@ -28,6 +30,11 @@ export default function App() {
 
   return (
     <div>
+      <div className="header">
+        <header>
+          <h1>Stopwatch</h1>
+        </header>
+      </div>
       <StopWatch
         start={start}
         setStart={setStart}

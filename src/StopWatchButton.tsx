@@ -1,6 +1,9 @@
 import React from "react";
+import "./app.css";
+import { Button, Stack } from "@chakra-ui/react";
 
 type Lap = {
+  lapId: number;
   lapTime: number;
   totalTime: number;
 };
@@ -35,21 +38,34 @@ export default function StopWatchButton({
   const handleLap = () => {
     const newLapTime = time - lapTime;
     setLaps(prevLaps => [
+      { lapId: laps.length + 1, lapTime: newLapTime, totalTime: time },
       ...prevLaps,
-      { lapTime: newLapTime, totalTime: time },
     ]);
     setLapTime(time);
   };
   return (
-    <div>
-      <button onClick={() => setStart(!start)}>
-        {!start ? "Start" : "Stop"}
-      </button>
+    <div className="buttons">
+      <Stack direction="row" spacing={4} align="center">
+        <Button
+          onClick={() => setStart(!start)}
+          colorScheme="green"
+          variant="outline"
+        >
+          {!start ? "Start" : "Stop"}
+        </Button>
 
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleLap} disabled={!start}>
-        Lap
-      </button>
+        <Button onClick={handleReset} colorScheme="green" variant="outline">
+          Reset
+        </Button>
+        <Button
+          onClick={handleLap}
+          isDisabled={!start}
+          colorScheme="green"
+          variant="outline"
+        >
+          Lap
+        </Button>
+      </Stack>
     </div>
   );
 }
