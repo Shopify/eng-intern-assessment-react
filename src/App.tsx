@@ -42,8 +42,8 @@ const App = () => {
                 </StopWatchButton>
             </div>
             <ol className="lap-list" data-testid="lap-list" reversed>
-                {laps.map((lapTime) => (
-                    <li>{formatTime(lapTime)}</li>
+                {laps.map((lapTime, index) => (
+                    <li key={index}>{formatTime(lapTime)}</li>
                 ))}
             </ol>
         </div>

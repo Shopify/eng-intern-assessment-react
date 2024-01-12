@@ -7,9 +7,13 @@ export const useStopWatch = () => {
     const intervalId = useRef(null);
 
     const [time, setTime] = useState(0);
+
     const [isRunning, setIsRunning] = useState(false);
     const [isStopped, setIsStopped] = useState(true);
     const [isReset, setIsReset] = useState(true);
+
+    // Lap times, from latest to earliest.
+    // The overall time when the lap was made is recorded 
     const [laps, setLaps] = useState([] as number[]);
 
     const toggleStartPause = () => {
