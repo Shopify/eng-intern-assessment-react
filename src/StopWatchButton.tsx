@@ -5,16 +5,22 @@ import React, { MouseEventHandler } from "react";
 export default function StopWatchButton({
   title,
   onPressed,
-  className,
+  isStart = false,
+  isStop = false,
 }: {
   title: string;
   onPressed: MouseEventHandler<HTMLButtonElement>;
-  className?: string;
-  backgroundColor?: string;
+  isStart?: boolean;
+  isStop?: boolean;
 }) {
   return (
     <div>
-      <button className={className ? className : ""} onClick={onPressed}>
+      <button
+        className={`${isStart ? "startButton" : ""} ${
+          isStop ? "stopButton" : ""
+        }`}
+        onClick={onPressed}
+      >
         {title}
       </button>
     </div>

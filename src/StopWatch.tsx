@@ -7,8 +7,8 @@ import LapHistory from "./LapHistory";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
-  const [elapsed, setElapsed] = useState(10000000);
-  const [lapElapsed, setLapElapsed] = useState(10000000);
+  const [elapsed, setElapsed] = useState(0);
+  const [lapElapsed, setLapElapsed] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
 
@@ -91,9 +91,9 @@ export default function StopWatch() {
             <StopWatchButton title={"Lap"} onPressed={onLap} />
             <div className="rightButton">
               <StopWatchButton
-                className="stopButton"
                 title={"Stop"}
                 onPressed={onStop}
+                isStop={true}
               />
             </div>
           </>
@@ -102,9 +102,9 @@ export default function StopWatch() {
             <StopWatchButton title={"Reset"} onPressed={onReset} />
             <div className="rightButton">
               <StopWatchButton
-                className="startButton"
                 title={"Start"}
                 onPressed={onStart}
+                isStart={true}
               />
             </div>
           </>
