@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Define the prop types for the StopWatchButton component
 interface StopWatchButtonProps {
     timerOn: boolean;
     handleStart: () => void;
@@ -8,6 +9,7 @@ interface StopWatchButtonProps {
     handleLap: () => void;
 }
 
+// StopWatchButton component for the stop, start, reset and lap buttons
 export default function StopWatchButton({ timerOn, handleStart, handleStop, handleReset, handleLap }: StopWatchButtonProps) {
     return(
         <div>
