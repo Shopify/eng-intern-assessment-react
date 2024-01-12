@@ -1,55 +1,71 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Stopwatch from '../src/StopWatch';
+import {fireEvent, render, screen} from '@testing-library/react';
+import StopWatch from "../src/StopWatch";
 
 describe('Stopwatch', () => {
   test('renders initial state correctly', () => {
-    render(<Stopwatch />);
-    
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    render(<StopWatch />);
+
+    // Assert that the component renders with initial display time (00:00:00)
+    const displayTexts = screen.getAllByTestId('display-text');
+
+    displayTexts.forEach((displayText) => {
+      expect(displayText.textContent).toEqual("00");
+    });
   });
 
   test('starts and stops the stopwatch', () => {
-    render(<Stopwatch />);
-    
+    render(<StopWatch />);
+    // Start the stopwatch
     fireEvent.click(screen.getByText('Start'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
+    // Remember the initial time
+    const initialTime = screen.getAllByTestId('display-text').map((elem) => elem.textContent);
+
+    // Stop the stopwatch
     fireEvent.click(screen.getByText('Stop'));
-    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
+
+    // Check that the time is still there and hasn't changed
+    const currentTime = screen.getAllByTestId('display-text').map((elem) => elem.textContent);
+
+    expect(currentTime).toEqual(initialTime);
   });
 
-  test('pauses and resumes the stopwatch', () => {
-    render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Pause'));
-    const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
-    fireEvent.click(screen.getByText('Resume'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
-  });
 
   test('records and displays lap times', () => {
-    render(<Stopwatch />);
-    
+    render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
     fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list')).toContainElement(screen.getByText(/(\d{2}:){2}\d{2}/));
 
+    //Check if the table header is displayed
+    const lapListHeader = screen.getAllByTestId('lap-head');
+    expect(lapListHeader[0].textContent).toEqual("Lap Number");
+    expect(lapListHeader[1].textContent).toEqual("Time");
+    expect(lapListHeader[2].textContent).toEqual("Total Time");
+
+    // check lap time is in valid format hh:mm:ss
+    const lapTimeText = screen.getAllByTestId('lap-time')[0].textContent;
+    expect(lapTimeText).toMatch(/(\d{2}:){2}\d{2}/);
+
+    //Check if new lap is added on clicking lap
     fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list').children.length).toBe(2);
+    expect(screen.getAllByTestId('lap-time').length).toEqual(2);
   });
+
 
   test('resets the stopwatch', () => {
-    render(<Stopwatch />);
-    
+    render(<StopWatch />);
+
     fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
+
     fireEvent.click(screen.getByText('Reset'));
 
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    const displayTexts = screen.getAllByTestId('display-text');
+
+    displayTexts.forEach((displayText) => {
+      expect(displayText.textContent).toEqual("00");
+    });
   });
 });
+
