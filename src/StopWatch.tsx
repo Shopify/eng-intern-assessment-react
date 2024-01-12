@@ -6,6 +6,7 @@ export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [timerOn, setTimerOn] = useState(false);
     const [laps, setLaps] = useState<number[]>([]);
+    const [isPaused, setIsPaused] = useState(false);
 
     // Function to format the time into a human-readable format
     const formatTime = (time: number) => {
@@ -25,7 +26,7 @@ export default function StopWatch() {
         let interval: NodeJS.Timeout | null = null;
 
         // Start interval to update time every second when the timer is on
-        if (timerOn) {
+        if (timerOn && !isPaused) {
             interval = setInterval(() => {
                 setTime(prevTime => prevTime + 10);
             }, 10);
@@ -36,28 +37,34 @@ export default function StopWatch() {
         return () => {
             if (interval) clearInterval(interval);
         };
-    }, [timerOn]);
+    }, [timerOn, isPaused]);
     
     // Render the stopwatch display, control buttons, and list of laps
-    return(
+    return (
         <div className="stopwatch-container">
             <h1 className="stopwatch-display">{formatTime(time)}</h1>
             <StopWatchButton 
-                timerOn={timerOn} 
-                handleStart={() => setTimerOn(true)} 
-                handleStop={() => setTimerOn(false)}
+                timerOn={timerOn}
+                isPaused={isPaused}
+                handleStart={() => { setTimerOn(true); setIsPaused(false); }}
+                handleStop={() => { setTimerOn(false); setIsPaused(false); }}
+                handlePause={() => setIsPaused(true)}
+                handleResume={() => setIsPaused(false)}
                 handleReset={() => {
                     setTime(0);
                     setTimerOn(false);
+                    setIsPaused(false);
                     setLaps([]);
                 }}
                 handleLap={() => setLaps([...laps, time])}
             />
             <div className="lap-list" data-testid="lap-list">
                 {laps.map((lap, index) => (
-                    <div key={index}>Lap {index + 1}: {formatTime(lap)}</div>
+                    <div key={index} data-testid={`lap-${index}`}>
+                        Lap {index + 1}: {formatTime(lap)}
+                    </div>
                 ))}
             </div>
         </div>
-    )
+    );
 }
