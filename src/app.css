@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "DigitalClock";
+  src: url("./fonts/DS-DIGIT.TTF") format("truetype");
+}
+
+.stop-watch {
+  font-family: "DigitalClock", sans-serif;
+}
