@@ -54,6 +54,6 @@
     "moduleNameMapper": {
       "\\.(scss|sass|css)$": "identity-obj-proxy"
     },
-    "testEnvironment": "jest-environment-jsdom"
+    "testEnvironment": "jsdom"
   }
 }

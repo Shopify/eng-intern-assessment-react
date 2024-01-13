@@ -29,6 +29,7 @@ describe("Stopwatch", () => {
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText("Resume"));
+
     expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
       pausedTime
     );

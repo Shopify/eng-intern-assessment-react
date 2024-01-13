@@ -33,7 +33,9 @@ export default function StopWatch() {
         interval = setInterval(() => setTime(time + 10), 10);
         break;
       case "stop":
-        clearInterval(interval);
+        if (time !== 0) {
+          clearInterval(interval);
+        }
         break;
       case "reset":
         setTime(0);
@@ -80,8 +82,9 @@ export default function StopWatch() {
             "Stopped"
           ) : (
             <div>
-              {CheckForLeadingZero(minutes)}:{CheckForLeadingZero(seconds)}:
-              {CheckForLeadingZero(milliseconds)}
+              {`${CheckForLeadingZero(minutes)}:${CheckForLeadingZero(
+                seconds
+              )}:${CheckForLeadingZero(milliseconds)}`}
             </div>
           )}
         </div>
