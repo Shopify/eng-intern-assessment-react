@@ -1,18 +1,32 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { hundredthSecsToMins, hundredthSecsToSecs } from './utils/time';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { toStopWatchFormat } from './utils/time';
+import { StopWatchAction, StopWatchState } from './resources/stopWatch';
 
 interface IProps {
-  setLaps: Dispatch<SetStateAction<string[]>>;
-  isRunning: boolean;
+  state: StopWatchState;
+  lapNumber: number;
+  onLap: (time: number) => void;
 }
 
-export default function Timer({ setLaps, isRunning }: IProps) {
+export default function Timer({ state, lapNumber, onLap }: IProps) {
   const [time, setTime] = useState<number>(0);
-  const [prevTime, setPrevTime] = useState<number>(0);
 
-  const minutes = hundredthSecsToMins(time).toString().padStart(2, '0');
-  const seconds = (hundredthSecsToSecs(time) % 60).toString().padStart(2, '0');
-  const hundredthSec = (time % 100).toString().toString().padStart(2, '0');
+  useEffect(() => {
+    let intervalID: ReturnType<typeof setTimeout> | null;
+    if (state === StopWatchState.RUNNING) {
+      intervalID = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 10);
+    }
+    if (state === StopWatchState.INITIAL) {
+      setTime(0);
+    }
+    if (intervalID) return () => clearInterval(intervalID);
+  }, [state]);
 
-  return <div>{`${minutes}:${seconds}:${hundredthSec}`}</div>;
+  useEffect(() => {
+    onLap(time);
+  }, [lapNumber]);
+
+  return <div>{toStopWatchFormat(time)}</div>;
 }
