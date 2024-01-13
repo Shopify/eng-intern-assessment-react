@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
+import { Icon } from './Icons'
+import { Button } from 'react-bootstrap'
 
 type renderBtnsProps={
     startFunc: () => void,
@@ -13,18 +15,28 @@ type renderBtnsProps={
 
 const RenderButtons=(props:renderBtnsProps)=>{
     return(
-        <div>
-            { 
+        <div style={{display: "flex", gap: "1rem", alignItems: "center" }}>
+            {/* { 
             (!props.startFlag) ?
-                    <StopWatchButton type={"Start"} action={props.startFunc} />
+                    <>
+                        <Button />
+                        <StopWatchButton type={'Start'} icon={<Icon name="play" />} action={props.startFunc} />
+                    </>
                 :
                     <>
-                        <StopWatchButton type={"Pause"} action={props.pauseFunc} />
-                        <StopWatchButton type={"Lap"} action={props.lapFunc} />
+                        <StopWatchButton type={"Lap"} icon={<Icon name="stopwatch" />} action={props.lapFunc} />
+                        <StopWatchButton type={"Pause"} icon={<Icon name="pause" />} action={props.pauseFunc} />
                     </>
                 
+            } */}
+            <StopWatchButton type={"Lap"} icon={<Icon name="stopwatch" />} action={props.lapFunc}  disabled = {!props.startFlag} />
+            {
+                (props.startFlag) ?
+                    <StopWatchButton type={"Pause"} icon={<Icon name="pause" />} action={props.pauseFunc} />
+                :
+                    <StopWatchButton type={'Start'} icon={<Icon name="play" />} action={props.startFunc} />
             }
-            {props.totalElapsed>0 && <StopWatchButton type={"Reset"} action={props.resetFunc} />}
+            <StopWatchButton type={"Reset"} icon={<Icon name="reset" />} action={props.resetFunc} disabled={props.totalElapsed<=0} />
         </div>
     )
 }
@@ -67,7 +79,7 @@ export default function App() {
     }, [startFlag]);
 
     return(
-        <div style={{display: "flex", flexDirection: "column", gap: "50px"}}>
+        <div style={{display: "flex", flexDirection: "column", gap: "2rem", margin: "1rem 1rem", justifyContent:'center', alignItems:'center', height: "90vh"}} className="AppContainer">
             <StopWatch totalElapsed={totalElapsed} curElapsed={curElapsed} laps={laps} />
             <RenderButtons startFunc={startFunc} resetFunc={resetFunc} pauseFunc= {pauseFunc} lapFunc={lapFunc} startFlag={startFlag} totalElapsed={totalElapsed} />
         </div>
