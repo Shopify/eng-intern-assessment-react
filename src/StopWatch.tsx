@@ -1,38 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import StopWatchButton from './StopWatchButton'
-import { format } from 'path'
 
 export default function StopWatch() {
+    const timerRef = useRef(null)
     
-    // // Variables for the time
-    // let sec = 0
-    // let min = 0
-    // let hour = 0
-
-    // // String variables for the time
-    // let sec_str: string
-    // let min_str: string
-    // let hour_str: string
-
-    // // Variables for the lap time
-    // let sec_lap = 0
-    // let min_lap = 0
-    // let hour_lap = 0
-
-    // // String variables for the lap time
-    // let sec_lap_str: string
-    // let min_lap_str: string
-    // let hour_lap_str: string
-
-    // // Variables for the timer
-    let clock: any
-    let timer: any
-
-    const [time, setTime] = useState(0)
-    const [lap, setLap] = useState(0)
-    const [buttonName, setButtonName] = useState("Pause")
+    // States
+    const [time, setTime] = useState(0) // Time in seconds
+    const [lap, setLap] = useState(0) // Lap time in seconds
+    const [buttonName, setButtonName] = useState("Pause") // Name of the pause button (Between Pause and Resume)
 
 
+    // Formats the time "HH:MM:SS"
     function formatTime(number: number) {
         let hours = Math.floor(number/3600)
         let minutes = Math.floor((number%3600)/60)
@@ -43,33 +21,34 @@ export default function StopWatch() {
 
     // Calculates the time and displays it
     function startTime() {
-       // Clears the timer if it is already running
-        if (timer !== null) {
-            clearInterval(timer)
-        }
         
-        // Starts the timer
-        timer = setInterval( () => {
-            // Increments the time
-            setTime((prevTime) => prevTime + 1)
-            setLap((prevLap) => prevLap + 1)
+        // Stops the creation of multiple timers
+        if (timerRef.current !== null) {
+            clearInterval(timerRef.current)
+        }
 
-            // Displays the time
-            clock = document.getElementById("time")
-            clock.innerHTML = formatTime(time)
-        }, 1000)
+        // Starts the timer
+        timerRef.current = setInterval( () => {
+            // Increments the time
+            setTime(prevTime => prevTime + 1)
+            setLap(prevLap => prevLap + 1)
+            }, 1000)
     }
 
     // Pauses and Resumes the timer
     function pauseTime() {
-        
-        if (buttonName === "Pause") {
-            setButtonName("Resume")
-            clearInterval(timer);
-        } else {
-            setButtonName("Pause")
-            clearInterval(timer)
-            startTime()
+    
+        if (time !== 0) { // Prevents the timer from pausing when it is not running
+            // Pauses the timer
+            if (buttonName === "Pause") {
+                setButtonName("Resume")
+                clearInterval(timerRef.current);
+            
+            // Resumes the timer
+            } else {
+                setButtonName("Pause")
+                startTime()
+            }
         }
         
     }   
@@ -77,15 +56,15 @@ export default function StopWatch() {
     // Resets the timer
     function resetTime() {
         // Stops the timer
-        clearInterval(timer)
+        clearInterval(timerRef.current)
+        timerRef.current = null
 
         // Resets the time
         setTime(0)
         setLap(0)
-        
-        //Displays the reseted time
-        clock = document.getElementById("time")
-        clock.innerHTML = "00:00:00"
+
+        // Resets the pause button name
+        setButtonName("Pause")
 
         // Removes all the laps
         let lapList = document.getElementById("lap-list")
@@ -98,22 +77,23 @@ export default function StopWatch() {
     
     // Displays the lap time
     function lapTime() {
-        // Creates list item
-        let lapList = document.getElementById("lap-list")
-        let lapElement = document.createElement("li")
+        if (timerRef.current !== null && buttonName !== "Resume") { // Prevents the timer from creating a lap when it is not running or paused
+            // Creates list item
+            let lapList = document.getElementById("lap-list")
+            let lapElement = document.createElement("li")
 
-        // Displays the lap time
-        let currentLap =  formatTime(lap)
-        let currentTime = formatTime(time)
-        lapElement.innerHTML = "Lap: " + currentLap + "   " + "Total: " + currentTime
-        
-        // Resets the lap time
-        setLap(0)
-        
-        // Adds the lap to the list
-        lapList.appendChild(lapElement)
+            // Displays the lap time
+            let currentLap =  formatTime(lap)
+            let currentTime = formatTime(time)
+            lapElement.innerHTML = "Lap: " + currentLap + "   " + "Total: " + currentTime
+            
+            // Resets the lap time
+            setLap(0)
+            
+            // Adds the lap to the list
+            lapList.appendChild(lapElement)
+        }
     }
-
 
 
     return(
@@ -121,7 +101,7 @@ export default function StopWatch() {
             <h2>StopWatch</h2>
             <h3 id="time">{formatTime(time)}</h3>
             <StopWatchButton name="Start" stopWatchHandler={startTime} />
-            <StopWatchButton id="pause" name={buttonName} stopWatchHandler={pauseTime} />
+            <StopWatchButton name={buttonName} stopWatchHandler={pauseTime} />
             <StopWatchButton name="Reset" stopWatchHandler={resetTime} />
             <StopWatchButton name="Lap" stopWatchHandler={lapTime} />
             <ol id="lap-list"></ol>
