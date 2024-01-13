@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 
@@ -36,10 +36,32 @@ export default function App() {
     const [startFlag, setStartFlag] = useState<boolean>(false)
     
 
-    const startFunc=()=>{}
-    const resetFunc=()=>{}
-    const pauseFunc=()=>{}
+    const startFunc=()=>{
+        setStartFlag(true)
+    }
+
+    const resetFunc=()=>{
+        setStartFlag(false);
+        settotalElapsed(0.0)
+        setcurElapsed(0.0);
+        setlaps([])
+    }
+
+    const pauseFunc=()=>{
+        setStartFlag(false)
+    }
     const lapFunc=()=>{}
+
+    useEffect(() => {
+        let intervalId: NodeJS.Timer;
+        if(startFlag) {
+            intervalId = setInterval(() => {
+                settotalElapsed(prev => parseFloat((prev + 0.1).toFixed(2)));
+                setcurElapsed(prev => parseFloat((prev + 0.1).toFixed(2)));
+            }, 100); // Update every millisecond
+        }
+        return () => clearInterval(intervalId);
+    }, [startFlag]);
 
     return(
         <div style={{display: "flex", flexDirection: "column", gap: "50px"}}>
