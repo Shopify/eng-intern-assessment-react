@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton';
-import './StopWatch.css'
 
 export enum ButtonType {
     Start = 'Start',
     Stop = 'Stop',
+    Pause = 'Pause',
+    Resume = 'Resume',
     Reset = 'Reset',
     Lap = 'Lap'
 }
@@ -34,12 +35,29 @@ export default function StopWatch() {
     const [millisecond, setMillisecond] = useState<number>(0);
     const [lapTime, setLapTime] = useState<number>(0)
     const [lapRecords, setLapRecords] = useState<LapRecord[]>([]);
+    const [displayTime, setDisplayTime] = useState<boolean>(true);
+    const [isPaused, setIsPaused] = useState<boolean>(false);
+
 
     // Handler functions
-    const handleStop = () => setStopWatchRunning(false);
+    const handleStop = () => {
+        setStopWatchRunning(false);
+        setDisplayTime(false);  // Hide time display when stopped
+    };
+
+    const handlePause = () => {
+        setIsPaused(true);
+    };
+    
+    const handleResume = () => {
+        setIsPaused(false);
+    };
+    
     const handleStart = () => {
         setStopWatchRunning(true);
-        setLapTime(currentTime); // Reset lapTime when starting
+        setDisplayTime(true);  // Show time display when started
+        setLapTime(currentTime); 
+        setIsPaused(false)
     };
     
     const handleReset = () => {
@@ -76,9 +94,13 @@ export default function StopWatch() {
           })
     }
 
+    const generateTimeString = () => {
+        return `${formatTime(minute)}:${formatTime(second)}:${formatTime(millisecond)}`
+    }
+
     useEffect(() => {
         let intervalId: NodeJS.Timer;
-        if (stopWatchRunning) {
+        if (stopWatchRunning && !isPaused) {
           intervalId = setInterval(() => {
             setCurrentTime(currentTime + 1)
 
@@ -89,23 +111,21 @@ export default function StopWatch() {
         setSecond(Second);
         setMillisecond(Millisecond);        
         return () => clearInterval(intervalId);
-    }, [stopWatchRunning, currentTime]);
+    }, [stopWatchRunning, isPaused, currentTime]);
 
 
     return(
         <div className='stopwatch'>
             <div className='timer'>
-                <p className='timer-time'>{formatTime(minute)}</p>
-                <p>:</p>
-                <p className='timer-time'>{formatTime(second)}</p>
-                <p>:</p>
-                <p className='timer-time'>{formatTime(millisecond)}</p>
+                {displayTime && <p className='timer-time'>{generateTimeString()}</p>}
             </div>
             <div className='stopwatch-buttons'>
-                <StopWatchButton type={ButtonType.Start} onClick={handleStart}/>
+                {!stopWatchRunning && <StopWatchButton type={ButtonType.Start} onClick={handleStart}/>}
+                {stopWatchRunning && <StopWatchButton type={ButtonType.Resume} onClick={handleResume}/>}
+                {stopWatchRunning && <StopWatchButton type={ButtonType.Pause} onClick={handlePause}/>}
                 <StopWatchButton type={ButtonType.Stop} onClick={handleStop}/>
                 <StopWatchButton type={ButtonType.Reset} onClick={handleReset}/>
-                <StopWatchButton type={ButtonType.Lap} onClick={handleLap}/>
+                {stopWatchRunning && <StopWatchButton type={ButtonType.Lap} onClick={handleLap}/>}
             </div>
             <div className='lap-times'>
                 <div className='lap-time-header'>
@@ -113,6 +133,7 @@ export default function StopWatch() {
                     <span>Total Time</span>
                     <span>Lap Time</span>
                 </div>
+                <div data-testid="lap-list">
                 {lapRecords.map((lap, index) => (
                     <div key={index} className='lap-time-row'>
                         <span>{lap.lapNumber}</span>
@@ -120,6 +141,8 @@ export default function StopWatch() {
                         <span>{lap.lapTime}</span>
                     </div>
                 ))}
+
+                </div>
             </div>
         </div>
     )
