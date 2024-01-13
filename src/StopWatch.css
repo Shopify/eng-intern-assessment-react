@@ -12,6 +12,7 @@ body {
     display: flex; 
     align-items: center;
     color: #f7f7f7;
+    margin-top: 40px;
 }
 
 .stopwatch-item {
