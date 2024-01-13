@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
-export default function StopWatch() {
+type StopWatchProps = {
+  /** add laptime to table */
+  addLap: (lapTime: string) => void;
+  /** remove all saved times */
+  clearLaps: () => void;
+};
+export default function StopWatch({ addLap, clearLaps }: StopWatchProps) {
   const [elapsed, setElapsed] = useState(0); // elapsed time in milliseconds
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const [isRunning, setIsRunning] = useState(false);
-  const [lapTimes, setLapTimes] = useState<number[]>([]); // array of lap times in milliseconds
   const [isPaused, setIsPaused] = useState(false);
 
   // returns string respresentations of elapsed time
@@ -21,57 +26,74 @@ export default function StopWatch() {
     const seconds = Math.floor(time / 1000) % 60;
     return seconds < 10 ? `0${seconds}` : `${seconds}`;
   }
+  function getTimeStamp(time: number) {
+    return `${getMinutes(time)}:${getSeconds(time)}:${getMillis(time)}`;
+  }
 
   // create an interval to set the elapsed time every 10ms
   // store interval id in a variable for stop function
   function start() {
-    setElapsed(0);
     setIsRunning(true);
     let startTime = Date.now();
     const intervalId = setInterval(() => {
-      setElapsed(Date.now() - startTime);
+      // add the elapsed time at interval start to account for paused time
+      setElapsed(elapsed + Date.now() - startTime);
     }, 10);
+    console.log(intervalId);
     setIntervalId(intervalId);
   }
 
   // clear interval and add lap time
   function stop() {
-    clearInterval(intervalId!);
+    console.log(intervalId);
+    clearInterval(intervalId);
+    setElapsed(0);
     setIsRunning(false);
     setIsPaused(false);
   }
 
   // pause and resume the stopwatch
   function pause() {
-    setIsPaused((prev) => !prev);
+    clearInterval(intervalId);
+    setIsPaused(true);
+    console.log(intervalId);
+  }
+  function resume() {
+    setIsPaused(false);
+    start();
   }
 
   // reset to default
   function reset() {
-    clearInterval(intervalId!);
+    clearInterval(intervalId);
     setIsRunning(false);
     setIsPaused(false);
+    clearLaps();
     setElapsed(0);
-    setLapTimes([]);
   }
 
   return (
     <div
       style={{
-        width: "100%",
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "flex-end",
         padding: 15,
         fontSize: 72,
         fontFamily: "Inter",
       }}
     >
       <div style={{ display: "flex", justifyContent: "center", padding: 5 }}>
-        {`${getMinutes(elapsed)}:${getSeconds(elapsed)}:${getMillis(elapsed)}`}
+        {getTimeStamp(elapsed)}
       </div>
+      {/* buttons container */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           marginTop: 15,
+          marginRight: 50,
         }}
       >
         <StopWatchButton
@@ -84,7 +106,8 @@ export default function StopWatch() {
         />
         <StopWatchButton
           type={isPaused ? "Resume" : "Pause"}
-          onClick={pause}
+          onClick={isPaused ? resume : pause}
+          disabled={!isRunning}
           style={{
             padding: 10,
             border: "2px solid",
@@ -93,9 +116,15 @@ export default function StopWatch() {
           }}
         />
         <StopWatchButton
-          type="reset"
+          type="Reset"
           onClick={reset}
           style={{ padding: 10, backgroundColor: "#E8B163" }}
+        />
+        <StopWatchButton
+          type="Lap"
+          disabled={!isRunning}
+          onClick={() => addLap(getTimeStamp(elapsed))}
+          style={{ padding: 10, backgroundColor: "lightgrey" }}
         />
       </div>
     </div>
