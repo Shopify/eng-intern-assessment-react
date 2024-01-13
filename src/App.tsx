@@ -1,7 +1,7 @@
 import React from "react";
 
 import StopWatch from "./StopWatch";
-import {Page, Text, BlockStack, Link} from "@shopify/polaris";
+import {Page, Text, BlockStack, Link, Badge} from "@shopify/polaris";
 import {ChatMajor} from "@shopify/polaris-icons";
 
 export default function App() {
@@ -10,6 +10,7 @@ export default function App() {
       narrowWidth
       title="Stopwatch"
       subtitle="For Shopify's 2024 Summer Frontend Internship"
+      titleMetadata={<Badge tone="success"> Completed </Badge>}
       secondaryActions={[
         {
           content: "Connect",
