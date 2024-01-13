@@ -1,19 +1,20 @@
 import React from "react";
-import "./styles/StopWatchButton.css";
-import { StopWatchButtonProps } from "../types/stopwatchTypes";
+
+interface StopWatchButtonProps {
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
+}
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   label,
   onClick,
-  buttonType,
   disabled = false,
 }) => {
+  const buttonClass = `stopwatch-button stopwatch-button--${label.toLowerCase()}`;
+
   return (
-    <button
-      className={`stopwatch-button stopwatch-button--${buttonType}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={buttonClass} onClick={onClick} disabled={disabled}>
       {label}
     </button>
   );
