@@ -25,7 +25,7 @@ export default function Timer({ state, lapNumber, onLap }: IProps) {
   }, [state]);
 
   useEffect(() => {
-    onLap(time);
+    if (lapNumber !== 0) onLap(time);
   }, [lapNumber]);
 
   return <div>{toStopWatchFormat(time)}</div>;

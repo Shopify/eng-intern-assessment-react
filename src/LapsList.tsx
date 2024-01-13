@@ -1,7 +1,8 @@
 import React from 'react';
+import { Lap } from './types';
 
 interface IProps {
-  laps: string[];
+  laps: Lap[];
 }
 
 export default function LapsList({ laps }: IProps) {
@@ -19,7 +20,15 @@ export default function LapsList({ laps }: IProps) {
         }
       </thead>
       <tbody data-testid='lap-list'>
-        <tr></tr>
+        {laps.map((lap) => {
+          return (
+            <tr key={`lap-${lap.lapNumber}`}>
+              <td>{lap.lapNumber}</td>
+              <td>{lap.lapTime}</td>
+              <td>{lap.overallTime}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

@@ -4,9 +4,10 @@ import StopWatchButtons from './StopWatchButtons';
 import LapsList from './LapsList';
 import { StopWatchAction, StopWatchState } from './resources/stopWatch';
 import { toStopWatchFormat } from './utils/time';
+import { Lap } from './types';
 
 export default function StopWatch() {
-  const [laps, setLaps] = useState<string[]>([]);
+  const [laps, setLaps] = useState<Lap[]>([]);
   const [prevTime, setPrevTime] = useState<number>(0);
   const [lapNumber, setLapNumber] = useState<number>(0);
   const [state, setState] = useState<StopWatchState>(StopWatchState.INITIAL);
@@ -39,7 +40,15 @@ export default function StopWatch() {
     [setState, setLapNumber, setPrevTime, setLaps]
   );
 
-  const handleLap = useCallback((time: number) => {}, []);
+  const handleLap = (time: number) => {
+    const currLap: Lap = {
+      lapNumber: lapNumber,
+      lapTime: toStopWatchFormat(time - prevTime),
+      overallTime: toStopWatchFormat(time),
+    };
+    setLaps((prevLap) => [currLap, ...prevLap]);
+    setPrevTime(time);
+  };
 
   return (
     <div>
