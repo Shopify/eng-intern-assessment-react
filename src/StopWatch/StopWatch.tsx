@@ -25,29 +25,30 @@ export default function StopWatch() {
   const minutes = Math.floor((time / 60000) % 60);
   const seconds = Math.floor((time / 1000) % 60);
   const milliseconds = Math.floor((time / 10) % 100);
-  const [timeInterval, setTimeInterval] = useState<
-    string | number | NodeJS.Timeout
-  >(0);
+  const [timeInterval, setTimeInterval] = useState<number | NodeJS.Timeout>(0);
 
   useEffect(() => {
-    let interval: string | number | NodeJS.Timeout;
+    let interval: number | NodeJS.Timeout;
 
     switch (command) {
       case "start":
         interval = setInterval(() => setTime(time + 10), 10);
         setTimeInterval(interval);
         break;
+
       case "stop":
         if (time !== 0) {
           clearInterval(timeInterval);
           setTimeInterval(0);
         }
         break;
+
       case "reset":
         setTime(0);
         setLaps([]);
         setCommand("inital");
         break;
+
       case "resume":
         interval = setInterval(() => setTime(time + 10), 10);
         setTimeInterval(interval);
