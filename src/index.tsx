@@ -11,6 +11,7 @@ const root = createRoot(container);
 root.render(
   <AppProvider i18n={enTranslations}>
     <Page
+      narrowWidth
       title="Stop Watch"
       subtitle="Summer 2024 Frontend Internship"
       titleMetadata={<Badge tone="success">by Ashley Chiu</Badge>}

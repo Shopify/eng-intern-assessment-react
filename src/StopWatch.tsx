@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 import { formatTime } from "./utils";
-import { ButtonGroup, Text } from "@shopify/polaris";
+import { ButtonGroup, Card, Text } from "@shopify/polaris";
 import LapRecords from "./LapRecords";
 
 export default function StopWatch() {
@@ -10,7 +10,7 @@ export default function StopWatch() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Start");
 
-  //functions when button is clicked
+  //functions triggered when buttons are clicked
   const toggleWatch = () => {
     setIsRunning(!isRunning);
     const newButtonText = isRunning ? "Resume" : "Pause";
@@ -29,7 +29,7 @@ export default function StopWatch() {
     setTime(0);
   };
 
-  //Update state when stop watch is toggled
+  //Update state when the stopwatch is toggled
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (isRunning) {
@@ -37,29 +37,35 @@ export default function StopWatch() {
         setTime((prevTime) => prevTime + 1);
       }, 1000);
     }
-
+    //clean up timer when reset or component unmounts
     return () => clearInterval(timer);
   }, [isRunning]);
 
+  const formattedTime = formatTime(time);
+
   return (
-    <div
-      style={{
-        margin: "auto",
-      }}
-    >
-      <Text variant="heading3xl" as="h1">
-        {formatTime(time)}
+    <Card padding="1000">
+      <Text variant="heading3xl" as="h1" alignment="center">
+        {formattedTime}
       </Text>
-      <ButtonGroup>
-        <StopWatchButton buttonText={buttonText} onClickHandler={toggleWatch} />
-        <StopWatchButton buttonText="Reset" onClickHandler={resetWatch} />
-        <StopWatchButton
-          buttonText="Lap"
-          onClickHandler={recordLap}
-          shouldDisable={!isRunning}
-        />
-      </ButtonGroup>
+      <div
+        style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}
+      >
+        <ButtonGroup>
+          <StopWatchButton
+            buttonText={buttonText}
+            onClickHandler={toggleWatch}
+          />
+          <StopWatchButton buttonText="Reset" onClickHandler={resetWatch} />
+          <StopWatchButton
+            buttonText="Lap"
+            onClickHandler={recordLap}
+            shouldDisable={!isRunning}
+          />
+        </ButtonGroup>
+      </div>
+      {/* Display lap records if available */}
       {lapTimes.length > 0 && <LapRecords lapTimes={lapTimes} />}
-    </div>
+    </Card>
   );
 }
