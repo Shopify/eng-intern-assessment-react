@@ -12,16 +12,16 @@ export default function StopWatch() {
   const [laps, setLaps] = useState([]);
 
   // format the time to hh:mm:ss:ms
-  const formatTime = (ms: number) => {
-    const hh = Math.floor(ms / (60 * 60 * 1000));
-    const mm = Math.floor((ms % (60 * 60 * 1000)) / (60 * 1000));
-    const ss = Math.floor((ms % (60 * 1000)) / 1000);
-    const _ms = ms % 1000;
+  const formatTime = (seconds: number) => {
+    const hh = Math.floor(seconds / (60 * 60 * 1000));
+    const mm = Math.floor((seconds % (60 * 60 * 1000)) / (60 * 1000));
+    const ss = Math.floor((seconds % (60 * 1000)) / 1000);
+
     const pad = (num: number, length = 2) => {
       return num.toString().padStart(length, "0");
     };
 
-    return `${pad(hh)}:${pad(mm)}:${pad(ss)}:${pad(_ms)}`;
+    return `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
   };
 
   const handleStartTimer = () => {
@@ -49,11 +49,14 @@ export default function StopWatch() {
     let interval: any;
     let lapInterval: any;
     if (running) {
-      interval = setInterval(() => setElapsedTime((time) => time + 10), 10);
+      interval = setInterval(() => setElapsedTime((time) => time + 1), 1000);
       lapInterval = setInterval(
-        () => setLapTime((elapsedTime) => elapsedTime + 10),
-        10
+        () => setLapTime((elapsedTime) => elapsedTime + 1),
+        1000
       );
+    } else {
+      clearInterval(interval);
+      clearInterval(lapInterval);
     }
     return () => {
       clearInterval(interval);
