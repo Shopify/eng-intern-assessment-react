@@ -17,33 +17,38 @@ export default function StopWatch() {
   const [seconds, setSeconds] = useState(0);
 
   const getTime = () => {
-    const time = Date.now() - startTime + passed;
+    let time = passed;
+    if (start) {
+      time = Date.now() - startTime + passed;
+    }
 
     setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
     setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
     setMinutes(Math.floor((time / (1000 * 60)) % 60));
     setSeconds(parseFloat(((time / 1000) % 60).toFixed(2)));
+    setPassed(time);
   };
   const startTimer = () => {
     // start the timer with current time
-		setStart(true)
-    setStartTime(Date.now());
+    if (!start) {
+      setStart(true);
+      setStartTime(Date.now());
+    }
   };
-  const stopTimer = () => {};
+  const stopTimer = () => {
+    setStart(false);
+  };
   const loopTimer = () => {};
   const resetTimer = () => {
     setPassed(0);
-    setDays(0);
-    setHours(0);
-    setMinutes(0);
-    setSeconds(0);
+		setStartTime(Date.now());
   };
 
   React.useEffect(() => {
-		const interval = setInterval(() => getTime(), 100);
+    const interval = setInterval(() => getTime(), 100);
 
     return () => clearInterval(interval);
-  }, [startTime]);
+  }, [startTime, start]);
 
   return (
     <div>
@@ -52,7 +57,7 @@ export default function StopWatch() {
         startTimer={startTimer}
         stopTimer={stopTimer}
         loopTimer={loopTimer}
-        resetTImer={resetTimer}
+        resetTimer={resetTimer}
       ></StopWatchButton>
     </div>
   );
