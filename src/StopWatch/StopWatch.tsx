@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./StopWatch.css";
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
-import { Center, Flex, Text } from "@mantine/core";
+import { Center, Flex, MantineProvider, Text } from "@mantine/core";
 
 interface StopWatchContextInterface {
   command: string;
