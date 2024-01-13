@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.stopwatch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.timer {
+  font-size: 4rem;
+}
+
+.btn-container {
+  margin: 0.5rem 0;
+}
+
+.btn {
+  border: none;
+  padding: 0.75rem;
+  margin: 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 6rem;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.start-btn {
+  background-color: rgb(106, 173, 106);
+  cursor: pointer;
+}
+
+.stop-btn {
+  background-color: rgb(255, 115, 115);
+  cursor: pointer;
+}
+
+.lap-btn {
+  background-color: rgb(111, 111, 199);
+  cursor: pointer;
+}
+
+.lap-btn:disabled {
+  background-color: rgb(111, 111, 199, 0.25);
+  cursor: default;
+}
+
+.reset-btn {
+  background-color: rgb(255, 199, 96);
+  cursor: pointer;
+}
+
+.lap-container {
+  margin: 0.5rem 0;
+}
+
+.lap-table th,
+.lap-table td {
+  min-width: 8rem;
+  text-align: center;
+  padding: 0.1rem;
+  font-size: 1.25rem;
+}
+
+.longest-lap {
+  color: rgb(255, 115, 115);
+}
+
+.shortest-lap {
+  color: rgb(106, 173, 106);
+}
+
+.longest-lap.shortest-lap {
+  color: black;
+}
