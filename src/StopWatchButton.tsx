@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStop, faRotateRight } from '@fortawesome/free-solid-svg-icons';
-import './StopWatchButton.css';
 
 interface StopWatchButtonProps {
     setTimeInSec: Dispatch<SetStateAction<number>>

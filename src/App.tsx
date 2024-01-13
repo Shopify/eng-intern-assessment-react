@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
-import './App.css';
+import './style.css';
 
 export interface Time {
     hours: string;

@@ -1,5 +1,4 @@
 import React from 'react';
-import './StopWatch.css';
 import { Time } from './App';
 
 const StopWatch: React.FC<Time> = ({ hours, minutes, seconds }) => {
