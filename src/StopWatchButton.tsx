@@ -5,7 +5,6 @@ type stopWatchBtnProp = {
     action: () => void
 }
 
-
 export default function StopWatchButton(props : stopWatchBtnProp) {
     let {type, action} = props;
     return(
