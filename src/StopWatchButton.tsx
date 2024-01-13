@@ -13,7 +13,7 @@ export default function StopWatchButton({
   variant,
 }: StopWatchBUttonProps) {
   return (
-    <Button onClick={onClick} variant={variant}>
+    <Button onClick={onClick} variant={variant} size="large">
       {children}
     </Button>
   );
