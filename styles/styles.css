@@ -1,0 +1,64 @@
+/* .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+} */
+/* 
+.title {
+    font-weight: 200;
+} */
+
+button {
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+    border-radius: 20px;
+    width: 20%;
+    min-height: 35px;
+    background-color: #CCCCCC;
+    border: none;
+}
+
+.buttons {
+    width: 40vw;
+    justify-content: space-between;
+    display: flex;
+}
+
+/* .lapList {
+    text-align: center;
+} */
+
+/* .stopwatchCircle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+} */
+
+/* .lapList {
+    margin-top: 20px;
+}
+
+.lapListTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.lapListTable th, .lapListTable td {
+    padding: 10px;
+    text-align: center;
+  } */
