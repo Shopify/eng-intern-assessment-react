@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
-// Helper function to format time
 const formatTime = (time: number): string => {
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor((time % 3600) / 60);
@@ -34,13 +33,15 @@ const Stopwatch: React.FC = () => {
     };
   }, [running, paused]);
 
-  const handleStartStop = (): void => {
-    setRunning(!running);
-    if (!running) setPaused(false); // Reset paused state when starting
-  };
-
-  const handlePauseResume = (): void => {
-    setPaused(!paused);
+  const handleStartStopResume = (): void => {
+    if (!running) {
+      setRunning(true);
+      setPaused(false);
+    } else if (!paused) {
+      setPaused(true);
+    } else {
+      setPaused(false);
+    }
   };
 
   const handleReset = (): void => {
@@ -56,49 +57,34 @@ const Stopwatch: React.FC = () => {
     }
   };
 
-  // Always render the lap list, even when it's empty
-  const renderLapList = () => {
-    return laps.length > 0
-      ? laps.map((lapTime, index) => (
-          <li key={index}>
-            Lap {index + 1}: {formatTime(lapTime)}
-          </li>
-        ))
-      : null;
-  };
+  const buttonText = !running ? "Start" : paused ? "Resume" : "Stop";
 
   return (
     <div className="stopwatch">
-      <div className="stopwatch__display">{formatTime(time)}</div>
+      <div className="stopwatch__display" data-testid="clock-display">
+        {formatTime(time)}
+      </div>
       <div className="stopwatch__controls">
-        <StopWatchButton
-          label={running ? "Stop" : "Start"}
-          onClick={handleStartStop}
-        />
-        <StopWatchButton
-          label={paused ? "Resume" : "Pause"}
-          onClick={handlePauseResume}
-          disabled={!running}
-        />
+        <StopWatchButton label={buttonText} onClick={handleStartStopResume} />
         <StopWatchButton
           label="Lap"
           onClick={handleLap}
           disabled={!running || paused}
         />
-        <StopWatchButton label="Reset" onClick={handleReset} />
+        <StopWatchButton
+          label="Reset"
+          onClick={handleReset}
+          disabled={!running && time === 0}
+        />
       </div>
-      {laps.length > 0 && (
-        <div className="stopwatch__laps">
-          <h2>Laps</h2>
-          <ul data-testid="lap-list">
-            {laps.map((lapTime, index) => (
-              <li key={index}>
-                Lap {index + 1}: {formatTime(lapTime)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div className="stopwatch__laps">
+        <h2>Laps</h2>
+        <ul data-testid="lap-list">
+          {laps.map((lapTime, index) => (
+            <li key={index}>{formatTime(lapTime)}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Stopwatch from "../src/StopWatch";
+import { act } from "react-dom/test-utils";
 import "@testing-library/jest-dom";
 
 describe("Stopwatch", () => {
@@ -26,17 +27,29 @@ describe("Stopwatch", () => {
     expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
   });
 
-  test("pauses and resumes the stopwatch", () => {
+  test("pauses and resumes the stopwatch with time difference", () => {
     render(<Stopwatch />);
 
-    fireEvent.click(screen.getByText("Start"));
-    fireEvent.click(screen.getByText("Stop"));
+    act(() => {
+      fireEvent.click(screen.getByText("Start"));
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Stop"));
+    });
+
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
-    fireEvent.click(screen.getByText("Resume"));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
-      pausedTime
-    );
+    act(() => {
+      fireEvent.click(screen.getByText("Resume"));
+    });
+
+    // Wait for two seconds
+    return new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
+      // Check if the time has changed from the paused time
+      const resumedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
+      expect(resumedTime).not.toBe(pausedTime);
+    });
   });
 
   test("records and displays lap times", () => {
@@ -45,7 +58,9 @@ describe("Stopwatch", () => {
     fireEvent.click(screen.getByText("Start"));
     fireEvent.click(screen.getByText("Lap"));
     expect(screen.getByTestId("lap-list")).toContainElement(
-      screen.getByText(/(\d{2}:){2}\d{2}/)
+      // Right now both the main clock and the lap formats are the same.
+      // Should target the direct children of the labs array instead
+      screen.getByTestId("lap-list").querySelector("li")
     );
 
     fireEvent.click(screen.getByText("Lap"));
