@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import StopWatch, { LapTable } from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import { Icon } from './Icons'
-import { Button } from 'react-bootstrap'
 
 type renderBtnsProps={
     startFunc: () => void,
@@ -13,22 +12,23 @@ type renderBtnsProps={
     totalElapsed: number
 }
 
+/**
+ * This is a React functional component that renders a set of buttons for a stopwatch.
+ *
+ * @param {renderBtnsProps} props - The renderBtnsProps property passed to this component.
+ * @param {function} props.lapFunc - The function to be executed when the "Lap" button is clicked.
+ * @param {function} props.pauseFunc - The function to be executed when the "Pause" button is clicked.
+ * @param {function} props.startFunc - The function to be executed when the "Start" button is clicked.
+ * @param {function} props.resetFunc - The function to be executed when the "Reset" button is clicked.
+ * @param {boolean} props.startFlag - A flag indicating whether the stopwatch is currently running.
+ * @param {number} props.totalElapsed - The total elapsed time in seconds.
+ *
+ * @returns A JSX element that displays a set of buttons for controlling a stopwatch.
+ *
+ */
 const RenderButtons=(props:renderBtnsProps)=>{
     return(
         <div style={{display: "flex", gap: "1rem", alignItems: "center" }}>
-            {/* { 
-            (!props.startFlag) ?
-                    <>
-                        <Button />
-                        <StopWatchButton type={'Start'} icon={<Icon name="play" />} action={props.startFunc} />
-                    </>
-                :
-                    <>
-                        <StopWatchButton type={"Lap"} icon={<Icon name="stopwatch" />} action={props.lapFunc} />
-                        <StopWatchButton type={"Pause"} icon={<Icon name="pause" />} action={props.pauseFunc} />
-                    </>
-                
-            } */}
             <StopWatchButton type={"Lap"} icon={<Icon name="stopwatch" />} action={props.lapFunc}  disabled = {!props.startFlag} />
             {
                 (props.startFlag) ?

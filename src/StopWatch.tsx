@@ -9,6 +9,16 @@ type lapDisplayProps = {
     laps: number[][]
 }
 
+
+/**
+ * This is a component that renders the stopwatch.
+ *
+ * @export
+ * @param {stopWatchDisplayProps} props - The properties passed to this component.
+ * @param {number} props.totalElapsed - The total elapsed time in seconds.
+ *
+ * @returns A JSX element that displays the hours, minutes, seconds, and milliseconds of the total elapsed time in a formatted manner.
+ */
 export default function StopWatch(props: stopWatchDisplayProps) {
     let {totalElapsed} = props;
     let {hours, minutes, seconds, ms} = getTime(totalElapsed)
@@ -36,7 +46,6 @@ export default function StopWatch(props: stopWatchDisplayProps) {
     ]
     return(
         <div style= {{display: 'flex', gap: "0.5rem"}} aria-label='stopwatchDisplay'>
-            {/* Time Elapsed: {totalElapsed} <br /> */}
             {
                 render.map((item, index) => {
                     return <div key={index} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -49,7 +58,6 @@ export default function StopWatch(props: stopWatchDisplayProps) {
                     </div>
                 })
             }
-            {/* Hours: {hours} || Minutes: {minutes} || Seconds: {seconds} || Miliseconds: {ms} */}
         </div>
     )
 }
