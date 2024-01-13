@@ -2,16 +2,25 @@ import React from 'react'
 
 type stopWatchDisplayProps = {
     totalElapsed: number,
-    curElapsed: number,
+}
+
+type lapDisplayProps = {
     laps: number[][]
 }
 
 export default function StopWatch(props: stopWatchDisplayProps) {
-    let {totalElapsed, curElapsed, laps} = props;
+    let {totalElapsed} = props;
     return(
         <div>
             Time Elapsed: {totalElapsed}
-            <br />
+        </div>
+    )
+}
+
+export const LapTable = (props: lapDisplayProps) => {
+    let {laps} = props;
+    return(
+        <>
             {
                 laps.length>0 &&
                     laps.map((lap, index) =>{
@@ -20,6 +29,6 @@ export default function StopWatch(props: stopWatchDisplayProps) {
                         </div>
                     })
             }
-        </div>
+        </>
     )
 }

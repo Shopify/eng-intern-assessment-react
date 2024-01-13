@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import StopWatch from './StopWatch'
+import StopWatch, { LapTable } from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import { Icon } from './Icons'
 import { Button } from 'react-bootstrap'
@@ -79,9 +79,11 @@ export default function App() {
     }, [startFlag]);
 
     return(
-        <div style={{display: "flex", flexDirection: "column", gap: "2rem", margin: "1rem 1rem", justifyContent:'center', alignItems:'center', height: "90vh"}} className="AppContainer">
-            <StopWatch totalElapsed={totalElapsed} curElapsed={curElapsed} laps={laps} />
+        <div style={{display: "flex", flexDirection: "column", gap: "2rem", alignItems:'center', height: "100vh", padding: "2rem 0"}} className="AppContainer">
+            <StopWatch totalElapsed={totalElapsed} />
             <RenderButtons startFunc={startFunc} resetFunc={resetFunc} pauseFunc= {pauseFunc} lapFunc={lapFunc} startFlag={startFlag} totalElapsed={totalElapsed} />
+            <LapTable laps={laps} />
+            
         </div>
     )
 }
