@@ -8,7 +8,7 @@ type LapsProps = {
 export default function Laps({laps}: LapsProps) {
   return (
     <Card>
-      <Text variant="heading2xl" as="h2">
+      <Text variant="headingLg" as="h2">
         Laps
       </Text>
       <BlockStack gap="1000">

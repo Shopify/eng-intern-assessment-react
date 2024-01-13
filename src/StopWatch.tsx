@@ -39,7 +39,7 @@ export default function StopWatch() {
   };
 
   const lap = () => {
-    const lapNo = laps.length;
+    const lapNo = laps.length + 1;
     setLaps([...laps, [lapNo, formatTime(lapTime), formatTime(elapsedTime)]]);
     setLapTime(0);
   };
