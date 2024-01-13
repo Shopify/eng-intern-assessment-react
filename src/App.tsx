@@ -1,38 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 
 type renderBtnsProps={
     startFunc: () => void,
-    endFunc: () => void,
+    resetFunc: () => void,
     pauseFunc: () => void,
-    lapFunc: () => void
+    lapFunc: () => void,
+    startFlag : boolean,
+    totalElapsed: number
 }
 
 const RenderButtons=(props:renderBtnsProps)=>{
     return(
         <div>
-            <StopWatchButton type={"Start"} action={props.startFunc} />
-            <StopWatchButton type={"Stop"} action={props.endFunc} />
-            <StopWatchButton type={"Pause"} action={props.pauseFunc} />
-            <StopWatchButton type={"Lap"} action={props.lapFunc} />
+            { 
+            (!props.startFlag) ?
+                    <StopWatchButton type={"Start"} action={props.startFunc} />
+                :
+                    <>
+                        <StopWatchButton type={"Pause"} action={props.pauseFunc} />
+                        <StopWatchButton type={"Lap"} action={props.lapFunc} />
+                    </>
+                
+            }
+            {props.totalElapsed>0 && <StopWatchButton type={"Reset"} action={props.resetFunc} />}
         </div>
     )
 }
 
 export default function App() {
-    let totalElapsed: number = 0.0;      // total time lasped in seconds
-    let curElapsed: number = 0.0        // current lap elapsed time
-    let laps : number[][] = []             // stores laps as: [lap elapsed from 0, total elapsed time]
+    const [totalElapsed, settotalElapsed] = useState<number>(0.0);      // total time lasped in seconds
+    const [curElapsed, setcurElapsed] = useState<number>(0.0);          // current lap elapsed time
+    const [laps, setlaps] = useState<number[][]>([])                 // stores laps as: [lap elapsed from 0, total elapsed time]
+    const [startFlag, setStartFlag] = useState<boolean>(false)
+    
 
     const startFunc=()=>{}
-    const endFunc=()=>{}
+    const resetFunc=()=>{}
     const pauseFunc=()=>{}
     const lapFunc=()=>{}
+
     return(
         <div style={{display: "flex", flexDirection: "column", gap: "50px"}}>
             <StopWatch totalElapsed={totalElapsed} curElapsed={curElapsed} laps={laps} />
-            <RenderButtons startFunc={startFunc} endFunc={endFunc} pauseFunc= {pauseFunc} lapFunc={lapFunc} />
+            <RenderButtons startFunc={startFunc} resetFunc={resetFunc} pauseFunc= {pauseFunc} lapFunc={lapFunc} startFlag={startFlag} totalElapsed={totalElapsed} />
         </div>
     )
 }
