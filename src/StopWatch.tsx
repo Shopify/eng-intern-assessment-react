@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
-type StopWatchProps = {
-  /** add laptime to table */
-  addLap: (lapTime: string) => void;
-  /** remove all saved times */
-  clearLaps: () => void;
-};
-export default function StopWatch({ addLap, clearLaps }: StopWatchProps) {
+export default function StopWatch() {
+  // stopwatch context
   const [elapsed, setElapsed] = useState(0); // elapsed time in milliseconds
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+
+  // lap table context
+  const [lapTimes, setLapTimes] = useState<string[]>([]);
+  function addLap(LapTime: string) {
+    setLapTimes([LapTime, ...lapTimes]);
+  }
+  function clearLaps() {
+    setLapTimes([]);
+  }
 
   // returns string respresentations of elapsed time
   function getMillis(time: number) {
@@ -73,56 +77,112 @@ export default function StopWatch({ addLap, clearLaps }: StopWatchProps) {
     <div
       style={{
         display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        alignItems: "flex-end",
-        padding: 15,
-        fontSize: 72,
-        fontFamily: "Inter",
+        height: "90vh",
+        width: "100vw",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "center", padding: 5 }}>
-        {getTimeStamp(elapsed)}
-      </div>
-      {/* buttons container */}
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          marginTop: 15,
-          marginRight: 50,
+          flexDirection: "column",
+          alignItems: "flex-end",
+          padding: 15,
+          fontSize: 72,
+          fontFamily: "Inter",
         }}
       >
-        <StopWatchButton
-          type={isRunning ? "Stop" : "Start"}
-          onClick={isRunning ? stop : start}
+        <div style={{ display: "flex", justifyContent: "center", padding: 5 }}>
+          {getTimeStamp(elapsed)}
+        </div>
+        {/* buttons container */}
+        <div
           style={{
-            padding: 10,
-            backgroundColor: isRunning ? "#DE9999" : "#99DE9C",
+            display: "flex",
+            justifyContent: "center",
+            marginTop: 15,
+            marginRight: 50,
           }}
-        />
-        <StopWatchButton
-          type={isPaused ? "Resume" : "Pause"}
-          onClick={isPaused ? resume : pause}
-          disabled={!isRunning}
-          style={{
-            padding: 10,
-            border: "2px solid",
-            borderColor: "lightgrey",
-            backgroundColor: "#F8F6FF",
-          }}
-        />
-        <StopWatchButton
-          type="Reset"
-          onClick={reset}
-          style={{ padding: 10, backgroundColor: "#E8B163" }}
-        />
-        <StopWatchButton
-          type="Lap"
-          disabled={!isRunning}
-          onClick={() => addLap(getTimeStamp(elapsed))}
-          style={{ padding: 10, backgroundColor: "lightgrey" }}
-        />
+        >
+          {/* 
+          start button initiates a 10ms interval that updates the elapsed time 
+          stop button clears the interval and resets the elapsed time
+          */}
+          <StopWatchButton
+            type={isRunning ? "Stop" : "Start"}
+            onClick={isRunning ? stop : start}
+            style={{
+              padding: 10,
+              backgroundColor: isRunning ? "#DE9999" : "#99DE9C",
+            }}
+          />
+          {/* 
+          pause button clears the interval without resetting the elapsed time 
+          resume button starts a new interval with the elapsed time at pause
+          */}
+          <StopWatchButton
+            type={isPaused ? "Resume" : "Pause"}
+            onClick={isPaused ? resume : pause}
+            disabled={!isRunning}
+            style={{
+              padding: 10,
+              border: "2px solid",
+              borderColor: "lightgrey",
+              backgroundColor: "#F8F6FF",
+            }}
+          />
+          {/*
+          reset button clears the interval, sets elapsed time to 0, and clears lap table
+          */}
+          <StopWatchButton
+            type="Reset"
+            onClick={reset}
+            style={{ padding: 10, backgroundColor: "#E8B163" }}
+          />
+          {/*
+          lap button adds the current elapsed time in string format to the lap table
+          */}
+          <StopWatchButton
+            type="Lap"
+            disabled={!isRunning}
+            onClick={() => addLap(getTimeStamp(elapsed))}
+            style={{ padding: 10, backgroundColor: "lightgrey" }}
+          />
+        </div>
+      </div>
+      <div
+        data-testid="lap-list"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          flex: 1,
+          maxWidth: 300,
+          height: 300,
+          overflowY: "scroll",
+          borderRadius: 10,
+          backgroundColor: "lightgrey",
+          marginLeft: 50,
+          fontSize: 24,
+          fontFamily: "Inter",
+        }}
+      >
+        {lapTimes.map((lap, index) => (
+          <div key={index} style={{ marginBlock: 10 }}>
+            <div
+              style={{
+                paddingBlock: 5,
+                paddingInline: 50,
+                borderRadius: 15,
+                backgroundColor: "#F8F6FF",
+              }}
+            >
+              {lap}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
