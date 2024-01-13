@@ -1,0 +1,18 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: blue;
+}
+
+.App {
+  text-align: center;
+}
+
+.timer__container {
+  background-color: lightgray;
+  padding: 3rem;
+  border-radius: 20px;
+}
