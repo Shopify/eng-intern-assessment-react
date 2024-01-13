@@ -1,5 +1,7 @@
 import React from 'react'
 import { getTime } from './helper';
+import Table from 'react-bootstrap/Table';
+import { render } from '@testing-library/react';
 
 type stopWatchDisplayProps = {
     totalElapsed: number,
@@ -64,18 +66,47 @@ export default function StopWatch(props: stopWatchDisplayProps) {
 
 export const LapTable = (props: lapDisplayProps) => {
     let {laps} = props;
-    return(
-        <>
-            {
-                laps.length>0 &&
-                    laps.slice().reverse().map((lap, index) =>{
-                        let {hours: curH, minutes: curM, seconds: curS, ms: curMs} = getTime(lap[0]) 
-                        let {hours: totalH, minutes: totalM, seconds: totalS, ms: totalMs} = getTime(lap[1]) 
-                        return <div key={index}>
-                            Lap #{laps.length-index} || lapTime: {`${curH.toString().padStart(2, '0')}:${curM.toString().padStart(2, '0')}:${curS.toString().padStart(2, '0')}:${curMs.toString().padStart(2, '0')}`} || totalTime: {`${totalH.toString().padStart(2, '0')}:${totalM.toString().padStart(2, '0')}:${totalS.toString().padStart(2, '0')}:${totalMs.toString().padStart(2, '0')}`}
-                        </div>
-                    })
-            }
-        </>
-    )
+    type lapTableRender = {
+        lapNum: number,
+        curTime: string,
+        totalTime: string
+    }
+    if(laps.length>0){
+        let render: lapTableRender[] = []
+        laps.slice().reverse().map((lap, index) =>{
+            let {hours: curH, minutes: curM, seconds: curS, ms: curMs} = getTime(lap[0]) 
+            let {hours: totalH, minutes: totalM, seconds: totalS, ms: totalMs} = getTime(lap[1]) 
+            render.push({
+                lapNum: laps.length-index,
+                curTime: `${curH.toString().padStart(2, '0')}:${curM.toString().padStart(2, '0')}:${curS.toString().padStart(2, '0')}:${curMs.toString().padStart(2, '0')}`,
+                totalTime: `${totalH.toString().padStart(2, '0')}:${totalM.toString().padStart(2, '0')}:${totalS.toString().padStart(2, '0')}:${totalMs.toString().padStart(2, '0')}`
+            })
+        })
+        return(
+            <Table responsive cellPadding={'2rem'} style={{width: "50rem"}}>
+                <thead>
+                    <tr>
+                        <th style={{textAlign: "center"}}>Lap #</th>
+                        <th style={{textAlign: "center"}}> Lap Time</th>
+                        <th style={{textAlign: "center"}}>Total Time</th>
+                    </tr>
+                </thead>
+                {render.map(item => {
+                    return(
+                        <tr key={item.lapNum} aria-label={`LapRow:${item.lapNum}`}>
+                            <td align='center' style={{padding: "1rem", borderBottom: "2px solid gray"}} aria-label={`LapNum`}>
+                                {item.lapNum}
+                            </td>
+                            <td align='center' style={{padding: "1rem", borderBottom: "2px solid gray"}} aria-label={`curTime`}>
+                                {item.curTime}
+                            </td>
+                            <td align='center' style={{padding: "1rem", borderBottom: "2px solid gray"}} aria-label={`totalTime`}>
+                                {item.totalTime}
+                            </td>
+                        </tr>
+                    )
+                })}
+            </Table>
+        )
+    }
 }
