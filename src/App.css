@@ -55,6 +55,7 @@ html, body, #root {
     overflow-y: auto; /* Enables vertical scrolling */
     background-color: whitesmoke;
     border-radius: 20px;
+    width:80%
 }
 
 .lap-time-header {
@@ -63,6 +64,7 @@ html, body, #root {
     padding: 10px;
     background-color: #f0f0f0;
     font-weight: bold;
+    text-align: center;
 }
 
 .lap-time-row {
@@ -74,12 +76,12 @@ html, body, #root {
 }
 
 .lap-time-header span, .lap-time-row span{
-    width: 150px;
     text-align: center;
+    width: 30%;
 }
 
 .button{
-    padding: 20px 40px;
+    padding: 20px 30px;
     background-color: whitesmoke;
     font-weight: bold;
     font-size: 30px;

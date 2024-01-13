@@ -123,6 +123,7 @@ export default function StopWatch() {
                 {!stopWatchRunning && <StopWatchButton type={ButtonType.Start} onClick={handleStart}/>}
                 {stopWatchRunning && <StopWatchButton type={ButtonType.Resume} onClick={handleResume}/>}
                 {stopWatchRunning && <StopWatchButton type={ButtonType.Pause} onClick={handlePause}/>}
+                
                 <StopWatchButton type={ButtonType.Stop} onClick={handleStop}/>
                 <StopWatchButton type={ButtonType.Reset} onClick={handleReset}/>
                 {stopWatchRunning && <StopWatchButton type={ButtonType.Lap} onClick={handleLap}/>}
