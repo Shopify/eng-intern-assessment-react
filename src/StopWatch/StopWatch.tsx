@@ -24,6 +24,9 @@ export default function StopWatch() {
   const minutes = Math.floor((time / 60000) % 60);
   const seconds = Math.floor((time / 1000) % 60);
   const milliseconds = Math.floor((time / 10) % 100);
+  const [timeInterval, setTimeInterval] = useState<
+    string | number | NodeJS.Timeout
+  >(0);
 
   useEffect(() => {
     let interval: string | number | NodeJS.Timeout;
@@ -31,10 +34,12 @@ export default function StopWatch() {
     switch (command) {
       case "start":
         interval = setInterval(() => setTime(time + 10), 10);
+        setTimeInterval(interval);
         break;
       case "stop":
         if (time !== 0) {
-          clearInterval(interval);
+          clearInterval(timeInterval);
+          setTimeInterval(0);
         }
         break;
       case "reset":
@@ -44,13 +49,19 @@ export default function StopWatch() {
         break;
       case "resume":
         interval = setInterval(() => setTime(time + 10), 10);
+        setTimeInterval(interval);
+
         break;
       case "pause":
-        clearInterval(interval);
+        clearInterval(timeInterval);
+        setTimeInterval(0);
         break;
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(timeInterval);
+      setTimeInterval(0);
+    };
   }, [time, command]);
 
   const CheckForLeadingZero = (value: number) => {
