@@ -4,7 +4,7 @@ import { StopWatchContext } from "../StopWatch/StopWatch";
 
 /**
  * * This component displays the button and communicates with the stopwatch via useContext.
- * * I chose to make the Reset button disapper when the stopwatch is stopped, this was based on the Apple stopwatch.
+ * * I chose to make the Lap button disapper when the stopwatch is stopped, this was based on the Apple stopwatch.
  * * I reviewed the test cases and saw the resume/pause buttons!
  **/
 
