@@ -23,9 +23,9 @@ export const LapTable = (props: lapDisplayProps) => {
         <>
             {
                 laps.length>0 &&
-                    laps.map((lap, index) =>{
+                    laps.slice().reverse().map((lap, index) =>{
                         return <div key={index}>
-                            Lap Num: {index} || lapTime: {lap[0]} || totalTime: {lap[1]}
+                            Lap Num: {laps.length-index} || lapTime: {lap[0]} || totalTime: {lap[1]}
                         </div>
                     })
             }
