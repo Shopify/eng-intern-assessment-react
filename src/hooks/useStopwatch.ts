@@ -23,6 +23,7 @@ const log = (message: string) => console.log(`[useStopwatch] ${message}`);
  *
  * @example
  *
+ * ```tsx
  * import React from 'react';
  *
  * const Stopwatch = () => {
@@ -53,6 +54,7 @@ const log = (message: string) => console.log(`[useStopwatch] ${message}`);
  * };
  *
  * export default Stopwatch;
+ * ```
  */
 export default function useStopWatch({ initialTime = 0, updateInterval = 10, debug = false }: UseStopwatchParams): UseStopwatch {
   const [state, setState] = React.useState<StopwatchState>("idle");
