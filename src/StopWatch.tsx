@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import "./StopWatch.css";
 
 // utilities
 const miliToHour = (time: number) => {
@@ -19,7 +20,7 @@ export default function StopWatch() {
   const [start, setStart] = useState(false);
   // check whether stop is pressed for resume button
   // if use start as condition for start/resume button, resume button is going to display by default
-	// Or in reverse the timer will run when start application
+  // Or in reverse the timer will run when start application
   const [stopped, setStopped] = useState(true);
 
   // store the passed time when pressed stop
@@ -51,7 +52,9 @@ export default function StopWatch() {
   };
 
   const stopTimer = () => {
-    setStopped(false);
+    if (start) {
+      setStopped(false);
+    }
     setStart(false);
   };
 
@@ -81,31 +84,37 @@ export default function StopWatch() {
   }, [startTime, start]);
 
   return (
-    <div>
-      {miliToHour(curTime).toString().padStart(2, "0")}:
-      {miliToMin(curTime).toString().padStart(2, "0")}:
-      {miliToSec(curTime).toString().padStart(2, "0")}
-      <StopWatchButton
-        stopped={stopped}
-        startTimer={startTimer}
-        stopTimer={stopTimer}
-        lapTimer={lapTimer}
-        resetTimer={resetTimer}
-      ></StopWatchButton>
+    <div className="watch">
       <div>
-        {`lap ${laps.length + 1}`}{" "}
-        {miliToHour(curTime - lapTime)
-          .toString()
-          .padStart(2, "0")}
-        :
-        {miliToMin(curTime - lapTime)
-          .toString()
-          .padStart(2, "0")}
-        :
-        {miliToSec(curTime - lapTime)
-          .toString()
-          .padStart(2, "0")}
+        <div className="time">
+          {miliToHour(curTime).toString().padStart(2, "0")}:
+          {miliToMin(curTime).toString().padStart(2, "0")}:
+          {miliToSec(curTime).toString().padStart(2, "0")}
+        </div>
+        <StopWatchButton
+          stopped={stopped}
+          startTimer={startTimer}
+          stopTimer={stopTimer}
+          lapTimer={lapTimer}
+          resetTimer={resetTimer}
+        ></StopWatchButton>
+        {/* display the current lap time, not required
+        <div>
+          {`lap ${laps.length + 1}`}{" "}
+          {miliToHour(curTime - lapTime)
+            .toString()
+            .padStart(2, "0")}
+          :
+          {miliToMin(curTime - lapTime)
+            .toString()
+            .padStart(2, "0")}
+          :
+          {miliToSec(curTime - lapTime)
+            .toString()
+            .padStart(2, "0")}
+        </div> */}
       </div>
+      <div className="border"></div>
       <div id="lap-list">
         {laps.length > 0 &&
           laps.map((lap, i) => (
