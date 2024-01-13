@@ -1,16 +1,10 @@
 import React from 'react'
 import { getTime } from './helper';
 import Table from 'react-bootstrap/Table';
-import { render } from '@testing-library/react';
 
 type stopWatchDisplayProps = {
     totalElapsed: number,
 }
-
-type lapDisplayProps = {
-    laps: number[][]
-}
-
 
 /**
  * This is a component that renders the stopwatch.
@@ -64,6 +58,19 @@ export default function StopWatch(props: stopWatchDisplayProps) {
     )
 }
 
+type lapDisplayProps = {
+    laps: number[][]
+}
+
+/**
+ * This is a component that renders the LapTable.
+ *
+ * @export
+ * @param {lapDisplayProps} props - The properties passed to this component.
+ * @param {number} props.laps - The array that stores the lapTime and the total time elapsed for each lap
+ *
+ * @returns A JSX element that displays the hours, minutes, seconds, and milliseconds of the lap time and total time elapsed for each lap in a tabular format. 
+ */
 export const LapTable = (props: lapDisplayProps) => {
     let {laps} = props;
     type lapTableRender = {
