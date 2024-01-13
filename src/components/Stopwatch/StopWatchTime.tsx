@@ -1,6 +1,6 @@
 import React from "react";
 
-import { formatTime } from "../../lib/formatting/time";
+import { formatTime, formattedTimeToString } from "../../lib/formatting/time";
 
 type StopwatchTimeProps = {
   elapsedTime: number;
@@ -8,10 +8,10 @@ type StopwatchTimeProps = {
 
 function StopWatchTime({ elapsedTime }: StopwatchTimeProps) {
   const formattedTime = React.useMemo(() => {
-    return formatTime(elapsedTime);
+    return formattedTimeToString(formatTime(elapsedTime));
   }, [elapsedTime]);
 
-  return <span>{`${formattedTime.hours}:${formattedTime.minutes}:${formattedTime.seconds}:${formattedTime.milliseconds}`}</span>;
+  return <span>{formattedTime}</span>;
 }
 
 export default StopWatchTime;

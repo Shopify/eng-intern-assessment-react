@@ -27,8 +27,8 @@ export function formatTime(milliseconds: number): FormattedTime {
   };
 }
 
-type FormattedTimeString = `${string}:${string}:${string}:${string}`;
+type FormattedTimeString = `${string}:${string}:${string}`;
 
 export function formattedTimeToString(formattedTime: FormattedTime): FormattedTimeString {
-  return `${formattedTime.hours}:${formattedTime.minutes}:${formattedTime.seconds}:${formattedTime.milliseconds}`;
+  return `${formattedTime.hours}:${formattedTime.minutes}:${formattedTime.seconds}`;
 }

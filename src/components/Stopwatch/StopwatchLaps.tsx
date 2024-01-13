@@ -13,23 +13,16 @@ type StopwatchLapsProps = {
 
 export default function StopwatchLaps({ laps }: StopwatchLapsProps) {
   return (
-    <div>
-      <h2>Laps</h2>
+    <div id='lap-list' data-testid='lap-list'>
       {laps.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Duration</th>
-              <th>Elapsed</th>
-            </tr>
-          </thead>
-          <tbody>
+        <>
+          <h2>Laps</h2>
+          <ul>
             {laps.map((lap) => (
               <StopwatchLap key={lap.id} {...lap} />
             ))}
-          </tbody>
-        </table>
+          </ul>
+        </>
       )}
     </div>
   );
@@ -42,17 +35,7 @@ function StopwatchLap({ id, duration, elapsed }: StopwatchLapProps) {
     return formattedTimeToString(formatTime(duration));
   }, [duration]);
 
-  const formattedElapsed = React.useMemo(() => {
-    return formattedTimeToString(formatTime(elapsed));
-  }, [elapsed]);
-
-  return (
-    <tr>
-      <td>{id}</td>
-      <td>{formattedDuration}</td>
-      <td>{formattedElapsed}</td>
-    </tr>
-  );
+  return <li>{formattedDuration}</li>;
 }
 
 export type { Lap, StopwatchLapsProps };
