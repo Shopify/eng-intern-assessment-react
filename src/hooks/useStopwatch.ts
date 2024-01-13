@@ -23,9 +23,36 @@ const log = (message: string) => console.log(`[useStopwatch] ${message}`);
  *
  * @example
  *
- * ```tsx
+ * import React from 'react';
  *
- * ```
+ * const Stopwatch = () => {
+ *   const {
+ *     state
+ *     elapsedTime,
+ *     handleStart,
+ *     handleStop,
+ *     handleReset,
+ *   } = useStopwatch({ });
+ *
+ *   return (
+ *     <div>
+ *       <p>Stopwatch Elapsed Time: {elapsedTime} ms</p>
+ *       <button onClick={handleStart}>Start</button>
+ *       <button onClick={handleStop}>Stop</button>
+ *       <button onClick={handleReset}>Reset Stopwatch</button>
+ *
+ *       <ul>
+ *         {laps.map((lap) => (
+ *           <li key={lap.id}>
+ *             Lap {lap.id}: Duration {lap.duration} ms, Elapsed {lap.elapsed} ms
+ *           </li>
+ *         ))}
+ *       </ul>
+ *     </div>
+ *   );
+ * };
+ *
+ * export default Stopwatch;
  */
 export default function useStopWatch({ initialTime = 0, updateInterval = 10, debug = false }: UseStopwatchParams): UseStopwatch {
   const [state, setState] = React.useState<StopwatchState>("idle");

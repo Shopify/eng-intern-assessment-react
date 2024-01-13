@@ -26,3 +26,9 @@ export function formatTime(milliseconds: number): FormattedTime {
     milliseconds: padWithZero(remainingMilliseconds, 3),
   };
 }
+
+type FormattedTimeString = `${string}:${string}:${string}:${string}`;
+
+export function formattedTimeToString(formattedTime: FormattedTime): FormattedTimeString {
+  return `${formattedTime.hours}:${formattedTime.minutes}:${formattedTime.seconds}:${formattedTime.milliseconds}`;
+}

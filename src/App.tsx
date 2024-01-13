@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-import StopWatch from './components/StopWatch'
+import StopWatch from "./components/Stopwatch/StopWatch";
 
 export default function App() {
-    return(
-        <div>
-            <StopWatch />
-        </div>
-    )
+  return (
+    <div>
+      <StopWatch />
+    </div>
+  );
 }
