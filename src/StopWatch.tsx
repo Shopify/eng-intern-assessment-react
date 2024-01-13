@@ -8,24 +8,18 @@ import {
 	Dot,
 	CentisecondsText,
 } from "./styles/stopwatch.styles";
-
-type StopWatchProps = {
-	hours: string;
-	minutes: string;
-	seconds: string;
-	centiseconds: string;
-};
+import { TimeFormat } from "./types";
 
 export default function StopWatch({
-	hours,
-	minutes,
-	seconds,
-	centiseconds,
-}: StopWatchProps) {
+	hours = "00",
+	minutes = "00",
+	seconds = "00",
+	centiseconds = "00",
+}: TimeFormat) {
 	return (
 		<StopWatchWrap>
 			<TimerBlock>
-				<TimeText>{hours}</TimeText>
+				<TimeText data-testid="hours">{hours}</TimeText>
 				<TimeTypeText>HOURS</TimeTypeText>
 			</TimerBlock>
 			<ColonWrap>
@@ -33,7 +27,7 @@ export default function StopWatch({
 				<Dot />
 			</ColonWrap>
 			<TimerBlock>
-				<TimeText>{minutes}</TimeText>
+				<TimeText data-testid="minutes">{minutes}</TimeText>
 				<TimeTypeText>MINUTES</TimeTypeText>
 			</TimerBlock>
 			<ColonWrap>
@@ -41,9 +35,11 @@ export default function StopWatch({
 				<Dot />
 			</ColonWrap>
 			<TimerBlock>
-				<TimeText>{seconds}</TimeText>
+				<TimeText data-testid="seconds">{seconds}</TimeText>
 				<TimeTypeText>SECONDS</TimeTypeText>
-				<CentisecondsText>{centiseconds}</CentisecondsText>
+				<CentisecondsText data-testid="centiseconds">
+					{centiseconds}
+				</CentisecondsText>
 			</TimerBlock>
 		</StopWatchWrap>
 	);

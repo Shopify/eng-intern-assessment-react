@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
 
 const PageContainer = styled("div")({
 	width: "100%",
@@ -44,7 +45,7 @@ const TitleText = styled("h1")({
 	marginBottom: "60px",
 });
 
-const TitleWrap = styled("h1")({
+const TitleWrap = styled("div")({
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
@@ -75,10 +76,10 @@ const LapTime = styled("div")({
 	height: "35px",
 	flexShrink: 0,
 	borderTop: "1px solid #B1BFD3",
-	"&:first-child": {
+	"&:first-of-type": {
 		border: "none",
 	},
-	"&:last-child": {
+	"&:last-of-type": {
 		scrollSnapAlign: "end",
 	},
 });
@@ -93,6 +94,24 @@ const LapTimeText = styled("small")({
 	color: "#34445B",
 });
 
+const ShortcutIcon = styled(KeyboardCommandKeyIcon)({
+	position: "absolute",
+	bottom: 10,
+	left: 10,
+	fontSize: "26px",
+	borderRadius: "5px",
+	padding: "5px",
+	boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px",
+	border: "3px solid #34445B",
+	color: "#34445B",
+	transition: "0.2s ease-in-out",
+	"&:hover": {
+		cursor: "pointer",
+		transform: "scale(1.05)",
+		transition: "0.3s ease-in-out",
+	},
+});
+
 export {
 	PageContainer,
 	BackgroundContainer,
@@ -102,4 +121,5 @@ export {
 	LapTime,
 	LapNumText,
 	LapTimeText,
+	ShortcutIcon,
 };
