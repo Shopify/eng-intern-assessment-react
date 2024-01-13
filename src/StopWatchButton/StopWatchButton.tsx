@@ -16,9 +16,9 @@ export default function StopWatchButton() {
       StopWatchContextInButton.command === "pause" ||
       StopWatchContextInButton.command === ""
     ) {
-      return "hidden";
+      return "none";
     } else {
-      return "visible";
+      return "";
     }
   };
 
@@ -105,7 +105,7 @@ export default function StopWatchButton() {
             StopWatchContextInButton.setCommand("lap");
           }}
           style={{
-            visibility: `${StopWatchContextStopCase()}`,
+            display: `${StopWatchContextStopCase()}`,
           }}
         >
           Lap

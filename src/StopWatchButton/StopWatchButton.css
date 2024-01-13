@@ -2,6 +2,7 @@
   --main-shopify-green: #96bf47;
   --main-shopify-white: #ffffff;
 }
+
 .stop-watch-button-flex {
   display: flex;
   justify-content: center;
@@ -13,7 +14,7 @@
 .stop-watch-button-button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  border: 1px solid #000;
+  border: 1px solid lightgray;
   background-color: var(--main-shopify-white);
   color: var(--main-shopify-green);
   border-radius: 12px;

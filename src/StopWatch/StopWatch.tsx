@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./StopWatch.css";
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
+import { Center, Flex, Text } from "@mantine/core";
 
 interface StopWatchContextInterface {
   command: string;
@@ -88,7 +89,13 @@ export default function StopWatch() {
   return (
     <StopWatchContext.Provider value={{ command, setCommand }}>
       <div>
-        <div className="stop-watch-main-display" id="stop-watch-time">
+        <Flex
+          direction={"row"}
+          justify={"center"}
+          align={"center"}
+          className="stop-watch-main-display"
+          id="stop-watch-time"
+        >
           {command === "stop" ? (
             "Stopped"
           ) : (
@@ -98,16 +105,33 @@ export default function StopWatch() {
               )}:${CheckForLeadingZero(milliseconds)}`}
             </div>
           )}
-        </div>
+        </Flex>
 
+        <div className="stop-watch-laps-center-div">
+          <Text className="stop-watch-text-description">
+            The Order Is Minutes, Seconds, Milliseconds!
+          </Text>
+        </div>
         <StopWatchButton />
-        <div className="stop-watch-laps-main-display" data-testid="lap-list">
-          {laps.map((lap, index) => (
-            <div key={index} className="stop-watch-laps-inner-display">
-              <div> Lap {index + 1}:</div>
-              <div>{lap}</div>
-            </div>
-          ))}
+
+        <div className="stop-watch-laps-center-div">
+          <Flex
+            direction={"column"}
+            justify={"center"}
+            align={"center"}
+            gap={"2rem"}
+            className="stop-watch-laps-main-display"
+            style={{ display: `${laps.length === 0 ? "none" : ""}` }}
+            data-testid="lap-list"
+          >
+            {laps.map((lap, index) => {
+              return (
+                <Text className="stop-watch-laps-inner-display">
+                  Lap {index + 1}: {lap}
+                </Text>
+              );
+            })}
+          </Flex>
         </div>
       </div>
     </StopWatchContext.Provider>

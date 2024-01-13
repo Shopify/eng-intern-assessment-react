@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mantine/core": "^7.4.1",
+    "@mantine/hooks": "^7.4.1",
     "@testing-library/jest-dom": "^6.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest-environment-jsdom": "^29.7.0",
