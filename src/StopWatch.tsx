@@ -4,6 +4,7 @@ import StopWatchButton from './StopWatchButton';
 export default function StopWatch() {
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
+  const [lapTimes, setLapTimes] = useState([]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleStart = () => {
@@ -11,7 +12,7 @@ export default function StopWatch() {
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
       setTime((prev) => prev + 1);
-    }, 1000);
+    }, 10);
   };
 
   const handlePause = () => {
@@ -29,29 +30,42 @@ export default function StopWatch() {
       intervalRef.current = null;
     }
     setTime(0);
+    setLapTimes([]);
   };
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
+  const handleLap = () => {
+    setLapTimes((prevLapTimes) => [...prevLapTimes, time]);
+  };
+
+  const formatTime = (centiseconds: number) => {
+    const minutes = Math.floor(centiseconds / (100 * 60));
+    const seconds = Math.floor((centiseconds / 100) % 60);
+    const centis = centiseconds % 100;
 
     const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
     const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const formattedCentiseconds = centis < 10 ? `0${centis}` : `${centis}`;
 
-    return `${formattedMinutes}:${formattedSeconds}`;
+    return `${formattedMinutes}:${formattedSeconds}.${formattedCentiseconds}`;
   };
-
   return (
     <>
-    <div className="box">
-      <h1>Stopwatch</h1>
-      <div className="time">{formatTime(time)}</div>
-    </div>
-    <div style={{display: 'flex', justifyContent:'center', alignItems:'center', paddingTop: '2em'}}>
+      <div className="box">
+        <h1>Stopwatch</h1>
+        <div className="time">{formatTime(time)}</div>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '2em' }}>
         <StopWatchButton onClick={handleStart} label="Start" />
         <StopWatchButton onClick={handlePause} label="Pause" />
         <StopWatchButton onClick={resetStopwatch} label="Reset" />
-    </div>
+        <StopWatchButton onClick={handleLap} label="Lap" />
+      </div>
+
+      <div className="box">
+          {lapTimes.map((lapTime, index) => (
+            <div key={index}>Lap {index + 1}: {formatTime(lapTime)}</div>
+          ))}
+        </div>
     </>
   );
 }
