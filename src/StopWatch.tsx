@@ -1,19 +1,20 @@
-import React from 'react'
-import "./StopWatch.css"
+import React from 'react';
+import './StopWatch.css';
+import { Time } from './App';
 
-const StopWatch: React.FC = ({}) => {
+const StopWatch: React.FC<Time> = ({ hours, minutes, seconds }) => {
     return(
         <div className="stopwatch-container">
             <div className="stopwatch-item">
-                <span className="number">12</span>
+                <span className="number">{hours}</span>
                 <span className="label">hrs</span>
             </div>
             <div className="stopwatch-item">
-                <span className="number">34</span>
+                <span className="number">{minutes}</span>
                 <span className="label">min</span>
             </div>
             <div className="stopwatch-item">
-                <span className="number">56</span>
+                <span className="number">{seconds}</span>
                 <span className="label">sec</span>
             </div>
         </div>

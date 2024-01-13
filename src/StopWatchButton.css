@@ -30,6 +30,11 @@ button {
     color: #015738; 
 }
 
+.button-start:disabled {
+    color: #015738; 
+    cursor: default;
+}
+
 .button-stop {
     color: #ac3029; 
 }
