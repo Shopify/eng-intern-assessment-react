@@ -109,7 +109,7 @@ export default function useStopWatch({ initialTime = 0, updateInterval = 10, deb
     debug && log("Resetting timer");
 
     clearIntervalInternal();
-    setState("stopped");
+    setState("idle");
     setElapsedTime(initialTime);
   }, []);
 
