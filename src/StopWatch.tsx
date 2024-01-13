@@ -26,24 +26,24 @@ export default function StopWatch(props: stopWatchDisplayProps) {
     let {hours, minutes, seconds, ms} = getTime(totalElapsed)
     let render = [
         {
-            name : "HH",
+            name : " HH",
             type:  "hour",
             value: hours.toString().padStart(2, '0')
         },
         {
             name : "MM",
             type:  "minute",
-            value: minutes.toString().padStart(2, '0')
+            value: ": " + minutes.toString().padStart(2, '0')
         },
         {
             name : "SS",
             type:  "seconds",
-            value: seconds.toString().padStart(2, '0')
+            value: ": " + seconds.toString().padStart(2, '0')
         },
         {
-            name : "ms",
+            name : " ms",
             type:  "ms",
-            value: ms.toString().padStart(2, '0')
+            value: "." + ms.toString().padStart(2, '0')
         }
     ]
     return(
@@ -54,7 +54,7 @@ export default function StopWatch(props: stopWatchDisplayProps) {
                         <div aria-label={item.type} style={{fontStyle:'italic'}}>
                             {item.name}
                         </div>
-                        <div aria-label={`value`} style={{fontWeight: "bolder", fontSize: "4rem", display: "flex", justifyContent: 'flex-start', border:"4px solid grey", padding: "0 0.2rem"}}>
+                        <div aria-label={`value`} style={{fontWeight: "bolder", fontSize: "4rem", display: "flex", justifyContent: 'flex-start', padding: "0 0.5rem"}}>
                             {item.value}
                         </div>
                     </div>
@@ -83,7 +83,7 @@ export const LapTable = (props: lapDisplayProps) => {
             })
         })
         return(
-            <Table responsive cellPadding={'2rem'} style={{width: "50rem"}}>
+            <Table responsive cellPadding={'2rem'} style={{minWidth: "60vw"}}>
                 <thead>
                     <tr>
                         <th style={{textAlign: "center"}}>Lap #</th>
