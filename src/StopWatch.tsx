@@ -42,7 +42,6 @@ export default function StopWatch() {
 
   const handleLap = (time: number) => {
     const lapTime = toStopWatchFormat(time - prevTime);
-    const overallTime = toStopWatchFormat(time);
     const currLap: Lap = {
       lapNumber: lapNumber,
       lapTime: `${lapTime.minutes}:${lapTime.seconds}:${lapTime.hundredthSec}`,
@@ -55,7 +54,7 @@ export default function StopWatch() {
     <>
       <Timer lapNumber={lapNumber} state={state} onLap={handleLap} />
       <StopWatchButtons onButtonPress={handleAction} state={state} />
-      <LapsList laps={laps} />
+      {!!laps.length && <LapsList laps={laps} />}
     </>
   );
 }

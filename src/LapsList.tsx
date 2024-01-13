@@ -6,26 +6,20 @@ interface IProps {
 }
 
 export default function LapsList({ laps }: IProps) {
-  return !laps.length ? (
-    <div data-testid='lap-list'></div>
-  ) : (
-    <table>
+  return (
+    <table className='lap-table'>
       <thead>
-        {
-          <tr>
-            <th>Lap</th>
-            <th>Lap times</th>
-            <th>Overall time</th>
-          </tr>
-        }
+        <tr className='lap-table-header-row'>
+          <th>Lap #</th>
+          <th>Lap Time</th>
+        </tr>
       </thead>
       <tbody data-testid='lap-list'>
         {laps.map((lap) => {
           return (
-            <tr key={`lap-${lap.lapNumber}`}>
+            <tr className='lap-table-row' key={`lap-${lap.lapNumber}`}>
               <td>{lap.lapNumber}</td>
               <td>{lap.lapTime}</td>
-              <td>{lap.overallTime}</td>
             </tr>
           );
         })}
@@ -33,5 +27,3 @@ export default function LapsList({ laps }: IProps) {
     </table>
   );
 }
-
-// I did this to pass the test as given, normally I would not render the table if there is no laps

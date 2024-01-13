@@ -37,9 +37,6 @@ body {
   min-width: 5rem;
 }
 
-.stopwatch-btn-container {
-}
-
 .stopwatch-btn {
   padding: 0.25rem 0.5rem;
   font-size: 1.5rem;
@@ -47,4 +44,14 @@ body {
   background-color: black;
   color: white;
   min-width: 5rem;
+}
+
+.lap-table {
+  border-collapse: collapse;
+  width: 320px;
+  text-align: center;
+}
+
+.lap-table-header-row {
+  border-bottom: 1px solid black;
 }
