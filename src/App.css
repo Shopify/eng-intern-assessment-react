@@ -134,6 +134,16 @@ transform: scale(1.05); / Slightly enlarge button on hover */
   transform: scale(1.05);
 }
 
+.stopwatch-button--resume {
+  background-color: #3b82f6; /* Tailwind Blue 500 for resume */
+  color: white;
+}
+
+.stopwatch-button--resume:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+  transform: scale(1.05);
+}
+
 .stopwatch-button:disabled {
   background-color: #d1d5db; /* Tailwind Gray 300 for disabled state */
   cursor: not-allowed;
