@@ -1,12 +1,16 @@
-import React, { Dispatch, SetStateAction, useState, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faStop, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faStop, faRotateRight, faClock } from '@fortawesome/free-solid-svg-icons';
+import { Time } from './App';
 
 interface StopWatchButtonProps {
-    setTimeInSec: Dispatch<SetStateAction<number>>
+    time: Time;
+    setTimeInSec: Dispatch<SetStateAction<number>>;
+    setLapArray: Dispatch<SetStateAction<Array<Time>>>;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ setTimeInSec }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = (props) => {
+    const { time, setTimeInSec, setLapArray} = props;
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const intervalRef = useRef(null);
 
@@ -26,19 +30,34 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ setTimeInSec }) => {
         clearInterval(intervalRef.current);
         setTimeInSec(0);
         setIsRunning(false);
+        setLapArray([]);
+    };
+
+    const handleLap = () => {
+        setLapArray((prevLapArray) => [...prevLapArray, time]);
     };
 
     return(
         <div className="button-container">
-            <button className="button-start" onClick={handleStart} disabled={isRunning}>
-                <FontAwesomeIcon icon={faPlay} />
-            </button>
-            <button className="button-stop" onClick={handleStop} disabled={!isRunning}>
-                <FontAwesomeIcon icon={faStop} />
-            </button>
-            <button className="button-reset" onClick={handleReset}>
-                <FontAwesomeIcon icon={faRotateRight} />
-            </button>
+            {!isRunning ?
+                <>
+                    <button className="button-start" onClick={handleStart}>
+                        <FontAwesomeIcon icon={faPlay} />
+                    </button>
+                    <button className="button-reset" onClick={handleReset}>
+                        <FontAwesomeIcon icon={faRotateRight} />
+                    </button>
+                </> : 
+                <>
+                    <button className="button-stop" onClick={handleStop}>
+                        <FontAwesomeIcon icon={faStop} />
+                    </button>
+                    <button className="button-reset" onClick={handleLap}>
+                        <FontAwesomeIcon icon={faClock} />
+                    </button>
+                </>
+            }
+            
         </div>
     );
 };

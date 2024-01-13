@@ -16,6 +16,7 @@ const App:React.FC = () => {
         minutes: "00",
         seconds: "00"
     });
+    const [lapArray, setLapArray] = useState<Array<Time>>([]);
     
     useEffect(() => {
         let hrs = Math.floor(timeInSec / 3600);
@@ -32,7 +33,21 @@ const App:React.FC = () => {
     return(
         <div className="app-container">
             <StopWatch {...time}/>
-            <StopWatchButton setTimeInSec={setTimeInSec}/>
+            <StopWatchButton
+                time={time}
+                setTimeInSec={setTimeInSec}
+                setLapArray={setLapArray}
+            />
+            <div className="lap-container">
+                <ul className="lap-list">
+                    {lapArray.map((time, index) => (
+                        <li key={index} className="lap-item">
+                            <span className="lap-label">Lap  {index+1}</span>
+                            <span className="lap-time">{time.hours}:{time.minutes}:{time.seconds}</span>
+                        </li>
+                    )).reverse()}
+                </ul>
+            </div>
         </div>
     )
 };
