@@ -33,7 +33,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ setTimeInSec }) => {
             <button className="button-start" onClick={handleStart} disabled={isRunning}>
                 <FontAwesomeIcon icon={faPlay} />
             </button>
-            <button className="button-stop" onClick={handleStop}>
+            <button className="button-stop" onClick={handleStop} disabled={!isRunning}>
                 <FontAwesomeIcon icon={faStop} />
             </button>
             <button className="button-reset" onClick={handleReset}>
