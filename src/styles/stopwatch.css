@@ -1,0 +1,96 @@
+.stopwatch-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+  max-width: 480px;
+  width: 100%;
+}
+
+.stopwatch-actions {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--gray3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.stopwatch-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--text-s);
+  font-weight: 500;
+  background-color: var(--gray5);
+  color: var(--gray11);
+  border: 1px solid var(--border);
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-l);
+  cursor: pointer;
+
+  transition: all 200ms ease-in-out;
+}
+
+.stopwatch-button:disabled {
+  opacity: 50%;
+}
+
+.stopwatch-button:hover:not(:disabled) {
+  color: var(--gray12);
+  background-color: var(--gray3);
+}
+
+.stopwatch-time {
+  font-size: 6rem;
+  padding: 2rem;
+  background-color: var(--gray3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.stopwatch-lap-list[data-state="full"] {
+  background-color: var(--gray3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+}
+
+.stopwatch-lap-list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+}
+
+.stopwatch-lap-list-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 500;
+  color: var(--text-muted-foreground)
+}
+
+.stopwatch-lap-list h2 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+}
+
+.stopwatch-lap-list ul {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.stopwatch-lap-list li {
+  color: var(--text);
+  font-weight: 400;
+  font-size: var(--text-l);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

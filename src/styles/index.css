@@ -1,0 +1,78 @@
+:root {
+  color-scheme: dark;
+
+  --text-2xl: 30px;
+  --text-xl: 24px;
+  --text-l: 20px;
+  --text: 16px;
+  --text-s: 14px;
+  --text-xs: 12px;
+  --text-xxs: 10px;
+  --radius-xl: 14px;
+  --radius-l: 10px;
+  --radius: 8px;
+  --radius-s: 5px;
+  --radius-xs: 3px;
+
+  --whiteA1: hsla(0, 0%, 100%, 0);
+  --whiteA2: hsla(0, 0%, 100%, 0.026);
+  --whiteA3: hsla(0, 0%, 100%, 0.056);
+  --whiteA4: hsla(0, 0%, 100%, 0.077);
+  --whiteA5: hsla(0, 0%, 100%, 0.103);
+  --whiteA6: hsla(0, 0%, 100%, 0.129);
+  --whiteA7: hsla(0, 0%, 100%, 0.172);
+  --whiteA8: hsla(0, 0%, 100%, 0.249);
+  --whiteA9: hsla(0, 0%, 100%, 0.386);
+  --whiteA10: hsla(0, 0%, 100%, 0.446);
+  --whiteA11: hsla(0, 0%, 100%, 0.592);
+  --whiteA12: hsla(0, 0%, 100%, 0.923);
+
+  --blackA1: hsla(0, 0%, 0%, 0);
+  --blackA2: hsla(0, 0%, 0%, 0.026);
+  --blackA3: hsla(0, 0%, 0%, 0.056);
+  --blackA4: hsla(0, 0%, 0%, 0.077);
+  --blackA5: hsla(0, 0%, 0%, 0.103);
+  --blackA6: hsla(0, 0%, 0%, 0.129);
+  --blackA7: hsla(0, 0%, 0%, 0.172);
+  --blackA8: hsla(0, 0%, 0%, 0.249);
+  --blackA9: hsla(0, 0%, 0%, 0.386);
+  --blackA10: hsla(0, 0%, 0%, 0.446);
+  --blackA11: hsla(0, 0%, 0%, 0.592);
+  --blackA12: hsla(0, 0%, 0%, 0.923);
+
+  --text-color: #e5e5e5;
+  --text-muted-foreground: var(--gray9);
+
+  --gray0: #090909;
+  --gray1: #191919;
+  --gray2: #1c1c1c;
+  --gray3: #232323;
+  --gray4: #282828;
+  --gray5: #2e2e2e;
+  --gray6: #343434;
+  --gray7: #3e3e3e;
+  --gray8: #505050;
+  --gray9: #707070;
+  --gray10: #7e7e7e;
+  --gray11: #a0a0a0;
+  --gray12: #ededed;
+
+  --border: var(--gray5);
+
+  --white: #fff;
+  --black: #000;
+
+  --fg: #f2f2f2;
+  --bg: var(--gray1);
+
+  --selection: var(--gray5);
+}
+
+body {
+  color: var(--fg);
+  background: var(--bg);
+}
+
+::selection {
+  background: var(--selection);
+}
