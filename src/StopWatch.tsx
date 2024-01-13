@@ -38,7 +38,7 @@ export default function StopWatch() {
   const stopTimer = () => {
     setStart(false);
   };
-  const loopTimer = () => {};
+  const lapTimer = () => {};
   const resetTimer = () => {
     setPassed(0);
 		setStartTime(Date.now());
@@ -56,7 +56,7 @@ export default function StopWatch() {
       <StopWatchButton
         startTimer={startTimer}
         stopTimer={stopTimer}
-        loopTimer={loopTimer}
+        lapTimer={lapTimer}
         resetTimer={resetTimer}
       ></StopWatchButton>
     </div>
