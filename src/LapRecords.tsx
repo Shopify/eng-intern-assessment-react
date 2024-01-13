@@ -17,12 +17,14 @@ export default function LapRecords(props: LapRecordsProps) {
             Lap Records
           </Text>
           <List type="number">
-            {lapTimes.map((lapTime, index) => (
-              <div key={`${index}-${lapTime}`}>
-                <List.Item>{formatTime(lapTime)}</List.Item>
+            <div data-testid="lap-list">
+              {lapTimes.map((lapTime, index) => (
+                <div key={`${index}-${lapTime}`} data-testid={`lap-time-${index}`}>
+                  <List.Item>{formatTime(lapTime)}</List.Item>
+                </div>
+              ))}
               </div>
-            ))}
-          </List>
+            </List>
         </BlockStack>
       </Card>
     </div>
