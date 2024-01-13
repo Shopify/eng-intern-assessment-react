@@ -1,0 +1,26 @@
+.stop-watch-main-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: "Courier New", Courier, monospace;
+  flex-wrap: nowrap;
+}
+
+.stop-watch-laps-main-display {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  gap: 1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.stop-watch-laps-inner-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5rem;
+}

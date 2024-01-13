@@ -1,0 +1,37 @@
+:root {
+  --main-shopify-green: #96bf47;
+  --main-shopify-white: #ffffff;
+}
+.stop-watch-button-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.stop-watch-button-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  background-color: var(--main-shopify-white);
+  color: var(--main-shopify-green);
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.stop-watch-button-button:hover {
+  background-color: var(--main-shopify-green);
+  color: var(--main-shopify-white);
+}
+
+.stop-watch-button-resume-pause-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}

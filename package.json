@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@testing-library/jest-dom": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^23.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -46,6 +50,10 @@
   "jest": {
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    }
+    },
+    "moduleNameMapper": {
+      "\\.(scss|sass|css)$": "identity-obj-proxy"
+    },
+    "testEnvironment": "jest-environment-jsdom"
   }
 }
