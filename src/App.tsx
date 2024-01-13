@@ -50,7 +50,10 @@ export default function App() {
     const pauseFunc=()=>{
         setStartFlag(false)
     }
-    const lapFunc=()=>{}
+    const lapFunc=()=>{
+        setlaps(prev => [...prev, [curElapsed, totalElapsed]])
+        setcurElapsed(0.0)
+    }
 
     useEffect(() => {
         let intervalId: NodeJS.Timer;
