@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 import { formatTime } from "./utils";
 import { ButtonGroup, Text } from "@shopify/polaris";
+import LapRecords from "./LapRecords";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
@@ -54,14 +55,17 @@ export default function StopWatch() {
           shouldDisable={!isRunning}
         />
       </ButtonGroup>
-      {lapTimes.length > 0 && (
-        <>
-          <h3>Lap Records</h3>
-          {lapTimes.map((lapTime, index) => (
-            <div key={`${index}-${lapTime}`}>{formatTime(lapTime)}</div>
-          ))}
-        </>
-      )}
+      {
+        lapTimes.length > 0 && <LapRecords lapTimes={lapTimes} />
+        //   (
+        //   <>
+        //     <h3>Lap Records</h3>
+        //     {lapTimes.map((lapTime, index) => (
+        //       <div key={`${index}-${lapTime}`}>{formatTime(lapTime)}</div>
+        //     ))}
+        //   </>
+        // )
+      }
     </>
   );
 }
