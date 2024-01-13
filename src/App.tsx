@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StopWatch from './StopWatch';
 import './css/App.css';
-import StopWatchButton from './StopWatchButton';
 
 export default function App() {
     const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -97,23 +96,11 @@ export default function App() {
         };
     }, [reset, isRunning, time]);
 
-    // App disaply with Stopwatch, buttons, and lap list
+    // App display with Stopwatch, buttons, and lap list
     return (
-        <div className='stopwatch-container'>
-            <StopWatch timeDisplay={timeDisplay} />
-            <div className='stopwatch-button-container'>
-                <StopWatchButton type={'Start'} onClick={handleOnStart} />
-                <StopWatchButton type={'Stop'} onClick={handleOnStop} />
-                <StopWatchButton type={'Reset'} onClick={handleReset} />
-                <StopWatchButton type={'Lap'} onClick={handleLap} />
-            </div>
-            <div>
-                <ul className='lap-list'>
-                    {laps.map((lap, index, array) => (
-                        <li key={index} style={{ listStyle: 'None', color:'whitesmoke' }}>{index > 0 ? (`Lap ${index}: ${lap - array[index - 1]} seconds`) : ''}</li>
-                    ))}
-                </ul>
-            </div>
+        <div>
+            <StopWatch timeDisplay={timeDisplay} start={handleOnStart} stop={handleOnStop}
+                reset={handleReset} lap={handleLap} laps={laps} />
         </div>
     )
 }
