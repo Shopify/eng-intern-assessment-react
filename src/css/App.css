@@ -1,40 +1,47 @@
 body {
     margin: 0;
-    background-color: #282c34;
+    background-color: #96bf48;
 }
 
 .stopwatch-container {
-    height: 100vh;
     display: flex;
+    height: 101vh;
+    margin-top: 20%;
+    position: relative;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 .timer-display {
     display: flex;
-    color: #ccc;
+    color: white;
 }
 
 .timer-display p {
     margin: 0;
-    font-size: 4rem;
-    letter-spacing: 2px; 
+    font-size: 3.5rem;
+    letter-spacing: 4px; 
 }
 
-.timer-display span {
+.timer-display {
     font-size: 3rem;
     position: relative;
     top: 8px;
     letter-spacing: 2px;
 }
 
+.stopwatch-button-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .stopwatch-controls-container button {
-    margin: 15px;
+    margin: 10px;
     border: none;
-    background-color: #e5ad3d;
-    padding: 3px 12px;
-    font-size: 1.3rem;
+    background-color: whitesmoke;
+    padding: 5px 12px;
+    font-size: 1.2 rem;
     font-weight: 400;
     cursor: pointer;
+    color: #96bf48;
 }

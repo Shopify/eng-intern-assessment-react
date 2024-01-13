@@ -1,4 +1,4 @@
+// Interface for types for StopWatchButtonProps
 export interface IStopWatchProps {
-    isRunning: boolean,
-    reset: boolean
+    timeDisplay: (string | number)[]
 }
