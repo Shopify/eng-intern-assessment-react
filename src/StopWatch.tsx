@@ -1,11 +1,13 @@
 import React from "react";
-import StopWatchButton from "./StopWatchButton";
 
-const StopWatch: React.FC = () => {
+interface Props {
+  time: number;
+  formatTime: (seconds: number) => string;
+}
+const StopWatch: React.FC<Props> = ({ time, formatTime }) => {
   return (
     <div>
-      <p> 0:00:00 </p>
-      <StopWatchButton />
+      <p> {formatTime(time)} </p>
     </div>
   );
 };
