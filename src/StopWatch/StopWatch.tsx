@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./StopWatch.css";
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
-import { Center, Flex, MantineProvider, Text } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 
 interface StopWatchContextInterface {
   command: string;
@@ -19,7 +19,7 @@ export const StopWatchContext = createContext<StopWatchContextInterface>({
  **/
 
 export default function StopWatch() {
-  const [command, setCommand] = useState<string>("");
+  const [command, setCommand] = useState<string>("inital");
   const [laps, setLaps] = useState<string[]>([]);
   const [time, setTime] = useState<number>(0);
   const minutes = Math.floor((time / 60000) % 60);
@@ -46,7 +46,7 @@ export default function StopWatch() {
       case "reset":
         setTime(0);
         setLaps([]);
-        setCommand("");
+        setCommand("inital");
         break;
       case "resume":
         interval = setInterval(() => setTime(time + 10), 10);

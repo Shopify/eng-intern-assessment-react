@@ -14,7 +14,7 @@ export default function StopWatchButton() {
     if (
       StopWatchContextInButton.command === "stop" ||
       StopWatchContextInButton.command === "pause" ||
-      StopWatchContextInButton.command === ""
+      StopWatchContextInButton.command === "inital"
     ) {
       return "none";
     } else {
@@ -23,7 +23,7 @@ export default function StopWatchButton() {
   };
 
   const StopWatchContextStartCase = () => {
-    if (StopWatchContextInButton.command === "") {
+    if (StopWatchContextInButton.command === "inital") {
       return "";
     } else {
       return "none";
@@ -31,7 +31,7 @@ export default function StopWatchButton() {
   };
 
   const StopWatchContextResumePauseCase = () => {
-    if (StopWatchContextInButton.command === "") {
+    if (StopWatchContextInButton.command === "inital") {
       return "none";
     } else {
       return "";
