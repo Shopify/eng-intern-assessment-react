@@ -23,6 +23,8 @@ export default function StopWatch() {
     }
   };
 
+
+  
   const resetStopwatch = () => {
     setIsRunning(false);
     if (intervalRef.current) {
