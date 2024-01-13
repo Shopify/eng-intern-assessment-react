@@ -42,7 +42,11 @@ export default function StopWatch() {
   }, [isRunning]);
 
   return (
-    <>
+    <div
+      style={{
+        margin: "auto",
+      }}
+    >
       <Text variant="heading3xl" as="h1">
         {formatTime(time)}
       </Text>
@@ -55,17 +59,7 @@ export default function StopWatch() {
           shouldDisable={!isRunning}
         />
       </ButtonGroup>
-      {
-        lapTimes.length > 0 && <LapRecords lapTimes={lapTimes} />
-        //   (
-        //   <>
-        //     <h3>Lap Records</h3>
-        //     {lapTimes.map((lapTime, index) => (
-        //       <div key={`${index}-${lapTime}`}>{formatTime(lapTime)}</div>
-        //     ))}
-        //   </>
-        // )
-      }
-    </>
+      {lapTimes.length > 0 && <LapRecords lapTimes={lapTimes} />}
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "@shopify/polaris/build/esm/styles.css";
 import enTranslations from "@shopify/polaris/locales/en.json";
-import { AppProvider, Page } from "@shopify/polaris";
+import { AppProvider, Badge, Page } from "@shopify/polaris";
 import { ExternalMinor } from "@shopify/polaris-icons";
 import App from "./App";
 
@@ -12,7 +12,8 @@ root.render(
   <AppProvider i18n={enTranslations}>
     <Page
       title="Stop Watch"
-      subtitle="by Ashley Chiu"
+      subtitle="Summer 2024 Frontend Internship"
+      titleMetadata={<Badge tone="success">by Ashley Chiu</Badge>}
       secondaryActions={[
         {
           content: "Contact",
