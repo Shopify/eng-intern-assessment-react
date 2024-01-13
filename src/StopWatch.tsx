@@ -2,6 +2,17 @@ import React from "react";
 import { useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
+// utilities
+const miliToHour = (time: number) => {
+  return Math.floor((time / (1000 * 60 * 60)) % 24);
+};
+const miliToMin = (time: number) => {
+  return Math.floor((time / (1000 * 60)) % 60);
+};
+const miliToSec = (time: number) => {
+  return parseFloat(((time / 1000) % 60).toFixed(2));
+};
+
 export default function StopWatch() {
   // the start time when pressed start
   const [startTime, setStartTime] = useState(Date.now());
@@ -11,23 +22,21 @@ export default function StopWatch() {
   const [passed, setPassed] = useState(0);
 
   // parse the time to be human readable
-  const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [curTime, setCurTime] = useState(0);
+
+  // store the laps
+  const [laps, setLaps] = useState([]);
+  const [newLap, setNewLap] = useState(0);
 
   const getTime = () => {
     let time = passed;
     if (start) {
       time = Date.now() - startTime + passed;
     }
-
-    setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-    setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-    setMinutes(Math.floor((time / (1000 * 60)) % 60));
-    setSeconds(parseFloat(((time / 1000) % 60).toFixed(2)));
+    setCurTime(time);
     setPassed(time);
   };
+
   const startTimer = () => {
     // start the timer with current time
     if (!start) {
@@ -35,13 +44,26 @@ export default function StopWatch() {
       setStartTime(Date.now());
     }
   };
+
   const stopTimer = () => {
     setStart(false);
   };
-  const lapTimer = () => {};
+
+  const lapTimer = () => {
+    // only add laps when timer starts
+    // if add laps when stop, only 0 will be added
+    if (start) {
+      setLaps([curTime - newLap, ...laps]);
+      setNewLap(curTime);
+    }
+  };
+
   const resetTimer = () => {
     setPassed(0);
-		setStartTime(Date.now());
+    setLaps([]);
+    setCurTime(0);
+    setNewLap(0);
+    setStartTime(Date.now());
   };
 
   React.useEffect(() => {
@@ -52,13 +74,18 @@ export default function StopWatch() {
 
   return (
     <div>
-      {days}days {hours}hours {minutes}minutes {seconds}seconds
+      {miliToHour(curTime)}:{miliToMin(curTime)}:{miliToSec(curTime)}
       <StopWatchButton
         startTimer={startTimer}
         stopTimer={stopTimer}
         lapTimer={lapTimer}
         resetTimer={resetTimer}
       ></StopWatchButton>
+      {`lap ${laps.length + 1}`} {miliToHour(curTime - newLap)}:
+      {miliToMin(curTime - newLap)}:{miliToSec(curTime - newLap)}
+      {laps.length > 0 && (
+          laps.map((lap, i) => <div key={`lap ${laps.length - i}`}>{`lap ${laps.length - i}`} {lap}</div>)
+      )}
     </div>
   );
 }
