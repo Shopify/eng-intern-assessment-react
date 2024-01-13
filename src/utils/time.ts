@@ -8,5 +8,5 @@ export function toStopWatchFormat(time: number) {
   const hundredthSec = Math.floor(time % 100)
     .toString()
     .padStart(2, '0');
-  return `${minutes}:${seconds}:${hundredthSec}`;
+  return { minutes: minutes, seconds: seconds, hundredthSec: hundredthSec };
 }

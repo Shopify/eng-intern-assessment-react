@@ -3,7 +3,7 @@ import StopWatch from './StopWatch';
 
 export default function App() {
   return (
-    <div>
+    <div className='container'>
       <StopWatch />
     </div>
   );

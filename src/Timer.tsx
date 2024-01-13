@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toStopWatchFormat } from './utils/time';
-import { StopWatchAction, StopWatchState } from './resources/stopWatch';
+import { StopWatchState } from './resources/stopWatch';
 
 interface IProps {
   state: StopWatchState;
@@ -28,5 +28,15 @@ export default function Timer({ state, lapNumber, onLap }: IProps) {
     if (lapNumber !== 0) onLap(time);
   }, [lapNumber]);
 
-  return <div>{toStopWatchFormat(time)}</div>;
+  const { minutes, seconds, hundredthSec } = toStopWatchFormat(time);
+
+  return (
+    <div className='timer-container' data-testid='timer'>
+      <span className='timer-number'>{minutes}</span>
+      <span>:</span>
+      <span className='timer-number'>{seconds}</span>
+      <span>:</span>
+      <span className='timer-number'>{hundredthSec}</span>
+    </div>
+  );
 }

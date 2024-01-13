@@ -1,0 +1,38 @@
+:root {
+  --font-size: 1.3rem;
+  --sans: sans-serif, 'Chivo';
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: var(--font-size);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  gap: 1rem;
+}
+
+.timer-container {
+  border: 2px solid black;
+  text-align: center;
+  font-size: 4rem;
+  padding: 2rem;
+}
+
+.timer-number {
+  display: inline-block;
+  min-width: 5rem;
+}
