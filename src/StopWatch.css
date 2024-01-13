@@ -1,0 +1,28 @@
+.stopwatch-background    {
+    background-color: rgba(94, 142, 62, 0.547);
+    border-radius: 20px;
+    width: 500px;
+    height: 150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.stopwatch-container {
+    display: flex;
+    color: whitesmoke;
+    padding: 20px;
+    letter-spacing: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+.stopwatch-container span {
+    position: relative;
+    font-size: 4rem;
+}
+
+.stopwatch-text {
+    margin: 0;
+    font-size: 5rem;
+    font-family: sans-serif;
+    letter-spacing: 10px;
+}

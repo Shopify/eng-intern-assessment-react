@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    background-color: #121212;
+}
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.heading {
+    color: whitesmoke;
+    font-family: sans-serif;
+    font-style: italic;
+    margin-left: 20px;
+}   
+
+.stopwatch-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
