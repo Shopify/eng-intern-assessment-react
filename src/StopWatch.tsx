@@ -13,9 +13,9 @@ export default function StopWatch() {
 
   // format the time to hh:mm:ss:ms
   const formatTime = (seconds: number) => {
-    const hh = Math.floor(seconds / (60 * 60 * 1000));
-    const mm = Math.floor((seconds % (60 * 60 * 1000)) / (60 * 1000));
-    const ss = Math.floor((seconds % (60 * 1000)) / 1000);
+    const hh = Math.floor(seconds / 3600);
+    const mm = Math.floor(hh / 60);
+    const ss = Math.floor(seconds % 60);
 
     const pad = (num: number, length = 2) => {
       return num.toString().padStart(length, "0");
