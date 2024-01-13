@@ -1,6 +1,6 @@
 import React from "react";
 
-import useStopWatch, { StopwatchState } from "../../hooks/useStopwatch";
+import useStopWatch from "../../hooks/useStopwatch";
 import StopWatchButton from "./StopWatchButton";
 import StopWatchTime from "./StopWatchTime";
 import StopwatchLaps, { Lap } from "./StopwatchLaps";
@@ -10,7 +10,6 @@ export default function StopWatch() {
     state: stopwatchState,
     elapsedTime: stopwatchElapsedTime,
     handleStart: handleStartStopwatch,
-    handlePause: handlePauseStopwatch,
     handleStop: handleStopStopwatch,
     handleReset: handleResetStopwatch,
   } = useStopWatch({});
@@ -35,16 +34,14 @@ export default function StopWatch() {
   }, [stopwatchElapsedTime, laps]);
 
   return (
-    <div>
-      <h1>Stopwatch</h1>
+    <div className='stopwatch-container'>
+      <StopWatchTime elapsedTime={stopwatchElapsedTime} />
 
-      <div>
-        {stopwatchState !== "stopped" && <StopWatchTime elapsedTime={stopwatchElapsedTime} />}
-
-        <StopWatchButton onClick={handleStartStopwatch}>{stopwatchState === "idle" ? "Resume" : "Start"}</StopWatchButton>
-        <StopWatchButton onClick={handleStopStopwatch}>Stop</StopWatchButton>
-        <StopWatchButton onClick={handlePauseStopwatch}>Pause</StopWatchButton>
-        <StopWatchButton disabled={stopwatchState !== "running" && stopwatchState !== "idle" } onClick={addLap}>Lap</StopWatchButton>
+      <div className='stopwatch-actions'>
+        <StopWatchButton disabled={stopwatchState !== "running"} onClick={addLap}>Lap</StopWatchButton>
+        <StopWatchButton onClick={stopwatchState !== "running" ? handleStartStopwatch : handleStopStopwatch}>
+          {stopwatchState === "idle" ? "Start" : stopwatchState === "stopped" ? "Resume" : "Stop"}
+        </StopWatchButton>
         <StopWatchButton onClick={onReset}>Reset</StopWatchButton>
       </div>
 

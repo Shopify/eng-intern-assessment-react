@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
 
-type StopwatchState = "unstarted" | "idle" | "running" | "stopped";
+type StopwatchState = "idle" | "running" | "stopped";
 
 type UseStopwatch = {
   state: StopwatchState;
   elapsedTime: number;
   handleStart: () => void;
-  handlePause: () => void;
   handleStop: () => void;
   handleReset: () => void;
 };
@@ -56,7 +55,7 @@ const log = (message: string) => console.log(`[useStopwatch] ${message}`);
  * export default Stopwatch;
  */
 export default function useStopWatch({ initialTime = 0, updateInterval = 10, debug = false }: UseStopwatchParams): UseStopwatch {
-  const [state, setState] = React.useState<StopwatchState>("unstarted");
+  const [state, setState] = React.useState<StopwatchState>("idle");
   const [elapsedTime, setElapsedTime] = React.useState<number>(initialTime);
 
   const intervalRef = useRef<NodeJS.Timer | null>(null);
@@ -68,7 +67,7 @@ export default function useStopWatch({ initialTime = 0, updateInterval = 10, deb
   // Using date is a more reliable approach than relying just on
   // setInterval because it is not guaranteed to run at precise intervals.
   const handleStart = React.useCallback(() => {
-    if (state === "unstarted" || state === "stopped") {
+    if (state === "idle") {
       debug && log("Starting timer");
 
       const startTime = Date.now();
@@ -81,7 +80,7 @@ export default function useStopWatch({ initialTime = 0, updateInterval = 10, deb
       }, updateInterval);
 
       setState("running");
-    } else if (state === "idle") {
+    } else if (state === "stopped") {
       debug && log("Starting timer");
 
       const startTime = Date.now() - elapsedTime;
@@ -98,20 +97,11 @@ export default function useStopWatch({ initialTime = 0, updateInterval = 10, deb
   }, [state, intervalRef, elapsedTime, updateInterval]);
 
   const handleStop = React.useCallback(() => {
-    debug && log("Stopping timer");
-
-    if (state !== "unstarted" && state !== "stopped") {
-      clearIntervalInternal();
-      setState("stopped");
-    }
-  }, [state]);
-
-  const handlePause = React.useCallback(() => {
     debug && log("Pause timer");
 
     if (state === "running") {
       clearIntervalInternal();
-      setState("idle");
+      setState("stopped");
     }
   }, [state]);
 
@@ -119,7 +109,7 @@ export default function useStopWatch({ initialTime = 0, updateInterval = 10, deb
     debug && log("Resetting timer");
 
     clearIntervalInternal();
-    setState("unstarted");
+    setState("stopped");
     setElapsedTime(initialTime);
   }, []);
 
@@ -131,7 +121,6 @@ export default function useStopWatch({ initialTime = 0, updateInterval = 10, deb
     state,
     elapsedTime,
     handleStart,
-    handlePause,
     handleStop,
     handleReset,
   };

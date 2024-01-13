@@ -11,7 +11,7 @@ function StopWatchTime({ elapsedTime }: StopwatchTimeProps) {
     return formattedTimeToString(formatTime(elapsedTime));
   }, [elapsedTime]);
 
-  return <span>{formattedTime}</span>;
+  return <div className='stopwatch-time'>{formattedTime}</div>;
 }
 
 export default StopWatchTime;

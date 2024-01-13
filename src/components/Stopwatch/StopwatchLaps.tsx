@@ -13,10 +13,13 @@ type StopwatchLapsProps = {
 
 export default function StopwatchLaps({ laps }: StopwatchLapsProps) {
   return (
-    <div id='lap-list' data-testid='lap-list'>
+    <div data-state={laps.length > 0 ? "full" : "empty"} className='stopwatch-lap-list' data-testid='lap-list'>
       {laps.length > 0 && (
         <>
-          <h2>Laps</h2>
+          <div className="stopwatch-lap-list-header">
+            <span>Round</span>
+            <span>Lap time</span>
+          </div>
           <ul>
             {laps.map((lap) => (
               <StopwatchLap key={lap.id} {...lap} />
@@ -35,7 +38,12 @@ function StopwatchLap({ id, duration, elapsed }: StopwatchLapProps) {
     return formattedTimeToString(formatTime(duration));
   }, [duration]);
 
-  return <li>{formattedDuration}</li>;
+  return (
+    <li>
+      <span>{id}</span>
+      {formattedDuration}
+    </li>
+  );
 }
 
 export type { Lap, StopwatchLapsProps };

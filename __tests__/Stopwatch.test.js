@@ -31,6 +31,7 @@ describe("Stopwatch", () => {
       fireEvent.click(screen.getByText("Stop"));
     });
 
+    // To avoid layout shift, always show the time, also after pausing/stopping
     // expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
   });
 
@@ -42,7 +43,7 @@ describe("Stopwatch", () => {
     });
 
     act(() => {
-      fireEvent.click(screen.getByText("Pause"));
+      fireEvent.click(screen.getByText("Stop"));
     });
 
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
