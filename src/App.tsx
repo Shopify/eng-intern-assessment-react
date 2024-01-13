@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StopWatch from "./StopWatch";
 
 export default function App() {
-  const [lapTimes, setLapTimes] = useState<string[]>(["00:12:89", "00:23:03"]); // array of lap times
+  const [lapTimes, setLapTimes] = useState<string[]>(["00:12:89", "00:23:03"]);
   return (
     <div
       style={{

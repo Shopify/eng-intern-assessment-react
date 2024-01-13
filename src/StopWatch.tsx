@@ -39,13 +39,11 @@ export default function StopWatch({ addLap, clearLaps }: StopWatchProps) {
       // add the elapsed time at interval start to account for paused time
       setElapsed(elapsed + Date.now() - startTime);
     }, 10);
-    console.log(intervalId);
     setIntervalId(intervalId);
   }
 
   // clear interval and add lap time
   function stop() {
-    console.log(intervalId);
     clearInterval(intervalId);
     setElapsed(0);
     setIsRunning(false);
@@ -56,7 +54,6 @@ export default function StopWatch({ addLap, clearLaps }: StopWatchProps) {
   function pause() {
     clearInterval(intervalId);
     setIsPaused(true);
-    console.log(intervalId);
   }
   function resume() {
     setIsPaused(false);
