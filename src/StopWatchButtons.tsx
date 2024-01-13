@@ -36,9 +36,13 @@ export default function StopWatchButtons({ onButtonPress, state }: IProps) {
   }, [state]);
 
   return (
-    <div>
+    <div className='stopwatch-btn-container'>
       {buttons.map((button) => (
-        <button key={button.label} onClick={() => onButtonPress(button.action)}>
+        <button
+          className='stopwatch-btn'
+          key={button.label}
+          onClick={() => onButtonPress(button.action)}
+        >
           {button.label}
         </button>
       ))}
