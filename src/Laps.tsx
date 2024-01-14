@@ -1,8 +1,6 @@
 import {
-	Box,
 	Heading,
 	Table,
-	TableCaption,
 	TableContainer,
 	Tbody,
 	Td,
@@ -11,6 +9,7 @@ import {
 	Tr,
 } from "@chakra-ui/react";
 import React from "react";
+import { useFormattedTime } from "./hooks/useFormattedTime";
 
 interface LapsProps {
 	laps: number[];
@@ -30,27 +29,22 @@ export default function Laps({ laps }: LapsProps) {
 				</Thead>
 				<Tbody data-testid="lap-list">
 					{laps.map((lap, index) => {
-						const seconds = lap;
-                        const displaySeconds = seconds % 60;
-						const totalMinutes = Math.floor(seconds / 60);
-						const minutes = totalMinutes % 60;
-						const hours = Math.floor(totalMinutes / 60);
-
+						
+						// Getting formatted for current lap
+						const { h, m, s } = useFormattedTime(lap);
                         const prevSeconds = index === 0 ? 0 : laps[index - 1];
                         const prevDiff = lap - prevSeconds;
-						const prevDisplaySeconds = prevDiff % 60;
-						const prevTotalMinutes = Math.floor(prevDiff / 60);
-						const prevMinutes = prevTotalMinutes % 60;
-						const prevHours = Math.floor(prevTotalMinutes / 60);
+						// Getting formatted time for pervious lap
+						const { h: prevH, m: prevM, s: prevS } = useFormattedTime(prevDiff);
 
 						return (
 							<Tr key={index}>
 								<Td>{index + 1}</Td>
 								<Td>
-                                {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}:{displaySeconds.toString().padStart(2, '0')}
+                                {h.toString().padStart(2, '0')}:{m.toString().padStart(2, '0')}:{s.toString().padStart(2, '0')}
 								</Td>
 								<Td>
-									{index === 0 ? '-' : `${prevHours.toString().padStart(2, '0')}:${prevMinutes.toString().padStart(2, '0')}:${prevDisplaySeconds.toString().padStart(2, '0')}`}
+									{index === 0 ? '-' : `${prevH.toString().padStart(2, '0')}:${prevM.toString().padStart(2, '0')}:${prevS.toString().padStart(2, '0')}`}
 								</Td>
 							</Tr>
 						);
