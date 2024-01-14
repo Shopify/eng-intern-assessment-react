@@ -6,6 +6,14 @@ export default function StopWatch() {
   const [elapsedTime, setElapsedTime] = useState(0); // in ms
   const [laps, setLaps] = useState<{ lapNumber: number; time: number }[]>([]); // in ms
 
+  // Find and highlight shortest and longest lap times if there are more than 2 laps
+  let shortestLap = Number.MAX_SAFE_INTEGER;
+  let longestLap = 0;
+  if (laps.length > 2) {
+    shortestLap = Math.min(...laps.map((lap) => lap.time));
+    longestLap = Math.max(...laps.map((lap) => lap.time));
+  }
+
   // If the stopwatch is running, update the elapsed time every 10ms
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -69,11 +77,16 @@ export default function StopWatch() {
       />
       <div className="lap-container">
         <div className="lap-list" data-testid="lap-list">
-          {laps.map((lap) => (
-            <div key={lap.lapNumber} className="lap-item">
-              Lap {lap.lapNumber}: {formatTime(lap.time)}
-            </div>
-          ))}
+          {laps.map((lap) => {
+            let className = 'lap-item';
+            if (lap.time === shortestLap) className += ' lap-item-shortest';
+            if (lap.time === longestLap) className += ' lap-item-longest';
+            return (
+              <div key={lap.lapNumber} className={className}>
+                Lap {lap.lapNumber}: {formatTime(lap.time)}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

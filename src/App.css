@@ -90,6 +90,14 @@ button:active {
     border-bottom: 1px solid #949494;
 }
 
+.lap-item-shortest {
+    color: #118845;
+}
+
+.lap-item-longest {
+    color: #D34336;
+}
+
 .lap-list::-webkit-scrollbar {
     width: 8px;
 }
