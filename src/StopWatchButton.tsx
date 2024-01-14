@@ -31,7 +31,7 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({
 	onResume,
 }) => {
 	return (
-		<div className="stopwatch-container">
+		<div>
 			<div className="stopwatch-button">
 				<button className="start" onClick={onStart}>
 					Start
