@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 
+/**
+ * Renders and displays a Stopwatch component with a timer, buttons, and lap table.
+ * @returns {React.ReactElement} A rendered display of the stopwatch.
+ */
 export default function StopWatch() {
   const [isRunning, setIsRunning] = useState(false); // stopwatch is running
   const [isStarted, setIsStarted] = useState(false); // stopwatch has been started (not reset)
