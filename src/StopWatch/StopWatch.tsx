@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./StopWatch.css";
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
-import { Flex, Text } from "@mantine/core";
+import { Grid } from "@mui/material";
 
 interface StopWatchContextInterface {
   command: string;
@@ -90,36 +90,38 @@ export default function StopWatch() {
   return (
     <StopWatchContext.Provider value={{ command, setCommand }}>
       <div>
-        <Flex
+        <Grid
           direction={"row"}
-          justify={"center"}
-          align={"center"}
+          justifyContent={"center"}
+          alignItems={"center"}
           className="stop-watch-main-display"
           id="stop-watch-time"
+          data-testid="stop-watch-time"
         >
           {command === "stop" ? (
             "Stopped"
           ) : (
-            <div>
+            <text data-testid="stop-watch-time-inner">
               {`${CheckForLeadingZero(minutes)}:${CheckForLeadingZero(
                 seconds
               )}:${CheckForLeadingZero(milliseconds)}`}
-            </div>
+            </text>
           )}
-        </Flex>
+        </Grid>
 
         <div className="stop-watch-laps-center-div">
-          <Text className="stop-watch-text-description">
+          <div className="stop-watch-text-description">
             The Order Is Minutes, Seconds, Milliseconds!
-          </Text>
+          </div>
         </div>
         <StopWatchButton />
 
         <div className="stop-watch-laps-center-div">
-          <Flex
+          <Grid
+            container
             direction={"column"}
-            justify={"center"}
-            align={"center"}
+            justifyContent={"center"}
+            alignItems={"center"}
             gap={"2rem"}
             className="stop-watch-laps-main-display"
             style={{ display: `${laps.length === 0 ? "none" : ""}` }}
@@ -127,12 +129,12 @@ export default function StopWatch() {
           >
             {laps.map((lap, index) => {
               return (
-                <Text className="stop-watch-laps-inner-display">
+                <div className="stop-watch-laps-inner-display">
                   Lap {index + 1}: {lap}
-                </Text>
+                </div>
               );
             })}
-          </Flex>
+          </Grid>
         </div>
       </div>
     </StopWatchContext.Provider>

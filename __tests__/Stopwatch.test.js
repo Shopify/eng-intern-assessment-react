@@ -6,7 +6,6 @@ import "@testing-library/jest-dom";
 describe("Stopwatch", () => {
   test("renders initial state correctly", () => {
     render(<Stopwatch />);
-
     expect(screen.getByText("00:00:00")).toBeInTheDocument();
     expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
   });
@@ -21,28 +20,37 @@ describe("Stopwatch", () => {
     expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
   });
 
-  test("pauses and resumes the stopwatch", () => {
+  test("pauses and resumes the stopwatch", async () => {
     render(<Stopwatch />);
 
     fireEvent.click(screen.getByText("Start"));
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
     fireEvent.click(screen.getByText("Pause"));
+
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText("Resume"));
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
       pausedTime
     );
   });
 
-  test("records and displays lap times", () => {
+  test("records and displays lap times", async () => {
     render(<Stopwatch />);
 
     fireEvent.click(screen.getByText("Start"));
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
     fireEvent.click(screen.getByText("Lap"));
 
+    //In this case, I looked for the second element becasuse the
+    //first element is the main time!
     expect(screen.getByTestId("lap-list")).toContainElement(
-      screen.getByText(/(\d{2}:){2}\d{2}/)
+      screen.getAllByText(/(\d{2}:){2}\d{2}/)[1]
     );
 
     fireEvent.click(screen.getByText("Lap"));
