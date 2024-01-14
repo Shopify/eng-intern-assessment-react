@@ -3,13 +3,13 @@ import moment from 'moment';
 
 interface LapTimesListProps {
   lapTimes: Array<number>;
-  setLapTimes: Function
 }
 
 
 export default function LapTimesList(lapTimesObject: LapTimesListProps) {
 
-  const { lapTimes, setLapTimes } = lapTimesObject
+  const { lapTimes } = lapTimesObject
+  let totalLapTime = 0
 
   return (
     <ul className='lap-times-list' >
@@ -17,9 +17,12 @@ export default function LapTimesList(lapTimesObject: LapTimesListProps) {
       {/* <p>{ lapTimes }</p> */ }
 
       { lapTimes.map((lapTime, index) => {
+
+        totalLapTime += lapTime;
+
         return (
           <li>
-            <p>Lap { index }: { moment(lapTime).format("mm:ss:SS") } </p>
+            <p>Lap { index } Time: { moment(lapTime).format("mm:ss:SS") } - Total Time: { moment(totalLapTime).format("mm:ss:SS") } </p>
           </li>
         )
       }) }

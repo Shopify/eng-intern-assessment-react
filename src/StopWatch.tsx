@@ -15,7 +15,6 @@ export default function StopWatch() {
     if (isTimerActive) {
       setTimeout(() => {
         setTime(time + 1)
-        // console.log(time)
       }, 0);
     }
   }, [ time, isTimerActive ])
@@ -59,7 +58,7 @@ export default function StopWatch() {
         { !isTimerActive ? <Button onClick={ handleStartClick }>Start</Button> : <Button onClick={ handleStopClick }>Stop</Button> }
         { !isTimerActive ? <Button onClick={ handleRestartClick } disabled={ isTimerActive } >Restart</Button> : <Button onClick={ handleLapClick }>Lap</Button> }
       </div>
-      <LapTimesList lapTimes={ lapTimes } setLapTimes={ setLapTimes } />
+      <LapTimesList lapTimes={ lapTimes } />
 
     </div>
   )
