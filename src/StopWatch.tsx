@@ -57,8 +57,8 @@ export default function StopWatch() {
 
   return (
     <div>
-      <div>
-        <h1>{formatTime(elapsedTime)}</h1>
+      <div className="timer-container">
+        <h1 className="timer">{formatTime(elapsedTime)}</h1>
       </div>
       <StopWatchButton
         onStart={handleStart}
@@ -66,12 +66,14 @@ export default function StopWatch() {
         onReset={handleReset}
         onLap={handleLap}
       />
-      <div>
-        {laps.map((lap) => (
-          <div key={lap.lapNumber}>
-            Lap {lap.lapNumber}: {formatTime(lap.time)}
-          </div>
-        ))}
+      <div className="lap-container">
+        <div className="lap-list" data-testid="lap-list">
+          {laps.map((lap) => (
+            <div key={lap.lapNumber} className="lap-item">
+              Lap {lap.lapNumber}: {formatTime(lap.time)}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

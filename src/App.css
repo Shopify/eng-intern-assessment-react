@@ -1,0 +1,91 @@
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #343434;
+    overflow: hidden;
+    margin: 0;
+}
+
+.app-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.timer-container {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 150px;
+}
+
+.timer {
+    width: 100%;
+    margin-left: 36px;
+    font-size: 4.5rem;
+}
+
+.button-container {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 350px;
+}
+
+button {
+    font-family: system-'Segoe UI', sans-serif;
+    background-color: #757575;
+    color: white; 
+    border: none;
+    border-radius: 10px;
+    padding: 12px 36px;
+    text-align: center;
+    font-size: .8em;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.8; 
+}
+
+button:active {
+    opacity: 0.8; 
+}
+
+.button-start {
+    background-color: #118845; 
+}
+
+.button-stop {
+    background-color: #D34336; 
+}
+
+.lap-container {
+    width: 300px;
+    height: 20vh;
+    padding: 16px 24px;
+    margin-top: 50px;
+    font-size: 1em;
+    color: #343434;
+    border: 1px solid #949494;
+    border-radius: 10px;
+}
+
+.lap-list {
+    overflow-y: scroll;
+    width: 300px;
+    height: 20vh;
+}
+
+.lap-item {
+    width: 80%;
+    padding: 8px 16px;
+    border-bottom: 1px solid #949494;
+}
