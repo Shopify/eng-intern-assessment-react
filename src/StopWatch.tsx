@@ -18,6 +18,20 @@ export default function StopWatch() {
     return () => clearInterval(interval);
   }, [isRunning]);
 
+  // Formats a given time (in ms) into a readable format (mm:ss.SS)
+  const formatTime = (time: number) => {
+    const milliseconds = (time % 1000) / 10;
+    const seconds = Math.floor(time / 1000) % 60;
+    const minutes = Math.floor(time / 60000) % 60;
+
+    const formattedTime =
+      `${minutes.toString().padStart(2, '0')}:` +
+      `${seconds.toString().padStart(2, '0')}.` +
+      `${milliseconds.toString().padStart(2, '0')}`;
+
+    return formattedTime;
+  };
+
   // Handlers for the stop, start, and reset
   const handleStart = () => {
     setIsRunning(true);
@@ -31,7 +45,7 @@ export default function StopWatch() {
   return (
     <div>
       <div>
-        <h1>{elapsedTime}</h1>
+        <h1>{formatTime(elapsedTime)}</h1>
       </div>
       <div>
         <StopWatchButton
