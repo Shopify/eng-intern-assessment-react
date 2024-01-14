@@ -1,13 +1,30 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-const StopWatchButton: React.FC = () => {
+interface Props {
+  isRunning: boolean;
+  startTimer: () => void;
+  stopResetTimer: () => void;
+  recordLap: () => void;
+}
+
+const StopWatchButton: React.FC<Props> = ({
+  isRunning,
+  startTimer,
+  stopResetTimer,
+  recordLap,
+}) => {
   return (
     <div>
-      <Button variant="success">Start</Button>{" "}
-      <Button variant="primary">Pause</Button>{" "}
-      <Button variant="primary">Lap</Button>{" "}
-      <Button variant="danger">Stop</Button>{" "}
+      <Button variant="primary" onClick={startTimer}>
+        {isRunning ? "Pause" : "Start"}
+      </Button>{" "}
+      <Button variant="success" onClick={recordLap}>
+        Lap
+      </Button>{" "}
+      <Button variant="danger" onClick={stopResetTimer}>
+        Stop
+      </Button>{" "}
     </div>
   );
 };
