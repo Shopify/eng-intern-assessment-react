@@ -1,6 +1,7 @@
 import React from 'react';
 
 type StopWatchButtonProps = {
+  isRunning: boolean;
   onStart: () => void;
   onStop: () => void;
   onReset: () => void;
@@ -8,6 +9,7 @@ type StopWatchButtonProps = {
 };
 
 export default function StopWatchButton({
+  isRunning,
   onStart,
   onStop,
   onReset,
@@ -15,14 +17,21 @@ export default function StopWatchButton({
 }: StopWatchButtonProps) {
   return (
     <div className="button-container">
-      <button className="button-start" onClick={onStart}>
-        Start
-      </button>
-      <button className="button-stop" onClick={onStop}>
-        Stop
-      </button>
-      <button onClick={onReset}>Reset</button>
-      <button onClick={onLap}>Lap</button>
+      {isRunning ? (
+        <>
+          <button className="button-stop" onClick={onStop}>
+            Stop
+          </button>
+          <button onClick={onLap}>Lap</button>
+        </>
+      ) : (
+        <>
+          <button className="button-start" onClick={onStart}>
+            Start
+          </button>
+          <button onClick={onReset}>Reset</button>
+        </>
+      )}
     </div>
   );
 }

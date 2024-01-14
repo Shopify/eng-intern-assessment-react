@@ -61,6 +61,7 @@ export default function StopWatch() {
         <h1 className="timer">{formatTime(elapsedTime)}</h1>
       </div>
       <StopWatchButton
+        isRunning={isRunning}
         onStart={handleStart}
         onStop={handleStop}
         onReset={handleReset}
