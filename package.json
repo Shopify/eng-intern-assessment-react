@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@shopify/polaris": "^12.9.0",
+    "@shopify/polaris-icons": "^7.13.0",
+    "@testing-library/jest-dom": "^6.2.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -44,6 +48,7 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }
