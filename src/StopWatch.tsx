@@ -3,6 +3,7 @@ import StopWatchButton from './StopWatchButton';
 
 export default function StopWatch() {
   const [isRunning, setIsRunning] = useState(false); // stopwatch is running
+  const [isStarted, setIsStarted] = useState(false); // stopwatch has been started (not reset)
   const [elapsedTime, setElapsedTime] = useState(0); // in ms
   const [laps, setLaps] = useState<{ lapNumber: number; time: number }[]>([]); // in ms
 
@@ -44,10 +45,12 @@ export default function StopWatch() {
   // Handlers for the stop, start, and reset
   const handleStart = () => {
     setIsRunning(true);
+    setIsStarted(true);
   };
   const handleStop = () => setIsRunning(false);
   const handleReset = () => {
     setIsRunning(false);
+    setIsStarted(false);
     setElapsedTime(0);
     setLaps([]);
   };
@@ -70,6 +73,7 @@ export default function StopWatch() {
       </div>
       <StopWatchButton
         isRunning={isRunning}
+        isStarted={isStarted}
         onStart={handleStart}
         onStop={handleStop}
         onReset={handleReset}
