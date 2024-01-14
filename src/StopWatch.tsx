@@ -1,6 +1,6 @@
 import "./styles/StopWatch.css";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Lap from "./Lap";
 import LapHistory from "./LapHistory";
@@ -56,6 +56,27 @@ export default function StopWatch() {
     setLapElapsed(0);
     setLaps(laps);
   };
+
+  // handle key events for start/stop, lap, reset
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const pressedKey = event.key.toLowerCase();
+
+      if (pressedKey === " ") {
+        isRunning ? onStop() : onStart();
+      } else if (isRunning && pressedKey === "l") {
+        onLap();
+      } else if (!isRunning && pressedKey === "r") {
+        onReset();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [isRunning, onStart, onStop, onLap, onReset]);
 
   /**
    * Formats milliseconds into HH:mm:ss.SS format
