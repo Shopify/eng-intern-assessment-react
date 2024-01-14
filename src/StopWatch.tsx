@@ -6,7 +6,6 @@ export default function StopWatch() {
   const [elapsed, setElapsed] = useState(0); // elapsed time in milliseconds
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const [isRunning, setIsRunning] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
 
   // lap table context
   const [lapTimes, setLapTimes] = useState<string[]>([]);
@@ -46,29 +45,16 @@ export default function StopWatch() {
     setIntervalId(intervalId);
   }
 
-  // clear interval and add lap time
+  // clear interval
   function stop() {
     clearInterval(intervalId);
-    setElapsed(0);
     setIsRunning(false);
-    setIsPaused(false);
-  }
-
-  // pause and resume the stopwatch
-  function pause() {
-    clearInterval(intervalId);
-    setIsPaused(true);
-  }
-  function resume() {
-    setIsPaused(false);
-    start();
   }
 
   // reset to default
   function reset() {
     clearInterval(intervalId);
     setIsRunning(false);
-    setIsPaused(false);
     clearLaps();
     setElapsed(0);
   }
@@ -118,21 +104,6 @@ export default function StopWatch() {
               backgroundColor: isRunning ? "#DE9999" : "#99DE9C",
             }}
           />
-          {/* 
-          pause button clears the interval without resetting the elapsed time 
-          resume button starts a new interval with the elapsed time at pause
-          */}
-          <StopWatchButton
-            type={isPaused ? "Resume" : "Pause"}
-            onClick={isPaused ? resume : pause}
-            disabled={!isRunning}
-            style={{
-              padding: 10,
-              border: "2px solid",
-              borderColor: "lightgrey",
-              backgroundColor: "#F8F6FF",
-            }}
-          />
           {/*
           reset button clears the interval, sets elapsed time to 0, and clears lap table
           */}
@@ -170,7 +141,11 @@ export default function StopWatch() {
         }}
       >
         {lapTimes.map((lap, index) => (
-          <div key={index} style={{ marginBlock: 10 }}>
+          <div
+            key={index}
+            data-testid={`lap-${index}`}
+            style={{ marginBlock: 10 }}
+          >
             <div
               style={{
                 paddingBlock: 5,
