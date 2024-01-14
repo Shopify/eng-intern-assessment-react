@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
+    margin: 0; 
+    background-color: #262626;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stopwatch-container {
+    display: flex; 
+    align-items: center;
+    color: #f7f7f7;
+    margin-top: 40px;
+}
+
+.stopwatch-item {
+    margin: 0 30px;
+    text-align: center; 
+}
+
+.number {
+    display: block; 
+    font-size: 8em; 
+}
+
+.label {
+    font-size: 2em; 
+}
+
+.button-container {
+    display: flex; 
+    align-items: center;
+    margin-top: 40px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    margin: 0 25px;
+    text-align: center;
+    color: #f7f7f7; 
+    font-size: 2.8em;
+    width: 45px;
+    transition: 0.1s ease;
+}
+
+.button-start {
+    color: #00a86b; 
+}
+
+.button-start:hover {
+    color: #007f51; 
+}
+
+.button-start:active {
+    color: #015738; 
+}
+
+.button-stop {
+    color: #ac3029; 
+}
+
+.button-stop:hover {
+    color: #8b221d; 
+}
+
+.button-stop:active {
+    color: #621511; 
+}
+
+.button-reset {
+    color: #acadab; 
+}
+
+.button-reset:hover {
+    color: #6c6d6c; 
+}
+
+.button-reset:active {
+    color: #3b3a3a; 
+}
+
+.lap-container {
+    height: 15vh;
+    overflow-y: scroll;
+    padding: 0 30px;
+    margin-top: 30px;
+    width: 330px;
+    font-size: 1.2em;
+    color: #c5c5c5;
+}
+
+.lap-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #c5c5c5;
+    border-radius: 6px;
+}
