@@ -43,11 +43,15 @@ export default function StopWatchButton(LapTimesListObject: LapTimesListProps) {
   return (
     <ButtonGroup>
       { !isTimerActive
-        ? <Button icon={ PlayCircleMajor } variant="primary" tone="success" onClick={ handleStartClick }>Start</Button>
-        : <Button icon={ PauseMajor } variant="primary" onClick={ handleStopClick }>Stop</Button> }
-      { !isTimerActive
-        ? <Button icon={ ReplayMinor } onClick={ handleResetClick } disabled={ isTimerActive } >Reset</Button>
-        : <Button icon={ AddNoteMajor } onClick={ handleLapClick }>Lap</Button> }
-    </ButtonGroup>
+        ?
+        <Button size="large" icon={ PlayCircleMajor } variant="primary" tone="success" onClick={ handleStartClick }>Start</Button>
+        : <Button size="large" icon={ PauseMajor } variant="primary" onClick={ handleStopClick }>Stop</Button>
+      }
+      {
+        !isTimerActive
+          ? <Button size="large" icon={ ReplayMinor } onClick={ handleResetClick } disabled={ isTimerActive } >Reset</Button>
+          : <Button size="large" icon={ AddNoteMajor } onClick={ handleLapClick }>Lap</Button>
+      }
+    </ButtonGroup >
   )
 }
