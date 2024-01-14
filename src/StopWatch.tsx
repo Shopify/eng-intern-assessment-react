@@ -66,30 +66,27 @@ export default function StopWatch() {
         height: "90vh",
         width: "100vw",
         flexDirection: "row",
+        flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
       <div
         style={{
-          display: "flex",
           flexDirection: "column",
-          alignItems: "flex-end",
+          alignItems: "center",
           padding: 15,
           fontSize: 72,
           fontFamily: "Inter",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "center", padding: 5 }}>
-          {getTimeStamp(elapsed)}
-        </div>
+        <div style={{ width: 300 }}>{getTimeStamp(elapsed)}</div>
         {/* buttons container */}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             marginTop: 15,
-            marginRight: 50,
           }}
         >
           {/* 
