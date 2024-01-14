@@ -1,0 +1,21 @@
+html {
+    background-color: #161616;
+    width: 100%;
+    height: 100%;
+}
+
+p {
+    font-family: "Space Mono";
+    color: white;
+    font-size: 30px;
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+}
+
+.smallText {
+    font-size: 15px;
+}

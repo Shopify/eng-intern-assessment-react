@@ -1,0 +1,24 @@
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0;
+}
+
+.lap {
+    display: flex;
+    margin: 0;
+    padding: 0;
+ }
+
+.lapTime {
+    margin-left: auto;
+ }
+
+ .bestTime p {
+    color: green;
+ }
+
+ .worstTime p {
+    color: red;
+ }

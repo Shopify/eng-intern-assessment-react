@@ -1,0 +1,17 @@
+.time {
+    font-family: "Space Mono";
+    font-size: 80px;
+    font-weight: 100;
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.buttons {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.rightButton {
+    margin-left: auto;
+ }
