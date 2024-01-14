@@ -5,9 +5,6 @@ import {
   Card,
   InlineStack,
   Text,
-  InlineGrid,
-  Box,
-  Grid,
 } from '@shopify/polaris';
 import moment from 'moment';
 import LapTimesList from './LapTimesList';
@@ -21,29 +18,39 @@ export default function StopWatch() {
 
   const [ time, setTime ] = useState(0)
   const [ isTimerActive, setIsTimerActive ] = useState(false)
-
   const [ lapTimes, setLapTimes ] = useState([])
   const [ lap, setLap ] = useState(0)
 
 
-  let timerInterval: any = null
-  let timerIntervalRef = useRef<any>(null)
-
-  let lapInterval: any = null
-  let lapIntervalRef = useRef<any>(null)
-
-
   // CHECK TIME COUNT
-  useEffect(() => {
-    if (isTimerActive) {
-      timerIntervalRef.current = setInterval(() => setTime((time) => time + 1), 0);
-      lapIntervalRef.current = setInterval(() => setLap((elapsedTime) => elapsedTime + 1), 0)
-    } return () => {
-      clearInterval(timerIntervalRef.current)
-      clearInterval(lapIntervalRef.current)
+  let startTimeRef = useRef(null)
 
+  useEffect(() => {
+    let timerInterval: NodeJS.Timer = null;
+    let lapInterval: NodeJS.Timer = null
+
+    if (isTimerActive) {
+
+      startTimeRef.current = performance.now() - time;
+
+      timerInterval = setInterval(() => {
+        setTime(performance.now() - startTimeRef.current);
+      }, 10);
+
+      lapInterval = setInterval(() => {
+        setLap(performance.now() - startTimeRef.current);
+      }, 10);
+
+    } else {
+      clearInterval(timerInterval)
+      clearInterval(lapInterval)
     }
-  }, [ time, isTimerActive ])
+    return () => {
+      clearInterval(timerInterval)
+      clearInterval(lapInterval)
+    }
+  }, [ isTimerActive ])
+
 
   return (
     <Page>
@@ -55,14 +62,9 @@ export default function StopWatch() {
           <Text as='h1' variant='headingXl' fontWeight='bold' alignment='center'>Countdown Timer</Text>
         </Layout.Section>
 
-
         {/* TIMER SECTION */ }
-
-
         <Layout.Section>
-
           <Text as='h1' variant='heading3xl' fontWeight='bold' alignment='center'>{ moment(time).format("mm: ss: SS") }</Text>
-
         </Layout.Section>
 
 
@@ -87,4 +89,3 @@ export default function StopWatch() {
   )
 
 }
-

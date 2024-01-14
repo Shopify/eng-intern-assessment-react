@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import moment from 'moment';
 import {
   Page,
   Layout,
-  Card,
-  ResourceList,
-  Thumbnail,
-  Text,
   DataTable,
   BlockStack,
 
@@ -33,7 +29,7 @@ export default function LapTimesList(lapTimesObject: LapTimesListProps) {
     <div style={ { padding: "1rem" } }>
       <Layout.Section>
         <BlockStack>
-            <DataTable columnContentTypes={ [ "text", "text", "text" ] } headings={ [ "Lap Number", "Lap Time", "Total Time Elapsed" ] } rows={ rows } />
+          <DataTable columnContentTypes={ [ "text", "text", "text" ] } headings={ [ "Lap Number", "Lap Time", "Total Time Elapsed" ] } rows={ rows } />
         </BlockStack>
       </Layout.Section>
     </div >
