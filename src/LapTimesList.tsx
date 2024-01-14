@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment';
+import {
+  Page,
+  Layout,
+  Card,
+  ResourceList,
+  Thumbnail,
+  Text,
+  DataTable,
+  BlockStack,
+
+} from '@shopify/polaris';
 
 
 interface LapTimesListProps {
-  lapTimes: Array<number>;
+  lapTimes: Array<any>;
 }
 
 export default function LapTimesList(lapTimesObject: LapTimesListProps) {
@@ -12,21 +23,18 @@ export default function LapTimesList(lapTimesObject: LapTimesListProps) {
 
   let totalLapTime = 0
 
+  const rows = lapTimes.map((lapTime, index) => {
+    totalLapTime += lapTime;
+    return [ index + 1, moment(lapTime).format("mm:ss:SS"), moment(totalLapTime).format("mm:ss:SS") ];
+  })
+
   return (
     <ul className='lap-times-list' >
-      <h3>Lap Times List</h3>
-      { lapTimes.map((lapTime, index) => {
-        totalLapTime += lapTime;
-        return (
-          <li key={ lapTime }>
-            <p>Lap { index + 1 } Time: { moment(lapTime).format("mm:ss:SS") } - Total Time: { moment(totalLapTime).format("mm:ss:SS") } </p>
-          </li>
-        )
-      }) }
-    </ul>
+      <BlockStack gap={ "300" }>
+        <DataTable columnContentTypes={ [ "text", "text", "text" ] } headings={ [ "Lap Number", "Lap Time", "Total Time Elapsed" ] } rows={ rows } />
+      </BlockStack>
 
+    </ul>
   )
 }
-
-
 

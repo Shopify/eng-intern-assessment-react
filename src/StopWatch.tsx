@@ -3,9 +3,6 @@ import {
   Page,
   Layout,
   Card,
-  ResourceList,
-  Thumbnail,
-  Text,
 } from '@shopify/polaris';
 import moment from 'moment';
 import LapTimesList from './LapTimesList';
@@ -33,23 +30,56 @@ export default function StopWatch() {
 
   }, [ time, isTimerActive ])
 
-
-
   return (
     <Page fullWidth>
-      <Layout.Section variant="oneHalf">
-        <Card>
-          <h1>Countdown Timer</h1>
-          <p>{ moment(time).format("mm:ss:SS") }</p>
+
+      <Layout>
+        <Layout.Section>
+          <Card>
+            <h1>Countdown Timer</h1>
+          </Card>
+        </Layout.Section>
+      </Layout>
+
+      <Layout>
+        <Layout.Section variant='oneThird'>
+          <Card>
+            <h3>{ moment(time).format("mm") }</h3>
+            <h3>Minutes</h3>
+          </Card>
+        </Layout.Section>
+
+        <Layout.Section variant='oneThird'>
+          <Card>
+            <h3>{ moment(time).format("ss") }</h3>
+            <h3>Seconds</h3>
+          </Card>
+        </Layout.Section>
+
+        <Layout.Section variant='oneThird'>
+          <Card>
+            <h3>{ moment(time).format("SS") }</h3>
+            <h3>Milliseconds</h3>
+          </Card>
+        </Layout.Section>
+      </Layout>
+
+      <Layout>
+        <Layout.Section>
           <StopWatchButton time={ time } setTime={ setTime } isTimerActive={ isTimerActive } setIsTimerActive={ setIsTimerActive } lapTimes={ lapTimes } setLapTimes={ setLapTimes } />
-        </Card>
-      </Layout.Section>
-      <Layout.Section variant="oneHalf">
-        <Card>
-          <LapTimesList lapTimes={ lapTimes } />
-        </Card>
-      </Layout.Section>
+        </Layout.Section>
+
+        <Layout.Section>
+          { lapTimes.length > 0 &&
+            <Card>
+              <LapTimesList lapTimes={ lapTimes } />
+            </Card>
+          }
+        </Layout.Section>
+      </Layout>
+
     </Page>
   )
+
 }
 
