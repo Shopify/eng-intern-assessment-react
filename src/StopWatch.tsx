@@ -34,9 +34,11 @@ export default function StopWatch() {
         <h1>{elapsedTime}</h1>
       </div>
       <div>
-        <button onClick={handleStart}>Start</button>
-        <button onClick={handleStop}>Stop</button>
-        <button onClick={handleReset}>Reset</button>
+        <StopWatchButton
+          onStart={handleStart}
+          onStop={handleStop}
+          onReset={handleReset}
+        />
       </div>
     </div>
   );
