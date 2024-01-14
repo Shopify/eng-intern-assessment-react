@@ -28,7 +28,7 @@ const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
 		return formattedTime;
 	};
 
-	return <div>{formatTime(time)}</div>;
+	return <div className="stopwatch-display">{formatTime(time)}</div>;
 };
 
 export default Stopwatch;

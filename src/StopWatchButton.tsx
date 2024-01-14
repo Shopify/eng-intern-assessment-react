@@ -31,13 +31,27 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({
 	onResume,
 }) => {
 	return (
-		<div>
-			<button onClick={onStart}>Start</button>
-			<button onClick={onStop}>Stop</button>
-			<button onClick={onReset}>Reset</button>
-			<button onClick={onLap}>Lap</button>
-			<button onClick={onResume}>Resume</button>
-			<button onClick={onPause}>Pause</button>
+		<div className="stopwatch-container">
+			<div className="stopwatch-button">
+				<button className="start" onClick={onStart}>
+					Start
+				</button>
+				<button className="stop" onClick={onStop}>
+					Stop
+				</button>
+				<button className="reset" onClick={onReset}>
+					Reset
+				</button>
+				<button className="lap" onClick={onLap}>
+					Lap
+				</button>
+				<button className="resume" onClick={onResume}>
+					Resume
+				</button>
+				<button className="pause" onClick={onPause}>
+					Pause
+				</button>
+			</div>
 		</div>
 	);
 };

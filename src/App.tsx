@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import "./App.css";
 
 /**
  * The main component of the application, displaying the stopwatch and buttons.
