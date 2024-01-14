@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function StopWatch() {
+export default function StopWatch({ milliSeconds }:{ milliSeconds: number }) {
     return(
-        <div></div>
+        <div>
+            <h1> 00:00:{ milliSeconds }</h1>
+        </div>
     )
 }
