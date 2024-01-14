@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from '@shopify/polaris';
+import {
+  Page,
+  Layout,
+  Card,
+  ResourceList,
+  Thumbnail,
+  Text,
+} from '@shopify/polaris';
 import moment from 'moment';
 import LapTimesList from './LapTimesList';
+import StopWatchButton from './StopWatchButton';
 
 
 export default function StopWatch() {
@@ -10,57 +18,38 @@ export default function StopWatch() {
 
   const [ time, setTime ] = useState(0)
   const [ isTimerActive, setIsTimerActive ] = useState(false)
-
-  useEffect(() => {
-    if (isTimerActive) {
-      setTimeout(() => {
-        setTime(time + 1)
-      }, 0);
-    }
-  }, [ time, isTimerActive ])
-
-  // Start button click(starts timer -> turns into pause/resume once started)
-  const handleStartClick = () => {
-    setIsTimerActive(true)
-  }
-
-
-  // Stop button click(stop timer -> when stopped, lap can't be pressed but restart can be pressed)
-  const handleStopClick = () => {
-    setIsTimerActive(false)
-
-  }
-
-  // Lap button click(records time but timer keeps going)
-
   const [ lapTimes, setLapTimes ] = useState([])
 
-  const handleLapClick = () => {
-    setLapTimes((prevLapTimes) => [ ...prevLapTimes, time ])
-    console.log("Lap Button Click: ", lapTimes)
-  }
 
+  let timer: any = null
 
+  // CHECK TIME COUNT
+  useEffect(() => {
+    if (isTimerActive) {
+      timer = setInterval(() => {
+        setTime(time + 1);
+      }, 0);
+    } return () => clearInterval(timer)
 
-  // Restart button click (restarts timer -> shows up when timer is stopped)
-  const handleRestartClick = () => {
-    setTime(0)
-    setLapTimes([])
-    setIsTimerActive(false)
-  }
+  }, [ time, isTimerActive ])
+
 
 
   return (
-    <div>
-      <h1>Countdown Timer</h1>
-      <p>{ moment(time).format("mm:ss:SS") }</p>
-      <div className='stopwatchBtns' >
-        { !isTimerActive ? <Button onClick={ handleStartClick }>Start</Button> : <Button onClick={ handleStopClick }>Stop</Button> }
-        { !isTimerActive ? <Button onClick={ handleRestartClick } disabled={ isTimerActive } >Restart</Button> : <Button onClick={ handleLapClick }>Lap</Button> }
-      </div>
-      <LapTimesList lapTimes={ lapTimes } />
-
-    </div>
+    <Page fullWidth>
+      <Layout.Section variant="oneHalf">
+        <Card>
+          <h1>Countdown Timer</h1>
+          <p>{ moment(time).format("mm:ss:SS") }</p>
+          <StopWatchButton time={ time } setTime={ setTime } isTimerActive={ isTimerActive } setIsTimerActive={ setIsTimerActive } lapTimes={ lapTimes } setLapTimes={ setLapTimes } />
+        </Card>
+      </Layout.Section>
+      <Layout.Section variant="oneHalf">
+        <Card>
+          <LapTimesList lapTimes={ lapTimes } />
+        </Card>
+      </Layout.Section>
+    </Page>
   )
 }
 
