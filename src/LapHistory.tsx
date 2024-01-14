@@ -11,7 +11,7 @@ export default function LapHistory({
   worstLap: string;
 }) {
   return (
-    <div>
+    <div data-testid="lap-list">
       {laps.map((lap: string, index: number) => {
         return (
           <Lap

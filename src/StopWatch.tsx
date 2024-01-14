@@ -76,7 +76,7 @@ export default function StopWatch() {
       ("0" + minutes).slice(-2) +
       ":" +
       ("0" + seconds).slice(-2) +
-      "." +
+      ":" +
       String(remainder).padEnd(2, "0");
 
     return hours > 0 ? hours + ":" + formattedTime : formattedTime;
