@@ -2,26 +2,13 @@ import React from 'react'
 import { AppProvider } from '@shopify/polaris';
 import StopWatch from './StopWatch'
 import '@shopify/polaris/build/esm/styles.css';
+import './styles/App.css';
+import translations from '@shopify/polaris/locales/en.json';
 
 
-export default function App () {
+export default function App() {
   return (
-    <AppProvider i18n={ {
-      Polaris: {
-        ResourceList: {
-          sortingLabel: 'Sort by',
-          defaultItemSingular: 'item',
-          defaultItemPlural: 'items',
-          showing: 'Showing {itemsCount} {resource}',
-          Item: {
-            viewItem: 'View details for {itemName}',
-          },
-        },
-        Common: {
-          checkbox: 'checkbox',
-        },
-      },
-    } }>
+    <AppProvider i18n={ translations }>
       <StopWatch />
     </AppProvider>
   )

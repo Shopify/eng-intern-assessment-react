@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, ButtonGroup } from '@shopify/polaris';
 import { PlayCircleMajor, PauseMajor, ReplayMinor, AddNoteMajor } from '@shopify/polaris-icons';
-import './styles/StopWatchButton.css';
 
 interface LapTimesListProps {
   time: number,
@@ -9,11 +8,14 @@ interface LapTimesListProps {
   isTimerActive: boolean,
   setIsTimerActive: Function,
   lapTimes: Array<number>,
-  setLapTimes: Function;
+  setLapTimes: Function,
+  lap: number,
+  setLap: Function
+
 }
 
 export default function StopWatchButton(LapTimesListObject: LapTimesListProps) {
-  const { time, setTime, isTimerActive, setIsTimerActive, lapTimes, setLapTimes } = LapTimesListObject
+  const { time, setTime, isTimerActive, setIsTimerActive, lapTimes, setLapTimes, lap, setLap } = LapTimesListObject
 
   // Start button click(starts timer -> turns into pause/resume once started)
   const handleStartClick = () => {
@@ -28,7 +30,9 @@ export default function StopWatchButton(LapTimesListObject: LapTimesListProps) {
 
   // Lap button click(records time but timer keeps going)
   const handleLapClick = () => {
-    setLapTimes((prevLapTimes: Array<number>) => [ ...prevLapTimes, time ])
+    setLapTimes((prevLapTimes: Array<number>) => [ ...prevLapTimes, lap ])
+    setLap(0)
+
   }
 
 

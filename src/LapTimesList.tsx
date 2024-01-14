@@ -29,12 +29,15 @@ export default function LapTimesList(lapTimesObject: LapTimesListProps) {
   })
 
   return (
-    <ul className='lap-times-list' >
-      <BlockStack gap={ "300" }>
-        <DataTable columnContentTypes={ [ "text", "text", "text" ] } headings={ [ "Lap Number", "Lap Time", "Total Time Elapsed" ] } rows={ rows } />
-      </BlockStack>
 
-    </ul>
+    <div style={ { padding: "1rem" } }>
+      <Layout.Section>
+        <BlockStack>
+            <DataTable columnContentTypes={ [ "text", "text", "text" ] } headings={ [ "Lap Number", "Lap Time", "Total Time Elapsed" ] } rows={ rows } />
+        </BlockStack>
+      </Layout.Section>
+    </div >
+
   )
 }
 
