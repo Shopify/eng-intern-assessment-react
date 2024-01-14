@@ -29,14 +29,12 @@ export default function StopWatch() {
   // Stop button click(stop timer -> when stopped, lap can't be pressed but restart can be pressed)
   const handleStopClick = () => {
     setIsTimerActive(false)
-    // console.log("Stop btn: ", time)
 
   }
 
   // Lap button click(records time but timer keeps going)
 
   const [ lapTimes, setLapTimes ] = useState([])
-  // const isLapTimes = lapTimes.includes(lapTimes)
 
   const handleLapClick = () => {
     setLapTimes((prevLapTimes) => [ ...prevLapTimes, time ])
@@ -58,10 +56,8 @@ export default function StopWatch() {
       <h1>Countdown Timer</h1>
       <p>{ moment(time).format("mm:ss:SS") }</p>
       <div className='stopwatchBtns' >
-        <Button onClick={ handleStartClick }>Start</Button>
-        <Button onClick={ handleStopClick }>Stop</Button>
-        <Button onClick={ handleLapClick }>Lap</Button>
-        <Button onClick={ handleRestartClick } disabled={ isTimerActive } >Restart</Button>
+        { !isTimerActive ? <Button onClick={ handleStartClick }>Start</Button> : <Button onClick={ handleStopClick }>Stop</Button> }
+        { !isTimerActive ? <Button onClick={ handleRestartClick } disabled={ isTimerActive } >Restart</Button> : <Button onClick={ handleLapClick }>Lap</Button> }
       </div>
       <LapTimesList lapTimes={ lapTimes } setLapTimes={ setLapTimes } />
 
