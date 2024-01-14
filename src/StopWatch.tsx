@@ -22,22 +22,26 @@ export default function StopWatch(props: stopWatchDisplayProps) {
         {
             name : " HH",
             type:  "hour",
-            value: hours.toString().padStart(2, '0')
+            value: hours.toString().padStart(2, '0'),
+            dataTestID: "StopwatchHours"
         },
         {
             name : "MM",
             type:  "minute",
-            value: ": " + minutes.toString().padStart(2, '0')
+            value: ": " + minutes.toString().padStart(2, '0'),
+            dataTestID: "StopwatchMinutes"
         },
         {
             name : "SS",
             type:  "seconds",
-            value: ": " + seconds.toString().padStart(2, '0')
+            value: ": " + seconds.toString().padStart(2, '0'),
+            dataTestID: "StopwatchSeconds"
         },
         {
             name : " ms",
             type:  "ms",
-            value: "." + ms.toString().padStart(2, '0')
+            value: "." + ms.toString().padStart(2, '0'),
+            dataTestID: "StopwatchMs"
         }
     ]
     return(
@@ -48,7 +52,7 @@ export default function StopWatch(props: stopWatchDisplayProps) {
                         <div aria-label={item.type} style={{fontStyle:'italic'}}>
                             {item.name}
                         </div>
-                        <div aria-label={`value`} style={{fontWeight: "bolder", fontSize: "4rem", display: "flex", justifyContent: 'flex-start', padding: "0 0.5rem"}}>
+                        <div aria-label={`value`} style={{fontWeight: "bolder", fontSize: "4rem", display: "flex", justifyContent: 'flex-start', padding: "0 0.5rem"}} data-testid = {item.dataTestID}>
                             {item.value}
                         </div>
                     </div>
@@ -98,21 +102,23 @@ export const LapTable = (props: lapDisplayProps) => {
                         <th style={{textAlign: "center"}}>Total Time</th>
                     </tr>
                 </thead>
-                {render.map(item => {
-                    return(
-                        <tr key={item.lapNum} aria-label={`LapRow:${item.lapNum}`}>
-                            <td align='center' style={{padding: "1rem", borderBottom: "2px solid gray"}} aria-label={`LapNum`}>
-                                {item.lapNum}
-                            </td>
-                            <td align='center' style={{padding: "1rem", borderBottom: "2px solid gray"}} aria-label={`curTime`}>
-                                {item.curTime}
-                            </td>
-                            <td align='center' style={{padding: "1rem", borderBottom: "2px solid gray"}} aria-label={`totalTime`}>
-                                {item.totalTime}
-                            </td>
-                        </tr>
-                    )
-                })}
+                <tbody  data-testid={'lap-list'}>
+                    {render.map(item => {
+                        return(
+                            <tr key={item.lapNum} aria-label={`LapRow:${item.lapNum}`}>
+                                <td align='center' style={{padding: "1rem"}} aria-label={`LapNum`}>
+                                    {item.lapNum}
+                                </td>
+                                <td align='center' style={{padding: "1rem"}} aria-label={`curTime`}>
+                                    {item.curTime}
+                                </td>
+                                <td align='center' style={{padding: "1rem"}} aria-label={`totalTime`}>
+                                    {item.totalTime}
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
             </Table>
         )
     }

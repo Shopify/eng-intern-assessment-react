@@ -29,14 +29,14 @@ type renderBtnsProps={
 const RenderButtons=(props:renderBtnsProps)=>{
     return(
         <div style={{display: "flex", gap: "1rem", alignItems: "center" }}>
-            <StopWatchButton type={"Lap"} icon={<Icon name="stopwatch" />} action={props.lapFunc}  disabled = {!props.startFlag} />
+            <StopWatchButton type={"Lap"} icon={<Icon name="stopwatch" />} action={props.lapFunc}  disabled = {!props.startFlag} dataTestid='lapBtn' />
             {
                 (props.startFlag) ?
-                    <StopWatchButton type={"Pause"} icon={<Icon name="pause" />} action={props.pauseFunc} />
+                    <StopWatchButton type={"Pause"} icon={<Icon name="pause" />} action={props.pauseFunc} dataTestid='pauseBtn' />
                 :
-                    <StopWatchButton type={'Start'} icon={<Icon name="play" />} action={props.startFunc} />
+                    <StopWatchButton type={'Start'} icon={<Icon name="play" />} action={props.startFunc} dataTestid='startBtn' />
             }
-            <StopWatchButton type={"Reset"} icon={<Icon name="reset" />} action={props.resetFunc} disabled={props.totalElapsed<=0} />
+            <StopWatchButton type={"Reset"} icon={<Icon name="reset" />} action={props.resetFunc} disabled={props.totalElapsed<=0} dataTestid='resetBtn' />
         </div>
     )
 }
