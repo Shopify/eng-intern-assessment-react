@@ -115,7 +115,7 @@ export default function StopWatch() {
         </div> */}
       </div>
       <div className="border"></div>
-      <div id="lap-list">
+      <div id="lap-list" data-testid="lap-list">
         {laps.length > 0 &&
           laps.map((lap, i) => (
             <div key={`lap ${laps.length - i}`}>
