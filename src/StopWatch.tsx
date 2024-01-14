@@ -4,6 +4,7 @@ import StopWatchButton from './StopWatchButton';
 export default function StopWatch() {
   const [isRunning, setIsRunning] = useState(false); // stopwatch is running
   const [elapsedTime, setElapsedTime] = useState(0); // in ms
+  const [laps, setLaps] = useState<{ lapNumber: number; time: number }[]>([]); // in ms
 
   // If the stopwatch is running, update the elapsed time every 10ms
   useEffect(() => {
@@ -40,6 +41,18 @@ export default function StopWatch() {
   const handleReset = () => {
     setIsRunning(false);
     setElapsedTime(0);
+    setLaps([]);
+  };
+
+  // Handler for the lap button
+  // Our lap time is the current elapsed time minus the total of all previous lap times
+  const handleLap = () => {
+    const totalLapTimes = laps.reduce(
+      (total, currLap) => total + currLap.time,
+      0
+    );
+    const newLapTime = elapsedTime - totalLapTimes;
+    setLaps([{ lapNumber: laps.length + 1, time: newLapTime }, ...laps]);
   };
 
   return (
@@ -47,12 +60,18 @@ export default function StopWatch() {
       <div>
         <h1>{formatTime(elapsedTime)}</h1>
       </div>
+      <StopWatchButton
+        onStart={handleStart}
+        onStop={handleStop}
+        onReset={handleReset}
+        onLap={handleLap}
+      />
       <div>
-        <StopWatchButton
-          onStart={handleStart}
-          onStop={handleStop}
-          onReset={handleReset}
-        />
+        {laps.map((lap) => (
+          <div key={lap.lapNumber}>
+            Lap {lap.lapNumber}: {formatTime(lap.time)}
+          </div>
+        ))}
       </div>
     </div>
   );
