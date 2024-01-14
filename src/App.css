@@ -89,3 +89,13 @@ button:active {
     padding: 8px 16px;
     border-bottom: 1px solid #949494;
 }
+
+.lap-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lap-list::-webkit-scrollbar-thumb {
+    background: #949494; 
+    border-radius: 10px;
+}
+
