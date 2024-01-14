@@ -63,10 +63,13 @@ export default function StopWatch() {
       const pressedKey = event.key.toLowerCase();
 
       if (pressedKey === " ") {
+        event.preventDefault();
         isRunning ? onStop() : onStart();
       } else if (isRunning && pressedKey === "l") {
+        event.preventDefault();
         onLap();
       } else if (!isRunning && pressedKey === "r") {
+        event.preventDefault();
         onReset();
       }
     };
