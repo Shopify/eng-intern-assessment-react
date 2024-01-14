@@ -1,7 +1,8 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 
-export default function StopWatchButton() {
+export default function StopWatchButton({ content } : {content: string}) {
     return(
-        <div></div>
+        <button>{ content }</button>
     )
 }
