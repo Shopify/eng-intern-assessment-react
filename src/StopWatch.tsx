@@ -5,15 +5,15 @@ const StopWatch: React.FC<Time> = ({ hours, minutes, seconds }) => {
     return(
         <div className="stopwatch-container">
             <div className="stopwatch-item">
-                <span className="number">{hours}</span>
+                <span className="number" data-testid="time-hrs">{hours}</span>
                 <span className="label">hrs</span>
             </div>
             <div className="stopwatch-item">
-                <span className="number">{minutes}</span>
+                <span className="number" data-testid="time-min">{minutes}</span>
                 <span className="label">min</span>
             </div>
             <div className="stopwatch-item">
-                <span className="number">{seconds}</span>
+                <span className="number" data-testid="time-sec">{seconds}</span>
                 <span className="label">sec</span>
             </div>
         </div>

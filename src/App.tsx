@@ -39,7 +39,7 @@ const App:React.FC = () => {
                 setLapArray={setLapArray}
             />
             <div className="lap-container">
-                <ul className="lap-list">
+                <ul className="lap-list" data-testid="lap-list">
                     {lapArray.map((time, index) => (
                         <li key={index} className="lap-item">
                             <span className="lap-label">Lap  {index+1}</span>

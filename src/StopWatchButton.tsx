@@ -41,18 +41,18 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = (props) => {
         <div className="button-container">
             {!isRunning ?
                 <>
-                    <button className="button-start" onClick={handleStart}>
+                    <button className="button-start" data-testid="start-button" onClick={handleStart}>
                         <FontAwesomeIcon icon={faPlay} />
                     </button>
-                    <button className="button-reset" onClick={handleReset}>
+                    <button className="button-reset" data-testid="reset-button" onClick={handleReset}>
                         <FontAwesomeIcon icon={faRotateRight} />
                     </button>
                 </> : 
                 <>
-                    <button className="button-stop" onClick={handleStop}>
+                    <button className="button-stop" data-testid="stop-button" onClick={handleStop}>
                         <FontAwesomeIcon icon={faStop} />
                     </button>
-                    <button className="button-reset" onClick={handleLap}>
+                    <button className="button-reset" data-testid="lap-button" onClick={handleLap}>
                         <FontAwesomeIcon icon={faClock} />
                     </button>
                 </>
