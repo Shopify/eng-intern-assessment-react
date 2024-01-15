@@ -36,7 +36,7 @@ export default function StopWatch() {
   useEffect(() => {
     let interval: NodeJS.Timer;
     if (isRunning) {
-      interval = setInterval(() => setTime((time) => time + 10), 10);
+      interval = setInterval(() => setTime((time) => time + 1), 1);
     }
     return () => {
       clearInterval(interval);
@@ -66,9 +66,9 @@ export default function StopWatch() {
           abilityDisable={time == 0 && !isRunning}
           onClick={actResetLap}
         ></StopWatchButton>
-        <div className='Laps'>
+        <div data-testid='lap-list'>
           {laps.map((lap, i) => (
-            <div key={i}>
+            <div data-testid={`lap: ${i}`} key={i}>
               Lap {i + 1}: {formatTime(lap)}
             </div>
           ))}
