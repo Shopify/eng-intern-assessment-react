@@ -51,7 +51,7 @@ export default function StopWatch() {
       <StopWatchButton start={start} reset={reset} lap={lap} isRunning={isRunning}/>
       {laps != null && laps.length > 0 && (
         <div className="laps-grid">
-          {laps.map((lap, i) => <div>{lap}</div>)}
+          {laps.map((lap, i) => <div>lap {i} {lap}</div>)}
         </div>
       )}
     </div>
