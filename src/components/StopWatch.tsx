@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, ButtonGroup, Layout } from '@shopify/polaris';
-import StopWatchButton from './StopWatchButton';
+import { Text, ButtonGroup, Layout, Button } from '@shopify/polaris';
 import StopWatchLaps from './StopWatchLaps';
 import { useStopWatch } from '../useStopWatch';
 import { formatTime } from '../utils';
@@ -17,10 +16,10 @@ export default function StopWatch() {
       </Layout.Section>
       <Layout.Section>
         <ButtonGroup>
-          <StopWatchButton text="Start" handleClick={startStopwatch} />
-          <StopWatchButton text="Reset" handleClick={() => {}} />
-          <StopWatchButton text="Lap" handleClick={() => {}} />
-          <StopWatchButton text="Stop" handleClick={() => {}} />
+          <Button onClick={startStopwatch}>Start</Button>
+          <Button onClick={() => {}}>Stop</Button>
+          <Button onClick={() => {}}>Lap</Button>
+          <Button onClick={() => {}}>Rest</Button>
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
