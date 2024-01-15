@@ -1,8 +1,8 @@
+import { ButtonGroup, Layout } from "@shopify/polaris";
 import React, { useEffect, useState } from "react";
-import StopWatchButton from "./StopWatchButton";
-import { ButtonGroup, Card, Layout, Text } from "@shopify/polaris";
-import { formatTime } from "./utils";
 import LapsList from "./LapsList";
+import StopWatchButton from "./StopWatchButton";
+import { formatTime } from "./utils";
 
 export default function StopWatch() {
   const [isWatchStarted, setIsWatchStarted] = useState(false);
@@ -66,7 +66,6 @@ export default function StopWatch() {
           style={{
             fontSize: "65px",
             fontWeight: 600,
-            // margin: "50px 0",
           }}
         >
           <span style={{ width: "60px" }}>{timeArray[0]} : </span>
