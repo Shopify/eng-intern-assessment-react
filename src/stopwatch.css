@@ -22,4 +22,9 @@ body {
     border-radius: 16px;
     background-color: grey;
     display: flex;
+    flex-direction: column;
+}
+
+.stopwatch-display {
+    font-family: "Consolas", monospace;
 }
