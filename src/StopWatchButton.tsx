@@ -1,5 +1,4 @@
 import React from "react";
-import useStopwatch from "./hooks/useStopwatch";
 import Button from "./components/Button";
 
 export default function StopWatchButton({

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import useStopwatch from "./hooks/useStopwatch";
-import DisplayTime from "./components/DisplayTime";
-import DisplayLaps from "./components/DisplayLaps";
+import React from "react";
 import StopWatchButton from "./StopWatchButton";
+import DisplayLaps from "./components/DisplayLaps";
+import DisplayTime from "./components/DisplayTime";
+import useStopwatch from "./hooks/useStopwatch";
 
 export default function StopWatch() {
   const { timer, laps, lap, start, stop, reset, isActive } = useStopwatch();

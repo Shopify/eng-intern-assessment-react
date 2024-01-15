@@ -1,6 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { formatNum, getCurrentTime } from "../utils/utils";
-import { format } from "path";
 
 export default function useStopwatch() {
   // current timer value in seconds
