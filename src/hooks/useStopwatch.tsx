@@ -28,7 +28,7 @@ export default function useStopwatch() {
     const lapTime = `${formatNum(currentTime.hours)}:
     ${formatNum(currentTime.minutes)}:
     ${formatNum(currentTime.seconds)}:
-    ${formatNum(currentTime.milliseconds)}`;
+    ${("00" + currentTime.milliseconds).slice(-3)}`;
 
     setLaps((prevLaps) => [...prevLaps, lapTime]);
   };
