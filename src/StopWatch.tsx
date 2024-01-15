@@ -1,29 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Page,
   Layout,
   Card,
   InlineStack,
   Text,
+  InlineGrid,
 } from '@shopify/polaris';
 import moment from 'moment';
 import LapTimesList from './LapTimesList';
 import StopWatchButton from './StopWatchButton';
-import './styles/StopWatch.css';
 
 
 export default function StopWatch() {
-
-  // Timer function
-
   const [ time, setTime ] = useState(0)
   const [ isTimerActive, setIsTimerActive ] = useState(false)
   const [ lapTimes, setLapTimes ] = useState([])
   const [ lap, setLap ] = useState(0)
-
-
-  // CHECK TIME COUNT
-  let startTimeRef = useRef(null)
 
   useEffect(() => {
     let timerInterval: NodeJS.Timer = null;
@@ -31,14 +24,14 @@ export default function StopWatch() {
 
     if (isTimerActive) {
 
-      startTimeRef.current = performance.now() - time;
+      let startTime = performance.now() - time
 
       timerInterval = setInterval(() => {
-        setTime(performance.now() - startTimeRef.current);
+        setTime(performance.now() - startTime);
       }, 10);
 
       lapInterval = setInterval(() => {
-        setLap(performance.now() - startTimeRef.current);
+        setLap(((prevLapTime) => prevLapTime + 10));
       }, 10);
 
     } else {
@@ -52,38 +45,60 @@ export default function StopWatch() {
   }, [ isTimerActive ])
 
 
+
   return (
-    <Page>
 
-      <Layout>
-
-        {/* HEADER SECTION */ }
+    <Page narrowWidth>
+      <Card>
         <Layout.Section variant='fullWidth'>
-          <Text as='h1' variant='headingXl' fontWeight='bold' alignment='center'>Countdown Timer</Text>
+          <div style={ { padding: "5rem 0 3rem 0" } }>
+            <InlineGrid columns={ 3 }>
+              <div>
+                <div style={ { fontSize: "3rem", paddingBottom: "1rem" } }>
+                  <Text as='h1' fontWeight='bold' alignment='center'>{ moment(time).format("mm") }</Text>
+                </div>
+                <div style={ { fontSize: "1rem" } }>
+                  <Text as="p" alignment='center'>MINUTES</Text>
+                </div>
+              </div>
+              <div>
+                <div style={ { fontSize: "3rem", paddingBottom: "1rem" } }>
+                  <Text as='h1' fontWeight='bold' alignment='center'>{ moment(time).format("ss") }</Text>
+                </div>
+                <div style={ { fontSize: "1rem" } }>
+                  <Text as="p" alignment='center'>SECONDS</Text>
+                </div>
+              </div>
+              <div>
+                <div style={ { fontSize: "3rem", paddingBottom: "1rem" } }>
+                  <Text as='h1' fontWeight='bold' alignment='center'>{ moment(time).format("SS") }</Text>
+                </div>
+                <div style={ { fontSize: "1rem" } }>
+                  <Text as="p" alignment='center'>MILLISECONDS</Text>
+                </div>
+              </div>
+            </InlineGrid>
+          </div>
         </Layout.Section>
-
-        {/* TIMER SECTION */ }
-        <Layout.Section>
-          <Text as='h1' variant='heading3xl' fontWeight='bold' alignment='center'>{ moment(time).format("mm: ss: SS") }</Text>
-        </Layout.Section>
-
 
         {/* LAP TIMES TABLE SECTION*/ }
         <Layout.Section variant='fullWidth'>
           <InlineStack align="center">
-            <StopWatchButton time={ time } setTime={ setTime } isTimerActive={ isTimerActive } setIsTimerActive={ setIsTimerActive } lapTimes={ lapTimes } setLapTimes={ setLapTimes } lap={ lap } setLap={ setLap } />
+            <StopWatchButton setTime={ setTime } isTimerActive={ isTimerActive } setIsTimerActive={ setIsTimerActive } lapTimes={ lapTimes } setLapTimes={ setLapTimes } lap={ lap } setLap={ setLap } />
           </InlineStack>
         </Layout.Section>
 
-        <Layout.Section>
-          {/* { lapTimes.length > 0 && */ }
-          {
-            <Card>
-              <LapTimesList lapTimes={ lapTimes } />
-            </Card>
-          }
-        </Layout.Section>
-      </Layout>
+      </Card>
+
+      <Layout.Section>
+        { lapTimes.length > 0 &&
+          <Card>
+            <LapTimesList lapTimes={ lapTimes } />
+          </Card>
+        }
+      </Layout.Section>
+
+
 
     </Page >
   )
