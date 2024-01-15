@@ -4,29 +4,33 @@ import StopWatchButton from "./StopWatchButton";
 import { formatTime } from "./utils/formatTime";
 
 export default function StopWatch() {
-  const [time, setTime] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-  const [btnActionStartStop, setBtnStartStop] = useState("Start");
-  const [btnActionResetLap, setBtnResetLap] = useState("Lap");
-  const [laps, setLaps] = useState([]);
+  const start: string = "Start";
+  const stop: string = "Stop";
+  const reset: string = "Reset";
+  const lap: string = "Lap";
+  const [time, setTime] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [btnActionStartStop, setBtnStartStop] = useState<string>("Start");
+  const [btnActionResetLap, setBtnResetLap] = useState<string>("Lap");
+  const [laps, setLaps] = useState<number[]>([]);
 
   const stopStartTimer = () => {
     setIsRunning(!isRunning);
-    const btnActionStartStop = isRunning ? "Start" : "Stop";
+    const btnActionStartStop = isRunning ? start : stop;
     const btnActionLapReset =
-      isRunning && btnActionStartStop == "Start" ? "Reset" : "Lap";
+      isRunning && btnActionStartStop == start ? reset : lap;
     setBtnResetLap(btnActionLapReset);
     setBtnStartStop(btnActionStartStop);
   };
 
   const actResetLap = () => {
-    if (btnActionResetLap == "Lap") {
+    if (btnActionResetLap == lap) {
       setLaps([...laps, 0]);
       console.log(laps);
-    } else if (btnActionResetLap == "Reset") {
+    } else if (btnActionResetLap == reset) {
       setTime(0);
       setIsRunning(false);
-      setBtnResetLap("Lap");
+      setBtnResetLap(lap);
     }
   };
   useEffect(() => {
@@ -65,7 +69,7 @@ export default function StopWatch() {
         <div className='Laps'>
           {laps.map((lap, i) => (
             <div key={i}>
-              Lab {i + 1}: {formatTime(lap)}
+              Lap {i + 1}: {formatTime(lap)}
             </div>
           ))}
         </div>
