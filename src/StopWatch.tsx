@@ -61,17 +61,22 @@ export default function StopWatch() {
 
   return (
     <Layout>
-      <Layout.Section variant="fullWidth">
-        <Text variant="heading3xl" as="h1" alignment="center">
-          <span style={{ width: "60px" }}>{timeArray[0]}</span>
-          <span> : </span>
-          <span style={{ width: "60px" }}>{timeArray[1]}</span>
-          <span> : </span>
-          <span style={{ width: "60px" }}>{timeArray[2]}</span>
-        </Text>
+      <Layout.Section variant="oneHalf">
+        <div
+          style={{
+            fontSize: "65px",
+            fontWeight: 600,
+            // margin: "50px 0",
+          }}
+        >
+          <span style={{ width: "60px" }}>{timeArray[0]} : </span>
+          <span style={{ width: "60px" }}>{timeArray[1]} : </span>
+          <span style={{ width: "60px" }}>{timeArray[2]} : </span>
+          <span style={{ width: "60px" }}>{timeArray[3]}</span>
+        </div>
       </Layout.Section>
 
-      <Layout.Section variant="fullWidth">
+      <Layout.Section variant="oneThird">
         <ButtonGroup gap="loose" fullWidth={true}>
           <StopWatchButton onClick={WatchStartStop}>
             {isWatchStarted ? "Stop" : "Start"}
