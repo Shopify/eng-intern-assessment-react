@@ -1,6 +1,6 @@
 export const getCurrentTime = (seconds: number) => {
   if (isNaN(seconds)) {
-    throw new Error("Invalid timer or startTime");
+    throw new Error("Invalid timer input");
   }
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds - hours * 3600) / 60);
