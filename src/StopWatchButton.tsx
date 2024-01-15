@@ -11,7 +11,7 @@ export default function StopWatchButton({
   children,
 }: StopWatchButtonProps) {
   return (
-    <Button fullWidth={true} onClick={onClick}>
+    <Button fullWidth={true} onClick={onClick} size="large">
       {children}
     </Button>
   );
