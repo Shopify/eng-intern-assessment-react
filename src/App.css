@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    background-color: rgb(249, 246, 246);
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    background-color: red;
+}

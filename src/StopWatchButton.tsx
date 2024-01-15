@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+interface StopWatchButtonProps {
+    label: string;
+    onClick: () => void; //will be called onClick, with no return value
+}
+
+export default function StopWatchButton({label, onClick}: StopWatchButtonProps) {
+// this ensure reusable button component to render in Stopwatch.tsx
     return(
-        <div></div>
+       <button className='btn' onClick={onClick}>
+        {label}
+       </button>
     )
 }
