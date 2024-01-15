@@ -6,6 +6,7 @@ import "@testing-library/jest-dom";
 describe("Stopwatch", () => {
   test("renders initial state correctly", () => {
     render(<Stopwatch />);
+
     expect(screen.getByText("00:00:00")).toBeInTheDocument();
     expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
   });
@@ -66,5 +67,13 @@ describe("Stopwatch", () => {
 
     expect(screen.getByText("00:00:00")).toBeInTheDocument();
     expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
+  });
+
+  test("ensure resume and pause not on screen at start", () => {
+    render(<Stopwatch />);
+
+    expect(screen.queryByText("Pause")).not.toBeVisible();
+    expect(screen.queryByText("Resume")).not.toBeVisible();
+    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
   });
 });
