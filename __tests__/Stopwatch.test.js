@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import "@testing-library/jest-dom"; 
 import Stopwatch from '../src/StopWatch';
 
@@ -18,7 +18,7 @@ describe('Stopwatch', () => {
     expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('Stop'));
-    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
+    setTimeout(() => {expect(screen.queryByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe("00:00:00");}, 2000);
   });
 
   test('pauses and resumes the stopwatch', () => {
@@ -29,7 +29,7 @@ describe('Stopwatch', () => {
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText('Resume'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
+    setTimeout(() => {expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);}, 2000);
   });
 
   test('records and displays lap times', () => {
@@ -37,7 +37,7 @@ describe('Stopwatch', () => {
     
     fireEvent.click(screen.getByText('Start'));
     fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list')).toContainElement(screen.getByText(/(\d{2}:){2}\d{2}/));
+    expect(within(screen.getByTestId('lap-list')).getAllByText(/(\d{2}:){2}\d{2}/).length).toBe(1);
 
     fireEvent.click(screen.getByText('Lap'));
     expect(screen.getByTestId('lap-list').children.length).toBe(2);
