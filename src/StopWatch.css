@@ -1,14 +1,13 @@
-.stopwatch-background    {
-    background-color: rgba(94, 142, 62, 0.547);
+/*Style for StopWatch*/
+.stopwatch-background {
     border-radius: 20px;
     width: 500px;
     height: 150px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .stopwatch-container {
     display: flex;
-    color: whitesmoke;
+    color: white;
     padding: 20px;
     letter-spacing: 2px;
     justify-content: center;
@@ -22,7 +21,31 @@
 
 .stopwatch-text {
     margin: 0;
-    font-size: 5rem;
+    font-size: 7rem;
     font-family: sans-serif;
     letter-spacing: 10px;
+}
+
+/* Style for Lap Record Display */
+.lap-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: #5E8E3E;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.lap-text {
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+.lap-time {
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    font-weight: lighter;
 }

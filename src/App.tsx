@@ -1,6 +1,5 @@
 import React from 'react'
 import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
 import "./App.css"
 
 export default function App() {
@@ -11,9 +10,6 @@ export default function App() {
             </h1>
             <div className='stopwatch-display'>
                 <StopWatch />
-            </div>
-            <div className='button'>
-                <StopWatchButton />
             </div>
         </div>
     )
