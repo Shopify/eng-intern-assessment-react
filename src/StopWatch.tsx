@@ -4,11 +4,19 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Typography, ButtonGroup, Button } from '@mui/material';
+import Lap from './PreviousLap';
+import PreviousLap from './PreviousLap';
+
+type Lap = {
+    number: number;
+    time: number;
+}
 
 export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
-    const [laps, setLaps] = useState(0);
+    const [lapCount, setLapCount] = useState(0);
+    const [laps, setLaps] = useState<Array<Lap>>([]);
 
     useEffect(() => {
         let interval: NodeJS.Timer;
@@ -28,16 +36,21 @@ export default function StopWatch() {
     }
 
     const addLap = () => {
+        let currentLaps = laps;
+        let newLap = {number: lapCount, time: time};
+        currentLaps.push(newLap);
+        setLaps(currentLaps);
         setTime(0);
-        setLaps(laps + 1);
+        setLapCount(lapCount + 1);
     }
 
-    //console.log(time);
+    //console.log(laps);
     return (
         <div>
             <Typography variant="h1" gutterBottom>Stopwatch</Typography>
             <Typography variant="h3" gutterBottom>{minutes} : {seconds} : {miliseconds}</Typography>
-            <Typography variant="h4" gutterBottom>Laps: {laps}</Typography>
+            <Typography variant="h4" gutterBottom>lapCount: {lapCount}</Typography>
+            {laps.map(lap => <PreviousLap number={lap.number} time={lap.time} key={lap.number}/> )}
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 <Button onClick={() => changeState(true)}>Start</Button>
                 <Button onClick={() => changeState(false)}>Stop</Button>
