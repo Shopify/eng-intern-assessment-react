@@ -76,6 +76,7 @@ export default function StopWatch() {
           padding: "24px",
           marginBottom: "4px",
         }}
+        data-testid="time-display"
       >
         <h1 style={{ color: "white", fontSize: "64px" }}>{formatTime(time)}</h1>
       </div>
@@ -87,6 +88,7 @@ export default function StopWatch() {
           flexDirection: "column",
           gap: "4px",
         }}
+        data-testid="lap-list"
       >
         {lapTimes
           .slice()
