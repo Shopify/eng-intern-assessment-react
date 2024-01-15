@@ -15,8 +15,15 @@ export default function StopWatch() {
     return () => clearInterval(interval);
   }, [isPaused, time]);
 
+  // Handler to start or stop the timer
   const handleStartStop = () => {
     setIsPaused(!isPaused);
+  };
+
+  // Handler to reset the timer and lap times
+  const handleReset = () => {
+    setTime(0);
+    setIsPaused(true);
   };
 
   const formatTime = (totalMilSeconds: number) => {
@@ -38,6 +45,7 @@ export default function StopWatch() {
       <StopWatchButton
         isPaused={isPaused}
         handleStartStop={handleStartStop}
+        handleReset={handleReset}
       ></StopWatchButton>
       <div
         style={{
