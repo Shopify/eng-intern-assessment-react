@@ -17,7 +17,7 @@ export default function StopWatch() {
   return (
     <>
       <div>
-        <p>{time}</p>
+        <p data-testid="timer">{time}</p>
         <div>
           <StopWatchButton onClick={!isRunning ? startHandler : pauseHandler}>
             {!isRunning ? "Start" : "Stop"}
@@ -26,7 +26,7 @@ export default function StopWatch() {
           <StopWatchButton onClick={resetHandler}>Reset</StopWatchButton>
         </div>
       </div>
-      <LapsRecord lapsData={laps} />
+      {laps.length > 0 ? <LapsRecord lapsData={laps} /> : null}
     </>
   );
 }
