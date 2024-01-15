@@ -6,40 +6,55 @@ import { useState, useEffect } from 'react'
 export default function App() {
   const [isRunning, setIsRunning] = useState(false)
   const [time, setTime] = useState(0)
+  const [laps, setLaps] = useState<String[]>([])
+
   let interval: NodeJS.Timer | undefined;
+  let minutes = ('0' + Math.floor((time / 60000) % 60)).slice(-2)
+  let seconds = ('0' + Math.floor((time / 1000) % 60)).slice(-2)
+  let milliseconds = ('0' + ((time / 10) % 100)).slice(-2)
 
   const start = () => {
     if (isRunning) {
-      setIsRunning(false);
+      setIsRunning(false)
     } else if (!isRunning) {
-      setIsRunning(true);
+      setIsRunning(true)
     }
   }
 
   const reset = () => {
     if (!isRunning) {
       setTime(0)
+      setLaps([])
     }
+  }
+
+  const lap = () => {
+    setLaps([...laps, String(minutes + ':' + seconds + ':' + milliseconds)])
   }
 
   useEffect(() => {
     if (isRunning) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 0.01); // Increment by 0.01 seconds (10 milliseconds)
+        setTime((prevTime) => prevTime + 10)
       }, 10);
     } else {
-      clearInterval(interval);
+      clearInterval(interval)
     }
 
     return () => {
-      clearInterval(interval);
+      clearInterval(interval)
     };
-  }, [isRunning]);
+  }, [isRunning])
 
   return(
     <div>
-      <StopWatch time={time}/>
-      <StopWatchButton start={start} reset={reset} isRunning={isRunning}/>
+      <StopWatch minutes={minutes} seconds={seconds} milliseconds={milliseconds}/>
+      <StopWatchButton start={start} reset={reset} lap={lap} isRunning={isRunning}/>
+      {laps != null && laps.length > 0 && (
+        <div className="laps-grid">
+          {laps.map((lap, i) => <div>{lap}</div>)}
+        </div>
+      )}
     </div>
   )
 }
