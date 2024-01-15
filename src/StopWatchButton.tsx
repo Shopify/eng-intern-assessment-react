@@ -25,7 +25,7 @@ export default function StopWatchButton({
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "50% 50%",
+        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
         height: "48px",
       }}
     >
@@ -40,15 +40,27 @@ export default function StopWatchButton({
       >
         {isPaused ? "Start" : "Stop"}
       </button>
+      {/* Lap button */}
       <button
-        onClick={isPaused ? handleReset : handleLap}
+        onClick={handleLap}
+        style={{
+          ...buttonStyle,
+          backgroundColor: "blue",
+          color: "white",
+        }}
+      >
+        Lap
+      </button>
+      {/* Reset button */}
+      <button
+        onClick={handleReset}
         style={{
           ...buttonStyle,
           backgroundColor: "white",
           color: "black",
         }}
       >
-        {isPaused ? "Reset" : "Lap"}
+        Reset
       </button>
     </div>
   );

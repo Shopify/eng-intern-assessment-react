@@ -38,7 +38,7 @@ export default function StopWatch() {
 
   // Handler to record a lap time
   const handleLap = () => {
-    //add current time to previous recordings
+    // Add current time to previous recordings
     setLapTimes((prevLaps) => [...prevLaps, time]);
   };
 
