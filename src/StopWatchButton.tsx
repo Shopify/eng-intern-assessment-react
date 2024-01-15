@@ -1,5 +1,6 @@
 import React from "react";
 import useStopwatch from "./hooks/useStopwatch";
+import Button from "./components/Button";
 
 export default function StopWatchButton({
   start,
@@ -18,18 +19,46 @@ export default function StopWatchButton({
 }) {
   return (
     <div style={{ marginTop: "20px" }}>
-      <button onClick={start} disabled={isActive}>
+      <Button
+        onClick={start}
+        disabled={isActive}
+        style={{
+          background: isActive ? "gray" : "green",
+          color: "white",
+        }}
+      >
         Start
-      </button>
-      <button onClick={stop} disabled={!isActive}>
+      </Button>
+      <Button
+        onClick={stop}
+        disabled={!isActive}
+        style={{
+          background: !isActive ? "gray" : "red",
+          color: "white",
+        }}
+      >
         Stop
-      </button>
-      <button onClick={reset} disabled={!isActive && !timer}>
+      </Button>
+      <Button
+        onClick={reset}
+        disabled={!isActive && !timer}
+        style={{
+          background: !isActive && !timer ? "gray" : "blue",
+          color: "white",
+        }}
+      >
         Reset
-      </button>
-      <button onClick={lap} disabled={!isActive && !timer}>
+      </Button>
+      <Button
+        onClick={lap}
+        disabled={!!isActive && !timer}
+        style={{
+          background: !isActive && !timer ? "gray" : "purple",
+          color: "white",
+        }}
+      >
         Lap
-      </button>
+      </Button>
     </div>
   );
 }
