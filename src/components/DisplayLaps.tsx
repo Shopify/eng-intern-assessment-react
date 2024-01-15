@@ -2,7 +2,7 @@ import React from "react";
 
 export default function DisplayLaps({ laps }: { laps: string[] }) {
   return (
-    <>
+    <div data-testid="lap-list">
       {laps.map((lap, i) => (
         <div
           key={i}
@@ -14,6 +14,6 @@ export default function DisplayLaps({ laps }: { laps: string[] }) {
           Lap {i + 1}: {lap}
         </div>
       ))}
-    </>
+    </div>
   );
 }

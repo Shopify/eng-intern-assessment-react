@@ -5,9 +5,9 @@ export default function DisplayTime({ timer }: { timer: number }) {
   const time = getCurrentTime(timer);
 
   return (
-    <div style={{ fontSize: "50px" }}>
+    <p style={{ fontSize: "50px" }} data-testid="timer">
       {formatNum(time.hours)}:{formatNum(time.minutes)}:
       {formatNum(time.seconds)}
-    </div>
+    </p>
   );
 }
