@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+  const [time, setTime] = React.useState(0);
+  const [timerOn, setTimeOn] = React.useState(false);
+  return <div></div>;
 }
