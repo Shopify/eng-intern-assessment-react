@@ -1,17 +1,14 @@
-export const getCurrentTime = (time: number) => {
-  if (isNaN(time)) {
+export const getCurrentTime = (seconds: number) => {
+  if (isNaN(seconds)) {
     throw new Error("Invalid timer or startTime");
   }
-  const hours = Math.floor(time / 3600000);
-  const minutes = Math.floor((time % 3600000) / 60000);
-  const seconds = Math.floor((time % 60000) / 1000);
-  const milliseconds = time % 1000;
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds - hours * 3600) / 60);
 
   return {
     hours,
     minutes,
     seconds,
-    milliseconds,
   };
 };
 

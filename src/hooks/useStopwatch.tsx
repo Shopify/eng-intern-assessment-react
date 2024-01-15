@@ -27,8 +27,7 @@ export default function useStopwatch() {
     const currentTime = getCurrentTime(timer);
     const lapTime = `${formatNum(currentTime.hours)}:
     ${formatNum(currentTime.minutes)}:
-    ${formatNum(currentTime.seconds)}:
-    ${("00" + currentTime.milliseconds).slice(-3)}`;
+    ${formatNum(currentTime.seconds)}`;
 
     setLaps((prevLaps) => [...prevLaps, lapTime]);
   };
@@ -39,9 +38,10 @@ export default function useStopwatch() {
 
   useEffect(() => {
     if (isActive) {
+      // every 1sec, add 1 to timer
       countRef.current = setInterval(() => {
         setTimer((prevTimer) => prevTimer + 1);
-      }, 1);
+      }, 1000);
     }
 
     return () => clearInterval(countRef.current);

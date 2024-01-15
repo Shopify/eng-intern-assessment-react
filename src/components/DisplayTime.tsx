@@ -7,7 +7,7 @@ export default function DisplayTime({ timer }: { timer: number }) {
   return (
     <div style={{ fontSize: "50px" }}>
       {formatNum(time.hours)}:{formatNum(time.minutes)}:
-      {formatNum(time.seconds)}:{("00" + time.milliseconds).slice(-3)}
+      {formatNum(time.seconds)}
     </div>
   );
 }
