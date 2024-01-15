@@ -23,16 +23,17 @@ export default function StopWatch() {
         },[timerOn]) 
 
 
-     //handle play/pause button
+     //handle start/stop button
      const handelPlayPause = () => {
         setTimerOn(!timerOn);
      };
 
-     //handle stop and add laps
-     const handleStop = () => {
+     //handle laps
+     const handleLap = () => {
         if (timerOn) {
-            setlaps([...laps, time]);
-            setTimerOn(false);
+            //set static lap
+            setlaps(prevLaps =>[...laps, time]);
+            
         }
      }
 
@@ -46,23 +47,27 @@ export default function StopWatch() {
 
 
 // creating the digit runs mm:ss:msms
-    const formatTime = (): string => { 
+        const formatTime = (timeToFormat: number): string => {
+            let minutes: string = Math.floor(timeToFormat / 60000).toString().padStart(2, '0');
+            let seconds: string = Math.floor((timeToFormat / 1000) % 60).toString().padStart(2, '0');
+            let milliseconds: string = Math.floor((timeToFormat / 10) % 100).toString().padStart(2, '0');
 
-    let minutes: string = Math.floor(time/ 60000).toString().padStart(2,'0'); // padstart - string has 2 characters, padding with 0 if necessary
-    let seconds: string = Math.floor(time/ 1000).toString().padStart(2,'0');
-    let milliseconds: string = Math.floor((time/10)%100).toString().padStart(2,'0');
-
-    return `${minutes}:${seconds}:${milliseconds}`;
-    }
+            return `${minutes}:${seconds}:${milliseconds}`;
+        };
 
     return(
-
-        <div className='timer-container'>
-            {formatTime()}
-            <StopWatchButton label={timerOn ? "Pause" : "Start"} onClick={handelPlayPause} />
-            <StopWatchButton label="Stop" onClick={handleStop} />
-            <StopWatchButton label="Reset" onClick={handelReset} />
-            
-        </div>
+        <main className='timer-container'>
+            <div>{formatTime(time)}</div>
+                <div >
+                    <StopWatchButton label={timerOn ? "Stop" : "Start"} onClick={handelPlayPause} />
+                    <StopWatchButton label="Lap" onClick={handleLap} />
+                    <StopWatchButton label="Reset" onClick={handelReset} />
+                        </div>
+                <div className="laps">
+                {laps.map((lap, index) => (
+                    <p key={index}>Lap {index + 1}: {formatTime(lap)}</p>
+                    ))}
+                 </div>
+                 </main>
     )
 }

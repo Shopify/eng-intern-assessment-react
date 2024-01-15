@@ -5,7 +5,7 @@ body {
 
 .timer-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .btn {
