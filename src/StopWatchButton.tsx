@@ -14,7 +14,8 @@ interface stopWatchProps {
 *      to the stopwatch itself.
 * 
 * Params:
-*      setTime - useState Function - current time
+*       setTime - useState Function - set's current time
+*       setIsRunning = useState Function - set's boolean if running or not
 */
 export default function StopWatchButton({setTime, setIsRunning}: stopWatchProps) {
     return(
