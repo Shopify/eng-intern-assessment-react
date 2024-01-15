@@ -1,6 +1,42 @@
+.app-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 2rem;
+}
+
+.stopwatch-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  row-gap: 1rem;
+}
+
+.timer-box {
+  border: 1px solid blueviolet;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 0;
+}
+
+.laps-title {
+  margin: 0;
+}
+
+.laps-box {
+  height: 12rem;
+  overflow-y: scroll;
+  font-size: large;
+}
+
+.laps-outer-box {
+  border: 1px solid blueviolet;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
 .stopwatch-button-box {
   display: flex;
-  width: 50%;
   height: 4rem;
   justify-content: space-around;
   align-items: center;
@@ -33,18 +69,4 @@
 
 .stopwatch-red {
   background-color: rgb(242, 103, 103);
-}
-
-.laps-box {
-  display: block;
-  height: 12rem;
-  overflow-y: scroll;
-  width: 50%;
-  font-size: large;
-}
-
-.stopwatch-box {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
 }

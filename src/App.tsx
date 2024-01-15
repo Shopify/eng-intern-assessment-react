@@ -4,7 +4,7 @@ import StopWatch from "./StopWatch";
 
 export default function App() {
   return (
-    <div>
+    <div className="app-box">
       <StopWatch />
     </div>
   );

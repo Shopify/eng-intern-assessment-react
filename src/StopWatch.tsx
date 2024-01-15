@@ -4,38 +4,40 @@ import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
   /* This will represent whether or not our stopwatch is running */
-  const [timer, setTimer] = useState(false);
+  const [timer, setTimer] = useState<boolean>(false);
 
   /* This will represent the elapsed time in seconds.*/
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
 
   /* Records the history of our lapsed times. Since we do not expect to have a large amount,
   we can just use an array to record these lapsed times. */
-  const [elapsedTimes, setElapsedTimes] = useState<number[]>([]);
+  const [laps, setLaps] = useState<number[]>([]);
+
+  /* We will update our timer in increments of 0.1s. The more updates/renders we make,
+  the more it will affect our performance. */
+  const timeIncrement = 0.1;
 
   useEffect(() => {
     // Creating a ref to our interval function so we can clean it up when our timer stops
     let intervalRef: NodeJS.Timeout;
-
-    /* We will update our timer in increments of 0.1s. The more updates/renders we make,
-	the more it will affect our performance. */
-    if (timer) intervalRef = setInterval(incrementTimer, 100);
-
+    if (timer) intervalRef = setInterval(incrementTimer, 1000 * timeIncrement);
     return () => clearInterval(intervalRef);
   });
 
   const incrementTimer = () => {
-    const newNumber = Number((elapsedTime + 0.1).toFixed(2));
+    const newNumber = Number((elapsedTime + timeIncrement).toFixed(1));
     setElapsedTime(newNumber);
   };
 
   return (
     <div className="stopwatch-box">
-      <div>Current: {elapsedTime}</div>
-      <div>
-        <p>Laps:</p>
+      <h1 className="timer-box">
+        Elapsed Time (s): {elapsedTime.toFixed(1).toString()}
+      </h1>
+      <div className="laps-outer-box">
+        <h3 className="laps-title">Current Laps:</h3>
         <div className="laps-box">
-          {elapsedTimes.map((time, index) => (
+          {laps.map((time, index) => (
             <p>
               Lap {index + 1}: {time} seconds
             </p>
@@ -43,12 +45,12 @@ export default function StopWatch() {
         </div>
       </div>
       <StopWatchButton
-        active={timer}
+        timer={timer}
         timerHandler={setTimer}
-        elapsedTimeHandler={setElapsedTime}
         elapsedTime={elapsedTime}
-        elapsedTimes={elapsedTimes}
-        updateLapsedTimeHandler={setElapsedTimes}
+        elapsedTimeHandler={setElapsedTime}
+        laps={laps}
+        lapsHandler={setLaps}
       />
     </div>
   );

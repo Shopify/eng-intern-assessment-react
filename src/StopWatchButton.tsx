@@ -2,48 +2,47 @@ import React from "react";
 
 import "./stopwatch.css";
 
-export default function StopWatchButton({
-  active,
-  timerHandler,
-  elapsedTime,
-  elapsedTimeHandler,
-  elapsedTimes,
-  updateLapsedTimeHandler,
-}: {
-  active: boolean;
+interface StopWatchButtonProps {
+  timer: boolean;
   timerHandler: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
   elapsedTimeHandler: React.Dispatch<React.SetStateAction<number>>;
-  elapsedTimes: number[];
-  updateLapsedTimeHandler: React.Dispatch<React.SetStateAction<number[]>>;
-}) {
+  laps: number[];
+  lapsHandler: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+export default function StopWatchButton({
+  timer,
+  timerHandler,
+  elapsedTime,
+  elapsedTimeHandler,
+  laps,
+  lapsHandler,
+}: StopWatchButtonProps) {
   const resetHandler = () => {
     timerHandler(false);
     elapsedTimeHandler(0);
-    updateLapsedTimeHandler([]);
+    lapsHandler([]);
   };
 
   return (
     <div className="stopwatch-button-box">
       {/* Creating the buttons as <span> elements instead of <button> to override the default UI */}
-      {active ? (
+      {timer ? (
         <span
-          onClick={() => timerHandler(!active)}
+          onClick={() => timerHandler(!timer)}
           className="stopwatch-button stopwatch-red"
         >
           Stop
         </span>
       ) : (
-        <span
-          onClick={() => timerHandler(!active)}
-          className="stopwatch-button"
-        >
+        <span onClick={() => timerHandler(!timer)} className="stopwatch-button">
           Start
         </span>
       )}
       <span
         className="stopwatch-button"
-        onClick={() => updateLapsedTimeHandler([...elapsedTimes, elapsedTime])}
+        onClick={() => lapsHandler([...laps, elapsedTime])}
       >
         Lap
       </span>
