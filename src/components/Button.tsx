@@ -21,6 +21,7 @@ export default function Button({
         borderRadius: "5px",
         color: "white",
         border: "none",
+        cursor: "pointer",
         ...style,
       }}
     >

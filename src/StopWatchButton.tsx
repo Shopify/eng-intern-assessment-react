@@ -24,7 +24,6 @@ export default function StopWatchButton({
         disabled={isActive}
         style={{
           background: isActive ? "gray" : "green",
-          color: "white",
         }}
       >
         Start
@@ -34,7 +33,6 @@ export default function StopWatchButton({
         disabled={!isActive}
         style={{
           background: !isActive ? "gray" : "red",
-          color: "white",
         }}
       >
         Stop
@@ -44,7 +42,6 @@ export default function StopWatchButton({
         disabled={!isActive && !timer}
         style={{
           background: !isActive && !timer ? "gray" : "blue",
-          color: "white",
         }}
       >
         Reset
@@ -54,7 +51,6 @@ export default function StopWatchButton({
         disabled={!isActive && !timer}
         style={{
           background: !isActive && !timer ? "gray" : "purple",
-          color: "white",
         }}
       >
         Lap
