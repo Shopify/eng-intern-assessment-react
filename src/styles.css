@@ -1,0 +1,57 @@
+body {
+    background-color: whitesmoke;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.container {
+    margin: 6rem 0rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+}
+
+.display {
+    font-size: 2.8rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button {
+    padding: 0.6rem 1.2rem;
+    font-size: large;
+    font-weight: 600;
+    border: none;
+}
+
+.button:hover {
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.button.red {
+    background-color: rgb(245, 116, 116);
+}
+
+.button.green {
+    background-color: rgb(152, 248, 152);
+}
+
+.button.blue {
+    background-color: rgb(132, 194, 252);
+}
+
+.button.orange {
+    background-color: rgb(255, 174, 24)
+}
+
+.lapTimes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
