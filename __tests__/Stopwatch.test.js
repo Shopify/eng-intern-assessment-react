@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import Stopwatch from "../src/StopWatch";
+import { act } from "react-dom/test-utils";
 
 describe("Stopwatch", () => {
   test("renders initial state correctly", () => {
@@ -11,15 +12,21 @@ describe("Stopwatch", () => {
     expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
   });
 
-  // test('starts and stops the stopwatch', () => {
-  //   render(<Stopwatch />);
+  test("starts and stops the stopwatch", async () => {
+    render(<Stopwatch />);
 
-  //   fireEvent.click(screen.getByText('Start'));
-  //   expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Start"));
+    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
-  //   fireEvent.click(screen.getByText('Stop'));
-  //   expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
-  // });
+    // using act to wait for the timer to update the DOM
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 1000));
+    });
+
+    fireEvent.click(screen.getByText("Stop"));
+    const stoppedTime = screen.queryByTestId("timer");
+    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).toEqual(stoppedTime);
+  });
 
   // test('pauses and resumes the stopwatch', () => {
   //   render(<Stopwatch />);
