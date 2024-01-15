@@ -1,7 +1,20 @@
 import React from 'react'
+import { formatTime } from '../util/helpers'
+import '../util/styles.css'
 
-export default function StopWatch() {
+interface StopWatchProps {
+	time: number
+}
+
+const StopWatch: React.FC<StopWatchProps> = ({
+	time,
+}) => {
+
     return(
-        <div></div>
+        <h2 className='stopWatchDisplayText'>
+			{formatTime(time)}
+		</h2>
     )
 }
+
+export default StopWatch
