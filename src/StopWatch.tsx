@@ -63,7 +63,7 @@ export default function StopWatch() {
             <StopWatchButton label="Lap" onClick={handleLap} />
             <StopWatchButton label="Reset" onClick={handelReset} />
             </div>                      
-                <div className="laps">
+                <div className="laps" data-testid="lap-list">
                 {laps.map((lap, index) => (
                     <p key={index}>Lap {index + 1}: {formatTime(lap)}</p>
                     ))}
