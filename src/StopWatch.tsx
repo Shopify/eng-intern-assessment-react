@@ -64,9 +64,40 @@ export default function StopWatch() {
         
     }
 
+    /**
+     * Nicely formats the displaying time.
+     * 
+     * @param {number} num: the time to be formatted (in milliseconds)
+     * @returns {string} a string with the formatted time.
+     */
+    const formatTime = (num: number): string => {
+        const HOURS_TO_MILLISECONDS = 3600 * 1000;
+        const MINUTES_TO_MILLISECONDS = 60 * 1000;
+
+        const hours = Math.floor(num / HOURS_TO_MILLISECONDS);
+        const minutes = Math.floor((num % HOURS_TO_MILLISECONDS) / MINUTES_TO_MILLISECONDS);
+        const seconds = Math.floor((num % HOURS_TO_MILLISECONDS) / 1000);
+        const decimal = num % 1000;
+
+        return `${padWithZeros(hours, 2)}:${padWithZeros(minutes, 2)}:${padWithZeros(seconds, 2)}.${padWithZeros(decimal, 3)}`;
+    }
+
+    /**
+     * Pad a number with leading zeros to a specified length.
+     * 
+     * @param {number}  num the number to be padded
+     * @param {number} size the number of characters for this number
+     * @returns {string} `num` padded with leading zeros to be of `size` chars long
+     */
+    const padWithZeros = (num: number, size: number): string => {
+        let s = num.toString();
+        while (s.length < size) s = "0" + s;
+        return s;
+    };
+
     return(
         <div className="stopwatch">
-            <div className="stopwatch-display">{displayingTime}</div>
+            <div className="stopwatch-display">{formatTime(displayingTime)}</div>
 
             <StopWatchButton label={"Start"} onPress={handleStart}></StopWatchButton>
             <StopWatchButton label={"Stop"} onPress={handleStop}></StopWatchButton>
