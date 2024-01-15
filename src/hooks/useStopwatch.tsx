@@ -33,10 +33,7 @@ export default function useStopwatch() {
   };
 
   useEffect(() => {
-    return () => clearInterval(countRef.current);
-  }, []);
-
-  useEffect(() => {
+    // is active means timer is running
     if (isActive) {
       // every 1sec, add 1 to timer
       countRef.current = setInterval(() => {
