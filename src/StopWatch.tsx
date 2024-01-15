@@ -40,15 +40,16 @@ export default function StopWatch() {
 
     return(
         <div>
-            <h1> {getMinutes()}:{getSeconds()}:{getMilliseconds()}</h1>
+            <h1>{getMinutes()}:{getSeconds()}:{getMilliseconds()}</h1>
             <div>
                 <StopWatchButton onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>
                 <StopWatchButton onClick={() => { setIsRunning(false) }} content='Pause'></StopWatchButton>
+                <StopWatchButton onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>
                 <StopWatchButton onClick={() => { setIsRunning(true) }} content='Resume'></StopWatchButton>
                 <StopWatchButton onClick={handleOnLap} content='Lap'></StopWatchButton>
                 <StopWatchButton onClick={handleOnReset} content='Reset'></StopWatchButton>
             </div>
-            <div id='lap-list'>
+            <div id='lap-list' data-testid='lap-list'>
                 {lapList.map( (lap, index) => (
                     <li>Lap {index} : {lap}</li>
                 ))}
