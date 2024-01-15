@@ -14,10 +14,28 @@ export default function StopWatch() {
     return () => clearInterval(interval);
   }, [isPaused, time]);
 
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    const formattedMinutes = String(minutes).padStart(2, "0");
+    const formattedSeconds = String(remainingSeconds).padStart(2, "0");
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+  };
+
   return (
     <div>
-      <h2>Stopwatch Display</h2>
-      <h1>{time}</h1>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: "black",
+          borderRadius: "8px",
+          padding: "24px",
+        }}
+      >
+        <h1 style={{ color: "white", fontSize: "64px" }}>{formatTime(time)}</h1>
+      </div>
     </div>
   );
 }
