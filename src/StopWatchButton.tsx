@@ -1,7 +1,19 @@
-import React from 'react'
+import { Button } from "@shopify/polaris";
+import React from "react";
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+type StopWatchButtonProps = {
+  children: string;
+  onClick: () => void;
+  variant?: "primary" | "secondary";
+};
+export default function StopWatchButton({
+  children,
+  onClick,
+  variant = "secondary",
+}: StopWatchButtonProps) {
+  return (
+    <Button variant={variant} onClick={onClick} size={"large"} >
+      {children}
+    </Button>
+  );
 }
