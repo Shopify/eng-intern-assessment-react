@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
-  const [time, setTime] = useState<number>(0);
+  // Indicate whether timer is running
   const [isPaused, setIsPaused] = useState<boolean>(true);
+  // Record time in milliseconds
+  const [time, setTime] = useState<number>(0);
+  // Record laps in milliseconds
   const [lapTimes, setLapTimes] = useState<number[]>([]);
 
   // useEffect to handle the timer interval (in milliseconds)
   useEffect(() => {
     let interval: NodeJS.Timeout;
+
+    //Start the interval when timer is running
     if (!isPaused) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);

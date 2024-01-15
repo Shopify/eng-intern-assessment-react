@@ -1,5 +1,12 @@
 import React, { MouseEventHandler } from "react";
 
+// CSS Style for buttons
+const buttonStyle: Object = {
+  borderColor: "black",
+  fontWeight: "bold",
+  fontSize: "24px",
+};
+
 // Props interface for StopWatchButton component
 interface StopWatchButtonProps {
   isPaused: boolean;
@@ -26,9 +33,9 @@ export default function StopWatchButton({
       <button
         onClick={handleStartStop}
         style={{
+          ...buttonStyle,
           backgroundColor: isPaused ? "green" : "red",
           color: "white",
-          borderColor: "black",
         }}
       >
         {isPaused ? "Start" : "Stop"}
@@ -36,9 +43,9 @@ export default function StopWatchButton({
       <button
         onClick={isPaused ? handleReset : handleLap}
         style={{
+          ...buttonStyle,
           backgroundColor: "white",
           color: "black",
-          borderColor: "black",
         }}
       >
         {isPaused ? "Reset" : "Lap"}
