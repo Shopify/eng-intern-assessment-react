@@ -1,5 +1,6 @@
 import React from "react";
 import { Lap } from "../../hooks/useStopWatch";
+import styles from "./LapsRecord.module.css";
 
 interface LapsRecordProps {
   lapsData: Lap[];
@@ -7,11 +8,11 @@ interface LapsRecordProps {
 
 export default function LapsRecord({ lapsData }: LapsRecordProps) {
   return (
-    <table>
+    <table className={styles.tableContainer}>
       <thead>
         <tr>
           <th>Lap #</th>
-          <th>Elapsed time</th>
+          <th>Elapsed Time</th>
           <th>Total Time</th>
         </tr>
       </thead>

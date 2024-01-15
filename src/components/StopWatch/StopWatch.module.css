@@ -1,0 +1,23 @@
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  max-width: 325px;
+}
+
+.timer {
+  font-size: 5rem;
+  font-weight: bolder;
+  margin: 40px 0;
+  width: 100%;
+  margin-left: 20px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}

@@ -1,7 +1,8 @@
 import React from "react";
-import { useStopWatch } from "../../hooks/useStopWatch";
 import StopWatchButton from "../StopWatchButton";
 import LapsRecord from "../LapsRecord";
+import { useStopWatch } from "../../hooks/useStopWatch";
+import styles from "./StopWatch.module.css";
 
 export default function StopWatch() {
   const {
@@ -16,9 +17,11 @@ export default function StopWatch() {
 
   return (
     <>
-      <div>
-        <p data-testid="timer">{time}</p>
-        <div>
+      <div className={styles.timerContainer}>
+        <p className={styles.timer} data-testid="timer">
+          {time}
+        </p>
+        <div className={styles.buttonContainer}>
           <StopWatchButton onClick={!isRunning ? startHandler : pauseHandler}>
             {!isRunning ? "Start" : "Stop"}
           </StopWatchButton>
