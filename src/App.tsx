@@ -58,7 +58,7 @@ import moment from 'moment';
 export default function App() {
     const [time, setTime] = useState<moment.Duration>(moment.duration(0));
     const [lapTime, setLapTime] = useState<moment.Duration>(moment.duration(0));
-    const [isRunning, setIsRunning] = useState<boolean>(true);
+    const [isRunning, setIsRunning] = useState<boolean>(false);
     const [laps, addLap] = useState<moment.Duration[]>([]);
 
     // When the timer is on, increase the count
