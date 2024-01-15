@@ -35,6 +35,12 @@ export const useStopWatch = () => {
     setStopwatchStatus(StopwatchStatus.Paused);
   };
 
+  const resetStopwatch = () => {
+    setTimeElapsed(0);
+    setLaps([]);
+    setStopwatchStatus(StopwatchStatus.Paused);
+  };
+
   const recordLap = () => {
     const totalLapseTime = laps.reduce((acc, lapTime) => acc + lapTime, 0);
     const newLapTime = timeElapsed - totalLapseTime;
@@ -46,6 +52,7 @@ export const useStopWatch = () => {
     stopwatchStatus,
     stopStopwatch,
     startStopwatch,
+    resetStopwatch,
     laps,
     recordLap,
   };

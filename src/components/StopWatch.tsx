@@ -10,6 +10,7 @@ export default function StopWatch() {
     stopwatchStatus,
     startStopwatch,
     stopStopwatch,
+    resetStopwatch,
     laps,
     recordLap,
   } = useStopWatch();
@@ -32,8 +33,15 @@ export default function StopWatch() {
               Stop
             </Button>
           )}
-          <Button onClick={recordLap}>Lap</Button>
-          <Button onClick={() => {}}>Reset</Button>
+          <Button
+            disabled={stopwatchStatus === StopwatchStatus.Paused ? true : false}
+            onClick={recordLap}
+          >
+            Lap
+          </Button>
+          <Button variant="primary" tone="critical" onClick={resetStopwatch}>
+            Reset
+          </Button>
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
