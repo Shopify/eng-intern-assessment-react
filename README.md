@@ -1,8 +1,8 @@
 # Technical Instructions
 1. Fork this repo to your local Github account.
 2. Create a new branch to complete all your work in.
-3. Test your work using the provided tests
-4. Create a Pull Request against the Shopify Main branch when you're done and all tests are passing
+3. Write tests to ensure you've completed the requirements
+3. Create a Pull Request against the main branch when you're done and all tests are passing
 
 # Project Overview
 The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
@@ -43,7 +43,7 @@ Your specific goals for this project are as follows:
     - Pay attention to code readability, modularity, and performance.
 
 3. Test your code:
-    - Run the application and test the stopwatch functionality to ensure it works correctly.
+    - Write unit tests for the stopwatch functionality to ensure it works correctly.
     - Verify that the stopwatch starts, stops, resets, and records laps as expected.
 
 4. Code documentation:
