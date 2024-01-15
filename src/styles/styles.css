@@ -1,0 +1,66 @@
+body{
+    background-color: #333333;
+}
+
+#current-time{
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.laps{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.5em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.stop-watch-btn{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-size: larger;
+    border-width: 0px;
+    transition: all 0.3s ease-in-out;
+}
+
+.stop-watch-btn:hover{
+    cursor: pointer;
+    background-color: black;
+}
+
+#start-btn{
+    background-color: #518071;
+    color: white;
+}
+
+#stop-btn{
+    background-color: red;
+    color: white;
+}
+
+#reset-btn{
+    background-color: #265055;
+    color: white;
+}
+
+#lap-btn{
+    background-color: #54ECC4;
+    color: white;
+}
+
+#start-btn:hover, #stop-btn:hover, #reset-btn:hover, #lap-btn:hover{
+    background-color: black;
+}
