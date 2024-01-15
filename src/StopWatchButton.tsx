@@ -51,7 +51,7 @@ export default function StopWatchButton({
       </Button>
       <Button
         onClick={lap}
-        disabled={!!isActive && !timer}
+        disabled={!isActive && !timer}
         style={{
           background: !isActive && !timer ? "gray" : "purple",
           color: "white",
