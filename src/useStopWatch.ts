@@ -10,6 +10,7 @@ export const useStopWatch = () => {
   const [stopwatchStatus, setStopwatchStatus] = useState<StopwatchStatus>(
     StopwatchStatus.Paused
   );
+  const [laps, setLaps] = useState<number[]>([]);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(0);
@@ -34,10 +35,18 @@ export const useStopWatch = () => {
     setStopwatchStatus(StopwatchStatus.Paused);
   };
 
+  const recordLap = () => {
+    const totalLapseTime = laps.reduce((acc, lapTime) => acc + lapTime, 0);
+    const newLapTime = timeElapsed - totalLapseTime;
+    setLaps([...laps, newLapTime]);
+  };
+
   return {
     timeElapsed,
     stopwatchStatus,
     stopStopwatch,
     startStopwatch,
+    laps,
+    recordLap,
   };
 };

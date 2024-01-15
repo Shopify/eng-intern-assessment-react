@@ -5,8 +5,14 @@ import { useStopWatch, StopwatchStatus } from '../useStopWatch';
 import { formatTime } from '../utils';
 
 export default function StopWatch() {
-  const { timeElapsed, stopwatchStatus, startStopwatch, stopStopwatch } =
-    useStopWatch();
+  const {
+    timeElapsed,
+    stopwatchStatus,
+    startStopwatch,
+    stopStopwatch,
+    laps,
+    recordLap,
+  } = useStopWatch();
 
   return (
     <Layout>
@@ -26,12 +32,12 @@ export default function StopWatch() {
               Stop
             </Button>
           )}
-          <Button onClick={() => {}}>Lap</Button>
+          <Button onClick={recordLap}>Lap</Button>
           <Button onClick={() => {}}>Reset</Button>
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
-        <StopWatchLaps />
+        {laps.length > 0 && <StopWatchLaps laps={laps} />}
       </Layout.Section>
     </Layout>
   );
