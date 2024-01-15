@@ -9,6 +9,10 @@ export default function StopWatch() {
   /* This will represent the elapsed time in seconds.*/
   const [elapsedTime, setElapsedTime] = useState(0);
 
+  /* Records the history of our lapsed times. Since we do not expect to have a large amount,
+  we can just use an array to record these lapsed times. */
+  const [elapsedTimes, setElapsedTimes] = useState<number[]>([]);
+
   useEffect(() => {
     // Creating a ref to our interval function so we can clean it up when our timer stops
     let intervalRef: NodeJS.Timeout;
@@ -26,13 +30,25 @@ export default function StopWatch() {
   };
 
   return (
-    <div>
-      <p>StopWatch</p>
+    <div className="stopwatch-box">
       <div>Current: {elapsedTime}</div>
+      <div>
+        <p>Laps:</p>
+        <div className="laps-box">
+          {elapsedTimes.map((time, index) => (
+            <p>
+              Lap {index + 1}: {time} seconds
+            </p>
+          ))}
+        </div>
+      </div>
       <StopWatchButton
         active={timer}
         timerHandler={setTimer}
         elapsedTimeHandler={setElapsedTime}
+        elapsedTime={elapsedTime}
+        elapsedTimes={elapsedTimes}
+        updateLapsedTimeHandler={setElapsedTimes}
       />
     </div>
   );

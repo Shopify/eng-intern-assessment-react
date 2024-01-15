@@ -34,3 +34,17 @@
 .stopwatch-red {
   background-color: rgb(242, 103, 103);
 }
+
+.laps-box {
+  display: block;
+  height: 12rem;
+  overflow-y: scroll;
+  width: 50%;
+  font-size: large;
+}
+
+.stopwatch-box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}

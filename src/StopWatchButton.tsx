@@ -5,15 +5,22 @@ import "./stopwatch.css";
 export default function StopWatchButton({
   active,
   timerHandler,
+  elapsedTime,
   elapsedTimeHandler,
+  elapsedTimes,
+  updateLapsedTimeHandler,
 }: {
   active: boolean;
   timerHandler: React.Dispatch<React.SetStateAction<boolean>>;
+  elapsedTime: number;
   elapsedTimeHandler: React.Dispatch<React.SetStateAction<number>>;
+  elapsedTimes: number[];
+  updateLapsedTimeHandler: React.Dispatch<React.SetStateAction<number[]>>;
 }) {
   const resetHandler = () => {
     timerHandler(false);
     elapsedTimeHandler(0);
+    updateLapsedTimeHandler([]);
   };
 
   return (
@@ -34,7 +41,12 @@ export default function StopWatchButton({
           Start
         </span>
       )}
-      <span className="stopwatch-button">Lapse</span>
+      <span
+        className="stopwatch-button"
+        onClick={() => updateLapsedTimeHandler([...elapsedTimes, elapsedTime])}
+      >
+        Lap
+      </span>
       <span className="stopwatch-button stopwatch-red" onClick={resetHandler}>
         Reset
       </span>
