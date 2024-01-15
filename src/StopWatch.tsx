@@ -47,8 +47,8 @@ export default function StopWatch() {
     }, [isRunning]);
 
     return(
-        <div style={{margin: '10px', fontSize: '40px'}}>
-            <h1 style={{margin: '10px'}}>Stopwatch</h1>
+        <div style={{display:"flex", alignItems : "center", flexDirection : "column"}}>
+            <h1 style={{margin: '10px', fontSize : '50px'}}>Stopwatch</h1>
             <div style={{ fontSize: '120px', margin: '5px 10px' }}>
                 {Math.floor(time / 60000).toString().padStart(2, '0')}:
                 {((time % 60000) / 1000).toFixed(1).padStart(4, '0')}
@@ -66,14 +66,14 @@ export default function StopWatch() {
                 </div>
             }
 
-            <div>
+            <div style={{ overflow: 'auto', maxHeight: '450px', margin : '25px'}} >
                 {laps.map((lap, index) => (
-                <div key={index} style={{margin: '10px' }}>
-                    <div>Lap {index + 1}</div>
-                    <div>
+                <div key={index} style={{margin: '10px', fontSize : '40px'}}>
+                    <span style={{paddingRight : "50px"}}>Lap {index + 1}</span>
+                    <span>
                         {Math.floor(lap / 60000).toString().padStart(2, '0')}:
                         {((lap % 60000) / 1000).toFixed(1).padStart(4, '0')}
-                    </div>
+                    </span>
                 </div>
                 ))}
             </div>
