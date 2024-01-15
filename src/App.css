@@ -1,0 +1,21 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.timer__container {
+  background-color: lightgray;
+  padding: 3rem;
+  border-radius: 20px;
+}
+
+.laps {
+  margin-top: 1rem;
+}
