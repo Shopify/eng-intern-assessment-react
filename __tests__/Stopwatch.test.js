@@ -18,26 +18,36 @@ describe("Stopwatch", () => {
     fireEvent.click(screen.getByText("Start"));
     expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
-    // using act to wait for the timer to update the DOM
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 1000));
-    });
+    // need to delay the assertion until the timer updates the DOM, to test the timer is running
+    await delay();
 
     fireEvent.click(screen.getByText("Stop"));
     const stoppedTime = screen.queryByTestId("timer");
     expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).toEqual(stoppedTime);
   });
 
-  // test('pauses and resumes the stopwatch', () => {
-  //   render(<Stopwatch />);
+  // updated wording from pause to stop, as the timer being stopped is the same as the timer being paused
+  test("stops and resumes the stopwatch", async () => {
+    render(<Stopwatch />);
 
-  //   fireEvent.click(screen.getByText('Start'));
-  //   fireEvent.click(screen.getByText('Pause'));
-  //   const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
+    fireEvent.click(screen.getByText("Start"));
 
-  //   fireEvent.click(screen.getByText('Resume'));
-  //   expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
-  // });
+    // need to delay the assertion until the timer updates the DOM, to test the timer is running
+    await delay();
+
+    fireEvent.click(screen.getByText("Stop"));
+    const pausedTime = screen.queryByTestId("timer").textContent;
+
+    // start the timer again, should not be the same as the paused time
+    fireEvent.click(screen.getByText("Start"));
+
+    // need to delay the assertion until the timer updates the DOM, to test the timer is running
+    await delay();
+
+    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
+      pausedTime
+    );
+  });
 
   // test('records and displays lap times', () => {
   //   render(<Stopwatch />);
@@ -61,3 +71,11 @@ describe("Stopwatch", () => {
   //   expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
   // });
 });
+
+export async function delay() {
+  // need to delay the assertion until the timer updates the DOM, to test the timer is running
+  // using act to wait for the timer to update the DOM
+  await act(async () => {
+    await new Promise((r) => setTimeout(r, 1000));
+  });
+}
