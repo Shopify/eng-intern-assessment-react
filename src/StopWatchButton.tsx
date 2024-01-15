@@ -2,13 +2,28 @@
 
 import React from 'react'
 
-export default function StopWatchButton() {
+interface Props {
+    isRunning: Boolean
+    runningHandler: () => void,
+    resetHandler: () => void
+}
+
+export default function StopWatchButton({isRunning, runningHandler, resetHandler}:Props) {
+
+
+    if (isRunning) {
+        
+        return (
+            <div>
+                <button onClick={runningHandler}>Stop</button>
+                <button>Lap</button>
+            </div>
+        )
+    }
     return(
         <div>
-            <button>Start</button>
-            <button>Stop</button>
-            <button>Reset</button>
-            <button>Lap</button>
+            <button onClick={runningHandler}>Start</button>
+            <button onClick={resetHandler}>Reset</button>
         </div>
     )
 }
