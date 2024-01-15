@@ -69,7 +69,7 @@ export default function StopWatch() {
             <div>
                 {laps.map((lap, index) => (
                 <div key={index} style={{margin: '10px' }}>
-                    <div>Lap {index}</div>
+                    <div>Lap {index + 1}</div>
                     <div>
                         {Math.floor(lap / 60000).toString().padStart(2, '0')}:
                         {((lap % 60000) / 1000).toFixed(1).padStart(4, '0')}
