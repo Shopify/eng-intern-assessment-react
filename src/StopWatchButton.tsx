@@ -1,8 +1,12 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 
-export default function StopWatchButton({ content } : {content: string}) {
+interface StopWatchButtonProps {
+    content: string,
+    onClick: () => void;
+}
+
+export default function StopWatchButton({ content, onClick = undefined} : StopWatchButtonProps) {
     return(
-        <button>{ content }</button>
+        <button onClick={onClick}>{ content }</button>
     )
 }
