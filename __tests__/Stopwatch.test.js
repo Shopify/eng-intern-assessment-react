@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Stopwatch from '../src/StopWatch';
 
@@ -21,14 +21,16 @@ describe('Stopwatch', () => {
     expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
   });
 
-  test('pauses and resumes the stopwatch', () => {
+  test('pauses and resumes the stopwatch', async () => {
     render(<Stopwatch />);
     
     fireEvent.click(screen.getByText('Start'));
+    await waitFor(() => {}, { timeout: 100 });
     fireEvent.click(screen.getByText('Pause'));
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText('Resume'));
+    await waitFor(() => {}, { timeout: 100 });
     expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
   });
 
