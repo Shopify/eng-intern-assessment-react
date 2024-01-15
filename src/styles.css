@@ -1,0 +1,44 @@
+.body {
+    /* margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.timer-container {
+    /* background-color: aqua; */
+    min-height: fit-content;
+    min-width: fit-content;
+    display: block;
+    margin: auto;
+    width: 50%;
+
+}
+
+.lap-time-container {
+    /* display: block; */
+    /* flex-direction: column; */
+    background-color: white;
+}
+
+.button {
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+}
+
+.start {
+    border-color: green;
+}
+
+.stop {
+    border-color: red;
+}
+
+.reset {
+    border: 1px 1px gray;
+}
+
+.lap {
+    border: 1px 1px gray;
+}
