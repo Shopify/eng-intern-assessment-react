@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "DigitalClock";
+  src: url("./fonts/DS-DIGIT.TTF") format("truetype");
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.stop-watch {
+  font-family: "DigitalClock", sans-serif;
+  font-size: 12vw;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin-left: 21%;
+  margin-top: 5rem;
+}
+
+.text {
+  font-family: "Inter", sans-serif;
+}
+
+.header {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #98bc44;
+    color: #000;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  title {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .chakra-stack.css-1rafi8n {
+    font-family: "Inter", sans-serif;
+  }
+}
+
+.laps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar:vertical {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+}
