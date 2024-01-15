@@ -4,6 +4,7 @@ import StopWatchButton from "./StopWatchButton";
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(true);
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -24,6 +25,11 @@ export default function StopWatch() {
   const handleReset = () => {
     setTime(0);
     setIsPaused(true);
+    setLapTimes([]);
+  };
+
+  const handleLap = () => {
+    setLapTimes((prevLaps) => [...prevLaps, time]);
   };
 
   const formatTime = (totalMilSeconds: number) => {
@@ -46,6 +52,7 @@ export default function StopWatch() {
         isPaused={isPaused}
         handleStartStop={handleStartStop}
         handleReset={handleReset}
+        handleLap={handleLap}
       ></StopWatchButton>
       <div
         style={{
@@ -56,6 +63,27 @@ export default function StopWatch() {
         }}
       >
         <h1 style={{ color: "white", fontSize: "64px" }}>{formatTime(time)}</h1>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+        }}
+      >
+        {lapTimes.map((lapTime, index) => (
+          <div
+            style={{
+              backgroundColor: "black",
+              borderRadius: "8px",
+              padding: "6px",
+            }}
+          >
+            <h2 key={index} style={{ color: "white", fontSize: "32px" }}>
+              {formatTime(lapTime)}
+            </h2>
+          </div>
+        ))}
       </div>
     </div>
   );

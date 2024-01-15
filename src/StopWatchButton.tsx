@@ -4,12 +4,14 @@ interface StopWatchButtonProps {
   isPaused: boolean;
   handleStartStop: MouseEventHandler<HTMLButtonElement>;
   handleReset: MouseEventHandler<HTMLButtonElement>;
+  handleLap: MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function StopWatchButton({
   isPaused,
   handleStartStop,
   handleReset,
+  handleLap,
 }: StopWatchButtonProps) {
   return (
     <div>
@@ -24,14 +26,14 @@ export default function StopWatchButton({
         {isPaused ? "Start" : "Stop"}
       </button>
       <button
-        onClick={isPaused ? handleReset : null}
+        onClick={isPaused ? handleReset : handleLap}
         style={{
           backgroundColor: "white",
           color: "black",
           borderColor: "black",
         }}
       >
-        {isPaused ? "Reset" : "Laps"}
+        {isPaused ? "Reset" : "Lap"}
       </button>
     </div>
   );
