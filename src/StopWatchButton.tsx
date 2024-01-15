@@ -1,7 +1,18 @@
 import React from 'react'
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+interface StopWatchButtonProps {
+  start: () => void
+  reset: () => void
+  isRunning: boolean
+}
+
+export default function StopWatchButton({start, reset, isRunning}: StopWatchButtonProps) {
+
+
+  return(
+    <div>
+      <button type='button' onClick={start}>{isRunning ? 'Stop!' : 'Start!'}</button>
+      <button type='button' onClick={reset}>Reset</button>
+    </div>
+  )
 }

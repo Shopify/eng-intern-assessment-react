@@ -1,7 +1,13 @@
 import React from 'react'
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
+interface StopWatchProps {
+  time: number
+}
+
+export default function StopWatch({time}: StopWatchProps) {
+  return(
+    <div>
+      <p>{time.toFixed(2)}</p>
+    </div>
+  )
 }
