@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function StopWatchButton() {
+interface StopWatchButtonProps {
+    onPress: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export default function StopWatchButton({ onPress }: StopWatchButtonProps) {
     return(
-        <div></div>
-    )
+        <div>
+            <button onClick={onPress}>Start/Stop</button>
+        </div>
+    );
 }

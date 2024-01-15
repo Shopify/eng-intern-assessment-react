@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Since this will only be a one-page application, this is fine */
+body {
+    display: grid;
+    height: 100vh;
+    place-content: center;
+    background-color: beige;
+}
+
+.stopwatch {
+    display: flex;
+    width: 500px;
+    max-width: 500px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: grey;
+    display: flex;
+}
