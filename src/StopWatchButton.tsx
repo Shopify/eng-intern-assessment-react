@@ -17,7 +17,7 @@ export default function StopWatchButton({
   timer: number;
 }) {
   return (
-    <div>
+    <div style={{ marginTop: "20px" }}>
       <button onClick={start} disabled={isActive}>
         Start
       </button>

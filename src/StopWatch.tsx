@@ -8,7 +8,7 @@ export default function StopWatch() {
   const { timer, laps, lap, start, stop, reset, isActive } = useStopwatch();
 
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
       <DisplayTime timer={timer} />
       <DisplayLaps laps={laps} />
       <StopWatchButton
