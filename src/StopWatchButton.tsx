@@ -1,7 +1,19 @@
 import React from "react";
 
-export default function StopWatchButton() {
-  const [time, setTime] = React.useState(0);
-  const [timerOn, setTimeOn] = React.useState(false);
-  return <div></div>;
+interface StopWatchButtonProps {
+  btnAction: string;
+  abilityDisable: boolean;
+  onClick: () => void;
+}
+
+export default function StopWatchButton(props: StopWatchButtonProps) {
+  const { btnAction, abilityDisable = false, onClick } = props;
+  return (
+    <div>
+      <button disabled={abilityDisable} onClick={onClick}>
+        {" "}
+        {btnAction}
+      </button>
+    </div>
+  );
 }
