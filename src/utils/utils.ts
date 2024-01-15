@@ -12,5 +12,8 @@ export const getCurrentTime = (seconds: number) => {
     seconds,
   };
 };
-
-export const formatNum = (num: number) => ("0" + num).slice(-2);
+// takes a number and returns a string with 2 digits, e.g. 1 -> "01"
+// if the number is greater than 10, it returns the number as a string
+export const formatNum = (num: number) => {
+  return num >= 10 ? String(num) : ("00" + num).slice(-2);
+};
