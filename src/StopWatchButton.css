@@ -1,0 +1,28 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stopwatch-button {
+    border-radius: 20px;
+    width: 105px;
+    height: 50px;
+    border: none;
+    font-family: monospace;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Style for active buttons */
+.stopwatch-button:not([disabled]) {
+    background-color: #5E8E3E;
+}
+
+/* Style for disabled buttons */
+.stopwatch-button[disabled] {
+    background-color: #356036;
+    color: #888;
+    cursor: not-allowed;
+}
