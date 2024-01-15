@@ -36,6 +36,14 @@ import moment from 'moment';
  *      thread and other things on another thread this adds
  *      some level of variability to timing. As the timer
  *      might have to wait for a different process to run.
+ * 
+ *      For the lap timer, ive decided that adding a second timer
+ *      and incrementing the time, then setting it to zero at the
+ *      same time as the main should work fast enough, as this
+ *      does not require any other loops, and behind the screen 
+ *      should use minimal instructions to increment the secondary
+ *      lap counter, to then also record both total time and
+ *      lap time.
  *      
  *      
  *      
@@ -49,12 +57,18 @@ import moment from 'moment';
  */
 export default function App() {
     const [time, setTime] = useState<moment.Duration>(moment.duration(0));
+    const [lapTime, setLapTime] = useState<moment.Duration>(moment.duration(0));
     const [isRunning, setIsRunning] = useState<boolean>(true);
+    const [laps, addLap] = useState<moment.Duration[]>([]);
 
+    // When the timer is on, increase the count
     useEffect(() => {
         const timer = setInterval(() => {
+            // check to verify that the timer is active
             if (isRunning) {
+                // increase time by 1 second
                 setTime((prevTime) => moment.duration(prevTime).add(1, 's'));
+                setLapTime((prevLapTime) => moment.duration(prevLapTime).add(1, 's'));
             }
         }, 1000)
 
@@ -64,7 +78,18 @@ export default function App() {
     return(
         <div>
             <StopWatch time={time} />
-            <StopWatchButton setIsRunning={setIsRunning} setTime={setTime} />
+            <StopWatchButton setIsRunning={setIsRunning} setTime={setTime} time={time} addLap={addLap} laps={laps} lapTime={lapTime} setLapTime={setLapTime} />
+
+            {laps.length > 0 && (
+                <div>
+                <h2>Lap Times:</h2>
+                <ul>
+                    {laps.map((lap, index) => (
+                    <li key={index}>Hours:Minutes:Seconds: {Math.floor(lap.asHours())}:{lap.minutes()}:{lap.seconds()}</li>
+                    ))}
+                </ul>
+                </div>
+            )}
         </div>
     )
 }
