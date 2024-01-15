@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
@@ -13,6 +14,10 @@ export default function StopWatch() {
     }
     return () => clearInterval(interval);
   }, [isPaused, time]);
+
+  const handleStartStop = () => {
+    setIsPaused(!isPaused);
+  };
 
   const formatTime = (totalMilSeconds: number) => {
     const milliseconds = Math.floor((totalMilSeconds / 10) % 1000);
@@ -30,6 +35,10 @@ export default function StopWatch() {
 
   return (
     <div>
+      <StopWatchButton
+        isPaused={isPaused}
+        handleStartStop={handleStartStop}
+      ></StopWatchButton>
       <div
         style={{
           textAlign: "center",
