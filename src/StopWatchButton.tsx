@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment';
 
 /**
 * Interface for stopwatch buttons.
 */
 interface stopWatchProps {
-    setTime: React.Dispatch<React.SetStateAction<number>>
+    setTime: React.Dispatch<React.SetStateAction<moment.Duration>>
     setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -22,7 +23,7 @@ export default function StopWatchButton({setTime, setIsRunning}: stopWatchProps)
         <div>
             <button onClick={() => setIsRunning(true)}>Start</button>
             <button onClick={() => setIsRunning(false)}>Stop</button>
-            <button onClick={() => setTime(0.00)}>Reset</button>
+            <button onClick={() => setTime(moment.duration(0))}>Reset</button>
         </div>
     )
 }

@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment';
 
 /**
  * Interface for stopwatch component.
  */
 interface stopWatchProps {
-    time: number
+    time: moment.Duration
 }
 
 /**
@@ -16,10 +17,13 @@ interface stopWatchProps {
  *      time - number - current time
  */
 export default function StopWatch({time}: stopWatchProps) {
+    const hours = Math.floor(time.asHours());
+    const minutes = time.minutes();
+    const seconds = time.seconds();
     return(
         <div>
             <p>
-                Time Remaining: {time}
+                Current Time(Hours, Minutes, Seconds): {hours}:{minutes}:{seconds}
             </p>
         </div>
     )

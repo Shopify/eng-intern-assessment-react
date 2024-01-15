@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton';
+import moment from 'moment';
 
 /**     Application background
  * 
@@ -9,9 +11,7 @@ import StopWatchButton from './StopWatchButton';
  *      click the start, stop, and reset buttons.
  * 
  *      The timer will be counting up from 0, and have
- *      an accuracy of 2 decimal points allowing for the
- *      user to have a greater amount of accuracy
- *      within the timer
+ *      an accuracy of 1 second.
  * 
  *  Approach template
  *      This will require 2 main aspects to work correctly
@@ -29,6 +29,15 @@ import StopWatchButton from './StopWatchButton';
  *      This will only be changed by the reset button.
  *      Where the start and stop will change the boolean value
  *      of the isRunning.
+ * 
+ *      Due to react not actually being multi threaded, We also
+ *      have to take into consideration the looping not being
+ *      perfect. Without the ability to work have time on one
+ *      thread and other things on another thread this adds
+ *      some level of variability to timing. As the timer
+ *      might have to wait for a different process to run.
+ *      
+ *      
  *      
  */
 
@@ -39,8 +48,19 @@ import StopWatchButton from './StopWatchButton';
  *      of the stopwatch to work.
  */
 export default function App() {
-    const [time, setTime] = React.useState<number>(0.00);
-    const [isRunning, setIsRunning] = React.useState<boolean>(false);
+    const [time, setTime] = useState<moment.Duration>(moment.duration(0));
+    const [isRunning, setIsRunning] = useState<boolean>(true);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            if (isRunning) {
+                setTime((prevTime) => moment.duration(prevTime).add(1, 's'));
+            }
+        }, 1000)
+
+        return () => clearInterval(timer);
+    }, [isRunning])
+
     return(
         <div>
             <StopWatch time={time} />
