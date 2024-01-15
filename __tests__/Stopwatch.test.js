@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Stopwatch from '../src/StopWatch';
 
@@ -25,12 +25,11 @@ describe('Stopwatch', () => {
     render(<Stopwatch />);
     
     fireEvent.click(screen.getByText('Start'));
-    await waitFor(() => {}, { timeout: 100 });
     fireEvent.click(screen.getByText('Pause'));
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText('Resume'));
-    await waitFor(() => {}, { timeout: 100 });
+    await new Promise((r) => setTimeout(r, 100));
     expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
   });
 
