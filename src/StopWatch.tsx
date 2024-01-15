@@ -10,7 +10,6 @@ export default function StopWatch() {
   return (
     <div style={{ textAlign: "center", marginTop: "20px" }}>
       <DisplayTime timer={timer} />
-      <DisplayLaps laps={laps} />
       <StopWatchButton
         isActive={isActive}
         timer={timer}
@@ -19,6 +18,7 @@ export default function StopWatch() {
         reset={reset}
         lap={lap}
       />
+      <DisplayLaps laps={laps} />
     </div>
   );
 }
