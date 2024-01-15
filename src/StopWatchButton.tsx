@@ -1,10 +1,11 @@
 import React, { MouseEventHandler } from "react";
 
+// Props interface for StopWatchButton component
 interface StopWatchButtonProps {
   isPaused: boolean;
-  handleStartStop: MouseEventHandler<HTMLButtonElement>;
-  handleReset: MouseEventHandler<HTMLButtonElement>;
-  handleLap: MouseEventHandler<HTMLButtonElement>;
+  handleStartStop: MouseEventHandler<HTMLButtonElement>; // Click handler for Stop/Start button
+  handleReset: MouseEventHandler<HTMLButtonElement>; // Click handler for Reset button
+  handleLap: MouseEventHandler<HTMLButtonElement>; // Click handler for Lap button
 }
 
 export default function StopWatchButton({
@@ -14,7 +15,14 @@ export default function StopWatchButton({
   handleLap,
 }: StopWatchButtonProps) {
   return (
-    <div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "50% 50%",
+        height: "48px",
+      }}
+    >
+      {/* Start/Stop button (swithces depending on whether time is paused or not)*/}
       <button
         onClick={handleStartStop}
         style={{
