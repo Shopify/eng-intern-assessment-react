@@ -4,8 +4,8 @@ import './App.css';
 
 export default function App() {
     return(
-        <main>
-            <h1>Shopify Stopwatch</h1>
+        <main className='app-container'>
+            <h1>STOPWATCH</h1>
             <section>
                 <StopWatch/>
             </section>

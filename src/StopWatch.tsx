@@ -56,13 +56,13 @@ export default function StopWatch() {
         };
 
     return(
-        <main className='timer-container'>
-            <div>{formatTime(time)}</div>
-                <div >
-                    <StopWatchButton label={timerOn ? "Stop" : "Start"} onClick={handelPlayPause} />
-                    <StopWatchButton label="Lap" onClick={handleLap} />
-                    <StopWatchButton label="Reset" onClick={handelReset} />
-                        </div>
+        <main>
+            <div className='timer-display'>{formatTime(time)}</div>
+            <div className='btn-container'>
+            <StopWatchButton label={timerOn ? "Stop" : "Start"} onClick={handelPlayPause} />
+            <StopWatchButton label="Lap" onClick={handleLap} />
+            <StopWatchButton label="Reset" onClick={handelReset} />
+            </div>                      
                 <div className="laps">
                 {laps.map((lap, index) => (
                     <p key={index}>Lap {index + 1}: {formatTime(lap)}</p>
