@@ -3,9 +3,13 @@ import { formatNum, getCurrentTime } from "../utils/utils";
 import { format } from "path";
 
 export default function useStopwatch() {
+  // current timer value in seconds
   const [timer, setTimer] = useState(0);
+  // used to check if timer is running or not
   const [isActive, setIsActive] = useState(false);
+  // list of lap times
   const [laps, setLaps] = useState<string[]>([]);
+  // used to clear interval when timer is stopped
   const countRef = useRef(null);
 
   const start = () => {
