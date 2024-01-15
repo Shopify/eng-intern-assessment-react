@@ -63,16 +63,16 @@ describe("Stopwatch", () => {
     expect(screen.getByTestId("lap-list").children.length).toBe(2);
   });
 
-  // test('resets the stopwatch', () => {
-  //   render(<Stopwatch />);
+  test("resets the stopwatch", () => {
+    render(<Stopwatch />);
 
-  //   fireEvent.click(screen.getByText('Start'));
-  //   fireEvent.click(screen.getByText('Lap'));
-  //   fireEvent.click(screen.getByText('Reset'));
+    fireEvent.click(screen.getByText("Start"));
+    fireEvent.click(screen.getByText("Lap"));
+    fireEvent.click(screen.getByText("Reset"));
 
-  //   expect(screen.getByText('00:00:00')).toBeInTheDocument();
-  //   expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
-  // });
+    expect(screen.getByText("00:00:00")).toBeInTheDocument();
+    expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
+  });
 });
 
 export async function delay() {
