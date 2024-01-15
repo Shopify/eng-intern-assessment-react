@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 
-enum StopwatchStatus {
-  Stopped,
+export enum StopwatchStatus {
   Running,
   Paused,
 }
 
 export const useStopWatch = () => {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
-  const [stopwatchStatus, setStatus] = useState<StopwatchStatus>(
-    StopwatchStatus.Stopped
+  const [stopwatchStatus, setStopwatchStatus] = useState<StopwatchStatus>(
+    StopwatchStatus.Paused
   );
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -24,16 +23,21 @@ export const useStopWatch = () => {
     } else {
       clearInterval(intervalRef.current);
     }
-
     return () => clearInterval(intervalRef.current);
   }, [stopwatchStatus]);
 
   const startStopwatch = () => {
-    setStatus(StopwatchStatus.Running);
+    setStopwatchStatus(StopwatchStatus.Running);
+  };
+
+  const stopStopwatch = () => {
+    setStopwatchStatus(StopwatchStatus.Paused);
   };
 
   return {
     timeElapsed,
+    stopwatchStatus,
+    stopStopwatch,
     startStopwatch,
   };
 };

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text, ButtonGroup, Layout, Button } from '@shopify/polaris';
 import StopWatchLaps from './StopWatchLaps';
-import { useStopWatch } from '../useStopWatch';
+import { useStopWatch, StopwatchStatus } from '../useStopWatch';
 import { formatTime } from '../utils';
 
 export default function StopWatch() {
-  const { timeElapsed, startStopwatch } = useStopWatch();
+  const { timeElapsed, stopwatchStatus, startStopwatch, stopStopwatch } =
+    useStopWatch();
 
   return (
     <Layout>
@@ -16,10 +17,17 @@ export default function StopWatch() {
       </Layout.Section>
       <Layout.Section>
         <ButtonGroup>
-          <Button onClick={startStopwatch}>Start</Button>
-          <Button onClick={() => {}}>Stop</Button>
+          {stopwatchStatus === StopwatchStatus.Paused ? (
+            <Button variant="primary" tone="success" onClick={startStopwatch}>
+              Start
+            </Button>
+          ) : (
+            <Button variant="primary" onClick={stopStopwatch}>
+              Stop
+            </Button>
+          )}
           <Button onClick={() => {}}>Lap</Button>
-          <Button onClick={() => {}}>Rest</Button>
+          <Button onClick={() => {}}>Reset</Button>
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
