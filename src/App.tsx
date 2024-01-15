@@ -1,7 +1,10 @@
-import React from 'react'
+import { Text } from '@shopify/polaris';
+import React from 'react';
 
 export default function App() {
-    return(
-        <div></div>
-    )
+  return (
+    <Text variant="heading3xl" as="h2">
+      Stop Watch App
+    </Text>
+  );
 }
