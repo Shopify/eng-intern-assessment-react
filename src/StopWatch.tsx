@@ -55,7 +55,7 @@ export default function StopWatch() {
                 <Button onClick={() => changeState(true)}>Start</Button>
                 <Button onClick={() => changeState(false)}>Stop</Button>
                 <Button onClick={() => addLap()}>Lap</Button>
-                <Button onClick={() => { setTime(0); changeState(false); }}>Reset</Button>
+                <Button onClick={() => { setTime(0); changeState(false); setLaps([]); }}>Reset</Button>
             </ButtonGroup>
         </div>
     )
