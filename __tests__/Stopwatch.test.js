@@ -49,16 +49,19 @@ describe("Stopwatch", () => {
     );
   });
 
-  // test('records and displays lap times', () => {
-  //   render(<Stopwatch />);
+  test("records and displays lap times", () => {
+    render(<Stopwatch />);
 
-  //   fireEvent.click(screen.getByText('Start'));
-  //   fireEvent.click(screen.getByText('Lap'));
-  //   expect(screen.getByTestId('lap-list')).toContainElement(screen.getByText(/(\d{2}:){2}\d{2}/));
+    fireEvent.click(screen.getByText("Start"));
+    fireEvent.click(screen.getByText("Lap"));
+    // screen should now have a lap list of 1, with lap-item-0 as the id
+    expect(screen.getByTestId("lap-list")).toContainElement(
+      screen.getByTestId("lap-item-0")
+    );
 
-  //   fireEvent.click(screen.getByText('Lap'));
-  //   expect(screen.getByTestId('lap-list').children.length).toBe(2);
-  // });
+    fireEvent.click(screen.getByText("Lap"));
+    expect(screen.getByTestId("lap-list").children.length).toBe(2);
+  });
 
   // test('resets the stopwatch', () => {
   //   render(<Stopwatch />);

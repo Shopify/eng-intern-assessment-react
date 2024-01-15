@@ -6,6 +6,7 @@ export default function DisplayLaps({ laps }: { laps: string[] }) {
       {laps.map((lap, i) => (
         <div
           key={i}
+          data-testid={`lap-item-${i}`}
           style={{
             fontSize: "20px",
             marginTop: "10px",
