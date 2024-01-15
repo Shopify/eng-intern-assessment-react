@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.App {
+  background-color: #95bf47;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-top: 0;
+  height: 20vh;
+}
+
+.stop-watch {
+  height: 50vh;
+}
