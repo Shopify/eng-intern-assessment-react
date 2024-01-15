@@ -4,12 +4,12 @@ import DisplayTime from "./components/DisplayTime";
 import DisplayLaps from "./components/DisplayLaps";
 
 export default function StopWatch() {
-  const { timer, startTime, laps, lap, start, stop, reset, isActive } =
+  const { timer, laps, lap, start, stop, reset, isActive } =
     useStopwatch();
 
   return (
     <div>
-      <DisplayTime timer={timer} startTime={startTime} />
+      <DisplayTime timer={timer} />
       <DisplayLaps laps={laps} />
       <button onClick={start}>Start</button>
       <button onClick={stop} disabled={!isActive}>
