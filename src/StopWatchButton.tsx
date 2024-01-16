@@ -14,10 +14,15 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ running, recordLapTim
     <div className="stopWatchButtons">
         <div className="centerMargin">
             {running
-                ?<button className="btn stopButton" onClick={() => {setRunning(false)}}>Stop</button>
-                :<button className="btn startButton" onClick={() => {setRunning(true)}}>Start</button>}
-            <button className={`btn lapButton ${timer == 0 ? 'disabledButton' : 'lapButtonBorder'}`} onClick={() => {recordLapTime()}} disabled={timer == 0}>Lap</button>
-            <button className={`btn resetButton ${timer == 0 ? 'disabledButton' : ''}`} onClick={() => {resetTimer()}} disabled={timer == 0}>Reset</button>
+                ?<>
+                    <button className="btn stopButton" onClick={() => {setRunning(false)}}>Stop</button>
+                    <button className="btn lapButton" onClick={() => {recordLapTime()}}>Lap</button>                
+                </>
+                :<>
+                    <button className="btn startButton" onClick={() => {setRunning(true)}}>Start</button>
+                    <button className={`btn resetButton ${timer == 0 ? 'disabledButton' : ''}`} onClick={() => {resetTimer()}} disabled={timer == 0}>Reset</button>
+                </>
+                }
         </div>
     </div>    
   );

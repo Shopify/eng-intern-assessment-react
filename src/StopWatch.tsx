@@ -2,13 +2,13 @@ import React from 'react'
 import './styles/StopWatch.css'
 
 interface StopWatchProps{
-    timer?: number
+    timeString: string
 }
 
-export default function StopWatch({timer=0}:StopWatchProps) {
+export default function StopWatch({timeString}:StopWatchProps) {
     return(
         <div className="stopWatchContainer">
-            {timer}
+            {timeString}
         </div>
     )
 }

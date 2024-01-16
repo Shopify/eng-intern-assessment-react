@@ -29,9 +29,6 @@
 .lapButton {
   background-color:#b3b3b3;
 }
-.lapButtonBorder {
-  border: 2px solid #808080
-}
 .lapButton:hover {
   background-color:#808080;
 }
