@@ -1,0 +1,19 @@
+.stopwatch-section {
+    height: 100vh;
+    width: 100%;
+    background-image: radial-gradient(circle at 0 0,#5fd5b6 0,rgba(95,213,182,0) 30%),linear-gradient(180deg,rgba(121,223,255,.7) -10%,rgba(121,223,255,0) 70%),radial-gradient(circle at 95% 0,#d0f224 0,rgba(95,213,182,0) 20%);    
+}
+.stopwatch-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 7.5rem;
+}
+.stopwatch-title{
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 3rem;
+    font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
