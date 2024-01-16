@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
-export default function StopWatch() {
+interface StopWatchProps {
+  onStartClick: () => void;
+}
+
+export default function StopWatch({ onStartClick }: StopWatchProps) {
   return (
     <>
       <div className="stop-watch-container">
@@ -12,7 +16,7 @@ export default function StopWatch() {
           </p>
         </div>
         <div className="controls-container">
-          <StopWatchButton />
+          <StopWatchButton onClick={onStartClick} />
           <StopWatchButton />
           <StopWatchButton />
         </div>
