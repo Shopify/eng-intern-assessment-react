@@ -1,0 +1,33 @@
+.btn {
+    background-color: #4CAF50;
+    border-radius: 16px;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    width: 90px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn.Start {
+    background-color: #26a31a;
+}
+.btn.Start:hover {
+    background-color: #29b31d;
+}
+
+.btn.Stop {
+    background-color: #a61919;
+}
+.btn.Stop:hover {
+    background-color: #b51919;
+}
+
+.btn.Lap, .btn.Reset {
+    background-color: #707070;
+}
+.btn.Lap:hover, .btn.Reset:hover {
+    background-color: #828282;
+}
