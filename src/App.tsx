@@ -1,11 +1,27 @@
 // The main component that renders the stopwatch and handles its functionality.
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StopWatch from "./Components/StopWatch";
 import "./styles.css";
 import { createConfigItem } from "@babel/core";
 
 export default function App() {
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [time, setTime] = useState<number>(0);
+
+  useEffect(() => {
+    // setting up the intervalID and type for Node environment
+    let timer: NodeJS.Timeout;
+
+    // if the timer is running (isRunning state = true) then run the setInterval, if false then clear the intervalTimer
+    // Dependency array watches the isRunning state for it to change to false
+    if (isRunning) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10); // updates every 10 milliseconds
+    }
+
+    return () => clearInterval(timer);
+  }, [isRunning]);
 
   // function the handle if the start button has been clicked
   const handleStartClick = () => {
@@ -39,6 +55,7 @@ export default function App() {
           onResetClick={handleResetClick}
           onLapClick={handleLapClick}
         />
+        <h1>Timer: {time}</h1>
       </div>
     </>
   );
