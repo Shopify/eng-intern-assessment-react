@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MutableRefObject, useEffect } from 'react'
 
 interface TimerState {
     exists: boolean
@@ -24,7 +24,7 @@ export default function StopWatchButton({
     return(
         <div>
             {!timerState.exists && <button onClick={onStartClicked}>Start</button>}
-            {timerState.exists && <button onClick={onPauseClicked}>{timerState.isPaused ? "Pause" : "Unpause"}</button>}
+            {timerState.exists && <button onClick={onPauseClicked}>{timerState.isPaused ? "Unpause" : "Pause"}</button>}
             {timerState.exists && <button onClick={onStopClicked}>Stop</button>}
             {timerState.exists && <button onClick={onLapClicked}>Lap</button>}
         </div>

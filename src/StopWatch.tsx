@@ -4,8 +4,9 @@ import StopWatchButton from './StopWatchButton'
 export default function StopWatch() {
 
     const timerIncrementMs = 10
-    const pause = useRef(true)
+
     const intervalId = useRef(0)
+    const [pause, setPause] = useState<boolean>(false)
     const [exists, setExists] = useState<boolean>(false)
     const [time, setTime] = useState<number>(0)
     const [laps, setLaps] = useState<number[]>([])
@@ -15,23 +16,27 @@ export default function StopWatch() {
         setTime(0)
         setLaps([])
         const id = window.setInterval(() => {
-            if (!pause.current) {
-                setTime(prevTime => (prevTime + timerIncrementMs))
-            }
+            setPause(p => {
+                if (!p) {
+                    setTime(prevTime => (prevTime + timerIncrementMs))
+                }
+                return p
+            })
         }, timerIncrementMs)
         intervalId.current = id
         setExists(true)
-        pause.current = false
+
+        setPause(false)
     }
 
     const togglePause = () => {
-        pause.current = !pause.current
+        setPause(!pause)
     }
 
     const stopTime = () => {
         window.clearInterval(intervalId.current)
         setExists(false)
-        pause.current = true
+        setPause(true)
     }
 
     return(
@@ -43,7 +48,7 @@ export default function StopWatch() {
                 timerState={{
                     exists: exists,
                     time: time,
-                    isPaused: pause.current
+                    isPaused: pause
                 }}
                 onStartClicked={startTime}
                 onLapClicked={() => { setLaps([...laps, time]) }}
