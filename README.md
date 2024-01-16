@@ -8,7 +8,7 @@ author: David Cao
 <br>
 
 <!-- Video walkthrough or image -->
-<img src='./output2x.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://github.com/dave-cao/david-cao-eng-intern-assessment-react/assets/63488152/64b2ea91-9cea-46ec-b66f-b52644287aa8
 
 <br>
 
