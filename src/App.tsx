@@ -51,10 +51,16 @@ export default function App() {
   const formatTimer = (time: number) => {
     // take the time state and divide it by 60000. Round it down to the nearest whole number to get the minute whole number
     // convert the number to a string and use padStart() method to make it a 2 digit number beginning with a zero
-    const minutes = Math.floor(time / 60000)
+    const minutes: string = Math.floor(time / 60000)
       .toString()
       .padStart(2, "0");
-    console.log("minutes", minutes);
+
+    // finding the remainder of time and dividing by 1000 to get the seconds and milliseconds remaining
+    // toFixed converts the value to a string in order to use padStart
+    const seconds: string = ((time % 60000) / 1000).toFixed(2).padStart(5, "0");
+
+    // return minutes and seconds in the correct timer format
+    return `${minutes}:${seconds}`;
   };
 
   return (
@@ -66,7 +72,8 @@ export default function App() {
           onStartClick={isRunning ? handleStopClick : handleStartClick}
           onResetClick={handleResetClick}
           onLapClick={handleLapClick}
-          display={time}
+          display={formatTimer}
+          time={time}
         />
       </div>
     </>
