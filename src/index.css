@@ -65,3 +65,28 @@ button:hover {
   background-color: #BBBBBB;
   transition-duration: 0.3s;
 }
+
+.laps-list {
+	overflow-y:scroll;
+	height: 200px;
+}
+
+* {
+scrollbar-width: auto;
+scrollbar-color: #999999 var(--background);
+}
+
+*::-webkit-scrollbar {
+width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+background: #f4f3f9;
+border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: #999999;
+border-radius: 8px;
+border: 3px solid #f4f3f9;
+}

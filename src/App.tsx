@@ -7,9 +7,9 @@ import './index.css'
 export default function App() {
 
 	const [buttonMessage, setButtonMessage] = useState<string>('Start');
-	const currentTime = new Date();
 	const [time, setTime] = useState<number>(0);
 	const [isStarted, start] = useState<boolean>(false);
+	const [laps, setLaps] = useState<number[]>([]);
 
 	useEffect(() => {
 		let testVar: any;
@@ -22,19 +22,24 @@ export default function App() {
 		return () => clearInterval(testVar);
 	}, [isStarted, time]) 
 
+	const timeCalc = (time: any) => {
+		const hours = Math.floor(time / 360000);
+		const minutes = Math.floor((time % 360000) / 6000);
+		const seconds = Math.floor((time % 6000) / 100);
+		const milliseconds = time % 100;
+		const currentTime = hours.toString() + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0") + "." + milliseconds.toString().padStart(2,"0");
+		return currentTime;
+	}
+
 	const startStop = () => {
 		start(!isStarted)
 	};
 
 	const reset = () => {
+		start(false);
 		setTime(0);
+		setLaps([]);
 	};
-
-
-	const hours = Math.floor(time / 360000);
-	const minutes = Math.floor((time % 360000) / 6000);
-	const seconds = Math.floor((time % 6000) / 100);
-	const milliseconds = time % 100;
 
 	const startProps = {
 		text: buttonMessage,
@@ -43,10 +48,18 @@ export default function App() {
 		text: 'Reset',
 	};
 	const watchProps = {
-		time: (hours.toString() + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0") + ":" + milliseconds.toString().padStart(2,"0")),
+		time: timeCalc(time),
 	};
 	const lapProps = {
 		text: 'Lap',
+	}
+
+	const addLap = () => {
+		setLaps((prevLaps) => [...prevLaps, time])
+	};
+
+	const timeDiff = (time1: number, time2: number) => {
+		return Math.abs(time2-time1);
 	}
 
     return(
@@ -57,7 +70,23 @@ export default function App() {
 				</div>
 				<div className="buttons-wrapper">
 					<StopWatchButton {...startProps} onClick={startStop}/>
+					{isStarted? 
+					<StopWatchButton {...lapProps} onClick={addLap}/>
+				:false}
 					<StopWatchButton {...resetProps} onClick={reset}/>
+				</div>
+				
+				<div>
+						<h3>Laps:</h3>
+						<hr></hr>
+						<ul className="laps-list">
+							{laps.map((lap, index) => (
+								<li key={index}>
+									<span>{timeCalc(timeDiff(lap, (index !== 0) ? laps[index-1]:0))}</span>
+								</li>
+							))}
+							<li></li>
+						</ul>
 				</div>
 			</div>
 		</div>
