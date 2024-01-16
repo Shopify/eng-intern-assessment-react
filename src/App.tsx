@@ -1,6 +1,8 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, HStack, Heading } from "@chakra-ui/react";
 import React from "react";
 import StopWatch from "./StopWatch";
+import StopWatchButton from "./StopWatchButton";
+import ButtonType from "./enums/ButtonType";
 
 export default function App() {
   return (
@@ -16,6 +18,11 @@ export default function App() {
         React Stopwatch
       </Heading>
       <StopWatch />
+      <HStack spacing={5}>
+        <StopWatchButton type={ButtonType.Start} />
+        <StopWatchButton type={ButtonType.Lap} />
+        <StopWatchButton type={ButtonType.Reset} />
+      </HStack>
     </Box>
   );
 }
