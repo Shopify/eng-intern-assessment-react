@@ -7,7 +7,10 @@ const TimeContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 500;
 `;
 
 const TimeDisplay = styled.div`
@@ -22,39 +25,42 @@ const TimeDisplay = styled.div`
   background: black;
   color: white;
   margin: 0px 10px 0px 10px;
+  padding: 5px;
 `;
 
 const TimerCard = styled.div`
-  background: white;
+  background: #fefae0;
   margin: 10px auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 2px;
   position: relative;
-  border-radius: 15px;
+  border-radius: 10px;
   width: 80vh;
   height: 30vh;
   box-sizing: content-box;
 `;
 
 const LapList = styled.div`
-  background: white;
+  background: #fefae0;
   margin: 10px auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 2px;
   position: relative;
-  border-radius: 15px;
+  border-radius: 10px;
   width: 50vh;
   height: 60vh;
   box-sizing: content-box;
-  padding: 10vh;
+  padding: 5vh;
   overflow-y: auto;
+  font-size: 20px;
+  font-weight: 400;
 `;
 
 const ContainerGrid = styled.section`
@@ -65,6 +71,9 @@ const ContainerGrid = styled.section`
   align-items: center;
   padding: 20px;
   margin: 0 auto;
+  @media (max-width: 1150px) {
+    grid-template-columns: minmax(0, max-content);
+  }
 `;
 
 export default function StopWatch() {
@@ -144,8 +153,9 @@ export default function StopWatch() {
                 />
             </TimerCard>
             <LapList>
+                <p style={{ marginBottom: 20, fontWeight: 500, fontSize: 24 }}>Laps</p>
                 {laps.map((lap: any, index: any) => (
-                    <div key={index}>{`Lap ${index + 1}: ${lap}`}</div>
+                    <div style={{ marginBottom: 10 }} key={index}>{`Lap ${index + 1}: ${lap}`}</div>
                 ))}
             </LapList>
         </ContainerGrid>

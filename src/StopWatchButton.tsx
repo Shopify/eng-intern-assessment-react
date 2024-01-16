@@ -10,15 +10,13 @@ const ButtonContainer = styled.div`
 
 const StyledButton = styled.button`
   appearance: button;
-  background: #000;
   border: 1px solid #000;
   border-radius: 4px;
   box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
   box-sizing: border-box;
-  color: #fff;
+  color: white;
   cursor: pointer;
   display: inline-block;
-  font-family: 'ITCAvantGardeStd-Bk', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -42,11 +40,11 @@ const StyledButton = styled.button`
 export default function StopWatchButton({ isRunning, startTimer, pauseTimer, stopTimer, recordLap, clearLaps }: any) {
     return (
         <ButtonContainer>
-            <StyledButton style={{ background: 'green' }} onClick={startTimer} disabled={isRunning}>Start</StyledButton>
-            <StyledButton style={{ background: 'yellow' }} onClick={pauseTimer} disabled={!isRunning}>Pause</StyledButton>
-            <StyledButton style={{ background: 'red' }} onClick={stopTimer}>Stop</StyledButton>
-            <StyledButton onClick={recordLap} disabled={!isRunning}>Lap</StyledButton>
-            <StyledButton onClick={clearLaps}>Clear Laps</StyledButton>
+            <StyledButton style={{ background: '#2a9d8f', color: 'white' }} onClick={startTimer} disabled={isRunning}>Start</StyledButton>
+            <StyledButton style={{ background: '#e9c46a', color: 'white' }} onClick={pauseTimer} disabled={!isRunning}>Pause</StyledButton>
+            <StyledButton style={{ background: '#e63946', color: 'white' }} onClick={stopTimer}>Stop</StyledButton>
+            <StyledButton style={{ background: '#1d3557', color: 'white' }} onClick={recordLap} disabled={!isRunning}>Lap</StyledButton>
+            <StyledButton style={{ background: '#1d3557', color: 'white' }} onClick={clearLaps}>Clear Laps</StyledButton>
         </ButtonContainer>
     );
 };
