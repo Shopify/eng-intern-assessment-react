@@ -68,10 +68,27 @@ describe('Stopwatch', () => {
     fireEvent.click(screen.getByText('Stop'));
     fireEvent.click(screen.getByText('Start'));
     act(() => {
-      jest.advanceTimersByTime(2000);
+      jest.advanceTimersByTime(500);
     });
     expect(screen.getByTestId('stopwatch-time').textContent).toBe(
-      '00:00:05.000'
+      '00:00:03.500'
+    );
+  });
+
+  test('resets timer and stops on reset button click', () => {
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+    fireEvent.click(screen.getByText('Reset'));
+    expect(screen.getByTestId('stopwatch-time').textContent).toBe(
+      '00:00:00.000'
+    );
+    act(() => {
+      jest.advanceTimersByTime(50);
+    });
+    expect(screen.getByTestId('stopwatch-time').textContent).toBe(
+      '00:00:00.000'
     );
   });
 });
