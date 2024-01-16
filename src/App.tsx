@@ -6,7 +6,7 @@ import './styles/App.css'
 
 export default function App() {
     const [running, setRunning] = useState<boolean>(false);
-    const [lapTimes, setLapTimes] = useState<number[]>([500, 500]);
+    const [lapTimes, setLapTimes] = useState<number[]>([]);
     const [timer, setTimer] = useState<number>(0);
 
     const RecordLapTime = () => {
@@ -15,6 +15,8 @@ export default function App() {
 
     const ResetTimer = () => {
         setTimer(0);
+        setLapTimes([]);
+        setRunning(false);
     }
 
     useEffect(() => {
@@ -30,18 +32,22 @@ export default function App() {
     return(
         <div>
             <StopWatch timer={timer}/>
-            <StopWatchButton recordLapTime={RecordLapTime} setRunning={setRunning} resetTimer={ResetTimer}/>
-            <div className="lapTimesBox">
-                <hr/>
-                <h2>Laps Tracker</h2>
-                {
-                    lapTimes.map((lapTime, index) => {
-                        return <div key={"lap"+index} className="lapTimeComponent">
-                            <span className="lapTimeTag">Lap {index + 1}</span>: <span>{lapTime}</span>
-                        </div>
-                    })
-                }
-            </div>
+            <StopWatchButton running={running} recordLapTime={RecordLapTime} setRunning={setRunning} resetTimer={ResetTimer} timer={timer}/>
+            {
+                (lapTimes.length > 0)
+                ?<div className="lapTimesBox">
+                    <hr/>
+                    <h2>Laps Tracker</h2>
+                    {
+                        lapTimes.map((lapTime, index) => {
+                            return <div key={"lap"+index} className="lapTimeComponent">
+                                <span className="lapTimeTag">Lap {index + 1}: </span><span>{lapTime}</span>
+                            </div>
+                        })
+                    }
+                </div>
+                :''
+            }
         </div>
     )
 }

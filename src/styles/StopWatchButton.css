@@ -28,6 +28,8 @@
 }
 .lapButton {
   background-color:#b3b3b3;
+}
+.lapButtonBorder {
   border: 2px solid #808080
 }
 .lapButton:hover {
@@ -38,4 +40,7 @@
 }
 .resetButton:hover {
   background-color:#0047b3;
+}
+.disabledButton{
+  opacity: 0.7;
 }

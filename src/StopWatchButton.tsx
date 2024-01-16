@@ -6,16 +6,18 @@ interface StopWatchButtonProps {
   recordLapTime: any;
   setRunning: any;
   resetTimer: any;
+  timer: number;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ running,  recordLapTime, setRunning, resetTimer}) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ running, recordLapTime, setRunning, resetTimer, timer}) => {
   return (
     <div className="stopWatchButtons">
         <div className="centerMargin">
-            <button className="btn startButton" onClick={() => {setRunning(true)}}>Start</button>
-            <button className="btn lapButton" onClick={() => {recordLapTime()}}>Lap</button>
-            <button className="btn resetButton" onClick={() => {resetTimer()}}>Reset</button>
-            <button className="btn stopButton" onClick={() => {setRunning(false)}}>Stop</button>
+            {running
+                ?<button className="btn stopButton" onClick={() => {setRunning(false)}}>Stop</button>
+                :<button className="btn startButton" onClick={() => {setRunning(true)}}>Start</button>}
+            <button className={`btn lapButton ${timer == 0 ? 'disabledButton' : 'lapButtonBorder'}`} onClick={() => {recordLapTime()}} disabled={timer == 0}>Lap</button>
+            <button className={`btn resetButton ${timer == 0 ? 'disabledButton' : ''}`} onClick={() => {resetTimer()}} disabled={timer == 0}>Reset</button>
         </div>
     </div>    
   );
