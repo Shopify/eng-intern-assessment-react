@@ -42,7 +42,6 @@ export default function StopWatch() {
             <h1 id='stopwatch-display'>{getDisplayText(counter)}</h1>
             <div id='stopwatch-buttons'>
                 <StopWatchButton id='start-button' onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>
-                <StopWatchButton id='pause-button' onClick={() => { setIsRunning(false) }} content='Pause'></StopWatchButton>
                 <StopWatchButton id='stop-button' onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>
                 <StopWatchButton id='resume-button' onClick={() => { setIsRunning(true) }} content='Resume'></StopWatchButton>
                 <StopWatchButton id='lap-button' onClick={handleOnLap} content='Lap'></StopWatchButton>

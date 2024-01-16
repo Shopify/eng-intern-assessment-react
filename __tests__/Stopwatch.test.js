@@ -37,7 +37,7 @@ describe('Stopwatch', () => {
     render(<Stopwatch />);
     
     fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Pause'));
+    fireEvent.click(screen.getByText('Stop'));
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
     fireEvent.click(screen.getByText('Resume'));
