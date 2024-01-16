@@ -1,3 +1,6 @@
+# I was inspired by @anyuan-chen (Andrew Chen), he was one of the earlier applicants to submit his code and I saw that he used polaris and shopify components, so I thought
+# I'd try them as well, for my own twist, I also added a export to csv button
+
 # Technical Instructions
 1. Fork this repo to your local Github account.
 2. Create a new branch to complete all your work in.
