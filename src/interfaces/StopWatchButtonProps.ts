@@ -1,9 +1,9 @@
 import ButtonType from "../enums/ButtonType";
 
-interface StopWatchButtonInterface {
+interface StopWatchButtonProps {
   type: ButtonType;
   isRunning?: boolean;
   onClick: () => void;
 }
 
-export default StopWatchButtonInterface;
+export default StopWatchButtonProps;

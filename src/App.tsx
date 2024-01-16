@@ -1,11 +1,24 @@
-import { Box, HStack, Heading, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Heading,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+  VStack
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 import ButtonType from "./enums/ButtonType";
 import formatTime from "./utils/formatTime";
 import LapTable from "./components/LapTable";
-import LapTableInterface from "./interfaces/LapTableInterface";
+import LapTableInterface from "./interfaces/LapTableProps";
+import GlassContainer from "./components/GlassContainer";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -60,39 +73,36 @@ export default function App() {
   const formattedTime = formatTime(currentTime);
 
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      alignItems='center'
-      justifyContent='flex-start'
+    <Flex
+      flexDirection='row'
+      alignItems='flex-start'
+      justifyContent='center'
       minHeight='100vh'
       p={4}
     >
-      <Heading as='h1' size='2xl' mb='8' color='white'>
-        React Stopwatch
-      </Heading>
-      <StopWatch formattedTime={formattedTime} />
+      <VStack>
+        <Heading as='h1' size='2xl' mb='8'>
+          React Stopwatch
+        </Heading>
+        <StopWatch formattedTime={formattedTime} />
+        <GlassContainer>
+          <HStack spacing={5}>
+            <StopWatchButton
+              type={ButtonType.Lap}
+              onClick={handleLap}
+              isRunning={isRunning}
+            />
+            <StopWatchButton
+              type={ButtonType.Start}
+              onClick={handleStartStop}
+              isRunning={isRunning}
+            />
+            <StopWatchButton type={ButtonType.Reset} onClick={handleReset} />
+          </HStack>
+        </GlassContainer>
+      </VStack>
 
-      <HStack
-        spacing={5}
-        padding={6}
-        background='rgba(255, 255, 255, 0.1)'
-        border='1px solid rgba(255, 255, 255, 0.2)'
-        borderRadius={30}
-      >
-        <StopWatchButton
-          type={ButtonType.Lap}
-          onClick={handleLap}
-          isRunning={isRunning}
-        />
-        <StopWatchButton
-          type={ButtonType.Start}
-          onClick={handleStartStop}
-          isRunning={isRunning}
-        />
-        <StopWatchButton type={ButtonType.Reset} onClick={handleReset} />
-      </HStack>
       {showTable && <LapTable {...lapTableProps} />}
-    </Box>
+    </Flex>
   );
 }
