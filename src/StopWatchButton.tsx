@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/StopWatch.css'
+//import './css/StopWatch.css'
 export default function StopWatchButton(props:any) {
     return(
         <div>

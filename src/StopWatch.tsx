@@ -63,7 +63,7 @@ export default function StopWatch() {
 
     return (
         <div className='StopWatch'>
-            <div className='StopWatchDisplay'>
+            <div className='StopWatchDisplay'  data-testid="WatchDisplay">
                 {formatTime(elapsedTime)}
             </div>
             <div className='StopWatchButtonGroup'>
@@ -75,13 +75,13 @@ export default function StopWatch() {
                 lapTimer={lapTimer}
             />
             </div>
-            <div className = 'LapTimeTable'>
+            <div className = 'LapTimeTable' data-testid='LapList'>
                 {laps.length > 0 && (
                     <div>
                         <h2>Lap Times</h2>
                         <div>
                             {laps.map((lap, index) => (
-                                <div className='LapTimeEntry' key={index}>{`Lap ${index} : ${formatTime(lap)}`}</div>
+                                <div className='LapTimeEntry' data-testid={`LapTimeEntry${index}`} key={index}>{`Lap ${index+1} : ${formatTime(lap)}`}</div>
                             ))}
                         </div>
                     </div>
