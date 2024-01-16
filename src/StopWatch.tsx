@@ -34,20 +34,14 @@ export default function StopWatch({
             <ul>
                 {lapTimes.map((lap, index) => (
                     <li key={index}>
-                        Lap {" " + (index + 1)}
+                        Lap {" " + (index + 1) + " "}
                         {(Math.floor(lap / 3600)).toString().padStart(2, "0")}:
                         {(Math.floor((lap % 3600)/60)).toString().padStart(2, "0")}:
                         {(Math.floor(lap % 60)).toString().padStart(2, "0")}
-                    </li>
-                ))}
-            </ul>
-            <ul>
-                {totalTimes.map((time, index) => (
-                    <li key={index}>
-                        Lap {" " + (index + 1)}
-                        {(Math.floor(time / 3600)).toString().padStart(2, "0")}:
-                        {(Math.floor((time % 3600)/60)).toString().padStart(2, "0")}:
-                        {(Math.floor(time % 60)).toString().padStart(2, "0")}
+                        {"    "}
+                        {(Math.floor(totalTimes[index] / 3600)).toString().padStart(2, "0")}:
+                        {(Math.floor((totalTimes[index] % 3600)/60)).toString().padStart(2, "0")}:
+                        {(Math.floor(totalTimes[index] % 60)).toString().padStart(2, "0")}
                     </li>
                 ))}
             </ul>
