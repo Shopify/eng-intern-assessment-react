@@ -15,6 +15,7 @@ export default function StopWatch() {
   const [btnActionResetLap, setBtnResetLap] = useState<string>("Lap");
   const [laps, setLaps] = useState<number[]>([]);
 
+  /* Stop and Start are the same button, and have the opposite action, this also changes the button text */
   const stopStartTimer = () => {
     setIsRunning(!isRunning);
     const btnActionStartStop = isRunning ? start : stop;
@@ -24,6 +25,7 @@ export default function StopWatch() {
     setBtnStartStop(btnActionStartStop);
   };
 
+  /* Reset and Lap are the same button so I just check what state it is in right now and then do the according */
   const actResetLap = () => {
     if (btnActionResetLap == lap) {
       setLaps([...laps, 0]);
@@ -34,6 +36,8 @@ export default function StopWatch() {
       setBtnResetLap(lap);
     }
   };
+
+  /* Opted for a NodeJS.Timer, simplest and most convenient implementation of a timer I could find */
   useEffect(() => {
     let interval: NodeJS.Timer;
     if (isRunning) {
@@ -44,6 +48,8 @@ export default function StopWatch() {
     };
   }, [isRunning]);
 
+  /* This useEffect has a constantly updated current lap time that uses the time variable, 
+  and only pushes it to the array when the user presses a button */
   useEffect(() => {
     if (time) {
       const rest = laps.slice(0, laps.length - 1);
@@ -73,7 +79,7 @@ export default function StopWatch() {
         </ButtonGroup>
       </Card>
       {/* I Could have made the laps a prop and just passed down the laps into it, and that would have made the code cleaner
-        but the instructions said to modify the code given to us, so I did not create a new  */}
+        but the instructions said to modify the files given to us, so I did not create a new  lap component*/}
       <div>
         <Text variant='headingLg' as='h3' alignment='start'>
           {" "}
