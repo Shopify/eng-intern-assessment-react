@@ -7,6 +7,7 @@ type LapsListProp = {
 };
 
 const LapsList = ({ laps }: LapsListProp) => {
+  // formated lapData to to use it appropriately with DataTable
   const lapData = laps.map((lap, index) => [
     index + 1,
     formatTime(lap.lapTime),

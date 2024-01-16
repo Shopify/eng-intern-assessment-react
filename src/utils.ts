@@ -1,3 +1,4 @@
+// utility functions to format numeric value to time
 export const formatTime = (time: number): string => {
     const hours = Math.floor(time / 3600000);
     const minutes = Math.floor((time / 60000) % 60);
