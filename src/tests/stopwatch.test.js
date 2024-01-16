@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import React from "react";
 import Stopwatch from "../StopWatch";
 
@@ -9,27 +10,36 @@ describe("Stopwatch", () => {
     expect(stopwatchElement).toBeInTheDocument();
   });
 
-  test("starts and stops the stopwatch", () => {
+  test("Starts and stops the stopwatch", () => {
     render(<Stopwatch />);
-    const startButton = screen.getByText("start");
-    const stopButton = screen.getByText("stop-button");
+    const startButton = screen.getByText("Start");
     const timerElement = screen.getByTestId("stopwatch");
-
     fireEvent.click(startButton);
-    expect(timerElement.textContent).not.toBe("00:00:00");
-
-    fireEvent.click(stopButton);
-    expect(timerElement.textContent).toBe("00:00:00");
+    const stopButton = screen.getByText("Stop");
+    //wait to stop the timer
+    setTimeout(() => {
+      fireEvent.click(stopButton);
+      expect(timerElement.textContent).toBe("00:00:01:00");
+    }, 1000);
   });
 
   test("resets the stopwatch", () => {
     render(<Stopwatch />);
-    const startButton = screen.getByText("start");
-    const resetButton = screen.getByText("reset");
+    const startButton = screen.getByText("Start");
+    const resetButton = screen.getByText("Reset");
     const timerElement = screen.getByTestId("stopwatch");
 
     fireEvent.click(startButton);
     fireEvent.click(resetButton);
-    expect(timerElement.textContent).toBe("00:00:00");
+    expect(timerElement.textContent).toBe("00:00:00:00");
+  });
+  test("Clicks lap button", () => {
+    render(<Stopwatch />);
+    const startButton = screen.getByText("Start");
+    const lapButton = screen.getByText("Lap");
+    fireEvent.click(startButton);
+    fireEvent.click(lapButton);
+    const lapElement = screen.getByTestId("lap-list");
+    expect(lapElement).toBeInTheDocument();
   });
 });

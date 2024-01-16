@@ -48,7 +48,6 @@
   "jest": {
     "testEnvironment": "jsdom",
     "transform": {
-      "^.+\\.(css|scss)$": "identity-obj-proxy",
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }
   }

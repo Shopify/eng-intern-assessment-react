@@ -6,9 +6,9 @@ interface lapListProps {
 
 export default function Laplist({ lap }: lapListProps) {
   return (
-    <div className="lapList">
+    <div data-testid="lap-list" className="lapList">
       {lap.map((lap, index) => (
-        <div className="lap" key={index}>
+        <div data-testid="lap" className="lap" key={index}>
           Lap {index + 1}: {formatTime(lap)}
         </div>
       ))}
