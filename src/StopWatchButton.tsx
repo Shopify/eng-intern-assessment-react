@@ -7,7 +7,7 @@ import React from "react";
 import StopWatchButtonInterface from "./interfaces/StopWatchButtonInterface";
 import ButtonType from "./enums/ButtonType";
 
-export default function StopWatchButton({ type }: StopWatchButtonInterface) {
+export default function StopWatchButton({ type, onClick }: StopWatchButtonInterface) {
   let colorScheme;
   let icon;
   let fontSize;
@@ -51,6 +51,7 @@ export default function StopWatchButton({ type }: StopWatchButtonInterface) {
       fontSize={fontSize}
       aria-label={type}
       icon={icon}
+      onClick={onClick}
     />
   );
 }

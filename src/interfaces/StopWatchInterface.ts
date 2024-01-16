@@ -1,5 +1,5 @@
 interface StopWatchInterface {
-  isRunning: boolean;
+  formattedTime: string;
 }
 
 export default StopWatchInterface;
