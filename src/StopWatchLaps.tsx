@@ -9,7 +9,7 @@ interface IProps {
     stopped: boolean;
 }
 
-// Contains Start, Stop, Reset, Lap Buttons
+// Contains The Lap List
 export default function StopWatchLaps({
     laps,
     currentLapTime,
@@ -35,6 +35,7 @@ export default function StopWatchLaps({
         <div className='LapsContainer'>
             {(!stopped || laps.length > 0) && LapsContainer(currentLapTime, laps.length + 1)}
             <hr />
+            {/* Reverse mapping to have most recent lap on top */}
             {[...laps].reverse().map((lapTime: number, index: number) => 
                 LapsContainer(lapTime, laps.length - index)
             )}
