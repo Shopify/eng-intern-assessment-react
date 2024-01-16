@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
 import Stopwatch from "../StopWatch";
+import formatTime  from "../FormatTime";
 
 describe("Stopwatch", () => {
   test("Renders stopwatch component", () => {
@@ -43,3 +44,6 @@ describe("Stopwatch", () => {
     expect(lapElement).toBeInTheDocument();
   });
 });
+test("Formatted time", () => {
+    expect(formatTime(1000)).toBe("00:00:01:00");
+}); 
