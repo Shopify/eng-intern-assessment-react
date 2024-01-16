@@ -1,0 +1,68 @@
+/* StopWatch.css */
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+  }
+  
+.stopwatch-time {
+    align-items: baseline;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.main-time {
+    font-size: 80px; 
+}
+
+.centiseconds {
+    font-size: 40px; 
+}
+
+.stopwatch-table {
+    border-collapse: collapse;
+    width: 0;
+    margin: 0 auto;
+  }
+  
+.stopwatch-table th,
+.stopwatch-table td {
+border: none;
+padding: 12px; 
+}
+
+.stopwatch-table th {
+text-align: center;
+font-weight: bold;
+font-family: 'Roboto', sans-serif;
+}
+
+.stopwatch-table tbody tr {
+border-bottom: 1px solid #ddd;
+}
+
+.stopwatch-table tbody tr:last-child {
+border-bottom: none; 
+}
+
+.stopwatch-table tbody td {
+text-align: center;
+font-family: 'Roboto', sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.clock-container {
+    padding: 20vh; 
+    min-height: 100vh;
+    max-height: auto;
+    background: linear-gradient(to right, #2ed5c0, #bbf26a);
+}
