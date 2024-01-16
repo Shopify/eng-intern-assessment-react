@@ -5,11 +5,12 @@ import {
   Card,
   InlineStack,
   Text,
-  InlineGrid,
 } from '@shopify/polaris';
+
 import moment from 'moment';
 import LapTimesList from './LapTimesList';
 import StopWatchButton from './StopWatchButton';
+import './styles/StopWatch.css'
 
 
 export default function StopWatch() {
@@ -18,22 +19,19 @@ export default function StopWatch() {
   const [ lapTimes, setLapTimes ] = useState([])
   const [ lap, setLap ] = useState(0)
 
+
   useEffect(() => {
     let timerInterval: NodeJS.Timer = null;
     let lapInterval: NodeJS.Timer = null
 
     if (isTimerActive) {
-
       let startTime = performance.now() - time
-
       timerInterval = setInterval(() => {
         setTime(performance.now() - startTime);
       }, 10);
-
       lapInterval = setInterval(() => {
         setLap(((prevLapTime) => prevLapTime + 10));
       }, 10);
-
     } else {
       clearInterval(timerInterval)
       clearInterval(lapInterval)
@@ -47,39 +45,17 @@ export default function StopWatch() {
 
 
   return (
-
     <Page narrowWidth>
       <Card>
         <Layout.Section variant='fullWidth'>
-          <div style={ { padding: "5rem 0 3rem 0" } }>
-            <InlineGrid columns={ 3 }>
-              <div>
-                <div style={ { fontSize: "3rem", paddingBottom: "1rem" } }>
-                  <Text as='h1' fontWeight='bold' alignment='center'>{ moment(time).format("mm") }</Text>
-                </div>
-                <div style={ { fontSize: "1rem" } }>
-                  <Text as="p" alignment='center'>MINUTES</Text>
-                </div>
-              </div>
-              <div>
-                <div style={ { fontSize: "3rem", paddingBottom: "1rem" } }>
-                  <Text as='h1' fontWeight='bold' alignment='center'>{ moment(time).format("ss") }</Text>
-                </div>
-                <div style={ { fontSize: "1rem" } }>
-                  <Text as="p" alignment='center'>SECONDS</Text>
-                </div>
-              </div>
-              <div>
-                <div style={ { fontSize: "3rem", paddingBottom: "1rem" } }>
-                  <Text as='h1' fontWeight='bold' alignment='center'>{ moment(time).format("SS") }</Text>
-                </div>
-                <div style={ { fontSize: "1rem" } }>
-                  <Text as="p" alignment='center'>MILLISECONDS</Text>
-                </div>
-              </div>
-            </InlineGrid>
+
+          <div className='timer-card'>
+            <div className='timer-text'>
+              <Text as='h1'>{ moment(time).format("mm:ss:SS") }</Text>
+            </div>
           </div>
         </Layout.Section>
+
 
         {/* LAP TIMES TABLE SECTION*/ }
         <Layout.Section variant='fullWidth'>
@@ -90,15 +66,17 @@ export default function StopWatch() {
 
       </Card>
 
-      <Layout.Section>
+      <div id='lap-list'>
         { lapTimes.length > 0 &&
-          <Card>
-            <LapTimesList lapTimes={ lapTimes } />
-          </Card>
+          <div style={ { paddingTop: "1rem" } } >
+            <Card>
+              <Layout.Section variant='fullWidth'>
+                <LapTimesList lapTimes={ lapTimes } />
+              </Layout.Section>
+            </Card>
+          </div >
         }
-      </Layout.Section>
-
-
+      </div>
 
     </Page >
   )

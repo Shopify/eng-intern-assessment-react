@@ -1,11 +1,7 @@
 import React from 'react'
 import moment from 'moment';
 import {
-  Page,
-  Layout,
-  DataTable,
-  BlockStack,
-
+DataTable,
 } from '@shopify/polaris';
 
 
@@ -25,12 +21,8 @@ export default function LapTimesList(lapTimesObject: LapTimesListProps) {
   })
 
   return (
-    <div style={ { padding: "1rem" } }>
-      <Layout.Section>
-        <BlockStack>
+    <div id='lap-list'>
           <DataTable columnContentTypes={ [ "text", "text", "text" ] } headings={ [ "Lap Number", "Split", "Total Time Elapsed" ] } rows={ rows } stickyHeader />
-        </BlockStack>
-      </Layout.Section>
     </div >
   )
 }

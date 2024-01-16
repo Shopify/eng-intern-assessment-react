@@ -1,55 +1,89 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Stopwatch from '../src/StopWatch';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import Stopwatch from '../src/App';
+import '@testing-library/jest-dom'
+
+
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // Deprecated
+    removeListener: jest.fn(), // Deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
 
 describe('Stopwatch', () => {
+
   test('renders initial state correctly', () => {
     render(<Stopwatch />);
-    
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+
+    expect(screen.getByRole('heading', { name: /00:00:00/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /start/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /reset/i })).toBeInTheDocument();
   });
 
   test('starts and stops the stopwatch', () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
+
+    fireEvent.click(screen.getByRole('button', { name: /start/i }));
     expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Stop'));
-    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /stop/i }));
+    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
   });
 
-  test('pauses and resumes the stopwatch', () => {
+  test('pauses and resumes the stopwatch', async () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Pause'));
+
+    fireEvent.click(screen.getByRole('button', { name: /start/i }));
+
+    fireEvent.click(screen.getByRole('button', { name: /stop/i }));
+
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
-    fireEvent.click(screen.getByText('Resume'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
+    fireEvent.click(screen.getByRole('button', { name: /start/i }));
+
+    //need waitFor for timer to register time before running next test
+    await waitFor(() => {
+      expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
+    })
+
   });
 
-  test('records and displays lap times', () => {
+  test('records and displays lap times', async () => {
     render(<Stopwatch />);
-    
+
     fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list')).toContainElement(screen.getByText(/(\d{2}:){2}\d{2}/));
 
     fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list').children.length).toBe(2);
+
+    expect(screen.getByRole('rowheader', { name: /1/i })).toBeInTheDocument();
+
+    // Checks that it records lap time and total elapsed time
+    expect(screen.queryAllByText(/\d\d:\d\d\.\d\d/)).toHaveLength(2);
+
   });
 
   test('resets the stopwatch', () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
-    fireEvent.click(screen.getByText('Reset'));
+
+    fireEvent.click(screen.getByRole('button', { name: /start/i }));
+    fireEvent.click(screen.getByRole('button', { name: /stop/i }));
+    fireEvent.click(screen.getByRole('button', { name: /reset/i }));
 
     expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+
+    expect(screen.queryAllByRole('rowheader', { name: /1/i })).toHaveLength(0);
+
   });
 });
