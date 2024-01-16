@@ -12,9 +12,16 @@ describe('<StopWatch/>', () => {
         expect(screen.getByText('00:00:00.000')).toBeInTheDocument();
     });
 
+    test('initial laps is empty', () => {
+        render(<StopWatch />);
+        const lapElements = screen.queryAllByText(/Lap \d+:/);
+        expect(lapElements.length).toBe(0);
+    });
+
     test('four buttons render correctly', () => {
         render(<StopWatch />);
 
+        // Each button's label
         ["Start", "Stop", "Reset", "Lap"].forEach((label) => {
             expect(screen.getByText(label)).toBeInTheDocument();
         })
@@ -109,4 +116,54 @@ describe('<StopWatch/>', () => {
         act(() => {jest.advanceTimersByTime(1000); });
         expect(screen.getByText(timeAfterStop)).toBeInTheDocument();
     })
+
+    test('creates and displays laps correctly', () => {
+        render(<StopWatch />);
+
+        const startButton = screen.getByText('Start');
+        const lapButton = screen.getByText('Lap');
+
+        fireEvent.click(startButton);
+
+        act(() => {jest.advanceTimersByTime(1000); });
+
+        fireEvent.click(lapButton);
+
+        act(() => {jest.advanceTimersByTime(1000); });
+        fireEvent.click(lapButton);
+
+        // There should be two lap elements after pressing lap twice.
+        const lapElements = screen.getAllByText(/Lap \d+:/);
+        expect(lapElements.length).toBe(2);
+
+        // Correct numbering...
+        expect(lapElements[0]).toHaveTextContent('Lap 1:');
+        expect(lapElements[1]).toHaveTextContent('Lap 2:');
+    });
+
+    test('resets laps correctly', () => {
+        render(<StopWatch />);
+
+        const resetButton = screen.getByText('Reset');
+        const startButton = screen.getByText('Start');
+        const lapButton = screen.getByText('Lap');
+
+        fireEvent.click(startButton);
+
+        act(() => {jest.advanceTimersByTime(5000); });
+
+        // Press lap button thrice
+        fireEvent.click(lapButton);
+        act(() => {jest.advanceTimersByTime(1000); });
+        fireEvent.click(lapButton);
+        act(() => {jest.advanceTimersByTime(1000); });
+        fireEvent.click(lapButton);
+        act(() => {jest.advanceTimersByTime(1000); });
+
+        fireEvent.click(resetButton);
+
+        // After resetting, laps should be cleared.
+        const lapElements = screen.queryAllByText(/Lap \d+:/);
+        expect(lapElements.length).toBe(0);
+    });
 });

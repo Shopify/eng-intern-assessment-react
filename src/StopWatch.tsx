@@ -10,6 +10,7 @@ export default function StopWatch() {
     const [isPaused, setPaused] = useState(true);
     const [pausedAt, setPausedAt] = useState(Date.now());
     const [pausedFor, setPausedFor] = useState(0);
+    const [laps, setLaps] = useState([]);
 
     useEffect(() => {
         // The interval runs every 10 milliseconds. This can be decreased but
@@ -55,14 +56,31 @@ export default function StopWatch() {
     const handleReset = () => {
         setPaused(true);
         setDisplayingTime(0);
+        setLaps([]);
     }
 
     /**
      * Creates a lap on the timer.
      */
     const handleLap = () => {
-        
-    }
+        if(!isPaused) {
+            setLaps([...laps, Date.now()]);
+        }
+    };
+
+    /**
+     * Calculates and returns the lap intervals.
+     * 
+     * @returns The laptime for this current lap.
+     */
+    const calculateLapTimes = () => {
+        return laps.map((lapTime, index) => {
+            if (index === 0) {
+                return lapTime - startTime; // For the first lap
+            }
+            return lapTime - laps[index - 1]; // For the rest of em
+        });
+    };
 
     /**
      * Nicely formats the displaying time.
@@ -99,12 +117,27 @@ export default function StopWatch() {
         <div className="stopwatch">
             <div className="stopwatch-display">{formatTime(displayingTime)}</div>
 
+            {/* The clickable buttons. Each one has it's own label, event handler, and condition on when it's visibly pressed */}
             <div className="stopwatch-button-grid">
                 <StopWatchButton label={"Start"} isPressed={!isPaused} onPress={handleStart}></StopWatchButton>
                 <StopWatchButton label={"Stop"} isPressed={isPaused} onPress={handleStop}></StopWatchButton>
                 <StopWatchButton label={"Reset"} isPressed={false} onPress={handleReset}></StopWatchButton>
-                <StopWatchButton label={"Lap"} isPressed={false} onPress={handleLap}></StopWatchButton>
+                <StopWatchButton label={"Lap"} isPressed={isPaused} onPress={handleLap}></StopWatchButton>
             </div>
+
+            {/* Where all the laps will be */}
+            {/* Hooray for short circuiting! */}
+            {laps.length > 0 && (
+                <div className="stopwatch-lap-array">
+                    {/* calculateLapTimes() will return an array of times to display. */}
+                    {calculateLapTimes().map((lapTime, index) => (
+                        <div key={index} className="lap-row">
+                            <div className="lap-index">Lap {index + 1}:</div> 
+                            <div className="lap-time">{formatTime(lapTime)}</div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
