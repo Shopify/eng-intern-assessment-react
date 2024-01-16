@@ -50,7 +50,7 @@ export default function StopWatch() {
             </div>
             <div id='lap-list' data-testid='lap-list'>
                 {lapList.map( (lap, index) => (
-                    <li id={`lap-${index}`}>Lap #{index} : {getDisplayText(lap)}</li>
+                    <li id={`lap-${index}`} key={index}>Lap #{index} : {getDisplayText(lap)}</li>
                 ))}
             </div>
         </div>
