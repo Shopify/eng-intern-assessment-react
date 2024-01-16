@@ -15,10 +15,17 @@
 .wrapper {
 	background-color: var(--secondary);
 	border-radius: 5px;
-	display: flex;
+	width: 30%;
+	display: inline-block;
 	align-items: center;
 	justify-content: center;
 	padding: 5px;
+}
+
+.time-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 body {
