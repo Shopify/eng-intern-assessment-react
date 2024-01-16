@@ -4,27 +4,17 @@ import {
   screen,
   fireEvent,
   act,
-  waitFor,
 } from '@testing-library/react';
 import Stopwatch from '../src/components/StopWatch';
 import '@testing-library/jest-dom';
 import { AppProvider } from '@shopify/polaris';
+import { mockMatchMedia } from '../__mocks__/matchMediaMock';
 
 jest.useFakeTimers();
 
 describe('Stopwatch', () => {
   beforeAll(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation((query) => ({
-        matches: false,
-        media: query,
-        onchange: null,
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      })),
-    });
+    mockMatchMedia();
   });
 
   beforeEach(() => {
@@ -122,7 +112,7 @@ describe('Stopwatch', () => {
     fireEvent.click(screen.getByText('Lap'));
 
     const lapsElement = screen.getByTestId('stopwatch-laps');
-    expect(lapsElement.children).toHaveLength(2);
-    expect(lapsElement.children[1]).toHaveTextContent('00:00:01.000');
+    expect(lapsElement.children).toHaveLength(1);
+    expect(lapsElement.children[0]).toHaveTextContent('00:00:01.000');
   });
 });
