@@ -11,11 +11,11 @@ export default function StopWatchButton({
     isRunning, 
     startStop, 
     lapButton, 
-    resetButton}:StopWatchButtonProps) {
+    resetButton} : StopWatchButtonProps) {
     return(
         <div>
             <button onClick={startStop}>
-                {isRunning ? "Pause" :  "Start"}
+                {isRunning ? "Stop" :  "Start"}
             </button>
             <button onClick={lapButton}>
                 Lap

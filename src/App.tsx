@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
+import StopWatch from './StopWatch';
 
 export default function App() {
 
@@ -11,6 +12,9 @@ export default function App() {
 
   //To keep track of total time elapsed (will rest to 0 if reset button is clicked)
   const [totalTime, setTotalTime] = useState(0)
+
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
+  const [totalTimes, setTotalTimes] = useState<number[]>([]);
 
   /*
   To keep track of current lap time and total time, if the stopwatch is running 
@@ -30,20 +34,24 @@ export default function App() {
       };
   }, [isRunning, currentTime, totalTime])
 
- 
-  // Math.floor rounds down to the nearest integer (i.e. 1.9 = 1)
-  const seconds = Math.floor(currentTime % 60) //current number of seconds
-  const totalSeconds = Math.floor(totalTime % 60) //total number of seconds
 
   const startStop = () => {
     setIsRunning(!isRunning)
   }
 
   const setLap = () => {
+    setLapTimes((prevCurr) => [...prevCurr, currentTime])
+    setTotalTimes((prevTotal) =>[...prevTotal, totalTime])
     setCurrentTime(0)
   }
 
   const resetButton = () => {
+    while(lapTimes.length){
+        lapTimes.pop()
+    }
+    while(totalTimes.length){
+        totalTimes.pop()
+    }
     setIsRunning(false)
     setCurrentTime(0)
     setTotalTime(0)
@@ -52,7 +60,11 @@ export default function App() {
   
   return (
     <div>
-      <h2>{seconds.toString() + " Lap " + totalSeconds.toString()}</h2>
+      <StopWatch 
+      currentTime={currentTime}
+      totalTime={totalTime}
+      lapTimes={lapTimes}
+      totalTimes={totalTimes}/>
       <StopWatchButton
       isRunning = {isRunning}
       startStop={startStop}
