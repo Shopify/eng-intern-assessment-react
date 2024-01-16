@@ -42,6 +42,28 @@ describe('Stopwatch', () => {
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    expect(screen.getByTestId('stopwatch-time').textContent).toBe('00:00:01.000');
+    expect(screen.getByTestId('stopwatch-time').textContent).toBe(
+      '00:00:01.000'
+    );
+  });
+
+  test('stops timer on stop button click', () => {
+    render(
+      <AppProvider i18n={{}}>
+        <Stopwatch />
+      </AppProvider>
+    );
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(3000);
+    });
+    fireEvent.click(screen.getByText('Stop'));
+    const timeWhenStopped = screen.getByTestId('stopwatch-time').textContent;
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+    expect(screen.getByTestId('stopwatch-time').textContent).toBe(
+      timeWhenStopped
+    );
   });
 });
