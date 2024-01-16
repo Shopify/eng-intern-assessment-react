@@ -58,10 +58,12 @@ export default function StopWatch() {
 
   return (
     <div className='stopwatch-container'>
-      <div className="time-text">
-        <p>{minutes}:{seconds}:{milliseconds}</p>
+      <div className="stopwatch">
+        <div className="time-text">
+          <p>{minutes}:{seconds}:{milliseconds}</p>
+        </div>
+        <StopWatchButton start={start} reset={reset} lap={lap} isRunning={isRunning}/>
       </div>
-      <StopWatchButton start={start} reset={reset} lap={lap} isRunning={isRunning}/>
       <div className="laps-container">
         {laps != null && laps.length > 0 && (
           <div className="laps-grid">
