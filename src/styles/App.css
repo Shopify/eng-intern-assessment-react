@@ -1,0 +1,14 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.lapTimesBox{
+    text-align: center;
+}
+.lapTimeComponent{
+    margin: 10px 0;
+    font-size: 18px;
+}
+.lapTimeTag{
+    color: #222c99;
+    font-weight: 900;
+}

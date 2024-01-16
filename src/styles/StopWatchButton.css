@@ -1,6 +1,10 @@
 .stopWatchButtons {
   display: flex;
 }
+.centerMargin {
+  margin-right: auto;
+  margin-left: auto;
+}
 .stopWatchButtons, button {
   padding: 10px 20px;
   border: none;
@@ -24,7 +28,7 @@
 }
 .lapButton {
   background-color:#b3b3b3;
-  border: 2px solid grey
+  border: 2px solid #808080
 }
 .lapButton:hover {
   background-color:#808080;
