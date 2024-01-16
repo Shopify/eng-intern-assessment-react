@@ -25,7 +25,9 @@ export default function StopWatch() {
           <StopWatchButton onClick={!isRunning ? startHandler : pauseHandler}>
             {!isRunning ? "Start" : "Stop"}
           </StopWatchButton>
-          <StopWatchButton onClick={lapHandler}>Lap</StopWatchButton>
+          <StopWatchButton onClick={lapHandler} disabled={!isRunning}>
+            Lap
+          </StopWatchButton>
           <StopWatchButton onClick={resetHandler}>Reset</StopWatchButton>
         </div>
       </div>
