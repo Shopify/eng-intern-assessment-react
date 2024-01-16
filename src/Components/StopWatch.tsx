@@ -4,9 +4,17 @@ import StopWatchButton from "./StopWatchButton";
 
 interface StopWatchProps {
   onStartClick: () => void;
+  onResetClick: () => void;
+  onLapClick: () => void;
+  label: string;
 }
 
-export default function StopWatch({ onStartClick }: StopWatchProps) {
+export default function StopWatch({
+  label,
+  onStartClick,
+  onResetClick,
+  onLapClick,
+}: StopWatchProps) {
   return (
     <>
       <div className="stop-watch-container">
@@ -16,9 +24,9 @@ export default function StopWatch({ onStartClick }: StopWatchProps) {
           </p>
         </div>
         <div className="controls-container">
-          <StopWatchButton onClick={onStartClick} />
-          <StopWatchButton />
-          <StopWatchButton />
+          <StopWatchButton label={label} onClick={onStartClick} />
+          <StopWatchButton label="Lap" onClick={onLapClick} />
+          <StopWatchButton label="Reset" onClick={onResetClick} />
         </div>
         <div className="laps">
           <ul>{/* lap entries will go here */}</ul>

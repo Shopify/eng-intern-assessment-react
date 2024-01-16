@@ -4,12 +4,16 @@ import React from "react";
 
 interface StopWatchButtonProps {
   onClick?: () => void;
+  label: string;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onClick }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+  label,
+  onClick,
+}) => {
   return (
     <>
-      <button onClick={onClick}>Click</button>
+      <button onClick={onClick}>{label}</button>
     </>
   );
 };

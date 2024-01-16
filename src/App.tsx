@@ -20,16 +20,25 @@ export default function App() {
   };
 
   // function the handle if the lap button has been clicked
-  const handleLapClick = () => {};
+  const handleLapClick = () => {
+    console.log("Lap Time Recorded");
+  };
 
   // function the handle if the reset button has been clicked
-  const handleResetClick = () => {};
+  const handleResetClick = () => {
+    console.log("The Timer Reset");
+  };
 
   return (
     <>
       <div className="stopWatch">
         <h1>Stop Watch - By Dean Lane</h1>
-        <StopWatch onStartClick={handleStartClick} />
+        <StopWatch
+          label={isRunning ? "Stop" : "Start"}
+          onStartClick={isRunning ? handleStopClick : handleStartClick}
+          onResetClick={handleResetClick}
+          onLapClick={handleLapClick}
+        />
       </div>
     </>
   );
