@@ -1,14 +1,9 @@
 import React from 'react';
-import { Text, ButtonGroup, Layout, Button } from '@shopify/polaris';
+import { Text, Layout } from '@shopify/polaris';
 import StopWatchLaps from './StopWatchLaps';
-import { useStopWatch, StopwatchStatus } from '../useStopWatch';
+import { useStopWatch } from '../useStopWatch';
 import { formatTime } from '../utils';
-import {
-  PlayIcon,
-  PauseCircleIcon,
-  ResetIcon,
-  FlagIcon,
-} from '@shopify/polaris-icons';
+import StopWatchControls from './StopWatchControls';
 
 export default function StopWatch() {
   const {
@@ -30,48 +25,13 @@ export default function StopWatch() {
         </Text>
       </Layout.Section>
       <Layout.Section>
-        <div data-testid="stopwatch-control">
-          <ButtonGroup>
-            {stopwatchStatus === StopwatchStatus.Paused ? (
-              <Button
-                variant="primary"
-                tone="success"
-                onClick={startStopwatch}
-                icon={PlayIcon}
-              >
-                Start
-              </Button>
-            ) : (
-              <Button
-                variant="primary"
-                onClick={stopStopwatch}
-                icon={PauseCircleIcon}
-              >
-                Stop
-              </Button>
-            )}
-            <Button
-              disabled={
-                stopwatchStatus === StopwatchStatus.Paused ? true : false
-              }
-              onClick={recordLap}
-              icon={FlagIcon}
-            >
-              Lap
-            </Button>
-            <Button
-              disabled={
-                stopwatchStatus === StopwatchStatus.Running ? true : false
-              }
-              variant="primary"
-              tone="critical"
-              icon={ResetIcon}
-              onClick={resetStopwatch}
-            >
-              Reset
-            </Button>
-          </ButtonGroup>
-        </div>
+        <StopWatchControls
+          stopwatchStatus={stopwatchStatus}
+          startStopwatch={startStopwatch}
+          stopStopwatch={stopStopwatch}
+          resetStopwatch={resetStopwatch}
+          recordLap={recordLap}
+        />
       </Layout.Section>
       <Layout.Section>
         {laps.length > 0 && (

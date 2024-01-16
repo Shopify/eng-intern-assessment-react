@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 export enum StopwatchStatus {
+  Initial,
   Running,
   Paused,
 }
@@ -8,7 +9,7 @@ export enum StopwatchStatus {
 export const useStopWatch = () => {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [stopwatchStatus, setStopwatchStatus] = useState<StopwatchStatus>(
-    StopwatchStatus.Paused
+    StopwatchStatus.Initial
   );
   const [laps, setLaps] = useState<number[]>([]);
 
@@ -41,7 +42,7 @@ export const useStopWatch = () => {
   const resetStopwatch = () => {
     setTimeElapsed(0);
     setLaps([]);
-    setStopwatchStatus(StopwatchStatus.Paused);
+    setStopwatchStatus(StopwatchStatus.Initial);
   };
 
   const recordLap = () => {
