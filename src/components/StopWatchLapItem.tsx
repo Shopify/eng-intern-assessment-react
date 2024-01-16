@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Box, Divider } from '@shopify/polaris';
+import { Text, Box, Divider, InlineGrid } from '@shopify/polaris';
 import { formatTime } from '../utils';
 
 type StopWatchLapItemProps = {
@@ -11,12 +11,17 @@ const StopWatchLapItem = React.memo(
   ({ lapTime, lapNumber }: StopWatchLapItemProps) => {
     return (
       <>
-        <Divider />
-        <Box>
-          <Text as="p">
-            Lap {lapNumber}: {formatTime(lapTime)}
-          </Text>
+        <Box padding="200">
+          <InlineGrid data-testid="stopwatch-current-lap" columns={2}>
+            <Text variant="bodyLg" as="p">
+              Lap {lapNumber}
+            </Text>
+            <Text variant="bodyLg" as="p" alignment="end">
+              {formatTime(lapTime)}
+            </Text>
+          </InlineGrid>
         </Box>
+        {lapNumber > 1 && <Divider />}
       </>
     );
   }
