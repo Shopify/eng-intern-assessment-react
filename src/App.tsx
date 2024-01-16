@@ -1,4 +1,4 @@
-import { Box, HStack, Heading } from "@chakra-ui/react";
+import { Box, HStack, Heading, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
@@ -8,6 +8,8 @@ import formatTime from "./utils/formatTime";
 export default function App() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
+  const [lapTimes, setLapTimes] = useState<{ lapNumber: number; lapTime: number }[]>([]);
+  const [showTable, setShowTable] = useState<boolean>(false);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -31,9 +33,19 @@ export default function App() {
   const handleReset = () => {
     setIsRunning(false);
     setCurrentTime(0);
+    setLapTimes([]);
+    setShowTable(false);
   };
 
-  const handleLap = () => {};
+  const handleLap = () => {
+    if (isRunning) {
+      setLapTimes(prevLapTimes => [
+        ...prevLapTimes,
+        { lapNumber: prevLapTimes.length + 1, lapTime: currentTime }
+      ]);
+      setShowTable(true);
+    }
+  };
 
   const formattedTime = formatTime(currentTime);
 
@@ -51,11 +63,43 @@ export default function App() {
       </Heading>
       <StopWatch formattedTime={formattedTime} />
 
-      <HStack spacing={5}>
-        <StopWatchButton type={ButtonType.Lap} onClick={handleLap} />
-        <StopWatchButton type={ButtonType.Start} onClick={handleStartStop} />
+      <HStack
+        spacing={5}
+        padding={6}
+        background='rgba(255, 255, 255, 0.1)'
+        border='1px solid rgba(255, 255, 255, 0.2)'
+        borderRadius={30}
+      >
+        <StopWatchButton
+          type={ButtonType.Lap}
+          onClick={handleLap}
+          isRunning={isRunning}
+        />
+        <StopWatchButton
+          type={ButtonType.Start}
+          onClick={handleStartStop}
+          isRunning={isRunning}
+        />
         <StopWatchButton type={ButtonType.Reset} onClick={handleReset} />
       </HStack>
+      {showTable && (
+        <Table variant='simple' mt={4}>
+          <Thead>
+            <Tr>
+              <Th>Lap Number</Th>
+              <Th>Lap Time</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {lapTimes.map(lap => (
+              <Tr key={lap.lapNumber}>
+                <Td>{lap.lapNumber}</Td>
+                <Td>{formatTime(lap.lapTime)}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      )}
     </Box>
   );
 }

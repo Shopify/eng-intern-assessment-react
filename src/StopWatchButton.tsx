@@ -2,12 +2,17 @@ import { IconButton } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
 import { GrPowerReset } from "react-icons/gr";
 import { MdOutlineTimer } from "react-icons/md";
+import { FaStop } from "react-icons/fa6";
 import React from "react";
 
 import StopWatchButtonInterface from "./interfaces/StopWatchButtonInterface";
 import ButtonType from "./enums/ButtonType";
 
-export default function StopWatchButton({ type, onClick }: StopWatchButtonInterface) {
+export default function StopWatchButton({
+  type,
+  onClick,
+  isRunning
+}: StopWatchButtonInterface) {
   let colorScheme;
   let icon;
   let fontSize;
@@ -24,7 +29,7 @@ export default function StopWatchButton({ type, onClick }: StopWatchButtonInterf
       break;
     case ButtonType.Start:
       colorScheme = "blue";
-      icon = <FaPlay />;
+      icon = isRunning ? <FaStop /> : <FaPlay />;
       fontSize = "2rem";
       variant = "solid";
       buttonSize = "90px";
