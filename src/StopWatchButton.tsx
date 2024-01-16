@@ -4,11 +4,11 @@ import React from 'react'
 interface Props {
     text: string;
     disabled?: boolean;
-    handleClick?: () => void;
+    handleClick: () => void;
 }
 
 export default function StopWatchButton({ text, disabled, handleClick }: Props) {
     return (
-        <button disabled={disabled} onClick={handleClick}>{text}</button>
+        <button className="btn" disabled={disabled} onClick={handleClick}>{text}</button>
     )
 }
