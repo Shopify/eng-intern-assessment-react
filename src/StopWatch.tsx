@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import StopWatchButton from './StopWatchButton';
+import './css/StopWatch.css'
 
 export default function StopWatch() {
 
@@ -14,14 +16,14 @@ export default function StopWatch() {
 
 
     useEffect(() => {
-        // Use Date object to get a more accurate time
+        // Use Date object to get more accurate time
         if (active) {
-            // 
-            setStartTime(Date.now() - elapsedTime);
+            setStartTime(Date.now());
             interval.current = setInterval(() => {
-                setElapsedTime(Date.now() - startTime);
+                setElapsedTime((prev) => Date.now() - startTime + prev);
             }, 10)
         } else {
+            // when the stopwatch is no longer active, ie stop or clear, we clear the interval
             clearInterval(interval.current);
         }
 
@@ -40,47 +42,51 @@ export default function StopWatch() {
     }
 
     const lapTimer = () => {
-            setLaps(((prevLaps) => [...prevLaps, elapsedTime]));
-            console.log(laps);
+        setLaps(((prevLaps) => [...prevLaps, elapsedTime]));
+        console.log(laps);
     }
 
-    const formatTime = () => {
+    const formatTime = (elapsedTime:any) => {
         // convert milisecond units to milisecond, second, minute and hour
-        // pad 0 before each time unit if the calculated time unit is a single digit
-        let ms = Math.floor(elapsedTime % 1000).toString().padStart(2, "0");
-        let s = Math.floor((elapsedTime / 1000) % 60).toString().padStart(2, "0");
-        let m = Math.floor((elapsedTime / 60000) % 60).toString().padStart(2, "0");
-        let h = Math.floor((elapsedTime / 3600000)).toString().padStart(2, "0");
-        return { h, s, m, ms }
+        // pad 0's before each time unit if the calculated time unit is a single digit
+        let ms = Math.floor(elapsedTime % 1000);
+        let s = Math.floor((elapsedTime / 1000) % 60);
+        let m = Math.floor((elapsedTime / 60000) % 60);
+        let h = Math.floor((elapsedTime / 3600000));
+        // padded upto 3 0's before ms because 1 second is 1000 ms
+        return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s
+            .toString()
+            .padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
     }
 
-    const { h, m, s, ms } = formatTime();
 
 
     return (
-        <div>
-            {h}<br></br>
-            {m}<br></br>
-            {s}<br></br>
-            {ms}<br></br>
-            {elapsedTime}
-            <div className="button-container">
-                {active ?
-                <button onClick={startTimer}>Start</button> :
-                <button onClick={pauseTimer}>Pause</button>}
-                <button onClick={clearTimer}>Reset</button>
-                <button onClick={lapTimer}>Lap</button>
+        <div className='StopWatch'>
+            <div className='StopWatchDisplay'>
+                {formatTime(elapsedTime)}
             </div>
-            {laps.length > 0 && (
-                <div>
-                    <h2>Lap Times</h2>
-                    <ul>
-                        {laps.map((lap, index) => (
-                            <li key={index}>{lap}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+            <div className='StopWatchButtonGroup'>
+            <StopWatchButton
+                active={active}
+                pauseTimer={pauseTimer}
+                startTimer={startTimer}
+                clearTimer={clearTimer}
+                lapTimer={lapTimer}
+            />
+            </div>
+            <div className = 'LapTimeTable'>
+                {laps.length > 0 && (
+                    <div>
+                        <h2>Lap Times</h2>
+                        <div>
+                            {laps.map((lap, index) => (
+                                <div className='LapTimeEntry' key={index}>{`Lap ${index} : ${formatTime(lap)}`}</div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

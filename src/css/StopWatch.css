@@ -1,0 +1,54 @@
+.StopWatch {
+    text-align: center;
+  }
+  
+  .StopWatchDisplay {
+    font-size: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .StopWatchButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .LapTimeTable {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+  
+  .LapTimeEntry {
+    margin-bottom: 8px;
+  }
+  
+  
+  .StopWatchButton {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  
+  .PauseButton,
+  .StartButton,
+  .ResetButton,
+  .LapButton {
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    text-align: center;
+    width: 50px;
+    cursor: pointer;
+    margin-right:16px;
+    margin-left:16px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+  }
