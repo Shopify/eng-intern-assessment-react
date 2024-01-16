@@ -13,7 +13,7 @@
   float: left;
   height: fit-content;
   text-align: center;
-  font-size: 25px;
+  font-size: 30px;
   color: rgb(240, 155, 169);
   background-color: white;
   width: 40%;
@@ -34,6 +34,52 @@
   padding: 1rem 6rem;
   border-radius: 15px;
   box-shadow: 0 1rem 1rem -0.7rem #d87093;
+}
+
+.carMovement {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  font-size: 40px;
+  height: 150px;
+}
+
+.carMovement > .car {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.carMovement > .carMove {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  display: inline-block;
+  animation: linear infinite;
+  animation-name: run;
+  animation-duration: 10s;
+}
+
+@keyframes run {
+  0% {
+    transform: rotateY(0deg);
+    left: -100%;
+  }
+  50% {
+    transform: rotateY(0deg);
+    left: 100%;
+  }
+  51% {
+    transform: rotateY(180deg);
+    left: 100%;
+  }
+  100% {
+    transform: rotateY(180deg);
+    left: -100%;
+  }
 }
 
 @media (max-width: 1050px) {
