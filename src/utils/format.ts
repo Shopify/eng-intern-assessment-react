@@ -3,8 +3,8 @@ export const pad = (num: number, length: number = 2) => {
 };
 
 export const formatTime = (time: number) => {
-  const hours = Math.floor(time / 3600000);
-  const minutes = Math.floor((time / 60000) % 60);
+  const hours = Math.floor(time / (60 * 60 * 1000));
+  const minutes = Math.floor((time / (60 * 1000)) % 60);
   const seconds = Math.floor((time / 1000) % 60);
   const milliseconds = time % 1000;
 
