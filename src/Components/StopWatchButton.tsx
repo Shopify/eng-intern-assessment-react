@@ -2,10 +2,10 @@
 
 import React from "react";
 
-interface StopWatchButtonProps {
+type StopWatchButtonProps = {
   onClick?: () => void;
   label: string;
-}
+};
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   label,
