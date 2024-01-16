@@ -9,10 +9,11 @@ import {
   InlineGrid,
 } from '@shopify/polaris';
 import StopWatchLaps from './StopWatchLaps';
-import { useStopWatch } from '../useStopWatch';
-import { formatTime } from '../utils';
+import { useStopWatch } from '../hooks/useStopWatch';
+import { formatTime } from '../utils/format';
 import StopWatchControls from './StopWatchControls';
 import StopWatchImg from '../assets/StopWatch.png';
+import StopWatchTime from './StopWatchTime';
 
 export default function StopWatch() {
   const {
@@ -32,11 +33,7 @@ export default function StopWatch() {
         <Card padding="800">
           <InlineGrid columns={2}>
             <BlockStack gap="400">
-              <Text variant="heading3xl" as="h1">
-                <div data-testid="stopwatch-time">
-                  {formatTime(timeElapsed)}
-                </div>
-              </Text>
+              <StopWatchTime timeElapsed={timeElapsed} />
               <StopWatchControls
                 stopwatchStatus={stopwatchStatus}
                 startStopwatch={startStopwatch}
@@ -50,7 +47,7 @@ export default function StopWatch() {
                 </Badge>
               </Box>
             </BlockStack>
-            <BlockStack inlineAlign='end'>
+            <BlockStack inlineAlign="end">
               <img src={StopWatchImg} alt="Stop Watch Image" width={133.5} />
             </BlockStack>
           </InlineGrid>

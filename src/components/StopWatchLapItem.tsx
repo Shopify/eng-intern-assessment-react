@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Box, Divider, InlineGrid } from '@shopify/polaris';
-import { formatTime } from '../utils';
+import { formatTime } from '../utils/format';
 
 type StopWatchLapItemProps = {
   lapTime: number;

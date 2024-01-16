@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonGroup, Button } from '@shopify/polaris';
-import { StopwatchStatus } from '../useStopWatch';
+import { StopwatchStatus } from '../hooks/useStopWatch';
 import {
   PlayIcon,
   PauseCircleIcon,

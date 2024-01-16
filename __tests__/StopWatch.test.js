@@ -26,7 +26,8 @@ describe('Stopwatch', () => {
   });
 
   test('renders initial state', () => {
-    expect(screen.getByText('00:00:00.000')).toBeInTheDocument();
+    expect(screen.getByText('00:00:00.')).toBeInTheDocument();
+    expect(screen.getByText('000')).toBeInTheDocument();
     expect(screen.queryByTestId('stopwatch-laps')).not.toBeInTheDocument();
   });
 
