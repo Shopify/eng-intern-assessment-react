@@ -1,19 +1,29 @@
 //Had to add
 import React from "react";
+import "./matchMedia.mock";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Stopwatch from "../src/StopWatch";
+import { AppProvider } from "@shopify/polaris";
 
 describe("Stopwatch", () => {
   test("renders initial state correctly", () => {
-    render(<Stopwatch />);
+    render(
+      <AppProvider>
+        <Stopwatch />
+      </AppProvider>
+    );
 
     expect(screen.getByText("00:00:00")).toBeInTheDocument();
     expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
   });
 
   test("starts and stops the stopwatch", async () => {
-    render(<Stopwatch />);
+    render(
+      <AppProvider>
+        <Stopwatch />
+      </AppProvider>
+    );
 
     fireEvent.click(screen.getByText("Start"));
     expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
@@ -27,21 +37,33 @@ describe("Stopwatch", () => {
     expect(screen.queryByText("00:00:00")).not.toBeInTheDocument();
   });
 
-  test("pauses and resumes the stopwatch", () => {
-    render(<Stopwatch />);
+  test("pauses and resumes the stopwatch", async () => {
+    render(
+      <AppProvider>
+        <Stopwatch />
+      </AppProvider>
+    );
 
     fireEvent.click(screen.getByText("Start"));
     fireEvent.click(screen.getByText("Stop"));
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
-
+    //Added an await, before it was too fast for the text to change, only updates every 10ms
+    await new Promise((resolve) => setTimeout(resolve, 30));
     fireEvent.click(screen.getByText("Start"));
+
+    //Added an await, before it was too fast for the text to change, only updates every 10ms
+    await new Promise((resolve) => setTimeout(resolve, 30));
     expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
       pausedTime
     );
   });
 
   test("records and displays lap times", () => {
-    render(<Stopwatch />);
+    render(
+      <AppProvider>
+        <Stopwatch />
+      </AppProvider>
+    );
 
     fireEvent.click(screen.getByText("Start"));
     fireEvent.click(screen.getByText("Lap"));
@@ -55,7 +77,11 @@ describe("Stopwatch", () => {
   });
 
   test("resets the stopwatch", () => {
-    render(<Stopwatch />);
+    render(
+      <AppProvider>
+        <Stopwatch />
+      </AppProvider>
+    );
 
     fireEvent.click(screen.getByText("Start"));
     fireEvent.click(screen.getByText("Lap"));

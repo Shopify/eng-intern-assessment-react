@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@shopify/polaris": "^12.9.1",
     "@testing-library/jest-dom": "^6.2.0",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
