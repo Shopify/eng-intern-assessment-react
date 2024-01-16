@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/StopWatch.css";
 import formatTime from "./FormatTime";
 import StopWatchButton from "./StopWatchButton";
 import Laplist from "./Laplist";
@@ -28,7 +27,9 @@ export default function StopWatch() {
   }, [isStarted, timer]);
   return (
     <div>
-      <div className="stopwatch">{formatTime(timer)}</div>
+      <div data-testid="stopwatch" className="stopwatch">
+        {formatTime(timer)}
+      </div>
       <StopWatchButton
         isStarted={isStarted}
         setIsStarted={setIsStarted}

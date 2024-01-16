@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/StopWatchButton.css";
 
 // This is the button component, it is used to start, stop, reset, and add laps to the stopwatch
 export default function StopWatchButton(props: { 

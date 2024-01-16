@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@testing-library/jest-dom": "^6.2.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -44,7 +46,9 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "transform": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy",
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }
   }

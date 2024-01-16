@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/Lap.css";
 import formatTime from "./FormatTime";
 interface lapListProps {
   lap: number[];
