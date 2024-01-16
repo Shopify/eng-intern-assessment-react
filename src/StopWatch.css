@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    margin-top: 5vh;
+
+}
+
+.stopWatchTime {
+    color: white;
+    font-size: 10vh;
+    font-family: sans-serif;
+    font-weight: lighter;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    transition: font-size 350ms linear;
+}
+
+@media (min-width: 992px) {
+    .stopWatchTime {
+        font-size: 15vh;
+    }
+}

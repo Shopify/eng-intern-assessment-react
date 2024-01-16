@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import StopWatchButton from "./StopWatchButton";
 import {Simulate} from "react-dom/test-utils";
-import reset = Simulate.reset;
+import "./StopWatch.css"
 
 
 export default function StopWatch() {
@@ -73,7 +73,7 @@ export default function StopWatch() {
             const lapStyle = {
                 display: 'flex',
                 justifyContent: 'space-between',
-                color: shouldApplyColor ? reversedIndex === shortestLapIndex ? 'green' : (reversedIndex === longestLapIndex ? 'red' : 'black') : 'black',
+                color: shouldApplyColor ? reversedIndex === shortestLapIndex ? 'green' : (reversedIndex === longestLapIndex ? 'red' : 'white') : 'white',
             }
             return (
                 <li key={index} style={lapStyle}>
@@ -90,6 +90,7 @@ export default function StopWatch() {
             const lapStyle = {
                 display: 'flex',
                 justifyContent: 'space-between',
+                color: 'white',
             }
             return (
                 <li key={laps.length + 1} style={lapStyle}>
@@ -104,7 +105,7 @@ export default function StopWatch() {
     return (
         <React.Fragment>
             <div>
-                <h1>{formatTime(elapsedTime)}</h1>
+                <h1 className={"stopWatchTime"}>{formatTime(elapsedTime)}</h1>
             </div>
             <div>
                 <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
