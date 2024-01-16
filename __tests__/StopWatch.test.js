@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import Stopwatch from '../src/components/StopWatch';
 import '@testing-library/jest-dom';
 import { AppProvider } from '@shopify/polaris';
+
+jest.useFakeTimers();
 
 describe('Stopwatch', () => {
   beforeAll(() => {
@@ -25,9 +27,21 @@ describe('Stopwatch', () => {
         <Stopwatch />
       </AppProvider>
     );
-
     expect(screen.getByText('00:00:00.000')).toBeInTheDocument();
     expect(screen.queryByTestId('stopwatch-control').children.length).toBe(3);
     expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+  });
+
+  test('starts timer on start button click', () => {
+    render(
+      <AppProvider i18n={{}}>
+        <Stopwatch />
+      </AppProvider>
+    );
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+    expect(screen.getByTestId('stopwatch-time').textContent).toBe('00:00:01.000');
   });
 });

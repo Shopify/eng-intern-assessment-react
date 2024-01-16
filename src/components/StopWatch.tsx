@@ -19,7 +19,7 @@ export default function StopWatch() {
     <Layout>
       <Layout.Section>
         <Text variant="headingLg" as="h2">
-          {formatTime(timeElapsed)}
+          <div data-testid="stopwatch-time">{formatTime(timeElapsed)}</div>
         </Text>
       </Layout.Section>
       <Layout.Section>
