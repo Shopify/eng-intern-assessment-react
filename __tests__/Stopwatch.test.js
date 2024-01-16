@@ -44,7 +44,7 @@ describe('Stopwatch', () => {
     fireEvent.click(screen.getByText('Stop'));
     const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
-    fireEvent.click(screen.getByText('Resume'));
+    fireEvent.click(screen.getByText('Start'));
     await act(async () => {
       await new Promise((r) => setTimeout(r, 100));
     });

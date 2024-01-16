@@ -39,11 +39,10 @@ export default function StopWatch() {
 
     return(
         <div>
-            <h1 id='stopwatch-display'>{getDisplayText(counter)}</h1>
+            <h1 id='stopwatch-display' style={{ margin: '0.2rem' }}>{getDisplayText(counter)}</h1>
             <div id='stopwatch-buttons'>
-                <StopWatchButton id='start-button' onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>
-                <StopWatchButton id='stop-button' onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>
-                <StopWatchButton id='resume-button' onClick={() => { setIsRunning(true) }} content='Resume'></StopWatchButton>
+                {!isRunning && <StopWatchButton id='start-button' onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>}
+                {isRunning && <StopWatchButton id='stop-button' onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>}
                 <StopWatchButton id='lap-button' onClick={handleOnLap} content='Lap'></StopWatchButton>
                 <StopWatchButton id='reset-button' onClick={handleOnReset} content='Reset'></StopWatchButton>
             </div>
