@@ -27,6 +27,7 @@ export default function App() {
   const handleStartClick = () => {
     setIsRunning(true);
     console.log("The Timer is Running!");
+    formatTimer(time);
   };
 
   // function the handle if the stop button has been clicked
@@ -47,6 +48,15 @@ export default function App() {
     setTime(0);
   };
 
+  const formatTimer = (time: number) => {
+    // take the time state and divide it by 60000. Round it down to the nearest whole number to get the minute whole number
+    // convert the number to a string and use padStart() method to make it a 2 digit number beginning with a zero
+    const minutes = Math.floor(time / 60000)
+      .toString()
+      .padStart(2, "0");
+    console.log("minutes", minutes);
+  };
+
   return (
     <>
       <div className="stopWatch">
@@ -58,7 +68,6 @@ export default function App() {
           onLapClick={handleLapClick}
           display={time}
         />
-        <h1>Timer: {time}</h1>
       </div>
     </>
   );
