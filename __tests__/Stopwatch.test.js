@@ -15,10 +15,10 @@ describe('Stopwatch', () => {
   test('starts and stops the stopwatch', async () => {
     render(<Stopwatch />);
 
-    fireEvent.click(screen.getByText('START'));
+    fireEvent.click(screen.getByText('Start'));
     expect(screen.getByText(/\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('STOP'));
+    fireEvent.click(screen.getByText('Stop'));
 
     // Store the time when the stopwatch was stopped to check that it hasn't changed.
     // Since both the timer and the lap times are rendered at the same time with the same format,
@@ -39,11 +39,11 @@ describe('Stopwatch', () => {
   test('pauses and resumes the stopwatch', async () => {
     render(<Stopwatch />);
 
-    fireEvent.click(screen.getByText('START'));
-    fireEvent.click(screen.getByText('STOP')); // Changed pause to stop, assuming they mean the same
+    fireEvent.click(screen.getByText('Start'));
+    fireEvent.click(screen.getByText('Stop')); // Changed pause to stop, assuming they mean the same
     const pausedTime = screen.getByText(/\d{2}:\d{2}.\d{2}/).textContent;
 
-    fireEvent.click(screen.getByText('RESUME'));
+    fireEvent.click(screen.getByText('Resume'));
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -57,27 +57,25 @@ describe('Stopwatch', () => {
   test('records and displays lap times', () => {
     render(<Stopwatch />);
 
-    fireEvent.click(screen.getByText('START'));
-    fireEvent.click(screen.getByText('LAP'));
+    fireEvent.click(screen.getByText('Start'));
+    fireEvent.click(screen.getByText('Lap'));
     expect(screen.getByTestId('lap-list')).toContainElement(
       screen.getAllByText(/\d{2}:\d{2}.\d{2}/)[1]
     );
 
-    fireEvent.click(screen.getByText('LAP'));
+    fireEvent.click(screen.getByText('Lap'));
     expect(screen.getByTestId('lap-list').children.length).toBe(2);
   });
 
   test('resets the stopwatch', () => {
     render(<Stopwatch />);
 
-    fireEvent.click(screen.getByText('START'));
-    fireEvent.click(screen.getByText('LAP'));
-    fireEvent.click(screen.getByText('STOP')); // Added this line due to my conditional button rendering
-    fireEvent.click(screen.getByText('RESET'));
+    fireEvent.click(screen.getByText('Start'));
+    fireEvent.click(screen.getByText('Lap'));
+    fireEvent.click(screen.getByText('Stop')); // Added this line due to my conditional button rendering
+    fireEvent.click(screen.getByText('Reset'));
 
     expect(screen.getByText('00:00.00')).toBeInTheDocument();
     expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
   });
 });
-
-// /(\d{2}:){2}\d{2}/;
