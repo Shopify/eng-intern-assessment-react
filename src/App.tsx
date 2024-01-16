@@ -12,8 +12,8 @@ import {
   VStack
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import StopWatch from "./StopWatch";
-import StopWatchButton from "./StopWatchButton";
+import StopWatch from "./components/StopWatch";
+import StopWatchButton from "./components/StopWatchButton";
 import ButtonType from "./enums/ButtonType";
 import formatTime from "./utils/formatTime";
 import LapTable from "./components/LapTable";

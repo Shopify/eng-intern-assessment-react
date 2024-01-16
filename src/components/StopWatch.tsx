@@ -1,7 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 
-import StopWatchInterface from "./interfaces/StopWatchProps";
+import StopWatchInterface from "../interfaces/StopWatchProps";
 
 export default function StopWatch({ formattedTime }: StopWatchInterface) {
   return (

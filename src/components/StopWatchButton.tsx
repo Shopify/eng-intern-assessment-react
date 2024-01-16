@@ -5,8 +5,8 @@ import { MdOutlineTimer } from "react-icons/md";
 import { FaStop } from "react-icons/fa6";
 import React from "react";
 
-import StopWatchButtonInterface from "./interfaces/StopWatchButtonInterface";
-import ButtonType from "./enums/ButtonType";
+import StopWatchButtonInterface from "../interfaces/StopWatchButtonProps";
+import ButtonType from "../enums/ButtonType";
 
 export default function StopWatchButton({
   type,
