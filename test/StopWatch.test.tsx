@@ -3,8 +3,6 @@ import { render, fireEvent, screen, act } from '@testing-library/react';
 import StopWatch from '../src/StopWatch';
 import "@testing-library/jest-dom";
 
-jest.useFakeTimers();
-
 describe('StopWatch component', () => {
   test('renders initial state', () => {
     render(<StopWatch />);
