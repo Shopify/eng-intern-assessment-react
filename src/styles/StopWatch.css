@@ -64,5 +64,5 @@ body, html {
     padding: 20vh; 
     min-height: 100vh;
     max-height: auto;
-    background-color: rgb(255, 255, 240);
+    background: linear-gradient(to right, #2ed5c0, #bbf26a);
 }

@@ -32,7 +32,8 @@ return (
     <div>
         <div className="stopwatch-time">
             <span className="main-time">{timecalc(watchtime)}</span>
-            <span className="centiseconds">.{String(Math.floor(watchtime % 100 / 10)).padStart(1, '0')}</span> {/*calculates deciseconds and displays in different font size*/}
+            <span className="centiseconds">.{String(Math.floor(watchtime % 100 / 10)).padStart(1, '0')}</span> 
+            {/*calculates deciseconds and displays in different font size. This avoids render issues with showing centiseconds while using a flexbox*/}
         </div> 
         
         {laps.length > 0 && ( //displays laps in a table below the stopwatch time

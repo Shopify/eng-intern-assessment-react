@@ -14,13 +14,13 @@
 }
 
 .start-button {
-  background-color: #4bb74f; 
+  background-color: black; 
   color: #fff; 
 }
 
 .start-button:hover,
 .start-button:active {
-  background-color: #45a049; 
+  background-color: #333; 
 }
 
 .stop-button {
