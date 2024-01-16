@@ -13,6 +13,7 @@ export default function StopWatch() {
     resetStopwatch,
     laps,
     recordLap,
+    currentLapTime,
   } = useStopWatch();
 
   return (
@@ -49,7 +50,9 @@ export default function StopWatch() {
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
-        {laps.length > 0 && <StopWatchLaps laps={laps} />}
+        {laps.length > 0 && (
+          <StopWatchLaps laps={laps} currentLap={currentLapTime} />
+        )}
       </Layout.Section>
     </Layout>
   );

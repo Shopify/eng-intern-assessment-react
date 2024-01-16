@@ -29,6 +29,9 @@ export const useStopWatch = () => {
 
   const startStopwatch = () => {
     setStopwatchStatus(StopwatchStatus.Running);
+    if (laps.length < 1) {
+      setLaps([0]);
+    }
   };
 
   const stopStopwatch = () => {
@@ -47,6 +50,8 @@ export const useStopWatch = () => {
     setLaps([newLapTime, ...laps]);
   };
 
+  const currentLapTime = timeElapsed - laps.reduce((acc, lap) => acc + lap, 0);
+
   return {
     timeElapsed,
     stopwatchStatus,
@@ -55,5 +60,6 @@ export const useStopWatch = () => {
     resetStopwatch,
     laps,
     recordLap,
+    currentLapTime,
   };
 };

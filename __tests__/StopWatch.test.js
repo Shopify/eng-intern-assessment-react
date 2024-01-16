@@ -98,37 +98,32 @@ describe('Stopwatch', () => {
     );
   });
 
-  test('records and displays lap on lap button click', async () => {
+  test('displays current relative lap time', async () => {
     fireEvent.click(screen.getByText('Start'));
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    fireEvent.click(screen.getByText('Lap'));
-    await waitFor(() => {
-      const lapsElement = screen.getByTestId('stopwatch-laps');
-      expect(lapsElement.children).toHaveLength(1);
-      expect(lapsElement.children[0]).toHaveTextContent('00:00:01.000');
-    });
-  });
-
-  test('records multiple laps relative to current time', async () => {
-    fireEvent.click(screen.getByText('Start'));
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+    expect(screen.getByTestId('stopwatch-current-lap')).toHaveTextContent(
+      '00:00:01.000'
+    );
     fireEvent.click(screen.getByText('Lap'));
     act(() => {
       jest.advanceTimersByTime(500);
     });
-    fireEvent.click(screen.getByText('Lap'));
-    await waitFor(() => {
-      const lapsElement = screen.getByTestId('stopwatch-laps');
-      expect(lapsElement.children).toHaveLength(2);
-      expect(lapsElement.children[0]).toHaveTextContent('00:00:00.500');
-      expect(lapsElement.children[1]).toHaveTextContent('00:00:01.000');
-      expect(screen.getByTestId('stopwatch-time').textContent).toBe(
-        '00:00:01.500'
-      );
+    expect(screen.getByTestId('stopwatch-current-lap')).toHaveTextContent(
+      '00:00:00.500'
+    );
+  });
+
+  test('records and displays lap on lap button click', () => {
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000);
     });
+    fireEvent.click(screen.getByText('Lap'));
+
+    const lapsElement = screen.getByTestId('stopwatch-laps');
+    expect(lapsElement.children).toHaveLength(2);
+    expect(lapsElement.children[1]).toHaveTextContent('00:00:01.000');
   });
 });
