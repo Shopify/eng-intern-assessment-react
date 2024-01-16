@@ -49,14 +49,14 @@ export default function StopWatch() {
     const formatTime = (elapsedTime:any) => {
         // convert milisecond units to milisecond, second, minute and hour
         // pad 0's before each time unit if the calculated time unit is a single digit
-        let ms = Math.floor(elapsedTime % 1000);
-        let s = Math.floor((elapsedTime / 1000) % 60);
-        let m = Math.floor((elapsedTime / 60000) % 60);
-        let h = Math.floor((elapsedTime / 3600000));
+        let milisecond = Math.floor(elapsedTime % 1000);
+        let second = Math.floor((elapsedTime / 1000) % 60);
+        let minute = Math.floor((elapsedTime / 60000) % 60);
+        let hour = Math.floor((elapsedTime / 3600000));
         // padded upto 3 0's before ms because 1 second is 1000 ms
-        return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s
+        return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second
             .toString()
-            .padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
+            .padStart(2, '0')}.${milisecond.toString().padStart(3, '0')}`;
     }
 
 

@@ -51,6 +51,8 @@
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "testEnvironment": "jsdom",
-    "moduleNameMapper": { "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js" }
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
