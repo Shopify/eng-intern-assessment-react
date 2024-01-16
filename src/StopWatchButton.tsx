@@ -1,7 +1,14 @@
 import React from 'react'
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
+// define the props interface
+interface Props {
+    text: string;
+    disabled?: boolean;
+    handleClick?: () => void;
+}
+
+export default function StopWatchButton({ text, disabled, handleClick }: Props) {
+    return (
+        <button disabled={disabled} onClick={handleClick}>{text}</button>
     )
 }

@@ -1,44 +1,75 @@
 import React, { useState, useEffect, useRef } from 'react'
+import StopWatch from './StopWatch'
 
 
 export default function App() {
     const [milliseconds, setMilliseconds] = useState(0)
+    const [lapTime, setLapTime] = useState(0)
     const [watchStarted, setWatchStarted] = useState(false)
-
-    // stores numbers in ms
     const [laps, setLaps] = useState<number[]>([])
 
-    const intervalID = useRef<ReturnType<typeof setInterval> | null>(null);
+    const [intervalID, setIntervalID] = useState<ReturnType<typeof setInterval> | null>(null)
+    const [lapIntervalID, setLapIntervalID] = useState<ReturnType<typeof setInterval> | null>(null)
 
-    const handleStart = () => {
+
+    const handleStart = (): void => {
         // if watch has not started yet, then start it
         if (!watchStarted) {
             // if we have dont' have a previous time, then set the current date as
             // the start time. Otherwise, we need to set the start time to the previous time
             const start = milliseconds === 0 ? Date.now() : Date.now() - milliseconds
 
-            intervalID.current = setInterval(() => {
+            setIntervalID(setInterval(() => {
                 setMilliseconds(Date.now() - start)
-            }, 10)
+            }, 10))
+
+            // if we click lap then set lap time to the current milliseconds
+            // allows us to pause and start the lap timer along with
+            // the main timer
+            if (lapTime) {
+                const lapStart = Date.now() - lapTime
+                setLapIntervalID(setInterval(() => {
+                    setLapTime(Date.now() - lapStart)
+                }, 10))
+            }
+
         } else {
 
             // if watch has started, then stop it
-            clearInterval(intervalID.current)
+            // stop main timer
+            clearInterval(intervalID)
+
+            // stop lap timer
+            clearInterval(lapIntervalID)
         }
 
         setWatchStarted(!watchStarted)
     }
 
-    const handleLap = () => {
+    const handleLap = (): void => {
+
+        // clear the previous lap interval
+        clearInterval(lapIntervalID)
+
+        // if we click lap then set lap time to the current milliseconds
+        const start = Date.now()
+        setLapIntervalID(setInterval(() => {
+            setLapTime(Date.now() - start)
+        }, 10))
+
         // add the current time to the laps array
-        setLaps((prev) => [...prev, milliseconds])
+        setLaps((prev) => [...prev, lapTime ? lapTime : milliseconds])
+
+
     }
-    const handleReset = () => {
+    const handleReset = (): void => {
         // reset the milliseconds
         setMilliseconds(0)
+        setLapTime(0)
 
-        // clear the interval
-        clearInterval(intervalID.current)
+        // clear the intervals
+        clearInterval(intervalID)
+        clearInterval(lapIntervalID)
 
         // clear the laps
         setLaps([])
@@ -47,12 +78,20 @@ export default function App() {
         setWatchStarted(false)
     }
 
+
+    const displayLaps = () => {
+        return (
+            <>
+                {laps.map((lap, index) => {
+                    return (
+                        <li key={`${lap} + ${index}`}>Lap {index + 1}: {displayTime(lap)}</li>
+                    )
+                })}
+            </>
+        )
+    }
+
     const displayTime = (time: number) => {
-        // convert time to milliseconds
-        // convert milliseconds to seconds
-        // convert seconds to minutes
-        // convert minutes to hours
-        // convert hours to days
 
         // only get the seconds left over
         const ms = Math.round(Math.floor((time) % 1000) / 10)
@@ -62,24 +101,13 @@ export default function App() {
         const seconds = Math.floor((time / 1000) % 60)
         const minutes = Math.floor((time / 1000 / 60) % 60)
         const hours = Math.floor((time / 1000 / 60 / 60) % 24)
+        const days = Math.floor((time / 1000 / 60 / 60 / 24))
 
         // possibly later get the days
 
         return (
             <>
-                <div>{hours !== 0 && hours + "h "}{minutes !== 0 && minutes + "m "}{seconds}s {displayMS}</div>
-            </>
-        )
-    }
-
-    const displayLaps = () => {
-        return (
-            <>
-                {laps.map((lap, index) => {
-                    return (
-                        <li key={index}>{displayTime(lap)}</li>
-                    )
-                })}
+                <span>{days !== 0 && days + "d "}{hours !== 0 && hours + "h "}{minutes !== 0 && minutes + "m "}{seconds}s {displayMS}</span>
             </>
         )
     }
@@ -87,21 +115,18 @@ export default function App() {
 
     return (
         <div>
-            <div>{displayTime(milliseconds)}</div>
+            <StopWatch
+                milliseconds={milliseconds}
+                lapTime={lapTime}
+                watchStarted={watchStarted}
 
-            <button onClick={handleStart}>{!watchStarted ? "Start" : "Stop"}</button>
+                handleStart={handleStart}
+                handleLap={handleLap}
+                handleReset={handleReset}
 
-            {/* You can only lap when the watch is currently counting */}
-            <button onClick={handleLap} disabled={milliseconds === 0 || !watchStarted}>Lap</button>
-
-            {/* You can only reset when the started and paused */}
-            <button onClick={handleReset} disabled={milliseconds === 0 || watchStarted}>Reset</button>
-
-            {/* Display the laps */}
-            <ul>
-                {displayLaps()}
-            </ul>
-
+                displayTime={displayTime}
+                displayLaps={displayLaps}
+            />
         </div>
     )
 }
