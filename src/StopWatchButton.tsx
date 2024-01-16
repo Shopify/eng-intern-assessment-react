@@ -1,9 +1,16 @@
 import React from "react";
 import "./StopWatchButton.css";
 
-export default function StopWatchButton(props: {isStarted: boolean, setIsStarted: (isStarted: boolean) => void}) {
-    const isStarted = props.isStarted;
-    const setIsStarted = props.setIsStarted;
+export default function StopWatchButton(props: {
+  isStarted: boolean;
+  setIsStarted: (isStarted: boolean) => void;
+  setTimer: (timer: number) => void;
+  addLap: (lap: number[]) => void;
+}) {
+  const isStarted = props.isStarted;
+  const setTimer = props.setTimer;
+  const setIsStarted = props.setIsStarted;
+  const addLap = props.addLap;
   return (
     <div className="buttonrow">
       <button
@@ -12,8 +19,10 @@ export default function StopWatchButton(props: {isStarted: boolean, setIsStarted
       >
         {isStarted ? "Stop" : "Start"}
       </button>
-      <button className="button resetbutton">Reset</button>
-      <button className="button lapbutton">Lap</button>
+      <button onClick={() => setTimer(0)} className="button resetbutton">
+        Reset
+      </button>
+      <button onClick={() => addLap} className="button lapbutton">Lap</button>
     </div>
   );
 }
