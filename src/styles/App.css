@@ -3,13 +3,18 @@ body{
 }
 .lapTimesBox{
     text-align: center;
-}
-.lapTimeComponent{
-    margin: 10px 0;
-    font-size: 18px;
+    width: 30rem;
+    margin-left: auto;
+    margin-right: auto
 }
 .lapTimeTag{
     color: #222c99;
     font-weight: 900;
     margin-right: 3rem;
+}
+.lapTimeFlex{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 18px;
 }

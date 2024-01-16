@@ -3,6 +3,7 @@ import StopWatchButton from './StopWatchButton'
 import { useEffect, useState } from 'react';
 import StopWatch from './StopWatch';
 import './styles/App.css'
+import { format } from 'path';
 
 export default function App() {
     const [running, setRunning] = useState<boolean>(false);
@@ -10,7 +11,7 @@ export default function App() {
     const [timer, setTimer] = useState<number>(0);
 
     const RecordLapTime = () => {
-        setLapTimes((prevLapTimes) => [...prevLapTimes, formatTimeValue(timer)]);
+        setLapTimes((prevLapTimes) => [formatTimeValue(timer), ...prevLapTimes]);
     };
 
     const ResetTimer = () => {
@@ -48,7 +49,7 @@ export default function App() {
     }, [running]);
 
     return(
-        <div>
+        <div className="stopWatchAppContainer">
             <StopWatch timeString={formatTimeValue(timer)}/>
             <StopWatchButton running={running} recordLapTime={RecordLapTime} setRunning={setRunning} resetTimer={ResetTimer} timer={timer}/>
             {
@@ -58,8 +59,8 @@ export default function App() {
                     <h2>Laps Tracker</h2>
                     {
                         lapTimes.map((lapTime, index) => {
-                            return <div key={"lap"+index} className="lapTimeComponent">
-                                <span className="lapTimeTag">Lap {index + 1}: </span><span>{lapTime}</span>
+                            return <div className="lapTimeFlex">
+                                <span className="lapTimeTag">Lap {lapTimes.length - index}: </span><span>{lapTime}</span>
                             </div>
                         })
                     }
