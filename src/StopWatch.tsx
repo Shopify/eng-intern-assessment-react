@@ -4,6 +4,7 @@ import StopWatchButton from './StopWatchButton'
 export default function StopWatch() {
     const [running, setRunning] = useState(false);
     const [reset, setReset] = useState(true);
+    const [laps, setLaps] = useState([]);
 
     const [time, setTime] = useState(0);
     const startTime = useRef<number>(0);
@@ -18,10 +19,12 @@ export default function StopWatch() {
             // do nothing
         } else if (!reset && running) {
             // lap
+            setLaps((laps) => [...laps, time]);
         } else if (!reset) {
             // reset
             setReset(true);
             setTime(0);
+            setLaps([]);
         }
     }
 
@@ -57,6 +60,15 @@ export default function StopWatch() {
             <div>
                 <StopWatchButton title={reset || running ? "Lap" : "Reset"} onClick={handleReset}/>
                 <StopWatchButton title={running ? "Stop" : "Start"} onClick={handleRunning}/>
+            </div>
+            <div>
+                {laps.length > 0 && (
+                    <ul>
+                        {laps.map((lap) => (
+                            <li key={lap}>{formatTime(lap)}</li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     )
