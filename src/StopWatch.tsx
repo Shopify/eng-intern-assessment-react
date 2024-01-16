@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
+import './StopWatch.css';
 
 export default function StopWatch() {
     const [counter, setCounter] = useState(0)
@@ -38,8 +39,8 @@ export default function StopWatch() {
     }
 
     return(
-        <div>
-            <h1 id='stopwatch-display' style={{ margin: '0.2rem' }}>{getDisplayText(counter)}</h1>
+        <div id='stopwatch-container'>
+            <h1 id='stopwatch-display'>{getDisplayText(counter)}</h1>
             <div id='stopwatch-buttons'>
                 {!isRunning && <StopWatchButton id='start-button' onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>}
                 {isRunning && <StopWatchButton id='stop-button' onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>}

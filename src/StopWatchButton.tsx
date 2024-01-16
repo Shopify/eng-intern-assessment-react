@@ -8,6 +8,6 @@ interface StopWatchButtonProps {
 
 export default function StopWatchButton({ content, id, onClick = undefined} : StopWatchButtonProps) {
     return(
-        <button id={id} onClick={onClick} style={{ margin: '0.2rem' }}>{ content }</button>
+        <button id={id} onClick={onClick}>{ content }</button>
     )
 }

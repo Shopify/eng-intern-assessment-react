@@ -1,0 +1,33 @@
+/* StopWatch.css */
+
+/* Container styles */
+#stopwatch-container {
+    text-align: center;
+  }
+  
+  /* Display styles */
+  #stopwatch-display {
+    font-size: 2rem;
+    margin: 0.5rem;
+  }
+  
+  /* Buttons styles */
+  #stopwatch-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Lap list styles */
+  #lap-list {
+    margin-top: 1rem;
+  }
+  
+  /* Lap item styles */
+  #lap-list li {
+    list-style: none;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
