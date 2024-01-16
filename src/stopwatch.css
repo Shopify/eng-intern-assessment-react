@@ -1,3 +1,14 @@
+:root {
+    --neutral: #FAD4C0;
+    --dark: #B09E99;
+
+    --primary: #64B6AC;
+    --primary-light: #C0FDFB;
+
+    --secondary: #FAD4C0;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +21,7 @@ body {
     display: grid;
     height: 100vh;
     place-content: center;
-    background-color: beige;
+    background-color: var(--neutral);
 }
 
 .stopwatch {
@@ -20,7 +31,7 @@ body {
     height: fit-content;
     padding: 20px;
     border-radius: 16px;
-    background-color: grey;
+    background-color: var(--primary);
     display: flex;
     flex-direction: column;
 }

@@ -99,11 +99,12 @@ export default function StopWatch() {
         <div className="stopwatch">
             <div className="stopwatch-display">{formatTime(displayingTime)}</div>
 
-            <StopWatchButton label={"Start"} onPress={handleStart}></StopWatchButton>
-            <StopWatchButton label={"Stop"} onPress={handleStop}></StopWatchButton>
-            <StopWatchButton label={"Reset"} onPress={handleReset}></StopWatchButton>
-            <StopWatchButton label={"Lap"} onPress={handleLap}></StopWatchButton>
-
+            <div className="stopwatch-button-grid">
+                <StopWatchButton label={"Start"} onPress={handleStart}></StopWatchButton>
+                <StopWatchButton label={"Stop"} onPress={handleStop}></StopWatchButton>
+                <StopWatchButton label={"Reset"} onPress={handleReset}></StopWatchButton>
+                <StopWatchButton label={"Lap"} onPress={handleLap}></StopWatchButton>
+            </div>
         </div>
     )
 }
