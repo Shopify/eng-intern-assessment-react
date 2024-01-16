@@ -12,6 +12,7 @@ type StopWatchProps = {
   onResetClick: () => void;
   onLapClick: () => void;
   label: string;
+  display: number;
 };
 
 // props are being deconstructed along with the StopWatchProps destructured object, specifying that it should conform to the StopWatchProps
@@ -20,14 +21,13 @@ export default function StopWatch({
   onStartClick,
   onResetClick,
   onLapClick,
+  display,
 }: StopWatchProps) {
   return (
     <>
       <div className="stop-watch-container">
         <div className="display">
-          <p className="digits">
-            <span>00</span>:<span>00</span>.<span>00</span>
-          </p>
+          <p className="digits">{display}</p>
         </div>
         <div className="controls-container">
           <StopWatchButton label={label} onClick={onStartClick} />{" "}
