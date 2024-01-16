@@ -1,16 +1,15 @@
 import React from "react";
 import "./styles/StopWatchButton.css";
 
-export default function StopWatchButton(props: {
+// This is the button component, it is used to start, stop, reset, and add laps to the stopwatch
+export default function StopWatchButton(props: { 
+  //Props include isStarted, setIsStarted, setTimer, and addLap, these are to allow the buttons to change the stopwatch and add laps, props are used to get variables between components
   isStarted: boolean;
   setIsStarted: (isStarted: boolean) => void;
   setTimer: (timer: number) => void;
   addLap: () => void;
 }) {
-  const isStarted = props.isStarted;
-  const setTimer = props.setTimer;
-  const setIsStarted = props.setIsStarted;
-  const addLap = props.addLap;
+  const {isStarted, setTimer, setIsStarted, addLap} = props; //Destructuring props to get the variables needed
   return (
     <div className="buttonrow">
       <button
