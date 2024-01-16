@@ -21,23 +21,21 @@ describe('Stopwatch', () => {
     });
   });
 
-  test('renders initial state', () => {
+  beforeEach(() => {
     render(
       <AppProvider i18n={{}}>
         <Stopwatch />
       </AppProvider>
     );
+  });
+
+  test('renders initial state', () => {
     expect(screen.getByText('00:00:00.000')).toBeInTheDocument();
     expect(screen.queryByTestId('stopwatch-control').children.length).toBe(3);
     expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
   });
 
   test('starts timer on start button click', () => {
-    render(
-      <AppProvider i18n={{}}>
-        <Stopwatch />
-      </AppProvider>
-    );
     fireEvent.click(screen.getByText('Start'));
     act(() => {
       jest.advanceTimersByTime(1000);
@@ -48,11 +46,6 @@ describe('Stopwatch', () => {
   });
 
   test('stops timer on stop button click', () => {
-    render(
-      <AppProvider i18n={{}}>
-        <Stopwatch />
-      </AppProvider>
-    );
     fireEvent.click(screen.getByText('Start'));
     act(() => {
       jest.advanceTimersByTime(3000);
@@ -68,11 +61,6 @@ describe('Stopwatch', () => {
   });
 
   test('resumes timer on start button click after stop', () => {
-    render(
-      <AppProvider i18n={{}}>
-        <Stopwatch />
-      </AppProvider>
-    );
     fireEvent.click(screen.getByText('Start'));
     act(() => {
       jest.advanceTimersByTime(3000);
