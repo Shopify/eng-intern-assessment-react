@@ -1,5 +1,11 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  act,
+  waitFor,
+} from '@testing-library/react';
 import Stopwatch from '../src/components/StopWatch';
 import '@testing-library/jest-dom';
 import { AppProvider } from '@shopify/polaris';
@@ -32,7 +38,7 @@ describe('Stopwatch', () => {
   test('renders initial state', () => {
     expect(screen.getByText('00:00:00.000')).toBeInTheDocument();
     expect(screen.queryByTestId('stopwatch-control').children.length).toBe(3);
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    expect(screen.queryByTestId('stopwatch-laps')).not.toBeInTheDocument();
   });
 
   test('starts timer on start button click', () => {
@@ -90,5 +96,36 @@ describe('Stopwatch', () => {
     expect(screen.getByTestId('stopwatch-time').textContent).toBe(
       '00:00:00.000'
     );
+  });
+
+  test('records and displays lap on lap button click', async () => {
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+    fireEvent.click(screen.getByText('Lap'));
+    await waitFor(() => {
+      const lapsElement = screen.getByTestId('stopwatch-laps');
+      expect(lapsElement.children).toHaveLength(1);
+      expect(lapsElement.children[0]).toHaveTextContent('00:00:01.000');
+    });
+  });
+
+  test('records multiple laps relative to current time', async () => {
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+    fireEvent.click(screen.getByText('Lap'));
+    act(() => {
+      jest.advanceTimersByTime(500);
+    });
+    fireEvent.click(screen.getByText('Lap'));
+    await waitFor(() => {
+      const lapsElement = screen.getByTestId('stopwatch-laps');
+      expect(lapsElement.children).toHaveLength(2);
+      expect(lapsElement.children[0]).toHaveTextContent('00:00:01.000');
+      expect(lapsElement.children[1]).toHaveTextContent('00:00:00.500');
+    });
   });
 });

@@ -49,9 +49,7 @@ export default function StopWatch() {
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
-        <div data-testid="lap-list">
-          {laps.length > 0 && <StopWatchLaps laps={laps} />}
-        </div>
+        {laps.length > 0 && <StopWatchLaps laps={laps} />}
       </Layout.Section>
     </Layout>
   );
