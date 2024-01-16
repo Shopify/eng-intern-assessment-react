@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
+import "./styles/StopWatch.css"
 
 export default function StopWatch() {
-    const [running, setRunning] = useState(false);
-    const [reset, setReset] = useState(true);
-    const [laps, setLaps] = useState([]);
-
-    const [time, setTime] = useState(0);
     const startTime = useRef<number>(0);
+    const [running, setRunning] = useState<boolean>(false);
+    const [reset, setReset] = useState<boolean>(true);
+    const [laps, setLaps] = useState<number[]>([]);
+    const [time, setTime] = useState<number>(0);
 
     const handleRunning = () => {
         setRunning(!running);
@@ -15,13 +15,9 @@ export default function StopWatch() {
     }
 
     const handleReset = () => {
-        if (reset) {
-            // do nothing
-        } else if (!reset && running) {
-            // lap
+        if (!reset && running) {
             setLaps((laps) => [...laps, time]);
         } else if (!reset) {
-            // reset
             setReset(true);
             setTime(0);
             setLaps([]);
@@ -30,6 +26,7 @@ export default function StopWatch() {
 
     useEffect(() => {
         let timer: NodeJS.Timer;
+        
         if (running) {
           startTime.current = Date.now() - time;
           timer = setInterval(() => {
@@ -50,22 +47,23 @@ export default function StopWatch() {
     }
 
     return(
-        <div>
-            <div>
+        <div className="stopwatch-container">
+            <div className="stopwatch">
                 <h1>Shopify StopWatch</h1>
-                <div>
-                    <p>{formatTime(time)}</p>
-                </div>
+                <p>{formatTime(time)}</p>
             </div>
-            <div>
+            <div className="buttons">
                 <StopWatchButton title={reset || running ? "Lap" : "Reset"} onClick={handleReset}/>
                 <StopWatchButton title={running ? "Stop" : "Start"} onClick={handleRunning}/>
             </div>
-            <div>
+            <div className="laps">
                 {laps.length > 0 && (
                     <ul>
-                        {laps.map((lap) => (
-                            <li key={lap}>{formatTime(lap)}</li>
+                        {laps.map((lap, index) => (
+                            <li key={lap}>
+                                <p className="lap-num">Lap{" " + (index + 1)}</p>
+                                <p>{formatTime(lap)}</p>
+                            </li>
                         ))}
                     </ul>
                 )}

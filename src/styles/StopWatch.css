@@ -1,0 +1,50 @@
+
+* {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.stopwatch-container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.stopwatch-container .stopwatch {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    place-items: center;
+}
+  
+.stopwatch-container .stopwatch h1 {
+    font-size: 32px;
+}
+
+.stopwatch-container .stopwatch p {
+    font-size: 20px;
+}
+
+.stopwatch-container .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+  
+.stopwatch-container .laps ul {
+    list-style: none;
+}
+  
+.stopwatch-container .laps li {
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+}
+
+.stopwatch-container .laps .lap-num {
+     font-weight: bold;
+     padding-right: 70px;
+}
