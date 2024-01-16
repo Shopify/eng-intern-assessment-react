@@ -2,9 +2,6 @@
  * @jest-environment jsdom
  */
 
-// added jest-environment jsdom to fix error: ReferenceError: window is not defined
-// added jest-environment-jsdom
-
 import React from "react";
 import { render, screen, fireEvent, waitFor, act, prettyDOM } from "@testing-library/react";
 import StopWatch from "../StopWatch";
@@ -59,7 +56,7 @@ test("main timer should start counting when start button is clicked and stop cou
         jest.advanceTimersByTime(2000);
     });
 
-    // timer should count to 2s 00 after 2 seconds
+    // timer should count to 2s after 2 seconds
     await waitFor(() => {
         expect(screen.getByText("2s")).toBeInTheDocument();
     })
@@ -161,10 +158,10 @@ test("lap button should add a lap to the lap list when clicked", async () => {
         expect(screen.getByTestId("lap-list")).toBeInTheDocument();
         expect(screen.getByTestId("lap-timer")).toBeInTheDocument();
 
-        // lap list should have 1 element for title and 1 lap
+        // lap list should have 1 element for titles and 1 lap element
         expect(screen.getByTestId("lap-list").childElementCount).toBe(2);
 
-        // lap list should have a lap of 2s 00
+        // lap list should have a lap of 4s
         expect(screen.getByText("#1")).toBeInTheDocument();
         expect(screen.getByText("4s")).toBeInTheDocument();
     })
@@ -175,7 +172,7 @@ test("lap button should add a lap to the lap list when clicked", async () => {
     })
 
     await waitFor(() => {
-        // lap list should have 1 element for title and 2 laps
+        // lap list should have 1 element for title and 2 lap elements
         expect(screen.getByTestId("lap-list").childElementCount).toBe(3);
 
         // lap list should have a lap with #2 as it's title and 3s as it's time
@@ -299,7 +296,3 @@ test("Reset button should be disabled when timer is running but enabled when not
     })
 
 })
-
-
-
-
