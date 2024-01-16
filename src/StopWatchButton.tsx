@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/StopWatchButton.css'
 
+// Defining interface for the component props
 interface StopWatchButtonProps {
   running?: boolean;
   recordLapTime: () => void;
@@ -9,6 +10,7 @@ interface StopWatchButtonProps {
   timer: number;
 }
 
+// Component to manage Start, Reset, Stop and Lap features wired with the stopwatch timer
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({ running, recordLapTime, setRunning, resetTimer, timer}) => {
   return (
     <div className="stopWatchButtons">

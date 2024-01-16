@@ -8,6 +8,7 @@ interface LapTrackerComponentsProps{
     lapTimes: string[]
 }
 
+// Component to render the lap time record
 export const LapTrackerComponents:React.FC<LapTrackerComponentsProps> = ({lapTimes}) => {
   return (
     <div className="lapTimesBox">
@@ -26,14 +27,21 @@ export const LapTrackerComponents:React.FC<LapTrackerComponentsProps> = ({lapTim
 };
 
 export default function App() {
-    const [running, setRunning] = useState<boolean>(false);
-    const [lapTimes, setLapTimes] = useState<string[]>([]);
+    // Main timer
     const [timer, setTimer] = useState<number>(0);
 
+    // Hook to control the timer
+    const [running, setRunning] = useState<boolean>(false);
+
+    // Variable to store lap time records
+    const [lapTimes, setLapTimes] = useState<string[]>([]);
+
+    // Function to record lap time
     const RecordLapTime = () => {
         setLapTimes((prevLapTimes) => [formatTimeValue(timer), ...prevLapTimes]);
     };
 
+    // Function to reset the timer and lap tracked when called.
     const ResetTimer = () => {
         setTimer(0);
         setLapTimes([]);
@@ -47,6 +55,7 @@ export default function App() {
         const minutes = Math.floor((milliseconds % (60 * 60 * 100)) / (60 * 100));
         const seconds = Math.floor((milliseconds % (60 * 100)) / 100);
         const remainingMilliseconds = milliseconds % 100;
+        // Format to string  HH:MM:SS:MM
         return `${handleTimeDigits(hours)}:${handleTimeDigits(minutes)}:${handleTimeDigits(seconds)}:${handleTimeDigits(remainingMilliseconds)}`;
       }
       
@@ -56,8 +65,10 @@ export default function App() {
         return numString.length >= 2 ? numString : new Array(2 - numString.length + 1).join('0') + numString;
     }
 
+    // Interval computation to update timer
     useEffect(() => {
         let intervalId: NodeJS.Timeout
+        // Update the timer count only when running is enabled i.e. is set to true
         if (running) {
             intervalId = setInterval(() => {
                 setTimer((prevTimer) => prevTimer + 1);
