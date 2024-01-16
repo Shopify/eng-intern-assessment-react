@@ -1,0 +1,16 @@
+.stop-watch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.button-container {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+
+.button-container button {
+    flex: 0 0 auto;
+}
