@@ -2,13 +2,12 @@ import React from 'react';
 
 interface StopWatchButtonProps {
     onPress: (event: React.MouseEvent<HTMLButtonElement>) => void;
-    label: string
+    label: string;
+    isPressed: boolean;
 }
 
-export default function StopWatchButton({ onPress, label }: StopWatchButtonProps) {
+export default function StopWatchButton({ onPress, label, isPressed }: StopWatchButtonProps) {
     return(
-        <div>
-            <button onClick={onPress}>{label}</button>
-        </div>
+        <button type="button" className={`stopwatch-button stopwatch-${label.toLowerCase()} ${isPressed ? "stopwatch-button-pressed" : ""}`} onClick={onPress}>{label}</button>
     );
 }

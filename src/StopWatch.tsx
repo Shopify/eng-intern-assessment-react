@@ -100,10 +100,10 @@ export default function StopWatch() {
             <div className="stopwatch-display">{formatTime(displayingTime)}</div>
 
             <div className="stopwatch-button-grid">
-                <StopWatchButton label={"Start"} onPress={handleStart}></StopWatchButton>
-                <StopWatchButton label={"Stop"} onPress={handleStop}></StopWatchButton>
-                <StopWatchButton label={"Reset"} onPress={handleReset}></StopWatchButton>
-                <StopWatchButton label={"Lap"} onPress={handleLap}></StopWatchButton>
+                <StopWatchButton label={"Start"} isPressed={!isPaused} onPress={handleStart}></StopWatchButton>
+                <StopWatchButton label={"Stop"} isPressed={isPaused} onPress={handleStop}></StopWatchButton>
+                <StopWatchButton label={"Reset"} isPressed={false} onPress={handleReset}></StopWatchButton>
+                <StopWatchButton label={"Lap"} isPressed={false} onPress={handleLap}></StopWatchButton>
             </div>
         </div>
     )
