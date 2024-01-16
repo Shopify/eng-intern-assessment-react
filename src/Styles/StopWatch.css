@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+.timer {
+  height: 98vh;
+  background-color: #ffc0cb;
+  overflow: auto;
+}
+
+.timerContainer {
+  margin: 50px;
+  float: left;
+  height: fit-content;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(240, 155, 169);
+  background-color: white;
+  width: 40%;
+  border-radius: 15px;
+  padding-top: 1rem;
+  box-shadow: 0 1rem 1rem -0.7rem #d87093;
+}
+
+.lapContainer {
+  margin: 50px;
+  float: left;
+  height: fit-content;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(240, 155, 169);
+  background-color: white;
+  width: 40%;
+  padding: 1rem 6rem;
+  border-radius: 15px;
+  box-shadow: 0 1rem 1rem -0.7rem #d87093;
+}
+
+@media (max-width: 1050px) {
+  .timerContainer,
+  .lapContainer {
+    width: 80%;
+    float: center;
+    margin: 50px;
+  }
+}

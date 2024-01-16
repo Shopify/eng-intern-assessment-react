@@ -1,0 +1,17 @@
+.startStop,
+.restartLap {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 18px;
+  background-color: pink;
+  width: 70px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.restartLap {
+  margin-left: 15px;
+}
