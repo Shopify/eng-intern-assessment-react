@@ -1,10 +1,14 @@
 import React from 'react'
 import './styles/StopWatch.css'
 
-export default function StopWatch() {
+interface StopWatchProps{
+    timer?: number
+}
+
+export default function StopWatch({timer=0}:StopWatchProps) {
     return(
         <div className="stopWatchContainer">
-            00:00:00 
+            {timer}
         </div>
     )
 }

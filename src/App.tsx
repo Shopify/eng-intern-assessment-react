@@ -5,13 +5,32 @@ import StopWatch from './StopWatch';
 import './styles/App.css'
 
 export default function App() {
-    const [running, setRunning] = useState(false);
-    const [lapTimes, setLapTimes] = useState(["5000", "6000"]);
+    const [running, setRunning] = useState<boolean>(false);
+    const [lapTimes, setLapTimes] = useState<number[]>([500, 500]);
+    const [timer, setTimer] = useState<number>(0);
+
+    const RecordLapTime = () => {
+        setLapTimes((prevLapTimes) => [...prevLapTimes, timer]);
+    };
+
+    const ResetTimer = () => {
+        setTimer(0);
+    }
+
+    useEffect(() => {
+        let intervalId: NodeJS.Timeout
+        if (running) {
+            intervalId = setInterval(() => {
+                setTimer((prevTimer) => prevTimer + 1);
+            }, 10);
+        }
+        return () => clearInterval(intervalId);
+    }, [running]);
 
     return(
         <div>
-            <StopWatch/>
-            <StopWatchButton/>
+            <StopWatch timer={timer}/>
+            <StopWatchButton recordLapTime={RecordLapTime} setRunning={setRunning} resetTimer={ResetTimer}/>
             <div className="lapTimesBox">
                 <hr/>
                 <h2>Laps Tracker</h2>
