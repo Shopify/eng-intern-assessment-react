@@ -27,12 +27,12 @@ export default function App() {
       p={4}
     >
       <Heading as='h1' size='2xl' mb='8'>
-        React Stopwatch
+        Stopwatch - Shopify Internship Assessment
       </Heading>
       <StopWatch isRunning={isRunning} />
       <HStack spacing={5}>
-        <StopWatchButton type={ButtonType.Start} onClick={handleStartStop} />
         <StopWatchButton type={ButtonType.Lap} onClick={handleLap} />
+        <StopWatchButton type={ButtonType.Start} onClick={handleStartStop} />
         <StopWatchButton type={ButtonType.Reset} onClick={handleLap} />
       </HStack>
     </Box>

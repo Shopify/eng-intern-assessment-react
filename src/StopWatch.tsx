@@ -23,7 +23,7 @@ export default function StopWatch({ isRunning }: StopWatchInterface) {
         height='280px'
         borderWidth='2px'
         borderStyle='dotted'
-        borderColor='teal.500'
+        borderColor='blue.500'
       >
         <Heading as='h2' size='4xl'>
           00:00

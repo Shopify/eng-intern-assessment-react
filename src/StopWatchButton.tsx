@@ -1,4 +1,7 @@
-import { Button } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { FaPlay } from "react-icons/fa";
+import { GrPowerReset } from "react-icons/gr";
+import { MdOutlineTimer } from "react-icons/md";
 import React from "react";
 
 import StopWatchButtonInterface from "./interfaces/StopWatchButtonInterface";
@@ -6,30 +9,48 @@ import ButtonType from "./enums/ButtonType";
 
 export default function StopWatchButton({ type }: StopWatchButtonInterface) {
   let colorScheme;
+  let icon;
+  let fontSize;
+  let buttonSize;
+  let variant;
 
   switch (type) {
     case ButtonType.Reset:
-      colorScheme = "pink";
+      colorScheme = "white";
+      icon = <GrPowerReset />;
+      fontSize = "1.8rem";
+      variant = "outline";
+      buttonSize = "60px";
       break;
     case ButtonType.Start:
-      colorScheme = "green";
+      colorScheme = "blue";
+      icon = <FaPlay />;
+      fontSize = "2rem";
+      variant = "solid";
+      buttonSize = "90px";
       break;
     case ButtonType.Lap:
-      colorScheme = "purple";
+      colorScheme = "white";
+      icon = <MdOutlineTimer />;
+      fontSize = "1.8rem";
+      variant = "outline";
+      buttonSize = "60px";
       break;
     default:
-      colorScheme = "gray"; // Default color scheme
+      colorScheme = "gray";
   }
 
   return (
-    <Button
+    <IconButton
+      variant={variant}
       colorScheme={colorScheme}
-      variant='outline'
-      borderRadius={16}
+      width={buttonSize}
+      height={buttonSize}
+      isRound={true}
       padding={5}
-      size='lg'
-    >
-      {type}
-    </Button>
+      fontSize={fontSize}
+      aria-label={type}
+      icon={icon}
+    />
   );
 }
