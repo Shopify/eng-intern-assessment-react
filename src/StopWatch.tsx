@@ -38,7 +38,7 @@ export default function StopWatch() {
         <h3 className="laps-title">Current Laps:</h3>
         <div className="laps-box">
           {laps.map((time, index) => (
-            <p>
+            <p key={index}>
               Lap {index + 1}: {time} seconds
             </p>
           ))}
