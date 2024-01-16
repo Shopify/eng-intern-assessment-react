@@ -1,0 +1,72 @@
+.app-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 2rem;
+}
+
+.stopwatch-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  row-gap: 1rem;
+}
+
+.timer-box {
+  border: 1px solid blueviolet;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 0;
+}
+
+.laps-title {
+  margin: 0;
+}
+
+.laps-box {
+  height: 12rem;
+  overflow-y: scroll;
+  font-size: large;
+}
+
+.laps-outer-box {
+  border: 1px solid blueviolet;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.stopwatch-button-box {
+  display: flex;
+  height: 4rem;
+  justify-content: space-around;
+  align-items: center;
+  column-gap: 2rem;
+}
+
+.stopwatch-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid slateblue;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  font-size: x-large;
+  background-color: #00ffff;
+  transition: box-shadow 0.3s ease;
+  /* If users were to click the buttons fast, it would highlight the text and the UI would look funny.
+  This gets annoying so we add this property in so that the text cannot be highlighted. */
+  user-select: none;
+}
+
+.stopwatch-button:hover {
+  cursor: pointer;
+}
+
+.stopwatch-button:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.stopwatch-red {
+  background-color: rgb(242, 103, 103);
+}
