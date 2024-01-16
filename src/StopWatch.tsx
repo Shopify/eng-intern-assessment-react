@@ -2,31 +2,34 @@ import React, { useEffect, useRef, useState } from 'react'
 
 export default function StopWatch() {
 
-    const [time, setTime] = useState(354000);
-    const [milliseconds, setMiliseconds] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [hours, setHours] = useState(0);
+    const [time, setTime] = useState(3590000);
+    const [now, setNow] = useState(0);
+    const [milliseconds, setMiliseconds] = useState(null);
+    const [seconds, setSeconds] = useState(null);
+    const [minutes, setMinutes] = useState(null);
+    const [hours, setHours] = useState(null);
     const [laps, setLaps] = useState([]);
     const [active, setActive] = useState(false);
-    let interval = useRef(null);
-    /*useEffect (() => {
-        let interval;
-        if(active){
-            interval = setInterval(() => setTime(time+1),10)
-            console.log(time);
-        }
-        return clearInterval(interval);
-    }, [active, time]);*/
+    const interval = useRef(null);
 
     const startTimer = () => {
-        if (active) return;
         setActive(true);
-        interval.current = setInterval(() => {
-            setTime((prev) => prev + 1);
-        }, 10)
-        console.log(time);
     }
+
+
+    useEffect(() => {
+        let startTime = Date.now()
+        if(active){
+            setNow(Date.now() - time);
+            interval.current = setInterval(() => {
+                setTime(Date.now() - now);
+            }, 10)
+        }else {
+            clearInterval(interval.current);
+          }
+      
+          return () => clearInterval(interval.current);
+    })
 
     const pauseTimer = () => {
         setActive(false);
@@ -36,21 +39,23 @@ export default function StopWatch() {
     const clearTimer = () => {
         setActive(false);
         setTime(0);
+        setNow(0);
         clearInterval(interval.current);
         setLaps([]);
     }
 
     const lapTimer = () => {
-
+        
     }
+    const elapsedTime = time - now;
 
     const formatTime = () => {
         // convert milisecond units to milisecond, second, minute and hour
         // pad 0 before each time unit if the calculated time unit is a single digit
-        let ms = Math.floor(time % 100).toString().padStart(2, "0");
-        let s =  Math.floor((time / 100) % 60).toString().padStart(2, "0");
-        let m =  Math.floor((time / 6000) % 60).toString().padStart(2, "0");
-        let h =  Math.floor((time / 360000)).toString().padStart(2, "0");
+        let ms = Math.floor(time % 1000).toString().padStart(2, "0");
+        let s =  Math.floor((time / 1000) % 60).toString().padStart(2, "0");
+        let m =  Math.floor((time / 60000) % 60).toString().padStart(2, "0");
+        let h =  Math.floor((time / 3600000)).toString().padStart(2, "0");
         /*setMiliseconds(ms);
         setSeconds(s);
         setMinutes(m);
@@ -67,10 +72,12 @@ export default function StopWatch() {
             {m}<br></br>
             {s}<br></br>
             {ms}<br></br>
+            {time}
             <div className="button-container">
                 <button onClick={startTimer}>Start</button>
                 <button onClick={pauseTimer}>Pause</button>
                 <button onClick={clearTimer}>Reset</button>
+                <button onClick={lapTimer}>Lap</button>
             </div>
         </div>
     )
