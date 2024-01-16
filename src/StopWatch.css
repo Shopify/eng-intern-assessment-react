@@ -5,14 +5,14 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Change from space-between */
+    justify-content: flex-start; 
 }
 
 .header,
 .timer,
 .laps-container {
     margin-top: 20px;
-    margin-bottom: 20px; /* Adjusted spacing between elements */
+    margin-bottom: 20px; 
 }
 
 .header {
@@ -27,7 +27,7 @@
 .buttons-container {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 20px; /* Adjusted spacing */
+    margin-bottom: 20px; 
 }
 
 .laps-container {
