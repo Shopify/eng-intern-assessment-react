@@ -1,0 +1,18 @@
+.stopwatch {
+    font-family: 'Arial', sans-serif;
+    display: inline-block;
+    background: #fff; /* Placeholder color */
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .digits {
+    font-size: 2rem;
+    color: #333; /* Placeholder color */
+  }
+  
+  .milliseconds {
+    font-size: 1rem;
+    vertical-align: top;
+  }
+  

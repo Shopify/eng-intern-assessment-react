@@ -1,0 +1,54 @@
+.app {
+    text-align: center;
+    padding: 2rem;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header h1 {
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Added styles for centering the buttons */
+  .stopwatch-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .laps-container {
+    width: 40%;
+    margin-top: 1rem;
+    position: relative;
+    padding-bottom: 60px;
+    background: #fff; /* Set the background color to match the button */
+  }
+  
+  .laps {
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1rem; /* Adjusted to ensure space above */
+  }
+  
+  .lap-time { /* Updated class name */
+    background: #f3f3f3;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .clear-laps {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
