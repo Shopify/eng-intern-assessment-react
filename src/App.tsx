@@ -1,16 +1,4 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  Heading,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  VStack
-} from "@chakra-ui/react";
+import { Flex, HStack, Heading, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";

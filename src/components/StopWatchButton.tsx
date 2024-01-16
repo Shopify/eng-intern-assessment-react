@@ -18,6 +18,7 @@ export default function StopWatchButton({
   let fontSize;
   let buttonSize;
   let variant;
+  let testid;
 
   switch (type) {
     case ButtonType.Reset:
@@ -26,6 +27,7 @@ export default function StopWatchButton({
       fontSize = "1.8rem";
       variant = "outline";
       buttonSize = "60px";
+      testid = "reset-button";
       break;
     case ButtonType.Start:
       colorScheme = "blue";
@@ -33,6 +35,7 @@ export default function StopWatchButton({
       fontSize = "2rem";
       variant = "solid";
       buttonSize = "90px";
+      testid = "start-button";
       break;
     case ButtonType.Lap:
       colorScheme = "white";
@@ -40,6 +43,7 @@ export default function StopWatchButton({
       fontSize = "1.8rem";
       variant = "outline";
       buttonSize = "60px";
+      testid = "lap-button";
       break;
     default:
       colorScheme = "gray";
@@ -57,6 +61,7 @@ export default function StopWatchButton({
       aria-label={type}
       icon={icon}
       onClick={onClick}
+      data-testid={testid}
     />
   );
 }

@@ -25,7 +25,7 @@ export default function StopWatch({ formattedTime }: StopWatchInterface) {
         borderStyle='dotted'
         borderColor='blue.500'
       >
-        <Heading as='h2' size='4xl'>
+        <Heading as='h2' size='4xl' data-testid='stopwatch-time'>
           {formattedTime}
         </Heading>
       </Box>

@@ -21,7 +21,7 @@ export default function LapTable({ lapTimes }: LapTableInterface) {
       border='1px solid rgba(255, 255, 255, 0.2)'
       borderRadius={30}
     >
-      <Table variant='simple' size='sm' colorScheme='blue'>
+      <Table variant='simple' size='sm' colorScheme='blue' data-testid='lap-table'>
         <Thead>
           <Tr>
             <Th position='sticky' top='0'>
