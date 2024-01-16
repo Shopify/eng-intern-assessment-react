@@ -1,6 +1,8 @@
 import React from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import formatTime from "./FormatTime";
+import "./styles/Lap.css";
 
 export default function App() {
   const [isStarted, setIsStarted] = React.useState<boolean>(false);
@@ -8,8 +10,8 @@ export default function App() {
   const [lap, setLap] = React.useState<number[]>([]);
 
   function addLap() {
-    console.log(lap)
     setLap([...lap, timer]);
+    setTimer(0);
   }
   return (
     <div>
@@ -20,9 +22,11 @@ export default function App() {
         setTimer={setTimer}
         addLap={addLap}
       />
-      <div>
+      <div className="lapList">
         {lap.map((lap, index) => (
-          <div key={index}>{lap}</div>
+          <div className="lap" key={index}>
+            Lap {index + 1}: {formatTime(lap)}
+          </div>
         ))}
       </div>
     </div>

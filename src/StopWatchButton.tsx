@@ -1,11 +1,11 @@
 import React from "react";
-import "./StopWatchButton.css";
+import "./styles/StopWatchButton.css";
 
 export default function StopWatchButton(props: {
   isStarted: boolean;
   setIsStarted: (isStarted: boolean) => void;
   setTimer: (timer: number) => void;
-  addLap: (lap: number[]) => void;
+  addLap: () => void;
 }) {
   const isStarted = props.isStarted;
   const setTimer = props.setTimer;
@@ -22,7 +22,9 @@ export default function StopWatchButton(props: {
       <button onClick={() => setTimer(0)} className="button resetbutton">
         Reset
       </button>
-      <button onClick={() => addLap} className="button lapbutton">Lap</button>
+      <button onClick={() => addLap()} className="button lapbutton">
+        Lap
+      </button>
     </div>
   );
 }
