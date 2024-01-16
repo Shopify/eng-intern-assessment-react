@@ -1,0 +1,71 @@
+
+
+html {
+    background-color: antiquewhite;
+}
+
+.AppWindow {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.AppContainer {
+    width: 50%;
+    max-width: 300px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.StopWatchTimeContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.IndividualTime {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.ButtonContainer {
+    display: flex;
+    cursor: pointer;
+    font-size: x-large;
+    margin-top: 5px;
+}
+
+.Button {
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+    background-color: rgb(175, 175, 175, 0.8);
+}
+
+.Button:hover {
+    background-color: rgba(140, 140, 140, 0.8);
+}
+
+.StartButton {
+    background-color: rgb(0, 194, 0, 0.8);
+}
+
+.StartButton:hover {
+    background-color: rgba(0, 141, 0, 0.8);
+}
+
+.StopButton {
+    background-color:rgb(255, 44, 44, 0.8);
+}
+
+.StopButton:hover {
+    background-color:rgba(213, 35, 35, 0.8);
+}
+
+.IndividualLapContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px 5px 0px;
+}
+
+.IndividualLapTimeContainer {
+    display: flex;
+}
