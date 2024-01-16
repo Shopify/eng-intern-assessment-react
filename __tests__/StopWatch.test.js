@@ -66,4 +66,24 @@ describe('Stopwatch', () => {
       timeWhenStopped
     );
   });
+
+  test('resumes timer on start button click after stop', () => {
+    render(
+      <AppProvider i18n={{}}>
+        <Stopwatch />
+      </AppProvider>
+    );
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(3000);
+    });
+    fireEvent.click(screen.getByText('Stop'));
+    fireEvent.click(screen.getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+    expect(screen.getByTestId('stopwatch-time').textContent).toBe(
+      '00:00:05.000'
+    );
+  });
 });
