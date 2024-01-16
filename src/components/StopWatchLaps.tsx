@@ -14,6 +14,8 @@ export default function StopWatchLaps({ laps }: StopWatchLapsProps) {
         {laps.map(
           (lap, index) =>
             lap !== 0 && (
+              // The lap number is calculated in reverse order to indicate the
+              // most recent lap number.
               <LapItem
                 key={index}
                 lapTime={lap}

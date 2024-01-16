@@ -13,11 +13,14 @@ export const useStopWatch = () => {
   );
   const [laps, setLaps] = useState<number[]>([]);
 
+  // Ref hooks to store the interval ID and the start time.
+  // These persist across re-renders without causing additional renders.
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(0);
 
   useEffect(() => {
     if (stopwatchStatus === StopwatchStatus.Running) {
+      // Calculate the actual start time accounting for any paused duration.
       startTimeRef.current = Date.now() - timeElapsed;
       intervalRef.current = setInterval(() => {
         setTimeElapsed(Date.now() - startTimeRef.current);
@@ -30,6 +33,8 @@ export const useStopWatch = () => {
 
   const startStopwatch = () => {
     setStopwatchStatus(StopwatchStatus.Running);
+    // Ensure this is initialized to 0 only on the very first start since it is
+    // possible to start from a paused state.
     if (laps.length < 1) {
       setLaps([0]);
     }
@@ -46,6 +51,8 @@ export const useStopWatch = () => {
   };
 
   const recordLap = () => {
+    // Calculate the lap time as the difference between the total time elapsed
+    // and the sum of previous laps.
     const totalLapseTime = laps.reduce((acc, lapTime) => acc + lapTime, 0);
     const newLapTime = timeElapsed - totalLapseTime;
     setLaps([newLapTime, ...laps]);

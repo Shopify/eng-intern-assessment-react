@@ -13,12 +13,14 @@ import { mockMatchMedia } from '../__mocks__/matchMediaMock';
 jest.useFakeTimers();
 
 describe('Stopwatch', () => {
+  // Required setup to mock methods which are not implemented in JSDOM.
   beforeAll(() => {
     mockMatchMedia();
   });
 
   beforeEach(() => {
     render(
+      // Required wrapper for @shopify/polaris components.
       <AppProvider i18n={{}}>
         <Stopwatch />
       </AppProvider>
