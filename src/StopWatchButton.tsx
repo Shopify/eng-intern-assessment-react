@@ -3,7 +3,6 @@ import { Button, ButtonGroup } from '@shopify/polaris';
 import { PlayCircleMajor, PauseMajor, ReplayMinor, AddNoteMajor } from '@shopify/polaris-icons';
 
 interface StopWatchButtonProps {
-
   setTime: Function,
   isTimerActive: boolean,
   setIsTimerActive: Function,
@@ -11,18 +10,14 @@ interface StopWatchButtonProps {
   setLapTimes: Function,
   lap: number,
   setLap: Function,
-
 }
 
 export default function StopWatchButton(StopWatchButtonObject: StopWatchButtonProps) {
-  const { setTime, isTimerActive, setIsTimerActive, lapTimes, setLapTimes, lap, setLap } = StopWatchButtonObject
 
-  const handleStartClick = () => {
-    setIsTimerActive(true)
-  }
+  const { setTime, isTimerActive, setIsTimerActive, setLapTimes, lap, setLap } = StopWatchButtonObject
 
-  const handleStopClick = () => {
-    setIsTimerActive(false)
+  const toggleTimerClick = () => {
+    setIsTimerActive(!isTimerActive)
   }
 
   const handleLapClick = () => {
@@ -37,19 +32,23 @@ export default function StopWatchButton(StopWatchButtonObject: StopWatchButtonPr
   }
 
   return (
-    <div style={ { paddingBottom: "2rem" } }>
-      <ButtonGroup>
-        { !isTimerActive
-          ?
-          <Button size="large" icon={ PlayCircleMajor } variant="primary" tone="success" onClick={ handleStartClick }>Start</Button>
-          : <Button size="large" icon={ PauseMajor } variant="primary" onClick={ handleStopClick }>Stop</Button>
-        }
-        {
-          !isTimerActive
-            ? <Button size="large" icon={ ReplayMinor } onClick={ handleResetClick } disabled={ isTimerActive } >Reset</Button>
-            : <Button size="large" icon={ AddNoteMajor } onClick={ handleLapClick }>Lap</Button>
-        }
-      </ButtonGroup >
-    </div>
+
+    <div>
+      { !isTimerActive
+        ? <>
+          <ButtonGroup>
+            <Button size="large" icon={ PlayCircleMajor } variant="primary" tone="success" onClick={ toggleTimerClick }>Start</Button>
+            <Button size="large" icon={ ReplayMinor } onClick={ handleResetClick } disabled={ isTimerActive }>Reset</Button>
+          </ButtonGroup >
+        </>
+        : <>
+          <ButtonGroup>
+            <Button size="large" icon={ PauseMajor } variant="primary" onClick={ toggleTimerClick }>Stop</Button>
+            <Button size="large" icon={ AddNoteMajor } onClick={ handleLapClick }>Lap</Button>
+          </ButtonGroup >
+        </>
+      }
+    </div >
   )
+
 }

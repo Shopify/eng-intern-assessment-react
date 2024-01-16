@@ -1,12 +1,12 @@
 .timer-text h1 {
-
-  text-align: center;
-
-  font-size: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
   font-weight: bold;
+  margin: 5rem;
 }
 
-
-.timer-card {
-  padding: 5rem 0 3rem 0;
+.timer-card-laps {
+  padding-top: 2rem;
 }

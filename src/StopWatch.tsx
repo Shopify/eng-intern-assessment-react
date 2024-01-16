@@ -5,6 +5,8 @@ import {
   Card,
   InlineStack,
   Text,
+  InlineGrid,
+  BlockStack,
 } from '@shopify/polaris';
 
 import moment from 'moment';
@@ -26,6 +28,7 @@ export default function StopWatch() {
 
     if (isTimerActive) {
       let startTime = performance.now() - time
+
       timerInterval = setInterval(() => {
         setTime(performance.now() - startTime);
       }, 10);
@@ -47,36 +50,30 @@ export default function StopWatch() {
   return (
     <Page narrowWidth>
       <Card>
-        <Layout.Section variant='fullWidth'>
+        <div className='timer-card'>
 
-          <div className='timer-card'>
-            <div className='timer-text'>
-              <Text as='h1'>{ moment(time).format("mm:ss:SS") }</Text>
-            </div>
+          <div className='timer-text'>
+
+            <InlineStack align='center'>
+              <Text as='h1' variant='headingLg'>{ moment(time).format("mm:ss:SS") }</Text>
+            </InlineStack>
           </div>
-        </Layout.Section>
 
+        </div>
 
-        {/* LAP TIMES TABLE SECTION*/ }
-        <Layout.Section variant='fullWidth'>
-          <InlineStack align="center">
-            <StopWatchButton setTime={ setTime } isTimerActive={ isTimerActive } setIsTimerActive={ setIsTimerActive } lapTimes={ lapTimes } setLapTimes={ setLapTimes } lap={ lap } setLap={ setLap } />
-          </InlineStack>
-        </Layout.Section>
-
+        <InlineStack align="center">
+          <StopWatchButton setTime={ setTime } isTimerActive={ isTimerActive } setIsTimerActive={ setIsTimerActive } lapTimes={ lapTimes } setLapTimes={ setLapTimes } lap={ lap } setLap={ setLap } />
+        </InlineStack>
       </Card>
 
-      <div id='lap-list'>
+      <div className='timer-card-laps'>
         { lapTimes.length > 0 &&
-          <div style={ { paddingTop: "1rem" } } >
-            <Card>
-              <Layout.Section variant='fullWidth'>
-                <LapTimesList lapTimes={ lapTimes } />
-              </Layout.Section>
-            </Card>
-          </div >
+          <Card padding="0">
+            <LapTimesList lapTimes={ lapTimes } />
+          </Card>
         }
       </div>
+
 
     </Page >
   )
