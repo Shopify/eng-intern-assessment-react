@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 import { formatTime } from "./utils/formatTime";
+import { ButtonGroup, Text, Card } from "@shopify/polaris";
 
 export default function StopWatch() {
   const start: string = "Start";
@@ -36,7 +37,7 @@ export default function StopWatch() {
   useEffect(() => {
     let interval: NodeJS.Timer;
     if (isRunning) {
-      interval = setInterval(() => setTime((time) => time + 1), 1);
+      interval = setInterval(() => setTime((time) => time + 10), 10);
     }
     return () => {
       clearInterval(interval);
@@ -54,25 +55,41 @@ export default function StopWatch() {
   }, [time]);
   return (
     <div>
-      {formatTime(time)}
+      <Card>
+        <Text variant='heading3xl' as='h1' alignment='start'>
+          {formatTime(time)}
+        </Text>
+        <ButtonGroup>
+          <StopWatchButton
+            btnAction={btnActionStartStop}
+            abilityDisable={false}
+            onClick={stopStartTimer}
+          ></StopWatchButton>
+          <StopWatchButton
+            btnAction={btnActionResetLap}
+            abilityDisable={time == 0 && !isRunning}
+            onClick={actResetLap}
+          ></StopWatchButton>
+        </ButtonGroup>
+      </Card>
+      {/* I Could have made the laps a prop and just passed down the laps into it, and that would have made the code cleaner
+        but the instructions said to modify the code given to us, so I did not create a new  */}
       <div>
-        <StopWatchButton
-          btnAction={btnActionStartStop}
-          abilityDisable={false}
-          onClick={stopStartTimer}
-        ></StopWatchButton>
-        <StopWatchButton
-          btnAction={btnActionResetLap}
-          abilityDisable={time == 0 && !isRunning}
-          onClick={actResetLap}
-        ></StopWatchButton>
-        <div data-testid='lap-list'>
-          {laps.map((lap, i) => (
-            <div data-testid={`lap: ${i}`} key={i}>
-              Lap {i + 1}: {formatTime(lap)}
-            </div>
-          ))}
-        </div>
+        <Text variant='headingLg' as='h3' alignment='start'>
+          {" "}
+          Laps
+        </Text>
+        <Card>
+          <div data-testid='lap-list'>
+            {laps.map((lap, i) => (
+              <div data-testid={`lap: ${i}`} key={i}>
+                <Text variant='headingLg' as='h5' alignment='start'>
+                  Lap {i + 1}: {formatTime(lap)}
+                </Text>
+              </div>
+            ))}
+          </div>
+        </Card>
       </div>
     </div>
   );

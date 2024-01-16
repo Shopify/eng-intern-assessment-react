@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@shopify/polaris";
 
 interface StopWatchButtonProps {
   btnAction: string;
@@ -10,10 +11,10 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
   const { btnAction, abilityDisable = false, onClick } = props;
   return (
     <div>
-      <button disabled={abilityDisable} onClick={onClick}>
+      <Button disabled={abilityDisable} onClick={onClick} size='large'>
         {" "}
         {btnAction}
-      </button>
+      </Button>
     </div>
   );
 }
