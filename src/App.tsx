@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import StopWatchButton from './StopWatchButton';
 
 export default function App() {
 
@@ -52,15 +53,11 @@ export default function App() {
   return (
     <div>
       <h2>{seconds.toString() + " Lap " + totalSeconds.toString()}</h2>
-      <button onClick={startStop}>
-        {isRunning ? "Pause" : "Start"}
-      </button>
-      <button onClick={setLap}>
-        Lap
-      </button>
-      <button onClick={resetButton}>
-        Reset
-      </button>
+      <StopWatchButton
+      isRunning = {isRunning}
+      startStop={startStop}
+      lapButton={setLap}
+      resetButton={resetButton}/>
     </div>
   );
 };
