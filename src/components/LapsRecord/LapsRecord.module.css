@@ -1,0 +1,20 @@
+.tableContainer {
+  display: block;
+  max-width: 350px;
+  max-height: 300px;
+  border-collapse: collapse;
+  overflow-y: auto;
+  margin-top: 40px;
+  text-align: center;
+}
+
+th {
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+td {
+  padding: 5px 10px;
+  font-weight: lighter;
+}
