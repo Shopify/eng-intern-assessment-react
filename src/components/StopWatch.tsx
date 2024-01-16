@@ -3,6 +3,12 @@ import { Text, ButtonGroup, Layout, Button } from '@shopify/polaris';
 import StopWatchLaps from './StopWatchLaps';
 import { useStopWatch, StopwatchStatus } from '../useStopWatch';
 import { formatTime } from '../utils';
+import {
+  PlayIcon,
+  PauseCircleIcon,
+  ResetIcon,
+  FlagIcon,
+} from '@shopify/polaris-icons';
 
 export default function StopWatch() {
   const {
@@ -24,14 +30,23 @@ export default function StopWatch() {
         </Text>
       </Layout.Section>
       <Layout.Section>
-        <ButtonGroup>
-          <div data-testid="stopwatch-control">
+        <div data-testid="stopwatch-control">
+          <ButtonGroup>
             {stopwatchStatus === StopwatchStatus.Paused ? (
-              <Button variant="primary" tone="success" onClick={startStopwatch}>
+              <Button
+                variant="primary"
+                tone="success"
+                onClick={startStopwatch}
+                icon={PlayIcon}
+              >
                 Start
               </Button>
             ) : (
-              <Button variant="primary" onClick={stopStopwatch}>
+              <Button
+                variant="primary"
+                onClick={stopStopwatch}
+                icon={PauseCircleIcon}
+              >
                 Stop
               </Button>
             )}
@@ -40,14 +55,23 @@ export default function StopWatch() {
                 stopwatchStatus === StopwatchStatus.Paused ? true : false
               }
               onClick={recordLap}
+              icon={FlagIcon}
             >
               Lap
             </Button>
-            <Button variant="primary" tone="critical" onClick={resetStopwatch}>
+            <Button
+              disabled={
+                stopwatchStatus === StopwatchStatus.Running ? true : false
+              }
+              variant="primary"
+              tone="critical"
+              icon={ResetIcon}
+              onClick={resetStopwatch}
+            >
               Reset
             </Button>
-          </div>
-        </ButtonGroup>
+          </ButtonGroup>
+        </div>
       </Layout.Section>
       <Layout.Section>
         {laps.length > 0 && (
