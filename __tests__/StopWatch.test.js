@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-} from '@testing-library/react';
-import Stopwatch from '../src/components/StopWatch';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import StopWatch from '../src/components/StopWatch';
 import '@testing-library/jest-dom';
 import { AppProvider } from '@shopify/polaris';
 import { mockMatchMedia } from '../__mocks__/matchMediaMock';
+import StopWatchTime from '../src/components/StopWatchTime';
 
 jest.useFakeTimers();
 
@@ -22,7 +18,7 @@ describe('Stopwatch', () => {
     render(
       // Required wrapper for @shopify/polaris components.
       <AppProvider i18n={{}}>
-        <Stopwatch />
+        <StopWatch />
       </AppProvider>
     );
   });
@@ -117,5 +113,15 @@ describe('Stopwatch', () => {
     const lapsElement = screen.getByTestId('stopwatch-laps');
     expect(lapsElement.children).toHaveLength(1);
     expect(lapsElement.children[0]).toHaveTextContent('00:00:01.000');
+  });
+
+  test('hours display correctly when exceeding double digits', () => {
+    // Simulate time to be slightly more than 99 hours (2 digit to 3).
+    render(
+      <AppProvider i18n={{}}>
+        <StopWatchTime timeElapsed={100 * 60 * 60 * 1000} />
+      </AppProvider>
+    );
+    expect(screen.getByText(/100:00:00/)).toBeInTheDocument();
   });
 });
