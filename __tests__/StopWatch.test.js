@@ -124,8 +124,11 @@ describe('Stopwatch', () => {
     await waitFor(() => {
       const lapsElement = screen.getByTestId('stopwatch-laps');
       expect(lapsElement.children).toHaveLength(2);
-      expect(lapsElement.children[0]).toHaveTextContent('00:00:01.000');
-      expect(lapsElement.children[1]).toHaveTextContent('00:00:00.500');
+      expect(lapsElement.children[0]).toHaveTextContent('00:00:00.500');
+      expect(lapsElement.children[1]).toHaveTextContent('00:00:01.000');
+      expect(screen.getByTestId('stopwatch-time').textContent).toBe(
+        '00:00:01.500'
+      );
     });
   });
 });

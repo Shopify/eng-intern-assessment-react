@@ -44,7 +44,7 @@ export const useStopWatch = () => {
   const recordLap = () => {
     const totalLapseTime = laps.reduce((acc, lapTime) => acc + lapTime, 0);
     const newLapTime = timeElapsed - totalLapseTime;
-    setLaps([...laps, newLapTime]);
+    setLaps([newLapTime, ...laps]);
   };
 
   return {
