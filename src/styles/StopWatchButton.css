@@ -1,8 +1,37 @@
-.submitButton {
-    background-color: green;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.stopWatchButtons {
+  display: flex;
+}
+.stopWatchButtons, button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 16px;
+  color: white;
+}
+.startButton {
+  background-color:#00b300;
+}
+.startButton:hover {
+  background-color:#008000;
+}
+.stopButton {
+  background-color:#ff0000;
+}
+.stopButton:hover {
+  background-color:#cc0000;
+}
+.lapButton {
+  background-color:#b3b3b3;
+  border: 2px solid grey
+}
+.lapButton:hover {
+  background-color:#808080;
+}
+.resetButton {
+  background-color:#1a75ff;
+}
+.resetButton:hover {
+  background-color:#0047b3;
+}
