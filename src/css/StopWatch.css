@@ -1,54 +1,91 @@
 .StopWatch {
-    text-align: center;
-  }
-  
-  .StopWatchDisplay {
-    font-size: 100px;
-    margin-bottom: 20px;
-  }
-  
-  .StopWatchButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .LapTimeTable {
-    margin-top: 20px;
-    font-size: 20px;
-  }
-  
-  .LapTimeEntry {
-    margin-bottom: 8px;
-  }
-  
-  
-  .StopWatchButton {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-  }
-  
-  
-  .PauseButton,
-  .StartButton,
-  .ResetButton,
-  .LapButton {
-    border-radius: 25px;
-    border: 2px solid #000000;
-    padding: 20px;
-    text-align: center;
-    width: 50px;
-    cursor: pointer;
-    margin-right:16px;
-    margin-left:16px;
-    display: block;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
-    order: 0;
-  }
+  text-align: center;
+  background-image: linear-gradient(to right, yellow, #00ff37);
+  background-attachment: fixed;
+  min-height: 100vh;
+  height: auto;
+}
+
+.StopWatchDisplay {
+  font-size: 100px;
+  margin-bottom: 20px;
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+}
+
+.StopWatchButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LapTimeTable {
+  margin-top: 20px;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+}
+
+.LapTimeEntry {
+  margin-bottom: 8px;
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+}
+
+
+.StopWatchButton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+
+.PauseButton,
+.StartButton,
+.ResetButton,
+.LapButton {
+  border-radius: 25px;
+  width: 50px;
+  cursor: pointer;
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+}
+
+         
+.StartButton {
+  background-image: linear-gradient(to right, #3CA55C 0%, #B5AC49  51%, #3CA55C  100%);
+}
+
+.StartButton:hover,
+.PauseButton:hover,
+.ResetButton:hover,
+.LapButton:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.PauseButton {
+  background-image: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%);
+}
+
+.ResetButton {
+  background-image: linear-gradient(to right, #e52d27 0%, #b31217 51%, #e52d27 100%);
+}
+         
+.LapButton {
+  background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+}
+

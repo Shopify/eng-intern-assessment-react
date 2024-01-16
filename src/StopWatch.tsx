@@ -59,8 +59,6 @@ export default function StopWatch() {
             .padStart(2, '0')}.${milisecond.toString().padStart(3, '0')}`;
     }
 
-
-
     return (
         <div className='StopWatch'>
             <div className='StopWatchDisplay'  data-testid="WatchDisplay">
