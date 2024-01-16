@@ -31,6 +31,7 @@ export default function StopWatch() {
         let seconds = Math.floor(givenMilliseconds/1000)%60
         let minutes = Math.floor(givenMilliseconds/1000/60)
 
+        //Make formater function to change time values to strings in the appropiate format
         let formatTime = (time: number) => {return time.toLocaleString('en-US', {minimumIntegerDigits: 2, maximumFractionDigits: 0})};
 
         return `${formatTime(minutes)}:${formatTime(seconds)}:${formatTime(milliseconds)}`;
@@ -38,14 +39,14 @@ export default function StopWatch() {
 
     return(
         <div>
-            <h1>{getDisplayText(counter)}</h1>
-            <div>
-                <StopWatchButton onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>
-                <StopWatchButton onClick={() => { setIsRunning(false) }} content='Pause'></StopWatchButton>
-                <StopWatchButton onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>
-                <StopWatchButton onClick={() => { setIsRunning(true) }} content='Resume'></StopWatchButton>
-                <StopWatchButton onClick={handleOnLap} content='Lap'></StopWatchButton>
-                <StopWatchButton onClick={handleOnReset} content='Reset'></StopWatchButton>
+            <h1 id='stopwatch-display'>{getDisplayText(counter)}</h1>
+            <div id='stopwatch-buttons'>
+                <StopWatchButton id='start-button' onClick={() => { setIsRunning(true) }} content='Start'></StopWatchButton>
+                <StopWatchButton id='pause-button' onClick={() => { setIsRunning(false) }} content='Pause'></StopWatchButton>
+                <StopWatchButton id='stop-button' onClick={() => { setIsRunning(false) }} content='Stop'></StopWatchButton>
+                <StopWatchButton id='resume-button' onClick={() => { setIsRunning(true) }} content='Resume'></StopWatchButton>
+                <StopWatchButton id='lap-button' onClick={handleOnLap} content='Lap'></StopWatchButton>
+                <StopWatchButton id='reset-button' onClick={handleOnReset} content='Reset'></StopWatchButton>
             </div>
             <div id='lap-list' data-testid='lap-list'>
                 {lapList.map( (lap, index) => (
