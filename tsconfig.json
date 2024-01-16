@@ -8,5 +8,6 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+	"types": ["@types/jest", "@types/node", "@testing-library/jest-dom"]
   }
 }
