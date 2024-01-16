@@ -1,7 +1,14 @@
 import React from 'react'
+import './index.css'
 
-export default function StopWatch() {
-    return(
-        <div></div>
+interface StopWatchProps{
+	time: string;
+}
+
+export default function StopWatch({ time }: StopWatchProps): JSX.Element {
+	return(
+        <div className="time-wrapper">
+			<h1>{time}</h1>
+		</div>
     )
 }
