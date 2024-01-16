@@ -15,6 +15,7 @@ export default function App() {
       <Heading as='h1' size='2xl' mb='8'>
         React Stopwatch
       </Heading>
+      <StopWatch />
     </Box>
   );
 }
