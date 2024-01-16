@@ -1,7 +1,10 @@
 import React from 'react'
-
-export default function App() {
-    return(
-        <div></div>
+import StopWatch from './StopWatch'
+import "./App.css"
+export default function App(): React.ReactElement {
+    return (
+        <div>
+            <StopWatch />
+        </div>
     )
 }
