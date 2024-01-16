@@ -38,7 +38,7 @@ describe('Stopwatch', () => {
     
     fireEvent.click(screen.getByText('Start'));
     fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list')).toContainElement(screen.getByText(/(\d{2}:){2}\d{2}/));
+    expect(screen.getByTestId('lap-list')).toContainElement(screen.getAllByText(/(\d{2}:){2}\d{2}/)[1]);
 
     fireEvent.click(screen.getByText('Lap'));
     expect(screen.getByTestId('lap-list').children.length).toBe(2);
