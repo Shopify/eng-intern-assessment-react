@@ -22,7 +22,13 @@ export default function StopWatchButton({ type }: StopWatchButtonInterface) {
   }
 
   return (
-    <Button colorScheme={colorScheme} variant='outline' borderRadius={16} padding={5}>
+    <Button
+      colorScheme={colorScheme}
+      variant='outline'
+      borderRadius={16}
+      padding={5}
+      size='lg'
+    >
       {type}
     </Button>
   );

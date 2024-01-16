@@ -1,7 +1,9 @@
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 
-export default function StopWatch() {
+import StopWatchInterface from "./interfaces/StopWatchInterface";
+
+export default function StopWatch({ isRunning }: StopWatchInterface) {
   return (
     <Box
       display='flex'
