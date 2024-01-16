@@ -20,12 +20,14 @@ const StopWatchButton: React.FC<ButtonProps> = ({ label, onClick, color }) => (
 
 // Styled Component to be used as a template for the styling of the StopWatchButton
 const StyledButton = styled.button`
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.40);
+    width: 80%;
+    height: 50%;
+    border: none;
+    margin: 4vw;
+    border-radius: 15px;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.30);
 
-    font-size: 20px;
+    font-size: 50px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
