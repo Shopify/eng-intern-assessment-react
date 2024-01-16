@@ -1,9 +1,12 @@
 {
   "name": "template",
   "version": "1.0.0",
+  "homepage": "https://dave-cao.github.io/david-cao-eng-intern-assessment-react",
   "description": "",
   "main": "src/index.tsx",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "jest --env=jsdom",
     "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
@@ -31,6 +34,7 @@
     "babel-loader": "^8.3.0",
     "css-loader": "^6.7.3",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.1",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
     "jest": "^29.7.0",

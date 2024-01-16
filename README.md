@@ -13,8 +13,8 @@ https://github.com/dave-cao/david-cao-eng-intern-assessment-react/assets/6348815
 <br>
 
 <!-- List links to the project here (eg: live-link, youtube video) -->
-- **Visit the project at: https://dave-cao.github.io/Book-Chronicles/**
-- **Demonstration Video: coming soon...**
+- **Visit the project at: https://davidcao.xyz/david-cao-eng-intern-assessment-react/** (github-pages)
+- **Demonstration Video: https://youtu.be/i4ZT6IjP8dE**
 
 ## About
 
@@ -38,17 +38,17 @@ Your specific goals for this project are as follows:
     - [x] The stopwatch should record and display laps when user clicks the lap button.
 
 2. Ensure code quality:
-    - [ ] Write clean, well-structured, and maintainable code.
-    - [ ] Follow best practices and adhere to the React and TypeScript coding conventions.
-    - [ ] Pay attention to code readability, modularity, and performance.
+    - [x] Write clean, well-structured, and maintainable code.
+    - [x] Follow best practices and adhere to the React and TypeScript coding conventions.
+    - [x] Pay attention to code readability, modularity, and performance.
 
 3. Test your code:
-    - [ ] Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - [ ] Verify that the stopwatch starts, stops, resets, and records laps as expected.
+    - [x] Write unit tests for the stopwatch functionality to ensure it works correctly.
+    - [x] Verify that the stopwatch starts, stops, resets, and records laps as expected.
 
 4. Code documentation:
-    - [ ] Document your code by adding comments and explanatory notes where necessary.
-    - [ ] Provide clear explanations of the implemented functionality and any important details.
+    - [x] Document your code by adding comments and explanatory notes where necessary.
+    - [x] Provide clear explanations of the implemented functionality and any important details.
 
 #### Extra Features
 
