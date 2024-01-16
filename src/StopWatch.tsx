@@ -2,12 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 export default function StopWatch() {
 
-    const [time, setTime] = useState(3590000);
-    const [now, setNow] = useState(0);
-    const [milliseconds, setMiliseconds] = useState(null);
-    const [seconds, setSeconds] = useState(null);
-    const [minutes, setMinutes] = useState(null);
-    const [hours, setHours] = useState(null);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [startTime, setStartTime] = useState(0);
     const [laps, setLaps] = useState([]);
     const [active, setActive] = useState(false);
     const interval = useRef(null);
@@ -18,52 +14,47 @@ export default function StopWatch() {
 
 
     useEffect(() => {
-        let startTime = Date.now()
-        if(active){
-            setNow(Date.now() - time);
+        // Use Date object to get a more accurate time
+        if (active) {
+            // 
+            setStartTime(Date.now() - elapsedTime);
             interval.current = setInterval(() => {
-                setTime(Date.now() - now);
+                setElapsedTime(Date.now() - startTime);
             }, 10)
-        }else {
+        } else {
             clearInterval(interval.current);
-          }
-      
-          return () => clearInterval(interval.current);
-    })
+        }
+
+        return () => clearInterval(interval.current);
+    }, [active, elapsedTime, startTime])
 
     const pauseTimer = () => {
         setActive(false);
-        clearInterval(interval.current);
     }
 
     const clearTimer = () => {
         setActive(false);
-        setTime(0);
-        setNow(0);
-        clearInterval(interval.current);
+        setElapsedTime(0);
+        setStartTime(0);
         setLaps([]);
     }
 
     const lapTimer = () => {
-        
+            setLaps(((prevLaps) => [...prevLaps, elapsedTime]));
+            console.log(laps);
     }
-    const elapsedTime = time - now;
 
     const formatTime = () => {
         // convert milisecond units to milisecond, second, minute and hour
         // pad 0 before each time unit if the calculated time unit is a single digit
-        let ms = Math.floor(time % 1000).toString().padStart(2, "0");
-        let s =  Math.floor((time / 1000) % 60).toString().padStart(2, "0");
-        let m =  Math.floor((time / 60000) % 60).toString().padStart(2, "0");
-        let h =  Math.floor((time / 3600000)).toString().padStart(2, "0");
-        /*setMiliseconds(ms);
-        setSeconds(s);
-        setMinutes(m);
-        setHours(h);*/
-       return {h, s, m, ms}
+        let ms = Math.floor(elapsedTime % 1000).toString().padStart(2, "0");
+        let s = Math.floor((elapsedTime / 1000) % 60).toString().padStart(2, "0");
+        let m = Math.floor((elapsedTime / 60000) % 60).toString().padStart(2, "0");
+        let h = Math.floor((elapsedTime / 3600000)).toString().padStart(2, "0");
+        return { h, s, m, ms }
     }
 
-    const {h, m, s, ms} = formatTime();
+    const { h, m, s, ms } = formatTime();
 
 
     return (
@@ -72,13 +63,24 @@ export default function StopWatch() {
             {m}<br></br>
             {s}<br></br>
             {ms}<br></br>
-            {time}
+            {elapsedTime}
             <div className="button-container">
-                <button onClick={startTimer}>Start</button>
-                <button onClick={pauseTimer}>Pause</button>
+                {active ?
+                <button onClick={startTimer}>Start</button> :
+                <button onClick={pauseTimer}>Pause</button>}
                 <button onClick={clearTimer}>Reset</button>
                 <button onClick={lapTimer}>Lap</button>
             </div>
+            {laps.length > 0 && (
+                <div>
+                    <h2>Lap Times</h2>
+                    <ul>
+                        {laps.map((lap, index) => (
+                            <li key={index}>{lap}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     )
 }
