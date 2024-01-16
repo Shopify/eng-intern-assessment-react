@@ -50,13 +50,16 @@ export default function App() {
 
     return(
         <div className="stopWatchAppContainer">
+            <div className='projectTitle'>
+                <h2>Stopwatch</h2>
+            </div>
             <StopWatch timeString={formatTimeValue(timer)}/>
             <StopWatchButton running={running} recordLapTime={RecordLapTime} setRunning={setRunning} resetTimer={ResetTimer} timer={timer}/>
             {
                 (lapTimes.length > 0)
                 ?<div className="lapTimesBox">
                     <hr/>
-                    <h2>Laps Tracker</h2>
+                    <h3>Laps Tracker</h3>
                     {
                         lapTimes.map((lapTime, index) => {
                             return <div className="lapTimeFlex">

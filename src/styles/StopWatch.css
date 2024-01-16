@@ -1,6 +1,7 @@
 .stopWatchContainer{
     height: 10rem;
-    width: 100%;
+    width: 60%;
+    min-width: 30rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     border: 1px solid grey;
@@ -10,4 +11,6 @@
     font-size: 40px;
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
+    margin-right: auto;
+    margin-left: auto
 }
