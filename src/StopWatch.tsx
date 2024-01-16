@@ -8,6 +8,7 @@ export default function StopWatch() {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [laps, setLaps] = useState<string[]>([]);
+    const [lastLapTime, setLastLapTime] = useState(0);
 
     const toggleStartStop = () => {
         setIsRunning(!isRunning);
@@ -15,7 +16,10 @@ export default function StopWatch() {
 
     const lapReset = () => {
         if (isRunning) {
-            setLaps(prevLaps => [...prevLaps, formatTime(elapsedTime)]);
+            const currentTime = elapsedTime
+            const lapTime = currentTime - lastLapTime;
+            setLaps(prevLaps => [...prevLaps, formatTime(lapTime)]);
+            setLastLapTime(lapTime + lastLapTime);
         } else {
             setIsRunning(false);
             setElapsedTime(0);
