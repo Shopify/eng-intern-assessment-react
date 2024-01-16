@@ -24,28 +24,34 @@ export default function StopWatch() {
       </Layout.Section>
       <Layout.Section>
         <ButtonGroup>
-          {stopwatchStatus === StopwatchStatus.Paused ? (
-            <Button variant="primary" tone="success" onClick={startStopwatch}>
-              Start
+          <div data-testid="stopwatch-control">
+            {stopwatchStatus === StopwatchStatus.Paused ? (
+              <Button variant="primary" tone="success" onClick={startStopwatch}>
+                Start
+              </Button>
+            ) : (
+              <Button variant="primary" onClick={stopStopwatch}>
+                Stop
+              </Button>
+            )}
+            <Button
+              disabled={
+                stopwatchStatus === StopwatchStatus.Paused ? true : false
+              }
+              onClick={recordLap}
+            >
+              Lap
             </Button>
-          ) : (
-            <Button variant="primary" onClick={stopStopwatch}>
-              Stop
+            <Button variant="primary" tone="critical" onClick={resetStopwatch}>
+              Reset
             </Button>
-          )}
-          <Button
-            disabled={stopwatchStatus === StopwatchStatus.Paused ? true : false}
-            onClick={recordLap}
-          >
-            Lap
-          </Button>
-          <Button variant="primary" tone="critical" onClick={resetStopwatch}>
-            Reset
-          </Button>
+          </div>
         </ButtonGroup>
       </Layout.Section>
       <Layout.Section>
-        {laps.length > 0 && <StopWatchLaps laps={laps} />}
+        <div data-testid="lap-list">
+          {laps.length > 0 && <StopWatchLaps laps={laps} />}
+        </div>
       </Layout.Section>
     </Layout>
   );
