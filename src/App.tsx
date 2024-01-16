@@ -4,11 +4,15 @@ import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 import ButtonType from "./enums/ButtonType";
 import formatTime from "./utils/formatTime";
+import LapTable from "./components/LapTable";
+import LapTableInterface from "./interfaces/LapTableInterface";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [lapTimes, setLapTimes] = useState<{ lapNumber: number; lapTime: number }[]>([]);
+  const [lapTableData, setLapTableData] = useState<LapTableInterface>({
+    lapTimes: []
+  });
   const [showTable, setShowTable] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,18 +37,24 @@ export default function App() {
   const handleReset = () => {
     setIsRunning(false);
     setCurrentTime(0);
-    setLapTimes([]);
+    setLapTableData({ lapTimes: [] });
     setShowTable(false);
   };
 
   const handleLap = () => {
     if (isRunning) {
-      setLapTimes(prevLapTimes => [
-        ...prevLapTimes,
-        { lapNumber: prevLapTimes.length + 1, lapTime: currentTime }
-      ]);
+      setLapTableData(prevData => ({
+        lapTimes: [
+          ...prevData.lapTimes,
+          { lapNumber: prevData.lapTimes.length + 1, lapTime: currentTime }
+        ]
+      }));
       setShowTable(true);
     }
+  };
+
+  const lapTableProps: LapTableInterface = {
+    lapTimes: lapTableData.lapTimes
   };
 
   const formattedTime = formatTime(currentTime);
@@ -82,24 +92,7 @@ export default function App() {
         />
         <StopWatchButton type={ButtonType.Reset} onClick={handleReset} />
       </HStack>
-      {showTable && (
-        <Table variant='simple' mt={4}>
-          <Thead>
-            <Tr>
-              <Th>Lap Number</Th>
-              <Th>Lap Time</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {lapTimes.map(lap => (
-              <Tr key={lap.lapNumber}>
-                <Td>{lap.lapNumber}</Td>
-                <Td>{formatTime(lap.lapTime)}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      )}
+      {showTable && <LapTable {...lapTableProps} />}
     </Box>
   );
 }
