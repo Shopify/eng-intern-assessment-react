@@ -12,6 +12,7 @@ export default function App() {
 	const [laps, setLaps] = useState<number[]>([]);
 
 	useEffect(() => {
+		// Updating time and changing button message
 		let testVar: any;
 		if (isStarted) {
 			testVar = setInterval(() => setTime(time + 1), 10);
@@ -30,6 +31,10 @@ export default function App() {
 		const currentTime = hours.toString() + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0") + "." + milliseconds.toString().padStart(2,"0");
 		return currentTime;
 	}
+	
+	const timeDiff = (time1: number, time2: number) => {
+		return Math.abs(time2-time1);
+	}
 
 	const startStop = () => {
 		start(!isStarted)
@@ -39,6 +44,10 @@ export default function App() {
 		start(false);
 		setTime(0);
 		setLaps([]);
+	};
+
+	const addLap = () => {
+		setLaps((prevLaps) => [...prevLaps, time])
 	};
 
 	const startProps = {
@@ -54,14 +63,6 @@ export default function App() {
 		text: 'Lap',
 	}
 
-	const addLap = () => {
-		setLaps((prevLaps) => [...prevLaps, time])
-	};
-
-	const timeDiff = (time1: number, time2: number) => {
-		return Math.abs(time2-time1);
-	}
-
     return(
 		<div className="container">
 			<div className="wrapper">
@@ -75,18 +76,18 @@ export default function App() {
 				:false}
 					<StopWatchButton {...resetProps} onClick={reset}/>
 				</div>
-				
-				<div>
+				<div className="laps-wrapper">
 						<h3>Laps:</h3>
 						<hr></hr>
-						<ul className="laps-list">
-							{laps.map((lap, index) => (
-								<li key={index}>
-									<span>{timeCalc(timeDiff(lap, (index !== 0) ? laps[index-1]:0))}</span>
-								</li>
-							))}
-							<li></li>
-						</ul>
+						{laps.length > 0 && (
+							<ul>
+								{laps.map((lap, index) => (
+									<li key={index}>
+										<span>{timeCalc(timeDiff(lap, (index !== 0) ? laps[index-1]:0))}</span>
+									</li>
+								))}
+							</ul>
+						)}
 				</div>
 			</div>
 		</div>

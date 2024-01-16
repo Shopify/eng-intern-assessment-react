@@ -1,6 +1,41 @@
 * {
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
+	scrollbar-width: auto;
+	scrollbar-color: #999999 var(--background);
+}
+
+body {
+	--text: #050609;
+	--background: #f6f7fb;
+	--primary: #4367bd;
+	--secondary: #8aa4e2;
+	--accent: #5d84e4;
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	appearance: none;
+	background-color: var(#f6f7fb);
+	border: 1px solid rgba(27, 31, 35, 0.15);
+	border-radius: 6px;
+	box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+	box-sizing: border-box;
+	color: #24292E;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	padding: 6px 16px;
+	margin: 4px 8px;
+	transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+  
+button:hover {
+	background-color: #BBBBBB;
+	transition-duration: 0.3s;
 }
 
 .container {
@@ -10,6 +45,11 @@
 	height: 100vh;
 	width: 100%;
 	background-color: var(--background);
+}
+
+.buttons-wrapper {
+	display: flex;
+	justify-content: space-between;
 }
 
 .wrapper {
@@ -27,53 +67,9 @@
 	align-items: center;
 	justify-content: center;
 }
-
-body {
-	--text: #050609;
-	--background: #f6f7fb;
-	--primary: #4367bd;
-	--secondary: #8aa4e2;
-	--accent: #5d84e4;
-	margin: 0;
-	padding: 0;
-}
-
-.buttons-wrapper {
-	display: flex;
-	justify-content: space-between;
-}
-
-button {
-  appearance: none;
-  background-color: var(#f6f7fb);
-  border: 1px solid rgba(27, 31, 35, 0.15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-  box-sizing: border-box;
-  color: #24292E;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 20px;
-  padding: 6px 16px;
-  margin: 4px 8px;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-}
-
-button:hover {
-  background-color: #BBBBBB;
-  transition-duration: 0.3s;
-}
-
-.laps-list {
-	overflow-y:scroll;
-	height: 200px;
-}
-
-* {
-scrollbar-width: auto;
-scrollbar-color: #999999 var(--background);
+.laps-wrapper{
+	height: 250px;
+	overflow-y: scroll;
 }
 
 *::-webkit-scrollbar {
