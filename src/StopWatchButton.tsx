@@ -3,9 +3,9 @@ import './styles/StopWatchButton.css'
 
 interface StopWatchButtonProps {
   running?: boolean;
-  recordLapTime: any;
-  setRunning: any;
-  resetTimer: any;
+  recordLapTime: () => void;
+  setRunning: React.Dispatch<React.SetStateAction<boolean>>;
+  resetTimer: () => void;
   timer: number;
 }
 
