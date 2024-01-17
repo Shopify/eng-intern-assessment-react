@@ -93,7 +93,7 @@ describe("StopWatchButton", () => {
         const setLapSignalMock = jest.fn();
 
         jest.spyOn(React, "useState").mockImplementation(() => [
-            TimerState.RUNNING,
+            false,
             setLapSignalMock,
         ]);
 

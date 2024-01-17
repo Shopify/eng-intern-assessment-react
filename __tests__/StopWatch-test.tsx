@@ -2,7 +2,13 @@
  * @jest-environment jsdom
  */
 
-import { act, cleanup, getByTestId, render } from "@testing-library/react";
+import {
+    act,
+    cleanup,
+    getByTestId,
+    queryByTestId,
+    render,
+} from "@testing-library/react";
 import React, { JSXElementConstructor, ReactElement } from "react";
 import { TimerState } from "../src/App";
 import StopWatch from "../src/StopWatch";
@@ -127,5 +133,47 @@ describe("StopWatch", () => {
         );
 
         expect(getByTestId(rendered, "time").innerHTML).toEqual("00:00:00:000");
+    });
+
+    it("Setting lapSignal to true should create a new lap and set lapSignal to false", async () => {
+        let rendered: HTMLElement;
+        let rerenderFunction: (
+            ui: ReactElement<any, string | JSXElementConstructor<any>>
+        ) => void;
+        const setLapSignalMock = jest.fn();
+
+        jest.spyOn(React, "useState").mockImplementation(() => [
+            false,
+            setLapSignalMock,
+        ]);
+
+        act(() => {
+            const { container, rerender } = render(
+                <StopWatch
+                    timerState={TimerState.RUNNING}
+                    lapSignal={false}
+                    setLapSignal={setLapSignalMock}
+                />
+            );
+            rendered = container;
+            rerenderFunction = rerender;
+        });
+
+        await act(async () => {
+            await sleep(1000);
+        });
+
+        expect(queryByTestId(rendered, "lap")).toBeNull();
+
+        rerenderFunction(
+            <StopWatch
+                timerState={TimerState.RESETTING}
+                lapSignal={true}
+                setLapSignal={setLapSignalMock}
+            />
+        );
+
+        expect(setLapSignalMock).toHaveBeenCalledWith(false);
+        expect(getByTestId(rendered, "lap")).not.toBeNull();
     });
 });

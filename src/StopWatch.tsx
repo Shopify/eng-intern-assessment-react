@@ -45,7 +45,7 @@ export default function StopWatch({
     const currentMinutes = Math.floor(time / 60000) % 60;
     const currentSeconds = Math.floor(time / 1000) % 60;
 
-    // funky checks to stylistically add 0's when the digits only take up 1 digit 
+    // funky checks to stylistically add 0's when the digits only take up 1 digit
     const timeString =
         `${
             String(currentHours).length < 2 ? "0" + currentHours : currentHours
@@ -81,7 +81,11 @@ export default function StopWatch({
             <div className="laps-wrapper">
                 {/* we want the most recent laps to appear on top, so reverse by copy before mapping */}
                 {[...laps].reverse().map((lap, index) => (
-                    <div key={lap + index} className="lap-border">
+                    <div
+                        key={lap + index}
+                        className="lap-border"
+                        data-testid="lap"
+                    >
                         <div className="lap">{lap}</div>
                     </div>
                 ))}
