@@ -46,8 +46,13 @@ import moment from 'moment';
  *      lap time.
  *      
  *      
- *      
+ *  Key Features:
+ *      The stopwatch should start counting when the user clicks the start button.
+ *      The stopwatch should stop counting when the user clicks the stop button.
+ *      The stopwatch should reset to zero when the user clicks the reset button.
+ *      The stopwatch should record and display laps when user clicks the lap button.
  */
+
 
 /**
  *  Purpose:
