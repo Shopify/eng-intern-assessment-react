@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 import formatWithLeadingZero from "./helpers/formatWithLeadingZero";
+import "./StopWatch.css";
 
 interface TimeState {
   milliseconds: number;
@@ -22,7 +23,6 @@ export default function StopWatch(): JSX.Element {
   });
   const [isActive, setIsActive] = useState<boolean>(false);
   const [laps, setLaps] = useState<string[]>([]);
-
 
   /**
    * This effect is responsible for updating the timer values (minutes, seconds,
@@ -64,7 +64,6 @@ export default function StopWatch(): JSX.Element {
     return () => clearInterval(interval);
   }, [isActive]);
 
-
   /**
    * Handles the start or stop control of the stopwatch.
    */
@@ -73,7 +72,6 @@ export default function StopWatch(): JSX.Element {
     setIsActive(!isActive);
     console.log("Timer is active: ", !isActive);
   };
-
 
   /**
    * Handles the reset control of the stopwatch.
@@ -118,7 +116,11 @@ export default function StopWatch(): JSX.Element {
           label={isActive ? "Pause" : "Start"}
         />
         <StopWatchButton onClick={handleLap} id={"stopwatch-lap"} label="Lap" />
-        <StopWatchButton onClick={handleReset} id={"stopwatch-reset"} label="Reset" />
+        <StopWatchButton
+          onClick={handleReset}
+          id={"stopwatch-reset"}
+          label="Reset"
+        />
       </div>
 
       <div
