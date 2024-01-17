@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import StopWatch from './StopWatch';
 
 export default function App() {
   const [isLive, setIsLive] = useState(false);
@@ -35,5 +36,9 @@ export default function App() {
     setLaps((prevLaps) => [...prevLaps, time]);
   };
 
-  return <div></div>;
+  return (
+    <div>
+      <StopWatch time={time} laps={laps} />
+    </div>
+  );
 }
