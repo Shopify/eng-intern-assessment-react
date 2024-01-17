@@ -25,11 +25,15 @@ export default function StopWatch({ time, laps }: StopWatchProps) {
       <div>
         <span>{formatDisplayTime(time)}</span>
       </div>
-      <ol data-testid='lap-list'>
+      <ul data-testid='lap-list'>
         {laps.map((lap, index) => (
-          <li key={index}>{formatDisplayTime(lap)}</li>
+          <li key={index}>
+            <p>
+              Lap {index + 1}: {formatDisplayTime(lap)}
+            </p>
+          </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 }
