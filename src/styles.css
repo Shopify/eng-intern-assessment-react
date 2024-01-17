@@ -17,9 +17,6 @@ button {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
     background-color: transparent;
 }
 
@@ -27,6 +24,7 @@ button {
     display: flex;
     gap: 4rem;
     font-size: 2.5rem;
+    z-index: 1;
 }
 
 .button-wrapper > div {
@@ -64,11 +62,11 @@ button {
     padding-bottom: 0.5rem;
 }
 
-.play-button .visual-button {
+.start-button .visual-button {
     background-color: #7bbc6b;
 }
 
-.pause-button .visual-button {
+.stop-button .visual-button {
     background-color: #ca9c4b;
 }
 
@@ -80,6 +78,13 @@ button {
     background-color: #4a94d9;
 }
 
+.button-line {
+    height: 4px;
+    background-color: #d9d9d9;
+    width: 140px;
+    transform: translateX(-10px) translateY(-10px);
+}
+
 .stopwatch-border {
     display: flex;
     justify-content: center;
@@ -87,6 +92,8 @@ button {
     background-color: #d9d9d9;
     padding: 2rem;
     border-radius: 64px;
+    border-top: 16px solid #4e4e4e;
+    transform: translateY(-20px);
 }
 
 .stopwatch {
@@ -116,17 +123,17 @@ button {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    width: calc(2rem + 600px);
+    width: calc(6rem + 600px);
 }
 
 .lap-border {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
     border-radius: 16px;
     background-color: #d9d9d9;
     width: 100%;
+    padding: 1rem;
 }
 
 .lap {

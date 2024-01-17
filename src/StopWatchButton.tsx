@@ -16,7 +16,7 @@ export default function StopWatchButton({
         <div className="button-wrapper">
             <div>
                 <div className="button-text">
-                    {timerState === TimerState.RUNNING ? "Pause" : "Play"}
+                    {timerState === TimerState.RUNNING ? "Stop" : "Start"}
                 </div>
                 <button
                     onClick={() => {
@@ -30,15 +30,16 @@ export default function StopWatchButton({
                             setTimerState(TimerState.RUNNING);
                         }
                     }}
-                    name={timerState === TimerState.RUNNING ? "Pause" : "Play"}
+                    name={timerState === TimerState.RUNNING ? "Stop" : "Start"}
                     className={`button ${
                         timerState === TimerState.RUNNING
-                            ? "pause-button"
-                            : "play-button"
+                            ? "stop-button"
+                            : "start-button"
                     }`}
                 >
                     <div className="visual-button"></div>
                 </button>
+                <div className="button-line"></div>
             </div>
             <div>
                 <div className="button-text">Reset</div>
@@ -51,6 +52,7 @@ export default function StopWatchButton({
                 >
                     <div className="visual-button"></div>
                 </button>
+                <div className="button-line"></div>
             </div>
             <div>
                 <div className="button-text">Lap</div>
@@ -63,6 +65,7 @@ export default function StopWatchButton({
                 >
                     <div className="visual-button"></div>
                 </button>
+                <div className="button-line"></div>
             </div>
         </div>
     );

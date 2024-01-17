@@ -29,6 +29,7 @@ export default function StopWatch({
         if (timerState === TimerState.RESETTING) {
             pauseTime.current = 0;
             setTime(0);
+            setLaps([]);
         }
 
         return () => {
@@ -60,7 +61,6 @@ export default function StopWatch({
         }` || "00:00:00:000";
 
     useEffect(() => {
-        console.log("lap");
         if (!lapSignal) return;
         setLaps([...laps, timeString]);
         setLapSignal(false);
@@ -73,10 +73,8 @@ export default function StopWatch({
             </div>
             <div className="laps-wrapper">
                 {[...laps].reverse().map((lap, index) => (
-                    <div className="lap-border">
-                        <div key={lap + index} className="lap">
-                            {lap}
-                        </div>
+                    <div key={lap + index} className="lap-border">
+                        <div className="lap">{lap}</div>
                     </div>
                 ))}
             </div>
