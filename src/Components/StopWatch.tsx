@@ -11,6 +11,7 @@ type StopWatchProps = {
   onStartClick: () => void;
   onResetClick: () => void;
   onLapClick: () => void;
+  laps: string[];
   label: string;
   display: (time: number) => string;
   time: number;
@@ -24,6 +25,7 @@ export default function StopWatch({
   onLapClick,
   display,
   time,
+  laps,
 }: StopWatchProps) {
   return (
     <>
@@ -38,7 +40,13 @@ export default function StopWatch({
           <StopWatchButton label="Reset" onClick={onResetClick} />
         </div>
         <div className="laps">
-          <ul>{/* lap entries will go here */}</ul>
+          <ul>
+            {laps.map((lap, index) => (
+              <li>
+                <p key={index}>{`Lap ${index + 1}: ${lap}`}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>

@@ -7,6 +7,7 @@ import { createConfigItem } from "@babel/core";
 export default function App() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
+  const [laps, setLaps] = useState<string[]>([]);
 
   useEffect(() => {
     // setting up the intervalID and type for Node environment
@@ -39,13 +40,16 @@ export default function App() {
   // function the handle if the lap button has been clicked
   const handleLapClick = () => {
     console.log("Lap Time Recorded");
+    const lapTime = formatTimer(time); // getting the current lap time
+    setLaps((prevLaps) => [...prevLaps, lapTime]); // add the lap Time to the state variable array
   };
 
   // function the handle if the reset button has been clicked
   const handleResetClick = () => {
     console.log("The Timer Reset");
     setIsRunning(false);
-    setTime(0);
+    setTime(0); // resets the timer stored in State back to zero (00:00.00)
+    setLaps([]); // clears the laps array when timer is reset
   };
 
   const formatTimer = (time: number) => {
@@ -74,6 +78,7 @@ export default function App() {
           onLapClick={handleLapClick}
           display={formatTimer}
           time={time}
+          laps={laps}
         />
       </div>
     </>
@@ -89,7 +94,7 @@ export default function App() {
 // 5) change the start button to stop using state variable to track if the timer is running (Boolean)
 // 6) when you click the stop button the timer should pause
 // 7) when you click the reset button the time should be reset back to zero
-8) Format the timer to be 00:00.00
+// 8) Format the timer to be 00:00.00
 9) when you click the lap button it should map the current time to the <ul> using a template literal eg Lap 1 15:01.34. Get 1 to increment for each lap ie Lap 1, Lap 2 etc
 10) When the reset button is clicked it should also delete all the laps
 11) push code to main 
