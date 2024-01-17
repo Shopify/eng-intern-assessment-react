@@ -1,7 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { timeToString } from './App';
+import { Time } from './App';
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
-}
+type StopwatchProps = {
+  duration: Time;
+};
+
+const Stopwatch: React.FC<StopwatchProps> = ({ duration }) => {
+  return (
+    <div>
+      {timeToString(duration)}
+    </div>
+  );
+};
+
+export default Stopwatch;
