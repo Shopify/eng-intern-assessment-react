@@ -1,6 +1,6 @@
-// LapTrackerComponents.test.js
+// App.test.js
 import React from 'react';
-import { getAllByTestId, getByTestId, render } from '@testing-library/react';
+import { getByTestId, render } from '@testing-library/react';
 import { LapTrackerComponents } from '../App';
 
 describe('LapTrackerComponents component test', () => {
