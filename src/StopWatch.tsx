@@ -1,6 +1,7 @@
 import React from 'react';
 import { timeToString } from './App';
 import { Time } from './App';
+import styled from 'styled-components';
 
 type StopwatchProps = {
   duration: Time;
@@ -8,10 +9,15 @@ type StopwatchProps = {
 
 const Stopwatch: React.FC<StopwatchProps> = ({ duration }) => {
   return (
-    <div>
+    <StyledStopwatch>
       {timeToString(duration)}
-    </div>
+    </StyledStopwatch>
   );
 };
+
+const StyledStopwatch = styled.div`
+  font-size: 4rem;
+  font-family: sans-serif;
+`;
 
 export default Stopwatch;

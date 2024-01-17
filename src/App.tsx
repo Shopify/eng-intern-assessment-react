@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import LapsDisplay from './LapsDisplay';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
-import LapsDisplay from './LapsDisplay';
 
 export type Time = {
   hours: number;
@@ -9,6 +10,14 @@ export type Time = {
   seconds: number;
   milliseconds: number;
 };
+
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: rgb(45, 55, 72);
+    color: rgb(237, 237, 237);
+  }
+`;
 
 const calculateTime = (totalMilliseconds: number): Time => {
   const hours = Math.floor(totalMilliseconds / 3600000); // 3600000 milliseconds in an hour
@@ -60,19 +69,67 @@ export default function App() {
 
   return(
     <>
-      <StopWatch duration={calculateTime(milliseconds)} />
-      {running ?
-        <StopWatchButton label='Stop' action={stop} /> :
-        <StopWatchButton label='Start' action={start} />
-      }
-      <StopWatchButton label='Lap' action={recordLap} />
-      <StopWatchButton label='Reset Timer' action={resetTimer} />
-      {laps.length > 0 && 
-        <>
-          <StopWatchButton label='Clear Laps' action={clearLaps} />
-          <LapsDisplay laps={laps} />
-        </>
-      }
+      <GlobalStyle />
+      <StopwatchContainer>
+        <StopWatch duration={calculateTime(milliseconds)} />
+        <FlexContainer>
+          {running ?
+            <StopWatchButton label='Stop' action={stop} variant='red'/> :
+            <StopWatchButton label='Start' action={start} variant='green'/>
+          }
+          <StopWatchButton label='Lap' action={recordLap} />
+          <StopWatchButton label='Reset Timer' action={resetTimer} />
+        </FlexContainer>
+      </StopwatchContainer>
+      <LapsContainer>
+        {laps.length > 0 && 
+          <LapsFlexContainer>
+            <h2>Laps</h2>
+            <StopWatchButton label='Clear Laps' action={clearLaps} />
+          </LapsFlexContainer>
+        }
+        <LapsDisplay laps={laps} />
+      </LapsContainer>
     </>
   )
 }
+
+const StopwatchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: rgb(10, 18, 30);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 400px;
+`
+
+const LapsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 10px auto;
+  max-width: 400px;
+  font-family: sans-serif;
+`
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1rem;
+`
+
+const LapsFlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1rem;
+  padding-bottom: 10px;
+  border-bottom: 3px solid white;
+`
