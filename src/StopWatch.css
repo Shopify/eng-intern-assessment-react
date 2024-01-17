@@ -3,12 +3,14 @@
 /* Container styles */
 #stopwatch-container {
     text-align: center;
+    margin: 20px;
   }
   
   /* Display styles */
   #stopwatch-display {
     font-size: 2rem;
-    margin: 0.5rem;
+    margin: 10px;
+    color: #333; /* Dark gray text color */
   }
   
   /* Buttons styles */
@@ -19,15 +21,56 @@
     margin-top: 1rem;
   }
   
+  /* Button styles */
+  #stopwatch-buttons button {
+    background-color: #2196F3; /* Blue */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  #stopwatch-buttons button:hover {
+    background-color: #1565C0; /* Darker blue on hover */
+  }
+  
   /* Lap list styles */
   #lap-list {
     margin-top: 1rem;
   }
   
-  /* Lap item styles */
-  #lap-list li {
-    list-style: none;
-    font-size: 1rem;
-    margin: 0.5rem 0;
+  /* Lap list table styles */
+  #lap-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  #lap-list-table-header {
+    background-color: #f0f0f0;
+  }
+  
+  #lap-list-table th,
+  #lap-list-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #lap-list-table th {
+    background-color: #f2f2f2;
+  }
+  
+  #lap-list-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #lap-list-table tr:hover {
+    background-color: #f0f0f0;
   }
   

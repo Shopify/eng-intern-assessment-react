@@ -24,21 +24,20 @@ export default function StopWatch() {
 
     let handleOnLap = () => {
         setLapList(lapList => [...lapList, counter]);
-        setCounter(0)
     }
 
-    function getDisplayText(givenMilliseconds: number) : string {
-        let milliseconds = givenMilliseconds%1000
-        let seconds = Math.floor(givenMilliseconds/1000)%60
-        let minutes = Math.floor(givenMilliseconds/1000/60)
+    function getDisplayText(givenMilliseconds: number): string {
+        let milliseconds = givenMilliseconds % 1000
+        let seconds = Math.floor(givenMilliseconds / 1000) % 60
+        let minutes = Math.floor(givenMilliseconds / 1000 / 60)
 
         //Make formater function to change time values to strings in the appropiate format
-        let formatTime = (time: number) => {return time.toLocaleString('en-US', {minimumIntegerDigits: 2, maximumFractionDigits: 0})};
+        let formatTime = (time: number) => { return time.toLocaleString('en-US', { minimumIntegerDigits: 2, maximumFractionDigits: 0 }) };
 
         return `${formatTime(minutes)}:${formatTime(seconds)}:${formatTime(milliseconds)}`;
     }
 
-    return(
+    return (
         <div id='stopwatch-container'>
             <h1 id='stopwatch-display'>{getDisplayText(counter)}</h1>
             <div id='stopwatch-buttons'>
@@ -48,9 +47,22 @@ export default function StopWatch() {
                 <StopWatchButton id='reset-button' onClick={handleOnReset} content='Reset'></StopWatchButton>
             </div>
             <div id='lap-list' data-testid='lap-list'>
-                {lapList.map( (lap, index) => (
-                    <li id={`lap-${index}`} key={index}>Lap #{index} : {getDisplayText(lap)}</li>
-                ))}
+                {lapList.length > 0 &&
+                    <table id='lap-list-table'>
+                        <tr id={`lap-list-table-header`}>
+                            <th>Lap #</th>
+                            <th>Lap Time</th>
+                            <th>Total Time</th>
+                        </tr>
+                        {lapList.map((lap, index) => (
+                            <tr id={`lap-${index}`}>
+                                <th>{index}</th>
+                                <th>{getDisplayText(index > 0 ? lap - lapList[index - 1] : lap)}</th>
+                                <th>{getDisplayText(lap)}</th>
+                            </tr>
+                        ))}
+                    </table>
+                }
             </div>
         </div>
     )
