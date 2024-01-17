@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import {
   Page,
-  Layout,
   Card,
   InlineStack,
   Text,
-  InlineGrid,
-  BlockStack,
 } from '@shopify/polaris';
 
 import moment from 'moment';
@@ -49,16 +46,12 @@ export default function StopWatch() {
 
   return (
     <Page narrowWidth>
+
       <Card>
         <div className='timer-card'>
-
           <div className='timer-text'>
-
-            <InlineStack align='center'>
-              <Text as='h1' variant='headingLg'>{ moment(time).format("mm:ss:SS") }</Text>
-            </InlineStack>
+            <Text as='h1' variant='headingLg'>{ moment(time).format("mm:ss:SS") }</Text>
           </div>
-
         </div>
 
         <InlineStack align="center">
