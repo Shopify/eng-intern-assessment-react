@@ -35,7 +35,7 @@ export default function StopWatchButton({
       onClick={onClick}
       disabled={disabled}
     >
-      {label}
+      {disabled ? null : label}
     </button>
   );
 }
