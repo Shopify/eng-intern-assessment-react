@@ -86,6 +86,7 @@ const StopWatch: React.FC = () => {
 // Styled container as a parent to hold the StopWatchContainer
 const StopWatchContainerParent = styled.div`
     display: flex;
+    background: #FAF9F6;
     justify-content: center;
     align-items: center;
     height: 95vh;
