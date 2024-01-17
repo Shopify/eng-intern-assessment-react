@@ -1,8 +1,9 @@
+import React from "react";
 import { Box } from "@chakra-ui/react";
 
-import React, { ReactNode } from "react";
 import GlassContainerProps from "../interfaces/GlassContainerProps";
 
+// glass container component for wrapping content in a glass-like container.
 function GlassContainer({ children }: GlassContainerProps) {
   return (
     <Box

@@ -1,7 +1,7 @@
 enum ButtonType {
-  Reset = "Reset",
-  Start = "Start / Stop",
-  Lap = "Lap"
+  RESET = "Reset",
+  START = "Start / Stop",
+  LAP = "Lap"
 }
 
 export default ButtonType;

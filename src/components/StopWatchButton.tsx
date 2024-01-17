@@ -1,18 +1,20 @@
+import React from "react";
+
 import { IconButton } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
 import { GrPowerReset } from "react-icons/gr";
 import { MdOutlineTimer } from "react-icons/md";
 import { FaStop } from "react-icons/fa6";
-import React from "react";
 
-import StopWatchButtonInterface from "../interfaces/StopWatchButtonProps";
+import StopWatchButtonProps from "../interfaces/StopWatchButtonProps";
 import ButtonType from "../enums/ButtonType";
 
 export default function StopWatchButton({
   type,
   onClick,
   isRunning
-}: StopWatchButtonInterface) {
+}: StopWatchButtonProps): JSX.Element {
+  // Variables for button styling
   let colorScheme;
   let icon;
   let fontSize;
@@ -20,8 +22,9 @@ export default function StopWatchButton({
   let variant;
   let testid;
 
+  // Logic for determining button styling based on type
   switch (type) {
-    case ButtonType.Reset:
+    case ButtonType.RESET:
       colorScheme = "white";
       icon = <GrPowerReset />;
       fontSize = "1.8rem";
@@ -29,7 +32,7 @@ export default function StopWatchButton({
       buttonSize = "60px";
       testid = "reset-button";
       break;
-    case ButtonType.Start:
+    case ButtonType.START:
       colorScheme = "blue";
       icon = isRunning ? <FaStop /> : <FaPlay />;
       fontSize = "2rem";
@@ -37,7 +40,7 @@ export default function StopWatchButton({
       buttonSize = "90px";
       testid = "start-button";
       break;
-    case ButtonType.Lap:
+    case ButtonType.LAP:
       colorScheme = "white";
       icon = <MdOutlineTimer />;
       fontSize = "1.8rem";
@@ -49,6 +52,7 @@ export default function StopWatchButton({
       colorScheme = "gray";
   }
 
+  // Render the button
   return (
     <IconButton
       variant={variant}

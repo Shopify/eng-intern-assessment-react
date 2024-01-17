@@ -1,10 +1,11 @@
-import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
+import { Box, Heading } from "@chakra-ui/react";
 
-import StopWatchInterface from "../interfaces/StopWatchProps";
+import StopWatchProps from "../interfaces/StopWatchProps";
 
-export default function StopWatch({ formattedTime }: StopWatchInterface) {
+const StopWatch = ({ formattedTime }: StopWatchProps): JSX.Element => {
   return (
+    // Container for the entire stopwatch component
     <Box
       display='flex'
       flexDirection='column'
@@ -13,6 +14,7 @@ export default function StopWatch({ formattedTime }: StopWatchInterface) {
       p={4}
       minHeight='60vh'
     >
+      {/* Circular border for the stopwatch display */}
       <Box
         display='flex'
         flexDirection='column'
@@ -25,10 +27,13 @@ export default function StopWatch({ formattedTime }: StopWatchInterface) {
         borderStyle='dotted'
         borderColor='blue.500'
       >
+        {/* Heading element to display the formatted time */}
         <Heading as='h2' size='4xl' data-testid='stopwatch-time'>
           {formattedTime}
         </Heading>
       </Box>
     </Box>
   );
-}
+};
+
+export default StopWatch;

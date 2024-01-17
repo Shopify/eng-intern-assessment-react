@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+
 import StopWatch from "../StopWatch";
 
+// test to check if stopwatch is rendered with correct formatting
 describe("StopWatch renders properly", () => {
   it("StopWatch renders formatted time correctly", () => {
     render(<StopWatch formattedTime='14:23:54' />);
