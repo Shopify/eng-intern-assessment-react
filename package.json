@@ -48,6 +48,9 @@
     "setupFilesAfterEnv": ["./setupTests.js"],
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved, act } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Stopwatch from '../src/StopWatch';
 import { randomInt } from 'crypto';
@@ -59,7 +59,8 @@ describe('Stopwatch', () => {
     expect(screen.getByTestId('lap-list')).toContainElement(screen.getAllByText(/(\d{2}:){2}\d{2}/)[1]);
 
     fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list').children.length).toBe(2);
+    //expect the table to have three children 1 header + 2 laps recorded
+    expect(screen.getByTestId('lap-list-table').children.length).toBe(3);
   });
 
   test('resets the stopwatch', () => {

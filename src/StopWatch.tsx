@@ -48,7 +48,7 @@ export default function StopWatch() {
             </div>
             <div id='lap-list' data-testid='lap-list'>
                 {lapList.length > 0 &&
-                    <table id='lap-list-table'>
+                    <table id='lap-list-table' data-testid='lap-list-table'>
                         <tr id={`lap-list-table-header`}>
                             <th>Lap #</th>
                             <th>Lap Time</th>
