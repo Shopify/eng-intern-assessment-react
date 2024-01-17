@@ -8,23 +8,27 @@
   height: 98vh;
   background-color: #ffc0cb;
   overflow: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.timerContainer,
+.lapContainer {
+  margin: 50px;
+  height: fit-content;
+  text-align: center;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 1rem 1rem -0.7rem #d87093;
+  color: rgb(240, 155, 169);
   position: relative;
+  z-index: 3;
+  width: 40%;
 }
 
 .timerContainer {
-  margin: 50px;
-  float: left;
-  height: fit-content;
-  text-align: center;
-  font-size: 50px;
-  color: rgb(240, 155, 169);
-  background-color: white;
-  width: 40%;
-  border-radius: 15px;
+  font-size: 45px;
   padding-top: 1rem;
-  box-shadow: 0 1rem 1rem -0.7rem #d87093;
-  position: relative;
-  z-index: 3;
 }
 
 .timerContainer h2 {
@@ -32,19 +36,8 @@
 }
 
 .lapContainer {
-  margin: 50px;
-  float: left;
-  height: fit-content;
-  text-align: center;
   font-size: 25px;
-  color: rgb(240, 155, 169);
-  background-color: white;
-  width: 40%;
-  padding: 1rem 6rem;
-  border-radius: 15px;
-  box-shadow: 0 1rem 1rem -0.7rem #d87093;
-  position: relative;
-  z-index: 3;
+  padding: 1rem 4rem;
 }
 
 .carMovement {
@@ -110,11 +103,15 @@
   display: block;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
+  .timer {
+    flex-direction: column;
+    align-items: center;
+  }
   .timerContainer,
   .lapContainer {
     width: 80%;
-    float: center;
+    margin: 20px;
   }
   .carMovement,
   .roadContainer {
