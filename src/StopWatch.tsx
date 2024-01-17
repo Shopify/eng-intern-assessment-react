@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, CSSProperties} from 'react'
 import StopWatchButton from "./StopWatchButton";
 import {Simulate} from "react-dom/test-utils";
 import "./StopWatch.css"
@@ -102,6 +102,38 @@ export default function StopWatch() {
     }
 
 
+    const startButtonStyle: React.CSSProperties = {
+        border: "3px solid #0A2A12",
+        boxShadow: "0 0 0 5px black inset",
+        boxSizing: "border-box",
+        backgroundColor: "#0A2A12",
+        color: "#45CA57",
+    }
+
+    const stopButtonStyle: React.CSSProperties = {
+        border: "3px solid #330E0A",
+        boxShadow: "0 0 0 5px black inset",
+        boxSizing: "border-box",
+        backgroundColor: "#330E0A",
+        color: "#EB524C",
+    }
+
+    const resetButtonStyle: React.CSSProperties = {
+        border: "3px solid #323232",
+        boxShadow: "0 0 0 5px black inset",
+        boxSizing: "border-box",
+        backgroundColor: "#323232",
+        color: "white",
+    }
+
+    const resetButtonStyleDisabled: React.CSSProperties = {
+        border: "3px solid #1C1B1E",
+        boxShadow: "0 0 0 5px black inset",
+        boxSizing: "border-box",
+        backgroundColor: "#1C1B1E",
+        color: "#99989C",
+    }
+
     return (
         <React.Fragment>
             <div>
@@ -109,12 +141,14 @@ export default function StopWatch() {
             </div>
             <div>
                 <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
-                                 buttonFunction={toggleStartStop}
-                                 disabled={false}
+                             buttonFunction={toggleStartStop}
+                             disabled={false}
+                             style={isRunning ? startButtonStyle : stopButtonStyle}
                 />
-                <StopWatchButton buttonName={isRunning ? "Lap" : (laps.length > 0 ? "Reset" : "Lap")}
+                <StopWatchButton buttonName={isRunning ? "Lap" : (elapsedTime > 0 ? "Reset" : "Lap")}
                                  buttonFunction={lapReset}
-                                 disabled={laps.length === 0 && !isRunning}
+                                 disabled={elapsedTime === 0 && !isRunning}
+                                 style={elapsedTime === 0 && !isRunning ? resetButtonStyleDisabled : resetButtonStyle}
                 />
             </div>
             <div>
