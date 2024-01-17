@@ -62,17 +62,18 @@ export default function App() {
   
   return (
     
-    <div>
+    <div >
+        <StopWatchButton
+      isRunning = {isRunning}
+      startStop={startStop}
+      lapButton={setLap}
+      resetButton={resetButton}/>
       <StopWatch 
       currentTime={currentTime}
       totalTime={totalTime}
       lapTimes={lapTimes}
       totalTimes={totalTimes}/>
-      <StopWatchButton
-      isRunning = {isRunning}
-      startStop={startStop}
-      lapButton={setLap}
-      resetButton={resetButton}/>
+      
     </div>
     
   );

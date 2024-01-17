@@ -17,7 +17,7 @@ export default function StopWatchButton({
     return(
         
         <Page fullWidth>
-            <div style={{height:'15vh'}}>
+            
             <InlineStack gap='400' align='space-evenly'>
             <Button size='large' variant='primary' onClick={startStop}>
                 {isRunning ? "Stop" :  "Start"}
@@ -30,7 +30,7 @@ export default function StopWatchButton({
             </Button>
             
             </InlineStack>
-            </div>
+            
         </Page>
        
     )

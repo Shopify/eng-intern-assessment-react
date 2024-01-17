@@ -2,6 +2,7 @@ import { Text, DataTable, Grid, Page, Scrollable, Box, InlineStack, BlockStack }
 import React from 'react'
 
 
+
 interface StopwatchProps {
     currentTime: number
     totalTime: number
@@ -78,55 +79,56 @@ export default function StopWatch({
 
 
     return(
-        <div>
-        <Page fullWidth >
-        <InlineStack gap='400' align='center'>
-            <div style={{height:'100%'}}>
-        <Grid>
-        <Grid.Cell columnSpan={{xs: 6, sm: 5, md: 5, lg: 9, xl: 9}}>
-            
-                <Box shadow='500' background='bg-surface' borderRadius='200'>
-                    <div style={{height: '70vh'}}>
-                    <BlockStack gap='400'>
-                    <Text variant='heading3xl' as='h2' alignment='center'>
-                    {hours.toString().padStart(2, "0")}:
-                    {minutes.toString().padStart(2, "0")}:
-                    {seconds.toString().padStart(2, "0")}</Text>
-                    <Text variant='heading3xl' as='h2' alignment='center'>
-                    {totalHours.toString().padStart(2, "0")}:
-                    {totalMinutes.toString().padStart(2, "0")}:
-                    {totalSeconds.toString().padStart(2, "0")}</Text>
-                    </BlockStack>
-                    </div>
-                    </Box> 
-
-                    </Grid.Cell>
-                    <Grid.Cell columnSpan={{xs: 3, sm: 2, md: 2, lg: 3, xl: 3}}>
-                    <Box shadow='500' background='bg-surface' borderRadius='200'>
-                    <div style={{height: '70vh'}}>
+        
+        <Page  >
+            <BlockStack gap='500' align='center'>
+                
+                    <Grid>
+                        <Grid.Cell columnSpan={{xs: 6, sm: 3, md: 3, lg: 6, xl: 6}}>
+                            <Box shadow='500' background='bg-surface' borderRadius='200'>
+                                <div style={{height: '30vh'}}>
+                                    <Text variant='heading3xl' as='h1' alignment='center'>
+                                        {hours.toString().padStart(2, "0")}:
+                                        {minutes.toString().padStart(2, "0")}:
+                                        {seconds.toString().padStart(2, "0")}
+                                    </Text>
+                                   
+                                </div>
+                            </Box> 
+                        </Grid.Cell>
+                        <Grid.Cell columnSpan={{xs: 6, sm: 3, md: 3, lg: 6, xl: 6}}>
+                            <Box shadow='500' background='bg-surface' borderRadius='200'>
+                                <div style={{height: '30vh'}}>
+                                    <Text variant='heading3xl' as='h2' alignment='center'>
+                                        {totalHours.toString().padStart(2, "0")}:
+                                        {totalMinutes.toString().padStart(2, "0")}:
+                                        {totalSeconds.toString().padStart(2, "0")}
+                                    </Text>
+                                </div>
+                            </Box>
                     
-                <Scrollable style={{height: '100%'}} focusable>
-                    <DataTable columnContentTypes={[
-                        'text',
-                        'text',
-                        'text'
-                    ]}
-                    headings={[
-                        "Lap Number", 
-                        "Lap Time", 
-                        "Total Elapsed Time"]}
-                    rows={combinedLapInfo}/>
-
-                   
-                    </Scrollable>
-                    </div>
-                    </Box>
-                    </Grid.Cell>
+                        </Grid.Cell>
                     </Grid>
-                    </div>
-                     
-                    </InlineStack>   
+                    
+                    <Box shadow='500' background='bg-surface' borderRadius='200'>
+                        <div style={{height: '50vh'}}>
+                            <Scrollable style={{height: '100%'}} focusable>
+                                <DataTable columnContentTypes={[
+                                'text',
+                                'text',
+                                'text'
+                                ]}
+                                headings={[
+                                "Lap Number", 
+                                "Lap Time", 
+                                "Total Elapsed Time"]}
+                                rows={combinedLapInfo}/>
+                            </Scrollable>
+                        </div>
+                    </Box>
+                      
+            </BlockStack>   
         </Page>
-        </div>
+       
     )
 }
