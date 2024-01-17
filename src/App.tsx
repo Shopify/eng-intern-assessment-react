@@ -17,7 +17,7 @@ export const LapTrackerComponents:React.FC<LapTrackerComponentsProps> = ({lapTim
         <h5>Format: (HH:MM:SS:MM)</h5>
         {
             lapTimes.map((lapTime, index) => {
-                return <div className="lapTimeFlex">
+                return <div className="lapTimeFlex" key={index} data-testid={`laptimeItem-${index}`}>
                     <span className="lapTimeTag">Lap {lapTimes.length - index}: </span><span>{lapTime}</span>
                 </div>
             })
