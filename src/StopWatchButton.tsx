@@ -26,7 +26,7 @@ export default function StopWatchButton({
   id,
 }: StopWatchButtonProps): JSX.Element {
   return (
-    <button className="stowatch-button" id={id} onClick={onClick}>
+    <button className="stopwatch-button" id={id} onClick={onClick}>
       {label}
     </button>
   );
