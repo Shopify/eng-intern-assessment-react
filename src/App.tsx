@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StopWatch from './StopWatch';
+import StopWatchButton from './StopWatchButton';
 
 export default function App() {
   const [isLive, setIsLive] = useState(false);
@@ -39,6 +40,13 @@ export default function App() {
   return (
     <div>
       <StopWatch time={time} laps={laps} />
+      <StopWatchButton
+        isLive={isLive}
+        onStart={startStopwatch}
+        onStop={stopStopwatch}
+        onReset={resetStopwatch}
+        onLap={addStopwatchLap}
+      />
     </div>
   );
 }
