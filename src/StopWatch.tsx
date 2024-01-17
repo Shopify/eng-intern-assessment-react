@@ -128,7 +128,12 @@ export default function StopWatch(): JSX.Element {
           id={isActive ? "stopwatch-pause" : "stopwatch-start"}
           label={isActive ? "Pause" : "Start"}
         />
-        <StopWatchButton onClick={handleLap} id={"stopwatch-lap"} label="Lap" />
+        <StopWatchButton
+          onClick={handleLap}
+          id={"stopwatch-lap"}
+          label="Lap"
+          disabled={!isActive}
+        />
         <StopWatchButton
           onClick={handleReset}
           id={"stopwatch-reset"}
