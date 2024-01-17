@@ -54,7 +54,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.stopwatch-button:hover {
+.stopwatch-button:hover:not(#stopwatch-button-disabled) {
   transform: scale(1.1);
 }
 
@@ -72,6 +72,10 @@ body {
 
 #stopwatch-reset {
   background-color: #495057;
+}
+
+#stopwatch-button-disabled {
+  cursor: default;
 }
 
 .stopwatch-laps {
