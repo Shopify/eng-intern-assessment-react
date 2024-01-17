@@ -24,6 +24,7 @@ export default function StopWatch({
             // subtract pauseTime from the initial time to add that much time to the clock
             const initialTime = new Date().getTime() - pauseTime.current;
 
+            // recalculate the time passed at every 10 ms interval
             interval = setInterval(() => {
                 const currentMilliseconds = new Date().getTime() - initialTime;
                 setTime(currentMilliseconds);
@@ -44,6 +45,7 @@ export default function StopWatch({
     const currentMinutes = Math.floor(time / 60000) % 60;
     const currentSeconds = Math.floor(time / 1000) % 60;
 
+    // funky checks to stylistically add 0's when the digits only take up 1 digit 
     const timeString =
         `${
             String(currentHours).length < 2 ? "0" + currentHours : currentHours
