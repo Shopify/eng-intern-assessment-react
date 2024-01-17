@@ -32,6 +32,10 @@ export default function App() {
             <StopWatchButton text="Stop" handleClick={() => {
                 setCounting(false);
             }}/>
+            <StopWatchButton text="Reset" handleClick={() => {
+                setCounting(false);
+                setCounter(0);
+            }}/>
         </div>
     )
 }
