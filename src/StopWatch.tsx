@@ -25,8 +25,11 @@ export default function StopWatch(): JSX.Element {
   const [laps, setLaps] = useState<string[]>([]);
 
   /**
-   * This effect is responsible for updating the timer values (minutes, seconds,
-   * and milliseconds) when the stopwatch is active.
+   * This effect is responsible for updating the timer values at a set interval
+   * when the stopwatch is active.
+   *
+   * The interval invokes the updateTimer function every 10 ms, incrementing the
+   * timer's milliseconds, seconds, and minutes.
    *
    * @dependency
    * - isActive: determines whether the stopwatch time is incrementing.
@@ -35,34 +38,44 @@ export default function StopWatch(): JSX.Element {
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
+    const update = () => {
+      updateTimer();
+    };
+
     if (isActive) {
-      interval = setInterval(() => {
-        setTime((prevTime) => {
-          let newMilliseconds = prevTime.milliseconds + 1;
-          let newSeconds = prevTime.seconds;
-          let newMinutes = prevTime.minutes;
-
-          if (newMilliseconds >= 99) {
-            newSeconds += 1;
-            newMilliseconds = 0;
-
-            if (newSeconds >= 60) {
-              newMinutes += 1;
-              newSeconds = 0;
-            }
-          }
-
-          return {
-            minutes: newMinutes,
-            seconds: newSeconds,
-            milliseconds: newMilliseconds,
-          };
-        });
-      }, 10);
+      interval = setInterval(update, 10);
     }
 
     return () => clearInterval(interval);
   }, [isActive]);
+
+  /**
+   * Update the time state by incrementing millseconds, seconds, and minutes.
+   */
+
+  const updateTimer = (): void => {
+    setTime((prevTime: TimeState): TimeState => {
+      let newMilliseconds = prevTime.milliseconds + 1;
+      let newSeconds = prevTime.seconds;
+      let newMinutes = prevTime.minutes;
+
+      if (newMilliseconds >= 99) {
+        newSeconds += 1;
+        newMilliseconds = 0;
+
+        if (newSeconds >= 60) {
+          newMinutes += 1;
+          newSeconds = 0;
+        }
+      }
+
+      return {
+        minutes: newMinutes,
+        seconds: newSeconds,
+        milliseconds: newMilliseconds,
+      };
+    });
+  };
 
   /**
    * Handles the start or stop control of the stopwatch.
