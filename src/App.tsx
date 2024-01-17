@@ -17,7 +17,7 @@ export const LapTrackerComponents:React.FC<LapTrackerComponentsProps> = ({lapTim
         <h5>Format: (HH:MM:SS:MM)</h5>
         {
             lapTimes.map((lapTime, index) => {
-                return <div className="lapTimeFlex">
+                return <div className="lapTimeFlex" key={index} data-testid={`laptimeItem-${index}`}>
                     <span className="lapTimeTag">Lap {lapTimes.length - index}: </span><span>{lapTime}</span>
                 </div>
             })
@@ -25,6 +25,22 @@ export const LapTrackerComponents:React.FC<LapTrackerComponentsProps> = ({lapTim
     </div>
   )
 };
+
+// Convert milliseconds into format HH:MM:SS:MM
+export function formatTimeValue(milliseconds: number): string {
+    // Calculate hours, minutes, seconds, and remaining milliseconds
+    const hours = Math.floor(milliseconds / (60 * 60 * 100));
+    const minutes = Math.floor((milliseconds % (60 * 60 * 100)) / (60 * 100));
+    const seconds = Math.floor((milliseconds % (60 * 100)) / 100);
+    const remainingMilliseconds = milliseconds % 100;
+    return `${handleTimeDigits(hours)}:${handleTimeDigits(minutes)}:${handleTimeDigits(seconds)}:${handleTimeDigits(remainingMilliseconds)}`;
+    }
+    
+// Helper function to pad numbers with leading zeros
+export function handleTimeDigits(num: number): string {
+    const numString = num.toString();
+    return numString.length >= 2 ? numString : new Array(2 - numString.length + 1).join('0') + numString;
+}
 
 export default function App() {
     // Main timer
@@ -46,23 +62,6 @@ export default function App() {
         setTimer(0);
         setLapTimes([]);
         setRunning(false);
-    }
-
-    // Convert milliseconds into format HH:MM:SS:MM
-    function formatTimeValue(milliseconds: number): string {
-        // Calculate hours, minutes, seconds, and remaining milliseconds
-        const hours = Math.floor(milliseconds / (60 * 60 * 100));
-        const minutes = Math.floor((milliseconds % (60 * 60 * 100)) / (60 * 100));
-        const seconds = Math.floor((milliseconds % (60 * 100)) / 100);
-        const remainingMilliseconds = milliseconds % 100;
-        // Format to string  HH:MM:SS:MM
-        return `${handleTimeDigits(hours)}:${handleTimeDigits(minutes)}:${handleTimeDigits(seconds)}:${handleTimeDigits(remainingMilliseconds)}`;
-      }
-      
-    // Helper function to pad numbers with leading zeros
-    function handleTimeDigits(num: number): string {
-        const numString = num.toString();
-        return numString.length >= 2 ? numString : new Array(2 - numString.length + 1).join('0') + numString;
     }
 
     // Interval computation to update timer
