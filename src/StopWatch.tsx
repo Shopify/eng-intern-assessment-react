@@ -83,7 +83,6 @@ export default function StopWatch(): JSX.Element {
 
   const handleStartStop = (): void => {
     setIsActive(!isActive);
-    console.log("Timer is active: ", !isActive);
   };
 
   /**
@@ -116,12 +115,9 @@ export default function StopWatch(): JSX.Element {
 
   return (
     <div className="stopwatch-container">
-      <div className="stopwatch-timer">
-        {formatWithLeadingZero(time.minutes)}:
-        {formatWithLeadingZero(time.seconds)}:
-        {formatWithLeadingZero(time.milliseconds)}
-      </div>
-
+    <div className="stopwatch-timer">
+      {`${formatWithLeadingZero(time.minutes)}:${formatWithLeadingZero(time.seconds)}:${formatWithLeadingZero(time.milliseconds)}`}
+    </div>
       <div className="stopwatch-buttons">
         <StopWatchButton
           onClick={handleStartStop}
@@ -142,7 +138,7 @@ export default function StopWatch(): JSX.Element {
       </div>
 
       <div
-        className="stopwatch-laps"
+        className="stopwatch-laps-list"
         style={{ display: laps.length ? "block" : "none" }}
       >
         <h3>

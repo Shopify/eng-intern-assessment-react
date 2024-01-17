@@ -30,7 +30,7 @@ body {
   font-size: 2em;
   box-shadow: 0 0 6px rgba(47, 128, 237, 0.7);
   border-radius: 50%;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   line-height: 1;
   margin: 0 auto;
 }
@@ -78,7 +78,7 @@ body {
   cursor: default;
 }
 
-.stopwatch-laps {
+.stopwatch-laps-list {
   margin-top: 1.25em;
   max-height: 13em;
   overflow-y: scroll;
