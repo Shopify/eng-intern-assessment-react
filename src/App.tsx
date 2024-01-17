@@ -10,7 +10,6 @@ export type Time = {
   milliseconds: number;
 };
 
-
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: rgb(45, 55, 72);
@@ -18,14 +17,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+// Calculate the minutes, seconds, and milliseconds given the total elapsed milliseconds
 const calculateTime = (totalMilliseconds: number): Time => {
-  const minutes = Math.floor((totalMilliseconds % 3600000) / 60000); // 60000 milliseconds in a minute
-  const seconds = Math.floor((totalMilliseconds % 60000) / 1000); // 1000 milliseconds in a second
-  const milliseconds = Math.floor((totalMilliseconds % 1000) / 10); // rounding to two digits
+  const minutes = Math.floor((totalMilliseconds % 3600000) / 60000);
+  const seconds = Math.floor((totalMilliseconds % 60000) / 1000);
+  const milliseconds = Math.floor((totalMilliseconds % 1000) / 10);
 
   return { minutes, seconds, milliseconds };
 };
 
+// Construct a displayable string given the Time object
 export const timeToString = (timeObject: Time): string => {
   const { minutes, seconds, milliseconds } = timeObject;
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
@@ -35,20 +36,22 @@ export default function App() {
   const [milliseconds, setMilliseconds] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false);
   const [laps, setLaps] = useState<String[]>([]);
-  const intervalId = useRef<NodeJS.Timeout | null>(null);
+  const timer = useRef<NodeJS.Timeout | null>(null);
 
   const start = () => {
     setRunning(true);
-    intervalId.current = setInterval(() => {
+    // increment timer every 10 milliseconds
+    timer.current = setInterval(() => {
       setMilliseconds(prev => prev + 10);
     }, 10);
   }
   
   const stop = () => {
     setRunning(false);
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-      intervalId.current = null;
+    if (timer.current) {
+      // Stop the timer by clearing it and setting the current to null
+      clearInterval(timer.current);
+      timer.current = null;
     }
   };  
   
@@ -57,10 +60,12 @@ export default function App() {
     setMilliseconds(0);
   }
   
+  // Add a formatted string of the current time to laps
   const recordLap = () => {
     setLaps([...laps, timeToString(calculateTime(milliseconds))]);
   }
   
+  // Clear all laps
   const clearLaps = () => {
     setLaps([]);
   }
