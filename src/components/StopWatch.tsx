@@ -104,9 +104,7 @@ export default function StopWatch() {
     event.returnValue = 'Are you sure you want to exit?';
     const shouldReload = window.confirm;
     if (shouldReload) {
-      // Clear laps and update localStorage
-      localStorage.setItem('stopwatch_time', '0');
-      localStorage.setItem('stopwatch_laps', JSON.stringify([]));
+      resetTimerHandler()
     }
     return event.returnValue;
   };
