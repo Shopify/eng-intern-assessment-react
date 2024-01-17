@@ -69,7 +69,9 @@ export default function StopWatch({
     return (
         <div className="stopwatch-wrapper">
             <div className="stopwatch-border">
-                <div className="stopwatch">{timeString}</div>
+                <div className="stopwatch" data-testid="time">
+                    {timeString}
+                </div>
             </div>
             <div className="laps-wrapper">
                 {[...laps].reverse().map((lap, index) => (

@@ -19,7 +19,6 @@ export default function App() {
             <StopWatchButton
                 timerState={timerState}
                 setTimerState={setTimerState}
-                lapSignal={lapSignal}
                 setLapSignal={setLapSignal}
             />
             <StopWatch

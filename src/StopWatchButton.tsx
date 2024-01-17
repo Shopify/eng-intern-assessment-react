@@ -4,12 +4,10 @@ import { TimerState } from "./App";
 export default function StopWatchButton({
     timerState,
     setTimerState,
-    lapSignal,
     setLapSignal,
 }: {
     timerState: TimerState;
     setTimerState: (timerState: TimerState) => void;
-    lapSignal: boolean;
     setLapSignal: (lapSignal: boolean) => void;
 }) {
     return (
@@ -36,6 +34,11 @@ export default function StopWatchButton({
                             ? "stop-button"
                             : "start-button"
                     }`}
+                    data-testid={
+                        timerState === TimerState.RUNNING
+                            ? "stop-button"
+                            : "start-button"
+                    }
                 >
                     <div className="visual-button"></div>
                 </button>
@@ -49,6 +52,7 @@ export default function StopWatchButton({
                     }}
                     name="reset"
                     className="button reset-button"
+                    data-testid="reset-button"
                 >
                     <div className="visual-button"></div>
                 </button>
@@ -62,6 +66,7 @@ export default function StopWatchButton({
                     }}
                     name="lap"
                     className="button lap-button"
+                    data-testid="lap-button"
                 >
                     <div className="visual-button"></div>
                 </button>
