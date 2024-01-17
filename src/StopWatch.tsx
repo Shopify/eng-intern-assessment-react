@@ -19,9 +19,9 @@ export default function StopWatch() {
   useEffect(() => {
     if (running) {
       const interval = setInterval(() => {
-        setTime((prev: number) => prev + 1);
+        setTime((prev: number) => prev + 10);
         console.log(time);
-      }, 1000);
+      }, 10);
       return () => clearInterval(interval);
     }
   }, [running]);
@@ -29,7 +29,7 @@ export default function StopWatch() {
   return (
     <div className="timer">
       <div className="timerContainer">
-        <h1>Stop Watch</h1>
+        <h2>Stop Watch</h2>
         <h1>{formatTime(time)}</h1>
         <StopWatchButton />
       </div>
@@ -54,6 +54,15 @@ export default function StopWatch() {
 // Format time from seconds to HH:MM:SS format
 export const formatTime = (time: number) => {
   const date = new Date(null);
-  date.setSeconds(time);
-  return date.toISOString().slice(11, 19);
+  date.setMilliseconds(time);
+  const hours = date.getUTCHours().toString().padStart(2, "0");
+  const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+  const seconds = date.getUTCSeconds().toString().padStart(2, "0");
+  const milliseconds = date
+    .getUTCMilliseconds()
+    .toString()
+    .padStart(3, "0")
+    .slice(0, 2);
+
+  return `${hours}:${minutes}:${seconds}.${milliseconds}`;
 };
