@@ -45,11 +45,11 @@ html {
 }
 
 .StartButton {
-    background-color: rgb(0, 194, 0, 0.8);
+    background-color: rgba(38, 245, 38, 0.8);
 }
 
 .StartButton:hover {
-    background-color: rgba(0, 141, 0, 0.8);
+    background-color: rgba(46, 224, 46, 0.8);
 }
 
 .StopButton {
