@@ -8,7 +8,7 @@ describe('StopWatchButton component tests', () => {
   const mockRecordLapTime = jest.fn();
   const mockSetRunning = jest.fn();
   const mockResetTimer = jest.fn();
-  const mockTimer = 100; // Example timer value
+  const mockTimer = 100;
 
   it('render Start and Reset buttons when the timer is not running', () => {
     const { queryByTestId } = render(
