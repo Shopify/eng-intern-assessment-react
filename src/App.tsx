@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
+import LapsDisplay from './LapsDisplay';
 
 export type Time = {
   hours: number;
@@ -45,25 +46,33 @@ export default function App() {
   };  
   
   // Reset button resets the timer to zero but does not stop the timer from running
-  const reset = () => {
+  const resetTimer = () => {
     setMilliseconds(0);
-    setLaps([]);
   }
   
   const recordLap = () => {
     setLaps([...laps, timeToString(calculateTime(milliseconds))]);
   }
+  
+  const clearLaps = () => {
+    setLaps([]);
+  }
 
   return(
     <>
       <StopWatch duration={calculateTime(milliseconds)} />
-      {
-        running ?
+      {running ?
         <StopWatchButton label='Stop' action={stop} /> :
         <StopWatchButton label='Start' action={start} />
       }
       <StopWatchButton label='Lap' action={recordLap} />
-      <StopWatchButton label='Reset' action={reset} />
+      <StopWatchButton label='Reset Timer' action={resetTimer} />
+      {laps.length > 0 && 
+        <>
+          <StopWatchButton label='Clear Laps' action={clearLaps} />
+          <LapsDisplay laps={laps} />
+        </>
+      }
     </>
   )
 }
