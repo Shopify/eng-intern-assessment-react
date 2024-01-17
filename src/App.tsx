@@ -3,11 +3,13 @@
 import React, { CSSProperties, useState, useEffect } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
+import Lap from './Lap'
 
 export default function App() {
 
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const [laps, setLaps] = useState<number[]>([]); // Declare 'laps' state variable
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -26,21 +28,37 @@ export default function App() {
     const reset = () => {
         setIsRunning(false);
         setTime(0);
+        setLaps([]); // Use 'setLaps' to update the 'laps' state
+    };
+    const lap = () => {
+        setLaps([...laps, time]); // Use 'setLaps' to update the 'laps' state
     };
 
-    const backgroundColour: CSSProperties = {
-        backgroundColor: '#595b5d',
-        height: '100vh',
+    const background: CSSProperties = {
+        height: '97vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
     };
 
+    const fixedHeightDiv: CSSProperties = {
+        height: '200px',
+    };
+
     return(
-        <div style = {backgroundColour}>
-            <StopWatch time={time}/>
-            <StopWatchButton start={start} stop={stop} reset={reset}/>
+        <div style = {background}>
+            <div style = {fixedHeightDiv}>
+
+                <StopWatch time={time}/>
+
+                <StopWatchButton start = {start} stop = {stop} reset = {reset} lap = {lap}/>
+
+                {laps.map((lap: number, index: number) => (
+                        <Lap key={index} time={lap}/>
+                ))}
+
+            </div>
         </div>
     )
 }

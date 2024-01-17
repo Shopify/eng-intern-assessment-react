@@ -1,4 +1,4 @@
-// A separate component that represents the stopwatch display.
+// A separate component that represents the lap times.
 
 import React from 'react'
 
@@ -6,11 +6,11 @@ interface Props {
     time: number;
 }
 
-export default function StopWatch({time}: Props) {
+export default function Lap({time}: Props) {
 
     const textStyle = {
         color: 'black',
-        fontSize: '80px',
+        fontSize: '30px',
         letterSpacing: '2px',
         margin: '2px'
     };
@@ -26,7 +26,7 @@ export default function StopWatch({time}: Props) {
 
     return(
         <div>
-            <p style = {textStyle}> {formatTime(time)} </p>
+            <p style = {textStyle}> Lap: {formatTime(time)} </p>
         </div>
     )
 }
