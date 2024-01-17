@@ -15,22 +15,27 @@ export default function App() {
     let endTime = Date.now()
 
     return(
-        <div>
+        <main className="max-w-3xl mx-auto m-5">
+            <h1 className='text-4xl'>
+                Stopwatch
+            </h1>
             <StopWatch>
                 {time}
             </StopWatch>
-            <StopWatchButton>
-                Start
-            </StopWatchButton>
-            <StopWatchButton>
-                Stop
-            </StopWatchButton>
-            <StopWatchButton>
-                Lap
-            </StopWatchButton>
-            <StopWatchButton>
-                Reset
-            </StopWatchButton>
-        </div>
+            <div className="grid grid-cols-4 gap-2">
+                <StopWatchButton>
+                    Start
+                </StopWatchButton>
+                <StopWatchButton>
+                    Stop
+                </StopWatchButton>
+                <StopWatchButton>
+                    Lap
+                </StopWatchButton>
+                <StopWatchButton>
+                    Reset
+                </StopWatchButton>
+            </div>
+        </main>
     )
 }

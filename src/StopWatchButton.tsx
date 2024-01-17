@@ -5,7 +5,7 @@ import React from 'react'
  */
 export default function StopWatchButton({children}: StopWatchButtonProps) {
     return(
-        <button>
+        <button className="bg-gray-100 p-5">
             {children}
         </button>
     )

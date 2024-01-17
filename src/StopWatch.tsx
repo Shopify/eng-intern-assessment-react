@@ -5,7 +5,7 @@ import React from 'react'
  */
 export default function StopWatch({children}: StopWatchProps) {
     return(
-        <div>
+        <div className="p-5 text-8xl text-center">
             {children}
         </div>
     )
