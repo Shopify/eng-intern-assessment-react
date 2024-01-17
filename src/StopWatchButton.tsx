@@ -5,9 +5,9 @@ import React from 'react'
  */
 export default function StopWatchButton({children}: StopWatchButtonProps) {
     return(
-        <div>
+        <button>
             {children}
-        </div>
+        </button>
     )
 }
 
