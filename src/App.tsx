@@ -113,7 +113,7 @@ const LapsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 0 20px;
   margin: 10px auto;
   max-width: 400px;
   font-family: sans-serif;
@@ -130,7 +130,7 @@ const FlexContainer = styled.div`
 const LapsFlexContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   margin-top: 1rem;
   padding-bottom: 10px;

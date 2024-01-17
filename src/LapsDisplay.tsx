@@ -41,6 +41,10 @@ const LapItem = styled.div`
   width: 100%;
   padding: 8px 16px;
   margin-bottom: 5px;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.4);
+  &:last-child {
+    border: none;
+  }
 `;
 
 const LapIndex = styled.div`
