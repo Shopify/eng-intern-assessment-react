@@ -48,6 +48,9 @@
   "jest": {
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
     }
   }
 }
