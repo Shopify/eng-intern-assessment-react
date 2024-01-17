@@ -1,22 +1,50 @@
+.lapTableContainer h1,
+.lapTableContainer h3 {
+  padding: 10px;
+  margin: 0;
+  position: sticky;
+  background-color: white;
+}
+
+.lapTableContainer h1 {
+  top: 0;
+}
+
+.lapTableContainer h3 {
+  justify-content: space-between;
+  display: flex;
+  top: 69px;
+}
+
 .laps {
-  margin-top: 20px;
+  display: block;
+  max-height: 275px;
+  overflow-y: scroll;
 }
 
-.lapContainer h3 {
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
-}
-
-.laps ul {
-  list-style-type: none;
+ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.laps li {
+ul li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 0px 5px 10px 5px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.laps::-webkit-scrollbar {
+  margin-top: 70px;
+  width: 2px;
+}
+
+.laps::-webkit-scrollbar-thumb {
+  background-color: #ffc0cb;
+  border-radius: 5px;
+}
+
+.laps::-webkit-scrollbar-track {
+  background-color: white;
 }

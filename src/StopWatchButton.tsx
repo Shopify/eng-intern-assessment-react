@@ -9,7 +9,7 @@ import "./Styles/StopWatchButtons.css";
 export default function StopWatchButton() {
   const { running, changeRunning } = useContext(RunningContext);
   const { time, setTime } = useContext(TimeContext);
-  const { addLap, clearLap, resetCounter } = useContext(LapContext);
+  const { addLap, clearLap } = useContext(LapContext);
 
   const handleLapResetClick = () => {
     if (running) {
@@ -17,7 +17,6 @@ export default function StopWatchButton() {
     } else {
       setTime(0);
       clearLap();
-      resetCounter();
     }
   };
 

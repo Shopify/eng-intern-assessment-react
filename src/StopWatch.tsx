@@ -8,8 +8,6 @@ import TimeContext from "./Context/TimeContext";
 import "./Styles/StopWatch.css";
 // @ts-ignore
 import carImage from "./images/car.png";
-// @ts-ignore
-import roadImage from "./images/road.jpeg";
 
 export default function StopWatch() {
   const { time, setTime } = useContext(TimeContext);
@@ -34,35 +32,30 @@ export default function StopWatch() {
         <StopWatchButton />
       </div>
       <div className="lapContainer">
-        <h1>Lap Times</h1>
-        <h3>
-          <span>Lap</span>
-          <span>Time</span>
-        </h3>
         <LapTable />
       </div>
       <div className="carMovement">
         <img src={carImage} alt="img" className={running ? "carMove" : "car"} />
       </div>
-      <div className="roadContainer">
-        <img src={roadImage} alt="img" className="road" />
-      </div>
     </div>
   );
 }
 
-// Format time from seconds to HH:MM:SS format
+// Format time from milliseconds to HH:MM:SS format
 export const formatTime = (time: number) => {
-  const date = new Date(null);
+  const date: Date = new Date(null);
   date.setMilliseconds(time);
-  const hours = date.getUTCHours().toString().padStart(2, "0");
-  const minutes = date.getUTCMinutes().toString().padStart(2, "0");
-  const seconds = date.getUTCSeconds().toString().padStart(2, "0");
-  const milliseconds = date
+  const hours: string = date.getUTCHours().toString().padStart(2, "0");
+  const minutes: string = date.getUTCMinutes().toString().padStart(2, "0");
+  const seconds: string = date.getUTCSeconds().toString().padStart(2, "0");
+  const milliseconds: string = date
     .getUTCMilliseconds()
     .toString()
     .padStart(3, "0")
     .slice(0, 2);
-
-  return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  if (hours === "00") {
+    return `${minutes}:${seconds}.${milliseconds}`;
+  } else {
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  }
 };

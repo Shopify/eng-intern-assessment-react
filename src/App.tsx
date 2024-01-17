@@ -10,17 +10,12 @@ export default function App() {
   const [running, setRunning] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
   const [lapTimes, setLapTimes] = useState<number[]>([]);
-  const [counter, setCounter] = useState<number>(0);
 
   const changeRunning = () => {
     setRunning(running ? false : true);
   };
 
   const addLap = (time: number) => {
-    if (lapTimes.length == 10) {
-      setLapTimes((prevTimes) => prevTimes.slice(1));
-      setCounter((prev) => prev + 1);
-    }
     setLapTimes((prevTimes) => [...prevTimes, time]);
   };
 
@@ -28,16 +23,10 @@ export default function App() {
     setLapTimes([]);
   };
 
-  const resetCounter = () => {
-    setCounter(0);
-  };
-
   return (
     <RunningContext.Provider value={{ running, changeRunning }}>
       <TimeContext.Provider value={{ time, setTime }}>
-        <LapContext.Provider
-          value={{ lapTimes, addLap, clearLap, counter, resetCounter }}
-        >
+        <LapContext.Provider value={{ lapTimes, addLap, clearLap }}>
           <StopWatch />
         </LapContext.Provider>
       </TimeContext.Provider>
