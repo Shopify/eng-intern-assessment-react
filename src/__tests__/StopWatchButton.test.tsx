@@ -143,5 +143,4 @@ describe('StopWatchButton component tests', () => {
     fireEvent.click(lapButton);
     expect(recordLapTime).toHaveBeenCalledTimes(1);
   })
-
 });
