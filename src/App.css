@@ -21,6 +21,11 @@ h1 {
     margin: 0;
 }
 
+h3 {
+    width: fit-content;
+    margin: 0;
+}
+
 .buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -34,4 +39,39 @@ button {
     border-radius: 7px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+}
+
+button:hover:enabled {
+    background-color: #e3e3e3;
+}
+
+.laps__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.laps {
+    padding-top: 0.2em;
+}
+
+.lap {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e3e3e3;
+    padding-top: 0.05em;
+}
+
+.lap__times {
+    display: grid;
+    grid-template-columns: repeat(2, 7em);
+    gap: 1em;
+}
+
+.lap__times__time {
+    justify-self: right;
+}
+
+.title {
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
 }
