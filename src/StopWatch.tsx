@@ -74,6 +74,9 @@ export default function StopWatch() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 color: shouldApplyColor ? reversedIndex === shortestLapIndex ? 'green' : (reversedIndex === longestLapIndex ? 'red' : 'white') : 'white',
+                fontFamily: 'sans-serif',
+                fontWeight: 'lighter',
+                fontSize: '20px',
             }
             return (
                 <li key={index} style={lapStyle}>
@@ -91,6 +94,9 @@ export default function StopWatch() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 color: 'white',
+                fontFamily: 'sans-serif',
+                fontWeight: 'lighter',
+                fontSize: '20px',
             }
             return (
                 <li key={laps.length + 1} style={lapStyle}>
@@ -139,20 +145,25 @@ export default function StopWatch() {
             <div>
                 <h1 className={"stopWatchTime"}>{formatTime(elapsedTime)}</h1>
             </div>
-            <div>
-                <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
-                             buttonFunction={toggleStartStop}
-                             disabled={false}
-                             style={isRunning ? startButtonStyle : stopButtonStyle}
-                />
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: '-5vh',
+                marginBottom: '5vh',
+            }}>
                 <StopWatchButton buttonName={isRunning ? "Lap" : (elapsedTime > 0 ? "Reset" : "Lap")}
                                  buttonFunction={lapReset}
                                  disabled={elapsedTime === 0 && !isRunning}
                                  style={elapsedTime === 0 && !isRunning ? resetButtonStyleDisabled : resetButtonStyle}
                 />
+                <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
+                                 buttonFunction={toggleStartStop}
+                                 disabled={false}
+                                 style={isRunning ? stopButtonStyle : startButtonStyle}
+                />
             </div>
             <div>
-                <ul>
+                <ul style={{listStyleType: 'none', margin: 0, padding: 0}}>
                     {renderCurrentLap()}
                     {renderLaps()}
                 </ul>

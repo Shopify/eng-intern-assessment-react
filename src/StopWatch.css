@@ -1,7 +1,8 @@
 body {
     background-color: black;
     margin-top: 5vh;
-
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .stopWatchTime {
