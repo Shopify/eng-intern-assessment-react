@@ -4,8 +4,6 @@ import StopWatchButton from './StopWatchButton';
 import { useRef, useState } from "react";
 import "./styles.css";
 
-import '@shopify/polaris/build/esm/styles.css';
-
 export default function App() {
     // timer is for stopwatch display, lapTimer is to track lap durations
     const [timer, setTimer] = useState(0);
