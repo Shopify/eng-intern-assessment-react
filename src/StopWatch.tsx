@@ -134,6 +134,7 @@ export default function StopWatch() {
         seconds: (Math.floor(time / 1000) % 60).toString().padStart(2, '0'),
         milliseconds: (time % 1000).toString().padStart(3, '0').substring(0, 2)
     };
+
     return (
         <ContainerGrid>
             <TimerCard>
