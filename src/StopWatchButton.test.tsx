@@ -38,7 +38,6 @@ import moment, { Duration } from 'moment';
  *  i would need to greatly increase my understanding of this test set.
  */
 
-// Testing elements on the display
 test('verification that Start, Stop, Reset, Lap buttons are on the page', () => {
     const mockSetTime = jest.fn();
     const mockSetIsRunning = jest.fn();
