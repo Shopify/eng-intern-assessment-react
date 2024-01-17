@@ -11,8 +11,23 @@ export default function StopWatchButton({
   label,
   disabled,
 }: ButtonProps) {
+  /**
+   * Provides proper styling depending on button functionality.
+   */
+  const buttonStyle =
+    label == "Start" || label == "Resume"
+      ? "buttonStart"
+      : label == "Pause"
+      ? "buttonPause"
+      : "buttonOther";
+
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button
+      id="button"
+      className={buttonStyle}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {label}
     </button>
   );
