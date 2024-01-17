@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 import StopWatch from './StopWatch';
+import { Page } from '@shopify/polaris'
+
 
 export default function App() {
 
@@ -59,6 +61,7 @@ export default function App() {
 
   
   return (
+    
     <div>
       <StopWatch 
       currentTime={currentTime}
@@ -71,6 +74,7 @@ export default function App() {
       lapButton={setLap}
       resetButton={resetButton}/>
     </div>
+    
   );
 };
 
