@@ -1,54 +1,156 @@
 .app {
+    font-family: "Inter", sans-serif;
     text-align: center;
-    padding: 2rem;
-    background: #f5f5f5;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .header h1 {
     margin: 0;
-    color: #333;
-  }
-  
-  /* Added styles for centering the buttons */
-  .stopwatch-buttons {
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .laps-container {
-    width: 40%;
-    margin-top: 1rem;
-    position: relative;
-    padding-bottom: 60px;
-    background: #fff; /* Set the background color to match the button */
-  }
-  
-  .laps {
-    max-height: 200px;
-    overflow-y: auto;
-    list-style: none;
     padding: 0;
-    margin: 0;
-    margin-top: 1rem; /* Adjusted to ensure space above */
-  }
-  
-  .lap-time { /* Updated class name */
-    background: #f3f3f3;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .clear-laps {
-    position: sticky;
-    bottom: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    overflow: hidden; /* Prevent overall page scroll */
+}
+
+.header {
+    width: 100%; /* Full width */
+    text-align: center; /* Center the text */
+}
+
+.header h1 {
+    color: #fff;
+    margin-top: 2rem;
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.laps-container {
+    width: 80%;
+    margin: 2rem auto; /* Adjusted for space from the header */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff; /* Solid white background for the entire container */
+    position: relative;
+}
+
+.laps-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+    background: #f2f2f2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    padding: 1px;
+}
+
+.laps-content {
+    max-height: calc(40px * 6 + 40px); /* Adjust this calculation based on your actual header and row heights */
+    overflow-y: auto;
+    padding: 0 20px;
+}
+
+.lap {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.lap > span {
+    flex: 1;
+    text-align: center;
+}
+
+.lap-number {
+    flex: none;
+    width: 50px;
+    text-align: left;
+}
+
+.lap-time,
+.lap-elapsed-time,
+.lap-current-time {
+    flex: 1;
+}
+
+.clear-laps,
+.export-laps {
+    width: 50%;
+    text-align: center;
     padding: 10px 20px;
-    margin-top: 10px;
+    font-weight: bold;
+    color: #fff;
     cursor: pointer;
-  }
-  
+    border: none;
+    background-color: #34445B;
+}
+
+.clear-laps {
+    border-radius: 0 0 0 10px;
+}
+
+.export-laps {
+    border-radius: 0 0 10px 0;
+}
+
+.button-container {
+    position: sticky;
+bottom: 0;
+left: 0;
+width: 100%;
+background: #fff; /* Ensuring the buttons have a solid background */
+z-index: 5;
+}
+
+.button {
+flex: 1;
+text-align: center;
+cursor: pointer;
+border: none;
+font-weight: bold;
+color: #fff;
+font-family: 'Montserrat', sans-serif;
+text-transform: uppercase;
+padding: 10px 0; /* Adjust padding for aesthetic spacing */
+}
+
+.table-headers {
+position: sticky;
+top: 0;
+z-index: 10;
+background: #fff;
+padding: 10px 20px;
+border-bottom: 2px solid #eee;
+margin-top: 0px;
+}
+
+.table-headers span {
+flex: 1;
+text-align: center;
+font-weight: bold;
+}
+
+.table-headers, .lap {
+display: flex;
+justify-content: space-between;
+padding: 10px 20px;
+align-items: center;
+}
+
+.table-header-item, .lap-item {
+flex: 1;
+text-align: center;
+position: relative;
+}
+
+.table-header-item:not(:last-child)::after, .lap-item:not(:last-child)::after {
+content: '';
+position: absolute;
+right: 0;
+top: 0;
+bottom: 0;
+width: 1px;
+background-color: #eee;
+}
+
+.lap-number {
+flex: 0 0 50px;
+text-align: left;
+}

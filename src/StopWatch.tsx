@@ -18,10 +18,23 @@ const Stopwatch: React.FC<StopwatchProps> = ({ milliseconds }) => {
 
   return (
     <div className="stopwatch">
-      <span className="digits">{hours}:</span>
-      <span className="digits">{minutes}:</span>
-      <span className="digits">{seconds}</span>
-      <span className="milliseconds">.{centiseconds}</span>
+      <div className="time-card">
+        <span className="time">{hours}</span>
+        <span className="label">HOURS</span>
+      </div>
+      <span className="colon">:</span>
+      <div className="time-card">
+        <span className="time">{minutes}</span>
+        <span className="label">MINUTES</span>
+      </div>
+      <span className="colon">:</span>
+      <div className="time-card">
+        <span className="time">{seconds}</span>
+        <span className="label">SECONDS</span>
+      </div>
+      <div className="milliseconds-card">
+        <span className="milliseconds">.{centiseconds}</span>
+      </div>
     </div>
   );
 };

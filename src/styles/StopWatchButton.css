@@ -1,38 +1,41 @@
-/* StopWatchButton.css */
 .stopwatch-buttons {
     display: flex;
-    gap: 10px; /* Adjust gap as needed */
-    justify-content: center; /* Centers buttons */
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem; /* Adjust this value to position the buttons correctly */
   }
   
   .button {
     padding: 10px 20px;
-    font-size: 1em;
-    border: 2px solid #0044cc;
-    background-color: transparent;
-    color: #0044cc;
+    font-size: 1rem;
+    border: none;
+    background-color: #34445B;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 5px;
-  
+    font-weight: bold;
     min-width: 100px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .button.start, .button.stop {
-    background-color: #0044cc;
-    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
   }
   
   .button.start:hover, .button.stop:hover {
-    background-color: #003399;
+    background-color: #263238;
   }
   
   .button.reset:hover, .button.lap:hover {
-    background-color: #f1f1f1;
-    color: #003399;
+    background-color: #4f5b62;
+    color: white;
   }
   
+  /* Ensure that the buttons are centered in the button container */
+  .button.lap, .button.reset {
+    justify-content: center;
+    align-items: center;
+  }

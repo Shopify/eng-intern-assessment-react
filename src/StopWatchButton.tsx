@@ -6,6 +6,7 @@ interface StopwatchButtonProps {
   onStartStop: () => void;
   onReset: () => void;
   onLap: () => void;
+  onClearLaps: () => void;
 }
 
 const StopwatchButton: React.FC<StopwatchButtonProps> = ({
@@ -23,6 +24,7 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({
         {isActive ? 'Lap' : 'Reset'}
       </button>
     </div>
+    
   );
 };
 
