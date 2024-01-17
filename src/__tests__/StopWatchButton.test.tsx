@@ -77,4 +77,71 @@ describe('StopWatchButton component tests', () => {
     const stopButton = queryByTestId('stopButtonTest');
     expect(stopButton).toBe(null);
   });
+
+  it('test Start button to call setRunning(true) when clicked and start the timer', () => {
+    const setRunning = jest.fn();
+    const { queryByTestId } = render(
+        <StopWatchButton
+            running={false}
+            recordLapTime={mockRecordLapTime}
+            setRunning={setRunning}
+            resetTimer={mockResetTimer}
+            timer={mockTimer}
+        />
+    );
+    const startButton = queryByTestId('startButtonTest');
+    fireEvent.click(startButton);
+    expect(setRunning).toHaveBeenCalledTimes(1);
+    expect(setRunning).toHaveBeenCalledWith(true);
+  })
+
+  it('test Stop button to call setRunning(false) when clicked and stop the timer', () => {
+    const setRunning = jest.fn();
+    const { queryByTestId } = render(
+        <StopWatchButton
+            running={true}
+            recordLapTime={mockRecordLapTime}
+            setRunning={setRunning}
+            resetTimer={mockResetTimer}
+            timer={mockTimer}
+        />
+    );
+    const stopButton = queryByTestId('stopButtonTest');
+    fireEvent.click(stopButton);
+    expect(setRunning).toHaveBeenCalledTimes(1);
+    expect(setRunning).toHaveBeenCalledWith(false);
+  })
+
+  it('test Reset button to call resetTimer() when clicked and reset the timer', () => {
+    const resetTimer = jest.fn();
+    const { queryByTestId } = render(
+        <StopWatchButton
+            running={false}
+            recordLapTime={mockRecordLapTime}
+            setRunning={mockSetRunning}
+            resetTimer={resetTimer}
+            timer={mockTimer}
+        />
+    );
+    const resetButton = queryByTestId('resetButtonTest');
+    fireEvent.click(resetButton);
+    expect(resetTimer).toHaveBeenCalledTimes(1);
+  })
+
+  it('test Lap button to call recordLapTime() when clicked to add a lap time into the tracker', () => {
+    const recordLapTime = jest.fn();
+    const { queryByTestId } = render(
+        <StopWatchButton
+            running={true}
+            recordLapTime={recordLapTime}
+            setRunning={mockSetRunning}
+            resetTimer={mockResetTimer}
+            timer={mockTimer}
+        />
+    );
+    const lapButton = queryByTestId('lapButtonTest');
+    fireEvent.click(lapButton);
+    expect(recordLapTime).toHaveBeenCalledTimes(1);
+  })
+
 });
