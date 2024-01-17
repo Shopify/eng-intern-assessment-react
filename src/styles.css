@@ -1,0 +1,150 @@
+@font-face {
+    font-family: "InterTight";
+    src: url("../public/InterTight-VariableFont_wght.ttf") format("truetype");
+}
+
+.main-wrapper {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "InterTight";
+    font-weight: 300;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 4rem;
+    font-size: 2.5rem;
+    z-index: 1;
+}
+
+.button-wrapper > div {
+    width: 120px;
+}
+
+.button {
+    cursor: pointer;
+    width: 100%;
+}
+
+.visual-button {
+    height: 100%;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    height: 30px;
+    width: 100%;
+}
+
+.button .visual-button {
+    transition: transform 0.1s ease-out;
+    transform-origin: bottom;
+}
+
+.button:active .visual-button {
+    transform: scaleY(0.25);
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button-text {
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+.start-button .visual-button {
+    background-color: #7bbc6b;
+}
+
+.stop-button .visual-button {
+    background-color: #ca9c4b;
+}
+
+.reset-button .visual-button {
+    background-color: #f65757;
+}
+
+.lap-button .visual-button {
+    background-color: #4a94d9;
+}
+
+.button-line {
+    height: 4px;
+    background-color: #d9d9d9;
+    width: 140px;
+    transform: translateX(-10px) translateY(-10px);
+}
+
+.stopwatch-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9;
+    padding: 2rem;
+    border-radius: 64px;
+    border-top: 16px solid #4e4e4e;
+    transform: translateY(-20px);
+}
+
+.stopwatch {
+    border-radius: 32px;
+    background-color: #4e4e4e;
+    box-shadow: 0px 0px 20px 5px inset #000000;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: #d9d9d9;
+    padding-inline: 1rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.stopwatch-wrapper {
+    position: relative;
+}
+
+.laps-wrapper {
+    position: absolute;
+    top: 400px;
+    padding-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: calc(6rem + 600px);
+}
+
+.lap-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #d9d9d9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.lap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 2rem;
+    color: #d9d9d9;
+    background-color: #4e4e4e;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0px 0px 20px 2px inset #000000;
+}
