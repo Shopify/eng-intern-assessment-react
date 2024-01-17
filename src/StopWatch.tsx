@@ -1,7 +1,16 @@
 import React from 'react'
 
-export default function StopWatch() {
+/**
+ * This represents the stopwatch display
+ */
+export default function StopWatch({children}: StopWatchProps) {
     return(
-        <div></div>
+        <div>
+            {children}
+        </div>
     )
+}
+
+type StopWatchProps = {
+    children: React.ReactNode
 }

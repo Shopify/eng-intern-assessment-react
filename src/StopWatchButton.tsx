@@ -1,7 +1,16 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+/**
+ * This represents the buttons used by the stopwatch
+ */
+export default function StopWatchButton({children}: StopWatchButtonProps) {
     return(
-        <div></div>
+        <div>
+            {children}
+        </div>
     )
+}
+
+type StopWatchButtonProps = {
+    children: React.ReactNode
 }
