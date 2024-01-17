@@ -1,7 +1,20 @@
 import React from 'react'
+import "./styles/StopWatchButton.css"
 
-export default function StopWatchButton() {
+interface StopWatchButtonProps {
+    title: string,
+    onClick: () => void
+}
+
+export default function StopWatchButton(props: StopWatchButtonProps) {
     return(
-        <div></div>
+        <div>
+            <button 
+                className={`btn ${props.title}`}
+                data-testid={`btn-${props.title}`}
+                onClick={props.onClick}>
+                {props.title}
+            </button>
+        </div>
     )
 }
