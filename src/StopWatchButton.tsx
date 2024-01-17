@@ -5,9 +5,23 @@ interface StopWatchButtonProps {
     name: string; // Assuming 'name' is a string, adjust the type accordingly
   }
   
-  const StopWatchButton: React.FC<StopWatchButtonProps> = ({ func, name }) => {
+/**
+ * StopWatchButton Component
+ * 
+ * A button component for controlling the stopwatch.
+ * 
+ * @param {Object} props - The properties of the component.
+ * @param {Function} props.func - The function to be executed on button click.
+ * @param {string} props.name - The label for the button.
+ * 
+ * @returns {JSX.Element} - The rendered StopWatchButton component.
+ */
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ func, name }) => {
     return (
-      <Button onClick={func} color={name === "Start" ? "success" : (name === "Stop" ? "danger" : "primary")}>
+      <Button
+        onClick={func}
+        color={name === "Start" ? "success" : (name === "Stop" ? "danger" : "primary")}
+      >
         {name}
       </Button>
     );
