@@ -43,6 +43,16 @@ const StopWatch: React.FC = () => {
         return () => clearInterval(interval);  // Clear the interval
     });
 
+    // Function to format the time into hours, minutes, seconds, milliseconds for display
+    const formatTime = (time: number) => {
+        const hours = Math.floor((time / 3600000) % 24).toString().padStart(2, "0");
+        const minutes = Math.floor((time / 60000) % 60).toString().padStart(2, "0");
+        const seconds = Math.floor((time / 1000) % 60).toString().padStart(2, "0");
+        const milliseconds = Math.floor((time / 10) % 100).toString().padStart(2, "0");
+        return `${hours}:${minutes}:${seconds}:${milliseconds}`;
+    };
+
+
     // Converting the time into hours, minutes, seconds, milliseconds
     const hours = Math.floor((time / 3600000) % 24);
     const minutes = Math.floor((time / 60000) % 60);
@@ -54,10 +64,7 @@ const StopWatch: React.FC = () => {
         <StopWatchContainerParent>
             <StopWatchContainer>
                 <StopWatchTimerContainer>
-                    {hours.toString().padStart(2, "0")}
-                    :{minutes.toString().padStart(2, "0")}
-                    :{seconds.toString().padStart(2, "0")}
-                    :{milliseconds.toString().padStart(2, "0")}
+                    {formatTime(time)}
                 </StopWatchTimerContainer>
                 <StopWatchButtonContainer>
                     <StopWatchButton label="Start" color="#0EC761" onClick={setOn} />
@@ -68,7 +75,7 @@ const StopWatch: React.FC = () => {
                 <StopWatchLapContainer>
                     {lapTime.map((lap, index) => (  // Map over the laps and display them 
                         <StopWatchLapLabel key={index}>
-                            {lap}
+                            {formatTime(lap)}
                         </StopWatchLapLabel>
                     ))}
                 </StopWatchLapContainer>
@@ -83,7 +90,7 @@ const StopWatchContainerParent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 95vh;
 `;
 
 // Styled container to hold the StopWatch
@@ -118,7 +125,7 @@ const StopWatchTimerContainer = styled.div`
     justify-content: center;
     align-items: center;
     
-    font-size: 200px;
+    font-size: 8vw;
     font-style: normal;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 400;
@@ -135,8 +142,9 @@ const StopWatchButtonContainer = styled.div`
     align-items: center;
 `;
 
+// Styled container to hold the laps
 const StopWatchLapContainer = styled.div`
-    width: 90%;
+    width: 80%;
     height: 90%;
     margin: 0 0 3vh 0;
     background: #b8b7b7;
@@ -144,16 +152,30 @@ const StopWatchLapContainer = styled.div`
     box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.30) inset;
 
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 2.5vh 4vw;
+    padding: 2vh 4vw;
+    overflow-y: auto;
 `;
 
+// Styled label for each lap
 const StopWatchLapLabel = styled.div`
-    width: 25%;
-    height: 10%;
-    margin: 2vh 2wh;
+    width: 20%;
+    height: 20%;
     background: linear-gradient(0deg, rgba(200,200,200,1) 0%, rgba(250,250,250,1) 50%, rgba(200,200,200,1) 100%);
     border-radius: 20px;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.30);
+
+    font-size: 1.5vw;
+    font-style: normal;
+    font-family: 'Kadwa', serif;
+    font-weight: 400;
+    line-height: normal;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 

@@ -27,7 +27,7 @@ const StyledButton = styled.button`
     border-radius: 15px;
     box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.30);
 
-    font-size: 50px;
+    font-size: 2.1vw;
     font-style: normal;
     font-family: 'Kadwa', serif;
     font-weight: 400;
