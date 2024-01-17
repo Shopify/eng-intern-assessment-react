@@ -2,20 +2,6 @@
   font-family: 'Courier New', monospace;
 }
 
-.main-wrapper {
-  height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.stopwatch-text {
-  font-weight: 700;
-  font-size: 12rem;
-  text-align: center;
-}
-
 button {
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
@@ -24,4 +10,26 @@ button {
   background-color: #fff;
   cursor: pointer;
   margin: 0.5rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  list-style-type: none;
+}
+
+.main-wrapper {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.stopwatch-text {
+  font-weight: 700;
+  font-size: 12rem;
+  text-align: center;
 }

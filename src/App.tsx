@@ -44,7 +44,6 @@ export default function App() {
 
   return (
     <div className='main-wrapper'>
-      <StopWatch time={time} laps={laps} />
       <StopWatchButton
         isLive={isLive}
         onStart={startStopwatch}
@@ -52,6 +51,7 @@ export default function App() {
         onReset={resetStopwatch}
         onLap={addStopwatchLap}
       />
+      <StopWatch time={time} laps={laps} />
     </div>
   );
 }
