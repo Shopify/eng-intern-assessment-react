@@ -2,10 +2,10 @@ import React, { useRef, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
 // helper for pretty printing the time elapsed
-const ParseTimeMs = (ms: number): string => {
-	var mins = Math.trunc(ms / (1000 * 60));
-	var secs = Math.trunc((ms / 1000) % 60);
-	var mis = Math.floor(ms % 1000);
+export const FormatTimeMs = (ms: number): string => {
+	const mins = Math.trunc(ms / (1000 * 60));
+	const secs = Math.trunc((ms / 1000) % 60);
+	const mis = Math.floor(ms % 1000);
 
 	return `${mins}m ${secs}s ${mis}ms`;
 };
@@ -15,7 +15,10 @@ export default function StopWatch() {
 	const timerIncrementMs = 10;
 
 	// stores the interval id returned by window.setInterval, saved for use in removing the interval when stopped
+	// useRef avoids triggering rerender when intervalId changes
 	const intervalId = useRef(0);
+
+	// useState: the UI must rerender when these fields update
 	// is the timer paused?
 	const [pause, setPause] = useState<boolean>(false);
 	// does the interval exist?
@@ -29,7 +32,7 @@ export default function StopWatch() {
 	const startTime = () => {
 		stopTime();
 		const id = window.setInterval(() => {
-			// prevent stale closure
+			// prevent stale closure with empty setPause
 			setPause((p) => {
 				if (!p) {
 					setTime((prevTime) => prevTime + timerIncrementMs);
@@ -72,15 +75,16 @@ export default function StopWatch() {
 					alignItems: "center",
 				}}>
 				<p
+                    data-testid='time'
 					style={{
 						fontSize: 24,
 					}}>
-					{ParseTimeMs(time)}
+					{FormatTimeMs(time)}
 				</p>
 				<StopWatchButton
 					timerState={{
-						exists: exists,
-						time: time,
+						exists,
+						time,
 						isPaused: pause,
 					}}
 					onStartClicked={startTime}
@@ -92,7 +96,7 @@ export default function StopWatch() {
 				/>
 			</div>
 			{laps.map((v: number, i: number) => (
-				<p key={i}>{`Lap ${i}: ${ParseTimeMs(v)}`}</p>
+				<p key={i} data-testid={`lap${i}`}>{`Lap ${i}: ${FormatTimeMs(v)}`}</p>
 			))}
 		</div>
 	);
