@@ -82,19 +82,8 @@ export default function App() {
 
     return(
         <div>
-            <StopWatch time={time} />
             <StopWatchButton setIsRunning={setIsRunning} setTime={setTime} time={time} addLap={addLap} laps={laps} lapTime={lapTime} setLapTime={setLapTime} />
-
-            {laps.length > 0 && (
-                <div>
-                <h2>Lap Times:</h2>
-                <ul>
-                    {laps.map((lap, index) => (
-                    <li key={index}>Hours:Minutes:Seconds: {Math.floor(lap.asHours())}:{lap.minutes()}:{lap.seconds()}</li>
-                    ))}
-                </ul>
-                </div>
-            )}
+            <StopWatch time={time} laps={laps} />
         </div>
     )
 }

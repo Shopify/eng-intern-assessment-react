@@ -6,6 +6,7 @@ import moment from 'moment';
  */
 interface stopWatchProps {
     time: moment.Duration
+    laps: moment.Duration[]
 }
 
 /**
@@ -16,7 +17,7 @@ interface stopWatchProps {
  * Params:
  *      time - number - current time
  */
-export default function StopWatch({time}: stopWatchProps) {
+export default function StopWatch({time, laps}: stopWatchProps) {
     const hours = Math.floor(time.asHours());
     const minutes = time.minutes();
     const seconds = time.seconds();
@@ -25,6 +26,16 @@ export default function StopWatch({time}: stopWatchProps) {
             <p>
                 Current Time(Hours, Minutes, Seconds): {hours}:{minutes}:{seconds}
             </p>
+            {laps.length > 0 && (
+                <div>
+                <h2>Lap Times:</h2>
+                <ul>
+                    {laps.map((lap, index) => (
+                    <li key={index}>Hours:Minutes:Seconds: {Math.floor(lap.asHours())}:{lap.minutes()}:{lap.seconds()}</li>
+                    ))}
+                </ul>
+                </div>
+            )}
         </div>
     )
 }
