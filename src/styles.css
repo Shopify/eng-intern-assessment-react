@@ -1,38 +1,56 @@
 .body {
-    /* margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
+    height:100vh;
+    width: 100vw;
 }
 
 .timer-container {
-    /* background-color: aqua; */
-    min-height: fit-content;
-    min-width: fit-content;
     display: block;
     margin: auto;
-    width: 50%;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    border: 5px solid darkred;
+    border-radius: 10px;
+}
 
+.time-value {
+    text-align: center;
+    font-size: xx-large;
+    background-color: gray;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    color: white;
+}
+
+.button-container {
+    text-align: center;
 }
 
 .lap-time-container {
-    /* display: block; */
-    /* flex-direction: column; */
     background-color: white;
+    text-align: center;
+    max-height: 200px;
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 }
 
 .button {
-    min-height: 50px;
-    min-width: 50px;
+    min-height: 55px;
+    min-width: 55px;
     border-radius: 50%;
+    margin: 5px;
 }
 
 .start {
+    color: green;
     border-color: green;
+    background-color: greenyellow;
 }
 
 .stop {
     border-color: red;
+    color: red;
 }
 
 .reset {
@@ -41,4 +59,29 @@
 
 .lap {
     border: 1px 1px gray;
+}
+
+.lap-time-container {
+    display: flex;
+    /* flex-direction: column-reverse; */
+    flex-direction: column;
+}
+
+.lap-item {
+    display: flex;
+    font-size: x-large;
+    justify-content: center;
+    margin: 0;
+}
+
+.lap-label {
+    padding-right: 20px;
+}
+
+.max {
+    color: red;
+}
+
+.min {
+    color: green;
 }

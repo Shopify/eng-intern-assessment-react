@@ -14,9 +14,9 @@ export default function StopWatchButton({isUsed, isRunning, onStart, onStop, onR
     // a state controlling reset and lap button since they are using the same button
     // lap disabled at first
     return (
-        <div>
+        <div className='button-container'>
             <button className='button reset' disabled={!isUsed || isRunning} onClick={onReset}>Reset</button>
-            <button className='button' disabled={!isUsed && isRunning} onClick={onLap}>Lap</button>
+            <button className='button' disabled={!isUsed} onClick={onLap}>Lap</button>
             <button className={(!isRunning || !isUsed)? 'button start': 'button stop'} onClick={isRunning ? onStop : onStart}>{isRunning ? "Stop": "Start"}</button>
         </div>
     )
