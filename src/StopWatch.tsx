@@ -7,7 +7,9 @@ import TimeContext from "./Context/TimeContext";
 // Styles
 import "./Styles/StopWatch.css";
 // @ts-ignore
-import carImage from "./images/car1.png";
+import carImage from "./images/car.png";
+// @ts-ignore
+import roadImage from "./images/road.jpeg";
 
 export default function StopWatch() {
   const { time, setTime } = useContext(TimeContext);
@@ -30,13 +32,6 @@ export default function StopWatch() {
         <h1>Stop Watch</h1>
         <h1>{formatTime(time)}</h1>
         <StopWatchButton />
-        <div className="carMovement">
-          <img
-            src={carImage}
-            alt="img"
-            className={running ? "carMove" : "car"}
-          />
-        </div>
       </div>
       <div className="lapContainer">
         <h1>Lap Times</h1>
@@ -45,6 +40,12 @@ export default function StopWatch() {
           <span>Time</span>
         </h3>
         <LapTable />
+      </div>
+      <div className="carMovement">
+        <img src={carImage} alt="img" className={running ? "carMove" : "car"} />
+      </div>
+      <div className="roadContainer">
+        <img src={roadImage} alt="img" className="road" />
       </div>
     </div>
   );
