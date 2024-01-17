@@ -3,9 +3,9 @@ import React from 'react'
 /**
  * This represents the buttons used by the stopwatch
  */
-export default function StopWatchButton({children}: StopWatchButtonProps) {
+export default function StopWatchButton({children, onClick}: StopWatchButtonProps) {
     return(
-        <button className="bg-gray-100 p-5">
+        <button className="bg-gray-100 p-5" onClick={onClick}>
             {children}
         </button>
     )
@@ -13,4 +13,5 @@ export default function StopWatchButton({children}: StopWatchButtonProps) {
 
 type StopWatchButtonProps = {
     children: React.ReactNode
+    onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
