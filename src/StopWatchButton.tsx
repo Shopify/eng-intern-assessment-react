@@ -29,6 +29,7 @@ const StyledButton = styled.button`
 
     font-size: 50px;
     font-style: normal;
+    font-family: 'Kadwa', serif;
     font-weight: 400;
     line-height: normal;
 
@@ -37,6 +38,7 @@ const StyledButton = styled.button`
     cursor: pointer;
     }
 `;
+
 
 export default StopWatchButton;
 
