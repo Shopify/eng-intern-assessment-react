@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-container {
+  display: flex;
+  letter-spacing: 2px;
+  font-size: 5rem;
+}
+
+.time-container span {
+  position: relative;
+  top: 5px;
+  font-size: 4rem;
+}
+
+.timer-text {
+  margin: 0;
+}
