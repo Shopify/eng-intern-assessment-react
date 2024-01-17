@@ -1,10 +1,14 @@
-import React from 'react'
-import StopWatch from './StopWatch'
+import React from "react";
+import StopWatch from "./StopWatch";
 
 export default function App() {
-    return(
-        <div>
-            <StopWatch></StopWatch>
-        </div>
-    )
+	return (
+		<div
+			style={{
+				display: "flex",
+				justifyContent: "center",
+			}}>
+			<StopWatch></StopWatch>
+		</div>
+	);
 }
