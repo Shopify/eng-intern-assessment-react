@@ -106,8 +106,8 @@ export default function StopWatch() {
         }
     };
 
-    //Function to stop the timer and reset time
-    const stopTimer = () => {
+    //Function to reset the timer
+    const resetTimer = () => {
         setIsRunning(false);
         setTime(0);
         if (timeId !== null) {
@@ -157,7 +157,7 @@ export default function StopWatch() {
                     isRunning={isRunning}
                     startTimer={startTimer}
                     pauseTimer={pauseTimer}
-                    stopTimer={stopTimer}
+                    resetTimer={resetTimer}
                     recordLap={recordLap}
                     clearLaps={clearLaps}
                 />

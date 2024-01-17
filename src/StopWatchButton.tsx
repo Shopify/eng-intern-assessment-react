@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
+//Styled components (it's not best practice put everything in one file...)
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -48,12 +49,12 @@ Takes props:
 - recordLap: function to add to the laps array
 - clearLaps: function to empty the laps array
 */
-export default function StopWatchButton({ isRunning, startTimer, pauseTimer, stopTimer, recordLap, clearLaps }: any) {
+export default function StopWatchButton({ isRunning, startTimer, pauseTimer, resetTimer, recordLap, clearLaps }: any) {
     return (
         <ButtonContainer>
             <StyledButton style={{ background: '#2a9d8f', color: 'white' }} onClick={startTimer} disabled={isRunning}>Start</StyledButton>
-            <StyledButton style={{ background: '#e9c46a', color: 'white' }} onClick={pauseTimer} disabled={!isRunning}>Pause</StyledButton>
-            <StyledButton style={{ background: '#e63946', color: 'white' }} onClick={stopTimer}>Stop</StyledButton>
+            <StyledButton style={{ background: '#e9c46a', color: 'white' }} onClick={pauseTimer} disabled={!isRunning}>Stop</StyledButton>
+            <StyledButton style={{ background: '#e63946', color: 'white' }} onClick={resetTimer}>Reset</StyledButton>
             <StyledButton style={{ background: '#1d3557', color: 'white' }} onClick={recordLap} disabled={!isRunning}>Lap</StyledButton>
             <StyledButton style={{ background: '#1d3557', color: 'white' }} onClick={clearLaps}>Clear Laps</StyledButton>
         </ButtonContainer>
