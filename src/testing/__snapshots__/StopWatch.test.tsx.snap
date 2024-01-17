@@ -1,0 +1,703 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stopwatch Component handles start, stop, reset, and lap interactions 1`] = `
+[
+  <style
+    dangerouslySetInnerHTML={
+      {
+        "__html": ".css-xi606m{text-align:center;}",
+      }
+    }
+    data-emotion="css xi606m"
+  />,
+  <div
+    className="MuiBox-root css-xi606m"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-wiz2yh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl4, 2.25rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css wiz2yh-JoyTypography-root"
+    />
+    <h1
+      className="MuiTypography-root MuiTypography-h1 css-wiz2yh-JoyTypography-root"
+    >
+      Stopwatch
+    </h1>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1yf9pfh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl2, 1.5rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css 1yf9pfh-JoyTypography-root"
+    />
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+    >
+      00:00:00
+    </h3>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-z38ec1-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-success-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-success-solidBg, var(--joy-palette-success-500, #1F7A1F)));}.css-z38ec1-JoyButton-root.Mui-focusVisible,.css-z38ec1-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-z38ec1-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-success-solidHoverBg, var(--joy-palette-success-600, #136C13)));}}.css-z38ec1-JoyButton-root:active,.css-z38ec1-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-success-solidActiveBg, var(--joy-palette-success-700, #0A470A)));}.css-z38ec1-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-success-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-success-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-z38ec1-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css z38ec1-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorSuccess MuiButton-sizeMd css-z38ec1-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Start
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-cua13l-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-primary-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-primary-solidBg, var(--joy-palette-primary-500, #0B6BCB)));}.css-cua13l-JoyButton-root.Mui-focusVisible,.css-cua13l-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-cua13l-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-primary-solidHoverBg, var(--joy-palette-primary-600, #185EA5)));}}.css-cua13l-JoyButton-root:active,.css-cua13l-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-primary-solidActiveBg, var(--joy-palette-primary-700, #12467B)));}.css-cua13l-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-cua13l-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css cua13l-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Reset
+    </button>
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Lap
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-x5jxhy-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl3, 1.875rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css x5jxhy-JoyTypography-root"
+    />
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-x5jxhy-JoyTypography-root"
+    >
+      Laps
+    </h2>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-swsx2x{text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;}",
+        }
+      }
+      data-emotion="css swsx2x"
+    />
+    <div
+      className="MuiBox-root css-swsx2x"
+    >
+      <style
+        dangerouslySetInnerHTML={
+          {
+            "__html": ".css-bdzag2-JoyList-root{--ListDivider-gap:0.375rem;--ListItem-minHeight:2.25rem;--ListItem-paddingY:0.25rem;--ListItem-paddingX:0.75rem;--ListItem-gap:0.625rem;--ListItemDecorator-size:2.5rem;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--List-gap:0px;--List-nestedInsetStart:0px;--ListItem-paddingLeft:var(--ListItem-paddingX);--ListItem-paddingRight:var(--ListItem-paddingX);--unstable_List-childRadius:calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px));--ListItem-radius:var(--unstable_List-childRadius);--ListItem-startActionTranslateX:calc(0.5 * var(--ListItem-paddingLeft));--ListItem-endActionTranslateX:calc(-0.5 * var(--ListItem-paddingRight));margin:initial;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-size:var(--joy-fontSize-md, 1rem);line-height:var(--joy-lineHeight-md, 1.5);color:var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E));padding-block:var(--List-padding, var(--ListDivider-gap));padding-inline:var(--List-padding);box-sizing:border-box;border-radius:var(--List-radius);list-style:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;position:relative;--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));--unstable_List-borderWidth:var(--variant-borderWidth, 0px);}",
+          }
+        }
+        data-emotion="css bdzag2-JoyList-root"
+      />
+      <ul
+        className="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-sizeMd css-bdzag2-JoyList-root"
+      />
+    </div>
+  </div>,
+]
+`;
+
+exports[`Stopwatch Component handles start, stop, reset, and lap interactions 2`] = `
+[
+  <style
+    dangerouslySetInnerHTML={
+      {
+        "__html": ".css-xi606m{text-align:center;}",
+      }
+    }
+    data-emotion="css xi606m"
+  />,
+  <div
+    className="MuiBox-root css-xi606m"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-wiz2yh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl4, 2.25rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css wiz2yh-JoyTypography-root"
+    />
+    <h1
+      className="MuiTypography-root MuiTypography-h1 css-wiz2yh-JoyTypography-root"
+    >
+      Stopwatch
+    </h1>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1yf9pfh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl2, 1.5rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css 1yf9pfh-JoyTypography-root"
+    />
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+    >
+      00:00:00
+    </h3>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-z38ec1-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-success-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-success-solidBg, var(--joy-palette-success-500, #1F7A1F)));}.css-z38ec1-JoyButton-root.Mui-focusVisible,.css-z38ec1-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-z38ec1-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-success-solidHoverBg, var(--joy-palette-success-600, #136C13)));}}.css-z38ec1-JoyButton-root:active,.css-z38ec1-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-success-solidActiveBg, var(--joy-palette-success-700, #0A470A)));}.css-z38ec1-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-success-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-success-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-z38ec1-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css z38ec1-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorSuccess MuiButton-sizeMd css-z38ec1-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Start
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-cua13l-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-primary-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-primary-solidBg, var(--joy-palette-primary-500, #0B6BCB)));}.css-cua13l-JoyButton-root.Mui-focusVisible,.css-cua13l-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-cua13l-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-primary-solidHoverBg, var(--joy-palette-primary-600, #185EA5)));}}.css-cua13l-JoyButton-root:active,.css-cua13l-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-primary-solidActiveBg, var(--joy-palette-primary-700, #12467B)));}.css-cua13l-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-cua13l-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css cua13l-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Reset
+    </button>
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Lap
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-x5jxhy-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl3, 1.875rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css x5jxhy-JoyTypography-root"
+    />
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-x5jxhy-JoyTypography-root"
+    >
+      Laps
+    </h2>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-swsx2x{text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;}",
+        }
+      }
+      data-emotion="css swsx2x"
+    />
+    <div
+      className="MuiBox-root css-swsx2x"
+    >
+      <style
+        dangerouslySetInnerHTML={
+          {
+            "__html": ".css-bdzag2-JoyList-root{--ListDivider-gap:0.375rem;--ListItem-minHeight:2.25rem;--ListItem-paddingY:0.25rem;--ListItem-paddingX:0.75rem;--ListItem-gap:0.625rem;--ListItemDecorator-size:2.5rem;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--List-gap:0px;--List-nestedInsetStart:0px;--ListItem-paddingLeft:var(--ListItem-paddingX);--ListItem-paddingRight:var(--ListItem-paddingX);--unstable_List-childRadius:calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px));--ListItem-radius:var(--unstable_List-childRadius);--ListItem-startActionTranslateX:calc(0.5 * var(--ListItem-paddingLeft));--ListItem-endActionTranslateX:calc(-0.5 * var(--ListItem-paddingRight));margin:initial;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-size:var(--joy-fontSize-md, 1rem);line-height:var(--joy-lineHeight-md, 1.5);color:var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E));padding-block:var(--List-padding, var(--ListDivider-gap));padding-inline:var(--List-padding);box-sizing:border-box;border-radius:var(--List-radius);list-style:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;position:relative;--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));--unstable_List-borderWidth:var(--variant-borderWidth, 0px);}",
+          }
+        }
+        data-emotion="css bdzag2-JoyList-root"
+      />
+      <ul
+        className="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-sizeMd css-bdzag2-JoyList-root"
+      />
+    </div>
+  </div>,
+]
+`;
+
+exports[`Stopwatch Component handles start, stop, reset, and lap interactions 3`] = `
+[
+  <style
+    dangerouslySetInnerHTML={
+      {
+        "__html": ".css-xi606m{text-align:center;}",
+      }
+    }
+    data-emotion="css xi606m"
+  />,
+  <div
+    className="MuiBox-root css-xi606m"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-wiz2yh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl4, 2.25rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css wiz2yh-JoyTypography-root"
+    />
+    <h1
+      className="MuiTypography-root MuiTypography-h1 css-wiz2yh-JoyTypography-root"
+    >
+      Stopwatch
+    </h1>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1yf9pfh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl2, 1.5rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css 1yf9pfh-JoyTypography-root"
+    />
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+    >
+      00:00:00
+    </h3>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-z38ec1-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-success-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-success-solidBg, var(--joy-palette-success-500, #1F7A1F)));}.css-z38ec1-JoyButton-root.Mui-focusVisible,.css-z38ec1-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-z38ec1-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-success-solidHoverBg, var(--joy-palette-success-600, #136C13)));}}.css-z38ec1-JoyButton-root:active,.css-z38ec1-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-success-solidActiveBg, var(--joy-palette-success-700, #0A470A)));}.css-z38ec1-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-success-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-success-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-z38ec1-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css z38ec1-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorSuccess MuiButton-sizeMd css-z38ec1-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Start
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-cua13l-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-primary-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-primary-solidBg, var(--joy-palette-primary-500, #0B6BCB)));}.css-cua13l-JoyButton-root.Mui-focusVisible,.css-cua13l-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-cua13l-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-primary-solidHoverBg, var(--joy-palette-primary-600, #185EA5)));}}.css-cua13l-JoyButton-root:active,.css-cua13l-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-primary-solidActiveBg, var(--joy-palette-primary-700, #12467B)));}.css-cua13l-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-cua13l-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css cua13l-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Reset
+    </button>
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Lap
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-x5jxhy-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl3, 1.875rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css x5jxhy-JoyTypography-root"
+    />
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-x5jxhy-JoyTypography-root"
+    >
+      Laps
+    </h2>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-swsx2x{text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;}",
+        }
+      }
+      data-emotion="css swsx2x"
+    />
+    <div
+      className="MuiBox-root css-swsx2x"
+    >
+      <style
+        dangerouslySetInnerHTML={
+          {
+            "__html": ".css-bdzag2-JoyList-root{--ListDivider-gap:0.375rem;--ListItem-minHeight:2.25rem;--ListItem-paddingY:0.25rem;--ListItem-paddingX:0.75rem;--ListItem-gap:0.625rem;--ListItemDecorator-size:2.5rem;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--List-gap:0px;--List-nestedInsetStart:0px;--ListItem-paddingLeft:var(--ListItem-paddingX);--ListItem-paddingRight:var(--ListItem-paddingX);--unstable_List-childRadius:calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px));--ListItem-radius:var(--unstable_List-childRadius);--ListItem-startActionTranslateX:calc(0.5 * var(--ListItem-paddingLeft));--ListItem-endActionTranslateX:calc(-0.5 * var(--ListItem-paddingRight));margin:initial;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-size:var(--joy-fontSize-md, 1rem);line-height:var(--joy-lineHeight-md, 1.5);color:var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E));padding-block:var(--List-padding, var(--ListDivider-gap));padding-inline:var(--List-padding);box-sizing:border-box;border-radius:var(--List-radius);list-style:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;position:relative;--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));--unstable_List-borderWidth:var(--variant-borderWidth, 0px);}",
+          }
+        }
+        data-emotion="css bdzag2-JoyList-root"
+      />
+      <ul
+        className="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-sizeMd css-bdzag2-JoyList-root"
+      />
+    </div>
+  </div>,
+]
+`;
+
+exports[`Stopwatch Component renders Stopwatch component with initial state 1`] = `
+[
+  <style
+    dangerouslySetInnerHTML={
+      {
+        "__html": ".css-xi606m{text-align:center;}",
+      }
+    }
+    data-emotion="css xi606m"
+  />,
+  <div
+    className="MuiBox-root css-xi606m"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-wiz2yh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl4, 2.25rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css wiz2yh-JoyTypography-root"
+    />
+    <h1
+      className="MuiTypography-root MuiTypography-h1 css-wiz2yh-JoyTypography-root"
+    >
+      Stopwatch
+    </h1>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1yf9pfh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl2, 1.5rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css 1yf9pfh-JoyTypography-root"
+    />
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+    >
+      00:00:00
+    </h3>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-z38ec1-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-success-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-success-solidBg, var(--joy-palette-success-500, #1F7A1F)));}.css-z38ec1-JoyButton-root.Mui-focusVisible,.css-z38ec1-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-z38ec1-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-success-solidHoverBg, var(--joy-palette-success-600, #136C13)));}}.css-z38ec1-JoyButton-root:active,.css-z38ec1-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-success-solidActiveBg, var(--joy-palette-success-700, #0A470A)));}.css-z38ec1-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-success-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-success-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-z38ec1-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css z38ec1-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorSuccess MuiButton-sizeMd css-z38ec1-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Start
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-cua13l-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-primary-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-primary-solidBg, var(--joy-palette-primary-500, #0B6BCB)));}.css-cua13l-JoyButton-root.Mui-focusVisible,.css-cua13l-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-cua13l-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-primary-solidHoverBg, var(--joy-palette-primary-600, #185EA5)));}}.css-cua13l-JoyButton-root:active,.css-cua13l-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-primary-solidActiveBg, var(--joy-palette-primary-700, #12467B)));}.css-cua13l-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-cua13l-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css cua13l-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Reset
+    </button>
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Lap
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-x5jxhy-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl3, 1.875rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css x5jxhy-JoyTypography-root"
+    />
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-x5jxhy-JoyTypography-root"
+    >
+      Laps
+    </h2>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-swsx2x{text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;}",
+        }
+      }
+      data-emotion="css swsx2x"
+    />
+    <div
+      className="MuiBox-root css-swsx2x"
+    >
+      <style
+        dangerouslySetInnerHTML={
+          {
+            "__html": ".css-bdzag2-JoyList-root{--ListDivider-gap:0.375rem;--ListItem-minHeight:2.25rem;--ListItem-paddingY:0.25rem;--ListItem-paddingX:0.75rem;--ListItem-gap:0.625rem;--ListItemDecorator-size:2.5rem;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--List-gap:0px;--List-nestedInsetStart:0px;--ListItem-paddingLeft:var(--ListItem-paddingX);--ListItem-paddingRight:var(--ListItem-paddingX);--unstable_List-childRadius:calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px));--ListItem-radius:var(--unstable_List-childRadius);--ListItem-startActionTranslateX:calc(0.5 * var(--ListItem-paddingLeft));--ListItem-endActionTranslateX:calc(-0.5 * var(--ListItem-paddingRight));margin:initial;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-size:var(--joy-fontSize-md, 1rem);line-height:var(--joy-lineHeight-md, 1.5);color:var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E));padding-block:var(--List-padding, var(--ListDivider-gap));padding-inline:var(--List-padding);box-sizing:border-box;border-radius:var(--List-radius);list-style:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;position:relative;--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));--unstable_List-borderWidth:var(--variant-borderWidth, 0px);}",
+          }
+        }
+        data-emotion="css bdzag2-JoyList-root"
+      />
+      <ul
+        className="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-sizeMd css-bdzag2-JoyList-root"
+      />
+    </div>
+  </div>,
+]
+`;
+
+exports[`Stopwatch Component renders lap times when laps array is not empty 1`] = `
+[
+  <style
+    dangerouslySetInnerHTML={
+      {
+        "__html": ".css-xi606m{text-align:center;}",
+      }
+    }
+    data-emotion="css xi606m"
+  />,
+  <div
+    className="MuiBox-root css-xi606m"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-wiz2yh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl4, 2.25rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css wiz2yh-JoyTypography-root"
+    />
+    <h1
+      className="MuiTypography-root MuiTypography-h1 css-wiz2yh-JoyTypography-root"
+    >
+      Stopwatch
+    </h1>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1yf9pfh-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl2, 1.5rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css 1yf9pfh-JoyTypography-root"
+    />
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+    >
+      00:00:00
+    </h3>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-z38ec1-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-success-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-success-solidBg, var(--joy-palette-success-500, #1F7A1F)));}.css-z38ec1-JoyButton-root.Mui-focusVisible,.css-z38ec1-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-z38ec1-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-success-solidHoverBg, var(--joy-palette-success-600, #136C13)));}}.css-z38ec1-JoyButton-root:active,.css-z38ec1-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-success-solidActiveBg, var(--joy-palette-success-700, #0A470A)));}.css-z38ec1-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-success-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-success-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-z38ec1-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css z38ec1-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorSuccess MuiButton-sizeMd css-z38ec1-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Start
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-cua13l-JoyButton-root{--Icon-margin:initial;--Icon-color:currentColor;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--CircularProgress-size:20px;--CircularProgress-thickness:2px;--Button-gap:0.5rem;min-height:var(--Button-minHeight, 2.25rem);font-size:var(--joy-fontSize-sm, 0.875rem);padding-block:var(--Button-paddingBlock, 0.375rem);padding-inline:1rem;-webkit-tap-highlight-color:transparent;box-sizing:border-box;border-radius:var(--Button-radius, var(--joy-radius-sm, 6px));margin:var(--Button-margin);border:none;background-color:transparent;cursor:pointer;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;-webkit-text-decoration:none;text-decoration:none;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-lg, 600);line-height:var(--joy-lineHeight-md, 1.5);--variant-borderWidth:0px;color:var(--variant-solidColor, var(--joy-palette-primary-solidColor, var(--joy-palette-common-white, #FFF)));background-color:var(--variant-solidBg, var(--joy-palette-primary-solidBg, var(--joy-palette-primary-500, #0B6BCB)));}.css-cua13l-JoyButton-root.Mui-focusVisible,.css-cua13l-JoyButton-root:focus-visible{outline-offset:var(--focus-outline-offset, var(--joy-focus-thickness, 2px));outline:var(--joy-focus-thickness, 2px) solid var(--joy-palette-focusVisible, #0B6BCB);}@media (hover: hover){.css-cua13l-JoyButton-root:hover{background-color:var(--variant-solidHoverBg, var(--joy-palette-primary-solidHoverBg, var(--joy-palette-primary-600, #185EA5)));}}.css-cua13l-JoyButton-root:active,.css-cua13l-JoyButton-root[aria-pressed="true"]{background-color:var(--variant-solidActiveBg, var(--joy-palette-primary-solidActiveBg, var(--joy-palette-primary-700, #12467B)));}.css-cua13l-JoyButton-root.Mui-disabled{pointer-events:none;cursor:default;--Icon-color:currentColor;color:var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));background-color:var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));}.css-cua13l-JoyButton-root.MuiButton-loading{color:transparent;}",
+        }
+      }
+      data-emotion="css cua13l-JoyButton-root"
+    />
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Reset
+    </button>
+    <button
+      className="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+    >
+      Lap
+    </button>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-x5jxhy-JoyTypography-root{--Icon-fontSize:calc(1em * var(--joy-lineHeight-xs, 1.33334));margin:var(--Typography-margin, 0px);display:block;font-family:var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-weight:var(--joy-fontWeight-xl, 700);font-size:var(--Typography-fontSize, var(--joy-fontSize-xl3, 1.875rem));line-height:var(--joy-lineHeight-xs, 1.33334);letter-spacing:-0.025em;color:var(--joy-palette-text-primary, var(--joy-palette-neutral-800, #171A1C));}",
+        }
+      }
+      data-emotion="css x5jxhy-JoyTypography-root"
+    />
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-x5jxhy-JoyTypography-root"
+    >
+      Laps
+    </h2>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-swsx2x{text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;}",
+        }
+      }
+      data-emotion="css swsx2x"
+    />
+    <div
+      className="MuiBox-root css-swsx2x"
+    >
+      <style
+        dangerouslySetInnerHTML={
+          {
+            "__html": ".css-bdzag2-JoyList-root{--ListDivider-gap:0.375rem;--ListItem-minHeight:2.25rem;--ListItem-paddingY:0.25rem;--ListItem-paddingX:0.75rem;--ListItem-gap:0.625rem;--ListItemDecorator-size:2.5rem;--Icon-fontSize:var(--joy-fontSize-xl, 1.25rem);--List-gap:0px;--List-nestedInsetStart:0px;--ListItem-paddingLeft:var(--ListItem-paddingX);--ListItem-paddingRight:var(--ListItem-paddingX);--unstable_List-childRadius:calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px));--ListItem-radius:var(--unstable_List-childRadius);--ListItem-startActionTranslateX:calc(0.5 * var(--ListItem-paddingLeft));--ListItem-endActionTranslateX:calc(-0.5 * var(--ListItem-paddingRight));margin:initial;font-family:var(--joy-fontFamily-body, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"));font-size:var(--joy-fontSize-md, 1rem);line-height:var(--joy-lineHeight-md, 1.5);color:var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E));padding-block:var(--List-padding, var(--ListDivider-gap));padding-inline:var(--List-padding);box-sizing:border-box;border-radius:var(--List-radius);list-style:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;position:relative;--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));--unstable_List-borderWidth:var(--variant-borderWidth, 0px);}",
+          }
+        }
+        data-emotion="css bdzag2-JoyList-root"
+      />
+      <ul
+        className="MuiList-root MuiList-vertical MuiList-variantPlain MuiList-colorNeutral MuiList-sizeMd css-bdzag2-JoyList-root"
+      >
+        <style
+          dangerouslySetInnerHTML={
+            {
+              "__html": ".css-y25igk-JoyListItem-root{--ListItemButton-marginInline:calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight));--ListItemButton-marginBlock:calc(-1 * var(--ListItem-paddingY));-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:var(--ListItem-gap);margin-inline:var(--ListItem-marginInline);--unstable_actionRadius:calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px));box-sizing:border-box;border-radius:var(--ListItem-radius);display:var(--_ListItem-display);-webkit-flex:none;-ms-flex:none;flex:none;list-style-type:var(--_List-markerType, disc);position:relative;padding-block-start:var(--ListItem-paddingY);padding-block-end:var(--ListItem-paddingY);-webkit-padding-start:var(--ListItem-paddingLeft);padding-inline-start:var(--ListItem-paddingLeft);-webkit-padding-end:var(--ListItem-paddingRight);padding-inline-end:var(--ListItem-paddingRight);min-block-size:var(--ListItem-minHeight);--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));}.css-y25igk-JoyListItem-root:not([hidden]){--_ListItem-display:var(--_List-markerDisplay, flex);}.MuiListItem-nested>.css-y25igk-JoyListItem-root{--_ListItem-display:flex;}",
+            }
+          }
+          data-emotion="css y25igk-JoyListItem-root"
+        />
+        <li
+          className="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain css-y25igk-JoyListItem-root"
+          data-first-child=""
+        >
+          <h3
+            className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+            data-first-child=""
+          >
+            Lap 
+             
+            1
+             
+            00:01:23
+          </h3>
+        </li>
+        <style
+          dangerouslySetInnerHTML={
+            {
+              "__html": ".css-cl8xxo-JoyListItem-root{--ListItemButton-marginInline:calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight));--ListItemButton-marginBlock:calc(-1 * var(--ListItem-paddingY));-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:var(--ListItem-gap);margin-inline:var(--ListItem-marginInline);--unstable_actionRadius:calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px));box-sizing:border-box;border-radius:var(--ListItem-radius);display:var(--_ListItem-display);-webkit-flex:none;-ms-flex:none;flex:none;list-style-type:var(--_List-markerType, disc);position:relative;padding-block-start:var(--ListItem-paddingY);padding-block-end:var(--ListItem-paddingY);-webkit-padding-start:var(--ListItem-paddingLeft);padding-inline-start:var(--ListItem-paddingLeft);-webkit-padding-end:var(--ListItem-paddingRight);padding-inline-end:var(--ListItem-paddingRight);margin-block-start:var(--List-gap);min-block-size:var(--ListItem-minHeight);--variant-borderWidth:0px;color:var(--variant-plainColor, var(--joy-palette-neutral-plainColor, var(--joy-palette-neutral-700, #32383E)));}.css-cl8xxo-JoyListItem-root:not([hidden]){--_ListItem-display:var(--_List-markerDisplay, flex);}.MuiListItem-nested>.css-cl8xxo-JoyListItem-root{--_ListItem-display:flex;}",
+            }
+          }
+          data-emotion="css cl8xxo-JoyListItem-root"
+        />
+        <li
+          className="MuiListItem-root MuiListItem-colorNeutral MuiListItem-variantPlain css-cl8xxo-JoyListItem-root"
+          data-last-child=""
+        >
+          <h3
+            className="MuiTypography-root MuiTypography-h3 css-1yf9pfh-JoyTypography-root"
+            data-first-child=""
+          >
+            Lap 
+             
+            2
+             
+            00:02:45
+          </h3>
+        </li>
+      </ul>
+    </div>
+  </div>,
+]
+`;
