@@ -76,7 +76,7 @@ const StopWatch: React.FC = () => {
             </StopWatchContainer>  
         </StopWatchContainerParent>
         <Footer>
-            Made with <span style={{ color: "#FF0000" }}>♥</span> by Tudor for <span style={{ color: "#0EC761" }}>Shopfiy</span>
+            Made with <span style={{ color: "#FF0000" }}>♥</span> by Tudor for <span style={{ color: "#0EC761" }}>Shopify</span>
         </Footer>
     </>
     )
