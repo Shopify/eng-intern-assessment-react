@@ -37,6 +37,17 @@ const StyledButton = styled.button`
   }
 `;
 
+/*
+Functional component to display the stopwatch buttons
+
+Takes props:
+- isRunning: boolean state indicating if the stopwatch is currently running
+- startTimer: function to start timer
+- pauseTimer: function to pause timer
+- stopTimer: function to stop timer
+- recordLap: function to add to the laps array
+- clearLaps: function to empty the laps array
+*/
 export default function StopWatchButton({ isRunning, startTimer, pauseTimer, stopTimer, recordLap, clearLaps }: any) {
     return (
         <ButtonContainer>

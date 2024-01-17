@@ -4,6 +4,12 @@ import { render, act } from '@testing-library/react';
 import StopWatch from './StopWatch';
 import '@testing-library/jest-dom';
 
+/*
+Big issue with testing:
+My component uses requestAnimationFrame to update the timer which might not be compatible with Jest's advanceTimersByTime.
+Jest fake timers may not affect it as they are designed for setTimeout and setInterval.
+I was not able to mock the requestAnimationFrame and test against that.
+*/
 describe('StopWatch Component', () => {
     jest.useFakeTimers();
 
@@ -14,7 +20,7 @@ describe('StopWatch Component', () => {
             jest.advanceTimersByTime(1000);
         });
 
-        // Check each part of the time separately
+        // Check each part of the time separately since they are rendered in separate components
         expect(getByText('00')).toBeInTheDocument(); // hours
         expect(getByText(':')).toBeInTheDocument(); // first colon
         expect(getByText('00')).toBeInTheDocument(); // minutes

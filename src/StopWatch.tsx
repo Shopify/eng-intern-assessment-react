@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 
+//Styled components (it's not best practice put everything in one file...)
 const TimeContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -76,15 +77,17 @@ const ContainerGrid = styled.section`
   }
 `;
 
+//Functional component to display the stopwatch display and buttons
 export default function StopWatch() {
-    const [time, setTime] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
-    const [timeId, setTimeId] = useState(null);
-    const [laps, setLaps] = useState([]);
+    const [time, setTime] = useState(0); //State hook to store time in milliseconds
+    const [isRunning, setIsRunning] = useState(false); //State hook to store boolean indicator if stopwatch is running
+    const [timeId, setTimeId] = useState(null); //Stores id of requestAnimationFrame to update timer
+    const [laps, setLaps] = useState([]); //Array to keep track of lap times
 
+    //Function to start the timer
     const startTimer = () => {
         setIsRunning(true);
-        const startTime = Date.now() - time;
+        const startTime = Date.now() - time; //Calculates the start time
         const updateTimer = () => {
             setTime(Date.now() - startTime);
             const newtimeId = requestAnimationFrame(updateTimer);
@@ -94,14 +97,16 @@ export default function StopWatch() {
         setTimeId(newtimeId);
     };
 
+    //Function to pause the timer.
     const pauseTimer = () => {
         setIsRunning(false);
         if (timeId !== null) {
-            cancelAnimationFrame(timeId);
+            cancelAnimationFrame(timeId); //Cancels the animation frame
             setTimeId(null);
         }
     };
 
+    //Function to stop the timer and reset time
     const stopTimer = () => {
         setIsRunning(false);
         setTime(0);
@@ -111,11 +116,18 @@ export default function StopWatch() {
         }
     };
 
+    //Function to record a lap time by adding to the laps array.
     const recordLap = () => {
         const newLap = formattedTime.hours + ":" + formattedTime.minutes + ":" + formattedTime.seconds + ":" + formattedTime.milliseconds;
         setLaps([...laps, newLap]);
     };
 
+    //Function to clear lap times by emptying laps array
+    const clearLaps = () => {
+        setLaps([]);
+    };
+
+    //React hook used for cleanup - cancels the animation frame when the component is unmounted or when timeId changes
     useEffect(() => {
         return () => {
             if (timeId !== null) {
@@ -124,10 +136,7 @@ export default function StopWatch() {
         };
     }, [timeId]);
 
-    const clearLaps = () => {
-        setLaps([]);
-    };
-
+    //Not the easiest way to declare the time variables
     const formattedTime = {
         hours: Math.floor(Math.floor(Math.floor(time / 1000) / 60) / 60).toString().padStart(2, '0'),
         minutes: (Math.floor(Math.floor(time / 1000) / 60) % 60).toString().padStart(2, '0'),
