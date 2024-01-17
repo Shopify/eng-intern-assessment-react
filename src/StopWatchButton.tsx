@@ -5,10 +5,11 @@ import React from 'react'
 interface Props {
     isRunning: Boolean
     runningHandler: () => void,
-    resetHandler: () => void
+    resetHandler: () => void,
+    lapHandler: () => void
 }
 
-export default function StopWatchButton({isRunning, runningHandler, resetHandler}:Props) {
+export default function StopWatchButton({isRunning, runningHandler, resetHandler, lapHandler}:Props) {
 
 
     if (isRunning) {
@@ -16,7 +17,7 @@ export default function StopWatchButton({isRunning, runningHandler, resetHandler
         return (
             <div>
                 <button onClick={runningHandler}>Stop</button>
-                <button>Lap</button>
+                <button onClick={lapHandler}>Lap</button>
             </div>
         )
     }

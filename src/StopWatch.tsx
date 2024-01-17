@@ -16,9 +16,9 @@ export default function StopWatch({elapsedTime}: Props) {
 
     const formatTime = (time: number) => {
 
-        let seconds = padZero(Math.floor(time / 100) % 60);
-        let minutes = padZero(Math.floor(time / 100 / 60));
-        let milliseconds = padZero(Math.floor((time % 100)));
+        let seconds = padZero(Math.floor(time / 1000) % 60);
+        let minutes = padZero(Math.floor(time / 1000 / 60));
+        let milliseconds = padZero(Math.floor((time % 1000) / 10));
 
         return `${minutes}:${seconds}.${milliseconds}`
     }
