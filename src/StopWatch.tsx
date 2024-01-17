@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import { act } from "@testing-library/react";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
@@ -16,7 +17,9 @@ export default function StopWatch() {
 
     if (running) {
       interval = setInterval(() => {
-        setTime(stackedTime + (Date.now() - startDate));
+        act(() => {
+          setTime(stackedTime + (Date.now() - startDate));
+        });
       }, 20);
     }
     return () => clearInterval(interval);
@@ -74,7 +77,7 @@ export default function StopWatch() {
         <StopWatchButton {...toggleStartPause()} />
       </div>
       <div hidden={lap.length == 0}>
-        <ul>
+        <ul data-testid="lap-list">
           {lap
             .map((lapTime, index) => (
               <div key={index}>
