@@ -36,6 +36,24 @@ export default function App() {
     };
 
     /**
+     * This function formats the stopWatch Lap time into minutes, seconds, and miliseconds.
+     *
+     * @param {string} timer The current time to be displayed on the stopWatch.
+     * @returns {Object} An object containing the properly formatted lap time values.
+     */
+    const formatLapTime = (timer: number) => {
+        const lapMinutes = Math.floor(timer / 60000)
+        .toString()
+        .padStart(2, "0");
+        const lapSeconds = Math.floor((timer / 1000) % 60)
+        .toString()
+        .padStart(2, "0");
+        const lapMilliseconds = (timer % 1000).toString().padStart(3, "0");
+
+        return { lapMinutes, lapSeconds, lapMilliseconds };
+    };
+
+    /**
      * This function starts the stopwatch and the lap timer
      */
     const handleStart = () => {
@@ -43,6 +61,9 @@ export default function App() {
         setIsRunning(true);
         timeInterval.current = setInterval(() => {
         setTimer((prev) => prev + 10);
+        }, 10);
+        lapInterval.current = setInterval(() => {
+            setLapTimer((prev) => prev + 10);
         }, 10);
     };
     
@@ -53,6 +74,7 @@ export default function App() {
         if (!isRunning) return;
         setIsRunning(false);
         clearInterval(timeInterval.current);
+        clearInterval(lapInterval.current);
     };
 
     /**
@@ -62,9 +84,22 @@ export default function App() {
         setIsRunning(false);
         clearInterval(timeInterval.current);
         setTimer(0);
+        clearInterval(lapInterval.current);
+        setLapTimer(0);
     };
 
+    /**
+     * This function pauses the stopwatch and the lap timer
+     */
+    const handleLap = () => {
+        const newLap = lapMinutes + ":" + lapSeconds + ":" + lapMilliseconds;
+        const newLaps = [...laps, newLap];
+        setLaps(newLaps);
+        setLapTimer(0);
+    }
+
     const { minutes, seconds, milliseconds } = formatTime(timer);
+    const { lapMinutes, lapSeconds, lapMilliseconds } = formatLapTime(lapTimer);
 
     return(
         <div className="wrapper">
@@ -73,6 +108,7 @@ export default function App() {
                 <StopWatchButton label="START" onClick={handleStart} />
                 <StopWatchButton label="PAUSE" onClick={handlePause} />
                 <StopWatchButton label="RESET" onClick={handleReset} />
+                <StopWatchButton label="LAP"   onClick={handleLap}   />
             </div>
             <div className="lap-container">
                 {laps.map((lap) => {
