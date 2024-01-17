@@ -26,7 +26,7 @@ export default function StopWatch() {
 
     useEffect(() => {
         let timer: NodeJS.Timer;
-        
+
         if (running) {
           startTime.current = Date.now() - time;
           timer = setInterval(() => {
@@ -50,7 +50,9 @@ export default function StopWatch() {
         <div className="stopwatch-container">
             <div className="stopwatch">
                 <h1>Shopify StopWatch</h1>
-                <p>{formatTime(time)}</p>
+                <div data-testid='timer'>
+                    <p>{formatTime(time)}</p>
+                </div>
             </div>
             <div className="buttons">
                 <StopWatchButton title={reset || running ? "Lap" : "Reset"} onClick={handleReset}/>
@@ -58,7 +60,7 @@ export default function StopWatch() {
             </div>
             <div className="laps">
                 {laps.length > 0 && (
-                    <ul>
+                    <ul data-testid='list-laps'>
                         {laps.map((lap, index) => (
                             <li key={lap}>
                                 <p className="lap-num">Lap{" " + (index + 1)}</p>
