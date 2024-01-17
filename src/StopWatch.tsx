@@ -1,39 +1,32 @@
-//A separate component that represents the stopwatch display.
+// A separate component that represents the stopwatch display.
 
 import React from 'react'
 
-export default function StopWatch() {
+interface Props {
+    time: number;
+}
 
-    const backgroundStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    };
+export default function StopWatch({time}: Props) {
 
     const textStyle = {
         color: '#dbdada',
-        fontSize: '70px',
-        letterSpacing: '3px',
+        fontSize: '80px',
+        letterSpacing: '2px',
         margin: '2px'
     };
 
-    const colonStyle = { //try to fix the colon allignment
-        color: '#dbdada',
-        fontSize: '45px',
-    };
+    const formatTime = (time: number) => {
+        const getSeconds = `0${(time % 60)}`.slice(-2);
+        const minutes = `${Math.floor(time / 60)}`;
+        const getMinutes = `0${Number(minutes) % 60}`.slice(-2);
+        const getHours = `0${Math.floor(time / 3600)}`.slice(-2);
+
+        return `${getHours} : ${getMinutes} : ${getSeconds}`;
+    }
 
     return(
-        <div style = {backgroundStyle}>
-            <p style = {textStyle}> 00 </p>
-
-            <span style = {colonStyle}> : </span>
-
-            <p style = {textStyle}> 00 </p>
-
-            <span style = {colonStyle}> : </span>
-
-            <p style = {textStyle}> 00 </p>
+        <div>
+            <p style = {textStyle}> {formatTime(time)} </p>
         </div>
     )
 }

@@ -2,13 +2,13 @@
 
 import React from 'react'
 
-export default function StopWatchButton() {
+interface Props {
+    start: () => void;
+    stop: () => void;
+    reset: () => void;
+}
 
-    const backgroundStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    };
+export default function StopWatchButton({start, stop, reset}: Props) {
 
     const buttonStyle = {
         backgroundColor: '#fad49d',
@@ -20,10 +20,10 @@ export default function StopWatchButton() {
     };
 
     return(
-        <div style = {backgroundStyle}>
-            <button style = {buttonStyle}> Start </button>
-            <button style = {buttonStyle}> Stop </button>
-            <button style = {buttonStyle}> Reset </button>
+        <div>
+            <button style = {buttonStyle} onClick={start}> Start </button>
+            <button style = {buttonStyle} onClick={stop}> Stop </button>
+            <button style = {buttonStyle} onClick={reset}> Reset </button>
             <button style = {buttonStyle}> Lap </button>
         </div>
     )
