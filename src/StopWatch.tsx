@@ -53,14 +53,8 @@ const StopWatch: React.FC = () => {
     };
 
 
-    // Converting the time into hours, minutes, seconds, milliseconds
-    const hours = Math.floor((time / 3600000) % 24);
-    const minutes = Math.floor((time / 60000) % 60);
-    const seconds = Math.floor((time / 1000) % 60);
-    const milliseconds = Math.floor((time / 10) % 100);
-
-
     return(
+    <>
         <StopWatchContainerParent>
             <StopWatchContainer>
                 <StopWatchTimerContainer>
@@ -81,6 +75,10 @@ const StopWatch: React.FC = () => {
                 </StopWatchLapContainer>
             </StopWatchContainer>  
         </StopWatchContainerParent>
+        <Footer>
+            Made with <span style={{ color: "#FF0000" }}>♥</span> by Tudor for <span style={{ color: "#0EC761" }}>Shopfiy</span>
+        </Footer>
+    </>
     )
 }
 
@@ -97,7 +95,7 @@ const StopWatchContainerParent = styled.div`
 const StopWatchContainer = styled.div`
     width: 80vw;
     height: 96vh;
-    background: #b8b7b7;
+    background: #B8B7B7;
     border-radius: 30px;
     box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.30) inset;
 
@@ -147,7 +145,7 @@ const StopWatchLapContainer = styled.div`
     width: 80%;
     height: 90%;
     margin: 0 0 3vh 0;
-    background: #b8b7b7;
+    background: #B8B7B7;
     border-radius: 20px;
     box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.30) inset;
 
@@ -176,6 +174,14 @@ const StopWatchLapLabel = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+// Styled footer component
+const Footer = styled.footer`
+    text-align: center;
+    padding: 0.5vh 0 0 0;
+    font-size: 0.84vw;
+    font-family: 'Kadwa', serif;
 `;
 
 
