@@ -69,8 +69,8 @@ describe('Stopwatch', () => {
 
     expect(screen.getByRole('rowheader', { name: /1/i })).toBeInTheDocument();
 
-    // Checks that it records lap time and total elapsed time
-    expect(screen.queryAllByText(/\d\d:\d\d\:\d\d/)).toHaveLength(2);
+    // Checks that it records lap time and total elapsed time (time will still be showing on screen with same format)
+    expect(screen.queryAllByText(/\d\d:\d\d\:\d\d/)).toHaveLength(3);
 
   });
 
