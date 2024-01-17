@@ -9,7 +9,7 @@ type StopwatchProps = {
 
 const Stopwatch: React.FC<StopwatchProps> = ({ duration }) => {
   return (
-    <StyledStopwatch>
+    <StyledStopwatch data-testid="stopwatch-time">
       {timeToString(duration)}
     </StyledStopwatch>
   );

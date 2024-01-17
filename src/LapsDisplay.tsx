@@ -12,7 +12,7 @@ const LapsDisplay: React.FC<LapsDisplayProps> = ({ laps }) => {
         {laps.map((lap, index) => (
           <LapItem key={index}>
             <LapIndex>{`Lap #${index + 1}`}</LapIndex>
-            <LapTime>{lap}</LapTime>
+            <LapTime data-testid="lap-time">{lap}</LapTime>
           </LapItem>
         ))}
       </LapList>
