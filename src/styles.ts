@@ -78,7 +78,7 @@ export const lapsStyle: CSSProperties = {
 
 // Style for the main title
 export const titleStyle: CSSProperties = {
-    fontSize: "3rem", // Set font size for the time
+    fontSize: "5rem", // Set font size for the time
     margin: "15px 0", // Add margin for spacing
     color: nordColours.text,
     fontFamily: "Roboto, sans-serif",
