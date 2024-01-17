@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, InlineStack, Page } from '@shopify/polaris'
+import { BlockStack, Button, InlineStack, Page, Text } from '@shopify/polaris'
 
 
 interface StopWatchButtonProps {
@@ -16,21 +16,21 @@ export default function StopWatchButton({
     resetButton} : StopWatchButtonProps) {
     return(
         
-        <Page fullWidth>
-            
-            <InlineStack gap='400' align='space-evenly'>
-            <Button size='large' variant='primary' onClick={startStop}>
-                {isRunning ? "Stop" :  "Start"}
-            </Button>
-            <Button size='large' variant='primary' onClick={resetButton}>
-                Reset
-            </Button>
-            <Button size='large' variant='primary' onClick={lapButton}>
-                Lap
-            </Button>
-            
-            </InlineStack>
-            
+        <Page >
+            <BlockStack gap='500' align='center'>
+                <Text variant='heading3xl' as='h1' alignment='center'> Stopwatch App</Text>
+                <InlineStack gap='400' align='space-evenly'>
+                    <Button size='large' variant='primary' onClick={startStop}>
+                        {isRunning ? "Stop" :  "Start"}
+                    </Button>
+                    <Button size='large' variant='primary' onClick={resetButton}>
+                        Reset
+                    </Button>
+                    <Button size='large' variant='primary' onClick={lapButton}>
+                        Lap
+                    </Button>
+                </InlineStack>
+            </BlockStack>
         </Page>
        
     )

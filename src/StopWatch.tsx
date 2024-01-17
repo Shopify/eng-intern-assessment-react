@@ -10,46 +10,6 @@ interface StopwatchProps {
     totalTimes: number[]
 }
 
-/*
-<ul>
-                    {lapTimes.map((lap, index) => (
-                        <li key={index}>
-                            Lap {" " + (index + 1) + " "}
-                            {(Math.floor(lap / 3600)).toString().padStart(2, "0")}:
-                            {(Math.floor((lap % 3600)/60)).toString().padStart(2, "0")}:
-                            {(Math.floor(lap % 60)).toString().padStart(2, "0")}
-                            {"    "}
-                            {(Math.floor(totalTimes[index] / 3600)).toString().padStart(2, "0")}:
-                            {(Math.floor((totalTimes[index] % 3600)/60)).toString().padStart(2, "0")}:
-                            {(Math.floor(totalTimes[index] % 60)).toString().padStart(2, "0")}
-                        </li>
-                    ))}
-                    </ul>
-                    <IndexTable itemCount={lapTable.length} headings={[
-                        {title:"Lap Number"},
-                        {title:"Lap Time"},
-                        {title:"Total Elapsed Time"}]}>
-                        {lapTable}
-                    </IndexTable>
-
-                        const lapTable = lapTimes.map((lap, index) => (
-        <IndexTable.Row id={index.toString()} position={index}>
-            <IndexTable.Cell>
-                Lap {" " + (index + 1) + " "}
-            </IndexTable.Cell>
-            <IndexTable.Cell>
-            {(Math.floor(lap / 3600)).toString().padStart(2, "0")}:
-            {(Math.floor((lap % 3600)/60)).toString().padStart(2, "0")}:
-            {(Math.floor(lap % 60)).toString().padStart(2, "0")}
-            </IndexTable.Cell>
-            <IndexTable.Cell>
-            {(Math.floor(totalTimes[index] / 3600)).toString().padStart(2, "0")}:
-            {(Math.floor((totalTimes[index] % 3600)/60)).toString().padStart(2, "0")}:
-            {(Math.floor(totalTimes[index] % 60)).toString().padStart(2, "0")}
-            </IndexTable.Cell>
-        </IndexTable.Row>
-    ))
-*/
 
 export default function StopWatch({
     currentTime,
@@ -80,38 +40,52 @@ export default function StopWatch({
 
     return(
         
-        <Page  >
-            <BlockStack gap='500' align='center'>
+        <Page>
+            <BlockStack gap='600' align='center'>
                 
                     <Grid>
                         <Grid.Cell columnSpan={{xs: 6, sm: 3, md: 3, lg: 6, xl: 6}}>
                             <Box shadow='500' background='bg-surface' borderRadius='200'>
-                                <div style={{height: '30vh'}}>
-                                    <Text variant='heading3xl' as='h1' alignment='center'>
-                                        {hours.toString().padStart(2, "0")}:
-                                        {minutes.toString().padStart(2, "0")}:
-                                        {seconds.toString().padStart(2, "0")}
-                                    </Text>
-                                   
+                                <div style={{height: '20vh'}}>
+                                    <BlockStack gap='300' align='center'>
+                                        <Text variant='headingXl' as='h1' alignment='center'>
+                                            {"  "}
+                                        </Text>
+                                        <Text variant='headingLg' as='h1' alignment='center'>
+                                            Current Lap Time
+                                        </Text>
+                                        <Text variant='heading3xl' as='h1' alignment='center'>
+                                            {hours.toString().padStart(2, "0")}:
+                                            {minutes.toString().padStart(2, "0")}:
+                                            {seconds.toString().padStart(2, "0")}
+                                        </Text>
+                                    </BlockStack>
                                 </div>
                             </Box> 
                         </Grid.Cell>
                         <Grid.Cell columnSpan={{xs: 6, sm: 3, md: 3, lg: 6, xl: 6}}>
                             <Box shadow='500' background='bg-surface' borderRadius='200'>
-                                <div style={{height: '30vh'}}>
-                                    <Text variant='heading3xl' as='h2' alignment='center'>
-                                        {totalHours.toString().padStart(2, "0")}:
-                                        {totalMinutes.toString().padStart(2, "0")}:
-                                        {totalSeconds.toString().padStart(2, "0")}
-                                    </Text>
+                                <div style={{height: '20vh'}}>
+                                    <BlockStack gap='300' align='center'>
+                                        <Text variant='headingXl' as='h1' alignment='center'>
+                                            {"  "}
+                                        </Text>
+                                        <Text variant='headingLg' as='h1' alignment='center'>
+                                            Total Elapsed Time
+                                        </Text>
+                                        <Text variant='heading3xl' as='h2' alignment='center'>
+                                            {totalHours.toString().padStart(2, "0")}:
+                                            {totalMinutes.toString().padStart(2, "0")}:
+                                            {totalSeconds.toString().padStart(2, "0")}
+                                        </Text>
+                                    </BlockStack>
                                 </div>
                             </Box>
-                    
                         </Grid.Cell>
                     </Grid>
                     
                     <Box shadow='500' background='bg-surface' borderRadius='200'>
-                        <div style={{height: '50vh'}}>
+                        <div style={{height: '40vh'}}>
                             <Scrollable style={{height: '100%'}} focusable>
                                 <DataTable columnContentTypes={[
                                 'text',
@@ -122,7 +96,8 @@ export default function StopWatch({
                                 "Lap Number", 
                                 "Lap Time", 
                                 "Total Elapsed Time"]}
-                                rows={combinedLapInfo}/>
+                                rows={combinedLapInfo}
+                                sortable={[true, true, true]}/>
                             </Scrollable>
                         </div>
                     </Box>
