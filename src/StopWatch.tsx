@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css';
 
 interface StopWatchProps {
   time: number;
@@ -22,9 +23,7 @@ export default function StopWatch({ time, laps }: StopWatchProps) {
 
   return (
     <div>
-      <div>
-        <span>{formatDisplayTime(time)}</span>
-      </div>
+      <span className='stopwatch-text'>{formatDisplayTime(time)}</span>
       <ul data-testid='lap-list'>
         {laps.map((lap, index) => (
           <li key={index}>

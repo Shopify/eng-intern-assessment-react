@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
+import './styles.css';
 
 export default function App() {
+  /* hoisted all state and state handlers to App.tsx
+   * to modularize code and make it easier to test
+   * by just rendering <App /> component in Stopwatch.test.js
+   */
   const [isLive, setIsLive] = useState(false);
   const [time, setTime] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
-  const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
+  const [intervalId, setIntervalId] = useState<NodeJS.Timer>(); // stores reference to interval so that it may be cleared
 
   const startStopwatch = () => {
     setIsLive(true);
@@ -38,7 +43,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className='main-wrapper'>
       <StopWatch time={time} laps={laps} />
       <StopWatchButton
         isLive={isLive}
