@@ -11,7 +11,9 @@ export default function StopWatch({
     setLapSignal: (lapSignal: boolean) => void;
 }) {
     const [time, setTime] = useState(0);
+    // use pauseTime to keep track of how much time was on the clock when it was paused
     const pauseTime = useRef<number>(0);
+    // used to trigger the creation of a new lap
     const [laps, setLaps] = useState<string[]>([]);
 
     useEffect(() => {
@@ -19,6 +21,7 @@ export default function StopWatch({
 
         if (timerState === TimerState.RUNNING) {
             pauseTime.current = time;
+            // subtract pauseTime from the initial time to add that much time to the clock
             const initialTime = new Date().getTime() - pauseTime.current;
 
             interval = setInterval(() => {
@@ -74,6 +77,7 @@ export default function StopWatch({
                 </div>
             </div>
             <div className="laps-wrapper">
+                {/* we want the most recent laps to appear on top, so reverse by copy before mapping */}
                 {[...laps].reverse().map((lap, index) => (
                     <div key={lap + index} className="lap-border">
                         <div className="lap">{lap}</div>

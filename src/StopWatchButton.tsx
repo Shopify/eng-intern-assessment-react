@@ -10,35 +10,31 @@ export default function StopWatchButton({
     setTimerState: (timerState: TimerState) => void;
     setLapSignal: (lapSignal: boolean) => void;
 }) {
+    const handleStartAndStop = () => {
+        if (timerState === TimerState.RUNNING) {
+            setTimerState(TimerState.PAUSED);
+        } else if (
+            [TimerState.PAUSED, TimerState.RESETTING].includes(timerState)
+        ) {
+            setTimerState(TimerState.RUNNING);
+        }
+    };
+
+    const isRunning = timerState === TimerState.RUNNING;
+
     return (
         <div className="button-wrapper">
             <div>
                 <div className="button-text">
-                    {timerState === TimerState.RUNNING ? "Stop" : "Start"}
+                    {isRunning ? "Stop" : "Start"}
                 </div>
                 <button
-                    onClick={() => {
-                        if (timerState === TimerState.RUNNING) {
-                            setTimerState(TimerState.PAUSED);
-                        } else if (
-                            [TimerState.PAUSED, TimerState.RESETTING].includes(
-                                timerState
-                            )
-                        ) {
-                            setTimerState(TimerState.RUNNING);
-                        }
-                    }}
-                    name={timerState === TimerState.RUNNING ? "Stop" : "Start"}
+                    onClick={handleStartAndStop}
+                    name={isRunning ? "Stop" : "Start"}
                     className={`button ${
-                        timerState === TimerState.RUNNING
-                            ? "stop-button"
-                            : "start-button"
+                        isRunning ? "stop-button" : "start-button"
                     }`}
-                    data-testid={
-                        timerState === TimerState.RUNNING
-                            ? "stop-button"
-                            : "start-button"
-                    }
+                    data-testid={isRunning ? "stop-button" : "start-button"}
                 >
                     <div className="visual-button"></div>
                 </button>
