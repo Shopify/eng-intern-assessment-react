@@ -1,0 +1,13 @@
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 5px;
+    font-size: 6rem;
+}
+
+.timer-colon {
+    position: relative;
+    bottom: 5px;
+}
