@@ -1,0 +1,46 @@
+.stopWatchButtons {
+  display: flex;
+}
+.centerMargin {
+  margin-right: auto;
+  margin-left: auto;
+}
+.stopWatchButtons, button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 16px;
+  color: white;
+}
+.btn{
+  width: 200px
+}
+.startButton {
+  background-color:#00b300;
+}
+.startButton:hover {
+  background-color:#008000;
+}
+.stopButton {
+  background-color:#ff0000;
+}
+.stopButton:hover {
+  background-color:#cc0000;
+}
+.lapButton {
+  background-color:#b3b3b3;
+}
+.lapButton:hover {
+  background-color:#808080;
+}
+.resetButton {
+  background-color:#1a75ff;
+}
+.resetButton:hover {
+  background-color:#0047b3;
+}
+.disabledButton{
+  opacity: 0.7;
+}
