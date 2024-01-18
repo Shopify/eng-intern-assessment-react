@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
@@ -10,6 +11,7 @@ export default function App() {
     const [minutes, setMinutes] = useState(0);
     const [hours, setHours] = useState(0);
     const [counting, setCounting] = useState(false);
+    const [laps, setLaps] = useState([]);
     
     useEffect(() => {
         if (counting) {
@@ -60,7 +62,18 @@ export default function App() {
                 setSeconds(0);
                 setMinutes(0);
                 setHours(0);
+                setLaps([]);
             }}/>
+            <StopWatchButton text="Lap" handleClick={() => {
+                // Add current time to lap list
+                setLaps([...laps, { id: uuidv4(), hours: hours, minutes: minutes, seconds: seconds }])
+            }}/>
+
+            <ol>
+                {laps.map(lap => (
+                    <li  key={lap.id}>{String(lap.hours).padStart(2, "0")}:{String(lap.minutes).padStart(2, "0")}:{String(lap.seconds).padStart(2, "0")}</li>
+                ))}
+            </ol>
         </div>
     )
 }
