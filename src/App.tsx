@@ -8,29 +8,49 @@ const App: React.FC = () => {
   const [milliseconds, setMilliseconds] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [laps, setLaps] = useState<{ lapTime: number; currentTime: string }[]>([]);
+  const [startTime, setStartTime] = useState<number | null>(null);
+
+  // Initialize dark mode state from localStorage with error handling
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    // Initialize dark mode state from localStorage
-    return localStorage.getItem('darkMode') === 'true';
+    try {
+      return localStorage.getItem('darkMode') === 'true';
+    } catch (error) {
+      console.error("Error accessing localStorage for darkMode:", error);
+      return false; // Default value if localStorage is not accessible
+    }
   });
 
   // Effect for handling the stopwatch timer functionality
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
-    if (isActive) {
-      // Set interval to increment milliseconds every 10ms when stopwatch is active
-      interval = setInterval(() => {
-        setMilliseconds((prev) => prev + 10);
-      }, 10);
+
+    if (isActive && startTime === null) {
+      // Record the start time when the stopwatch starts
+      setStartTime(Date.now() - milliseconds);
     }
+
+    if (isActive) {
+      // Update milliseconds based on the difference between current time and start time
+      interval = setInterval(() => {
+        setMilliseconds(Date.now() - (startTime ?? Date.now()));
+      }, 10);
+    } else {
+      setStartTime(null); // Reset the start time when the stopwatch stops
+    }
+
     return () => {
       // Clear interval when component unmounts or stopwatch is deactivated
       if (interval) clearInterval(interval);
     };
-  }, [isActive]);
+  }, [isActive, startTime, milliseconds]);
 
-  // Effect for persisting dark mode state in localStorage
+  // Effect for persisting dark mode state in localStorage with error handling
   useEffect(() => {
-    localStorage.setItem('darkMode', darkMode.toString());
+    try {
+      localStorage.setItem('darkMode', darkMode.toString());
+    } catch (error) {
+      console.error("Error saving darkMode to localStorage:", error);
+    }
   }, [darkMode]);
 
   // Function to toggle dark mode

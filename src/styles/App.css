@@ -59,13 +59,13 @@ html, body {
   width: 100%;
   text-align: center;
   background-color: var(--header-bg-color);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 .header h1 {
   color: var(--text-color);
-  font-size: 3rem;
+  font-size: 48px;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
 }
@@ -74,18 +74,18 @@ html, body {
 .theme-toggle {
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 32px;
   cursor: pointer;
   color: var(--text-color);
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 16px;
+  right: 16px;
 }
 
 /* Container for lap times */
 .laps-container {
   width: 80%;
-  margin: 2rem auto;
+  margin: 32px auto;
   overflow-y: auto;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -98,7 +98,7 @@ html, body {
 /* Title styles for laps container */
 .laps-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
   color: var(--text-color);
   background: var(--laps-title-bg-color);
   border-top-left-radius: 10px;

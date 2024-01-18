@@ -21,13 +21,13 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 16px;
 }
 
 /* General styles for buttons */
 .button {
   padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 16px;
   border: none;
   background-color: var(--button-bg-color);
   color: var(--button-text-color);

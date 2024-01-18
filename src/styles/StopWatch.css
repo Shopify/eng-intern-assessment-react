@@ -20,11 +20,11 @@
 
 /* Main stopwatch container styles */
 .stopwatch {
-  margin-top: 2rem;
+  margin-top: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   position: relative;
   background: transparent;
 }
@@ -62,24 +62,24 @@
 
 /* Font size for labels */
 .label {
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 /* Font size and vertical alignment for colons */
 .colon {
-  font-size: 4rem;
+  font-size: 64px;
   vertical-align: top;
 }
 
 /* Font size and display style for time */
 .time {
-  font-size: 4rem;
+  font-size: 64px;
   display: block;
 }
 
 /* Font size, vertical alignment, and width for milliseconds and digits */
 .milliseconds, .digits {
-  font-size: 2rem;
+  font-size: 32px;
   vertical-align: top;
   display: inline-block;
   width: 50px;
