@@ -1,8 +1,13 @@
 import React from 'react'
+import '../styles/StopWatchButton.css'
 
-export default function StopWatchButton(props:any) {
+type Props = {
+  setTimeInSeconds: Function
+};
+
+export default function StopWatchButton(props:Props) {
     return(
-        <div>
+        <div className="controls">
           <button>Start</button>
           <button>Stop</button>
           <button>Resume</button>
