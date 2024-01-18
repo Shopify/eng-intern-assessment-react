@@ -1,5 +1,8 @@
 import React, { useState, useEffect} from 'react'
-import StopWatchButton from './StopWatchButton';
+import ResetButton from './buttons/ResetButton';
+import StartButton from './buttons/StartButton';
+import StopButton from './buttons/StopButton';
+import SetLapButton from './buttons/SetLapButton';
 
 export default function StopWatch() {
     const [time, setTime] = useState(0);
@@ -75,10 +78,10 @@ export default function StopWatch() {
     return (
         <div>
             <h1>{formatTime(time)}</h1>
-            <StopWatchButton onClick={handleStart}>Start</StopWatchButton>
-            <StopWatchButton onClick={handleStop}>Stop</StopWatchButton>
-            <StopWatchButton onClick={handleReset}>Reset</StopWatchButton>
-            <StopWatchButton onClick={handleLap}>Lap</StopWatchButton>
+            <StartButton onStart={handleStart}> Start </StartButton>
+            <StopButton onStop={handleStop}> Stop </StopButton>
+            <ResetButton onReset={handleReset}> Reset </ResetButton>
+            <SetLapButton setLap={handleLap}>Lap</SetLapButton>
             {laps.length > 0 && (<ul> {renderLaps()} </ul> )}
         </div>
     );

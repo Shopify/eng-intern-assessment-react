@@ -1,14 +1,15 @@
-import React, {MouseEventHandler} from 'react'
+import React, {MouseEventHandler, ReactNode} from 'react'
 import StopWatchButton from '../StopWatchButton'
 
 interface Props {
     onReset?: MouseEventHandler
+    children?: ReactNode
     // any props that come into the component
 }
 
-const ResetButton = ({ onReset }: Props) => {
+const ResetButton = ({ onReset, children }: Props) => {
   return (
-        <StopWatchButton onClick={onReset}> Reset </StopWatchButton>
+        <StopWatchButton onClick={onReset}> {children} </StopWatchButton>
     )
 }
 
