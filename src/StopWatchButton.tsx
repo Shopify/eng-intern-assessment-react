@@ -2,12 +2,20 @@
 
 import React from 'react'
 
-type ButtonProps = {
+type StartStopButtonProps = {
     setCounting: (counting: boolean) => void;
-    setTime: (time: number) => void;
 };
 
-export function StartButtonComponent({ setCounting }: ButtonProps) {
+type LapButtonProps = {
+    onLap: () => void;
+};
+
+type ResetButtonProps = {
+    setTime: (time: number) => void;
+    setLaps: (laps: number[]) => void;
+};
+
+export function StartButtonComponent({ setCounting }: StartStopButtonProps) {
     return(
         <div>
             <button onClick={() => setCounting(true)}>Start</button>
@@ -15,7 +23,7 @@ export function StartButtonComponent({ setCounting }: ButtonProps) {
     )
 }
 
-export function StopButtonComponent({ setCounting }: ButtonProps) {
+export function StopButtonComponent({ setCounting }: StartStopButtonProps) {
     return(
         <div>
             <button onClick={() => setCounting(false)}>Stop</button>
@@ -23,18 +31,18 @@ export function StopButtonComponent({ setCounting }: ButtonProps) {
     )
 }
 
-export function LapButtonComponent({ setCounting }: ButtonProps) {
+export function LapButtonComponent({ onLap }: LapButtonProps) {
     return(
         <div>
-            <button onClick={() => setCounting(true)}>Lap</button>
+            <button onClick={onLap}>Lap</button>
         </div>
     )
 }
 
-export function ResetButtonComponent({ setTime }: ButtonProps) {
+export function ResetButtonComponent({ setTime, setLaps }: ResetButtonProps) {
     return(
         <div>
-            <button onClick={() => setTime(0)}>Reset</button>
+            <button onClick={() => {setTime(0); setLaps([])}}>Reset</button>
         </div>
     )
 }

@@ -8,6 +8,7 @@ export default function App() {
 
     const[time, setTime] = useState(0);
     const[counting, setCounting] = useState(false);
+    const[laps, setLaps] = useState<number[]>([]);
  
     useEffect(() => {
         let interval: NodeJS.Timer = null;
@@ -28,20 +29,28 @@ export default function App() {
         };
     }, [counting]);
     
+    const handleLap = () => {
+        setLaps([...laps, time])
+    }
+    
     return(
         <div className="stopwatch">
         <div className="time">
             <DisplayComponent time={time}/>
         </div>
         <div className="button">
-            {!counting && (<StartButtonComponent setCounting={setCounting} setTime={setTime}/>)}
-            {counting && (<StopButtonComponent setCounting={setCounting} setTime={setTime}/>)}
-            {counting && (<LapButtonComponent setCounting={setCounting} setTime={setTime}/>)}
-            {!counting && (<ResetButtonComponent setCounting={setCounting} setTime={setTime}/>)}
+            {!counting && (<StartButtonComponent setCounting={setCounting}/>)}
+            {counting && (<StopButtonComponent setCounting={setCounting}/>)}
+            {counting && (<LapButtonComponent onLap={handleLap}/>)}
+            {!counting && (<ResetButtonComponent setTime={setTime} setLaps={setLaps}/>)}
         </div>
         <div className="laps">
-
-        </div>
+                {laps.map((lapTime, index) => (
+                    <div key={index}>
+                        Lap {index + 1}: <DisplayComponent time={lapTime} />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
