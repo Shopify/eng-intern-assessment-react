@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
+
+.button-container button{
+    text-align: center;
+    width: 200px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    text-transform: uppercase;
+    font-family: "Neucha" , cursive;
+    font-size: 65px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    /* Add space from the timer clock */
+    padding-top: 55px;
+    /* Add space between the row of buttons and the lap button */
+    margin-bottom: 50px;
+}
+
+.start_button, .stop_button, .reset_button {
+    /* Ensure all buttons grow equally */
+    flex: 1;
+    /* Add padding in-between buttons*/
+    margin: 0 20px;
+}
+
+.start_button:hover{
+    background-color: #32CD32;
+}
+
+.start_button:active{
+    transform: scale(0.8);
+}
+
+.stop_button:hover{
+    background-color: red;
+}
+.stop_button:active{
+    background-color: red;
+    transform: scale(0.8);
+}
+
+.reset_button:active{
+    transform: scale(0.8);
+}
+
+.lap_button{
+    /* Center the lap button */
+    display: block; /* Allows margin auto to be effective, by taking full width of div */
+    margin: 0 auto; /* horizontally center lap button within container */
+}
+
+.lap_button:active{
+    transform: scale(0.8);
+}
