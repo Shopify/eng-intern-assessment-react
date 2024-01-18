@@ -4,7 +4,7 @@ import StartButton from './buttons/StartButton';
 import StopButton from './buttons/StopButton';
 import SetLapButton from './buttons/SetLapButton';
 import useStopwatch from './hooks/useStopwatch';
-
+import './StopWatch.css'
 /**
  * @author Harsh Kothari
  * @returns a display of the time, all the stop watch buttons, and the laps if there are any
@@ -39,14 +39,15 @@ export default function StopWatch() {
     const renderLaps = (): JSX.Element[] => {
         return laps.map((lap, index) => (
             <li key={index}>
-                Lap {index + 1}: {formatTime(lap)}
+                <span className="lap-index">Lap {index + 1}:</span>
+                <span className="lap-time">{formatTime(lap)}</span>
             </li>
         ));
     };
 
     return (
-        <div>
-            <h1>{formatTime(time)}</h1>
+        <div className='Stop-watch-container'>
+            <h1 className='time-display'>{formatTime(time)}</h1>
             <StartButton onStart={handleStart}> Start </StartButton>
             <StopButton onStop={handleStop}> Stop </StopButton>
             <ResetButton onReset={handleReset}> Reset </ResetButton>
