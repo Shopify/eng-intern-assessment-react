@@ -17,7 +17,7 @@ export default function StopWatchButton({
     handleLap,
 }: StopWatchButtonProps) {
     return(
-        <div>
+        <div className='button-container'>
             <>
                 {isRunning ? (
                     <button onClick={handleLap}>Lap</button>

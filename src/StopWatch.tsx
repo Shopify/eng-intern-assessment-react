@@ -49,7 +49,18 @@ export default function StopWatch() {
         const milliseconds = Math.floor(time % 1000) / 10;
         const seconds = Math.floor(time/1000) % 60;
         const minutes = Math.floor(time/(1000 * 60)) % 60;
-        return `${minutes}:${seconds}:${milliseconds}`;
+
+        const formattedTime = `${padZero(minutes)}:${padZero(seconds)}:${padZero(milliseconds)}`;
+
+        return formattedTime;
+    };
+
+    const padZero = (time: number) => {
+        if (time < 10) {
+            return '0' + time;
+        } else {
+            return time;
+        }
     };
 
     return(
