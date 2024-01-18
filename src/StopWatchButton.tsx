@@ -1,9 +1,19 @@
 import React from 'react';
 
-export default function StopWatchButton() {
+interface StopWatchProps {
+    isRunning: boolean;
+    title: string;
+    secondaryTitle?: string;
+    onClick: () => void;
+}
+
+export default function StopWatchButton({
+    isRunning,
+    title,
+    secondaryTitle,
+    onClick,
+}: StopWatchProps) {
     return (
-        <div>
-            <button>Test</button>
-        </div>
+        <button onClick={onClick}>{isRunning && secondaryTitle ? secondaryTitle : title}</button>
     );
 }
