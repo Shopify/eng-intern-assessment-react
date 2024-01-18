@@ -1,0 +1,114 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #121212;
+  color: #96bf48; /* Shopify green */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 72px;
+  margin: 40px;
+}
+
+h2 {
+  margin: 10px 0;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.laps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 250px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.strip-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+.strip-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.strip-left img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  padding: 30px;
+  animation: move-down 15s linear infinite;
+}
+
+.strip-right img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  padding: 30px;
+  animation: move-up 15s linear infinite;
+}
+
+@keyframes move-down { /* Animation to make left strip move down */
+  from {
+    transform: translateY(-1000px);
+  }
+  to {
+    transform: translateY(900px);
+  }
+}
+
+@keyframes move-up { /* Animation to make right strip move up */
+  from {
+    transform: translateY(850px);
+  }
+  to {
+    transform: translateY(-900px);
+  }
+}
+
+/* Adjusted logo size if needed */
+#LVMH, #pepsico, #abinbev, #kraftheinz, #redbull, #hyatt, #fitbit, #gymshark, #kylie, #kkw{
+  height: auto;
+}

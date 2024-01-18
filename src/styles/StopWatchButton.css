@@ -1,0 +1,29 @@
+button {
+  display: block;
+  width: 200px;
+  height: 75px;
+  margin: 20px 5px;
+  background-color: #212b36; /*Shopify navy */
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  line-height: 75px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border: 2px solid #96bf48;
+}
+
+button:hover {
+  background-color: #679436;
+}
+
+button:disabled {
+  opacity: 0.6; /* Added to make the button look disabled */
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: #212b36; /* Added to make the button look disabled */
+}
