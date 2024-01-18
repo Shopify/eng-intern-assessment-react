@@ -5,15 +5,20 @@ import StopButton from './buttons/StopButton';
 import SetLapButton from './buttons/SetLapButton';
 import useStopwatch from './hooks/useStopwatch';
 
+/**
+ * @author Harsh Kothari
+ * @returns a display of the time, all the stop watch buttons, and the laps if there are any
+ */
 export default function StopWatch() {
 
-    const { time, handleStart, handleStop, handleReset } = useStopwatch();
-    const [laps, setLaps] = useState<number[]>([]);
+    const { time, handleStart, handleStop, handleReset, handleLaps, laps } = useStopwatch();
 
-    const handleLap = (): void => {
-        setLaps(prevLaps => [...prevLaps, time]); // update with the current time
-    };
 
+    /**
+     * takes time  and returns formatted time like this: 00:00:00 in minutes, seconds and centiseconds
+     * @param time (in millseconds)
+     * @returns formatted time
+     */
     const formatTime = (time: number): string => {
         // time is in miillseconds so we have to floor the resulting value 
         const minutes = Math.floor((time / 60000) % 60);
@@ -26,8 +31,11 @@ export default function StopWatch() {
     
         return `${formattedMinutes}:${formattedSeconds}:${formattedCentiseconds}`;
     };
-
-    // render laps as a function that is always called in the return of the react component
+ 
+    /**
+     * always called in the return of the react component
+     * @returns an array of <li> tags, each with the lap number and formatted time
+     */
     const renderLaps = (): JSX.Element[] => {
         return laps.map((lap, index) => (
             <li key={index}>
@@ -42,7 +50,7 @@ export default function StopWatch() {
             <StartButton onStart={handleStart}> Start </StartButton>
             <StopButton onStop={handleStop}> Stop </StopButton>
             <ResetButton onReset={handleReset}> Reset </ResetButton>
-            <SetLapButton setLap={handleLap}>Lap</SetLapButton>
+            <SetLapButton setLap={handleLaps}>Lap</SetLapButton>
             {laps.length > 0 && (<ul> {renderLaps()} </ul> )}
         </div>
     );
