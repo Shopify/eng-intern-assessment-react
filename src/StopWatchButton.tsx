@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+export default function StopWatchButton(props:any) {
     return(
         <div>
           <button>Start</button>
