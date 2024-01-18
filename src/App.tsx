@@ -6,13 +6,15 @@ import StopWatchButton from './StopWatchButton'
 export default function App() {
     let intervalID: ReturnType<typeof setInterval>;
 
-    const [counter, setCounter] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [hours, setHours] = useState(0);
     const [counting, setCounting] = useState(false);
-
+    
     useEffect(() => {
         if (counting) {
             intervalID = setInterval(() => {
-                setCounter(counter => counter + 1);
+                setSeconds(seconds => seconds + 1);
             }, 1000)
         } else {
             clearInterval(intervalID);
@@ -25,7 +27,7 @@ export default function App() {
 
     return(
         <div>
-            <StopWatch seconds={counter}/>
+            <StopWatch hours={hours} minutes={minutes} seconds={seconds}/>
             <StopWatchButton text="Start" handleClick={() => {
                 setCounting(true);
             }}/>
@@ -34,7 +36,9 @@ export default function App() {
             }}/>
             <StopWatchButton text="Reset" handleClick={() => {
                 setCounting(false);
-                setCounter(0);
+                setSeconds(0);
+                setMinutes(0);
+                setHours(0);
             }}/>
         </div>
     )
