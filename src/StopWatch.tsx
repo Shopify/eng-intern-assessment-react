@@ -4,6 +4,15 @@ import {Simulate} from "react-dom/test-utils";
 import "./StopWatch.css"
 
 
+// for further localization if needed
+const buttonContent = {
+    start: "Start",
+    stop: "Stop",
+    lap: "Lap",
+    reset: "Reset",
+}
+
+
 export default function StopWatch() {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
@@ -16,7 +25,7 @@ export default function StopWatch() {
 
     const lapReset = () => {
         if (isRunning) {
-            const currentTime = elapsedTime
+            const currentTime = elapsedTime // make a reference for current time when lap is clicked, increase accuracy
             const lapTime = currentTime - lastLapTime;
             setLaps(prevLaps => [...prevLaps, lapTime]);
             setLastLapTime(lapTime + lastLapTime);
@@ -27,7 +36,6 @@ export default function StopWatch() {
             setLastLapTime(0);
         }
     }
-
 
     // Time elapsing and resetting
     useEffect(() => {
@@ -50,6 +58,7 @@ export default function StopWatch() {
         return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(2, "0")}`;
     };
 
+    // render shortest and longest lap in green and red respectively
     const getShortestAndLongestLapIndices = () => {
         let shortestLapIndex = 0;
         let longestLapIndex = 0;
@@ -111,28 +120,24 @@ export default function StopWatch() {
 
     const startButtonStyle: React.CSSProperties = {
         border: "3px solid #0A2A12",
-        boxSizing: "border-box",
         backgroundColor: "#0A2A12",
         color: "#45CA57",
     }
 
     const stopButtonStyle: React.CSSProperties = {
         border: "3px solid #330E0A",
-        boxSizing: "border-box",
         backgroundColor: "#330E0A",
         color: "#EB524C",
     }
 
     const resetButtonStyle: React.CSSProperties = {
         border: "3px solid #323232",
-        boxSizing: "border-box",
         backgroundColor: "#323232",
         color: "white",
     }
 
     const resetButtonStyleDisabled: React.CSSProperties = {
         border: "3px solid #1C1B1E",
-        boxSizing: "border-box",
         backgroundColor: "#1C1B1E",
         color: "#99989C",
     }
@@ -167,12 +172,12 @@ export default function StopWatch() {
                         <h1 className={"stopWatchTime"}>{formatTime(elapsedTime)}</h1>
                     </div>
                     <div style={buttonSectionStyle}>
-                        <StopWatchButton buttonName={isRunning ? "Lap" : (elapsedTime > 0 ? "Reset" : "Lap")}
+                        <StopWatchButton buttonName={isRunning ? buttonContent["lap"] : (elapsedTime > 0 ? buttonContent["reset"] : buttonContent["lap"])}
                                          buttonFunction={lapReset}
                                          disabled={elapsedTime === 0 && !isRunning}
                                          style={elapsedTime === 0 && !isRunning ? resetButtonStyleDisabled : resetButtonStyle}
                         />
-                        <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
+                        <StopWatchButton buttonName={isRunning ? buttonContent["stop"] : buttonContent["start"]}
                                          buttonFunction={toggleStartStop}
                                          disabled={false}
                                          style={isRunning ? stopButtonStyle : startButtonStyle}
