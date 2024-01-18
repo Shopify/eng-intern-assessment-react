@@ -3,10 +3,10 @@ import calculateTime from './helpers/calculateTime'
 
 export default function StopWatch() {
   const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
-  const [timerArray, setTimerArray] = useState<Array<number>>([]);
+  const [timerArray, setTimerArray] = useState<Array<number|string>>([]);
 
   useEffect(() => {
-    let timeArray: Array<number> = calculateTime(timeInSeconds);
+    let timeArray: Array<number|string> = calculateTime(timeInSeconds);
     setTimerArray(timeArray);
   }, [timeInSeconds])
 
