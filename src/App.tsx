@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ChakraProvider, Flex, Text } from "@chakra-ui/react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import { render } from "@testing-library/react";
 
 //This function displays the seconds in a hh:mm:ss format
 const helperDisplay = (seconds: number) => {
