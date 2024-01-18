@@ -1,156 +1,217 @@
-.app {
-    font-family: "Inter", sans-serif;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevent overall page scroll */
+/* Global Variables */
+/* Global CSS Variables for Light Theme */
+:root {
+  --background-color: #fff;                      /* General background color for the app */
+  --text-color: #000;                            /* Primary text color */
+  --button-bg-color: #34445B;                    /* Background color for buttons */
+  --button-text-color: #fff;                     /* Text color for buttons */
+  --button-hover-bg-color: #263238;              /* Background color for buttons on hover */
+  --lap-bg-color: #fff;                          /* Background color for lap times */
+  --table-header-bg-color: #fff;                 /* Background color for table headers */
+  --table-border-color: #eee;                    /* Border color for tables */
+  --header-bg-color: #f2f2f2;                    /* Background color for the header */
+  --laps-title-bg-color: #f2f2f2;                /* Background color for lap title */
+  --export-button-color: #4db6ac;                /* Color for export button */
+  --export-button-hover-text-color: #37474f;     /* Text color for export button on hover */
+  --clear-button-hover-border-color: #e57373;    /* Border color for clear button on hover */
+  --button-hover-background-color: #121212;      /* Background color for buttons on hover in dark mode */
 }
 
+/* CSS Variables for Dark Theme */
+[data-theme='dark'] {
+  --background-color: #121212;                  /* General background color for the app in dark mode */
+  --text-color: #ffffff;                        /* Primary text color in dark mode */
+  --button-bg-color: #1c1c1e;                   /* Background color for buttons in dark mode */
+  --button-hover-bg-color: #313133;             /* Background color for buttons on hover in dark mode */
+  --lap-bg-color: #1c1c1e;                      /* Background color for lap times in dark mode */
+  --table-header-bg-color: #1c1c1e;             /* Background color for table headers in dark mode */
+  --table-border-color: #3c3c3e;                /* Border color for tables in dark mode */
+  --header-bg-color: #1c1c1e;                   /* Background color for the header in dark mode */
+  --laps-title-bg-color: #2c2c2e;               /* Background color for lap title in dark mode */
+}
+
+/* Base styles for html and body */
+html, body {
+  margin: 0;
+  overflow-y: hidden;
+  padding: 0;
+  height: 100%;
+  background: var(--background-color);
+  font-family: "Inter", sans-serif;
+}
+
+/* App container styles */
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* Header styles */
 .header {
-    width: 100%; /* Full width */
-    text-align: center; /* Center the text */
+  width: 100%;
+  text-align: center;
+  background-color: var(--header-bg-color);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .header h1 {
-    color: #fff;
-    margin-top: 2rem;
-    font-size: 3rem;
-    font-family: 'Montserrat', sans-serif;
+  color: var(--text-color);
+  font-size: 3rem;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
 }
 
+/* Theme toggle button styles */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Container for lap times */
 .laps-container {
-    width: 80%;
-    margin: 2rem auto; /* Adjusted for space from the header */
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    background: #fff; /* Solid white background for the entire container */
-    position: relative;
+  width: 80%;
+  margin: 2rem auto;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--lap-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* Title styles for laps container */
 .laps-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    color: #333;
-    background: #f2f2f2;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    text-align: center;
-    padding: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: var(--text-color);
+  background: var(--laps-title-bg-color);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  padding: 4px;
 }
 
+/* Content styles inside laps container */
 .laps-content {
-    max-height: calc(40px * 6 + 40px); /* Adjust this calculation based on your actual header and row heights */
-    overflow-y: auto;
-    padding: 0 20px;
+  flex: 1;
+  max-height: calc(40px * 6 + 40px);
+  overflow-y: auto;
+  padding: 0 20px;
 }
 
-.lap {
-    display: flex;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.lap > span {
-    flex: 1;
-    text-align: center;
-}
-
-.lap-number {
-    flex: none;
-    width: 50px;
-    text-align: left;
-}
-
-.lap-time,
-.lap-elapsed-time,
-.lap-current-time {
-    flex: 1;
-}
-
-.clear-laps,
-.export-laps {
-    width: 50%;
-    text-align: center;
-    padding: 10px 20px;
-    font-weight: bold;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    background-color: #34445B;
-}
-
-.clear-laps {
-    border-radius: 0 0 0 10px;
-}
-
-.export-laps {
-    border-radius: 0 0 10px 0;
-}
-
-.button-container {
-    position: sticky;
-bottom: 0;
-left: 0;
-width: 100%;
-background: #fff; /* Ensuring the buttons have a solid background */
-z-index: 5;
-}
-
-.button {
-flex: 1;
-text-align: center;
-cursor: pointer;
-border: none;
-font-weight: bold;
-color: #fff;
-font-family: 'Montserrat', sans-serif;
-text-transform: uppercase;
-padding: 10px 0; /* Adjust padding for aesthetic spacing */
+/* Styling for table headers and individual lap rows */
+.table-headers, .lap {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--table-border-color);
 }
 
 .table-headers {
-position: sticky;
-top: 0;
-z-index: 10;
-background: #fff;
-padding: 10px 20px;
-border-bottom: 2px solid #eee;
-margin-top: 0px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--table-header-bg-color);
 }
 
-.table-headers span {
-flex: 1;
-text-align: center;
-font-weight: bold;
+/* Common styling for lap number and header columns */
+.lap-number,
+.table-headers > .lap-number {
+  width: 50px;
+  text-align: center;
 }
 
-.table-headers, .lap {
-display: flex;
-justify-content: space-between;
-padding: 10px 20px;
-align-items: center;
+/* Common styling for lap time, elapsed time, and current time columns */
+.lap-time,
+.lap-elapsed-time,
+.lap-current-time,
+.table-headers > .lap-time,
+.table-headers > .lap-elapsed-time,
+.table-headers > .lap-current-time {
+  flex: 1;
+  text-align: center;
 }
 
-.table-header-item, .lap-item {
-flex: 1;
-text-align: center;
-position: relative;
+/* Container for buttons */
+.button-container {
+  position: static;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
 }
 
-.table-header-item:not(:last-child)::after, .lap-item:not(:last-child)::after {
-content: '';
-position: absolute;
-right: 0;
-top: 0;
-bottom: 0;
-width: 1px;
-background-color: #eee;
+/* Common styles for all buttons */
+.button,
+.clear-laps,
+.export-laps {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  color: var(--button-text-color);
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  padding: 10px 0;
+  background-color: var(--button-bg-color);
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.lap-number {
-flex: 0 0 50px;
-text-align: left;
+/* Hover styles for all buttons */
+.button:hover,
+.clear-laps:hover,
+.export-laps:hover {
+  background-color: var(--button-hover-bg-color);
+}
+
+/* Clear laps button specific styles */
+.clear-laps {
+  border-radius: 0 0 0 10px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid transparent;
+  margin-left: -10px;
+}
+
+.clear-laps:hover {
+  background-color: var(--button-hover-background-color);
+  color: var(--button-text-color);
+  border-color: var(--clear-button-hover-border-color);
+}
+
+/* Export button specific styles */
+.export-laps {
+  border-radius: 0 0 10px 0;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid transparent;
+  margin-right: -10px;
+}
+
+.export-laps:hover {
+  background-color: var(--button-hover-background-color);
+  color: #ffffff;
+  border-color: var(--export-button-color);
 }

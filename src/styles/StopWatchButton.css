@@ -1,41 +1,52 @@
+/* Global color variables for the light theme */
+:root {
+  --button-bg-color: #34445B;                   /* Background color for buttons */
+  --button-text-color: #fff;                    /* Text color for buttons */
+  --button-shadow-color: rgba(0, 0, 0, 0.1);    /* Shadow color for buttons */
+  --button-hover-bg-color: #263238;             /* Background color for buttons on hover */
+  --button-hover-text-color: #fff;              /* Text color for buttons on hover */
+}
+
+/* Global color variables for the dark theme */
+[data-theme='dark'] {
+  --button-bg-color: #1c1c1e;                   /* Background color for buttons in dark mode */
+  --button-text-color: #ddd;                    /* Text color for buttons in dark mode */
+  --button-shadow-color: rgba(255, 255, 255, 0.1); /* Shadow color for buttons in dark mode */
+  --button-hover-bg-color: #313133;             /* Background color for buttons on hover in dark mode */
+  --button-hover-text-color: #ddd;              /* Text color for buttons on hover in dark mode */
+}
+
+/* Container styles for stopwatch buttons */
 .stopwatch-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 1rem; /* Adjust this value to position the buttons correctly */
-  }
-  
-  .button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    background-color: #34445B;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 5px;
-    font-weight: bold;
-    min-width: 100px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-  }
-  
-  .button.start:hover, .button.stop:hover {
-    background-color: #263238;
-  }
-  
-  .button.reset:hover, .button.lap:hover {
-    background-color: #4f5b62;
-    color: white;
-  }
-  
-  /* Ensure that the buttons are centered in the button container */
-  .button.lap, .button.reset {
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* General styles for buttons */
+.button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  font-weight: bold;
+  min-width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px var(--button-shadow-color);
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Hover styles for buttons */
+.button:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
+}
