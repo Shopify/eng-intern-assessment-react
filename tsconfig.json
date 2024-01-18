@@ -5,6 +5,7 @@
     "module": "es6",
     "target": "es5",
     "jsx": "react",
+    "resolveJsonModule": true,
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
