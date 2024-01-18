@@ -36,7 +36,7 @@ export default function StopWatch() {
     const handleReset = () => {
         setElapsedTime(0)
         setIsRunning(false)
-        
+        setLaps([])
     }
 
     const handleLaps = () => {
