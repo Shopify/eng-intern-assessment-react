@@ -66,7 +66,6 @@ export default function StopWatch() {
     } else {
       setBtnStatus(ButtonStatus.Play);
     }
-    // Additional logic based on the status
   };
 
   const resetTimer = () => {
