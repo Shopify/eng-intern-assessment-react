@@ -1,11 +1,10 @@
 import React, {useState, useEffect, CSSProperties} from "react"
 import StopWatchButton from "./StopWatchButton";
-import {Simulate} from "react-dom/test-utils";
 import "./StopWatch.css"
 
 
 // for further localization if needed
-const buttonContent = {
+export const buttonContent = {
     start: "Start",
     stop: "Stop",
     lap: "Lap",
@@ -108,10 +107,12 @@ export default function StopWatch() {
                 fontWeight: "lighter",
                 fontSize: "20px",
             }
+
+            // role should not be changed, otherwise test will fail
             return (
                 <li key={laps.length + 1} style={lapStyle}>
                     <span>Lap {laps.length + 1}</span>
-                    <span>{formatTime(elapsedTime - lastLapTime)}</span>
+                    <span role={"currentLapTime"}>{formatTime(elapsedTime - lastLapTime)}</span>
                 </li>
             )
         }
@@ -174,8 +175,8 @@ export default function StopWatch() {
                     <div style={buttonSectionStyle}>
                         <StopWatchButton buttonName={isRunning ? buttonContent["lap"] : (elapsedTime > 0 ? buttonContent["reset"] : buttonContent["lap"])}
                                          buttonFunction={lapReset}
-                                         disabled={elapsedTime === 0 && !isRunning}
-                                         style={elapsedTime === 0 && !isRunning ? resetButtonStyleDisabled : resetButtonStyle}
+                                         disabled={(elapsedTime === 0 && !isRunning)}
+                                         style={(elapsedTime === 0 && !isRunning) ? resetButtonStyleDisabled : resetButtonStyle}
                         />
                         <StopWatchButton buttonName={isRunning ? buttonContent["stop"] : buttonContent["start"]}
                                          buttonFunction={toggleStartStop}
@@ -184,7 +185,7 @@ export default function StopWatch() {
                         />
                     </div>
                 </div>
-                <div style={{flexGrow: 1, overflowY: "auto"}}>
+                <div style={{flexGrow: 1, overflowY: "auto"}} className={"lapContainer"}>
                     <ul style={lapSectionStyle}>
                         {renderCurrentLap()}
                         {renderLaps()}
