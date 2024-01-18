@@ -1,0 +1,9 @@
+.stopwatch-button {
+    background-color: #595f39;
+    color: #C4C5BA;
+    padding: 25px;
+    border: none;
+    margin: 15px;
+    font-size: 2rem;
+    border-radius: 50%;
+}

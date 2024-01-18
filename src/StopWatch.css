@@ -7,7 +7,17 @@
     font-size: 6rem;
 }
 
+.timer p {
+    margin: 3rem 0;
+}
+
 .timer-colon {
     position: relative;
     bottom: 5px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
