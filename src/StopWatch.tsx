@@ -26,10 +26,16 @@ export default function StopWatch(props:StopWatchProps) {
 
     const {time, laps, currentLap} = props
 
+    // Ratio of current lap time to first lap time, used for visualizing comparison to inital lap
+    const initialLapRatio = laps.length > 0 && currentLap ? (currentLap.lapTime % laps[0].lapTime) / laps[0].lapTime : 0
+
     return(
         <Container data-testid="stopwatch">
             {/* Stopwatch face */}
             <StopWatchContainer>
+                {/* A circling ring which rotates based on the first lap time recorded */}
+                <LapTimerRing ringratio={initialLapRatio}/>
+                <WatchFace />
                 <TimeDisplay data-testid="time-display">
                     {formatTime(time)}
                 </TimeDisplay>
@@ -85,19 +91,55 @@ const StopWatchContainer = styled.div`
     justify-content: center;
     width: 300px;
     height: 300px;
-    border-radius: 300px;
-    border: 10px solid #F5F5F5;
+    position: relative;
 
     @media (max-width: 900px) {
         width: 230px;
         height: 230px;
-        border-width: 8px;
+    }
+`
+
+// displays the ring which cycles based on the first lap time
+const LapTimerRing = styled.div<{ringratio:number}>`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+    background-color: #D3DAED;
+    z-index: 1;
+    background-image: ${props => 
+        props.ringratio <= 0.5 ? `linear-gradient(${props.ringratio * 360 + 90}deg, transparent 50%, #F5F5F5 50%), linear-gradient(90deg, #F5F5F5 50%, transparent 50%)`:
+        `linear-gradient(${props.ringratio * 360 - 90}deg, transparent 50%, #D3DAED 50%), linear-gradient(90deg, #F5F5F5 50%, transparent 50%)`
+    };
+
+    @media (max-width: 900px) {
+        width: 230px;
+        height: 230px;
+    }
+`
+
+const WatchFace = styled.div`
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 280px;
+    height: 280px;
+    border-radius: 280px;
+    background-color: white;
+    z-index: 2;
+
+    @media (max-width: 900px) {
+        width: 210px;
+        height: 210px;
     }
 `
 
 const TimeDisplay = styled.span`
     color: #5D636C;
     font-size: 35px;
+    z-index: 3;
 
     @media (max-width: 900px) {
         font-size: 28px;
