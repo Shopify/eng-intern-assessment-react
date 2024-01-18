@@ -1,0 +1,88 @@
+
+.playButton {
+    background-color: #27A397; /* Blue background */
+    border: none;
+    border-radius: 50%; /* Circular button */
+    width: 80px; /* Size of the button */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: relative; /* Needed to position the icon correctly */
+    font-size: 80px; /* Large font size for a larger icon */
+  }
+  
+  /* Additional styles for hover effects, etc. */
+  .playButton:hover,
+  .playButton:focus {
+    background-color: #1D9C91; /* Darker blue on hover/focus */
+    outline: none; /* Remove default focus outline */
+  }
+
+  .resetButton {
+    background-color: #D8DDDC; /* Blue background */
+    border: none;
+    padding:20px;
+    border-radius: 50%; /* Circular button */
+    width: 60px; /* Size of the button */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: absolute; /* Needed to position the icon correctly */
+    left: -77px;
+    top: 11px;
+    font-size: 80px; /* Large font size for a larger icon */
+  }
+  
+  /* Additional styles for hover effects, etc. */
+  .resetButton:hover,
+  .resetButton:focus {
+    background-color: #90c7c4; /* Darker blue on hover/focus */
+    outline: none; /* Remove default focus outline */
+  }
+
+.iconContainer {
+    display: flex; /* Use flex layout to center the icon */
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.4); /* Adjust scale as needed */
+  }
+
+  .lapButton {
+    background-color: #D8DDDC; /* Blue background */
+    border: none;
+    padding:20px;
+    border-radius: 50%; /* Circular button */
+    width: 60px; /* Size of the button */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: absolute; /* Needed to position the icon correctly */
+    left: 97px;
+    top: 11px;
+    font-size: 80px; /* Large font size for a larger icon */
+  }
+  
+  /* Additional styles for hover effects, etc. */
+  .lapButton:hover,
+  .lapButton:focus {
+    background-color: #90c7c4; /* Darker blue on hover/focus */
+    outline: none; /* Remove default focus outline */
+  }
+
+.iconContainer {
+    display: flex; /* Use flex layout to center the icon */
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.4); /* Adjust scale as needed */
+  }
+  
+  
