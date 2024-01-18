@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 
+type Lap = {
+    time: number;
+    lapNum: number;
+};
+
 export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
-    const [laps, setLaps] = useState<Array<any>>([]);
+    const [laps, setLaps] = useState<Lap[]>([]);
+    const [lapStartTime, setLapStartTime] = useState(0);
+    const [numLaps, setNumLaps] = useState(0); // for quickly labeling current lap
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -19,12 +26,17 @@ export default function StopWatch() {
 
     const handleStart = () => {
         setRunning(true);
-        // TODO: Add lap functionality
+        if (!numLaps) {
+            setNumLaps(prevNumLaps => prevNumLaps + 1);
+        } else {
+            laps.shift(); // avoid duplication of current lap when resuming stopwatch
+        }
     };
 
     const handleStop = () => {
         setRunning(false);
-        // TODO: Add lap functionality
+        const latestLap: Lap = { time: time - lapStartTime, lapNum: numLaps };
+        setLaps([latestLap, ...laps]);
     };
 
     const handleStartStop = () => {
@@ -34,13 +46,18 @@ export default function StopWatch() {
 
     const handleLap = () => {
         if (!running) return;
-        // TODO: Add lap functionality
+        const latestLap: Lap = { time: time - lapStartTime, lapNum: numLaps };
+        setLaps([latestLap, ...laps]);
+        setNumLaps(prevNumLaps => prevNumLaps + 1);
+        setLapStartTime(time);
     };
 
     const handleReset = () => {
         setTime(0);
         setRunning(false);
         setLaps([]);
+        setNumLaps(0);
+        setLapStartTime(0);
     };
 
     return (
@@ -56,8 +73,13 @@ export default function StopWatch() {
             <StopWatchButton isRunning={running} title="Lap" onClick={handleLap} />
             <StopWatchButton isRunning={running} title="Reset" onClick={handleReset} />
             <div>
-                {laps.length > 0 && <h3>Laps</h3>}
+                {numLaps > 0 && <h3>Laps</h3>}
                 <ul data-testid="laps-list">
+                    {running && (
+                        <li>
+                            Lap {numLaps}: {formatTime(time - lapStartTime)}
+                        </li>
+                    )}
                     {laps.map(({ time, lapNum }) => (
                         <li key={lapNum}>
                             Lap {lapNum}: {formatTime(time)}
@@ -74,7 +96,7 @@ export default function StopWatch() {
  * @param {number} ms - time in milliseconds
  * @returns {string} - formatted time
  **/
-const formatTime = (ms: number): string => {
+export function formatTime(ms: number): string {
     const hours = Math.floor(ms / 3600000);
     const minutes = Math.floor(ms / 60000) % 60;
     const seconds = Math.floor(ms / 1000) % 60;
@@ -83,4 +105,4 @@ const formatTime = (ms: number): string => {
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(
         seconds
     ).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
-};
+}
