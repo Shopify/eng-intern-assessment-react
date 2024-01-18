@@ -38,6 +38,7 @@ const StopWatchButton: React.FC<StopWatchButtonsProps> = ({
   return (
     <div style={{ display: "flex" }}>
       <button
+        data-testid="resetButton"
         className="resetButton"
         onClick={onReset}
         disabled={
@@ -51,7 +52,11 @@ const StopWatchButton: React.FC<StopWatchButtonsProps> = ({
           <FontAwesomeIcon icon={faRotateRight} />
         </div>
       </button>
-      <button className="playButton" onClick={handlePause}>
+      <button
+        data-testid="playButton"
+        className="playButton"
+        onClick={handlePause}
+      >
         <div className="iconContainer">
           <FontAwesomeIcon
             icon={btnStatus === ButtonStatus.Play ? faPause : faPlay}
@@ -59,6 +64,7 @@ const StopWatchButton: React.FC<StopWatchButtonsProps> = ({
         </div>
       </button>
       <button
+        data-testid="lapButton"
         className="lapButton"
         onClick={onLap}
         disabled={btnStatus === ButtonStatus.Play ? false : true}
