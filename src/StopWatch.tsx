@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function DisplayComponent({time}: {time: number}) {
     return(
-    <div className="stopwatch-display">
+    <div>
         <h1 className="time">{formatTime(time)}</h1>
     </div>
     )

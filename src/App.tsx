@@ -2,24 +2,31 @@
 
 import React, {useEffect, useRef, useState} from 'react'
 import DisplayComponent from './StopWatch'
-import ButtonComponent from './StopWatchButton'
+import { LapButtonComponent, ResetButtonComponent, StartButtonComponent, StopButtonComponent } from './StopWatchButton';
 
 export default function App() {
 
     const[time, setTime] = useState(0);
-    const[counting, setCounting] = useState(true);
+    const[counting, setCounting] = useState(false);
  
     useEffect(() => {
-        let interval = null;
-
+        let interval: NodeJS.Timer = null;
+    
         if (counting) {
             interval = setInterval(() => {
-                setTime(prevTime => prevTime + 10)
-            }, 10)
-        } else {
-            clearInterval(interval)
+                setTime(prevTime => prevTime + 10);
+            }, 10);
+        } else if (interval) {
+            clearInterval(interval);
         }
-    }, [counting])
+    
+        // Cleanup function to clear the interval when 'counting' changes value
+        return () => {
+            if (interval) {
+                clearInterval(interval);
+            }
+        };
+    }, [counting]);
     
     return(
         <div className="stopwatch">
@@ -27,7 +34,10 @@ export default function App() {
             <DisplayComponent time={time}/>
         </div>
         <div className="button">
-            <ButtonComponent />
+            {!counting && (<StartButtonComponent setCounting={setCounting} setTime={setTime}/>)}
+            {counting && (<StopButtonComponent setCounting={setCounting} setTime={setTime}/>)}
+            {counting && (<LapButtonComponent setCounting={setCounting} setTime={setTime}/>)}
+            {!counting && (<ResetButtonComponent setCounting={setCounting} setTime={setTime}/>)}
         </div>
         <div className="laps">
 
