@@ -1,16 +1,12 @@
-import React from 'react'
+import React from "react";
 
 /**
  * This represents the stopwatch display
  */
-export default function StopWatch({children}: StopWatchProps) {
-    return(
-        <div className="p-5 text-8xl text-center">
-            {children}
-        </div>
-    )
+export default function StopWatch({ children }: StopWatchProps) {
+  return <div className="p-5 text-center text-8xl">{children}</div>;
 }
 
 type StopWatchProps = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
