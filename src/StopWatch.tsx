@@ -6,21 +6,30 @@ import StopWatchButton from "./StopWatchButton";
 import { ButtonStatus } from "./types";
 import Laps from "./Laps";
 
+/**
+ * The StopWatch component is responsible for displaying and controlling
+ * a stopwatch with start, pause, reset, and lap functionalities.
+ */
 export default function StopWatch() {
+  // State for the stopwatch button status (Play/Pause)
   const [btnStatus, setBtnStatus] = useState<ButtonStatus>(ButtonStatus.Play);
 
+  // State for tracking time in minutes, seconds, and milliseconds
   const [time, setTime] = useState({
     minutes: 0,
     seconds: 0,
     milliseconds: 0,
   });
 
+  // State for storing lap times
   const [laps, setLaps] = useState([]); // Each lap will be { lapTime: number, totalTime: number }
 
+  // Refs for managing time and animation frame
   const startTimeRef = useRef<number | null>(null);
   const elapsedTimeRef = useRef<number>(0);
   const requestRef = useRef<number>();
 
+  // Function to update the stopwatch time
   const animate = () => {
     if (startTimeRef.current !== null) {
       const currentTime = Date.now();
@@ -35,17 +44,18 @@ export default function StopWatch() {
     requestRef.current = requestAnimationFrame(animate);
   };
 
+  // Helper function to format milliseconds for display
   const formatMilliseconds = (milliseconds: number) => {
     milliseconds = Math.floor(milliseconds / 10);
     return milliseconds < 10 ? `0${milliseconds}` : `${milliseconds}`;
   };
 
+  // Effect hook to handle stopwatch start and pause functionality
   useEffect(() => {
     if (btnStatus === ButtonStatus.Pause) {
       startTimeRef.current = Date.now();
       requestRef.current = requestAnimationFrame(animate);
     } else {
-      // Store the elapsed time when paused and clear the interval
       if (startTimeRef.current !== null) {
         elapsedTimeRef.current += Date.now() - startTimeRef.current;
         startTimeRef.current = null;
@@ -55,49 +65,41 @@ export default function StopWatch() {
     return () => cancelAnimationFrame(requestRef.current);
   }, [btnStatus]);
 
-  const outerRadius = 200; // Radius for the outer circle of the stopwatch
-  const dotsRadius = 190; // Radius for the circle where the dots will be placed
-  const dots = 60; // Number of dots
+  // Constants for the stopwatch's visual elements
+  const outerRadius = 200;
+  const dotsRadius = 190;
+  const dots = 60;
   const movingDotRadius = 180;
 
+  // Function to handle stopwatch button status change
   const handleStatusChange = (status: ButtonStatus) => {
-    if (status === ButtonStatus.Play) {
-      setBtnStatus(ButtonStatus.Pause);
-    } else {
-      setBtnStatus(ButtonStatus.Play);
-    }
+    setBtnStatus(
+      status === ButtonStatus.Play ? ButtonStatus.Pause : ButtonStatus.Play
+    );
   };
 
+  // Function to reset the stopwatch
   const resetTimer = () => {
-    // Reset time state to zero
-    setTime({
-      minutes: 0,
-      seconds: 0,
-      milliseconds: 0,
-    });
+    setTime({ minutes: 0, seconds: 0, milliseconds: 0 });
     setLaps([]);
-    // Reset elapsed time and start time references
     elapsedTimeRef.current = 0;
     startTimeRef.current = null;
-    // If the timer is running, stop it
     cancelAnimationFrame(requestRef.current);
     setBtnStatus(ButtonStatus.Play);
   };
 
+  // Function to record a lap time
   const addLap = () => {
     const newTotalTime =
       time.minutes * 60000 + time.seconds * 1000 + time.milliseconds;
     const lastLapTime = laps[0]?.totalTime || 0;
     const newLapTime = newTotalTime - lastLapTime;
 
-    const newLap = {
-      lapTime: newLapTime,
-      totalTime: newTotalTime,
-    };
-
+    const newLap = { lapTime: newLapTime, totalTime: newTotalTime };
     setLaps([newLap, ...laps]);
   };
 
+  // JSX for rendering the stopwatch component
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}

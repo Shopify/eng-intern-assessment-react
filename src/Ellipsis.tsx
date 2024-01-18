@@ -2,11 +2,13 @@ import React from "react";
 import Dot from "./Dot";
 import MovingDot from "./MovingDot";
 
+// Interface for the position of a dot
 interface DotPosition {
   x: number;
   y: number;
 }
 
+// Props for the Ellipsis component
 interface EllipsisProps {
   outerRadius: number;
   dotsRadius: number;
@@ -17,11 +19,16 @@ interface EllipsisProps {
   milliseconds: number;
 }
 
+// Style properties for a dot
 interface DotStyle {
   dotColor: string;
   dotSize: number;
 }
 
+/**
+ * The Ellipsis component renders a circular arrangement of dots and a moving dot
+ * to represent the passage of time in a stopwatch.
+ */
 const Ellipsis: React.FC<EllipsisProps> = ({
   outerRadius,
   dotsRadius,
@@ -31,12 +38,15 @@ const Ellipsis: React.FC<EllipsisProps> = ({
   seconds,
   milliseconds,
 }) => {
+  // Calculate total milliseconds from minutes, seconds, and milliseconds
   const totalMilliseconds = minutes * 60000 + seconds * 1000 + milliseconds;
 
+  // Size and center of the SVG container
   const size = 2 * (outerRadius + 10);
   const cx = size / 2;
   const cy = size / 2;
 
+  // Function to calculate the positions of the dots on the ellipse
   const calculateDotPositions = (
     dots: number,
     radius: number
@@ -51,8 +61,10 @@ const Ellipsis: React.FC<EllipsisProps> = ({
     return positions;
   };
 
+  // Calculate positions for each dot
   const dotPositions: DotPosition[] = calculateDotPositions(dots, dotsRadius);
 
+  // Function to determine the color and size of each dot based on the current time
   const getColorAndSizeForDot = (
     dotIndex: number,
     totalDots: number,
@@ -69,6 +81,7 @@ const Ellipsis: React.FC<EllipsisProps> = ({
     return { dotColor, dotSize };
   };
 
+  // JSX for rendering the Ellipsis component
   return (
     <div
       style={{
