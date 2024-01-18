@@ -11,14 +11,20 @@ import {
 
 interface StopWatchButtonsProps {
   onStatusChange: StatusChangeHandler;
+  time: {
+    minutes: number;
+    seconds: number;
+    milliseconds: number;
+  };
   onReset: () => void;
   onLap: () => void;
 }
 
-const StopWatchButtons: React.FC<StopWatchButtonsProps> = ({
+const StopWatchButton: React.FC<StopWatchButtonsProps> = ({
   onStatusChange,
   onReset,
   onLap,
+  time,
 }) => {
   const [btnStatus, setBtnStatus] = useState<ButtonStatus>(ButtonStatus.Pause);
 
@@ -34,7 +40,12 @@ const StopWatchButtons: React.FC<StopWatchButtonsProps> = ({
       <button
         className="resetButton"
         onClick={onReset}
-        disabled={btnStatus === ButtonStatus.Play ? true : false}
+        disabled={
+          btnStatus === ButtonStatus.Play ||
+          (time.minutes == 0 && time.seconds == 0 && time.milliseconds == 0)
+            ? true
+            : false
+        }
       >
         <div className="iconContainer">
           <FontAwesomeIcon icon={faRotateRight} />
@@ -60,4 +71,4 @@ const StopWatchButtons: React.FC<StopWatchButtonsProps> = ({
   );
 };
 
-export default StopWatchButtons;
+export default StopWatchButton;

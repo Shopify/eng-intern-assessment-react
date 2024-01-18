@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Ellipsis from "./Ellipsis";
 import { Text } from "@shopify/polaris";
 import "./styles.css";
-import StopWatchButtons from "./StopWatchButtons";
+import StopWatchButton from "./StopWatchButton";
 import { ButtonStatus } from "./types";
 import Laps from "./Laps";
 
@@ -138,8 +138,9 @@ export default function StopWatch() {
           </div>
         </div>
         <div className="btnGroupStyle">
-          <StopWatchButtons
+          <StopWatchButton
             onStatusChange={handleStatusChange}
+            time={time}
             onReset={resetTimer}
             onLap={addLap}
           />
