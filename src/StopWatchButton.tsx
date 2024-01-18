@@ -2,28 +2,28 @@
 
 import React from 'react'
 
-interface Props {
+interface StopWatchButtonProps { 
     start: () => void;
     stop: () => void;
     reset: () => void;
     lap: () => void;
 }
 
-export default function StopWatchButton({start, stop, reset, lap}: Props) {
+export default function StopWatchButton({start, stop, reset, lap}: StopWatchButtonProps) {
 
-    const buttonStyle = {
+    const buttonStyle = { //used to style the buttons
         backgroundColor: '#abdcf5',
         margin: '15px',
         border: 'none',
         padding: '7px 7px',
         borderRadius : '10px',
-        cursor: 'pointer',
+        cursor: 'pointer', //this allows the user to know when they are able to click on the button since the cursor changes to a pointer
         color: 'black'
     };
 
-    return(
-        <div>
-            <button style = {buttonStyle} onClick={start}> Start </button>
+    return( //depending on which button is clicked the corresponding function in App.tsx is called
+        <div> 
+            <button style = {buttonStyle} onClick={start}> Start </button> 
             <button style = {buttonStyle} onClick={stop}> Stop </button>
             <button style = {buttonStyle} onClick={reset}> Reset </button>
             <button style = {buttonStyle} onClick={lap}> Lap </button>

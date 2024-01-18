@@ -9,32 +9,32 @@ export default function App() {
 
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-    const [laps, setLaps] = useState<number[]>([]); // Declare 'laps' state variable
+    const [laps, setLaps] = useState<number[]>([]); 
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (isRunning) {
-            interval = setInterval(() => {
+            interval = setInterval(() => { //updates the time every second if the start button is clicked
                 setTime(prevTime => prevTime + 1)
             }, 1000);
-        } else if (!isRunning && time !== 0) {
+        } else if (!isRunning && time !== 0) { //stops the timer if the stop button is clicked
             clearInterval(interval);
         }
         return () => clearInterval(interval);
-    }, [isRunning, time]);
+    }, [isRunning, time]); //only updates when isRunning or time changes
 
-    const start = () => setIsRunning(true);
+    const start = () => setIsRunning(true); 
     const stop = () => setIsRunning(false);
     const reset = () => {
         setIsRunning(false);
         setTime(0);
-        setLaps([]); // Use 'setLaps' to update the 'laps' state
+        setLaps([]); //clear recorded laps
     };
     const lap = () => {
-        setLaps([...laps, time]); // Use 'setLaps' to update the 'laps' state
+        setLaps([...laps, time]); 
     };
 
-    const background: CSSProperties = {
+    const background: CSSProperties = { //used to style the background
         height: '97vh',
         display: 'flex',
         justifyContent: 'center',
@@ -42,7 +42,7 @@ export default function App() {
         flexDirection: 'column',
     };
 
-    const fixedHeightDiv: CSSProperties = {
+    const fixedHeightDiv: CSSProperties = { //keeps the stopwatch and buttons in the same position when the lap times are displayed
         height: '200px',
     };
 
@@ -54,8 +54,8 @@ export default function App() {
 
                 <StopWatchButton start = {start} stop = {stop} reset = {reset} lap = {lap}/>
 
-                {laps.map((lap: number, index: number) => (
-                        <Lap key={index} time={lap}/>
+                {laps.map((lap: number, index: number) => ( 
+                        <Lap key = {index} time = {lap}/> //creates a new lap component for each lap recorded
                 ))}
 
             </div>
