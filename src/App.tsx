@@ -46,7 +46,7 @@ export default function App() {
         height: '200px',
     };
 
-    return(
+    return( //renders the stopwatch, buttons, and lap times
         <div style = {background}>
             <div style = {fixedHeightDiv}>
 
