@@ -2,7 +2,6 @@ import React from 'react'
 
 type StopWatchButtonProps = {
     isRunning: boolean;
-    isStarted: boolean;
     handleStart: () => void;
     handleStop: () => void;
     handleReset: () => void;
@@ -12,7 +11,6 @@ type StopWatchButtonProps = {
 // represents the start, stop, lap, and reset buttons
 export default function StopWatchButton({
     isRunning,
-    isStarted,
     handleStart,
     handleStop,
     handleReset,
@@ -28,7 +26,7 @@ export default function StopWatchButton({
                 )}
             </>
             <>
-                {isStarted ? (
+                {isRunning ? (
                     <button onClick={handleStop}>Stop</button>
                 ):(
                     <button onClick={handleStart}>Start</button>
