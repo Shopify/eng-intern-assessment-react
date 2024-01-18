@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Ellipsis from "./Ellipsis";
 import { Text } from "@shopify/polaris";
 import "./styles.css";
-import StopWatchButton from "./StopWatchButton";
+import StopWatchButtons from "./StopWatchButtons";
 import { ButtonStatus } from "./types";
 import Laps from "./Laps";
 
@@ -52,7 +52,6 @@ export default function StopWatch() {
       }
       cancelAnimationFrame(requestRef.current);
     }
-
     return () => cancelAnimationFrame(requestRef.current);
   }, [btnStatus]);
 
@@ -60,34 +59,6 @@ export default function StopWatch() {
   const dotsRadius = 190; // Radius for the circle where the dots will be placed
   const dots = 60; // Number of dots
   const movingDotRadius = 180;
-
-  // Styles to center the SVG container
-  const containerStyle: React.CSSProperties = {
-    display: "flex",
-    justifyContent: "center",
-    position: "relative",
-  };
-
-  // Styles for the centered text
-  const textStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "35%", // Center vertically
-    left: "50%", // Center horizontally
-    transform: "translate(-50%, -50%)", // Adjust to exact center
-    fontSize: "1.5rem", // Adjust the fontSize as needed
-    fontFamily: '"Arial", sans-serif', // Set the font, if you want to override Polaris defaults
-    textAlign: "center", // Ensure the text itself is centered
-  };
-
-  const btnGroupStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "65%", // Center vertically
-    left: "50%", // Center horizontally
-    transform: "translate(-50%, -50%)", // Adjust to exact center
-    fontSize: "1.5rem", // Adjust the fontSize as needed
-    fontFamily: '"Arial", sans-serif', // Set the font, if you want to override Polaris defaults
-    textAlign: "center", // Ensure the text itself is centered
-  };
 
   const handleStatusChange = (status: ButtonStatus) => {
     if (status === ButtonStatus.Play) {
@@ -105,17 +76,12 @@ export default function StopWatch() {
       seconds: 0,
       milliseconds: 0,
     });
-
     setLaps([]);
-
     // Reset elapsed time and start time references
     elapsedTimeRef.current = 0;
     startTimeRef.current = null;
-
     // If the timer is running, stop it
     cancelAnimationFrame(requestRef.current);
-
-    // Optionally, you can also set the button status to 'Play'
     setBtnStatus(ButtonStatus.Play);
   };
 
@@ -137,8 +103,7 @@ export default function StopWatch() {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div style={containerStyle}>
-        {/* Make sure the Ellipsis component also has position: 'absolute' and the same size and viewBox as MovingDot */}
+      <div className="containerStyle">
         <Ellipsis
           outerRadius={outerRadius}
           dotsRadius={dotsRadius}
@@ -148,7 +113,7 @@ export default function StopWatch() {
           seconds={time.seconds}
           milliseconds={time.milliseconds}
         />
-        <div style={textStyle}>
+        <div className="textStyle">
           <div style={{ display: "flex" }}>
             <div style={{ color: time.minutes > 0 ? "#27A397" : "black" }}>
               <Text variant="heading3xl" as="h2">{`${
@@ -172,8 +137,8 @@ export default function StopWatch() {
             </div>
           </div>
         </div>
-        <div style={btnGroupStyle}>
-          <StopWatchButton
+        <div className="btnGroupStyle">
+          <StopWatchButtons
             onStatusChange={handleStatusChange}
             onReset={resetTimer}
             onLap={addLap}

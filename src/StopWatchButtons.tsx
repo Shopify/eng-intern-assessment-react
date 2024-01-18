@@ -15,7 +15,7 @@ interface StopWatchButtonsProps {
   onLap: () => void;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonsProps> = ({
+const StopWatchButtons: React.FC<StopWatchButtonsProps> = ({
   onStatusChange,
   onReset,
   onLap,
@@ -60,4 +60,4 @@ const StopWatchButton: React.FC<StopWatchButtonsProps> = ({
   );
 };
 
-export default StopWatchButton;
+export default StopWatchButtons;

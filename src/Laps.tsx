@@ -14,8 +14,8 @@ interface LapsProps {
 function formatTime(milliseconds: number): string {
   const minutes = Math.floor(milliseconds / 60000);
   const seconds = Math.floor((milliseconds % 60000) / 1000);
-  const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-  const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  const formattedMinutes = minutes.toString().padStart(2, "0");
+  const formattedSeconds = seconds.toString().padStart(2, "0");
   const formattedMilliseconds = ((milliseconds % 1000) / 10)
     .toFixed(0)
     .padStart(2, "0");

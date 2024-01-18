@@ -1,3 +1,31 @@
+/* Styles to center the SVG container */
+.containerStyle {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* Styles for the centered text */
+.textStyle {
+  position: absolute;
+  top: 35%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to exact center */
+  font-size: 1.5rem; /* Adjust the fontSize as needed */
+  font-family: "Arial", sans-serif; /* Set the font, if you want to override Polaris defaults */
+  text-align: center; /* Ensure the text itself is centered */
+}
+
+/* Styles for the button group */
+.btnGroupStyle {
+  position: absolute;
+  top: 65%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to exact center */
+  font-size: 1.5rem; /* Adjust the fontSize as needed */
+  font-family: "Arial", sans-serif; /* Set the font, if you want to override Polaris defaults */
+  text-align: center; /* Ensure the text itself is centered */
+}
 
 .playButton {
     background-color: #27A397; /* Blue background */
