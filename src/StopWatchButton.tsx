@@ -31,6 +31,7 @@ export default function StopWatchButton({
   return (
     <button
       className="stopwatch-button"
+      data-testid={disabled ? "stopwatch-button-disabled" : id}
       id={disabled ? "stopwatch-button-disabled" : id}
       onClick={onClick}
       disabled={disabled}

@@ -115,7 +115,7 @@ export default function StopWatch(): JSX.Element {
 
   return (
     <div className="stopwatch-container">
-    <div className="stopwatch-timer">
+    <div className="stopwatch-timer" data-testid="stopwatch-timer">
       {`${formatWithLeadingZero(time.minutes)}:${formatWithLeadingZero(time.seconds)}:${formatWithLeadingZero(time.milliseconds)}`}
     </div>
       <div className="stopwatch-buttons">
@@ -139,13 +139,14 @@ export default function StopWatch(): JSX.Element {
 
       <div
         className="stopwatch-laps-list"
+        data-testid="stopwatch-laps-list"
         style={{ display: laps.length ? "block" : "none" }}
       >
         <h3>
           <span>Lap</span>
           <span>Time</span>
         </h3>
-        <ul>
+        <ul data-testid="stopwatch-laps">
           {laps.map((lap, index) => (
             <li key={index}>
               <span>{`Lap ${index + 1}`}</span>
