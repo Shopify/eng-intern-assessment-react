@@ -12,20 +12,17 @@ export default function StopWatch() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    //setting up an interval to udpate time every 10 ms when the stopwatch is running
+    //setting up an interval to update time every 10 ms when the stopwatch is running
     if (isRunning) {
       // as opposed to just doing setInterval we need a intervalId so we know which one to stop
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
       }, 10);
-
-      //Incrementing by 10 ms every 10 ms, we handle logic below
     } else {
       clearInterval(interval);
     }
     // the reason why we create a new interval if we restart is because we need to avoid multiple intervals and make sure it is in sync with the current state
 
-    //this is the clean up function on unmount or when isRunning changes
     return () => clearInterval(interval);
   }, [isRunning]);
 
@@ -47,7 +44,7 @@ export default function StopWatch() {
     const remainingMs = Math.floor((milliseconds % 1000) / 10)
       .toString()
       .padStart(2, "0");
-    // Calculate the two-digit milliseconds and pad with a leading zero if necessary
+    // Calculate the two-digit milliseconds and pad with a leading zero if necessary, this is to avoid the div box jumping around.
 
     return `${minutes} minutes : ${
       remainingSeconds < 10 ? "0" : ""
