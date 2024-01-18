@@ -63,6 +63,15 @@ export default function StopWatch() {
         return `${formattedMinutes}:${formattedSeconds}:${formattedCentiseconds}`;
     };
 
+    // render laps as a function that is always called in the return of the react component
+    const renderLaps = () => {
+        return laps.map((lap, index) => (
+            <li key={index}>
+                Lap {index + 1}: {formatTime(lap)}
+            </li>
+        ));
+    };
+
     return (
         <div>
             <h1>{formatTime(time)}</h1>
@@ -70,16 +79,7 @@ export default function StopWatch() {
             <StopWatchButton onClick={handleStop}>Stop</StopWatchButton>
             <StopWatchButton onClick={handleReset}>Reset</StopWatchButton>
             <StopWatchButton onClick={handleLap}>Lap</StopWatchButton>
-
-            {laps.length > 0 && (
-                <ul>
-                    {laps.map((lap, index) => (
-                        <li key={index}>
-                            Lap {index + 1}: {("0" + Math.floor((lap / 60000) % 60)).slice(-2)}:{("0" + Math.floor((lap / 1000) % 60)).slice(-2)}:{("0" + ((lap / 10) % 100)).slice(-2)}
-                        </li>
-                    ))}
-                </ul>
-            )}
+            {laps.length > 0 && (<ul> {renderLaps()} </ul> )}
         </div>
     );
 }
