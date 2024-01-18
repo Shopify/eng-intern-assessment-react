@@ -44,17 +44,28 @@ export default function StopWatch() {
     const seconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    const remainingMs = milliseconds % 1000;
+    const remainingMs = Math.floor((milliseconds % 1000) / 10)
+      .toString()
+      .padStart(2, "0");
+    // Calculate the two-digit milliseconds and pad with a leading zero if necessary
+
     return `${minutes} minutes : ${
       remainingSeconds < 10 ? "0" : ""
     }${remainingSeconds}.${remainingMs}`;
   };
+
   //additional functionality so we can't lap if time isn't moving or if we didn't start at all!
   const isLapDisabled = !isRunning || time === 0;
   return (
-    <div>
-      <h2>Stopwatch</h2>
-      <p>{formatTime(time)} seconds</p>
+    <div className="text-center px-10 bg-gradient-to-r from-green-300 to-green-500 rounded-lg shadow-xl">
+      <h2 className="text-white font-bold text-3xl text-2xl mb-4">
+        Michael's Shopify Stopwatch
+      </h2>
+      <div className="px-10 py-10">
+        <p className="text-white text-8xl mb-4 font-mono min-w-[400px]">
+          {formatTime(time)} seconds
+        </p>
+      </div>
       {/* passing callback functions to child component */}
       <StopWatchButton
         start={start}
@@ -67,11 +78,11 @@ export default function StopWatch() {
       {/* implementing conditional display using && operator iff we have 1 or more laps to display */}
 
       {laps.length > 0 && (
-        <div>
-          <h3>Laps</h3>
+        <div className="mt-4">
+          <h3 className="text-white font-bold">Laps</h3>
           <ul>
             {laps.map((lapTime, index) => (
-              <li key={index}>
+              <li key={index} className="text-white font-bold">
                 Lap {index + 1}: {formatTime(lapTime)} seconds
               </li>
             ))}
