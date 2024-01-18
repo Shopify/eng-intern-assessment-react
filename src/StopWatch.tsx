@@ -72,6 +72,11 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 100px;
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+        gap: 40px;
+    }
 `
 
 const StopWatchContainer = styled.div`
@@ -82,17 +87,28 @@ const StopWatchContainer = styled.div`
     height: 300px;
     border-radius: 300px;
     border: 10px solid #F5F5F5;
+
+    @media (max-width: 900px) {
+        width: 230px;
+        height: 230px;
+        border-width: 8px;
+    }
 `
 
 const TimeDisplay = styled.span`
     color: #5D636C;
     font-size: 35px;
+
+    @media (max-width: 900px) {
+        font-size: 28px;
+    }
 `
 
 const LapsTableContainer = styled.div`
     max-height: 280px;
     overflow-y: auto;
     padding-right: 20px;
+    
     &::-webkit-scrollbar-thumb {
         width: 10px;
         background: #D8D8D8;
@@ -102,6 +118,10 @@ const LapsTableContainer = styled.div`
         width: 10px;
         background:#F5F5F5;
         border-radius: 10px;
+    }
+
+    @media (max-width: 900px) {
+        max-height: 200px;
     }
 `
 

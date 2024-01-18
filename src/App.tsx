@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect, useRef } from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import './styles/index.css'   
@@ -86,31 +86,48 @@ export default function App() {
     }, [time])
 
     return(
-        <CenteredContainer>
-            <StopWatch 
-                time={time} 
-                laps={laps}
-                currentLap={currentLap}
-            />
-            <StopWatchButton 
-                isRunning={isRunning}
-                pause={pause}
-                start={start}
-                reset={reset}
-                lap={lap}
-            />
-        </CenteredContainer>
+        <>
+            <GlobalStyle />
+            <CenteredContainer>
+                <StopWatchContainer>
+                    <StopWatch 
+                        time={time} 
+                        laps={laps}
+                        currentLap={currentLap}
+                    />
+                    <StopWatchButton 
+                        isRunning={isRunning}
+                        pause={pause}
+                        start={start}
+                        reset={reset}
+                        lap={lap}
+                    />
+                </StopWatchContainer>
+            </CenteredContainer>
+        </>
     )
 }
 
-const CenteredContainer = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+const StopWatchContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 50px;    
+    padding: 20px;
     font-family: Roboto Mono, monospace;
+`
+
+const CenteredContainer = styled.div`
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+`
+
+const GlobalStyle = createGlobalStyle`
+    body, html {
+        margin: 0;
+        padding: 0;
+    }
 `
