@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -25,6 +26,7 @@
     "@types/node": "^16.18.30",
     "@types/react": "^17.0.59",
     "@types/react-dom": "^18.2.4",
+    "@types/uuid": "^9.0.7",
     "babel-jest": "^29.7.0",
     "babel-loader": "^8.3.0",
     "css-loader": "^6.7.3",
