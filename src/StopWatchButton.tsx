@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./StopWatchButton.module.css";
 
 interface StopWatchButtonProps {
   children: React.ReactNode;
@@ -7,5 +8,5 @@ interface StopWatchButtonProps {
 }
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
-  return <button {...props} />;
+  return <button className={styles.base} {...props} />;
 }
