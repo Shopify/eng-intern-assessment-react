@@ -35,8 +35,8 @@ export default function App() {
         var interval = setInterval(() => {
             setCurrentTime(currentTime + 1)
             setTotalTime(totalTime + 1)
-            setMaintainCurr((Math.floor(currentTime % 60)) * 6)
-            setMaintainTotal((Math.floor(totalTime % 60)) * 6)
+            setMaintainCurr((Math.floor((currentTime + 1) % 60)) * 6)
+            setMaintainTotal((Math.floor((totalTime + 1) % 60)) * 6)
           }, 1000);
     }
     
