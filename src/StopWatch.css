@@ -1,0 +1,42 @@
+.time-display {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    line-height: 150px;
+    text-align: center;
+    background: #FFF;
+    display: inline-block;
+    margin: 20px;
+    font-size: 2em;
+    color: #000;
+    border: 2px solid #000;
+  }
+  
+ul {
+    list-style-type: none; /* Remove default list bullet */
+    padding: 0; /* Remove default padding */
+    margin-top: 20px; /* Add some space above the list */
+}
+  
+li {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+.lap-index {
+    font-weight: bold;
+    margin-right: 10px;
+}
+  
+.lap-time {
+    font-family: 'Courier New', monospace; /* Monospaced font for the times */
+}  

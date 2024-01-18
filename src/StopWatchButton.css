@@ -1,0 +1,17 @@
+button {
+    background: #333; /* Dark grey background for buttons */
+    color: white; /* White text for buttons */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding inside the buttons */
+    margin: 0 10px; /* Space between buttons */
+    border-radius: 5px; /* Slightly rounded corners for buttons */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    font-size: 1em; /* Text size inside buttons */
+    transition: background-color 0.3s ease; /* Transition for button hover effect */
+}
+
+
+/* Hover effect for buttons */
+button:hover {
+    background: #555; /* Slightly lighter grey on hover */
+}
