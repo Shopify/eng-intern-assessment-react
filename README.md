@@ -1,3 +1,8 @@
+https://github.com/shawn-thomas/eng-intern-assessment-react/assets/91219382/2fea3075-1fad-44a8-85ec-92e94a1e356f
+
+Live Site: https://shawn-thomas.github.io/eng-intern-assessment-react/
+
+
 # Technical Instructions
 1. Fork this repo to your local Github account.
 2. Create a new branch to complete all your work in.
