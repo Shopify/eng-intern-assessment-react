@@ -21,7 +21,6 @@ export default function App() {
     })
 
     return(
-        //give Stopwatch props: hundreths seconds minutes
         <div>
             <StopWatch 
             hundreths={Math.floor((time/10)%100)} 
