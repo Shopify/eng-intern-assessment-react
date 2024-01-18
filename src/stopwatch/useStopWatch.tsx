@@ -8,21 +8,21 @@ interface UseStopWatchOptions {
  * Hook to manage a stopwatch. All times are in milliseconds.
  */
 export function useStopWatch({ period = 30 }: UseStopWatchOptions = {}) {
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<number>();
   const [isRunning, setIsRunning] = useState(false);
-  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
 
   function start() {
     stop();
 
-    let startTime = Date.now() - timeElapsed;
+    let startTime = Date.now() - elapsedTime;
 
     function tick() {
-      setTimeElapsed(Date.now() - startTime);
+      setElapsedTime(Date.now() - startTime);
     }
 
-    intervalRef.current = setInterval(tick, period);
+    intervalRef.current = window.setInterval(tick, period);
     setIsRunning(true);
   }
 
@@ -37,37 +37,26 @@ export function useStopWatch({ period = 30 }: UseStopWatchOptions = {}) {
 
   function reset() {
     stop();
-    setTimeElapsed(0);
+    setElapsedTime(0);
     setLaps([]);
   }
 
   function recordLap() {
-    setLaps((cur) => [...cur, timeElapsed]);
+    setLaps([...laps, elapsedTime]);
   }
 
-  // Cleanup side-effects when the component unmounts
+  // Clean up side-effects on unmount
   useEffect(() => {
     return () => clearInterval(intervalRef.current);
   }, []);
 
   return {
     isRunning,
-    timeElapsed,
+    elapsedTime,
     laps,
     start,
     stop,
     reset,
     recordLap,
   };
-}
-
-export function formatMillisToTime(millis: number) {
-  const date = new Date(millis);
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const secondsStr = date.getSeconds().toString().padStart(2, '0');
-  const milliseconds = Math.floor(date.getMilliseconds() / 10)
-    .toString()
-    .padStart(2, '0');
-
-  return `${minutes}:${secondsStr}.${milliseconds}`;
 }
