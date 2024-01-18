@@ -39,7 +39,7 @@ body {
 .watch .second .curr {
     background-color: #ff6200;
     position: absolute;
-    height: 20vh;
+    height: 23vh;
     width: 0.25vw;
     bottom: 0px;
     border-radius: 4px;

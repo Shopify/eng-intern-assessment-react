@@ -87,7 +87,8 @@ export default function App() {
   return (
     
     <div className='pageBg'>
-        <StopWatchButton
+
+      <StopWatchButton
       isRunning = {isRunning}
       startStop={startStop}
       lapButton={setLap}
