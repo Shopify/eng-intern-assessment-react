@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import StopWatchButton from './StopWatchButton';
 
 export default function StopWatch() {
-    return(
-        <div></div>
-    )
+    return (
+        <div>
+            <StopWatchButton />
+        </div>
+    );
 }
