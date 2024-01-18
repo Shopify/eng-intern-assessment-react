@@ -26,20 +26,20 @@ export default function StopWatch(props:StopWatchProps) {
     const {time, laps, currentLap} = props
 
     return(
-        <Container>
+        <Container data-testid="stopwatch">
             <StopWatchContainer>
-                <TimeDisplay>
+                <TimeDisplay data-testid="time-display">
                     {formatTime(time)}
                 </TimeDisplay>
             </StopWatchContainer>
             {/* Conditionally render lap data if laps exist */}
             {laps.length > 0 && <LapsTableContainer>
                 <LapsTable>
-                    <ReveresedTableBody>
+                    <ReveresedTableBody data-testid="laps-table">
                         {/* Render the data of each individual lap */}
                         {laps.map((lap:Lap, index:number) => {
                             return (
-                                <tr>
+                                <tr key={`lap-${index}`}>
                                     <StyledTd>#{index + 1}</StyledTd>
                                     <StyledTd>{formatTime(lap.lapTime)}</StyledTd>
                                     <StyledTd>{formatTime(lap.totalTime)}</StyledTd>

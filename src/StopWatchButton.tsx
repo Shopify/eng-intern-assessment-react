@@ -17,22 +17,22 @@ export default function StopWatchButton(props:StopWatchButtonProps) {
     const {isRunning, pause, start, reset, lap} = props
 
     return(
-        <RowButtonContainer>
-            <SecondaryActionButton onClick={reset}>
+        <RowButtonContainer data-testid="stopwatch-buttons">
+            <SecondaryActionButton onClick={reset} data-testid="reset">
                 <IoRefresh />
             </SecondaryActionButton>
             {/* Conditionally render the play and pause buttons based on running state */}
             {isRunning ? 
-                <PrimaryActionButton onClick={pause}>
+                <PrimaryActionButton onClick={pause} data-testid="pause">
                     <IoPause />
                 </PrimaryActionButton>    
                 :
-                <PrimaryActionButton onClick={start}>
+                <PrimaryActionButton onClick={start} data-testid="start">
                     <IoPlay />
                 </PrimaryActionButton>
             }
             {/* Hide the lap button if the stopwatch is paused */}
-            <SecondaryActionButton isHidden={!isRunning} onClick={lap}>
+            <SecondaryActionButton ishidden={!isRunning ? "true" : "false"} onClick={lap} data-testid="lap">
                 <IoStopwatchOutline />
             </SecondaryActionButton>
         </RowButtonContainer>
@@ -64,12 +64,12 @@ const PrimaryActionButton = styled(ActionButton)`
 `
 
 // conditionally render the button based on the isHidden prop
-const SecondaryActionButton = styled(ActionButton)<{isHidden?:boolean;}>`
+const SecondaryActionButton = styled(ActionButton)<{ishidden?:string;}>`
     height: 60px;
     width: 60px;
     background: #F5F5F5;
     border-radius: 60px;
     color: #5D636C;
     font-size: 25px;
-    visibility: ${props => props.isHidden ? 'hidden' : 'visible'}; 
+    visibility: ${props => props.ishidden == "true" ? 'hidden' : 'visible'}; 
 `

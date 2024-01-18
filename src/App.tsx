@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
-import './index.css'
+import './styles/index.css'   
 
 /**
  * Represets a single lap entry
@@ -108,5 +108,5 @@ const CenteredContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 50px;
-    font-family: Roboto Mono;
+    font-family: Roboto Mono, monospace;
 `
