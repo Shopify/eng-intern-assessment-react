@@ -1,0 +1,23 @@
+.stopwatch {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.digit, .colon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+    font-size: 5em;
+    color: white;
+}
+
+.digit {
+    border-radius: 25px;
+    width: 100px;
+    height: 150px; 
+    background-color: black;
+    border: 1px solid white;
+}
