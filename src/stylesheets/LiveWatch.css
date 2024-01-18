@@ -1,0 +1,55 @@
+body {
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+}
+
+.clock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.clock .watch{
+    background: url("../images/clock.PNG");
+    background-size: 100% 100%;
+    height: 60vh;
+    width: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.watch .second {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.watch .totalsecond {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.watch .second .curr {
+    background-color: #ff6200;
+    position: absolute;
+    height: 20vh;
+    width: 0.25vw;
+    bottom: 0px;
+    border-radius: 4px;
+}
+
+.watch .totalsecond .total {
+    background-color: #000dff;
+    position: absolute;
+    height: 20vh;
+    width: 0.25vw;
+    bottom: 0px;
+    border-radius: 4px;
+}

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import StopWatchButton from './StopWatchButton';
 import StopWatch from './StopWatch';
-import { Page } from '@shopify/polaris'
+import LiveWatch from './LiveWatch';
+import { Button, InlineStack } from '@shopify/polaris'
+import './stylesheets/App.css'
 
 
 export default function App() {
@@ -18,6 +20,12 @@ export default function App() {
   const [lapTimes, setLapTimes] = useState<number[]>([]);
   const [totalTimes, setTotalTimes] = useState<number[]>([]);
 
+  const [display, setDisplay] = useState(true);
+  const [buttonText, setButtonText] = useState('Show Live Clock')
+
+  const currentSecHandle = useRef(null)
+  const totalSecHandle = useRef(null)
+
   /*
   To keep track of current lap time and total time, if the stopwatch is running 
   then 1 second is added to the current lap time and start time.
@@ -27,6 +35,12 @@ export default function App() {
         var interval = setInterval(() => {
             setCurrentTime(currentTime + 1)
             setTotalTime(totalTime + 1)
+            if(currentSecHandle.current){
+              currentSecHandle.current.style.transform = `rotateZ(${(Math.floor(currentTime % 60)) * 6}deg)`
+            }
+            if(totalSecHandle.current){
+              totalSecHandle.current.style.transform = `rotateZ(${(Math.floor(totalTime % 60)) * 6}deg)`
+            }
           }, 1000);
     }
     
@@ -57,22 +71,44 @@ export default function App() {
     setIsRunning(false)
     setCurrentTime(0)
     setTotalTime(0)
+    if(currentSecHandle.current){
+      currentSecHandle.current.style.transform = `rotateZ(${0}deg)`
+    }
+    if(totalSecHandle.current){
+      totalSecHandle.current.style.transform = `rotateZ(${0}deg)`
+    }
   }
 
+  const toggleVisibility = () => {
+    setDisplay(!display)
+    setButtonText(display ? 'Show Lap Times' : 'Show Live Clock')
+  }
   
   return (
     
-    <div >
+    <div className='pageBg'>
         <StopWatchButton
       isRunning = {isRunning}
       startStop={startStop}
       lapButton={setLap}
       resetButton={resetButton}/>
-      <StopWatch 
+
+      {display ? <StopWatch 
       currentTime={currentTime}
       totalTime={totalTime}
       lapTimes={lapTimes}
-      totalTimes={totalTimes}/>
+      totalTimes={totalTimes}/> : 
+      <LiveWatch
+      currentSecond={currentSecHandle}
+      totalSecond={totalSecHandle}/>}
+
+      <div style={{marginTop:'1%'}}>
+        <InlineStack align='center'>
+          <Button size='large' variant='primary' onClick={toggleVisibility}>
+            {buttonText}
+          </Button>
+        </InlineStack>
+      </div>
       
     </div>
     

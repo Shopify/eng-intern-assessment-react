@@ -1,8 +1,6 @@
 import { Text, DataTable, Grid, Page, Scrollable, Box, InlineStack, BlockStack } from '@shopify/polaris'
 import React from 'react'
 
-
-
 interface StopwatchProps {
     currentTime: number
     totalTime: number
@@ -96,8 +94,7 @@ export default function StopWatch({
                                 "Lap Number", 
                                 "Lap Time", 
                                 "Total Elapsed Time"]}
-                                rows={combinedLapInfo}
-                                sortable={[true, true, true]}/>
+                                rows={combinedLapInfo}/>
                             </Scrollable>
                         </div>
                     </Box>
