@@ -28,23 +28,23 @@ const Time: React.FC<DisplayTimeProps> = ({
       },
     });
 
-   const  timeStyle =  css ({
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      textAlign: 'center',
-      color: color,
-      fontSize: fontSize,
-      [mq.small]: {
-        fontSize: fontSize * 0.8,
-      },
-      [mq.medium]: {
-        fontSize: fontSize * 0.9,
-      },
-      [mq.large]: {
-        fontSize: fontSize * 1.1,
-      },
-    })
+  const timeStyle = css({
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    textAlign: 'center',
+    color: color,
+    fontSize: fontSize,
+    [mq.small]: {
+      fontSize: fontSize * 0.8,
+    },
+    [mq.medium]: {
+      fontSize: fontSize * 0.9,
+    },
+    [mq.large]: {
+      fontSize: fontSize * 1.1,
+    },
+  });
 
   return (
     <div css={timeStyle}>

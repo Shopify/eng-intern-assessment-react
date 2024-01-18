@@ -15,6 +15,7 @@ export default function StopWatch() {
     stopTimer,
     resetTimer,
     addLap,
+    cleanLocalStorage,
   } = useStopwatch();
 
   useEffect(() => {
@@ -33,12 +34,12 @@ export default function StopWatch() {
     event.returnValue = 'Are you sure you want to exit?';
     const shouldReload = window.confirm;
     if (shouldReload) {
-      resetTimer()
+      cleanLocalStorage();
     }
     return event.returnValue;
   };
 
-  const mainContainerStyle = css ({
+  const mainContainerStyle = css({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -46,9 +47,9 @@ export default function StopWatch() {
     [mq.large]: {
       flexDirection: 'row',
     },
-  })
+  });
 
-  const timerContainerStyle =  css({
+  const timerContainerStyle = css({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'start',
@@ -56,7 +57,7 @@ export default function StopWatch() {
     [mq.large]: {
       minWidth: '50%',
     },
-  })
+  });
 
   const buttonsContainerStyle = css({
     display: 'flex',
@@ -67,7 +68,7 @@ export default function StopWatch() {
     [mq.large]: {
       flexDirection: 'column',
     },
-  })
+  });
 
   return (
     <div css={mainContainerStyle}>

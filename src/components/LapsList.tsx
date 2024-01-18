@@ -47,9 +47,9 @@ const LapsList: React.FC<LapProps> = ({ laps }) => {
       border: `2px solid ${colors.white}`,
       borderRadius: '5px',
     },
-  })
+  });
 
-  const lapsHeaderStyle = css ({
+  const lapsHeaderStyle = css({
     fontSize: '25px',
     padding: '10px 0px',
     color: 'white',
@@ -62,7 +62,7 @@ const LapsList: React.FC<LapProps> = ({ laps }) => {
     },
   });
 
-  const lapsPlaceholderStyle=  css({
+  const lapsPlaceholderStyle = css({
     fontSize: '20px',
     padding: '10px 0px',
     color: 'white',
@@ -70,7 +70,6 @@ const LapsList: React.FC<LapProps> = ({ laps }) => {
     textAlign: 'center',
     margin: '10px auto',
   });
-
 
   return (
     <div css={lapsContainerStyle}>
@@ -92,14 +91,11 @@ const LapsList: React.FC<LapProps> = ({ laps }) => {
             ))}
         </div>
       ) : (
-        <div
-          data-testid="lap-placeholder"
-          css={lapsPlaceholderStyle}
-        >
+        <div data-testid="lap-placeholder" css={lapsPlaceholderStyle}>
           {/* Placeholder content */}
           <div>
             <div>
-              <SportsScoreIcon style={{fontSize: ' 50px',}}/>
+              <SportsScoreIcon style={{ fontSize: ' 50px' }} />
             </div>
             <div>Start stopwatch and add laps</div>
           </div>
