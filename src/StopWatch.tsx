@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 interface stopWatchProps {
   time: number;
+  lapTimes: number[];
+  laps: number;
 }
 
 export default function StopWatch(props: stopWatchProps) {
@@ -20,5 +22,24 @@ export default function StopWatch(props: stopWatchProps) {
     const milliseconds = padNumbers(unFormattedMilliseconds);
     return `${minutes}:${seconds}:${milliseconds}`;
   }
-  return <div className="stopwatch">{formatNumbers(props.time)}</div>;
+
+  return (
+    <div id="stopwatch-display">
+      <div>
+        <text id="stopwatch-text">{formatNumbers(props.time)}</text>
+      </div>
+      {props.laps > 0 ? (
+        <div>
+          {props.lapTimes
+            .slice()
+            .reverse()
+            .map((lapTime, index) => (
+              <ul className="lap-time" key={index}>
+                Lap #{props.laps - index} {formatNumbers(lapTime)}
+              </ul>
+            ))}
+        </div>
+      ) : null}
+    </div>
+  );
 }

@@ -7,7 +7,7 @@ export default function App() {
   const [timerRunning, setTimerRunning] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
   const [laps, setLaps] = useState<number>(0);
-  const [lapTimeArray, setLapTimeArray] = useState<number[]>([]);
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
 
   useEffect(() => {
     let interval: number | NodeJS.Timeout = null;
@@ -16,7 +16,7 @@ export default function App() {
       // Interval updates every 10ms
       interval = setInterval(() => {
         // Increment the time state every 10ms
-        setTime((time) => time + 10);
+        setTime((prevTime) => prevTime + 10);
       }, 10);
     }
     // If timer is not running and time is not at 0
@@ -27,22 +27,57 @@ export default function App() {
     // this useEffect will run when the timerRunning state changes
   }, [timerRunning]);
 
-  function handleStartOrPause() {
+  function handleStartOrPauseButton() {
     if (!timerRunning) {
       setTimerRunning(true);
     } else if (timerRunning) setTimerRunning(false);
   }
-  function handleLap() {}
+
+  function calculateSplitTime(numbers: number[]): number {
+    return numbers.reduce((sum, currentNumber) => sum + currentNumber, 0);
+  }
+  // Handle lap time button clicks
+  function handleLapButton() {
+    if (timerRunning) {
+      //  Increment lap state by 1
+      setLaps((prevLaps) => {
+        const updatedLaps = prevLaps + 1;
+
+        /**
+         * Calculate split time for the last lap
+         * If there are any laps already then use this to calculate the split time
+         * between laps. For the first lap, set the split time as the current time
+         */
+
+        const splitTime =
+          updatedLaps > 1 ? time - calculateSplitTime(lapTimes) : time;
+
+        // Add new times to the lapTimes Arrays
+        setLapTimes((prevLapTimes) => [...prevLapTimes, splitTime]);
+
+        return updatedLaps;
+      });
+    } else {
+    }
+  }
+
+  function handleResetButton() {
+    setTimerRunning(false);
+    setLapTimes([]);
+    setLaps(0);
+    setTime(0);
+  }
 
   return (
     <div id="stopwatch">
-      <StopWatch time={time} />
+      <StopWatch time={time} lapTimes={lapTimes} laps={laps} />
       <div id="button-group">
         <StopWatchButton
-          onClick={() => handleStartOrPause()}
+          onClick={() => handleStartOrPauseButton()}
           title={timerRunning ? "Pause" : "Start"}
         />
-        <StopWatchButton onClick={() => handleLap()} title={"Lap"} />
+        <StopWatchButton onClick={() => handleResetButton()} title={"Reset"} />
+        <StopWatchButton onClick={() => handleLapButton()} title={"Lap"} />
       </div>
     </div>
   );
