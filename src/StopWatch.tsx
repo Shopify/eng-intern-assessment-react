@@ -1,4 +1,4 @@
-import React, {useState, useEffect, CSSProperties} from 'react'
+import React, {useState, useEffect, CSSProperties} from "react"
 import StopWatchButton from "./StopWatchButton";
 import {Simulate} from "react-dom/test-utils";
 import "./StopWatch.css"
@@ -47,7 +47,7 @@ export default function StopWatch() {
         const milliseconds = (time % 1000) / 10;
 
         // mm:ss:msms
-        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+        return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(2, "0")}`;
     };
 
     const getShortestAndLongestLapIndices = () => {
@@ -71,12 +71,13 @@ export default function StopWatch() {
             const reversedIndex = laps.length - index - 1;
             const shouldApplyColor = laps.length >= 2;
             const lapStyle = {
-                display: 'flex',
-                justifyContent: 'space-between',
-                color: shouldApplyColor ? reversedIndex === shortestLapIndex ? 'green' : (reversedIndex === longestLapIndex ? 'red' : 'white') : 'white',
-                fontFamily: 'sans-serif',
-                fontWeight: 'lighter',
-                fontSize: '20px',
+                display: "flex",
+                justifyContent: "space-between",
+                color: shouldApplyColor ? reversedIndex === shortestLapIndex ? "green" : (reversedIndex === longestLapIndex ? "red" : "white") : "white",
+                fontFamily: "sans-serif",
+                fontWeight: "lighter",
+                fontSize: "20px",
+                marginTop: "10px",
             }
             return (
                 <li key={index} style={lapStyle}>
@@ -91,12 +92,12 @@ export default function StopWatch() {
     let renderCurrentLap = () => {
         if (isRunning || elapsedTime !== 0) {
             const lapStyle = {
-                display: 'flex',
-                justifyContent: 'space-between',
-                color: 'white',
-                fontFamily: 'sans-serif',
-                fontWeight: 'lighter',
-                fontSize: '20px',
+                display: "flex",
+                justifyContent: "space-between",
+                color: "white",
+                fontFamily: "sans-serif",
+                fontWeight: "lighter",
+                fontSize: "20px",
             }
             return (
                 <li key={laps.length + 1} style={lapStyle}>
@@ -110,7 +111,6 @@ export default function StopWatch() {
 
     const startButtonStyle: React.CSSProperties = {
         border: "3px solid #0A2A12",
-        boxShadow: "0 0 0 5px black inset",
         boxSizing: "border-box",
         backgroundColor: "#0A2A12",
         color: "#45CA57",
@@ -118,7 +118,6 @@ export default function StopWatch() {
 
     const stopButtonStyle: React.CSSProperties = {
         border: "3px solid #330E0A",
-        boxShadow: "0 0 0 5px black inset",
         boxSizing: "border-box",
         backgroundColor: "#330E0A",
         color: "#EB524C",
@@ -126,7 +125,6 @@ export default function StopWatch() {
 
     const resetButtonStyle: React.CSSProperties = {
         border: "3px solid #323232",
-        boxShadow: "0 0 0 5px black inset",
         boxSizing: "border-box",
         backgroundColor: "#323232",
         color: "white",
@@ -134,39 +132,59 @@ export default function StopWatch() {
 
     const resetButtonStyleDisabled: React.CSSProperties = {
         border: "3px solid #1C1B1E",
-        boxShadow: "0 0 0 5px black inset",
         boxSizing: "border-box",
         backgroundColor: "#1C1B1E",
         color: "#99989C",
     }
 
+    const buttonSectionStyle: React.CSSProperties = {
+        display: "flex",
+        justifyContent: "space-between",
+        marginTop: "-5vh",
+        marginBottom: "5vh",
+    }
+
+    const lapSectionStyle: React.CSSProperties = {
+        listStyleType: "none",
+        margin: "0",
+        padding: "0",
+        overflow: "auto",
+        paddingLeft: "30px",
+        paddingRight: "30px",
+    }
+
+    const overallStyle: React.CSSProperties = {
+        display: "flex",
+        flexDirection: "column",
+        height: "90vh"
+    }
+
     return (
         <React.Fragment>
-            <div>
-                <h1 className={"stopWatchTime"}>{formatTime(elapsedTime)}</h1>
-            </div>
-            <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginTop: '-5vh',
-                marginBottom: '5vh',
-            }}>
-                <StopWatchButton buttonName={isRunning ? "Lap" : (elapsedTime > 0 ? "Reset" : "Lap")}
-                                 buttonFunction={lapReset}
-                                 disabled={elapsedTime === 0 && !isRunning}
-                                 style={elapsedTime === 0 && !isRunning ? resetButtonStyleDisabled : resetButtonStyle}
-                />
-                <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
-                                 buttonFunction={toggleStartStop}
-                                 disabled={false}
-                                 style={isRunning ? stopButtonStyle : startButtonStyle}
-                />
-            </div>
-            <div>
-                <ul style={{listStyleType: 'none', margin: 0, padding: 0}}>
-                    {renderCurrentLap()}
-                    {renderLaps()}
-                </ul>
+            <div style={overallStyle}>
+                <div>
+                    <div>
+                        <h1 className={"stopWatchTime"}>{formatTime(elapsedTime)}</h1>
+                    </div>
+                    <div style={buttonSectionStyle}>
+                        <StopWatchButton buttonName={isRunning ? "Lap" : (elapsedTime > 0 ? "Reset" : "Lap")}
+                                         buttonFunction={lapReset}
+                                         disabled={elapsedTime === 0 && !isRunning}
+                                         style={elapsedTime === 0 && !isRunning ? resetButtonStyleDisabled : resetButtonStyle}
+                        />
+                        <StopWatchButton buttonName={isRunning ? "Stop" : "Start"}
+                                         buttonFunction={toggleStartStop}
+                                         disabled={false}
+                                         style={isRunning ? stopButtonStyle : startButtonStyle}
+                        />
+                    </div>
+                </div>
+                <div style={{flexGrow: 1, overflowY: "auto"}}>
+                    <ul style={lapSectionStyle}>
+                        {renderCurrentLap()}
+                        {renderLaps()}
+                    </ul>
+                </div>
             </div>
         </React.Fragment>
     )
