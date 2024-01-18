@@ -84,7 +84,7 @@ body {
   overflow-y: scroll;
 }
 
-.stopwatch-laps h3 {
+.stopwatch-laps-list h3 {
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -92,13 +92,13 @@ body {
   color: #333;
 }
 
-.stopwatch-laps ul {
+.stopwatch-laps-list ul {
   list-style-type: none;
   padding: 0;
   color: #333;
 }
 
-.stopwatch-laps li {
+.stopwatch-laps-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
