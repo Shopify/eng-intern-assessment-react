@@ -3,7 +3,7 @@
     --dark: #B09E99;
 
     --primary: #64B6AC;
-    --primary-mid: #31BDAD;
+    --primary-mid: #89f4e7;
     --primary-light: #C0FDFB;
 
     --secondary: #FAD4C0;
@@ -16,27 +16,26 @@
     box-sizing: border-box;
 }
 
-
-/* Since this will only be a one-page application, this is fine */
 body {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
     background-color: var(--dark);
+}
+
+#root {
+    width: 100%;
+    padding: 10px;
 }
 
 .stopwatch {
     display: flex;
-    width: 500px;
     max-width: 500px;
-    height: fit-content;
     padding: 20px;
     border-radius: 16px;
     background-color: var(--primary);
     display: flex;
     flex-direction: column;
     border: 4px solid black;
-    margin-top: 25px;
+    margin: 25px auto;
+    box-shadow: 5px 5px 0 black;
 }
 
 .stopwatch-display {
@@ -85,6 +84,7 @@ body {
     box-shadow: 0 0 0 black;
 }
 
+/* Each button has it's own colour assossiated with it */
 .stopwatch-button:hover {
     background-color: var(--primary-mid);
 }
@@ -105,26 +105,33 @@ body {
     background-color: #A06CD5;
 }
 
+/* Laps interface */
 .stopwatch-lap-array {
     display: flex;
     flex-direction: column-reverse;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 10px 10px 0;
+    margin-top: 16px;
     background-color: var(--primary-light);
     border-radius: 8px;
     border: 3px solid black;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .lap-row {
     display: flex;
-    padding: 3px;
+    padding: 3px 10px;
+}
+
+/* Every other lap row is darkened so that it's easier to see times */
+.lap-row:nth-of-type(2n) {
+    background-color: var(--primary-mid);
 }
 
 .lap-time {
     margin-left: auto;
 }
 
+/* Footer */
 footer {
     position: absolute;
     bottom: 0;
@@ -133,4 +140,15 @@ footer {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--neutral);
     padding: 20px;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 768px) {
+    .stopwatch-display {
+        font-size: 36px;
+    }
+
+    .stopwatch {
+        padding: 10px;
+    }
 }
