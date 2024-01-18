@@ -1,55 +1,94 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Stopwatch from '../src/StopWatch';
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import Stopwatch from "../src/StopWatch";
+import { act } from "react-dom/test-utils";
 
-describe('Stopwatch', () => {
-  test('renders initial state correctly', () => {
-    render(<Stopwatch />);
-    
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+const countDownRegex = /(\d{2}:){2}\d{2}/;
+const initialTime = "00:00:00";
+
+const incrementTimers = (ms) => {
+  // advanceTimersByTime must be wrapped in act() to work properly
+  // as setInterval is used in the Stopwatch component to update the state
+  act(() => {
+    jest.advanceTimersByTime(ms);
+  });
+};
+
+const getCountDown = () => screen.getByText(countDownRegex).textContent;
+
+describe("Stopwatch", () => {
+  beforeAll(() => {
+    // using fake timers allows us to control the passage of time
+    jest.useFakeTimers();
   });
 
-  test('starts and stops the stopwatch', () => {
+  test("renders initial state correctly", () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Stop'));
-    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
+    expect(screen.getByText(initialTime)).toBeInTheDocument();
+    expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
   });
 
-  test('pauses and resumes the stopwatch', () => {
+  test("starts and stops the stopwatch", () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Pause'));
-    const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
 
-    fireEvent.click(screen.getByText('Resume'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(pausedTime);
+    fireEvent.click(screen.getByText("Start"));
+    expect(screen.getByText(initialTime)).toBeInTheDocument();
+
+    // wait for 1 sec to allow the counter to get past 00:00:00
+    incrementTimers(1000);
+
+    fireEvent.click(screen.getByText("Stop"));
+    expect(screen.queryByText(countDownRegex)).toBeInTheDocument();
+
+    const pausedTime = getCountDown();
+    expect(pausedTime).not.toBe(initialTime);
   });
 
-  test('records and displays lap times', () => {
+  test("pauses and resumes the stopwatch", () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list')).toContainElement(screen.getByText(/(\d{2}:){2}\d{2}/));
 
-    fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list').children.length).toBe(2);
+    fireEvent.click(screen.getByText("Start"));
+    incrementTimers(1000);
+    fireEvent.click(screen.getByText("Stop"));
+
+    const pausedTime = getCountDown();
+    expect(pausedTime).not.toBe(initialTime);
+
+    fireEvent.click(screen.getByText("Resume"));
+
+    incrementTimers(1000);
+
+    expect(getCountDown()).not.toBe(pausedTime);
   });
 
-  test('resets the stopwatch', () => {
+  test("records and displays lap times", () => {
     render(<Stopwatch />);
-    
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
-    fireEvent.click(screen.getByText('Reset'));
 
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    fireEvent.click(screen.getByText("Start"));
+    fireEvent.click(screen.getByText("Lap"));
+
+    expect(screen.getByTestId("lap-list")).toContainElement(
+      screen.getByText(/\d: (\d{2}:){2}\d{2}/)
+    );
+
+    fireEvent.click(screen.getByText("Lap"));
+    expect(screen.getByTestId("lap-list").children.length).toBe(2);
+  });
+
+  test("resets the stopwatch", () => {
+    render(<Stopwatch />);
+
+    fireEvent.click(screen.getByText("Start"));
+    incrementTimers(1000);
+
+    expect(getCountDown()).not.toBe(initialTime);
+
+    fireEvent.click(screen.getByText("Lap"));
+    fireEvent.click(screen.getByText("Reset"));
+
+    expect(screen.getByText(initialTime)).toBeInTheDocument();
+    expect(screen.getByTestId("lap-list")).toBeEmptyDOMElement();
   });
 });
