@@ -3,7 +3,6 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import StopWatch, { formatTime } from '../src/StopWatch';
 import '@testing-library/jest-dom';
 
-/* As there is no implementation yet, these should all fail and they likely will be tweaked later */
 describe('Stopwatch', () => {
     beforeEach(() => {
         jest.useFakeTimers();
