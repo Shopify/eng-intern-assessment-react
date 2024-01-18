@@ -1,28 +1,60 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Lap} from './App'
 
-export default function StopWatch() {
+export interface StopWatchProps {
+    time: number; // Stopwatch time in 10s of milliseconds
+    laps: Lap[]; // Array of Lap objects 
+    currentLap: Lap | null; // Lap object to represent the current in progress lap
+}
+
+const formatTime = (time:number):string => {
+    /**
+     * Returns a string formatted version of a time in 10s of milliseconds in the format mm:ss:ms
+     */
+    const minutes = Math.floor((time / 6000)).toString().padStart(2, "0")
+    const seconds = Math.floor(((time % 6000) / 100)).toString().padStart(2, "0")
+    const milliseconds = Math.floor((time % 100)).toString().padStart(2, "0")
+    return `${minutes}:${seconds}:${milliseconds}`
+}
+
+/**
+ * Renders the stopwatch display along with all lap data
+ */
+export default function StopWatch(props:StopWatchProps) {
+
+    const {time, laps, currentLap} = props
+
     return(
         <Container>
             <StopWatchContainer>
                 <TimeDisplay>
-                    00:02:37
+                    {formatTime(time)}
                 </TimeDisplay>
             </StopWatchContainer>
-            <LapsTable>
-                <tbody>
-                    <tr>
-                        <StyledTd>#2</StyledTd>
-                        <StyledTd>0 01.22</StyledTd>
-                        <StyledTd>0 02.37</StyledTd>
-                    </tr>
-                    <tr>
-                        <StyledTd>#1</StyledTd>
-                        <StyledTd>0 01.15</StyledTd>
-                        <StyledTd>0 01.15</StyledTd>
-                    </tr>
-                </tbody>
-            </LapsTable>
+            {/* Conditionally render lap data if laps exist */}
+            {laps.length > 0 && <LapsTableContainer>
+                <LapsTable>
+                    <ReveresedTableBody>
+                        {/* Render the data of each individual lap */}
+                        {laps.map((lap:Lap, index:number) => {
+                            return (
+                                <tr>
+                                    <StyledTd>#{index + 1}</StyledTd>
+                                    <StyledTd>{formatTime(lap.lapTime)}</StyledTd>
+                                    <StyledTd>{formatTime(lap.totalTime)}</StyledTd>
+                                </tr>
+                            )
+                        })}
+                        {/* Render the data on the current in progress lap */}
+                        {currentLap && <tr>
+                            <StyledTd>#{laps.length + 1}</StyledTd>
+                            <StyledTd>{formatTime(currentLap.lapTime)}</StyledTd>
+                            <StyledTd>{formatTime(currentLap.totalTime)}</StyledTd>
+                        </tr>}
+                    </ReveresedTableBody>
+                </LapsTable>
+            </LapsTableContainer>}
         </Container>
     )
 }
@@ -49,10 +81,31 @@ const TimeDisplay = styled.span`
     font-size: 35px;
 `
 
+const LapsTableContainer = styled.div`
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 20px;
+    &::-webkit-scrollbar-thumb {
+        width: 10px;
+        background: #D8D8D8;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar {
+        width: 10px;
+        background:#F5F5F5;
+        border-radius: 10px;
+    }
+`
+
 const LapsTable = styled.table`
     borderCollapse: collapse;
     font-size: 16px;
     color: #5D636C;
+`
+
+const ReveresedTableBody = styled.tbody`
+    display: flex; 
+    flex-direction: column-reverse;
 `
 
 const StyledTd = styled.td`
