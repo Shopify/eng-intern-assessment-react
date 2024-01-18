@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
-import { useAutoAnimate } from "@formkit/auto-animate/react"
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const formatMs = (ms: number) => {
   const minutes = Math.floor(ms / 1000 / 60);
@@ -25,7 +25,7 @@ export default function App() {
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [lapTimes, setLapTimes] = useState<Array<number>>([]);
-  const [parent] = useAutoAnimate()
+  const [parent] = useAutoAnimate();
 
   // hook to update the time when the timer is running
   useEffect(() => {
@@ -44,10 +44,10 @@ export default function App() {
   }, [running]);
 
   return (
-    <main className="m-5 mx-auto max-w-3xl">
+    <main className="mx-auto max-w-3xl p-5">
       <h1 className="text-4xl">Stopwatch</h1>
       <StopWatch>{formatMs(time ?? 0)}</StopWatch>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         <StopWatchButton
           onClick={() => {
             console.log("Start");

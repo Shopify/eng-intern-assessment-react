@@ -8,7 +8,10 @@ export default function StopWatchButton({
   onClick,
 }: StopWatchButtonProps) {
   return (
-    <button className="bg-gray-100 p-5" onClick={onClick}>
+    <button
+      className="bg-slate-200 p-4 text-xl shadow-md hover:bg-slate-200/80 active:shadow-none"
+      onClick={onClick}
+    >
       {children}
     </button>
   );
