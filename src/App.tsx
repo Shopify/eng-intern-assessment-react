@@ -51,27 +51,27 @@ export default function App() {
     return(
         <div>
             <StopWatch hours={hours} minutes={minutes} seconds={seconds}/>
-            <StopWatchButton text="Start" handleClick={() => {
+            <StopWatchButton text='Start' handleClick={() => {
                 setCounting(true);
             }}/>
-            <StopWatchButton text="Stop" handleClick={() => {
+            <StopWatchButton text='Stop' handleClick={() => {
                 setCounting(false);
             }}/>
-            <StopWatchButton text="Reset" handleClick={() => {
+            <StopWatchButton text='Reset' handleClick={() => {
                 setCounting(false);
                 setSeconds(0);
                 setMinutes(0);
                 setHours(0);
                 setLaps([]);
             }}/>
-            <StopWatchButton text="Lap" handleClick={() => {
+            <StopWatchButton text='Lap' handleClick={() => {
                 // Add current time to lap list
                 setLaps([...laps, { id: uuidv4(), hours: hours, minutes: minutes, seconds: seconds }])
             }}/>
 
             <ol>
                 {laps.map(lap => (
-                    <li  key={lap.id}>{String(lap.hours).padStart(2, "0")}:{String(lap.minutes).padStart(2, "0")}:{String(lap.seconds).padStart(2, "0")}</li>
+                    <li  key={lap.id}>{String(lap.hours).padStart(2, '0')}:{String(lap.minutes).padStart(2, '0')}:{String(lap.seconds).padStart(2, '0')}</li>
                 ))}
             </ol>
         </div>
