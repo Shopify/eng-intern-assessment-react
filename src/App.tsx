@@ -65,7 +65,7 @@ export default function App() {
         <StopWatchButton
           onClick={() => {
             console.log("Lap");
-            setLapTimes((lapTimes) => [...lapTimes, time]);
+            setLapTimes((lapTimes) => [time, ...lapTimes]);
           }}
         >
           Lap
@@ -75,16 +75,22 @@ export default function App() {
             console.log("Reset");
             setRunning(false);
             setTime(0);
+            setLapTimes([]);
           }}
         >
           Reset
         </StopWatchButton>
       </div>
-      <div>
-        {lapTimes.map((lapTime) => {
-          return <>{lapTime}</>;
+      <ul className="text-2xl">
+        {lapTimes.map((lapTime, idx) => {
+          return (
+            <li>
+              Lap {(lapTimes.length - idx).toString().padStart(2, "0")}:{" "}
+              {formatMs(lapTime)}
+            </li>
+          );
         })}
-      </div>
+      </ul>
     </main>
   );
 }
