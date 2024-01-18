@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from "react";
 import StopWatchButton from './StopWatchButton';
+import './StopWatch.css'
 
 export default function StopWatch() {
     const [elapsedTime, setElapsedTime] = useState(0)
@@ -53,23 +54,27 @@ export default function StopWatch() {
     }
 
     return(
-        <div className="StopWatch" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <h1>StopWatch</h1>
-            <h2>{displayTime(elapsedTime)}</h2>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <StopWatchButton text={"Start"} handleClick={handleStart}/>
-                <StopWatchButton text={"Stop"} handleClick={handleStop}/>
-                <StopWatchButton text={"Reset"} handleClick={handleReset}/>
-                <StopWatchButton text={"New Lap"} handleClick={handleLaps}/>
+        <div className="StopWatch">
+            <div className="display">
+                <h1>StopWatch</h1>
+                <h2>{displayTime(elapsedTime)}</h2>
+                <div className="buttons">
+                    <StopWatchButton text={"Start"} handleClick={handleStart} color="green"/>
+                    <StopWatchButton text={"Stop"} handleClick={handleStop} color="red"/>
+                    <StopWatchButton text={"Reset"} handleClick={handleReset} color="grey"/>
+                    <StopWatchButton text={"New Lap"} handleClick={handleLaps} color="blue"/>
+                </div>
             </div>
-
-            {!laps.length ? null : laps.map((lap, idx) => {
-                if (idx == 0) {
-                    return <p>Lap {idx+1}: {displayTime(lap)}</p>
-                } else {
-                    return <p>Lap {idx+1}: {displayTime(lap - laps[idx-1])}</p>
-                }
-            }) }
+            <div className="lapDisplay">
+                <h1>Laps</h1>
+                {!laps.length ? null : laps.map((lap, idx) => {
+                        if (idx == 0) {
+                            return <p>Lap {idx+1}: {displayTime(lap)}</p>
+                        } else {
+                            return <p>Lap {idx+1}: {displayTime(lap - laps[idx-1])}</p>
+                        }
+                    }) }
+            </div>
         </div>
     )
 }
