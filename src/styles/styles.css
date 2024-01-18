@@ -1,0 +1,10 @@
+#stopwatch {
+    display: flex;
+    width: 75svw;
+    height: 500px;
+    background-color: gainsboro;
+    border-radius: 32px;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
