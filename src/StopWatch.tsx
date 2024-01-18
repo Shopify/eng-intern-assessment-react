@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
+import './StopWatch.css';
 
 type Lap = {
     time: number;
