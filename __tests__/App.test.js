@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Stopwatch from "../src/StopWatch";
+import App from "../src/App";
 import { act } from "react-dom/test-utils";
 
 const countDownRegex = /(\d{2}:){2}\d{2}/;
@@ -17,21 +17,21 @@ const incrementTimers = (ms) => {
 
 const getCountDown = () => screen.getByText(countDownRegex).textContent;
 
-describe("Stopwatch", () => {
+describe("Stopwatch App", () => {
   beforeAll(() => {
     // using fake timers allows us to control the passage of time
     jest.useFakeTimers();
   });
 
   test("renders initial state correctly", () => {
-    render(<Stopwatch />);
+    render(<App />);
 
     expect(screen.getByText(initialTime)).toBeInTheDocument();
-    expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
+    expect(screen.queryByTestId("lap-list")).not.toBeInTheDocument();
   });
 
   test("starts and stops the stopwatch", () => {
-    render(<Stopwatch />);
+    render(<App />);
 
     fireEvent.click(screen.getByText("Start"));
     expect(screen.getByText(initialTime)).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe("Stopwatch", () => {
   });
 
   test("pauses and resumes the stopwatch", () => {
-    render(<Stopwatch />);
+    render(<App />);
 
     fireEvent.click(screen.getByText("Start"));
     incrementTimers(1000);
@@ -64,7 +64,7 @@ describe("Stopwatch", () => {
   });
 
   test("records and displays lap times", () => {
-    render(<Stopwatch />);
+    render(<App />);
 
     fireEvent.click(screen.getByText("Start"));
     fireEvent.click(screen.getByText("Lap"));
@@ -78,7 +78,7 @@ describe("Stopwatch", () => {
   });
 
   test("resets the stopwatch", () => {
-    render(<Stopwatch />);
+    render(<App />);
 
     fireEvent.click(screen.getByText("Start"));
     incrementTimers(1000);
@@ -89,6 +89,6 @@ describe("Stopwatch", () => {
     fireEvent.click(screen.getByText("Reset"));
 
     expect(screen.getByText(initialTime)).toBeInTheDocument();
-    expect(screen.getByTestId("lap-list")).toBeEmptyDOMElement();
+    expect(screen.queryByTestId("lap-list")).not.toBeInTheDocument();
   });
 });

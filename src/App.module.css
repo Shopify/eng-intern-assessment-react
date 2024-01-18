@@ -1,0 +1,19 @@
+* {
+  /* reset all margins so that gap works as expected */
+  margin: 0;
+  /* setting min-width to 0 so that flex elements don't overflow */
+  min-width: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.innerContainer {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
