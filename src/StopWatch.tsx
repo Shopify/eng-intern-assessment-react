@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+
 import StopWatchButton from './StopWatchButton';
 
 // Represents the stopwatch display
@@ -9,6 +10,13 @@ export default function StopWatch() {
     const [laps, setLaps] = useState<{lap: number; time: number;}[]>([]);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const [currLapTime, setCurrLapTime] = useState<number>(0);
+
+    let shortestLap: number;
+    let longestLap: number;
+    if (laps.length > 1) {
+        shortestLap = Math.min(...laps.map((lap) => lap.time));
+        longestLap = Math.max(...laps.map((lap) => lap.time));
+    }
 
     useEffect(() => {
         let intervalID: NodeJS.Timer;
@@ -66,7 +74,7 @@ export default function StopWatch() {
     return(
         <div className='app-container'>
             <div className='timer-container'>
-                <h1 className='timer'>{formatTime(elapsedTime)}</h1>
+                <p className='timer'>{formatTime(elapsedTime)}</p>
             </div>
             <StopWatchButton 
                 isRunning={isRunning}
@@ -77,13 +85,26 @@ export default function StopWatch() {
             />
             <div className='lap-container'>
                 {isStarted ? (
-                    <div className='lap-item'>Lap: {laps.length+1}: {formatTime(currLapTime)}</div>
+                    <div className='lap-item'>
+                        <div className='lap-number'>Lap {laps.length+1}:</div>
+                        <div className='lap-time'>{formatTime(currLapTime)}</div>
+                    </div>
                 ) : (
                     <></>
                 )}
                 {laps.map((lap) => {
+                    let className = 'lap-item';
+                    if (lap.time === shortestLap) {
+                        className += '-shortest'
+                    }
+                    if (lap.time === longestLap) {
+                        className += '-longest'
+                    }
                     return (
-                        <div className='lap-item' key={lap.lap}>Lap {lap.lap}: {formatTime(lap.time)}</div>
+                        <div className={className} key={lap.lap}>
+                            <div className='lap-number'>Lap {lap.lap}:</div>
+                            <div className='lap-time'>{formatTime(lap.time)}</div>
+                        </div>
                     );
                 })}
             </div>

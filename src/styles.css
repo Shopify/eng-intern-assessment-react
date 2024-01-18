@@ -1,0 +1,99 @@
+.app-container {
+    min-height: 50svh;
+    text-align: center;
+    padding: 5% 30% 0;
+    font-family: system-ui;
+}
+
+.timer {
+    font-size: 6em;
+}
+
+.button-container {
+    padding-top: 5%;
+    border-top: 1px solid gray;
+    margin-bottom: 5%;
+}
+
+.button-stop {
+    background-color: #800E0E;
+    color: red;
+    width: 80px;
+    height: 80px;
+    margin-left: 10%;
+    border-radius: 50%;
+    border: none;
+}
+
+.button-stop:hover {
+    background-color: #461515;
+}
+
+.button-start {
+    background-color: #31B022;
+    color: lightgreen;
+    width: 80px;
+    height: 80px;
+    margin-left: 10%;
+    border-radius: 50%;
+    border: none;
+}
+
+.button-start:hover {
+    background-color: #15461D;
+}
+
+.button-reset {
+    background-color: darkgray;
+    color: white;
+    width: 80px;
+    height: 80px;
+    margin-right: 10%;
+    border-radius: 50%;
+    border: none;
+}
+
+.button-reset:hover {
+    background-color: #434343;
+}
+
+.button-lap {
+    background-color: darkgray;
+    color: white;
+    width: 80px;
+    height: 80px;
+    margin-right: 10%;
+    border-radius: 50%;
+    border: none;
+}
+
+.button-lap:hover {
+    background-color: #434343;
+}
+
+.lap-container {
+    border-top: 1px solid gray;
+}
+
+.lap-item {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
+
+.lap-item-shortest {
+    color: green;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
+
+.lap-item-longest {
+    color: red;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}

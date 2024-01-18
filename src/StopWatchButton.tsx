@@ -20,16 +20,16 @@ export default function StopWatchButton({
         <div className='button-container'>
             <>
                 {isRunning ? (
-                    <button onClick={handleLap}>Lap</button>
+                    <button className='button-lap' onClick={handleLap}>Lap</button>
                 ):(
-                    <button onClick={handleReset}>Reset</button>
+                    <button className='button-reset' onClick={handleReset}>Reset</button>
                 )}
             </>
             <>
                 {isRunning ? (
-                    <button onClick={handleStop}>Stop</button>
+                    <button className='button-stop' onClick={handleStop}>Stop</button>
                 ):(
-                    <button onClick={handleStart}>Start</button>
+                    <button className='button-start' onClick={handleStart}>Start</button>
                 )}
             </>
         </div>
