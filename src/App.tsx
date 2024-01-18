@@ -59,6 +59,9 @@ export default function App() {
             setRunning={setRunning}
             recordLap={recordLap}
             running={running}
+            setLastLapTime={setLastLapTime}
+            setLaps={setLaps}
+            setTimePassed={setTimePassed}
           />
         </Flex>
       </Flex>
