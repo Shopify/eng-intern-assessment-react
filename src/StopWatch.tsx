@@ -47,3 +47,5 @@ export default function StopWatch({  hundredths, seconds, minutes  }: Time) {
         </div>
     )
 }
+
+export type {Time};

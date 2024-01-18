@@ -5,14 +5,15 @@ type Controls = {
     runFunc: () => void, 
     pauseFunc: () => void, 
     resetFunc: () => void,
+    lapFunc: () => void, 
 }
 
 type Props = {
     controls: Controls,
-    state: StopwatchState
+    stopwatchState: StopwatchState
 }
 
-export default function StopWatchButton({ controls, state  }: Props) {
+export default function StopWatchButton({  controls, stopwatchState  }: Props) {
     const buttonStyle: React.CSSProperties = {
         padding: '2rem',
         margin: '1rem',
@@ -29,8 +30,15 @@ export default function StopWatchButton({ controls, state  }: Props) {
     return(
         <div>
             <div>
-                <button onClick={controls.runFunc} style={buttonStyle} data-testid="start-button">Start</button>
-                {state == "running" 
+                {/* display "start" and "reset" when not running, "lap" and "pause" when running*/}
+                {/* onClick, trigger respective functions defined in App.tsx */}
+
+                {stopwatchState == "running" 
+                ? <button onClick={controls.lapFunc} style={buttonStyle} data-testid="lap-button">Lap</button>
+                : <button onClick={controls.runFunc} style={buttonStyle} data-testid="start-button">Start</button>
+                }
+                
+                {stopwatchState == "running" 
                 ? <button onClick={controls.pauseFunc} style={buttonStyle} data-testid="pause-button">Pause</button>
                 : <button onClick={controls.resetFunc} style={buttonStyle} data-testid="reset-button">Reset</button>
                 }
