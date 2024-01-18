@@ -49,13 +49,20 @@ export default function StopWatch() {
       remainingSeconds < 10 ? "0" : ""
     }${remainingSeconds}.${remainingMs}`;
   };
-
+  //additional functionality so we can't lap if time isn't moving or if we didn't start at all!
+  const isLapDisabled = !isRunning || time === 0;
   return (
     <div>
       <h2>Stopwatch</h2>
       <p>{formatTime(time)} seconds</p>
       {/* passing callback functions to child component */}
-      <StopWatchButton start={start} stop={stop} reset={reset} lap={lap} />
+      <StopWatchButton
+        start={start}
+        stop={stop}
+        reset={reset}
+        lap={lap}
+        lapDisabled={isLapDisabled}
+      />
 
       {/* implementing conditional display using && operator iff we have 1 or more laps to display */}
 
