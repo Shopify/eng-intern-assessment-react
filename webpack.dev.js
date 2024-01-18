@@ -8,9 +8,11 @@ module.exports = merge(common, {
   devServer: {
     static: './dist',
   },
-  plugins: [new webpack.DefinePlugin({
-    "process.env": {
-      NODE_ENV: JSON.stringify('development')
-    }
-  })]
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
+  ],
 });
