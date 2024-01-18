@@ -1,5 +1,6 @@
 import React, {MouseEventHandler, ReactNode} from 'react'
 import './StopWatchButton.css'
+
 interface Props {
     children?: ReactNode
     onClick?: MouseEventHandler

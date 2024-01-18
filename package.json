@@ -50,6 +50,9 @@
     "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.css$": "<rootDir>/src/__mocks__/styleMock.js"
     }
   }
 }
