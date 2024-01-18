@@ -11,13 +11,14 @@ export interface StopWatchButtonProps {
 }
 
 /**
- * Renders action buttons for the stopwatch including the reset, play, pause, and lap buttons 
+ * Component which renders action buttons for the stopwatch including the reset, play, pause, and lap buttons 
  */
 export default function StopWatchButton(props:StopWatchButtonProps) {
     const {isRunning, pause, start, reset, lap} = props
 
     return(
         <RowButtonContainer data-testid="stopwatch-buttons">
+            {/* reset button */}
             <SecondaryActionButton onClick={reset} data-testid="reset">
                 <IoRefresh />
             </SecondaryActionButton>

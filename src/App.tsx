@@ -13,14 +13,15 @@ export interface Lap {
 }
 
 /**
- * Renders the stopwatch face, lap data, and action buttons
+ * A stopwatch application which renders a stopwatch face, lap data, 
+ * and action buttons to start, stop, reset, and record laps
  */
 export default function App() {
 
-    const [isRunning, setIsRunning] = useState<boolean>(false) // Running state of the stopwatch
+    const [isRunning, setIsRunning] = useState<boolean>(false) // Boolean running state of the stopwatch
     const [time, setTime] = useState<number>(0) // Stopwatch time in 10s of milliseconds
     const [laps, setLaps] = useState<Lap[]>([]) // Array of lap data
-    const [currentLap, setCurrentLap] = useState<Lap | null>(null) // Lap data for current in progress lap
+    const [currentLap, setCurrentLap] = useState<Lap | null>(null) // Lap data for current in-progress lap
     const timingIntervalId = useRef(null) // ID of timing interval
 
     const pause = () => {
@@ -42,18 +43,19 @@ export default function App() {
          * Reset the stopwatch back to its initial state
          */
         setIsRunning(false)
-        setTime(0)
-        setLaps([])
-        setCurrentLap(null)
+        setTime(0) // reset time to 0
+        setLaps([]) // empty lap data
+        setCurrentLap(null) // clear current lap time
     }
 
     const lap = () => {
         /**
          * Save a new lap entry
          */
-        const newTime = time
+        const newTime = time // current time
+        // time since last lap or current time if first lap
         const newLapTime = laps.length > 0 ? newTime - laps[laps.length - 1].totalTime : newTime
-        setLaps([...laps, {totalTime:newTime, lapTime:newLapTime}])
+        setLaps([...laps, {totalTime:newTime, lapTime:newLapTime}]) // append new lap data
     }
 
     useEffect(() => {
@@ -72,10 +74,12 @@ export default function App() {
 
     useEffect(() => {
         /**
-         * Update the data on the current in progress lap whenever stopwatch time updates
+         * Update the live data on the current in progress lap whenever stopwatch time updates
          */
         if (laps.length > 0) {
+            // live time since beginning
             const newTime = time
+            // live time since last lap
             const newLapTime = newTime - laps[laps.length - 1].totalTime
             setCurrentLap({totalTime:newTime, lapTime:newLapTime})
         }

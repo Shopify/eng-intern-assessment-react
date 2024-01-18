@@ -19,7 +19,8 @@ const formatTime = (time:number):string => {
 }
 
 /**
- * Renders the stopwatch display along with all lap data
+ * Component which renders the stopwatch face along with a table of 
+ * lap data and live data on the current lap
  */
 export default function StopWatch(props:StopWatchProps) {
 
@@ -27,6 +28,7 @@ export default function StopWatch(props:StopWatchProps) {
 
     return(
         <Container data-testid="stopwatch">
+            {/* Stopwatch face */}
             <StopWatchContainer>
                 <TimeDisplay data-testid="time-display">
                     {formatTime(time)}
@@ -40,16 +42,22 @@ export default function StopWatch(props:StopWatchProps) {
                         {laps.map((lap:Lap, index:number) => {
                             return (
                                 <tr key={`lap-${index}`}>
-                                    <StyledTd>#{index + 1}</StyledTd>
+                                    {/* lap number */}
+                                    <StyledTd>#{index + 1}</StyledTd> 
+                                    {/* lap time */}
                                     <StyledTd>{formatTime(lap.lapTime)}</StyledTd>
+                                    {/* time since beginning */}
                                     <StyledTd>{formatTime(lap.totalTime)}</StyledTd>
                                 </tr>
                             )
                         })}
                         {/* Render the data on the current in progress lap */}
                         {currentLap && <tr>
+                            {/* lap number */}
                             <StyledTd>#{laps.length + 1}</StyledTd>
+                            {/* time since last lap */}
                             <StyledTd>{formatTime(currentLap.lapTime)}</StyledTd>
+                            {/* time since beginning */}
                             <StyledTd>{formatTime(currentLap.totalTime)}</StyledTd>
                         </tr>}
                     </ReveresedTableBody>
@@ -103,6 +111,7 @@ const LapsTable = styled.table`
     color: #5D636C;
 `
 
+// reverse order of rows so recent laps appear first
 const ReveresedTableBody = styled.tbody`
     display: flex; 
     flex-direction: column-reverse;
