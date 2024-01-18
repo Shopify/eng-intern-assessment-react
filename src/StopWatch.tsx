@@ -21,10 +21,11 @@ export default function StopWatch() {
     const kylie = require('./logos/kylie.png').default;
     const kkw = require('./logos/kkw.jpg').default;
 
-    // State variables for time, running state, and laps
+    // State variables for time, running state, laps and laptime
     const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
-    const [laps, setLaps] = useState([]);
+    const [laps, setLaps] = useState([]); //array of lap times
+    const [lapTime, setLapTime] = useState(0);
 
     // useEffect hook to handle the timer interval when time or running changes
     useEffect(() => {
@@ -32,6 +33,7 @@ export default function StopWatch() {
         if (running) {
             interval = setInterval(() => {
                 setTime(prevTime => prevTime + 1)
+                setLapTime(prevTime => prevTime + 1)
             }, 10); // Update the time every 10 milliseconds
         } else if (!running && time !== 0) {
             clearInterval(interval); // Clear the interval when the stopwatch is stopped
@@ -53,7 +55,8 @@ export default function StopWatch() {
 
     // Event handler to record a lap
     const handleLap = () => {
-        setLaps([...laps, time]);
+        setLaps([...laps, lapTime]);
+        setLapTime(0);
     }
 
     // Function to format the time into hours, minutes, seconds, and milliseconds
