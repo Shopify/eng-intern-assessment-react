@@ -2,22 +2,28 @@ import React from "react"
 import "./stylesheets/LiveWatch.css"
 
 interface LiveWatchProps{
-    currentSecond : React.MutableRefObject<any>
-    totalSecond: React.MutableRefObject<any>
+    maintainCurr : number
+    maintainTotal: number
 }
 
 export default function LiveWatch({
-    currentSecond,
-    totalSecond
+    maintainCurr,
+    maintainTotal
     }:LiveWatchProps) {
     return (
         <div className="body">
             <div className="clock">
                 <div className="watch">
-                    <div ref={currentSecond} className="second" id="second">
+                    <div 
+                    className="second" 
+                    id="second" 
+                    style={{ transform: `rotateZ(${maintainCurr}deg)` }}>
                         <div className="curr"/>
                     </div>
-                    <div ref={totalSecond} className="totalsecond" id="totalsecond">
+                    <div 
+                    className="totalsecond" 
+                    id="totalsecond"
+                    style={{ transform: `rotateZ(${maintainTotal}deg)` }}>
                         <div className="total"/>
                     </div>
                 </div>

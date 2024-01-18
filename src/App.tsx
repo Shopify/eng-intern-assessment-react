@@ -23,8 +23,8 @@ export default function App() {
   const [display, setDisplay] = useState(true);
   const [buttonText, setButtonText] = useState('Show Live Clock')
 
-  const currentSecHandle = useRef(null)
-  const totalSecHandle = useRef(null)
+  const [maintainCurr, setMaintainCurr] = useState(0) 
+  const [maintainTotal, setMaintainTotal] = useState(0) 
 
   /*
   To keep track of current lap time and total time, if the stopwatch is running 
@@ -35,12 +35,8 @@ export default function App() {
         var interval = setInterval(() => {
             setCurrentTime(currentTime + 1)
             setTotalTime(totalTime + 1)
-            if(currentSecHandle.current){
-              currentSecHandle.current.style.transform = `rotateZ(${(Math.floor(currentTime % 60)) * 6}deg)`
-            }
-            if(totalSecHandle.current){
-              totalSecHandle.current.style.transform = `rotateZ(${(Math.floor(totalTime % 60)) * 6}deg)`
-            }
+            setMaintainCurr((Math.floor(currentTime % 60)) * 6)
+            setMaintainTotal((Math.floor(totalTime % 60)) * 6)
           }, 1000);
     }
     
@@ -71,12 +67,9 @@ export default function App() {
     setIsRunning(false)
     setCurrentTime(0)
     setTotalTime(0)
-    if(currentSecHandle.current){
-      currentSecHandle.current.style.transform = `rotateZ(${0}deg)`
-    }
-    if(totalSecHandle.current){
-      totalSecHandle.current.style.transform = `rotateZ(${0}deg)`
-    }
+    setMaintainCurr(0)
+    setMaintainTotal(0)
+
   }
 
   const toggleVisibility = () => {
@@ -100,8 +93,9 @@ export default function App() {
       lapTimes={lapTimes}
       totalTimes={totalTimes}/> : 
       <LiveWatch
-      currentSecond={currentSecHandle}
-      totalSecond={totalSecHandle}/>}
+      
+      maintainCurr={maintainCurr}
+      maintainTotal={maintainTotal}/>}
 
       <div style={{marginTop:'1%'}}>
         <InlineStack align='center'>
