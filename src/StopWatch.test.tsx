@@ -13,6 +13,7 @@ describe("StopWatch component", ()=>{
     });
     
     test('check minutes render', () => {
+        const runFuncMock = jest.fn();
         render(<StopWatch hundredths={0} minutes={0} seconds={0} />);
       
         const minutes = screen.getByTestId('minutes');
@@ -21,6 +22,7 @@ describe("StopWatch component", ()=>{
     });
 
     test('check hundredths render', () => {
+        const runFuncMock = jest.fn();
         render(<StopWatch hundredths={0} minutes={0} seconds={0} />);
       
         const hundredths = screen.getByTestId('hundredths');
@@ -29,3 +31,6 @@ describe("StopWatch component", ()=>{
     });
   
 })
+
+//more robust tests in App.test.tsx
+//since stopwatch component just for display

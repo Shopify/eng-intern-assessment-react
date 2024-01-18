@@ -65,3 +65,4 @@ describe("StopWatchButton component", ()=>{
     expect(resetFuncMock).toHaveBeenCalled();
     });
 })
+

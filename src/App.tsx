@@ -34,8 +34,16 @@ export default function App() {
         }
     }, [state])
 
+    const containerStyle: React.CSSProperties = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent:'space-around',
+        fontFamily: 'sans-serif'
+    }
+
     return(
-        <div>
+        <div style={containerStyle}>
             {/* Stopwatch component meant only to display values, all functionality in App */}
             {/* therefore pass displayable values only */}
             <StopWatch 
