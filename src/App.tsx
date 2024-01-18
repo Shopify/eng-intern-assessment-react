@@ -14,6 +14,27 @@ export default function App() {
     useEffect(() => {
         if (counting) {
             intervalID = setInterval(() => {
+
+                // Handle seconds overflow
+                if (seconds == 59 ) {
+                    setMinutes(minutes => minutes + 1);
+                    setSeconds(0);
+                    return;
+                }
+
+                // Handle minutes overflow
+                if (minutes == 59) {
+                    setHours(hours => hours + 1);
+                    setMinutes(0);
+                    return;
+                }
+
+                // Handle hours overflow
+                if (hours == 59) {
+                    clearInterval(intervalID);
+                    return;
+                }
+
                 setSeconds(seconds => seconds + 1);
             }, 1000)
         } else {
@@ -23,7 +44,7 @@ export default function App() {
         return () => {
             clearInterval(intervalID);
         }
-    }, [counting])
+    }, [counting, seconds, minutes, hours])
 
     return(
         <div>
