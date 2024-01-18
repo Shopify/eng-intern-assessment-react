@@ -1,7 +1,16 @@
-import React from 'react'
+import React from "react";
+import StopWatch from "./StopWatch";
 
-export default function App() {
-    return(
-        <div></div>
-    )
+/**
+ * Renders StopWatch component.
+ *
+ * App -> StopWatch -> StopWatchButton
+ */
+
+export default function App(): JSX.Element {
+  return (
+    <div>
+      <StopWatch />
+    </div>
+  );
 }
