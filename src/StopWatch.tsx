@@ -29,10 +29,10 @@ export default function StopWatch({ time, laps }: StopWatchProps) {
     return (
         <div style={stopwatchContainerStyle}>
             {/* Stopwatch display */}
-            <h1 style={timeStyle}>{time}</h1>
+            <h1 data-testid="stopwatch" style={timeStyle}>{time}</h1>
 
             {/* Laps display */}
-            <h1 style={lapsStyle}>Laps: {laps}</h1>
+            <h1 data-testid="lap-counter" style={lapsStyle}>Laps: {laps}</h1>
         </div>
     );
 }
