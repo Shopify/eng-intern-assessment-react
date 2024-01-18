@@ -1,0 +1,27 @@
+button {
+    margin: 0% 2%;
+    width: 120px;
+    height: 40px;
+    font-size: 17px;
+    background-color: #7FC7D9;
+    border-radius: 20px;
+    border: 0px;
+    font-family: 'Patua One', serif;
+    cursor: pointer;
+}
+
+.start-stop:hover, .lap:hover {
+    background-color: #365486;
+    color: #DCF2F1;
+    transition: 0.3s;
+}
+
+.reset {
+    background-color: rgb(247, 127, 127);
+}
+
+.reset:hover {
+    background-color: rgb(248, 33, 33);
+    color:#DCF2F1;
+    transition: 0.3s;
+}

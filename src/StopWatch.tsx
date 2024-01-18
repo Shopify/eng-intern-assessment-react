@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import StopWatchButton from './StopWatchButton';
+import ShowLapsHistory from './ShowLapsHistory';
+import "./stylesheets/stopWatch.css";
+import { log } from 'console';
 
 export default function StopWatch() {
     const [timeInSeconds, setTimeInSeconds] = useState(0);
@@ -20,7 +23,7 @@ export default function StopWatch() {
     }
 
     function here() {
-        if (timeArray[0] !=  "00"|| timeArray[1] != "00" || timeArray[2] != "00") {
+        if (timeArray[0] !=  "00"|| timeArray[1] != "00" || timeArray[2] != "00"  ) {
             console.log(timeLaps);
             let x = timeArray[0] + ":" + timeArray[1] + ":" +  timeArray[2]
             setTimeLaps([...timeLaps, x])
@@ -36,17 +39,39 @@ export default function StopWatch() {
     }, [timeInSeconds]);
     return(
         <div>
-            <main className="stopwatch-container">
-            <section className="timer-display">
-                <p id="hour">{timeArray[0]}</p>
-                <span>:</span>
-                <p id="minute">{timeArray[1]}</p>
-                <span>:</span>
-                <p id="second">{timeArray[2]}</p>
-            </section>
-            <StopWatchButton setTimeInSeconds={setTimeInSeconds}  setLap={here} clearLap={clear}/>
-            <p>{timeLaps}</p>
-        </main>
+
+            <div className="main">
+                <h1> <strong>The Unique Stopwatch</strong> </h1>
+                
+                <div className="hour">
+
+                    <p className='time-element' id="hour">{timeArray[0]}</p>
+                    <p className='caption'>Hours</p>
+
+                </div>
+                <p className='colon'>:</p>
+                <div className="min">
+
+                    <p className='time-element' id="minute">{timeArray[1]}</p>
+                    <p className='caption'>Minutes</p>
+
+                </div>
+                <p className='colon'>:</p>
+                <div className="sec">
+
+                    <p className='time-element' id="second">{timeArray[2]}</p>
+                    <p className='caption'>Seconds</p>
+
+                </div>
+
+                <StopWatchButton setTimeInSeconds={setTimeInSeconds} setLap={here} clearLap={clear}/>
+                <br /> <hr />
+
+                <div className="timeLaps">
+                    <ShowLapsHistory showLaps={timeLaps} />
+                </div>
+                
+            </div>
         </div>
     )
 }

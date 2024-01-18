@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "./stylesheets/stopWatchButton.css"
 
 type Props = {
     setTimeInSeconds: Function,
@@ -50,9 +51,9 @@ export default function StopWatchButton(props:Props) {
 
     return(
         <div className="stopwatch-controls-container">
-            <button onClick={handleStartPauseButton} type="button">{currentState}</button>
-            <button onClick={handleReset} type="button">Reset</button>
-            <button onClick={handleLap} type="button">Laps</button>
+            <button className='start-stop' onClick={handleStartPauseButton} type="button">{currentState}</button>
+            <button className='reset' onClick={handleReset} type="button">Reset</button>
+            <button className='lap' onClick={handleLap} type="button">Lap</button>
         </div>
     );
 }
