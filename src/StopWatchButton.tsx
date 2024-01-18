@@ -1,7 +1,14 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+type StopWatchButtonProps = {
+    text: String
+    handleClick: React.MouseEventHandler
+}
+
+export default function StopWatchButton({handleClick, text}: StopWatchButtonProps) {
     return(
-        <div></div>
+        <div>
+            <button onClick={handleClick}>{text}</button>
+        </div>
     )
 }
