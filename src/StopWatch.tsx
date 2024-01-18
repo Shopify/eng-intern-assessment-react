@@ -26,15 +26,15 @@ export default function StopWatch(props: stopWatchProps) {
   return (
     <div id="stopwatch-display">
       <div>
-        <text id="stopwatch-text">{formatNumbers(props.time)}</text>
+        <p id="stopwatch-text">{formatNumbers(props.time)}</p>
       </div>
       {props.laps > 0 ? (
-        <div>
+        <div className={"lap-list"} title="lap-list" role="list">
           {props.lapTimes
             .slice()
             .reverse()
             .map((lapTime, index) => (
-              <ul className="lap-time" key={index}>
+              <ul className="lap-time" title={`Lap # ${index + 1}`} key={index}>
                 Lap #{props.laps - index} {formatNumbers(lapTime)}
               </ul>
             ))}
