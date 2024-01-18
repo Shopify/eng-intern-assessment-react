@@ -62,14 +62,14 @@ describe('Stopwatch Component', () => {
     
     // start the stopwatch
     fireEvent.click(screen.getByTestId('start'))
-    
-    await waitFor(() => {
-      // expect the time to now be a non zero value
-      expect(screen.getByTestId('time-display')).toHaveTextContent(/^(?!00:00:00)00:[0-5][0-9]:[0-9][0-9]$/)
+
+    // simulate passage of 1s
+    act(() => {
+      jest.advanceTimersByTime(1000)
     })
 
-    // save the current time before pausing
-    const currTime = screen.getByTestId('time-display').textContent
+    // the stopwatch should display an accurate time
+    expect(screen.getByTestId('time-display')).toHaveTextContent("00:01:00")
 
     // pause the stopwatch
     fireEvent.click(screen.getByTestId('pause'))
@@ -80,7 +80,7 @@ describe('Stopwatch Component', () => {
     })
 
     // verify the time is unchanged
-    expect(screen.getByTestId('time-display')).toHaveTextContent(currTime)
+    expect(screen.getByTestId('time-display')).toHaveTextContent("00:01:00")
   })
 
   // stopwatch lap test
