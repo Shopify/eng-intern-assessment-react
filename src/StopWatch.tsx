@@ -5,12 +5,13 @@ import StopWatchButton from './StopWatchButton';
 
 // Represents the stopwatch display
 export default function StopWatch() {
-    const [isRunning, setIsRunning] = useState<boolean>(false);
-    const [isStarted, setIsStarted] = useState<boolean>(false);
-    const [laps, setLaps] = useState<{lap: number; time: number;}[]>([]);
-    const [elapsedTime, setElapsedTime] = useState<number>(0);
-    const [currLapTime, setCurrLapTime] = useState<number>(0);
+    const [isRunning, setIsRunning] = useState<boolean>(false); // stopwatch is running
+    const [isStarted, setIsStarted] = useState<boolean>(false); // stopwatch has started
+    const [laps, setLaps] = useState<{lap: number; time: number;}[]>([]); // lap times in ms
+    const [elapsedTime, setElapsedTime] = useState<number>(0); // in ms
+    const [currLapTime, setCurrLapTime] = useState<number>(0); // in ms
 
+    // find shortest and longest lap times in order to highlight them 
     let shortestLap: number;
     let longestLap: number;
     if (laps.length > 1) {
@@ -18,6 +19,7 @@ export default function StopWatch() {
         longestLap = Math.max(...laps.map((lap) => lap.time));
     }
 
+    // if stopwatch is running, we update the elapsed time every 10ms
     useEffect(() => {
         let intervalID: NodeJS.Timer;
         if (isRunning) {
@@ -53,6 +55,7 @@ export default function StopWatch() {
         setCurrLapTime(0)
     };
 
+    // formats time (ms) to a the format mm:ss:ms
     const formatTime = (time: number) => {
         const milliseconds = Math.floor(time % 1000) / 10;
         const seconds = Math.floor(time/1000) % 60;
@@ -63,6 +66,8 @@ export default function StopWatch() {
         return formattedTime;
     };
 
+
+    // helper function for format time that pads time with 0s
     const padZero = (time: number) => {
         if (time < 10) {
             return '0' + time;
