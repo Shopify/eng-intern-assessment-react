@@ -28,14 +28,19 @@ export default function StopWatch(props:StopWatchProps) {
 
     // Ratio of current lap time to first lap time, used for visualizing comparison to inital lap
     const initialLapRatio = laps.length > 0 && currentLap ? (currentLap.lapTime % laps[0].lapTime) / laps[0].lapTime : 0
+    
+    // Ratio of previous completed lap to first lap time, used to add an indicator to the ring for comparison
+    const previousLapRatio = laps.length > 1 ? (laps[laps.length - 1].lapTime % laps[0].lapTime) / laps[0].lapTime : 0
 
     return(
         <Container data-testid="stopwatch">
             {/* Stopwatch face */}
             <StopWatchContainer>
                 {/* A circling ring which rotates based on the first lap time recorded */}
-                <LapTimerRing ringratio={initialLapRatio}/>
+                <LapTimerRing ringratio={initialLapRatio} />
                 <WatchFace />
+                {/* A small indicitor which shows where the previous lap ended in comparison to the first lap timen recorded */}
+                <PreviousLapIndicator ratio={previousLapRatio} />
                 <TimeDisplay data-testid="time-display">
                     {formatTime(time)}
                 </TimeDisplay>
@@ -117,6 +122,20 @@ const LapTimerRing = styled.div<{ringratio:number}>`
     @media (max-width: 900px) {
         width: 230px;
         height: 230px;
+    }
+`
+// displays a small indicator which shows where the previous lap ended in comparison to the first lap time
+const PreviousLapIndicator = styled.div<{ratio:number}>`
+    width: 5px;
+    height: 10px;
+    background: #0165FF;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 4;
+    transform: ${props => `rotateZ(${360 * props.ratio}deg) translateY(-145px)`};
+
+    @media (max-width: 900px) {
+        transform: ${props => `rotateZ(${360 * props.ratio}deg) translateY(-110px)`};
     }
 `
 
