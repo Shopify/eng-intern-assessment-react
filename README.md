@@ -15,11 +15,12 @@ To get started with the project, follow these steps:
     - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
 
 ## Project Features
-**Primary**
+**Primary Features**
 - [ ] *START* button begins stopwatch; while timer active appears as *STOP* button to pause the timer
 - [ ] *RESET* button to clear timer and lap list; default format of timer follows `HH:MM:SS:MS`
 - [ ] *LAP* button to create a record of the current time and add to lap list for display
-**Secondary**
+
+**Secondary Features**
 - [ ] Responsive Design: ensures user friendly UI regardless of user device
 - [ ] Reload protection: page reload only after user confirmation
 
