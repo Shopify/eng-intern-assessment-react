@@ -38,13 +38,12 @@ export default function App() {
   const recordLap = () => {
     const lapTime = timePassed - lastLapTime;
     setLastLapTime(timePassed);
-
     setLaps([...laps, helperDisplay(lapTime)]);
   };
 
   return (
     <ChakraProvider>
-      <Flex align="center">
+      <Flex align="center" justify="center" height={"100vh"} width={"full"}>
         <Flex
           direction="column"
           gap={4}
