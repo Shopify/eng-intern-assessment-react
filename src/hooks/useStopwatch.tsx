@@ -42,6 +42,7 @@ export default function useStopwatch(): {
     const handleReset = (): void => {
         setTime(0);
         setLaps([]);
+        setIsActive(false);
     }
     const handleLaps = (): void => setLaps(prevLaps => [...prevLaps, time]); // when you click lap button, we add the current time to the array of laps
 
