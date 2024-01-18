@@ -20,45 +20,52 @@ export default function App() {
     const [startTime, setStartTime] = useState<number | null>(null);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const [laps, setLaps] = useState<number>(0);
+    const lastTimestampRef = useRef<number>(0);
     const animationFrameRef = useRef<number>();
 
-    // Stopwatch timer
-    useEffect(() => {
+     // Stopwatch timer
+     useEffect(() => {
         const animate = (timestamp: number) => {
-            if (isRunning && startTime) {
-                const newElapsedTime = elapsedTime + (timestamp - startTime);
-                // If the stopwatch time gets too high, it resets back to 0ms by default
-                elapsedTime === Number.MAX_SAFE_INTEGER ? setElapsedTime(0) : setElapsedTime(newElapsedTime);
-                setStartTime(timestamp);
+            if (isRunning) {
+                if (!startTime) {
+                    setStartTime(timestamp);
+                }
+
+                const elapsedSinceLastUpdate = timestamp - lastTimestampRef.current;
+                setElapsedTime((prevElapsedTime) => prevElapsedTime + elapsedSinceLastUpdate);
+
+                lastTimestampRef.current = timestamp;
                 animationFrameRef.current = requestAnimationFrame(animate);
             }
         };
-    
+
         const startAnimation = () => {
-            if (!startTime) {
-                setStartTime(performance.now());
-            }
+            lastTimestampRef.current = performance.now();
             animationFrameRef.current = requestAnimationFrame(animate);
         };
-    
+
         if (isRunning) {
             startAnimation();
         } 
         else {
             cancelAnimationFrame(animationFrameRef.current as number);
         }
-    
+
         return () => {
             cancelAnimationFrame(animationFrameRef.current as number);
         };
-    }, [isRunning, startTime, elapsedTime]);
+    }, [isRunning, startTime, lastTimestampRef, animationFrameRef]);
 
     /**
      * Function which starts and stops the stopwatch
      */
     const startStopTime = () => {
         setRunning(!isRunning);
-    }
+        if (!isRunning && elapsedTime !== 0) {
+            // Reset last timestamp when starting again
+            lastTimestampRef.current = performance.now();
+        }
+    };
 
     /**
      * Function which resets the stopwatch time and lap counter
@@ -75,18 +82,13 @@ export default function App() {
      */
     const countLap = () => {
         // By default the lap count wraps back around to 0 if it gets too high
-        if (laps === Number.MAX_SAFE_INTEGER) {
-            setLaps(0);
-        }
-        else {
-            setLaps(laps + 1);
-        }
+        laps === Number.MAX_SAFE_INTEGER ? setLaps(0) : setLaps(laps + 1);
     }
 
     return(
         <>
         {/* Removes default margin/padding of HTML pages */}
-        <style>{"body, html {margin: 0; padding: 0;"}</style>
+        <style>{"body, html {margin: 0; padding: 0; background-color: #2E3440;"}</style>
         
         <div style={containerStyle}>
             <h1 style={titleStyle}>Stopwatch</h1>
