@@ -5,11 +5,13 @@
 // - add stop functionality - done
 // - add reset functionality - done
 // - add lap functionality - done
-// - add css
-// - code cleanup
+// - add css - done
+// - code cleanup - done
+// - write tests
 import React, {useState, useEffect, useRef} from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
+import './styles/App.css'
 export default function App() {
     const [isRunning, setIsRunning] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0);
@@ -17,7 +19,7 @@ export default function App() {
     const [reset, setReset] = useState(false);
     const [startTime, setStartTime] = useState(0);
     const [lapTime, setLapTime] = useState(0);
-    const [laps, addLaps] = useState([]);
+    const [laps, setLaps] = useState([]);
 
     const resetHandler = () => {
         setReset(true);
@@ -35,8 +37,6 @@ export default function App() {
         return `${n}`
     }
 
-    // TEMPORARY: This is repeated from StopWatch file. 
-    // TODO: Find a way to use this without repeating 
     const formatTime = (time: number) => {
 
         let seconds = padZero(Math.floor(time / 1000) % 60);
@@ -47,7 +47,7 @@ export default function App() {
     }
 
     const lapHandler = () => {
-        addLaps([ ... laps, { id: laps.length + 1, time: formatTime(lapTime)} ]);
+        setLaps([ ... laps, { id: laps.length + 1, time: formatTime(lapTime)} ]);
         setLapTime(0);
     }
 
@@ -55,8 +55,9 @@ export default function App() {
         if (isRunning) {
             setStartTime(Date.now());
             intervalID.current = setInterval(() => {
-                setElapsedTime((time) => time + Date.now() - startTime); 
-                setLapTime((time) => time + Date.now() - startTime);
+                let deltaTime = Date.now() - startTime;
+                setElapsedTime((time) => time + deltaTime); 
+                setLapTime((time) => time + deltaTime);
             }, 10);
         }
         else {
@@ -66,6 +67,8 @@ export default function App() {
             setReset(false);
             setIsRunning(false);
             setElapsedTime(0);
+            setLapTime(0);
+            setLaps([])
             clearInterval(intervalID.current );
         }
 
@@ -73,14 +76,12 @@ export default function App() {
     }, [isRunning, reset, startTime, elapsedTime])
 
     return(
-        <div>
-            <StopWatch elapsedTime={elapsedTime}></StopWatch>
+        <div className="body">
+            <StopWatch elapsedTime={formatTime(elapsedTime)}></StopWatch>
             <StopWatchButton isRunning={isRunning} runningHandler={runningHandler} resetHandler={resetHandler} lapHandler={lapHandler}></StopWatchButton>
             <p> Lap: {formatTime(lapTime)}</p>
-            <ul>
-                { laps.map((lap) => 
-                <li key={lap.id}>Lap {lap.id}: {lap.time}</li>)}
-            </ul>
+            { laps.map((lap) => 
+            <p key={lap.id}>Lap {lap.id}: {lap.time}</p>)}
         
         </div>
     )

@@ -1,0 +1,15 @@
+.stopwatchButton {
+    background-color: black;
+    height: 50px;
+    width: 90px;
+    color: white;
+    font-size: 25px;
+}
+
+#stopButton {
+    background-color: red;
+}
+
+#startButton {
+    background-color: green;
+}

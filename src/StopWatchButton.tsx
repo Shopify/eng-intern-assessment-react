@@ -1,6 +1,7 @@
 // Responsible for buttons
 
 import React from 'react'
+import './styles/StopWatchButton.css'
 
 interface Props {
     isRunning: Boolean
@@ -16,15 +17,15 @@ export default function StopWatchButton({isRunning, runningHandler, resetHandler
         
         return (
             <div>
-                <button onClick={runningHandler}>Stop</button>
-                <button onClick={lapHandler}>Lap</button>
+                <button onClick={runningHandler} className="stopwatchButton" id="stopButton">Stop</button>
+                <button onClick={lapHandler} className="stopwatchButton">Lap</button>
             </div>
         )
     }
     return(
         <div>
-            <button onClick={runningHandler}>Start</button>
-            <button onClick={resetHandler}>Reset</button>
+            <button onClick={runningHandler} className="stopwatchButton" id="startButton">Start</button>
+            <button onClick={resetHandler} className="stopwatchButton">Reset</button>
         </div>
     )
 }

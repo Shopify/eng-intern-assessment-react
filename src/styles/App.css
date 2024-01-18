@@ -1,0 +1,6 @@
+.body {
+    display: inline-block, flex;
+    text-align: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
