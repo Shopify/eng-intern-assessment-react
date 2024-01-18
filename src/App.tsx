@@ -75,9 +75,18 @@ export default function App() {
         <StopWatchButton
           onClick={() => handleStartOrPauseButton()}
           title={timerRunning ? "Pause" : "Start"}
+          className={"enabled-button"}
         />
-        <StopWatchButton onClick={() => handleResetButton()} title={"Reset"} />
-        <StopWatchButton onClick={() => handleLapButton()} title={"Lap"} />
+        <StopWatchButton
+          onClick={() => handleResetButton()}
+          title={"Reset"}
+          className={"enabled-button"}
+        />
+        <StopWatchButton
+          onClick={() => handleLapButton()}
+          title={"Lap"}
+          className={timerRunning ? "enabled-button" : "disabled-button"}
+        />
       </div>
     </div>
   );
