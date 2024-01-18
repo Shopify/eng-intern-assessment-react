@@ -52,9 +52,11 @@ export default function App() {
   }
 
   const setLap = () => {
-    setLapTimes((prevCurr) => [...prevCurr, currentTime])
-    setTotalTimes((prevTotal) =>[...prevTotal, totalTime])
-    setCurrentTime(0)
+    if(isRunning){
+      setLapTimes((prevCurr) => [...prevCurr, currentTime])
+      setTotalTimes((prevTotal) =>[...prevTotal, totalTime])
+      setCurrentTime(0)
+    }
   }
 
   const resetButton = () => {

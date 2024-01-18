@@ -84,7 +84,7 @@ export default function StopWatch({
                     
                     <Box shadow='500' background='bg-surface' borderRadius='200'>
                         <div style={{height: '40vh'}}>
-                            <Scrollable style={{height: '100%'}} focusable>
+                            <Scrollable style={{height: '100%', borderRadius:'200'}} focusable>
                                 <DataTable columnContentTypes={[
                                 'text',
                                 'text',
@@ -94,7 +94,8 @@ export default function StopWatch({
                                 "Lap Number", 
                                 "Lap Time", 
                                 "Total Elapsed Time"]}
-                                rows={combinedLapInfo}/>
+                                rows={combinedLapInfo}
+                                stickyHeader/>
                             </Scrollable>
                         </div>
                     </Box>
