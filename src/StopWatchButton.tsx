@@ -1,13 +1,14 @@
 import React from 'react';
-import './StopWatchButton.css';
+import './styles/StopWatchButton.css';
 
 interface StopWatchButtonProps {
     onClick: () => void;
     label: string;
+    disabled?: boolean;
 }
 
-export default function StopWatchButton({ onClick, label }: StopWatchButtonProps) {
+export default function StopWatchButton({ onClick, label, disabled }: StopWatchButtonProps) {
     return (
-        <button onClick={onClick}>{label}</button>
+        <button onClick={onClick} disabled={disabled}>{label}</button>
     );
 }

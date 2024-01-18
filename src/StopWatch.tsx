@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
-import './StopWatch.css';
+import './styles/StopWatch.css';
+
 
 export default function StopWatch() {
     const [time, setTime] = useState(0);
@@ -26,6 +27,7 @@ export default function StopWatch() {
     const handleReset = () => {
         setTime(0);
         setLaps([]);
+        setRunning(false);
     }
 
     const handleLap = () => {
@@ -43,14 +45,37 @@ export default function StopWatch() {
     }
 
     return (
-        <div>
-            <h1>{formatTime(time)}</h1>
-            <StopWatchButton onClick={handleStartStop} label={running ? 'Stop' : 'Start'} />
-            <StopWatchButton onClick={handleReset} label='Reset' />
-            <StopWatchButton onClick={handleLap} label='Lap' />
-            {laps.map((lap, index) => (
-                <h2 key={index}>Lap {index + 1}: {formatTime(lap)}</h2>
-            ))}
+        <div className="timer">
+            <div className="logo">
+                <img src="https://cdn.shopify.com/assets/images/logos/shopify-bag.png" alt="Shopify logo" />
+            </div>
+            <div className="time">
+                <h1>{formatTime(time)}</h1>
+            </div>
+            <div className="buttons">
+                <StopWatchButton onClick={handleStartStop} label={running ? 'Stop' : 'Start'} />
+                <StopWatchButton onClick={handleReset} label='Reset' />
+                <StopWatchButton onClick={handleLap} label='Lap' disabled={!running}/>
+            </div>
+            <div className="laps">
+                {[...laps].reverse().map((lap, index) => (
+                    <h2 key={index}>Lap {laps.length - index}: {formatTime(lap)}</h2>
+                ))}
+            </div>
+            <div className="strip-left">
+                <img src="logo1.png" alt="Logo 1" />
+                <img src="logo2.png" alt="Logo 2" />
+                <img src="logo3.png" alt="Logo 3" />
+                <img src="logo4.png" alt="Logo 4" />
+                <img src="logo5.png" alt="Logo 5" />
+            </div>
+            <div className="strip-right">
+                <img src="logo6.png" alt="Logo 6" />
+                <img src="logo7.png" alt="Logo 7" />
+                <img src="logo8.png" alt="Logo 8" />
+                <img src="logo9.png" alt="Logo 9" />
+                <img src="logo10.png" alt="Logo 10" />
+            </div>
         </div>
     );
 }

@@ -1,0 +1,97 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #121212;
+  color: #96bf48; /* Changed to Shopify green */
+  display: flex; /* Added to make the body a flex container */
+  flex-direction: column; /* Added to make the body items stack vertically */
+  align-items: center; /* Added to center the body items horizontally */
+  justify-content: center; /* Added to center the body items vertically */
+  margin-top: 100px; /* Added some margin around the body */
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 72px; /* Increased the font size of the timer */
+  margin: 40px; /* Added some margin around the timer */
+}
+
+h2 {
+  margin: 10px 0; /* Reduced the margin around the laps */
+}
+
+.timer {
+  display: flex; /* Added to make the timer a flex container */
+  flex-direction: column; /* Added to make the timer items stack vertically */
+  align-items: center; /* Added to center the timer items horizontally */
+}
+
+.logo {
+  display: flex; /* Added to make the logo a flex item */
+  flex-direction: column; /* Added to make the logo stack vertically */
+  align-items: center; /* Added to center the logo horizontally */
+}
+
+.time {
+  display: flex; /* Added to make the time a flex item */
+  flex-direction: column; /* Added to make the time stack vertically */
+  align-items: center; /* Added to center the time horizontally */
+}
+
+.buttons {
+  display: flex; /* Added to make the buttons a flex container */
+  flex-direction: row; /* Added to make the buttons stack horizontally */
+  justify-content: center; /* Added to center the buttons horizontally */
+}
+
+.laps {
+  display: flex; /* Added to make the laps a flex container */
+  flex-direction: column; /* Added to make the laps stack vertically */
+  align-items: center; /* Added to center the laps horizontally */
+}
+
+.strip-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  overflow: hidden;
+  animation: move-down 10s linear infinite;
+}
+
+.strip-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  overflow: hidden;
+  animation: move-up 10s linear infinite;
+}
+
+.strip-left img, .strip-right img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+@keyframes move-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes move-up {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

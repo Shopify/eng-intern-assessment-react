@@ -1,0 +1,29 @@
+button {
+  display: block;
+  width: 200px; /* Increased the width of the buttons */
+  height: 75px; /* Increased the height of the buttons */
+  margin: 20px 5px; /* Added some margin around the buttons */
+  background-color: #212b36; /* Changed to Shopify navy */
+  color: #fff; /* Changed to white */
+  text-align: center;
+  border-radius: 10px; /* Increased the border radius of the buttons */
+  line-height: 75px; /* Adjusted the line height of the buttons */
+  font-size: 24px; /* Increased the font size of the buttons */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Added some shadow effect */
+  border: 2px solid #96bf48; /* Added some border effect */
+}
+
+button:hover {
+  background-color: #679436; /* Changed to a darker shade of green */
+}
+
+button:disabled {
+  opacity: 0.6; /* Reduced the opacity of the disabled buttons */
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: #212b36;
+}
