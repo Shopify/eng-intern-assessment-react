@@ -39,8 +39,8 @@ export default function StopWatch(props:StopWatchProps) {
                 {/* A circling ring which rotates based on the first lap time recorded */}
                 <LapTimerRing ringratio={initialLapRatio} />
                 <WatchFace />
-                {/* A small indicitor which shows where the previous lap ended in comparison to the first lap timen recorded */}
-                <PreviousLapIndicator ratio={previousLapRatio} />
+                {/* A small indicitor which shows where the previous lap ended in comparison to the first lap timen recorded, only shown after 2nd lap */}
+                {laps.length > 1 && <PreviousLapIndicator ratio={previousLapRatio} />}
                 <TimeDisplay data-testid="time-display">
                     {formatTime(time)}
                 </TimeDisplay>
