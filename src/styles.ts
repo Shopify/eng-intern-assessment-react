@@ -23,7 +23,7 @@ export const containerStyle: CSSProperties = {
     backgroundColor: nordColours.darkBackground,
     display: "grid",
     placeItems: "center",
-    height: "100vh", /* Set to 100% of the viewport height */
+    height: "100vh",
 };
 
 // Style for the stopwatch container
@@ -34,14 +34,15 @@ export const stopwatchContainerStyle: CSSProperties = {
     fontFamily: "Roboto, sans-serif",
     backgroundColor: nordColours.background,
     padding: "20px",
-    borderRadius: "12px", // Add rounded corners
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)", // Add a subtle box shadow
-    width: "20%", // Set a fixed width (adjust as needed)
+    borderRadius: "12px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+    width: "20%",
     minWidth: "300px",
 };
 
 // Style for the buttons container
 export const buttonsContainerStyle: CSSProperties = {
+    paddingTop: "1rem",
     display: "flex",
     flexDirection: "row",
 };
@@ -64,22 +65,22 @@ export const buttonStyle = (colour: string): CSSProperties => {
 
 // Style for the stopwatch time display
 export const timeStyle: CSSProperties = {
-    fontSize: "2.5rem", // Set font size for the time
-    margin: "15px 0", // Add margin for spacing
+    fontSize: "2.5rem",
+    margin: "15px 0",
     color: nordColours.text,
 };
 
 // Style for the laps display
 export const lapsStyle: CSSProperties = {
-    fontSize: "1.2rem", // Set font size for laps
+    fontSize: "1.2rem",
     color: nordColours.yellow,
     marginTop: "10px",
 };
 
 // Style for the main title
 export const titleStyle: CSSProperties = {
-    fontSize: "5rem", // Set font size for the time
-    margin: "15px 0", // Add margin for spacing
+    fontSize: "5rem",
+    margin: "15px 0",
     color: nordColours.text,
     fontFamily: "Roboto, sans-serif",
 }

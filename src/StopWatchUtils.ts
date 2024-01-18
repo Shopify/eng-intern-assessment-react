@@ -16,6 +16,9 @@
  * console.log(formattedTime); // Output: "01:01:05.55"
  */
 export const formatTime = (elapsedTime: number): string => {
+    // Return a time of 0 if elapsed time is non-positive
+    if (elapsedTime <= 0) return "00:00:00.00";
+
     // Calculates the number of hours, minutes, seconds, and milliseconds (First 2 digits) passed
     const hours = Math.floor(elapsedTime / 3600000);
     const minutes = Math.floor((elapsedTime % 3600000) / 60000);
