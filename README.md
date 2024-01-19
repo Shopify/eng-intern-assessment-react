@@ -43,6 +43,6 @@ To get started with the project, follow these steps:
 
 ## Additional Dependencies
 - `@emotion/react @emotion/styled` 
-- `--save-dev jest-emotion`
-- `--save-dev jsdom`
-- `--save-dev jest-environment-jsdom`
+- `jest-emotion`
+- `jsdom`
+- `jest-environment-jsdom`
