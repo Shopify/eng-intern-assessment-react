@@ -17,10 +17,12 @@ describe('Stopwatch', () => {
 
     test('renders initial state correctly', () => {
         expect(screen.getByText('00:00:00')).toBeInTheDocument();
-        expect(screen.getByText('Start')).toBeInTheDocument();
-        expect(screen.getByText('Stop')).toBeInTheDocument();
-        expect(screen.getByText('Reset')).toBeInTheDocument();
-        expect(screen.getByText('Lap')).toBeInTheDocument();
+
+        expect(screen.getByRole('button', { name: /Start/i})).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /Stop/i})).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /Reset/i})).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /Lap/i})).toBeInTheDocument();
+        
         expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
     });
 
