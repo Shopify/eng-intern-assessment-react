@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import './StopWatch.css'
 import StopWatchButton from './StopWatchButton'
+import Laps from './Laps';
 
-const calculateTime = (time: number) => {
+export const calculateTime = (time: number) => {
     // Minutes calculation
     const minutes = Math.floor((time % 360000) / 6000);
 
@@ -19,6 +20,7 @@ const calculateTime = (time: number) => {
 export default function StopWatch() {
     const [time, setTime] = useState<number>(0);
     const [timerData, setTimerData] = useState<string[]>([]);
+    const [laps, setLaps] = useState<string[]>([]);
     const [isRunning, setIsRunning] = useState<boolean>(false);
 
     useEffect(() => {
@@ -33,16 +35,24 @@ export default function StopWatch() {
         return () => clearInterval(timeInterval)
     }, [time, isRunning])
 
-    const startStopTime = () => {
+    const handleStartStopTime = () => {
         setIsRunning(!isRunning)
     }
 
-    const resetTime = () => {
+    const handleReset = () => {
+        setIsRunning(false)
         setTime(0)
+        setLaps([])
+    }
+
+    const handleLap = () => {
+        if (time === 0) return
+        const lap = timerData[0] + ':' + timerData[1] + ':' + timerData[2]
+        setLaps((prev) => [...prev, lap])
     }
 
     return (
-        <div>
+        <div className='stopwatch-container'>
             <div className='timer'>
                 <p className='timer-text'>{timerData[0]}</p>
                 <p className='timer-colon'>:</p>
@@ -51,10 +61,11 @@ export default function StopWatch() {
                 <p className='timer-text'>{timerData[2]}</p>
             </div>
             <div className='buttons-container'>
-                <StopWatchButton name={!isRunning ? 'Start' : 'Stop'} handleClick={startStopTime}/>
-                <StopWatchButton name='Reset' handleClick={resetTime}/>
-                <StopWatchButton name='Lap' handleClick={startStopTime}/>
+                <StopWatchButton name={!isRunning ? 'Start' : 'Stop'} handleClick={handleStartStopTime} />
+                <StopWatchButton name='Reset' handleClick={handleReset} />
+                <StopWatchButton name='Lap' handleClick={handleLap} />
             </div>
+            <Laps laps={laps} />
         </div>
     )
 }

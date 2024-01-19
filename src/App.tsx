@@ -3,9 +3,10 @@ import StopWatch from './StopWatch'
 import './App.css'
 
 export default function App() {
-    return(
+    document.title = "Shopify Stopwatch"
+    return (
         <div>
-            <StopWatch/>
+            <StopWatch />
         </div>
     )
 }

@@ -1,8 +1,15 @@
+.stopwatch-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100vh;
+}
+
 
 .timer {
     display: flex;
     justify-content: center;
-    align-items: center;
     letter-spacing: 5px;
     font-size: 6rem;
 }
@@ -14,10 +21,4 @@
 .timer-colon {
     position: relative;
     bottom: 5px;
-}
-
-.buttons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

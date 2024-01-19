@@ -1,4 +1,9 @@
 body {
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    justify-content: center; 
+    min-height: 100vh;
     background-color: #1B1B1B;
     color: #C4C5BA;
 }
