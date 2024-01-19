@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons {
+    padding-bottom: 20px;
+}
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
