@@ -37,21 +37,22 @@ export default function StopWatchButton() {
     // Convert timer to seconds + milliseconds for better precision.
     const seconds = Math.floor(timer / 1000);
     const milliseconds = timer % 1000;
-
+    
     return(
         <div className= "button-container">
             <button className = "button" onClick={startStopWatch}>Start</button>
             <button className = "button" onClick={pauseStopWatch}>Stop</button>
             <button className = "button" onClick={resetTimer}>Reset</button>
             <button className = "button" onClick={lapDisplay}>Lap</button>
-            <h1 className= "timer-1" >{seconds}.{milliseconds}</h1> 
+            <h1 className= "timer-1" >{parseFloat((seconds + '.' + milliseconds))}</h1>
 
-            <div className= "laps-container">
+            {laps.length > 0 && (
+                <div className= "laps-container">
                 {laps.map((lap, i) => (
-                    <p key={i}>Lap {i + 1}: {lap}</p>
+                    <p key={i}>Lap {i + 1}: {lap/1000}</p>
                 ))}
-            </div>
-            
+                </div>
+            )}
         </div>
     )
 }
