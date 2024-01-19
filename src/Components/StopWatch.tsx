@@ -7,15 +7,14 @@ import StopWatchButton from "./StopWatchButton";
   Represents the properties needed for controlling a stopwatch, including
   callbacks for start, reset, and lap functions, along with a label for the button
  */
-type StopWatchProps = {
+export interface StopWatchProps {
   onStartClick: () => void;
   onResetClick: () => void;
   onLapClick: () => void;
   laps: string[];
   label: string;
-  display: (time: number) => string;
-  time: number;
-};
+  formattedTime: string;
+}
 
 // props are being deconstructed along with the StopWatchProps destructured object, specifying that it should conform to the StopWatchProps
 export default function StopWatch({
@@ -23,32 +22,31 @@ export default function StopWatch({
   onStartClick,
   onResetClick,
   onLapClick,
-  display,
-  time,
   laps,
+  formattedTime,
 }: StopWatchProps) {
   return (
-    <>
-      <div className="stop-watch-container">
-        <div className="display">
-          <p className="digits">{display(time)}</p>
-        </div>
-        <div className="controls-container">
-          <StopWatchButton label={label} onClick={onStartClick} />{" "}
-          {/* Passing the result of the ternary to populate the correct label based of the state isRunning on App.tsx */}
-          <StopWatchButton label="Lap" onClick={onLapClick} />
-          <StopWatchButton label="Reset" onClick={onResetClick} />
-        </div>
-        <div className="laps">
-          <ul>
-            {laps.map((lap, index) => (
-              <li>
-                <p key={index}>{`Lap ${index + 1}: ${lap}`}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="stop-watch-container">
+      <div className="display">
+        <p data-testid="digits-section" className="digits">
+          {formattedTime}
+        </p>
       </div>
-    </>
+      <div className="controls-container">
+        <StopWatchButton label={label} onClick={onStartClick} />
+        {/* Passing the result of the ternary to populate the correct label based of the state isRunning on App.tsx */}
+        <StopWatchButton label="Lap" onClick={onLapClick} />
+        <StopWatchButton label="Reset" onClick={onResetClick} />
+      </div>
+      <div data-testid="laps-section" className="laps">
+        <ul>
+          {laps.map((lap, index) => (
+            <li key={index}>
+              <p>{`Lap ${index + 1}: ${lap}`}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

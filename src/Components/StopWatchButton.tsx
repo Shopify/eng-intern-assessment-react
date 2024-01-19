@@ -2,20 +2,14 @@
 
 import React from "react";
 
-type StopWatchButtonProps = {
+interface StopWatchButtonProps {
   onClick?: () => void;
   label: string;
-};
+}
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+export default function StopWatchButton({
   label,
   onClick,
-}) => {
-  return (
-    <>
-      <button onClick={onClick}>{label}</button>
-    </>
-  );
-};
-
-export default StopWatchButton;
+}: StopWatchButtonProps) {
+  return <button onClick={onClick}>{label}</button>;
+}
