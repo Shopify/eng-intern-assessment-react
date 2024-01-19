@@ -69,6 +69,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app_container">
+      <div style={isRunning ? {display: 'block'} : {display: 'none'}} className="pulsating-circle"></div>
       <div className="button_container">
         {isRunning ? (
           // Show lap button only when the stopwatch is running
