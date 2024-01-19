@@ -5,9 +5,17 @@ import '@testing-library/jest-dom'
 import App from '../App';
 
 describe('Stopwatch', () => {
-    test('renders initial state correctly', () => {
+    beforeEach(() => {
         render(<App />);
+        jest.useFakeTimers();
+    });
 
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    });
+
+    test('renders initial state correctly', () => {
         expect(screen.getByText('00:00:00')).toBeInTheDocument();
         expect(screen.getByText('Start')).toBeInTheDocument();
         expect(screen.getByText('Stop')).toBeInTheDocument();
