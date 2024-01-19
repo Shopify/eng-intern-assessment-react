@@ -19,7 +19,6 @@ export default function StopWatch() {
     <>
       <h3 className="title">Stopwatch</h3>
       <h1>{formatTime(elapsedTime)}</h1>
-      <hr></hr>
       <div className="buttons">
         {isRunning ? (
           <StopWatchButton onClick={stopStopWatch}>Stop</StopWatchButton>

@@ -21,7 +21,7 @@ const Laps = ({ laps }: LapsProps) => {
           <span className="lap__times__time">Interval</span>
         </div>
       </div>
-      <div className="laps">
+      <div className="laps-list" data-testid="laps-list">
         {laps.map((lap) => {
           return (
             <div key={lap.number} className="lap">

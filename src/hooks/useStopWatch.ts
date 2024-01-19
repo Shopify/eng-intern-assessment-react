@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 const STOPWATCH_REFRESH = 10;
 
 interface Lap {
-    number: number;
-    totalTime: number;
-    timeInterval: number;
+    number: number; // Lap number
+    totalTime: number; // Total time (ms) elapsed of the stopwatch at time of setting the lap 
+    timeInterval: number; // Time interval between this lap and the last lap.
 }
 
 /**
@@ -19,9 +19,7 @@ interface Lap {
  * @property {Function} stopStopWatch - Stops the stopwatch.
  * @property {Function} resetStopWatch - Resets the stopwatch.
  * @property {Function} lapStopWatch - Records a lap in the stopwatch.
- */
-
-/**
+ * 
  * Custom hook for managing stopwatch functionality.
  * @returns {StopWatch} Stopwatch-related functions and state.
  */
