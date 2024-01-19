@@ -1,17 +1,23 @@
-function padWithZeroes(num: number, length = 2) {
+function pad(num: number, length = 2) {
   return num.toString().padStart(length, '0');
 }
 
+/**
+ * Format a given duration in milliseconds as a timestamp.
+ *
+ * @returns 'hh:mm:ss' if the duration is at least one hour, otherwise 'mm:ss:ms'
+ */
 export function formatMillisAsTimestamp(millis: number) {
-  const ss = padWithZeroes(Math.floor(millis / 1_000) % 60);
-  const mm = padWithZeroes(Math.floor(millis / 1_000 / 60) % 60);
-  const hh = padWithZeroes(Math.floor(millis / 1_000 / 60 / 60));
+  const seconds = Math.floor(millis / 1000) % 60;
+  const minutes = Math.floor(millis / 1000 / 60) % 60;
+  const hours = Math.floor(millis / 1000 / 60 / 60);
 
-  if (hh !== '00') {
-    return `${hh}:${mm}:${ss}`;
+  // If we have hours, display them. Otherwise, just show minutes and seconds.
+  if (hours > 0) {
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
   }
 
-  const ms = padWithZeroes(Math.floor((millis % 1000) / 10));
+  const milliseconds = Math.floor((millis % 1000) / 10);
 
-  return `${mm}:${ss}.${ms}`;
+  return `${pad(minutes)}:${pad(seconds)}.${pad(milliseconds)}`;
 }

@@ -6,6 +6,9 @@ interface LapTableProps {
   laps: number[];
 }
 
+/**
+ * Renders a list of lap times into a IndexTable.
+ */
 export function LapTable(props: LapTableProps) {
   const rowMarkup = props.laps
     .map((lapTime, index) => {

@@ -14,6 +14,7 @@ function setup(element: React.ReactElement) {
     ...render(element, { wrapper }),
   };
 }
+
 describe('Stopwatch', () => {
   beforeEach(() => {
     jest.useFakeTimers();
@@ -43,35 +44,32 @@ describe('Stopwatch', () => {
 
     await user.click(screen.getByRole('button', { name: 'Start' }));
 
-    // Advance time by 10 seconds
-    act(() => jest.advanceTimersByTime(1_000));
+    act(() => jest.advanceTimersByTime(1000));
 
     // Ensure stopwatch is running
     expect(screen.queryByText('00:00.00')).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Pause' }));
+    await user.click(screen.getByRole('button', { name: 'Stop' }));
 
-    const timer = screen.getByText(/^\d\d:\d\d\.\d\d$/);
+    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent!;
 
-    act(() => jest.advanceTimersByTime(10_000));
+    act(() => jest.advanceTimersByTime(10000));
 
     // Ensure stopwatch has not advanced since being paused
-    expect(screen.getByText(timer.textContent)).toBeInTheDocument();
+    expect(screen.getByText(pausedTime)).toBeInTheDocument();
   });
 
   test('pauses and resumes the stopwatch', async () => {
     const { user } = setup(<StopWatch />);
 
     await user.click(screen.getByText('Start'));
-    act(() => jest.advanceTimersByTime(1_000));
+    await user.click(screen.getByText('Stop'));
 
-    await user.click(screen.getByText('Pause'));
-    act(() => jest.advanceTimersByTime(1_000));
+    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent!;
 
-    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent;
+    await user.click(screen.getByText('Start'));
 
-    await user.click(screen.getByText('Resume'));
-    act(() => jest.advanceTimersByTime(1_000));
+    act(() => jest.advanceTimersByTime(1000));
 
     expect(screen.queryByText(pausedTime)).not.toBeInTheDocument();
   });
@@ -80,11 +78,12 @@ describe('Stopwatch', () => {
     const { user } = setup(<StopWatch />);
 
     await user.click(screen.getByRole('button', { name: 'Start' }));
-    act(() => jest.advanceTimersByTime(1_000));
+    act(() => jest.advanceTimersByTime(1000));
 
     await user.click(screen.getByRole('button', { name: 'Lap' }));
     await user.click(screen.getByRole('button', { name: 'Lap' }));
 
+    // Length 3 includes the header row
     expect(screen.getAllByRole('row').length).toBe(3);
   });
 

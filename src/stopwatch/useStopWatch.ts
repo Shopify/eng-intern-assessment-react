@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 interface UseStopWatchOptions {
+  /**
+   * The interval in milliseconds at which the stopwatch should update.
+   *
+   * @default 30
+   */
   intervalMs?: number;
 }
 
-/**
- * Hook to manage a stopwatch. All times are in milliseconds.
- */
 export function useStopWatch({ intervalMs = 30 }: UseStopWatchOptions = {}) {
   const intervalRef = useRef<number>();
   const [isRunning, setIsRunning] = useState(false);
@@ -16,7 +18,7 @@ export function useStopWatch({ intervalMs = 30 }: UseStopWatchOptions = {}) {
   function start() {
     stop();
 
-    let startTime = Date.now() - elapsedTime;
+    const startTime = Date.now() - elapsedTime;
 
     function tick() {
       setElapsedTime(Date.now() - startTime);
@@ -52,7 +54,13 @@ export function useStopWatch({ intervalMs = 30 }: UseStopWatchOptions = {}) {
 
   return {
     isRunning,
+    /**
+     * The elapsed time in milliseconds.
+     */
     elapsedTime,
+    /**
+     * Array of total time for each lap in milliseconds.
+     */
     laps,
     start,
     stop,
