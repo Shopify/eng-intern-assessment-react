@@ -40,4 +40,4 @@ To get started with the project, follow these steps:
 
 ## Additional Dependencies
 - `jest-environment-jsdom` for testing
-- `@emotion/react` for styling
+- `@emotion/react @emotion/styled` for styling
