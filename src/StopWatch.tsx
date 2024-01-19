@@ -47,6 +47,7 @@ export default function StopWatch() {
         setIsStarted(false);
         setLaps([]);
         setElapsedTime(0);
+        setCurrLapTime(0);
     };
 
     const handleLap = () => {
@@ -79,7 +80,7 @@ export default function StopWatch() {
     return(
         <div className='app-container'>
             <div className='timer-container'>
-                <p className='timer'>{formatTime(elapsedTime)}</p>
+                <p className='timer' data-testid='stopwatch'>{formatTime(elapsedTime)}</p>
             </div>
             <StopWatchButton 
                 isRunning={isRunning}
@@ -90,25 +91,31 @@ export default function StopWatch() {
             />
             <div className='lap-container'>
                 {isStarted ? (
-                    <div className='lap-item'>
-                        <div className='lap-number'>Lap {laps.length+1}:</div>
-                        <div className='lap-time'>{formatTime(currLapTime)}</div>
+                    <div className='lap-item' data-testid='current-lap'>
+                        <div className='lap-number' data-testid='current-lap-number'>Lap {laps.length+1}:</div>
+                        <div className='lap-time' data-testid='current-lap-time'>{formatTime(currLapTime)}</div>
                     </div>
                 ) : (
                     <></>
                 )}
                 {laps.map((lap) => {
                     let className = 'lap-item';
+                    let dataTestIdNumber = `lap-number-${lap.lap}`;
+                    let dataTestIdTime = `lap-time-${lap.lap}`;
                     if (lap.time === shortestLap) {
-                        className += '-shortest'
+                        className += '-shortest';
+                        dataTestIdNumber += '-shortest';
+                        dataTestIdTime += '-shortest';
                     }
                     if (lap.time === longestLap) {
-                        className += '-longest'
+                        className += '-longest';
+                        dataTestIdNumber += '-longest';
+                        dataTestIdTime += '-longest';
                     }
                     return (
                         <div className={className} key={lap.lap}>
-                            <div className='lap-number'>Lap {lap.lap}:</div>
-                            <div className='lap-time'>{formatTime(lap.time)}</div>
+                            <div className='lap-number' data-testid={dataTestIdNumber}>Lap {lap.lap}:</div>
+                            <div className='lap-time' data-testid={dataTestIdTime}>{formatTime(lap.time)}</div>
                         </div>
                     );
                 })}
