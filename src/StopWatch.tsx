@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import bgImg from '../assets/bg.png'
-import './main.css'
+import "./main.css";
 
 interface Lap {
   id: number;

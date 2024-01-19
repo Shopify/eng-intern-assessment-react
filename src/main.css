@@ -13,7 +13,7 @@ body {
 button {
     border: 1px solid rgb(115, 115, 115);
     width: 20%;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 600;
     border-radius: 50px;
     background-color: black;
@@ -33,7 +33,7 @@ ul, li {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: 20px;
+    font-size: 1em;
     color: rgb(115, 115, 115);
 }
 
@@ -43,7 +43,7 @@ li {
 }
 
 .app_container{
-    margin: 40px;   
+    margin: 2%;   
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -84,6 +84,7 @@ li {
     max-height: 20vh;
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
 }
 
 .lap_list::-webkit-scrollbar {
@@ -105,3 +106,37 @@ li {
     background-color: rgb(193, 193, 193);
 }
  
+
+@media (max-width: 980px) {
+    body {
+        max-height: 100vh;
+    }
+
+    .stopwatch_container p {
+        font-size: 7vh;
+        font-family: 'Azeret Mono', monospace;
+        font-weight: 100;
+    }
+
+    .app_container {
+        margin: 0;
+        margin-top: 20%;
+    }
+
+    button {
+        font-size: 2em;
+        padding: .5em;
+    }
+
+    .lap_list {
+        max-height: 40vh;
+    }
+
+    ul,li{
+        font-size: 2em;
+    }
+
+    .tagline{
+        font-size: 2em;
+    }
+  }
