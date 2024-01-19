@@ -1,0 +1,42 @@
+.button {
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    background-color: #96bf48;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #7fa239;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.laps-container {
+    border: 1px solid #5a7947;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 5px 6px #5a7947;
+    margin-top: 20px;
+    background-color: #7b9d62;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+body {
+    background-color: #7b9d62;
+}
+
+.timer-1 {
+    width: 10%;
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+}
