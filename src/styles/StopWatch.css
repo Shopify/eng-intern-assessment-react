@@ -1,0 +1,87 @@
+/* Global CSS Variables for Light Theme */
+:root {
+  --time-card-bg-color: #fff;
+  --label-color: #34445B;
+  --milliseconds-card-bg-color: #fff;
+  --time-color: #34445B;
+  --background-color-light: #fff;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Global CSS Variables for Dark Theme */
+[data-theme='dark'] {
+  --time-card-bg-color: #333;
+  --label-color: #ccc;
+  --milliseconds-card-bg-color: #333;
+  --time-color: #ccc;
+  --background-color-light: #121212;
+  --box-shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Main stopwatch container styles */
+.stopwatch {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  background: transparent;
+}
+
+/* Styles for time and milliseconds cards */
+.time-card, .milliseconds-card {
+  background: var(--time-card-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific width for the time card */
+.time-card {
+  width: 100px;
+}
+
+/* Positioning styles for the milliseconds card */
+.milliseconds-card {
+  align-self: center;
+  margin-left: -20px;
+  z-index: 1;
+}
+
+/* Common styles for labels, time, colon, milliseconds, and digits */
+.label, .time, .colon, .milliseconds, .digits {
+  color: var(--time-color);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+/* Font size for labels */
+.label {
+  font-size: 16px;
+}
+
+/* Font size and vertical alignment for colons */
+.colon {
+  font-size: 64px;
+  vertical-align: top;
+}
+
+/* Font size and display style for time */
+.time {
+  font-size: 64px;
+  display: block;
+}
+
+/* Font size, vertical alignment, and width for milliseconds and digits */
+.milliseconds, .digits {
+  font-size: 32px;
+  vertical-align: top;
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+}

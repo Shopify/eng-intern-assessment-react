@@ -1,0 +1,52 @@
+/* Global CSS Variables for Light Theme */
+:root {
+  --button-bg-color: #34445B;
+  --button-text-color: #fff;
+  --button-shadow-color: rgba(0, 0, 0, 0.1);
+  --button-hover-bg-color: #263238;
+  --button-hover-text-color: #fff;
+}
+
+/* Global CSS Variables for Dark Theme */
+[data-theme='dark'] {
+  --button-bg-color: #1c1c1e;
+  --button-text-color: #ddd;
+  --button-shadow-color: rgba(255, 255, 255, 0.1);
+  --button-hover-bg-color: #313133;
+  --button-hover-text-color: #ddd;
+}
+
+/* Container styles for stopwatch buttons */
+.stopwatch-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* General styles for buttons */
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  font-weight: bold;
+  min-width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px var(--button-shadow-color);
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Hover styles for buttons */
+.button:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
+}
