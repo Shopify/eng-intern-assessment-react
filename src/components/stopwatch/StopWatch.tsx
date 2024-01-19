@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {useStopwatch, Lap} from '../../hooks/useStopwatch';
+
 import StopWatchButton from './StopWatchButton';
-import {useStopwatch, Lap} from './hooks/useStopwatch';
 
 function formatNumber(num: number) {
   return String(num).padStart(2, '0');

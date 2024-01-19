@@ -1,7 +1,7 @@
 import './global.css';
 import React from 'react';
 
-import StopWatch from './StopWatch';
+import {StopWatch} from './components';
 
 export default function App() {
   return <StopWatch />;
