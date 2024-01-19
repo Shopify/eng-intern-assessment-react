@@ -48,7 +48,7 @@ const StopWatch = () => {
   return (
     <div>
       {/* The Timer */}
-      <div style={Styles.timer}>
+      <div data-testid={"time"} style={Styles.timer}>
         {minutes}:{seconds}:{milliseconds}
       </div>
       {/* The Buttons */}
@@ -58,24 +58,28 @@ const StopWatch = () => {
           text={"Start"}
           pressed={start}
           disabled={isRunning}
+          testId={"startButton"}
         />
         <StopWatchButton
           style={Styles.button}
           text={"Stop"}
           pressed={stop}
           disabled={!isRunning}
+          testId={"stopButton"}
         />
         <StopWatchButton
           style={Styles.button}
           text={"Reset"}
           pressed={reset}
           disabled={false}
+          testId={"resetButton"}
         />
         <StopWatchButton
           style={Styles.button}
           text={"Lap"}
           pressed={lap}
           disabled={!isRunning}
+          testId={"lapButton"}
         />
       </div>
 
@@ -83,17 +87,19 @@ const StopWatch = () => {
       {/* I decided to only show the laps title if there was already a lap stored */}
       {laps.length > 0 && <div style={Styles.title}> Laps </div>}
       {/* Creates a row for each lap that was stored */}
-      {laps.length > 0 &&
-        laps.map((l, index) => {
-          return (
-            <div style={Styles.grid}>
-              <div> Lap {index}: </div>
-              <div>
-                {l.min}:{l.sec}:{l.ms}
+      <div data-testid="lap-list">
+        {laps.length > 0 &&
+          laps.map((l, index) => {
+            return (
+              <div key={"lap" + index} style={Styles.grid}>
+                <div> Lap {index}: </div>
+                <div>
+                  {l.min}:{l.sec}:{l.ms}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+      </div>
     </div>
   );
 };

@@ -9,6 +9,7 @@ export interface StopWatchButtonProps {
   pressed: () => void;
   disabled: boolean;
   style?: React.CSSProperties;
+  testId?: string;
 }
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
@@ -20,6 +21,7 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
       disabled={props.disabled}
       onClick={props.pressed}
       style={props.style}
+      data-testid={props.testId}
     >
       {props.text}
     </button>
