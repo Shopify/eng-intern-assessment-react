@@ -68,3 +68,15 @@ test("timer resumes after paused", async () => {
   });
   expect(screen.getByText(/\d{2}:\d{2}:\d{2}/)).toHaveTextContent("00:03:00");
 });
+
+test("timer resets after reset button is pressed", async () => {
+  render(<App />);
+  const startButton = screen.getByText("Start");
+  fireEvent.click(startButton);
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
+  const resetButton = screen.getByText("Reset");
+  fireEvent.click(resetButton);
+  expect(screen.getByText(/\d{2}:\d{2}:\d{2}/)).toHaveTextContent("00:00:00");
+});
