@@ -1,0 +1,12 @@
+.base {
+    display: flex;
+    flex-direction: column;
+}
+
+.base.size-1 {
+    gap: 0.5rem;
+}
+
+.base.size-2 {
+    gap: 1rem;
+}

@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 import classNames from "classnames";
 import Laps from "./Laps";
 import StopWatchButtons from "./StopWatchButtons";
+import Stack from "./Stack";
 
 export default function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
@@ -35,16 +36,21 @@ export default function App() {
 
   return (
     <div className={styles.container}>
-      <div className={classNames(styles.container, styles.innerContainer)}>
-        <StopWatch elapsedTime={state.elapsedTime} />
-        <StopWatchButtons
-          state={state}
-          onStartClick={toggleStartPause}
-          onLapClick={handleLap}
-          onResetClick={handleReset}
-        />
+      <Stack
+        className={classNames(styles.container, styles.innerContainer)}
+        size={2}
+      >
+        <Stack>
+          <StopWatch elapsedTime={state.elapsedTime} />
+          <StopWatchButtons
+            state={state}
+            onStartClick={toggleStartPause}
+            onLapClick={handleLap}
+            onResetClick={handleReset}
+          />
+        </Stack>
         <Laps lapTimes={state.lapTimes} />
-      </div>
+      </Stack>
     </div>
   );
 }
