@@ -7,18 +7,31 @@ type StopWatchProps = {
 
 export default function StopWatch({ timer }: StopWatchProps) {
     // Split timer string into individual characters
-    const timer_chars = timer.split("");
+    const [hours, minutes, secondsMs] = timer.split(":");
+    const [seconds, milliseconds] = secondsMs.split(".");
     
     return(
-        <div className = "stopwatch">
-            <div className="digit">{timer_chars[0]}</div>
-            <div className="digit">{timer_chars[1]}</div>
+        <div className="stopwatch">
+            {/* Hours */}
+            <div className="digit">{hours[0]}</div>
+            <div className="digit">{hours[1]}</div>
             <div className="colon">:</div>
-            <div className="digit">{timer_chars[3]}</div>
-            <div className="digit">{timer_chars[4]}</div>
+
+            {/* Minutes */}
+            <div className="digit">{minutes[0]}</div>
+            <div className="digit">{minutes[1]}</div>
             <div className="colon">:</div>
-            <div className="digit">{timer_chars[6]}</div>
-            <div className="digit">{timer_chars[7]}</div>
+
+            {/* Seconds */}
+            <div className="digit">{seconds[0]}</div>
+            <div className="digit">{seconds[1]}</div>
+            <div className="dot">.</div>
+
+            {/* Milliseconds */}
+            <div className="digit">{milliseconds[0]}</div>
+            <div className="digit">{milliseconds[1]}</div>
+            <div className="digit">{milliseconds[2]}</div>
         </div>
+        
     )
 }

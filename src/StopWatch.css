@@ -5,7 +5,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-.digit, .colon {
+.digit, .colon, .dot{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,3 +21,5 @@
     background-color: black;
     border: 1px solid white;
 }
+
+

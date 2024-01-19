@@ -47,12 +47,6 @@
     transform: scale(0.8);
 }
 
-.lap_button{
-    /* Center the lap button */
-    display: block; /* Allows margin auto to be effective, by taking full width of div */
-    margin: 0 auto; /* horizontally center lap button within container */
-}
-
 .lap_button:active{
     transform: scale(0.8);
 }

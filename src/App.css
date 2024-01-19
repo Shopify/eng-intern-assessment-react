@@ -11,9 +11,11 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     background-color: #2f74c0;
     font-family: "Neucha" , cursive;
+    overflow: hidden;
 }
 
 .header {
@@ -26,9 +28,57 @@ body {
     padding-top: 100px
   }
 
-  @media (max-width: 800px) {
-    .heading {
-      margin: 15px 0;
-      font-size: 35px;
-    }
+  .laps-container {
+    display: flex;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.laps-header, .lap {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.lap-number-header, .lap-number, .lap-time-header, .lap-time {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.laps-header {
+  background-color: #000000; /* Or any other color */
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.lap {
+  margin-top: 10px;
+  width: 100%; /* Adjust width as needed */
+  font-size: 25px;
+}
+
+.lap-number, .lap-time {
+  margin-right: 20px;
+
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateY(100%); /* Start off-screen from the bottom */
   }
+  to {
+      transform: translateX(0); /* End at its normal position */
+  }
+}
+
+@media (max-width: 800px) {
+  .heading {
+    margin: 15px 0;
+    font-size: 35px;
+  }
+}
