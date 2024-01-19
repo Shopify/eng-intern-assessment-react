@@ -39,5 +39,5 @@ To get started with the project, follow these steps:
     - record & render lap times 
 
 ## Additional Dependencies
-Required to testing purposes
-- `jest-environment-jsdom`
+- `jest-environment-jsdom` for testing
+- `@emotion/react` for styling

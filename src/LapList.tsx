@@ -1,5 +1,15 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import { colors } from "./utils/colors";
+
 import React from "react";
 import { formatTime } from "./utils/formatTime";
+
+const lapListStyle = css({
+   backgroundColor: `${colors.secondary_bg} !important`,
+   borderColor: colors.green,
+   color: colors.text,
+});
 
 interface LapListProps {
    laps: number[];
@@ -7,13 +17,12 @@ interface LapListProps {
 
 export default function LapList({ laps }: LapListProps) {
    return (
-      <div>
+      <ol className="list-group list-group-numbered my-4">
          {laps.map((lap, index) => (
-            <div key={index}>
-               <span>Lap {index + 1}: </span>
-               <span>{formatTime(lap)}</span>
-            </div>
+            <li key={index} className="list-group-item" css={lapListStyle}>
+               {formatTime(lap)}
+            </li>
          ))}
-      </div>
+      </ol>
    );
 }

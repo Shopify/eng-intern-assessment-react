@@ -1,5 +1,20 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import { colors } from "./utils/colors";
+
 import React, { useEffect } from "react";
 import { formatTime } from "./utils/formatTime";
+
+const stopwatchStyle = css({
+   display: "flex",
+   justifyContent: "center",
+   alignItems: "center",
+   fontSize: "50px",
+   backgroundColor: colors.secondary_bg,
+   border: `1px solid ${colors.green}`,
+   borderRadius: "10px",
+   padding: "1.5rem",
+});
 
 interface StopwatchProps {
    isActive: boolean;
@@ -36,8 +51,8 @@ export default function StopWatch({
    }, [isActive, isReset, setTime, handleReset, time]);
 
    return (
-      <div>
-         <p>{formatTime(time)}</p>
-      </div>
+      <>
+         <p css={stopwatchStyle}>{formatTime(time)}</p>
+      </>
    );
 }

@@ -1,7 +1,21 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import { colors } from "./utils/colors";
+
 import React, { useState } from "react";
 import Stopwatch from "./StopWatch";
 import StopwatchButton from "./StopWatchButton";
 import LapList from "./LapList";
+
+const mainStyle = css({
+   display: "flex",
+   flexDirection: "column",
+   justifyContent: "center",
+   alignItems: "center",
+   backgroundColor: colors.primary_bg,
+   height: "100dvh",
+   color: colors.text,
+});
 
 export default function App() {
    const [isActive, setIsActive] = useState<boolean>(false);
@@ -33,8 +47,8 @@ export default function App() {
    };
 
    return (
-      <div className="App">
-         <header className="App-header">
+      <div className="App" css={mainStyle}>
+         <main className="App-header">
             <Stopwatch
                isActive={isActive}
                isReset={isReset}
@@ -51,7 +65,7 @@ export default function App() {
                handleLap={handleLap}
             />
             <LapList laps={laps} />
-         </header>
+         </main>
       </div>
    );
 }
