@@ -13,7 +13,7 @@ Welcome to the enhanced version of the Shopify Stopwatch Assignment. This projec
 - [Testing Approach](#testing-approach)
 - [Example Test Case](#example-test-case)
 - [Getting Started](#getting-started)
-- 
+  
 ## Basic Features
 - **Start Button**: Starts the timer
 - **Stop Button**: Stops the timer
