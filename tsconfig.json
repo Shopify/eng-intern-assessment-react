@@ -5,8 +5,10 @@
     "module": "es6",
     "target": "es5",
     "jsx": "react",
+    "jsxFactory": "React.createElement",
     "allowJs": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "jest", "@testing-library/jest-dom"],
   }
 }
