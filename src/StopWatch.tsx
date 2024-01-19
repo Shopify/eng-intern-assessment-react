@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import bgImg from '../assets/bg.png'
+import './main.css'
 
 interface Lap {
   id: number;
@@ -25,16 +27,14 @@ const formatTime = (time: number): string => {
 
 const StopWatch: React.FC<stopWatchProps> = ({ isRunning, time, laps }) => {
   return (
-    <div>
-      <h1>StopWatch!!</h1>
-      <p>Time: {formatTime(time)}</p>
+    <div className="stopwatch_container">
+      <p>{formatTime(time)}</p>
       {laps.length > 0 && (
-        <div>
-          <h2>Laps</h2>
+        <div className="lap_list">
           <ul>
             {laps.map((lap) => (
               <li key={lap.id}>
-                Lap {lap.id}: {formatTime(lap.time)}s
+                #{lap.id} {formatTime(lap.time)}
               </li>
             ))}
           </ul>

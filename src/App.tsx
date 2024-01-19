@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import "./main.css";
 
 interface Lap {
   id: number;
@@ -21,13 +22,20 @@ const App: React.FC = () => {
       intervalId = setInterval(() => {
         setElapsedTime(Date.now() - startTime!);
       }, 10);
+    } else {
+        clearInterval(intervalId)
     }
 
     return () => clearInterval(intervalId);
   }, [isRunning, startTime]);
 
   const handleStartStop = () => {
-    setIsRunning((prevIsRunning) => !prevIsRunning);
+    if(isRunning){
+        setIsRunning(false);
+    } else {
+        setStartTime(Date.now() - elapsedTime);
+        setIsRunning(true);
+    }
   };
 
   const handleReset = () => {
@@ -40,21 +48,32 @@ const App: React.FC = () => {
   const handleLap = () => {
     if (isRunning) {
       setLaps((prevLaps) => [
-          { id: laps.length + 1, time: elapsedTime },
+        { id: laps.length + 1, time: elapsedTime },
         ...prevLaps,
       ]);
     }
   };
 
   return (
-    <div>
+    <div className="app_container">
+      <div className="button_container">
+        {isRunning ? (
+          <StopWatchButton onClick={handleLap} label={"Lap"} />
+        ) : (
+          <></>
+        )}
         <StopWatchButton
-        onClick={handleStartStop}
-        label={isRunning ? "Stop" : "Start"}
-      />
-      <StopWatchButton onClick={handleLap} label={"Lap"} />
-      <StopWatchButton onClick={handleReset} label={"Reset"} />
+          onClick={handleStartStop}
+          label={isRunning ? "Stop" : "Start"}
+        />
+        {elapsedTime > 0 ? (
+          <StopWatchButton onClick={handleReset} label={"Reset"} />
+        ) : null}
+      </div>
       <StopWatch isRunning={isRunning} time={elapsedTime} laps={laps} />
+      <div  className="tagline">
+      <p>github.com/jugal09xx</p>
+      </div>
     </div>
   );
 };

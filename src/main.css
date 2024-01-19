@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@100;200;300;400;500&display=swap');
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Azeret Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+}
+
+button {
+    border: 1px solid rgb(115, 115, 115);
+    width: 20%;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 50px;
+    background-color: black;
+    color: rgb(115, 115, 115);
+    padding: 2%;
+    font-family: 'Azeret Mono', monospace;
+    cursor: pointer;
+    transition: linear .2s;
+}
+
+button:hover {
+    color: red;
+    background-color: rgb(255, 255, 255);
+ }
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+    color: rgb(115, 115, 115);
+}
+
+li {
+    margin-bottom: 2%;
+    font-weight: 300;
+}
+
+.app_container{
+    margin: 40px;   
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.tagline {
+    margin: none;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    color:rgb(115, 115, 115);
+}
+
+.tagline p {
+    font-size: 1em;
+}
+
+.button_container {
+    padding: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.stopwatch_container {
+    text-align: center;
+}
+
+.stopwatch_container p {
+
+    font-size: 15vh;
+    font-family: 'Azeret Mono', monospace;
+    font-weight: 100;
+}
+
+.lap_list {
+    max-height: 20vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.lap_list::-webkit-scrollbar {
+    width: 10px;           
+  }
+  
+.lap_list::-webkit-scrollbar-track {
+    background: black;
+    border-radius: 50px;        /* color of the tracking area */
+  }
+
+.lap_list::-webkit-scrollbar-thumb {
+    background-color:rgb(115, 115, 115);
+    transition: .3s linear;
+    border-radius: 50px;
+}
+
+.lap_list::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(193, 193, 193);
+}
+ 
