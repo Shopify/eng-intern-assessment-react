@@ -36,3 +36,7 @@ To get started with the project, follow these steps:
     - start & stop the stopwatch (including resume)
     - reset stopwatch
     - record & render lap times 
+
+## Additional Dependencies
+Required to testing purposes
+- `jest-environment-jsdom`
