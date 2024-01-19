@@ -1,7 +1,16 @@
 import React from 'react'
+import './StopWatchButton.css'
 
-export default function StopWatchButton() {
+type StopWatchButtonProps = {
+    text: string
+    handleClick: React.MouseEventHandler
+    color: string
+}
+
+export default function StopWatchButton({handleClick, text, color}: StopWatchButtonProps) {
     return(
-        <div></div>
+        <div className="StopWatchButton">
+            <button onClick={handleClick} style={{backgroundColor: color}}>{text}</button>
+        </div>
     )
 }
