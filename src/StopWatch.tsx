@@ -20,7 +20,7 @@ export default function StopWatch() {
           <span>:</span>
           <p className='timer-text'>{timerArray[2]}</p>
         </div>
-        <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
+        <StopWatchButton setTimeInSeconds={setTimeInSeconds} timeInSeconds={timeInSeconds}/>
       </main>
     )
 }
