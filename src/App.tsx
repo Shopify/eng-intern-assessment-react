@@ -13,17 +13,37 @@ const App: React.FC = () => {
   const [laps, setLaps] = useState<Lap[]>([]);
 
   useEffect(() => {
-    //enter handlers code here
+    let intervalId: NodeJS.Timeout;
+
+    if (isRunning) {
+        intervalId = setInterval(() => {
+            setTime((prevTime) => prevTime + 1);
+        }, 1000)
+    }
+
+    return () => clearInterval(intervalId);
   });
 
   const handleStartStop = () => {
     setIsRunning((prevIsRunning) => !prevIsRunning);
   };
 
+  const handleReset = () => {
+    setIsRunning(false);
+    setTime(0);
+    setLaps([])
+  }
+
+  const handleLap = () => {
+    setLaps((prevLaps) => [...prevLaps, { id: laps.length + 1, time}])
+  }
+
   return (
     <div>
       <StopWatch isRunning={isRunning} time={time} laps={laps} />
       <StopWatchButton onClick={handleStartStop} label={"button text"} />
+      <StopWatchButton onClick={handleReset} label={"Reset"} />
+      <StopWatchButton onClick={handleLap} label={"Lap"} />
     </div>
   );
 };
