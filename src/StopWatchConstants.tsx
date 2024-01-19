@@ -8,6 +8,10 @@ export const buttonContent = {
     reset: "Reset",
 }
 
+export const MS_PER_MINUTE = 60000;
+export const MS_PER_SECOND = 1000;
+export const TEN_MS = 10;
+
 export const startButtonStyle: React.CSSProperties = {
     border: "3px solid #0A2A12",
     backgroundColor: "#0A2A12",
@@ -53,3 +57,4 @@ export const overallStyle: React.CSSProperties = {
     flexDirection: "column",
     height: "90vh"
 }
+

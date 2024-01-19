@@ -4,6 +4,7 @@ import "@testing-library/jest-dom/";
 import StopWatch from "./StopWatch";
 import {buttonContent} from "./StopWatchConstants";
 import {randomInt} from "crypto";
+import exp from "constants";
 
 
 describe("StopWatch", () => {
@@ -20,6 +21,9 @@ describe("StopWatch", () => {
         //buttons that should not appear
         expect(queryByText(buttonContent["stop"])).not.toBeInTheDocument();
         expect(queryByText(buttonContent["reset"])).not.toBeInTheDocument();
+
+        //no lap should be there
+        expect(queryByText("Lap ")).not.toBeInTheDocument();
     });
 
     it("handles start/stop toggle changing button", () => {
@@ -210,5 +214,49 @@ describe("StopWatch", () => {
         expect(queryByText("Lap 0")).not.toBeInTheDocument();
         expect(queryByText("Lap 12")).not.toBeInTheDocument();
         expect(queryByText("Lap 100")).not.toBeInTheDocument();
+    });
+
+    it("handle reset function", () => {
+        const {getByText, getAllByText, queryByText} = render(<StopWatch/>);
+        jest.useFakeTimers();
+
+        //start button should appear
+        expect(getByText(buttonContent["start"])).toBeInTheDocument();
+
+        //lap button should appear when the timer is running
+        fireEvent.click(getByText(buttonContent["start"]));
+        expect(queryByText(buttonContent["reset"])).not.toBeInTheDocument();
+        expect(getByText(buttonContent["lap"])).toBeInTheDocument();
+
+        //press lap button for 10 times with 0.5 seconds interval, check if 10 laps are recorded
+        for (let i = 0; i < 10; i++) {
+            fireEvent.click(getByText(buttonContent["lap"]));
+            act(() => {
+                jest.advanceTimersByTime(500);
+            });
+            expect(getByText(`Lap ${i + 1}`)).toBeInTheDocument();
+        }
+
+        //reset button should appear when stopped
+        fireEvent.click(getByText(buttonContent["stop"]));
+        expect(getByText(buttonContent["reset"])).toBeInTheDocument();
+
+        //total 11 laps should be recorded
+        const lapsRecorded = getAllByText("00:00.50");
+        expect(lapsRecorded.length).toBe(10);
+        expect(queryByText("Lap 11")).toBeInTheDocument();
+
+        //should return to initial state after reset
+        fireEvent.click(getByText(buttonContent["reset"]));
+        expect(queryByText("Lap ")).not.toBeInTheDocument();
+        expect(getByText(buttonContent["start"])).toBeInTheDocument();
+        expect(getByText(buttonContent["lap"])).toBeInTheDocument();
+
+        //0 time that should be there
+        expect(getByText("00:00.00")).toBeInTheDocument();
+
+        //buttons that should not appear
+        expect(queryByText(buttonContent["stop"])).not.toBeInTheDocument();
+        expect(queryByText(buttonContent["reset"])).not.toBeInTheDocument();
     });
 });

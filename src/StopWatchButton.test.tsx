@@ -117,4 +117,12 @@ describe("StopWatchButton", () => {
         expect(button).toHaveStyle("color: yellow");
         expect(button).toHaveStyle("background-color: green");
     });
+
+    it("handle no-styled button", () => {
+        const {getByText} = render(<StopWatchButton buttonName={"test"} buttonFunction={() => {
+        }} disabled={false} style={null}/>);
+        const button = getByText("test");
+
+        expect(button).toBeInTheDocument();
+    });
 });
