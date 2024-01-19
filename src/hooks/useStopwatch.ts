@@ -8,7 +8,7 @@ function getCheckpoint(): number {
   return performance.now();
 }
 
-interface Lap {
+export interface Lap {
   id: string;
   milliseconds: number;
 }
