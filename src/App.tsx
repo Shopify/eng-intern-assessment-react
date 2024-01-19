@@ -6,9 +6,13 @@ import StopWatchButton from "./StopWatchButton";
 
 export default function App() {
   // states for timer
-  const [isStopped, setIsStopped] = useState(true);
-  const [startTime, setStartTime] = useState(0);
-  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [isStopped, setIsStopped] = useState<boolean>(true);
+  const [startTime, setStartTime] = useState<number>(0);
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
+
+  // states for laps
+  const [latestLapTime, setLastestLapTime] = useState<number>(0);
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
 
   // use setInterval to update timer
   useEffect(() => {
@@ -28,10 +32,35 @@ export default function App() {
     setIsStopped(stop);
   };
 
+  // function to record lap times
+  const recordLap = (): void => {
+    // only record lap if timer currently running
+    if (!isStopped) {
+      // set the latest lap time to current time elapsed
+      setLastestLapTime(timeElapsed);
+      let newLapTime = 0;
+
+      // new lap time is time elapsed if no existing lap times in array,
+      // otherwise it is the difference between time elapsed and latest lap time.
+      if (!lapTimes) {
+        newLapTime = timeElapsed;
+      } else {
+        newLapTime = timeElapsed - latestLapTime;
+      }
+
+      // add new lap time to array
+      setLapTimes((prevLapTimes) => [...prevLapTimes, newLapTime]);
+    }
+  };
+
   return (
     <div>
-      <StopWatch timeElapsed={timeElapsed} />
-      <StopWatchButton updateStop={updateStop} />
+      <StopWatch
+        timeElapsed={timeElapsed}
+        latestLapTime={latestLapTime}
+        lapTimes={lapTimes}
+        stopWatchButton={<StopWatchButton updateStop={updateStop} recordLap={recordLap} />}
+      />
     </div>
   );
 }
