@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/StopWatchButton.css'
+import calculateTime from './helpers/calculateTime';
 
 type Props = {
-  setTimeInSeconds: Function
+  setTimeInSeconds: Function,
+  timeInSeconds: number
 };
 
 export default function StopWatchButton(props:Props) {
-  const { setTimeInSeconds } = props;
+  const { setTimeInSeconds, timeInSeconds } = props;
   const [intervalId, setIntervalId] = useState<number>(0);
   const [timerOn, setTimerOn] = useState<boolean>(false);
+  const [laps, setLaps] = useState<Array<any>>([]);
 
   useEffect(() => {
-    let interval:any = null;
+    let timerInterval:any = null;
 
     if (timerOn) {
-      interval = setInterval(() => {
+      timerInterval = setInterval(() => {
         setTimeInSeconds((prevState:number) => prevState + 10)
-      }, 10)
+      }, 10);
     } else {
-      clearInterval(interval)
+      clearInterval(intervalId)
+      setIntervalId(0);
     }
 
-    return () => clearInterval(interval)
+    return () => clearInterval(timerInterval)
 
   }, [timerOn])
 
@@ -33,19 +37,27 @@ export default function StopWatchButton(props:Props) {
     setTimerOn(false);
   }
 
-  const handleResumeButton = () => {
-    setTimerOn(true);
+  const handleResetButton = () => {
+    setTimerOn(false);
+    setLaps([]);
+    setTimeInSeconds(0);
   }
 
   const handleLapButton = () => {
-
+    const lapTime = calculateTime(timeInSeconds);
+    setLaps((prevLap) => [...prevLap, {id: laps.length + 1, time: lapTime }])
   }
     return(
         <div className="controls">
           <button onClick={handlePlayButton}>Start</button>
           <button onClick={handleStopButton}>Stop</button>
-          <button onClick={handleResumeButton}>Resume</button>
+          <button onClick={handleResetButton}>Reset</button>
           <button onClick={handleLapButton}>Lap</button>
+          <ul>
+          {laps.map((lap) => (
+          <li key={lap.id}>{`Lap ${lap.id}: ${lap.time}`}</li>
+            ))}
+          </ul>
         </div>
     )
 }
