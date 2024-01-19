@@ -6,5 +6,6 @@
   ],
   "rules": {
     "@shopify/jsx-no-hardcoded-content": "off"
-  }
+  },
+  "parserOptions": { "project": ["./tsconfig.json"] }
 }
