@@ -2,42 +2,73 @@ import React, { useState, useEffect } from 'react';
 import './StopWatch.css';
 import StopWatchButton from './StopWatchButton';
 
-export default function StopWatch() {
-    const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
+type Lap = {
+    lapNumber: number;
+    time: string;
+  };  
+
+  export default function StopWatch() {
+    const [timeInMilliseconds, setTimeInMilliseconds] = useState<number>(0);
     const [timerArray, setTimerArray] = useState<Array<number | string>>([]);
     const [isRunning, setIsRunning] = useState<boolean>(false);
+    const [laps, setLaps] = useState<Lap[]>([]);
 
-    function calculateTime(timeInSeconds: number): Array<number | string> {
-        let hours: number = Math.floor(timeInSeconds /3600);
-        let minutes: number = Math.floor((timeInSeconds - (hours *3600)) / 60);
-        let seconds: number = Math.floor(timeInSeconds - (hours * 3600) - (minutes * 60));
-        let hoursFormatted = hours < 10 ? `0${hours}` : hours;
-        let minutesFormatted = minutes < 10 ? `0${minutes}` : minutes;
-        let secondsFormatted = seconds < 10 ? `0${seconds}` : seconds;
+    useEffect(() => {
+        let interval: NodeJS.Timeout;//update using Javascript built-in timer (may need to be improved upon later-on due to javascript inconcistencies)
+        if (isRunning) {
+            interval = setInterval(() => {
+                setTimeInMilliseconds((prevTime) => prevTime + 10);
+            }, 10); 
+        }
+        return () => clearInterval(interval);
+    }, [isRunning]);
 
-        return [hoursFormatted, minutesFormatted, secondsFormatted];
+    function calculateTime(timeInMilliseconds: number): Array<number|string> {//calulate minutes, seconds and milliseconds from timeInMilliseconds
+        let minutes: number = Math.floor(timeInMilliseconds / 60000);
+        let seconds: number = Math.floor((timeInMilliseconds % 60000) / 1000);
+        let milliseconds: number = timeInMilliseconds % 1000;
+    
+        let minutesFormatted = minutes < 10 ? `0${minutes}` : minutes.toString();
+        let secondsFormatted = seconds < 10 ? `0${seconds}` : seconds.toString();
+        let millisecondsFormatted = (milliseconds).toString().padStart(3, "0");;;
+        return [minutesFormatted, secondsFormatted, millisecondsFormatted];
     }
 
     useEffect(() => {
-        let timerArray: Array<number | string> = calculateTime(timeInSeconds);
+        let timerArray: Array<number | string> = calculateTime(timeInMilliseconds);
         setTimerArray(timerArray);
-    }, [timeInSeconds]);//everytime timeInSeconds gets updated, this hook gets called to populate the timerArray
+    }, [timeInMilliseconds]);
 
-    const handleStartStop = () => {//flips isRunning based on start-stop
+    const handleStartStop = () => {//flip isRunning when start stop is clicked
         setIsRunning(!isRunning);
     };
 
-    const handleReset = () => {//resets the time and negates isRunning
-        setTimeInSeconds(0);
+    const handleReset = () => {//reset the timer to 0 milliseconds, set isRunning to false and empty the laps array 
+        setTimeInMilliseconds(0);
         setIsRunning(false);
+        setLaps([]);
     };
 
+    const handleLap = () => {
+        const newLap = {
+            lapNumber: laps.length + 1,
+            time: `${timerArray[0]}:${timerArray[1]}:${timerArray[2]}`
+        };
+        setLaps([...laps, newLap]);
+    };
 
     return(
         <div className='stopwatch-div'>
-            <div className='stopwatch-time'>{`${timerArray[0]}:${timerArray[1]}:${timerArray[2]}`}</div>
+            <div className='stopwatch-time'>{`${timerArray[0]}:${timerArray[1]}.${timerArray[2]}`}</div>
             <StopWatchButton onClick={handleStartStop} label={isRunning ? 'Stop' : 'Start'} />
-            <StopWatchButton onClick={handleReset} label={isRunning ? 'Lap' : 'Reset'} />
+            <StopWatchButton onClick={isRunning ? handleLap : handleReset} label={isRunning ? 'Lap' : 'Reset'} />
+            <div className="laps-table">
+                {laps.map((lap) => (
+                    <div key={lap.lapNumber}>
+                        Lap {lap.lapNumber}: {lap.time}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

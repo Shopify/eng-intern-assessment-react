@@ -1,4 +1,5 @@
 import React from 'react'
+import './StopWatchButton.css';
 
 type StopWatchButtonProps = {
     label: string;
