@@ -32,21 +32,16 @@ export function useStopwatch(): Stopwatch {
   const checkpoint = useRef(getCheckpoint());
   // `previousPeriods` is the accumulated time outside of the current period
   const previousPeriods = useRef(0);
-  const interval = useRef<NodeJS.Timer | null>(null);
 
   useEffect(() => {
-    if (isPaused) {
-      if (interval.current) clearInterval(interval.current);
-    } else {
-      interval.current = setInterval(() => {
-        const period = getCheckpoint() - checkpoint.current;
-        setMilliseconds(period + previousPeriods.current);
-      }, 10);
-    }
+    if (isPaused) return;
 
-    return () => {
-      if (interval.current) clearInterval(interval.current);
-    };
+    const interval = setInterval(() => {
+      const period = getCheckpoint() - checkpoint.current;
+      setMilliseconds(period + previousPeriods.current);
+    }, 10);
+
+    return () => clearInterval(interval);
   }, [isPaused]);
 
   return {
@@ -71,6 +66,6 @@ export function useStopwatch(): Stopwatch {
       setLaps([]);
     },
     lap: () =>
-      setLaps((arr) => [...arr, {id: `Lap #${arr.length}`, milliseconds}]),
+      setLaps((arr) => [...arr, {id: `Lap #${arr.length + 1}`, milliseconds}]),
   };
 }
