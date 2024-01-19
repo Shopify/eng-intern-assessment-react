@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+import StopWatchButton from './StopWatchButton';
 
 function displayTimerValue(value:number) {
     return value.toString().padStart(2, "0")
@@ -18,15 +19,24 @@ function formatTime(time:number) {
 
 export default function StopWatch() {
     const [time, setTime] = useState(0);
+    const [active, setActive] = useState(false);
+
+    const startClicked = () => {
+        setActive(true);
+    }
 
     useEffect(() => {
-        let addTime = setInterval(() => setTime(time + 1), 10);
+        let addTime: NodeJS.Timeout;
+        if (active) {
+            addTime = setInterval(() => setTime(time + 1), 10);
+        }
         return () => clearInterval(addTime)
-    }, [time]);
+    }, [time, active]);
 
     return(
         <div>
             <p>{formatTime(time)}</p>
+            <StopWatchButton startClicked={startClicked} buttonValue="start" />
         </div>
     )
 }
