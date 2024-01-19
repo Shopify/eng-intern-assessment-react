@@ -45,12 +45,12 @@ export default function StopWatchButton() {
             <button className = "button" onClick={resetTimer}>Reset</button>
             <button className = "button" onClick={lapDisplay}>Lap</button>
             <h1 className= "timer-1" >{parseFloat((seconds + '.' + milliseconds))}</h1>
-
+            
             {laps.length > 0 && (
                 <div className= "laps-container">
-                {laps.map((lap, i) => (
-                    <p key={i}>Lap {i + 1}: {lap/1000}</p>
-                ))}
+                    {laps.map((lap, i) => ( // Display laps iteratively
+                        <p key={i}>Lap {i + 1}: {lap/1000}</p>
+                    ))}
                 </div>
             )}
         </div>
