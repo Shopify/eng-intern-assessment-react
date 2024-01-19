@@ -15,7 +15,7 @@ export default function StopWatch() {
     const formatedTime = splitTime(currentTime-startTime)
 
     return(
-        <div className='time-area'>
+        <div className='time-section'>
             <span>{formatedTime[0]}</span>:
             <span>{formatedTime[1]}</span>:
             <span>{formatedTime[2]}</span>

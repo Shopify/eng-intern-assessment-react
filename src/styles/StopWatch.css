@@ -1,4 +1,4 @@
-.time-area {
+.time-section {
     display: flex;
     align-items:baseline;
     gap: 10px;
@@ -7,4 +7,6 @@
     font-variant-numeric: tabular-nums;
 
     user-select: none;
+
+    height: 20%;
 }

@@ -26,7 +26,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 200px;
+
+    height: 15%;
 }
 
 .button:hover {
@@ -44,21 +46,4 @@
 
 .button:hover svg {
     transform: scale(1.1);
-}
-
-.filler {
-    -webkit-transition-duration: 0.2s;
-    transition-duration: 0.2s;
-    -webkit-transition-property: width;
-    transition-property: width;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-
-.filler.expand {
-    width: 200px;
-}
-
-.filler.shrink {
-    width: 0px;
 }

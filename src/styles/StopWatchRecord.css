@@ -25,7 +25,8 @@
     width: 40%;
     height: 0;
     opacity: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
 
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
@@ -36,7 +37,7 @@
 }
 
 .lap-records.expand {
-    height: 300px;
+    height: 40%;
     opacity: 1;
 
     -webkit-transition-duration: 0.4s;

@@ -42,7 +42,7 @@ export default function StopWatchButton() {
     }
 
     const startButton = <Button key={0} icon={faPlay} style={{color:"rgb(0,122,255)", width:"150px"}} 
-        callback={() => {setStartTime(Date.now()); setCurrentTime(Date.now()); setStatus(1)}} />
+        callback={() => {setStartTime(Date.now()); setCurrentTime(Date.now()); setStatus(1); setLapNumber(1)}} />
 
     const flagButton = <Button key={4}  icon={faFlag} style={{color:"rgb(88,86,214)"}} 
         callback={() => setLapNumber(lapNumber+1)}/>

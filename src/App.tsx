@@ -21,10 +21,12 @@ export default function App() {
 
     return(
         <SWContextProvider>
-            <div className='container'>
-                <StopWatch/>
-                <StopWatchButton/>
-                <StopWatchRecord/>
+            <div className='view'>
+                <div className='container'>
+                    <StopWatch/>
+                    <StopWatchButton/>
+                    <StopWatchRecord/>
+                </div>
             </div>
         </SWContextProvider>
     )
