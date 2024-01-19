@@ -3,6 +3,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import DisplayComponent from './StopWatch'
 import { LapButtonComponent, ResetButtonComponent, StartButtonComponent, StopButtonComponent } from './StopWatchButton';
+import './App.css'
 
 export default function App() {
 
@@ -35,21 +36,21 @@ export default function App() {
     
     return(
         <div className="stopwatch">
-        <div className="time">
-            <DisplayComponent time={time}/>
-        </div>
-        <div className="button">
-            {!counting && (<StartButtonComponent setCounting={setCounting}/>)}
-            {counting && (<StopButtonComponent setCounting={setCounting}/>)}
-            {counting && (<LapButtonComponent onLap={handleLap}/>)}
-            {!counting && (<ResetButtonComponent setTime={setTime} setLaps={setLaps}/>)}
-        </div>
-        <div className="laps">
-                {laps.map((lapTime, index) => (
-                    <div key={index}>
-                        Lap {index + 1}: <DisplayComponent time={lapTime} />
-                    </div>
-                ))}
+            <div className="time">
+                <DisplayComponent time={time}/>
+            </div>
+            <div className="buttons">
+                {!counting && (<StartButtonComponent setCounting={setCounting}/>)}
+                {counting && (<StopButtonComponent setCounting={setCounting}/>)}
+                {counting && (<LapButtonComponent onLap={handleLap}/>)}
+                {!counting && (<ResetButtonComponent setTime={setTime} setLaps={setLaps}/>)}
+            </div>
+            <div className="laps">
+                    {laps.map((lapTime, index) => (
+                        <div key={index}>
+                            Lap {index + 1}: <DisplayComponent time={lapTime} />
+                        </div>
+                    ))}
             </div>
         </div>
     )
