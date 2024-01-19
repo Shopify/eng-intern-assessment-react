@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}

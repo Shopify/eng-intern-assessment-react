@@ -1,0 +1,10 @@
+.time-area {
+    display: flex;
+    align-items:baseline;
+    gap: 10px;
+
+    font-size: 96px;
+    font-variant-numeric: tabular-nums;
+
+    user-select: none;
+}
