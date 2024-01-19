@@ -30,10 +30,18 @@ export default function StopWatchButton({
 }: StopWatchButtonProps) {
   return (
     <div className="flex space-x-4 justify-center">
-      <StyledButton onClick={onResume}>Start</StyledButton>
-      <StyledButton onClick={onPause}>Pause</StyledButton>
-      <StyledButton onClick={onReset}>Reset</StyledButton>
-      <StyledButton onClick={onLap}>Lap</StyledButton>
+      <StyledButton onClick={onResume} data-testid="start-button">
+        Start
+      </StyledButton>
+      <StyledButton onClick={onPause} data-testid="pause-button">
+        Pause
+      </StyledButton>
+      <StyledButton onClick={onReset} data-testid="reset-button">
+        Reset
+      </StyledButton>
+      <StyledButton onClick={onLap} data-testid="lap-button">
+        Lap
+      </StyledButton>
     </div>
   );
 }
