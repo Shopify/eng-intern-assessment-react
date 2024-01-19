@@ -18,8 +18,8 @@ export const formatElapsedTime = (elapsedTime: number): string => {
 export interface StopWatchState {
   startTime: number;
   isRunning: boolean;
-  elapsedTime: number;
-  lapTimes: number[]; // elapsed times
+  elapsedTime: number; // ms from startTime to now
+  lapTimes: number[]; // elapsed time increments
 }
 
 export enum StopWatchActionType {
