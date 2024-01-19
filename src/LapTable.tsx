@@ -25,7 +25,11 @@ export default function LapTable() {
           {lapTimes.map((item, index) => (
             <li key={index}>
               <span>{`Lap ${index + 1}`}</span>
-              <span>{formatTime(item)}</span>
+              <span>
+                {index === 0
+                  ? formatTime(item)
+                  : formatTime(item - lapTimes[index - 1])}
+              </span>
             </li>
           ))}
         </ul>
