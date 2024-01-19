@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { colors } from "./utils/colors";
-
 import React, { useEffect, useRef } from "react";
 import { formatTime } from "./utils/formatTime";
+import { css } from "@emotion/react";
+import { colors } from "./utils/colors";
 
 const listItemStyle = css({
    backgroundColor: colors.secondary_bg,

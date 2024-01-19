@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { colors } from "./utils/colors";
-
 import React, { useState } from "react";
 import Stopwatch from "./StopWatch";
 import StopwatchButton from "./StopWatchButton";
 import LapList from "./LapList";
 import useBeforeUnload from "./hooks/useBeforeUnload";
+
+import { css } from "@emotion/react";
+import { colors } from "./utils/colors";
 
 const mainStyle = css({
    display: "flex",
