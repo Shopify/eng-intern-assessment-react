@@ -10,11 +10,15 @@ import LapList from "./LapList";
 const mainStyle = css({
    display: "flex",
    flexDirection: "column",
-   justifyContent: "center",
+   justifyContent: "start",
    alignItems: "center",
    backgroundColor: colors.primary_bg,
-   height: "100dvh",
+   minHeight: "100dvh",
    color: colors.text,
+});
+
+const stopWatchStyle = css({
+   marginTop: "5rem",
 });
 
 export default function App() {
@@ -48,7 +52,7 @@ export default function App() {
 
    return (
       <div className="App" css={mainStyle}>
-         <main className="App-header">
+         <div css={stopWatchStyle}>
             <Stopwatch
                isActive={isActive}
                isReset={isReset}
@@ -56,6 +60,7 @@ export default function App() {
                setTime={setTime}
                handleReset={() => setIsReset(false)}
             />
+
             <StopwatchButton
                isActive={isActive}
                isPaused={isPaused}
@@ -64,8 +69,8 @@ export default function App() {
                handleReset={handleReset}
                handleLap={handleLap}
             />
-            <LapList laps={laps} />
-         </main>
+         </div>
+         <LapList laps={laps} />
       </div>
    );
 }
