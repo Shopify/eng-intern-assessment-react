@@ -38,6 +38,9 @@ To get started with the project, follow these steps:
     - reset stopwatch
     - record & render lap times 
 
+## Demo
+![Stopwatch Demo](./public/stopwatch-demo.mp4)
+
 ## Additional Dependencies
 - `@emotion/react @emotion/styled` 
 - `--save-dev jest-emotion`
