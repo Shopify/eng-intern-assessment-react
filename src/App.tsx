@@ -53,13 +53,22 @@ export default function App() {
     }
   };
 
+  // function to stop and reset stopwatch values to zero
+  const reset = (): void => {
+    setIsStopped(true);
+    setStartTime(0);
+    setTimeElapsed(0);
+    setLastestLapTime(0);
+    setLapTimes([]);
+  }
+
   return (
     <div>
       <StopWatch
         timeElapsed={timeElapsed}
         latestLapTime={latestLapTime}
         lapTimes={lapTimes}
-        stopWatchButton={<StopWatchButton updateStop={updateStop} recordLap={recordLap} />}
+        stopWatchButton={<StopWatchButton updateStop={updateStop} recordLap={recordLap} reset={reset} />}
       />
     </div>
   );

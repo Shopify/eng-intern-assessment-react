@@ -20,15 +20,17 @@ export default function StopWatch({
 }: Props) {
   return (
     <div>
+      {/* stopwatch timer display */}
       <h1>{convertToDisplayTime(timeElapsed)}</h1>
+
+      {/* stopwatch buttons */}
       {stopWatchButton}
-      
+
+      {/* lap times display */}
       {lapTimes.map((lapTime, index) => (
-        <>
-          <h1 key={index}>
-            Lap {index + 1}: {convertToDisplayTime(lapTime)}
-          </h1>
-        </>
+        <h1 key={index}>
+          Lap {index + 1}: {convertToDisplayTime(lapTime)}
+        </h1>
       ))}
     </div>
   );
