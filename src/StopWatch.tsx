@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./main.css";
 
+// Define the structure of a lap object
 interface Lap {
   id: number;
   time: number;
 }
 
-interface stopWatchProps {
+// Define the props for the StopWatch component
+interface StopWatchProps {
   isRunning: boolean;
   time: number;
   laps: Lap[];
 }
 
+// Helper function to format time in mm:ss:ms format
 const formatTime = (time: number): string => {
   const minutes = Math.floor(time / 60000);
   const seconds = Math.floor((time % 60000) / 1000);
@@ -24,13 +27,17 @@ const formatTime = (time: number): string => {
   return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
 };
 
-const StopWatch: React.FC<stopWatchProps> = ({ isRunning, time, laps }) => {
+// StopWatch component
+const StopWatch: React.FC<StopWatchProps> = ({ isRunning, time, laps }) => {
   return (
     <div className="stopwatch_container">
+      {/* Display the formatted time */}
       <p>{formatTime(time)}</p>
+      {/* Display the lap list if there are laps recorded */}
       {laps.length > 0 && (
         <div className="lap_list">
           <ul>
+            {/* Map through laps and display lap details */}
             {laps.map((lap) => (
               <li key={lap.id}>
                 #{lap.id} {formatTime(lap.time)}
