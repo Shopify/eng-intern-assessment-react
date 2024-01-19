@@ -21,7 +21,6 @@ function StopWatch() {
   const onReset = () => {
     if (currentState === 'RESET') return;
     setCurrentTime(0);
-    setLaps([]);
     setCurrentState('RESET');
   };
 
@@ -95,7 +94,7 @@ function StopWatch() {
           ))}
         </ul>
       </div>
-      
+
     </div>
   );
 }
