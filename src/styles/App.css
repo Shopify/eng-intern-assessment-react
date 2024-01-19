@@ -1,53 +1,144 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
+.view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    gap: 60px;
+
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+.container.start {
+    gap: 0px;
+    justify-content:space-evenly;
+}
+
+.themeToggleBtn {
+        right: 20px;
+        top: 20px;
+        position: absolute;
+
+        font-size: 24px;
+        background: transparent;
+
+        border: none;
+        color: var(--color-gray11);
+        
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -webkit-transition-property: box-shadow, transform;
+        transition-property: box-shadow, transform;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    
+        cursor: pointer;
+}
+
+.themeToggleBtn:hover {
+    transform: scale(1.2);
+}
+
+/* Desktop */
 @media screen and (min-width: 600px) {
-    .container {
-        height: 600px;
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        align-items: center;
-        gap: 60px;
-
-        font-family: Inter, Arial, Helvetica, sans-serif;
-    }
-
-    .container.start {
-        gap: 0px;
-        justify-content:space-evenly;
-    }
 
     .view{
-        height: 100%;
         min-height: 600px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    }
+
+    .container {
+        height: 600px;
     }
 }
 
+/* Mobile */
 @media screen and (max-width: 599px) {
+    
+    .view {
+        min-height: 800px;
+    }
+
     .container {
         height: 800px;
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        align-items: center;
-        gap: 60px;
-
-        font-family: Inter, Arial, Helvetica, sans-serif;
     }
+}
 
-    .container.start {
-        gap: 0px;
-        justify-content:space-evenly;
-    }
+:root {
+    --color-red: rgb(255, 59, 48);
+    --color-orange: rgb(255, 149, 0);
+    --color-yellow: rgb(255, 204, 0);
+    --color-green: rgb(52, 199, 89);
+    --color-mint: rgb(0, 199, 190);
+    --color-teal: rgb(48, 176, 199);
+    --color-cyan: rgb(50, 173, 230);
+    --color-blue: rgb(0, 122, 255);
+    --color-indigo: rgb(88, 86, 214);
+    --color-purple: rgb(175, 82, 222);
+    --color-pink: rgb(255, 45, 85);
+    --color-brown: rgb(165, 132, 94);
 
-    .view{
-        height: 100%;
-        min-height: 800px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+    
+    --color-gray1: rgb(242, 242, 247);    
+    --color-gray2: rgb(229, 229, 234);
+    --color-gray3: rgb(209, 209, 214);
+    --color-gray4: rgb(199, 199, 204);
+    --color-gray5: rgb(174, 174, 178);
+    --color-gray6: rgb(142, 142, 147);
+    --color-gray7: rgb(99, 99, 102);
+    --color-gray8: rgb(72, 72, 74);
+    --color-gray9: rgb(58, 58, 60);
+    --color-gray10: rgb(44, 44, 46);
+    --color-gray11: rgb(28, 28, 30);
+
+    --color-shadow: rgba(0, 0, 0, 0.102);
+
+    --background-color: var(0,0,0);
+    background-color: var(--background-color);
+
+    --text-color: rgb(58, 58, 60);
+    color: var(--text-color);
+
+}
+
+:root[data-theme='dark'] {
+    --color-red: rgb(255, 69, 58);
+    --color-orange: rgb(255, 159, 10);
+    --color-yellow: rgb(255, 214, 10);
+    --color-green: rgb(48, 209, 88);
+    --color-mint: rgb(102, 212, 207);
+    --color-teal: rgb(64, 200, 224);
+    --color-cyan: rgb(100, 210, 255);
+    --color-blue: rgb(10, 132, 255);
+    --color-indigo: rgb(94, 92, 230);
+    --color-purple: rgb(191, 90, 242);
+    --color-pink: rgb(255, 55, 95);
+    --color-brown: rgb(172, 142, 104);
+
+    --color-gray11: rgb(242, 242, 247);    
+    --color-gray10: rgb(229, 229, 234);
+    --color-gray9: rgb(209, 209, 214);
+    --color-gray8: rgb(199, 199, 204);
+    --color-gray7: rgb(174, 174, 178);
+    --color-gray6: rgb(142, 142, 147);
+    --color-gray5: rgb(99, 99, 102);
+    --color-gray4: rgb(72, 72, 74);
+    --color-gray3: rgb(58, 58, 60);
+    --color-gray2: rgb(44, 44, 46);
+    --color-gray1: rgb(28, 28, 30);
+
+    --color-shadow: rgba(255, 255, 255, 0.25);
+
+    --background-color: rgb(28, 28, 30);
+    background-color: var(--background-color);
+
+    --text-color: rgb(240, 240, 240);
+    color: var(--text-color);
 }

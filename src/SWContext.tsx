@@ -2,6 +2,9 @@ import React, { createContext } from 'react'
 import {StopWatchStatus} from './App'
 
 export interface SWContextType {
+    isDarkMode: boolean;
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+
     startTime: number;
     setStartTime: React.Dispatch<React.SetStateAction<number>>;
     

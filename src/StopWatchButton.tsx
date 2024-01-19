@@ -41,19 +41,19 @@ export default function StopWatchButton() {
         </button>)
     }
 
-    const startButton = <Button key={0} icon={faPlay} style={{color:"rgb(0,122,255)", width:"150px"}} 
+    const startButton = <Button key={0} icon={faPlay} style={{color:"var(--color-blue)", width:"150px"}} 
         callback={() => {setStartTime(Date.now()); setCurrentTime(Date.now()); setStatus(1); setLapNumber(1)}} />
 
-    const flagButton = <Button key={4}  icon={faFlag} style={{color:"rgb(88,86,214)"}} 
+    const flagButton = <Button key={4}  icon={faFlag} style={{color:"var(--color-indigo)"}} 
         callback={() => setLapNumber(lapNumber+1)}/>
 
-    const pauseButton =<Button key={2} icon={faPause} style={{color:"rgb(0,122,255)"}} 
+    const pauseButton =<Button key={2} icon={faPause} style={{color:"var(--color-blue)"}} 
         callback={() => setStatus(2)}/>
 
-    const resetButton =<Button key={3} icon={faStop} style={{color:"rgb(255,59,48)"}} 
+    const resetButton =<Button key={3} icon={faStop} style={{color:"var(--color-red)"}} 
         callback={() => {setStatus(0); setStartTime(0); setCurrentTime(0); setLapNumber(1)}}/>
 
-    const resumeButton =<Button key={1}icon={faPlay} style={{color:"rgb(0,122,255)"}} 
+    const resumeButton =<Button key={1}icon={faPlay} style={{color:"var(--color-blue)"}} 
         callback={() => {setStartTime(startTime+Date.now()-currentTime); setStatus(1); setCurrentTime(Date.now())}}/>
     
     let buttonList : React.JSX.Element[] = []
@@ -73,9 +73,7 @@ export default function StopWatchButton() {
     }
 
     return(
-        <div className='button-section'>
-            <MeMoStopWatchButton status={status} buttonList={buttonList} lapNumber={lapNumber}/>
-        </div>
+        <MeMoStopWatchButton status={status} buttonList={buttonList} lapNumber={lapNumber}/>
     )
 }
 

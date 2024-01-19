@@ -1,15 +1,19 @@
+.time-section {
+    display: flex;
+    align-items:baseline;
+    gap: 10px;
+
+    font-variant-numeric: tabular-nums;
+
+    user-select: none;
+
+}
+
 @media screen and (min-width: 600px) {
     .time-section {
-        display: flex;
-        align-items:center;
-        gap: 10px;
-    
         font-size: 96px;
-        font-variant-numeric: tabular-nums;
-    
-        user-select: none;
-    
         height: 20%;
+
     }
 
     .ms-span {
@@ -19,17 +23,8 @@
 
 @media screen and (max-width: 599px) {
     .time-section {
-        display: flex;
-        align-items:center;
-        gap: 10px;
-
-    
         font-size: 60px;
-        font-variant-numeric: tabular-nums;
-    
-        user-select: none;
-    
-        height: 20%;
+        height: 10%;
     }
 
     .ms-span {

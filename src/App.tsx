@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef, useContext } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import StopWatchRecord from './StopWatchRecord'
-import {SWContextProvider} from './SWContextProvider'
+import SWContext from './SWContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
+import { faLightbulb} from '@fortawesome/free-solid-svg-icons'
 
 import './styles/App.css'
 
@@ -13,14 +16,18 @@ export enum StopWatchStatus {
 }
 
 export default function App() {
-    
-    // const [startTime, setStartTime] = useState<number>(0)
-    // const [currentTime, setCurrentTime] = useState<number>(0)
-    // const [lapStartTime, setLapStartTime] = useState<number>(0)
-    // const [status, setStatus] = useState<StopWatchStatus>(StopWatchStatus.Stoped)
+
+    const {isDarkMode,setIsDarkMode} = useContext(SWContext)
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+    },[isDarkMode])
 
     return(
-        <SWContextProvider>
+        <div style={{height:"100%"}}>
+            <button className='themeToggleBtn' onClick={()=>{setIsDarkMode(!isDarkMode)}}>
+                <FontAwesomeIcon icon={faLightbulb}/>
+            </button>
             <div className='view'>
                 <div className='container'>
                     <StopWatch/>
@@ -28,6 +35,7 @@ export default function App() {
                     <StopWatchRecord/>
                 </div>
             </div>
-        </SWContextProvider>
+        </div>
+            
     )
 }

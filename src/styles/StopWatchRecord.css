@@ -1,3 +1,28 @@
+
+.lap-records {
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-property: height, opacity;
+    transition-property: height, opacity;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.lap-records.expand {
+    height: 40%;
+    opacity: 1;
+
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-property: height, opacity;
+    transition-property: height, opacity;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
 .container table {
     width: 100%;
     table-layout: fixed; 
@@ -18,7 +43,7 @@
 }
 
 .container tbody tr {
-    border-top: 1px solid rgb(229,229,234);
+    border-top: 1px solid var(--color-gray2);
 }
 
 @media screen and (min-width: 600px) {
@@ -27,27 +52,7 @@
         max-width: 800px;
         height: 0;
         opacity: 0;
-        overflow-y: auto;
-        scrollbar-gutter: stable both-edges;
-    
-        -webkit-transition-duration: 0.4s;
-        transition-duration: 0.4s;
-        -webkit-transition-property: height, opacity;
-        transition-property: height, opacity;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-    }
-    
-    .lap-records.expand {
-        height: 40%;
-        opacity: 1;
-    
-        -webkit-transition-duration: 0.4s;
-        transition-duration: 0.4s;
-        -webkit-transition-property: height, opacity;
-        transition-property: height, opacity;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
+        
     }
 }
 
@@ -56,26 +61,7 @@
         width: 90%;
         height: 0;
         opacity: 0;
-        overflow-y: auto;
-        scrollbar-gutter: stable both-edges;
-    
-        -webkit-transition-duration: 0.4s;
-        transition-duration: 0.4s;
-        -webkit-transition-property: height, opacity;
-        transition-property: height, opacity;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
     }
     
-    .lap-records.expand {
-        height: 40%;
-        opacity: 1;
     
-        -webkit-transition-duration: 0.4s;
-        transition-duration: 0.4s;
-        -webkit-transition-property: height, opacity;
-        transition-property: height, opacity;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-    }
 }
