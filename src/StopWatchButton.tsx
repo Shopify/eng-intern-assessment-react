@@ -2,18 +2,18 @@
 import React from "react";
 
 interface Props {
-  updateStop: (stop: boolean) => void;
+  updateStopState: (stop: boolean) => void;
   recordLap: () => void; 
   reset: () => void; 
 }
 
-export default function StopWatchButton({ updateStop, recordLap, reset }: Props) {
+export default function StopWatchButton({ updateStopState, recordLap, reset }: Props) {
   return (
     <div>
       <button onClick={() => reset()}>Reset</button>
       <button onClick={() => recordLap()}>Lap</button>
-      <button onClick={() => updateStop(false)}>Start</button>
-      <button onClick={() => updateStop(true)}>Stop</button>
+      <button onClick={() => updateStopState(false)}>Start</button>
+      <button onClick={() => updateStopState(true)}>Stop</button>
     </div>
   );
 }

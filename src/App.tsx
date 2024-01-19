@@ -28,7 +28,7 @@ export default function App() {
   }, [isStopped]);
 
   // function to update isStopped state of timer
-  const updateStop = (stop: boolean): void => {
+  const updateStopState = (stop: boolean): void => {
     setIsStopped(stop);
   };
 
@@ -66,9 +66,8 @@ export default function App() {
     <div>
       <StopWatch
         timeElapsed={timeElapsed}
-        latestLapTime={latestLapTime}
         lapTimes={lapTimes}
-        stopWatchButton={<StopWatchButton updateStop={updateStop} recordLap={recordLap} reset={reset} />}
+        stopWatchButton={<StopWatchButton updateStopState={updateStopState} recordLap={recordLap} reset={reset} />}
       />
     </div>
   );

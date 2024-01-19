@@ -5,7 +5,6 @@ import { convertToDisplayTime } from "./utils/timeDisplayUtils";
 
 interface Props {
   timeElapsed: number;
-  latestLapTime: number;
   lapTimes: number[];
   // pass stopWatchButton component as prop
   // so it can be displayed in between main timer and laps
@@ -14,7 +13,6 @@ interface Props {
 
 export default function StopWatch({
   timeElapsed,
-  latestLapTime,
   lapTimes,
   stopWatchButton,
 }: Props) {
