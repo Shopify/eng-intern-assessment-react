@@ -18,6 +18,7 @@ export function useStopWatch({ intervalMs = 30 }: UseStopWatchOptions = {}) {
   function start() {
     stop();
 
+    // If we have a previous elapsed time, start counting from there.
     const startTime = Date.now() - elapsedTime;
 
     function tick() {
