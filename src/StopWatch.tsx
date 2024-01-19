@@ -19,8 +19,8 @@ export default function StopWatch() {
             <span>{formatedTime[0]}</span>:
             <span>{formatedTime[1]}</span>:
             <span>{formatedTime[2]}</span>
-            <span style={{fontSize:64}}>.</span>
-            <span style={{fontSize:64}}>{formatedTime[3]}</span>
+            <span className="ms-span">.</span>
+            <span className="ms-span">{formatedTime[3]}</span>
         </div>
     )
 }

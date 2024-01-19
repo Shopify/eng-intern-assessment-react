@@ -1,25 +1,53 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
-.container {
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    gap: 60px;
+@media screen and (min-width: 600px) {
+    .container {
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+        gap: 60px;
 
-    font-family: Inter, Arial, Helvetica, sans-serif;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .container.start {
+        gap: 0px;
+        justify-content:space-evenly;
+    }
+
+    .view{
+        height: 100%;
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
-.container.start {
-    gap: 0px;
-    justify-content:space-evenly;
-}
+@media screen and (max-width: 599px) {
+    .container {
+        height: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+        gap: 60px;
 
-.view{
-    height: 100%;
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .container.start {
+        gap: 0px;
+        justify-content:space-evenly;
+    }
+
+    .view{
+        height: 100%;
+        min-height: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
