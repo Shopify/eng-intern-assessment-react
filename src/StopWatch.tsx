@@ -8,17 +8,18 @@ import TimeContext from "./Context/TimeContext";
 import "./Styles/StopWatch.css";
 // @ts-ignore
 import carImage from "./images/car.png";
+import LapContext from "./Context/LapContext";
 
 export default function StopWatch() {
   const { time, setTime } = useContext(TimeContext);
   const { running } = useContext(RunningContext);
+  const { lapTimes } = useContext(LapContext);
 
   // While stopwatch is running, increase time by 1 every second
   useEffect(() => {
     if (running) {
       const interval = setInterval(() => {
         setTime((prev: number) => prev + 10);
-        console.log(time);
       }, 10);
       return () => clearInterval(interval);
     }
@@ -31,7 +32,7 @@ export default function StopWatch() {
         <h1>{formatTime(time)}</h1>
         <StopWatchButton />
       </div>
-      <div className="lapContainer">
+      <div className={lapTimes.length ? "lapContainer" : "lapContainerEmpty"}>
         <LapTable />
       </div>
       <div className="carMovement">

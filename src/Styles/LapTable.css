@@ -1,4 +1,3 @@
-.lapTableContainer h1,
 .lapTableContainer h3 {
   padding: 10px;
   margin: 0;
@@ -6,14 +5,9 @@
   background-color: white;
 }
 
-.lapTableContainer h1 {
-  top: 0;
-}
-
 .lapTableContainer h3 {
   justify-content: space-between;
   display: flex;
-  top: 69px;
 }
 
 .laps {
@@ -24,7 +18,6 @@
 
 ul {
   list-style: none;
-  padding: 0;
   margin: 0;
 }
 
