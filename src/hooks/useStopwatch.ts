@@ -66,6 +66,12 @@ export function useStopwatch(): Stopwatch {
       setLaps([]);
     },
     lap: () =>
-      setLaps((arr) => [...arr, {id: `Lap ${arr.length + 1}`, milliseconds}]),
+      setLaps((arr) => [
+        ...arr,
+        {
+          id: `Lap ${arr.length + 1}`,
+          milliseconds: milliseconds - (arr[arr.length - 1]?.milliseconds ?? 0),
+        },
+      ]),
   };
 }
