@@ -1,17 +1,42 @@
 # Enhanced Stopwatch Application - Shopify Assignment
 
 Welcome to the enhanced version of the Shopify Stopwatch Assignment. This project extends the basic stopwatch functionality with features such as dark/light mode toggling, a lap timing table, the ability to clear laps without stopping the timer, and an export feature for laps data alongside all the basic functionality of a timer such as start, stop, reset, lap. Aimed at delivering a comprehensive time-tracking experience.
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Basic Features](#basic-features)
+- [New Features](#new-features)
+- [Changes](#changes)
+- [Preview Video](#preview-video)
+- [Deployment](#deployment)
+- [How It Works](#how-it-works)
+- [Testing Approach](#testing-approach)
+- [Example Test Case](#example-test-case)
+- [Getting Started](#getting-started)
+- 
+## Basic Features
+- **Start Button**: Starts the timer
+- **Stop Button**: Stops the timer
+- **Lap Button**: Creates laps as (Lap #, Lap Time, Elapsed Time, Current Time & Date)
+- **Reset Button**: Resets the timer and clears all laps
 
 ## New Features
-
 - **Dark Mode/Light Mode**: Toggle between dark and light themes for optimal visibility.
 - **Lap Timing Table**: Laps are displayed in a table, providing detailed time tracking.
 - **Clear Table Option**: Clear laps independently of the stopwatch, enabling continuous measurement.
 - **Export Laps**: Download a CSV file of all the recorded laps for external analysis.
 
-## Overview
+## Changes
+- Added a `DarkModeToggle` component, allowing the appearance to be changed at the click of a button
+- Added a `LapTable` component to display lap times.
+- Integrated the ability to export lap times to a CSV.
 
+## Preview Video
 This enhanced stopwatch application, originally an assignment from Shopify, now includes additional features for a more comprehensive time-tracking experience. With a sleek dark/light mode functionality, a detailed lap timing table, the ability to clear laps without stopping the timer, and an export feature for laps data, this version of the stopwatch goes beyond the basics to meet advanced user needs.
+
+Explore the functionality and features of the Enhanced Stopwatch Application in this comprehensive video. 
+
+https://github.com/Haseebsyd/eng-intern-assessment-react/assets/110560422/4488b3ce-6a5b-4bd2-afef-a6ae0cd44c62
 
 ## Deployment
 
@@ -19,23 +44,6 @@ Access the live deployment of the Enhanced Stopwatch Application here.
 https://Haseebsyd.github.io/eng-intern-assessment-react
 
 Experience the stopwatch in action and test its features in a live environment.
-
-## Preview Video
-
-Explore the functionality and features of the Enhanced Stopwatch Application in this comprehensive video. <video src="2024-01-18%2021-22-35.mp4" controls title="Title"></video>
-
-## Table of Contents
-
-- [New Features](#new-features)
-- [Overview](#overview)
-- [Deployment](#deployment)
-- [Preview Video](#preview-video)
-- [Table of Contents](#table-of-contents)
-- [How It Works](#how-it-works)
-- [Testing Approach](#testing-approach)
-- [Example Test Case](#example-test-case)
-- [Project Overview](#project-overview)
-- [Getting Started](#getting-started)
 
 
 ## How It Works
