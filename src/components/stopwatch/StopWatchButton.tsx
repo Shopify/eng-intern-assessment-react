@@ -31,7 +31,7 @@ export default function StopWatchButton({
   return (
     <div className="flex space-x-4 justify-center">
       <StyledButton onClick={onResume}>Start</StyledButton>
-      <StyledButton onClick={onPause}>Stop</StyledButton>
+      <StyledButton onClick={onPause}>Pause</StyledButton>
       <StyledButton onClick={onReset}>Reset</StyledButton>
       <StyledButton onClick={onLap}>Lap</StyledButton>
     </div>
