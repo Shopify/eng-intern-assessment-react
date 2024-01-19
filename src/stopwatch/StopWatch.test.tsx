@@ -51,7 +51,7 @@ describe('Stopwatch', () => {
 
     await user.click(screen.getByRole('button', { name: 'Stop' }));
 
-    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent!;
+    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent;
 
     act(() => jest.advanceTimersByTime(10000));
 
@@ -65,7 +65,7 @@ describe('Stopwatch', () => {
     await user.click(screen.getByText('Start'));
     await user.click(screen.getByText('Stop'));
 
-    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent!;
+    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent;
 
     await user.click(screen.getByText('Start'));
 
