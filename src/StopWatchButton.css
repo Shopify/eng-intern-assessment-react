@@ -12,3 +12,23 @@
 .button:hover {
     background-color: #7fa239;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.laps-container {
+    margin-top: 20px;
+    text-shadow: 1px 1px 1px black;
+}
+
+body {
+    background-color: #7b9d62;
+}
+
+.timer-1 {
+    text-shadow: 1px 1px 1px black;
+}
