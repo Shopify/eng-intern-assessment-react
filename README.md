@@ -39,7 +39,9 @@ To get started with the project, follow these steps:
     - record & render lap times 
 
 ## Demo
-<video src="https://youtu.be/CGq7jh7sHY0" controls="controls" style="max-width: 730px;">
+<video width="320" height="240" controls>
+  <source src="https://youtu.be/CGq7jh7sHY0" type="video/mp4">
+  Your browser does not support the video tag.
 </video>
 
 ## Additional Dependencies
