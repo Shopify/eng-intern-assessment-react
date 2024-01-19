@@ -9,20 +9,22 @@ interface Lap {
 
 const App: React.FC = () => {
   const [isRunning, setIsRunning] = useState(false);
-  const [time, setTime] = useState(0);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
   const [laps, setLaps] = useState<Lap[]>([]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
     if (isRunning) {
-        intervalId = setInterval(() => {
-            setTime((prevTime) => prevTime + 1);
-        }, 1000)
+      setStartTime((prevStartTime) => prevStartTime ?? Date.now());
+      intervalId = setInterval(() => {
+        setElapsedTime(Date.now() - startTime!);
+      }, 10);
     }
 
     return () => clearInterval(intervalId);
-  });
+  }, [isRunning, startTime]);
 
   const handleStartStop = () => {
     setIsRunning((prevIsRunning) => !prevIsRunning);
@@ -30,20 +32,29 @@ const App: React.FC = () => {
 
   const handleReset = () => {
     setIsRunning(false);
-    setTime(0);
-    setLaps([])
-  }
+    setStartTime(null);
+    setElapsedTime(0);
+    setLaps([]);
+  };
 
   const handleLap = () => {
-    setLaps((prevLaps) => [...prevLaps, { id: laps.length + 1, time}])
-  }
+    if (isRunning) {
+      setLaps((prevLaps) => [
+          { id: laps.length + 1, time: elapsedTime },
+        ...prevLaps,
+      ]);
+    }
+  };
 
   return (
     <div>
-      <StopWatch isRunning={isRunning} time={time} laps={laps} />
-      <StopWatchButton onClick={handleStartStop} label={"button text"} />
-      <StopWatchButton onClick={handleReset} label={"Reset"} />
+        <StopWatchButton
+        onClick={handleStartStop}
+        label={isRunning ? "Stop" : "Start"}
+      />
       <StopWatchButton onClick={handleLap} label={"Lap"} />
+      <StopWatchButton onClick={handleReset} label={"Reset"} />
+      <StopWatch isRunning={isRunning} time={elapsedTime} laps={laps} />
     </div>
   );
 };
