@@ -26,11 +26,8 @@
     margin: 10px 0;
     box-shadow: 3px 3px 5px 6px #5a7947;
     margin-top: 20px;
-    text-shadow: 1px 1px 1px #5a7947;
     background-color: #7b9d62;
     color: white;
-
-    margin-top: 20px;
     text-shadow: 1px 1px 1px black;
 }
 
@@ -39,9 +36,7 @@ body {
 }
 
 .timer-1 {
-    position: fixed;
-    bottom: 1200px;
-    width: 50%;
+    width: 10%;
     text-align: center;
     text-shadow: 1px 1px 1px black;
 }
