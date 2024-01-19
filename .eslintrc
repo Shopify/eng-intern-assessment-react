@@ -7,5 +7,5 @@
   "rules": {
     "@shopify/jsx-no-hardcoded-content": "off",
   },
-  "ignorePatterns": ["webpack.*.js", "babel.config.js"]
+  "ignorePatterns": ["webpack.*.js", "babel.config.js", "tailwind.config.js", "postcss.config.js"]
 }
