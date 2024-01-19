@@ -16,9 +16,10 @@ To get started with the project, follow these steps:
 
 ## Project Features
 **Primary Features**
-- [ ] *START* button begins stopwatch; while timer active appears as *STOP* button to pause the timer
-- [ ] *RESET* button to clear timer and lap list; default format of timer follows `HH:MM:SS:MS`
-- [ ] *LAP* button to create a record of the current time and add to lap list for display
+- [x] *START* button begins stopwatch; changes to *RESUME* if timer stopped
+- [x] *STOP* button to stop/pause the timer 
+- [x] *RESET* button to clear timer and lap list; default format of timer follows `HH:MM:SS:MS`
+- [x] *LAP* button to create a record of the current time and add to lap list for display
 
 **Secondary Features**
 - [ ] Responsive Design: ensures user friendly UI regardless of user device
