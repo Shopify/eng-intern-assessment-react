@@ -23,7 +23,10 @@ interface TimerProps {
 
 function Timer({milliseconds}: TimerProps) {
   return (
-    <div className="text-6xl font-mono mb-8 text-gray-700 dark:text-gray-300">
+    <div
+      className="text-6xl font-mono mb-8 text-gray-700 dark:text-gray-300"
+      data-testid="timer-display"
+    >
       {formatMilliseconds(milliseconds)}
     </div>
   );
@@ -36,12 +39,18 @@ interface LapListProps {
 function LapList({laps}: LapListProps) {
   const lapsList = laps.length ? (
     laps.map(({id, milliseconds}) => (
-      <li className="text-gray-600 dark:text-gray-400 mb-2 last:mb-0" key={id}>
+      <li
+        className="text-gray-600 dark:text-gray-400 mb-2 last:mb-0"
+        key={id}
+        data-testid={id}
+      >
         {id}: {formatMilliseconds(milliseconds)}
       </li>
     ))
   ) : (
-    <li className="text-gray-600 dark:text-gray-400">No laps recorded yet</li>
+    <li className="text-gray-600 dark:text-gray-400" data-testid="no-laps">
+      No laps recorded yet
+    </li>
   );
 
   return (
