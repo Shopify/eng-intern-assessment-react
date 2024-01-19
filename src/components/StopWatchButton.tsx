@@ -1,13 +1,13 @@
 import React from 'react';
-import './styles/StopWatchButton.css';
+import '../styles/StopWatchButton.css';
 
 // Props interface for the StopwatchButton component
 interface StopwatchButtonProps {
-  isActive: boolean;       // State of the stopwatch (active/inactive)
-  onStartStop: () => void; // Callback function to start/stop the stopwatch
-  onReset: () => void;     // Callback function to reset the stopwatch
-  onLap: () => void;       // Callback function to record a lap
-  onClearLaps: () => void; // Callback function to clear laps (unused in this component)
+  isActive: boolean;
+  onStartStop: () => void;
+  onReset: () => void;
+  onLap: () => void;
+  onClearLaps: () => void;
 }
 
 const StopwatchButton: React.FC<StopwatchButtonProps> = ({

@@ -1,33 +1,20 @@
-/* Global Variables */
 /* Global CSS Variables for Light Theme */
 :root {
-  --background-color: #fff;                      /* General background color for the app */
-  --text-color: #000;                            /* Primary text color */
-  --button-bg-color: #34445B;                    /* Background color for buttons */
-  --button-text-color: #fff;                     /* Text color for buttons */
-  --button-hover-bg-color: #263238;              /* Background color for buttons on hover */
-  --lap-bg-color: #fff;                          /* Background color for lap times */
-  --table-header-bg-color: #fff;                 /* Background color for table headers */
-  --table-border-color: #eee;                    /* Border color for tables */
-  --header-bg-color: #f2f2f2;                    /* Background color for the header */
-  --laps-title-bg-color: #f2f2f2;                /* Background color for lap title */
-  --export-button-color: #4db6ac;                /* Color for export button */
-  --export-button-hover-text-color: #37474f;     /* Text color for export button on hover */
-  --clear-button-hover-border-color: #e57373;    /* Border color for clear button on hover */
-  --button-hover-background-color: #121212;      /* Background color for buttons on hover in dark mode */
+  --background-color: #fff;
+  --text-color: #000;
+  --button-bg-color: #34445B;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #263238;
+  --header-bg-color: #f2f2f2;
 }
 
-/* CSS Variables for Dark Theme */
+/* Global CSS Variables for Dark Theme */
 [data-theme='dark'] {
-  --background-color: #121212;                  /* General background color for the app in dark mode */
-  --text-color: #ffffff;                        /* Primary text color in dark mode */
-  --button-bg-color: #1c1c1e;                   /* Background color for buttons in dark mode */
-  --button-hover-bg-color: #313133;             /* Background color for buttons on hover in dark mode */
-  --lap-bg-color: #1c1c1e;                      /* Background color for lap times in dark mode */
-  --table-header-bg-color: #1c1c1e;             /* Background color for table headers in dark mode */
-  --table-border-color: #3c3c3e;                /* Border color for tables in dark mode */
-  --header-bg-color: #1c1c1e;                   /* Background color for the header in dark mode */
-  --laps-title-bg-color: #2c2c2e;               /* Background color for lap title in dark mode */
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --button-bg-color: #1c1c1e;
+  --button-hover-bg-color: #313133;
+  --header-bg-color: #1c1c1e;
 }
 
 /* Base styles for html and body */
@@ -68,150 +55,4 @@ html, body {
   font-size: 48px;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-}
-
-/* Theme toggle button styles */
-.theme-toggle {
-  background: none;
-  border: none;
-  font-size: 32px;
-  cursor: pointer;
-  color: var(--text-color);
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
-/* Container for lap times */
-.laps-container {
-  width: 80%;
-  margin: 32px auto;
-  overflow-y: auto;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  background: var(--lap-bg-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Title styles for laps container */
-.laps-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  color: var(--text-color);
-  background: var(--laps-title-bg-color);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  text-align: center;
-  padding: 4px;
-}
-
-/* Content styles inside laps container */
-.laps-content {
-  flex: 1;
-  max-height: calc(40px * 6 + 40px);
-  overflow-y: auto;
-  padding: 0 20px;
-}
-
-/* Styling for table headers and individual lap rows */
-.table-headers, .lap {
-  display: flex;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--table-border-color);
-}
-
-.table-headers {
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--table-header-bg-color);
-}
-
-/* Common styling for lap number and header columns */
-.lap-number,
-.table-headers > .lap-number {
-  width: 50px;
-  text-align: center;
-}
-
-/* Common styling for lap time, elapsed time, and current time columns */
-.lap-time,
-.lap-elapsed-time,
-.lap-current-time,
-.table-headers > .lap-time,
-.table-headers > .lap-elapsed-time,
-.table-headers > .lap-current-time {
-  flex: 1;
-  text-align: center;
-}
-
-/* Container for buttons */
-.button-container {
-  position: static;
-  width: 100%;
-  padding: 0 10px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* Common styles for all buttons */
-.button,
-.clear-laps,
-.export-laps {
-  flex: 1;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  font-weight: bold;
-  color: var(--button-text-color);
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  padding: 10px 0;
-  background-color: var(--button-bg-color);
-  transition: background-color 0.3s, color 0.3s;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-/* Hover styles for all buttons */
-.button:hover,
-.clear-laps:hover,
-.export-laps:hover {
-  background-color: var(--button-hover-bg-color);
-}
-
-/* Clear laps button specific styles */
-.clear-laps {
-  border-radius: 0 0 0 10px;
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  border: 2px solid transparent;
-  margin-left: -10px;
-}
-
-.clear-laps:hover {
-  background-color: var(--button-hover-background-color);
-  color: var(--button-text-color);
-  border-color: var(--clear-button-hover-border-color);
-}
-
-/* Export button specific styles */
-.export-laps {
-  border-radius: 0 0 10px 0;
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  border: 2px solid transparent;
-  margin-right: -10px;
-}
-
-.export-laps:hover {
-  background-color: var(--button-hover-background-color);
-  color: #ffffff;
-  border-color: var(--export-button-color);
 }

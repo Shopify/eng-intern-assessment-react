@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Stopwatch from './StopWatch';
-import StopwatchButton from './StopWatchButton';
+import Stopwatch from './components/StopWatch';
+import StopwatchButton from './components/StopWatchButton';
+import LapTable from './components/LapTable';
+import DarkModeToggle from './components/DarkModeToggle';
 import './styles/App.css';
 
 const App: React.FC = () => {
@@ -20,7 +22,7 @@ const App: React.FC = () => {
     }
   });
 
-  // Effect for handling the stopwatch timer functionality
+  // useEffect for handling the stopwatch timer functionality
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
@@ -35,7 +37,8 @@ const App: React.FC = () => {
         setMilliseconds(Date.now() - (startTime ?? Date.now()));
       }, 10);
     } else {
-      setStartTime(null); // Reset the start time when the stopwatch stops
+      // Reset the start time when the stopwatch stops
+      setStartTime(null);
     }
 
     return () => {
@@ -44,7 +47,7 @@ const App: React.FC = () => {
     };
   }, [isActive, startTime, milliseconds]);
 
-  // Effect for persisting dark mode state in localStorage with error handling
+  // useEffect for persisting dark mode state in localStorage with error handling
   useEffect(() => {
     try {
       localStorage.setItem('darkMode', darkMode.toString());
@@ -104,10 +107,10 @@ const App: React.FC = () => {
         `Lap ${array.length - index}`,
         formatLap(lap.lapTime),
         index < array.length - 1 ? formatLap(lap.lapTime - array[index + 1].lapTime) : "00:00:00.00",
-        `"${lap.currentTime}"` // Enclose the datetime in quotes
+        `"${lap.currentTime}"` // Enclose the datetime in backticks so it doesnt become a seperate column
       ])
     ];
-  
+    
     // Create and trigger a download link for the CSV file
     let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
     const encodedUri = encodeURI(csvContent);
@@ -120,12 +123,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`app ${darkMode ? 'dark-mode' : ''}`} data-theme={darkMode ? 'dark' : 'light'}>
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`} data-theme={darkMode ? 'dark' : 'light'} data-testid="app-div">
       <div className="header">
         <h1>Timer</h1>
-        <button onClick={toggleDarkMode} className="theme-toggle">
-          {darkMode ? '🌞' : '🌜'}
-        </button>
+        <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </div>
       <Stopwatch milliseconds={milliseconds} />
       <StopwatchButton
@@ -136,33 +137,12 @@ const App: React.FC = () => {
         onClearLaps={handleClearLaps}
       />
       {laps.length > 0 && (
-        <div className="laps-container">
-          <div className="laps-title">
-            <h2>Lap Times</h2>
-          </div>
-          <div className="laps-content">
-            <div className="table-headers">
-              <span className="lap-number">Lap #</span>
-              <span className="lap-time">Lap Time</span>
-              <span className="lap-elapsed-time">Elapsed Time</span>
-              <span className="lap-current-time">Current Time & Date</span>
-            </div>
-            {laps.map((lap, index) => (
-              <div key={index} className="lap">
-                <span className="lap-number">Lap {laps.length - index}</span>
-                <span className="lap-time">{formatLap(lap.lapTime)}</span>
-                <span className="lap-elapsed-time">
-                  {index < laps.length - 1 ? formatLap(lap.lapTime - laps[index + 1].lapTime) : "00:00:00.00"}
-                </span>
-                <span className="lap-current-time">{lap.currentTime}</span>
-              </div>
-            ))}
-          </div>
-          <div className="button-container">
-            <button className="clear-laps" onClick={handleClearLaps}>Clear Laps</button>
-            <button className="export-laps" onClick={handleExport}>Export as CSV</button>
-          </div>
-        </div>
+        <LapTable
+          laps={laps}
+          formatLap={formatLap}
+          handleClearLaps={handleClearLaps}
+          handleExport={handleExport}
+        />
       )}
     </div>
   );

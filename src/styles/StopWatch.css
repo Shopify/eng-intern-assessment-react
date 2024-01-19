@@ -1,21 +1,21 @@
-/* Global color variables for the light theme */
+/* Global CSS Variables for Light Theme */
 :root {
-  --time-card-bg-color: #fff;             /* Background color for time cards */
-  --label-color: #34445B;                 /* Text color for labels */
-  --milliseconds-card-bg-color: #fff;     /* Background color for milliseconds card */
-  --time-color: #34445B;                  /* Text color for time */
-  --background-color-light: #fff;         /* General background color for light theme */
-  --box-shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color for cards */
+  --time-card-bg-color: #fff;
+  --label-color: #34445B;
+  --milliseconds-card-bg-color: #fff;
+  --time-color: #34445B;
+  --background-color-light: #fff;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Global color variables for the dark theme */
+/* Global CSS Variables for Dark Theme */
 [data-theme='dark'] {
-  --time-card-bg-color: #333;                     /* Background color for time cards in dark mode */
-  --label-color: #ccc;                            /* Text color for labels in dark mode */
-  --milliseconds-card-bg-color: #333;             /* Background color for milliseconds card in dark mode */
-  --time-color: #ccc;                             /* Text color for time in dark mode */
-  --background-color-light: #121212;              /* General background color for dark theme */
-  --box-shadow-color: rgba(255, 255, 255, 0.1);   /* Shadow color for cards in dark mode */
+  --time-card-bg-color: #333;
+  --label-color: #ccc;
+  --milliseconds-card-bg-color: #333;
+  --time-color: #ccc;
+  --background-color-light: #121212;
+  --box-shadow-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Main stopwatch container styles */

@@ -1,19 +1,19 @@
-/* Global color variables for the light theme */
+/* Global CSS Variables for Light Theme */
 :root {
-  --button-bg-color: #34445B;                   /* Background color for buttons */
-  --button-text-color: #fff;                    /* Text color for buttons */
-  --button-shadow-color: rgba(0, 0, 0, 0.1);    /* Shadow color for buttons */
-  --button-hover-bg-color: #263238;             /* Background color for buttons on hover */
-  --button-hover-text-color: #fff;              /* Text color for buttons on hover */
+  --button-bg-color: #34445B;
+  --button-text-color: #fff;
+  --button-shadow-color: rgba(0, 0, 0, 0.1);
+  --button-hover-bg-color: #263238;
+  --button-hover-text-color: #fff;
 }
 
-/* Global color variables for the dark theme */
+/* Global CSS Variables for Dark Theme */
 [data-theme='dark'] {
-  --button-bg-color: #1c1c1e;                   /* Background color for buttons in dark mode */
-  --button-text-color: #ddd;                    /* Text color for buttons in dark mode */
-  --button-shadow-color: rgba(255, 255, 255, 0.1); /* Shadow color for buttons in dark mode */
-  --button-hover-bg-color: #313133;             /* Background color for buttons on hover in dark mode */
-  --button-hover-text-color: #ddd;              /* Text color for buttons on hover in dark mode */
+  --button-bg-color: #1c1c1e;
+  --button-text-color: #ddd;
+  --button-shadow-color: rgba(255, 255, 255, 0.1);
+  --button-hover-bg-color: #313133;
+  --button-hover-text-color: #ddd;
 }
 
 /* Container styles for stopwatch buttons */

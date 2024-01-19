@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/StopWatch.css';
+import '../styles/StopWatch.css';
 
 // Props interface for the Stopwatch component
 interface StopwatchProps {

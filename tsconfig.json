@@ -7,6 +7,11 @@
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "dom.iterable", "esnext", "es2017"],
+    "types": ["node", "jest"]
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

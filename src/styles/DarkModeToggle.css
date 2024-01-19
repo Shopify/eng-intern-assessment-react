@@ -1,0 +1,10 @@
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--text-color);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
