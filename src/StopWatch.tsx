@@ -41,7 +41,10 @@ export default function StopWatch() {
     }
 
     const handleLaps = () => {
-        setLaps(prevLaps => [...prevLaps, elapsedTime])
+        // Only allow new lap when stopwatch is running so that laps of 0 secs are not added
+        if (isRunning) {
+            setLaps(prevLaps => [...prevLaps, elapsedTime])
+        }
     }
 
     // Function to separate time in miliseconds to hours, minutes, and seconds
@@ -57,7 +60,7 @@ export default function StopWatch() {
         <div className="StopWatch">
             <div className="display">
                 <h1>StopWatch</h1>
-                <h2>{displayTime(elapsedTime)}</h2>
+                <h2 role="displayTime" id="displayTime">{displayTime(elapsedTime)}</h2>
                 <div className="buttons">
                     <StopWatchButton text={"Start"} handleClick={handleStart} color="green"/>
                     <StopWatchButton text={"Stop"} handleClick={handleStop} color="red"/>
@@ -67,13 +70,15 @@ export default function StopWatch() {
             </div>
             <div className="lapDisplay">
                 <h1>Laps</h1>
-                {!laps.length ? null : laps.map((lap, idx) => {
-                        if (idx == 0) {
-                            return <p>Lap {idx+1}: {displayTime(lap)}</p>
-                        } else {
-                            return <p>Lap {idx+1}: {displayTime(lap - laps[idx-1])}</p>
-                        }
-                    }) }
+                <div role="lapDisplay">
+                    {!laps.length ? null : laps.map((lap, idx) => {
+                            if (idx == 0) {
+                                return <p key="idx">Lap {idx+1}: {displayTime(lap)}</p>
+                            } else {
+                                return <p key="idx">Lap {idx+1}: {displayTime(lap - laps[idx-1])}</p>
+                            }
+                        }) }
+                </div>
             </div>
         </div>
     )
