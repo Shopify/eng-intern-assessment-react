@@ -1,15 +1,29 @@
 import React from 'react'
 import StopWatchButton from './StopWatchButton'
 
+interface Time{
+    hours: number,
+    minutes: number,
+    seconds: number,
+    milliseconds: number
+}
+
+const [time, setTime] = React.useState<Time>({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    milliseconds: 0
+})
+const [lapNum, setLapNum] = React.useState(0)
+const [state, setState] = React.useState("INITIAL")
+
 export default function StopWatch() {
 
-    const [time, setTime] = React.useState<number>(0)
-    const [lapNum, setLapNum] = React.useState<number>(0)
-    const [counting, setCounting] = React.useState<boolean>(false)
+
 
     return(
         <div>
-            <StopWatchButton setCounting/>
+            <StopWatchButton state={state} setState={setState}/>
         </div>
     )
 }
