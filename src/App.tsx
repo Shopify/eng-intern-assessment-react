@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Stopwatch from "./StopWatch";
 import StopwatchButton from "./StopWatchButton";
 import LapList from "./LapList";
+import useBeforeUnload from "./hooks/useBeforeUnload";
 
 const mainStyle = css({
    display: "flex",
@@ -27,6 +28,9 @@ export default function App() {
    const [isReset, setIsReset] = useState<boolean>(false);
    const [time, setTime] = useState<number>(0);
    const [laps, setLaps] = useState<number[]>([]);
+
+   // prompt for user to confirm page reload if stopwatch is active
+   useBeforeUnload(isActive);
 
    const handleStart = () => {
       setIsActive(true);

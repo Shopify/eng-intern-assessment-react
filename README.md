@@ -22,8 +22,8 @@ To get started with the project, follow these steps:
 - [x] *LAP* button to create a record of the current time and add to lap list for display
 
 **Secondary Features**
-- [ ] Responsive Design: ensures user friendly UI regardless of user device
-- [ ] Reload protection: page reload only after user confirmation
+- [x] Responsive Design: ensures user friendly UI regardless of user device
+- [x] Reload protection: page reload only after user confirmation
 
 ## Test Info
 1. Suite 1: Time Formatting
