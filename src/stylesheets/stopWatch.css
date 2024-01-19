@@ -23,7 +23,6 @@ hr {
 
 .hour, .min, .sec {
     display: inline-block;
-    /* font-size: 4rem; */
 }
 
 .time-element {
@@ -47,4 +46,12 @@ hr {
     transform: translateY(-45px);
     display: inline-block;
     margin: 2% 0;
+}
+
+.Toastify {
+    text-align: left !important;
+}
+
+.Toastify__close-button {
+    width: 25px;
 }
