@@ -2,10 +2,10 @@
   "extends": [
     "plugin:@shopify/typescript",
     "plugin:@shopify/react",
-    "plugin:@shopify/prettier"
+    "plugin:@shopify/prettier",
   ],
   "rules": {
-    "@shopify/jsx-no-hardcoded-content": "off"
+    "@shopify/jsx-no-hardcoded-content": "off",
   },
-  "parserOptions": { "project": ["./tsconfig.json"] }
+  "ignorePatterns": ["webpack.*.js", "babel.config.js"]
 }
