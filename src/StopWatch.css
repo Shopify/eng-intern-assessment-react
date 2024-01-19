@@ -1,0 +1,61 @@
+/* styling for the stopwatch */
+.stop-watch {
+  width: 350px;
+  padding: 50px;
+  margin: 20px;
+  background-color: rgb(239, 172, 207);
+  border-radius: 20px;
+}
+.start-button {
+    background-color: rgb(246, 209, 230);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(240, 147, 195);
+    border: none;
+}
+.stop-button {
+    background-color: rgb(246, 209, 230);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(240, 147, 195);
+    border: none;
+}
+.clear-button {
+    background-color: rgb(246, 209, 230);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(240, 147, 195);
+    border: none;
+}
+.lap-button {
+    background-color: rgb(246, 209, 230);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(240, 147, 195);
+    border: none;
+}
+.time {
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(231, 85, 161);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lap {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(231, 85, 161);
+}

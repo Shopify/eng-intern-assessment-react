@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["jest", "@testing-library/jest-dom", "node_modules/@types", "src/types"],
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "es6",
