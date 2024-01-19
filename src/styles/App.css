@@ -23,24 +23,24 @@
 }
 
 .themeToggleBtn {
-        right: 20px;
-        top: 20px;
-        position: absolute;
+    right: 20px;
+    top: 20px;
+    position: absolute;
 
-        font-size: 24px;
-        background: transparent;
+    font-size: 24px;
+    background: transparent;
 
-        border: none;
-        color: var(--color-gray11);
-        
-        -webkit-transition-duration: 0.2s;
-        transition-duration: 0.2s;
-        -webkit-transition-property: box-shadow, transform;
-        transition-property: box-shadow, transform;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
+    border: none;
+    color: var(--color-gray11);
     
-        cursor: pointer;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+
+    cursor: pointer;
 }
 
 .themeToggleBtn:hover {

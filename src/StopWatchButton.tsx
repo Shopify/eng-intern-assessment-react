@@ -7,6 +7,7 @@ import SWContext from './SWContext'
 
 import "./styles/StopWatchButton.css"
 
+// Props for Button component
 interface ButtonProps {
     icon: IconDefinition,
     callback: Function,
@@ -22,15 +23,18 @@ export default function StopWatchButton() {
         status, setStatus
     } = useContext(SWContext)
 
+    // update current time every 10ms, calling Date.now() instead of accumulating time
+    // to avoid time drift
     useEffect(() => {
         let interval: NodeJS.Timer;
         if (status==1) {
-          interval = setInterval(() => setCurrentTime(Date.now()), 10);
+            interval = setInterval(() => setCurrentTime(Date.now()), 10);
         }
     
         return () => {clearInterval(interval);}
-      }, [status]);
+    }, [status]);
 
+    // Button component
     const Button = (props:ButtonProps) => {
 
         const {icon,style,callback} = props
@@ -41,6 +45,7 @@ export default function StopWatchButton() {
         </button>)
     }
 
+    // All buttons with be used in different status
     const startButton = <Button key={0} icon={faPlay} style={{color:"var(--color-blue)", width:"150px"}} 
         callback={() => {setStartTime(Date.now()); setCurrentTime(Date.now()); setStatus(1); setLapNumber(1)}} />
 
@@ -58,6 +63,7 @@ export default function StopWatchButton() {
     
     let buttonList : React.JSX.Element[] = []
 
+    // switch button list based on status
     switch(status){
         case StopWatchStatus.Stoped:
             buttonList=[startButton]
@@ -72,16 +78,17 @@ export default function StopWatchButton() {
             break
     }
 
+    // Use memo to prevent unnecessary re-rendering, since context is updated every 10ms
     return(
         <MeMoStopWatchButton status={status} buttonList={buttonList} lapNumber={lapNumber}/>
     )
 }
 
 const MeMoStopWatchButton =  React.memo(function MeMoStopWatchButton(props:{status:StopWatchStatus, lapNumber:number, buttonList:React.JSX.Element[]}) {
-    
     return(
         <div className='button-section'>
             {props.buttonList}
         </div>
     )
+// Only re-render when status or lapNumber changes
 },(pProps,nProps) => {return pProps.status == nProps.status && pProps.lapNumber == nProps.lapNumber})

@@ -16,15 +16,22 @@ export default function StopWatchRecord() {
     const lastLapTime = useRef<number>(0)
     const [recordsList, setRecordsList] = useState<{time:number, ctime:number} []>([])
 
-    useEffect(()=>{
+    const updateRecordsList = () => {
+        // reset the lap time when the stop watch is reset
         if(lapNumber==1){
             setRecordsList([])
         }else{
+            // add the last lap time to the list
             setRecordsList([{time:currentTime-startTime-lastLapTime.current, ctime:currentTime-startTime},...recordsList])
         }
 
         lastLapTime.current = currentTime-startTime
-    },[lapNumber,lastLapTime])
+    }
+
+    // update the records list when the lap number changes
+    useEffect(()=>{
+        updateRecordsList()
+    },[lapNumber])
 
     return(
         <div className={`lap-records ${status == 0 ? "":"expand"}`}>
@@ -37,12 +44,12 @@ export default function StopWatchRecord() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* first row always update with time */}
                     <tr>
                         <td>#{lapNumber}</td>
                         <td>{timeToString(currentTime-startTime-lastLapTime.current)}</td>
                         <td>{timeToString(currentTime-startTime)}</td>
                     </tr>
-                    
                     {
                         recordsList.map((r,i) => {
                             return(

@@ -9,6 +9,7 @@ export const SWContextProvider: React.FC = ({ children }) => {
     const [lapNumber, setLapNumber] = useState<number>(1)
     const [status, setStatus] = useState<StopWatchStatus>(StopWatchStatus.Stoped)
 
+    // Provide the context value to the child components
     const contextValue: SWContextType = {
         isDarkMode, setIsDarkMode,
         startTime,

@@ -1,6 +1,7 @@
 import React, { createContext } from 'react'
 import {StopWatchStatus} from './App'
 
+//use context to pass data to child components
 export interface SWContextType {
     isDarkMode: boolean;
     setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;

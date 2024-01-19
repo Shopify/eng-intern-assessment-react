@@ -3,12 +3,14 @@
     align-items:baseline;
     gap: 10px;
 
+    /* prevent the number from shrinking */
     font-variant-numeric: tabular-nums;
 
     user-select: none;
 
 }
 
+/* Desktop */
 @media screen and (min-width: 600px) {
     .time-section {
         font-size: 96px;
@@ -21,6 +23,7 @@
     }
 }
 
+/* Mobile */
 @media screen and (max-width: 599px) {
     .time-section {
         font-size: 60px;

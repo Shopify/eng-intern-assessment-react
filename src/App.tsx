@@ -20,6 +20,7 @@ export default function App() {
     const {isDarkMode,setIsDarkMode} = useContext(SWContext)
 
     useEffect(() => {
+        // toggle dark mode
         document.documentElement.setAttribute("data-theme", isDarkMode ? "dark" : "light");
     },[isDarkMode])
 

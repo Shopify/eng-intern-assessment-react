@@ -14,6 +14,7 @@ export default function StopWatch() {
 
     const formatedTime = splitTime(currentTime-startTime)
 
+    // Display the elsapsed time
     return(
         <div className='time-section'>
             <span>{formatedTime[0]}</span>:

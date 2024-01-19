@@ -1,3 +1,4 @@
+// Split time into hours, minutes, seconds, and milliseconds
 export function splitTime(ms: number) {
 
     const hours = Math.floor(ms / 3600000); // 3600000 milliseconds in an hour
@@ -14,6 +15,7 @@ export function splitTime(ms: number) {
     
 };
 
+//convert time to string in the format of HH:MM:SS.mm
 export function timeToString(ms: number) {
 
     const hours = Math.floor(ms / 3600000); // 3600000 milliseconds in an hour
