@@ -1,68 +1,113 @@
 import { AppProvider } from '@shopify/polaris';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import Stopwatch from './StopWatch';
+import { StopWatch } from './StopWatch';
 
-function renderComponent(element: React.ReactElement) {
+function setup(element: React.ReactElement) {
   function wrapper({ children }: { children: React.ReactNode }) {
     return <AppProvider i18n={{}}>{children}</AppProvider>;
   }
 
-  return render(element, { wrapper });
+  return {
+    user: userEvent.setup({ delay: null }),
+    ...render(element, { wrapper }),
+  };
 }
-
 describe('Stopwatch', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
+
   test('renders initial state correctly', () => {
-    renderComponent(<Stopwatch />);
+    setup(<StopWatch />);
 
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    expect(screen.getByText('00:00.00')).toBeInTheDocument();
+    expect(screen.queryAllByRole('row').length).toBe(0);
+
+    expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Reset' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Lap' })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Stop' })
+    ).not.toBeInTheDocument();
   });
 
-  test('starts and stops the stopwatch', () => {
-    renderComponent(<Stopwatch />);
+  test('starts and stops the stopwatch', async () => {
+    const { user } = setup(<StopWatch />);
 
-    fireEvent.click(screen.getByText('Start'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Start' }));
 
-    fireEvent.click(screen.getByText('Stop'));
-    expect(screen.queryByText(/(\d{2}:){2}\d{2}/)).not.toBeInTheDocument();
+    // Advance time by 10 seconds
+    act(() => jest.advanceTimersByTime(1_000));
+
+    // Ensure stopwatch is running
+    expect(screen.queryByText('00:00.00')).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Pause' }));
+
+    const timer = screen.getByText(/^\d\d:\d\d\.\d\d$/);
+
+    act(() => jest.advanceTimersByTime(10_000));
+
+    // Ensure stopwatch has not advanced since being paused
+    expect(screen.getByText(timer.textContent)).toBeInTheDocument();
   });
 
-  test('pauses and resumes the stopwatch', () => {
-    renderComponent(<Stopwatch />);
+  test('pauses and resumes the stopwatch', async () => {
+    const { user } = setup(<StopWatch />);
 
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Pause'));
-    const pausedTime = screen.getByText(/(\d{2}:){2}\d{2}/).textContent;
+    await user.click(screen.getByText('Start'));
+    act(() => jest.advanceTimersByTime(1_000));
 
-    fireEvent.click(screen.getByText('Resume'));
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/).textContent).not.toBe(
-      pausedTime
-    );
+    await user.click(screen.getByText('Pause'));
+    act(() => jest.advanceTimersByTime(1_000));
+
+    const pausedTime = screen.getByText(/^\d\d:\d\d\.\d\d$/).textContent;
+
+    await user.click(screen.getByText('Resume'));
+    act(() => jest.advanceTimersByTime(1_000));
+
+    expect(screen.queryByText(pausedTime)).not.toBeInTheDocument();
   });
 
-  test('records and displays lap times', () => {
-    renderComponent(<Stopwatch />);
+  test('records and displays lap times', async () => {
+    const { user } = setup(<StopWatch />);
 
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list')).toContainElement(
-      screen.getByText(/(\d{2}:){2}\d{2}/)
-    );
+    await user.click(screen.getByRole('button', { name: 'Start' }));
+    act(() => jest.advanceTimersByTime(1_000));
 
-    fireEvent.click(screen.getByText('Lap'));
-    expect(screen.getByTestId('lap-list').children.length).toBe(2);
+    await user.click(screen.getByRole('button', { name: 'Lap' }));
+    await user.click(screen.getByRole('button', { name: 'Lap' }));
+
+    expect(screen.getAllByRole('row').length).toBe(3);
   });
 
-  test('resets the stopwatch', () => {
-    renderComponent(<Stopwatch />);
+  test('resets the stopwatch', async () => {
+    const { user } = setup(<StopWatch />);
 
-    fireEvent.click(screen.getByText('Start'));
-    fireEvent.click(screen.getByText('Lap'));
-    fireEvent.click(screen.getByText('Reset'));
+    await user.click(screen.getByRole('button', { name: 'Start' }));
+    await user.click(screen.getByRole('button', { name: 'Lap' }));
+    await user.click(screen.getByRole('button', { name: 'Reset' }));
 
-    expect(screen.getByText('00:00:00')).toBeInTheDocument();
-    expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    expect(screen.getByText('00:00.00')).toBeInTheDocument();
+    expect(screen.queryAllByRole('row').length).toBe(0);
+  });
+
+  test('clears all timers on unmount', async () => {
+    const { user, unmount } = setup(<StopWatch />);
+
+    await user.click(screen.getByRole('button', { name: 'Start' }));
+
+    expect(jest.getTimerCount()).toBeGreaterThan(0);
+
+    unmount();
+
+    expect(jest.getTimerCount()).toBe(0);
   });
 });

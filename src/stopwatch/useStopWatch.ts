@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 interface UseStopWatchOptions {
-  period?: number;
+  intervalMs?: number;
 }
 
 /**
  * Hook to manage a stopwatch. All times are in milliseconds.
  */
-export function useStopWatch({ period = 30 }: UseStopWatchOptions = {}) {
+export function useStopWatch({ intervalMs = 30 }: UseStopWatchOptions = {}) {
   const intervalRef = useRef<number>();
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -22,7 +22,7 @@ export function useStopWatch({ period = 30 }: UseStopWatchOptions = {}) {
       setElapsedTime(Date.now() - startTime);
     }
 
-    intervalRef.current = window.setInterval(tick, period);
+    intervalRef.current = window.setInterval(tick, intervalMs);
     setIsRunning(true);
   }
 
