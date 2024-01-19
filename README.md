@@ -32,7 +32,6 @@ Explore the functionality and features of the Enhanced Stopwatch Application in 
 - [Preview Video](#preview-video)
 - [Table of Contents](#table-of-contents)
 - [How It Works](#how-it-works)
-- [Technologies Used](#technologies-used)
 - [Testing Approach](#testing-approach)
 - [Example Test Case](#example-test-case)
 - [Project Overview](#project-overview)
@@ -47,12 +46,6 @@ The Enhanced Stopwatch Application is built using React and leverages state mana
 - `StopWatchButton`: Provides interactive buttons for controlling the stopwatch.
 - `LapTable`: Displays recorded lap times along with options to clear and export laps.
 - `DarkModeToggle`: Allows users to switch between dark and light modes for user comfort.
-
-## Technologies Used
-
-- **React**: Used for building the user interface with component-based architecture.
-- **FontAwesome**: Provides icons for a more intuitive user interface.
-- **Shopify Polaris**: Used for styling and theming the application, although custom styling has been applied to meet the new feature requirements.
 
 ## Testing Approach
 ![Alt text](image.png)
