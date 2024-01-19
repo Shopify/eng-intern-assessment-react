@@ -1,8 +1,8 @@
 import React from "react";
 import {render, fireEvent, act, getByTestId, getAllByText, getByRole} from "@testing-library/react";
 import "@testing-library/jest-dom/";
-import StopWatch from "../src/StopWatch";
-import {buttonContent} from "../src/StopWatch";
+import StopWatch from "./StopWatch";
+import {buttonContent} from "./StopWatchConstants";
 import {randomInt} from "crypto";
 
 
