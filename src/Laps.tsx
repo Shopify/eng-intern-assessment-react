@@ -32,11 +32,11 @@ export default function Laps({ laps }: LapProps) {
 
     return (
         <div className="laps-container">
-            <h3>
+            <div className="laps-title">
                 <span className="lap-column">Lap</span>
                 <span className="lap-column">Lap Time</span>
                 <span className="lap-column">Total Time</span>
-            </h3>
+            </div>
 
             {laps.map((lap, idx) => (
                 <div key={idx} className="lap-row">
