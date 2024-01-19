@@ -25,21 +25,22 @@ export interface Stopwatch {
 
 export function useStopwatch(): Stopwatch {
   const [milliseconds, setMilliseconds] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
   const [laps, setLaps] = useState<Lap[]>([]);
 
+  // `checkpoint` is the time when the stopwatch was last resumed
   const checkpoint = useRef(getCheckpoint());
+  // `previousPeriods` is the accumulated time outside of the current period
+  const previousPeriods = useRef(0);
   const interval = useRef<NodeJS.Timer | null>(null);
 
   useEffect(() => {
     if (isPaused) {
       if (interval.current) clearInterval(interval.current);
     } else {
-      checkpoint.current = getCheckpoint();
       interval.current = setInterval(() => {
-        const elapsed = getCheckpoint() - checkpoint.current;
-        checkpoint.current = getCheckpoint();
-        setMilliseconds((prev) => prev + elapsed);
+        const period = getCheckpoint() - checkpoint.current;
+        setMilliseconds(period + previousPeriods.current);
       }, 10);
     }
 
@@ -52,13 +53,24 @@ export function useStopwatch(): Stopwatch {
     milliseconds,
     laps,
     isPaused,
-    resume: () => setIsPaused(false),
-    pause: () => setIsPaused(true),
-    reset: () => {
-      setMilliseconds(0);
+    resume: () => {
+      if (!isPaused) return;
       checkpoint.current = getCheckpoint();
+      setIsPaused(false);
+    },
+    pause: () => {
+      if (isPaused) return;
+      const period = getCheckpoint() - checkpoint.current;
+      previousPeriods.current += period;
+      setIsPaused(true);
+    },
+    reset: () => {
+      previousPeriods.current = 0;
+      checkpoint.current = getCheckpoint();
+      setMilliseconds(0);
+      setLaps([]);
     },
     lap: () =>
-      setLaps((prev) => [...prev, {id: `Lap #${prev.length}`, milliseconds}]),
+      setLaps((arr) => [...arr, {id: `Lap #${arr.length}`, milliseconds}]),
   };
 }
