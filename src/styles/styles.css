@@ -1,106 +1,117 @@
-#stopwatch {
+body {
     font-family: 'Courier New', Courier, monospace;
-        width: 75vw;
-        height: 75vh;
-        padding: 50px;
-        margin: 50px;
-        background-color: rgb(224, 221, 221);
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        display: flex;
-        flex-direction: column;
-        }
-        
-        #button-group {
-            display: flex;
-            flex-direction: row;
-            gap: 24px;
-            margin: 16px;
-        }
-        
-        #stopwatch-display {
-            background-color: rgba(160, 174, 182, 0.95);
-            border-radius: 50px;
-            padding: 0px 50px;
-            max-height: 65vh;
-            min-height: 65vh;
-            white-space: nowrap;
-            overflow-y: hidden;
-        }
-        
-        #stopwatch-text {
-            font-size: 80px;
-            line-height: 0px;
-            margin: 80px 0 40px 0;
-        }
-        
-        .lap-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 10px;
-            margin: 5px 0;
-            padding: 0;
-            height: auto;
-            max-height: 50vh;
-            overflow-y: auto;
-        }
-        
-        .lap-time {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        width: 100%;
-            height: min-content;
-            padding: 0 5px;
-            border-radius: 3px;
-            background-color: antiquewhite;
-            border: 1px solid #000000;
-            box-sizing: border-box;
-            margin: 5px 0;
-        }
-        
-        button {
-            padding: 8px 8px;
-            border-radius: 5px;
-            border: 1px solid #000000;
-        
-            min-width: 100px;
-        }
-        
-        .enabled-button {
-            background-color: green;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px green;
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .enabled-button:hover {
-            box-shadow: 0 8px 20px green;
-        }
-        
-        .disabled-button {
-            background-color: red;
-            cursor: not-allowed;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .disabled-button:hover {
-            box-shadow: 0 8px 20px red;
-        }
+    width: 75vw;
+    height: 75vh;
+    background-color: rgb(224, 221, 221);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+}
+#stopwatch {
+    display: flex;
+    padding: 50px;
+    margin: 50px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+#button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+    margin: 16px;
+}
+
+#stopwatch-display {
+    background-color: rgba(160, 174, 182, 0.95);
+    border-radius: 50px;
+    padding: 0px 50px;
+    max-height: 65vh;
+    min-height: 65vh;
+    white-space: nowrap;
+    overflow-y: hidden;
+}
+
+#stopwatch-text {
+    font-size: 80px;
+    line-height: 0px;
+    margin: 80px 0 40px 0;
+}
+
+.lap-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    margin: 5px 0;
+    padding: 0;
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.lap-time {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: min-content;
+    padding: 0 5px;
+    border-radius: 3px;
+    background-color: antiquewhite;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    margin: 5px 0;
+}
+
+button {
+    padding: 8px 8px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    min-width: 100px;
+}
+
+.enabled-button {
+    background-color: green;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px green;
+    transition: box-shadow 0.3s ease;
+}
+
+.enabled-button:hover {
+    box-shadow: 0 8px 20px green;
+}
+
+.disabled-button {
+    background-color: red;
+    cursor: not-allowed;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.disabled-button:hover {
+    box-shadow: 0 8px 20px red;
+}

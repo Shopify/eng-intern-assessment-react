@@ -1,12 +1,12 @@
 import React, { PropsWithoutRef } from "react";
 
-interface buttonProps {
+interface StopWatchButtonProps {
   title: string;
   onClick: () => void;
   className: string;
 }
 
-export default function StopWatchButton(props: buttonProps) {
+export default function StopWatchButton(props: StopWatchButtonProps) {
   return (
     <button
       id={props.title}

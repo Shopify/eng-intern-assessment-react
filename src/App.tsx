@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StopWatch from "./StopWatch";
-import "../src/styles/styles.css";
 import StopWatchButton from "./StopWatchButton";
+import "../src/styles/styles.css";
 
 export default function App() {
   const [timerRunning, setTimerRunning] = useState<boolean>(false);
@@ -57,10 +57,9 @@ export default function App() {
 
         return updatedLaps;
       });
-    } else {
     }
   }
-
+  // Reset button resets laps, sets timer to 0, and stops the timer
   function handleResetButton() {
     setTimerRunning(false);
     setLapTimes([]);
@@ -70,6 +69,7 @@ export default function App() {
 
   return (
     <div id="stopwatch">
+      <h1 id="title">Stop Watch</h1>
       <StopWatch time={time} lapTimes={lapTimes} laps={laps} />
       <div id="button-group">
         <StopWatchButton
