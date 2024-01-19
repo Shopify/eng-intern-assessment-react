@@ -39,7 +39,8 @@ To get started with the project, follow these steps:
     - record & render lap times 
 
 ## Demo
-![Stopwatch Demo](./public/stopwatch-demo.mp4)
+<video src="https://youtu.be/CGq7jh7sHY0" controls="controls" style="max-width: 730px;">
+</video>
 
 ## Additional Dependencies
 - `@emotion/react @emotion/styled` 
