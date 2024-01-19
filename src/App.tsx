@@ -1,12 +1,14 @@
 // The main component that renders the stopwatch and handles its functionality.
 import React, { useState, useEffect } from "react";
 
+import StopWatch from "./StopWatch";
+
 export default function App() {
   // states for timer
   const [startTime, setStartTime] = useState(0);
   const [timeElapsed, setTimeElapsed] = useState(0);
-  
-  // use setInterval to update timer 
+
+  // use setInterval to update timer
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeElapsed(timeElapsed + 10);
@@ -20,7 +22,7 @@ export default function App() {
   return (
     <div>
       <h1>{startTime}</h1>
-      <h1>{timeElapsed}</h1>
+      <StopWatch timeElapsed={timeElapsed} />
     </div>
   );
 }
