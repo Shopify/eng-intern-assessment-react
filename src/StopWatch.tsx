@@ -1,3 +1,4 @@
+// StopWatch.tsx
 /** @jsxImportSource @emotion/react */
 import React, { useEffect } from "react";
 import { formatTime } from "./utils/formatTime";
@@ -30,6 +31,7 @@ export default function StopWatch({
    setTime,
    handleReset,
 }: StopwatchProps) {
+   // stopwatch functionality using setInterval & clearInterval
    useEffect(() => {
       let interval: NodeJS.Timeout;
 

@@ -1,3 +1,4 @@
+// LapList.tsx
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useRef } from "react";
 import { formatTime } from "./utils/formatTime";

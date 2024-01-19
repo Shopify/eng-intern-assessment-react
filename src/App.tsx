@@ -1,3 +1,4 @@
+// App.tsx
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import Stopwatch from "./StopWatch";
