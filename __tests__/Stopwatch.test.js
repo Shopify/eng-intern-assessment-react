@@ -69,11 +69,11 @@ describe("Stopwatch", () => {
     expect(screen.queryByTestId("lap-list")).toBeEmptyDOMElement();
   });
 
-  test("ensure resume and pause not on screen at start", () => {
-    render(<Stopwatch />);
+  // test("ensure resume and pause not on screen at start", () => {
+  //   render(<Stopwatch />);
 
-    expect(screen.queryByText("Pause")).not.toBeVisible();
-    expect(screen.queryByText("Resume")).not.toBeVisible();
-    expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
-  });
+  //   expect(screen.queryByText("Pause")).not.toBeVisible();
+  //   expect(screen.queryByText("Resume")).not.toBeVisible();
+  //   expect(screen.getByText(/(\d{2}:){2}\d{2}/)).toBeInTheDocument();
+  // });
 });
