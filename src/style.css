@@ -1,0 +1,83 @@
+/* entire app styling, we want it to be centered */
+.app-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Align elements in the center */
+.center-text {
+    text-align: center;
+}
+.center-element-vertical-horizontal {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+}
+
+/* Button Styling */
+.custom-button-container {
+    /* allows us to place buttons in a row or column */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* centered */
+    margin: auto;
+}
+.custom-button {
+    margin: 2rem;
+    background-color: #04AA6D; /* default colour of button is green */
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2rem;
+    border-radius: 15%;
+}
+
+.custom-button:hover {
+    background-color: grey;
+}
+.custom-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+/* Time display */
+.time-lap-display {
+    margin: auto;
+    background-color: lightgray;
+    padding: 2rem 10rem;
+    border-radius: 10%;
+}
+
+
+/* small screen styling */
+@media screen and (max-width: 1000px) {
+    /* Apply these styles only for screens with a width of 1000px or less */
+    .center-element-vertical-horizontal {
+      width: 80%;
+      
+    }
+    /* Time display */
+    .time-lap-display {
+        padding: 1rem 0rem;
+        width: 80%;
+    }
+    .custom-button-container {
+        flex-direction: column;
+        width: 80%;
+    }
+    .custom-button {
+        padding: 1rem 0rem;
+        margin: 1rem;
+    }
+}

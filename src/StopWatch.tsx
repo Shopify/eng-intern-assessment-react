@@ -36,13 +36,25 @@ export default function StopWatch() {
 
     const handleLap = () => {
         // record a lap by updating the lap count to one more than the previous lap count
-        setCurrentLapCount(currentLapCount + 1);
+        if (!isPaused) {
+            setCurrentLapCount(currentLapCount + 1);
+        }
     };
+    // set the display variables for the time in the format mm:ss
+    var minute = Math.floor(currentTime / 60)
+    var second = currentTime % 60
+    var minuteString, secondString
+
+    minute < 10 ? minuteString = "0" + minute : minuteString = minute
+    second < 10 ? secondString = "0" + second : secondString = second
 
     return(
-        <div>
-            <div>Current Time: {currentTime} seconds</div>
-            <div>Current Lap: {currentLapCount} laps</div>
+        <div style={{width: "100%"}}>
+            <div className='time-lap-display'>
+                <h1 style={{fontSize: "5rem"}}>{minuteString}:{secondString}</h1>
+                <h3 style={{fontSize: "2rem"}}>Current Lap: {currentLapCount} {currentLapCount == 1 ? "lap" : "laps"}</h3>
+            </div>
+            
             <StopWatchButton
                 handleStartPause={handleStartPause}
                 handleReset={handleReset}
