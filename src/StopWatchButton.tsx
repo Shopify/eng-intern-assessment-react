@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function StopWatchButton({startClicked, buttonValue}:any) {
+export default function StopWatchButton({buttonAction, buttonName}:any) {
     return(
         <div>
-            <button onClick={() => startClicked()}>{buttonValue.toUpperCase()}</button>
+            <button onClick={() => buttonAction()}>{buttonName.toUpperCase()}</button>
         </div>
     )
 }

@@ -20,9 +20,26 @@ function formatTime(time:number) {
 export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [active, setActive] = useState(false);
+    const [laps, setLaps] = useState([]);
 
     const startClicked = () => {
         setActive(true);
+    }
+
+    const stopClicked = () => {
+        setActive(false);
+    }
+
+    const resetClicked = () => {
+        setActive(false);
+        setTime(0);
+        setLaps([]);
+    }
+
+    const lapClicked = () => {
+        if (active) {
+            setLaps(laps => [...laps, time])
+        }
     }
 
     useEffect(() => {
@@ -36,7 +53,13 @@ export default function StopWatch() {
     return(
         <div>
             <p>{formatTime(time)}</p>
-            <StopWatchButton startClicked={startClicked} buttonValue="start" />
+            <StopWatchButton buttonAction={startClicked} buttonName="start" />
+            <StopWatchButton buttonAction={stopClicked} buttonName="stop" />
+            <StopWatchButton buttonAction={resetClicked} buttonName="reset" />
+            <StopWatchButton buttonAction={lapClicked} buttonName="lap" />
+            <ol>
+                {laps.map((lap, index) => <li key={index}>Lap #{index + 1}: {formatTime(lap)}</li>)}
+            </ol>
         </div>
     )
 }
