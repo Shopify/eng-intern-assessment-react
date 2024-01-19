@@ -1,5 +1,5 @@
 import React from 'react'
-import { StopWatchLapProps } from '../props/StopWatchLap'
+import { StopWatchLapProps } from '../../props/StopWatchLap'
 
 /**
  * Note: this component was created for modularity
@@ -13,9 +13,9 @@ import { StopWatchLapProps } from '../props/StopWatchLap'
 
 export const StopWatchLap = (
     {
-        time,
-        displayTime,
-        details
+      time,
+      displayTime,
+      details
     }: StopWatchLapProps) => {
 
   return (
