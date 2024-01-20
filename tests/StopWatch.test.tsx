@@ -23,7 +23,6 @@ test("test start and stop", () => {
 
 	// Check if the stopwatch has stopped
 	expect(getByText("Start")).toBeTruthy();
-	console.log("Test start/stop passed");
 });
 
 //Start and abrupt Reset testing
@@ -48,7 +47,6 @@ test("test start and reset", () => {
 	// Check if the stopwatch has stopped
 	expect(getByText("Start")).toBeTruthy();
 	expect(getByText("00:00:00.00")).toBeTruthy();
-	console.log("Test abrupt reset passed");
 });
 
 //Start and Lap testing
@@ -78,7 +76,6 @@ test("test lap functionality", () => {
 
 	// Check if the stopwatch has stopped
 	expect(getByText("Start")).toBeTruthy();
-	console.log("test basic-lap passed");
 });
 
 //Start and Lap testing with multiple laps
@@ -118,5 +115,4 @@ test("test lap functionality", async () => {
 	// Check if the stopwatch has emptied the laps
 	expect(testData.length).toBe(0);
 	expect(getByText("00:00:00.00")).toBeTruthy();
-	console.log("Repitive lapping test passed");
 }, 35000);
