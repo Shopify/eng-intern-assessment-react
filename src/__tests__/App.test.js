@@ -80,7 +80,25 @@ describe('Stopwatch', () => {
         expect(screen.getByText('00:02:00')).toBeInTheDocument();
     });
 
-    test.todo('resets the stopwatch to zero');
+    test('resets the stopwatch to zero', () => {
+        const startBtn = screen.getByRole('button', { name: /Start/i });
+        fireEvent.click(startBtn);
+
+        act(() => {
+            // Move stopwatch forward by 5 minutes and 30 seconds
+            jest.advanceTimersByTime(5 * 60 * 1000 + 30 * 1000);
+        })
+
+        const lapBtn = screen.getByRole('button', { name: /Lap/i });
+        fireEvent.click(lapBtn);
+
+        const resetBtn = screen.getByRole('button', { name: /Reset/i });
+        fireEvent.click(resetBtn);
+
+        expect(screen.getByText('00:00:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
+    });
+
     test.todo('displays correct lap times');
     test.todo('displays time with proper formatting');
     test.todo('does not allow for seconds to overflow');
