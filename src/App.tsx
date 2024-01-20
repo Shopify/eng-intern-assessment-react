@@ -60,7 +60,7 @@ export default function App() {
         />
       </Grid>
       <Grid item>
-        <List sx={{ overflow: "auto", height: 200 }}>
+        <List sx={{ overflow: "auto", height: 200, width: 200, boxShadow: 2 }}>
           <ListSubheader>Laps</ListSubheader>
           {lapsList.map((lap) => {
             const format_time_arr: string[] = formatTime(lap);
