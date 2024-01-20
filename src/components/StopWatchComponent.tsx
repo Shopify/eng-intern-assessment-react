@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import StopWatchButtonComponent from "./StopWatchButtonComponent";
 
 export default function StopWatchComponent() {
   const [time, setTime] = useState<number>(0); //store the time, in miliseconds
@@ -7,18 +8,31 @@ export default function StopWatchComponent() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null); // state to track interval id
   const startTimeRef = useRef<number | null>(null);
 
+  // State for the lap timer
+  const [lapTime, setLapTime] = useState(0);
+  const lapTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const lapStartTimeRef = useRef<number | null>(null);
+
   const handleStartStop = () => {
     setIsRunning(!isRunning);
   };
 
   const handleReset = () => {
     setTime(0);
+    setLapTime(0);
     setLaps([]);
     setIsRunning(false);
   };
 
   const handleLap = () => {
     setLaps((prevLaps) => [...prevLaps, time]);
+    if (lapTimerRef.current) {
+      clearInterval(lapTimerRef.current);
+    }
+    lapTimerRef.current = setInterval(() => {
+      setLapTime(Date.now() - lapStartTimeRef.current!);
+    }, 10);
+    lapStartTimeRef.current = Date.now();
   };
   // ***
   //    formats time into hours minutes and seconds,
@@ -54,19 +68,39 @@ export default function StopWatchComponent() {
       intervalRef.current = null;
       startTimeRef.current = null;
     }
+
+    // lap timer logic
+    if (isRunning && lapStartTimeRef.current === null) {
+      lapStartTimeRef.current = Date.now();
+      lapTimerRef.current = setInterval(() => {
+        setLapTime(Date.now() - lapStartTimeRef.current!);
+      }, 10);
+    }
+
     return () => {
       // cleanup function to clear the interval
       if (intervalRef.current) clearInterval(intervalRef.current);
+      if (lapTimerRef.current) clearInterval(lapTimerRef.current);
     };
   }, [isRunning]);
   return (
     <>
       <main>
-        <h1>{formatTime(time)} s</h1>
+        <h1>Timer: {formatTime(time)}</h1>
+        <h2>Lap Timer :{formatTime(lapTime)}</h2>
         <div>
-          <button onClick={handleStartStop}>Start/Stop</button>
-          <button onClick={handleReset}>Reset</button>
-          <button onClick={handleLap}>Lap</button>
+          <StopWatchButtonComponent
+            onClick={handleStartStop}
+            buttonPlaceHolder={!isRunning ? "Start" : "Stop"}
+          />
+          <StopWatchButtonComponent
+            onClick={handleReset}
+            buttonPlaceHolder="Reset"
+          />
+          <StopWatchButtonComponent
+            onClick={handleLap}
+            buttonPlaceHolder="Lap"
+          />
         </div>
         <div>
           {laps.map((lap, index) => (
