@@ -1,0 +1,18 @@
+span {
+    padding-right: 32%;
+}
+
+.laps-main-content {
+    text-align: center;
+}
+
+.boxes {
+    margin: 5px auto;
+    padding: 2px 0;
+    width: 80%;
+    border-radius: 15px;
+}
+
+.boxes:hover {
+    background-color:#36538641;
+}
