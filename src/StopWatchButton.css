@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap");
+
+.button-container button {
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  text-transform: uppercase;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.1s ease;
+}
+
+.button-container button:hover {
+  cursor: pointer;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  /* Add space from the timer clock */
+  padding-top: 50px;
+  /* Add space between the row of buttons and the lap button */
+  margin-bottom: 50px;
+}
+
+.start_button,
+.stop_button,
+.reset_button {
+  /* Ensure all buttons grow equally */
+  flex: 1;
+  /* Add padding in-between buttons*/
+  margin: 0 20px;
+}
+
+.start_button:hover {
+  background-color: #32cd32;
+}
+
+.start_button.active {
+  background-color: #32cd32;
+  transform: scale(0.8);
+}
+
+.stop_button:hover {
+  background-color: red;
+}
+
+.stop_button.active {
+  background-color: red;
+  transform: scale(0.8);
+}
+
+.reset_button.active {
+  transform: scale(0.8);
+}
+
+.lap_button.active {
+  transform: scale(0.8);
+}

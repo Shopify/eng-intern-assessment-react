@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@800&display=swap");
+
+/* Remove default browser margins to color entire page */
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #2f74c0;
+  font-family: "Noto Sans JP", sans-serif;
+  overflow: hidden;
+}
+
+.header {
+  text-transform: uppercase;
+  font-size: 100px;
+  color: white;
+  z-index: 1;
+  text-align: center;
+  padding-top: 2%
+}
+
+.laps-container {
+  display: flex;
+  background-color: #f0f0f0;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  overflow: auto;
+  animation: slideIn 0.5s ease forwards;
+}
+
+.laps-header,
+.lap {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.lap-number-header,
+.lap-number,
+.lap-time-header,
+.lap-time {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.laps-header {
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.lap {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 25px;
+}
+
+.lap-number,
+.lap-time {
+  margin-right: 20px;
+}
+
+@keyframes slideIn {
+  from {
+    /* Start off-screen from the bottom */
+    transform: translateY(100%);
+  }
+  to {
+    /* End at its normal position */
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 800px) {
+  .heading {
+    margin: 15px 0;
+    font-size: 35px;
+  }
+}
