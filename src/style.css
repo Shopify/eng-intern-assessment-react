@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Neumorphic styling classes */
+.neumorphic-shadow {
+    box-shadow: 
+      15px 15px 40px rgba(34, 36, 49, 1),
+      -15px -15px 40px rgba(50, 52, 71, 0.6);
+}
+.neumorphic-shadow-inset {
+  box-shadow: 
+    15px 15px 40px inset rgba(34, 36, 49, 1),
+    -15px -15px 40px inset rgba(50, 52, 71, 0.6);
+} 
+.neumorphic-invert-shadow {
+  box-shadow: 
+    15px 15px 40px inset rgba(50, 52, 71, 0.6),
+    -15px -15px 40px rgba(34, 36, 49, 1);
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the thumb */
+  border-radius: 4px; /* Optional: Set border-radius for rounded corners */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* Set the width of the scrollbar */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the thumb */
+  border-radius: 4px; /* Optional: Set border-radius for rounded corners */
+}
+
