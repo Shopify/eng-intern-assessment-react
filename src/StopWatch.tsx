@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
+/**
+ *
+ * @param time Time in milliseconds
+ * @returns A formatting string containing the hours, minutes, and seconds of time.
+ */
 const formatTime = (time: number) => {
     const hours = Math.floor(time / 1000 / 60 / 60);
     const minutes = Math.floor(time / 1000 / 60) % 60;
@@ -24,7 +29,7 @@ export default function StopWatch() {
     /**
      * Setting the generic types of your useState function is only useful if it is not possible to easily infer it from the default value.
      * So for time and isRunning, you don't need to set the generic. But for lapTimes, you do, because it's not clear what type array it is.
-    */
+     */
     // Time in milliseconds
     const [time, setTime] = useState(0);
     // Current status of timer
@@ -45,19 +50,17 @@ export default function StopWatch() {
     return (
         <div>
             <p>{formatTime(time)}</p>
-            {
-                /**
-                 * I personally wouldn't have implemented the stopwatch buttons this way. I would've either made the other component
-                 * in this same file, or just put the buttons right here. This keeps the state in one place, and makes it easier to
-                 * understand what's going on, and work on it later. In my opinion, prop-drilling this way is bad-practice in React.
-                 * If this stopwatch continued to be built upon, adding features to it would be difficult with the state structured 
-                 * this way. At best, I would've made a separate button UI component for styling purposes only, and localized the logic
-                 * and state here.
-                 * 
-                 * I did it this way anyway because this is how the problem asked it to be structured. I tried to keep StopWatchButton 
-                 * as simple and logic/state-less as possible.
-                 */
-            }
+            {/**
+             * I personally wouldn't have implemented the stopwatch buttons this way. I would've either made the other component
+             * in this same file, or just put the buttons right here. This keeps the state in one place, and makes it easier to
+             * understand what's going on, and work on it later. In my opinion, prop-drilling this way is bad-practice in React.
+             * If this stopwatch continued to be built upon, adding features to it would be difficult with the state structured
+             * this way. At best, I would've made a separate button UI component for styling purposes only, and localized the logic
+             * and state here.
+             *
+             * I did it this way anyway because this is how the problem asked it to be structured. I tried to keep StopWatchButton
+             * as simple and logic/state-less as possible.
+             */}
             <StopWatchButton
                 setIsRunning={setIsRunning}
                 isRunning={isRunning}
@@ -68,9 +71,9 @@ export default function StopWatch() {
                 addLapTime={() => setLapTimes([...lapTimes, time])}
             />
             <h3>Lap List</h3>
-            <ol className="lap-list">
+            <ol data-testid="lap-list">
                 {lapTimes.map((lapTime, index) => (
-                    <li key={index}>{formatTime(lapTime)}</li>
+                    <li key={index} data-testid={`lap-${index+1}`}>{formatTime(lapTime)}</li>
                 ))}
             </ol>
         </div>
