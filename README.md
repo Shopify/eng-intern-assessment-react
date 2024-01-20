@@ -1,3 +1,22 @@
+# Demo Video
+
+https://github.com/tanusrixh/stopwatch-react/assets/118092429/99b7550d-485a-49e6-90aa-7ab097e3fb20
+
+# How-to-use
+1. Fork/Clone the repository to your GitHub account and pull to your desktop.
+2. Run npm install to install all packages and dependencies.
+3. Run npm start to start the application locally.
+4. Once you start the application, you can start the stopwatch and toggle between displays to see the stopwatch in a digital format and an analog format.
+5. To record lap times, press the lap button, the analog display will show the current lap time using the orange hand and the total elapsed time using the blue hand. Note that the stopwatch only works for seconds, not for minutes and hours.
+6. You can press stop at any time to stop the stopwatch. Note that when the stopwatch is paused, no lap times will be recorded.
+7. To reset the stopwatch and clear all lap times, press the reset button.
+8. That's it! Enjoy using the stopwatch!!
+
+# Things I learned
+1. I learned how to use Shopify Polaris. Although I have used component libraries in past projects, the documentation that Shopify Polaris provided made it very easy to learn and use.
+2. I learned how to make an analog timer. I have done animations using CSS and React before however continuing to update the rotation of the second hands on the clock was quite different and I thoroughly enjoyed learning how to implement the continuous updates.
+
+
 # Technical Instructions
 1. Fork this repo to your local Github account.
 2. Create a new branch to complete all your work in.
