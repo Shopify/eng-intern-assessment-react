@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 export default function StopWatch() {
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-  const [intervalId, setIntervalId] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
 
-  // Effect to run the stopwatch
   useEffect(() => {
     if (isRunning) {
-      const id = window.setInterval(() => {
-        setElapsedTime((prevElapsedTime) => prevElapsedTime + 20); // Update every 10 milliseconds
-      }, 20); // Update interval set to 10 milliseconds
+      const id = setInterval(() => {
+        setElapsedTime(prevElapsedTime => prevElapsedTime + 20);
+      }, 20);  // Interval set to 20 milliseconds
       setIntervalId(id);
     } else if (intervalId) {
       clearInterval(intervalId);
@@ -22,18 +21,17 @@ export default function StopWatch() {
         clearInterval(intervalId);
       }
     };
-  }, [isRunning]);
+    }, [isRunning]);
 
-  // To toggle the timer on or off
-  const toggleStartStop = () => {
-    setIsRunning(!isRunning);
-    if (isRunning && intervalId) {
-      clearInterval(intervalId);
-      setIntervalId(null);
-    }
-  };
+    // To toggle the timer on or off
+    const toggleStartStop = () => {
+        setIsRunning(!isRunning);
+        if (isRunning && intervalId) {
+        clearInterval(intervalId);
+        setIntervalId(null);
+        }
+    };
 
-  // Reset the stopwatch
   const reset = () => {
     if (intervalId) {
       clearInterval(intervalId);
@@ -43,23 +41,19 @@ export default function StopWatch() {
     setElapsedTime(0);
   };
 
-  // Format the elapsed time into a displayable format
-  const formatTime = (totalMilliseconds: number) => {
+  const formatTime = (totalMilliseconds: number): string => {
     const minutes = Math.floor((totalMilliseconds % 3600000) / 60000);
     const seconds = Math.floor((totalMilliseconds % 60000) / 1000);
-    const milliseconds = Math.floor((totalMilliseconds % 1000) / 10 );
+    const milliseconds = Math.floor((totalMilliseconds % 1000) / 10);
 
-    // Add leading zeros if number is less than 10
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    const formattedMilliseconds = milliseconds < 10 ? `0${milliseconds}` : milliseconds;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const formattedMilliseconds = milliseconds < 10 ? `0${milliseconds}` : `${milliseconds}`;
 
     return `${formattedMinutes} ${formattedSeconds} ${formattedMilliseconds}`;
   };
 
-
-  const [formattedMinutes, formattedSeconds, formattedMilliseconds] = formatTime(elapsedTime).split(/[ ]/); // Split when there's a space found
-
+  const [formattedMinutes, formattedSeconds, formattedMilliseconds] = formatTime(elapsedTime).split(' ');
 
   return (
     <div className='flex-col'>
@@ -71,7 +65,7 @@ export default function StopWatch() {
         <div className="time-box">{formattedMilliseconds}</div>
       </div>
       <div className="stopwatch-container">
-      <button className='button-outline' onClick={toggleStartStop}>
+        <button className='button-outline' onClick={toggleStartStop}>
           {isRunning ? 'Stop' : 'Start'}
         </button>
         <button className='button-outline' onClick={reset}>Reset</button>
