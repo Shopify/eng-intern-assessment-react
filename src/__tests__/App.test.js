@@ -59,7 +59,27 @@ describe('Stopwatch', () => {
         expect(screen.getByText('03:00:00')).toBeInTheDocument();
     });
 
-    test.todo('stops the stopwatch to pause the timer');
+    test('stops the stopwatch', () => {
+        const startBtn = screen.getByRole('button', { name: /Start/i });
+        fireEvent.click(startBtn);
+
+        act(() => {
+            // Move stopwatch forward by 2 minutes
+            jest.advanceTimersByTime(2 * 60 * 1000);
+        })
+        expect(screen.getByText('00:02:00')).toBeInTheDocument();
+
+        const stopBtn = screen.getByRole('button', { name: /Stop/i });
+        fireEvent.click(stopBtn);
+
+        act(() => {
+            // Attempt to move stopwatch forward by 30 seconds
+            jest.advanceTimersByTime(30 * 1000);
+        })
+        // Stopwatch time should not have changed
+        expect(screen.getByText('00:02:00')).toBeInTheDocument();
+    });
+
     test.todo('resets the stopwatch to zero');
     test.todo('displays correct lap times');
     test.todo('displays time with proper formatting');
