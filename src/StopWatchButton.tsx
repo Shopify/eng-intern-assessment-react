@@ -47,9 +47,9 @@ export default function StopWatchButton(props:Props) {
 
     return(
         <div className="stopwatch-controls-container">
-            <button className='start-stop' onClick={handleStartPauseButton}>{currentState}</button>
-            <button className='reset' onClick={handleReset}>Reset</button>
-            <button className='lap' onClick={(e:object) => {props.setLap()}}>Lap</button>
+            <button data-testid="start-pause-btn" className='start-stop' onClick={handleStartPauseButton}>{currentState}</button>
+            <button data-testid="reset-btn" className='reset' onClick={handleReset}>Reset</button>
+            <button data-testid="lap-btn" className='lap' onClick={(e:object) => {props.setLap()}}>Lap</button>
         </div>
     );
 }

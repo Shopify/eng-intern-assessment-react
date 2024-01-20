@@ -20,10 +20,10 @@ export default function ShowLapsHistory(props: Props) {
             {props.showLaps.length ? 
                 props.showLaps.map(function(value) {
                     return <div key={count++} className="boxes">
-                        <p> <span>Lap {count}:</span> {value} </p>
+                        <p data-testid={"element-"+count.toString()}> <span>Lap {count}:</span> {value}</p>
                     </div>
                 }) :
-                <p> There are currently no laps to display. Click on 'Start' to start the stopwatch and then on 'Lap' to record each lap! </p>
+                <p data-testid="laps-empty-indication"> There are currently no laps to display. Click on 'Start' to start the stopwatch and then on 'Lap' to record each lap! </p>
             }
         </div>
     )

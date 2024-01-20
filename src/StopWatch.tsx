@@ -69,17 +69,17 @@ export default function StopWatch() {
             <h1> <strong>The Unique Stopwatch</strong> </h1>
 
             <div className="hour">
-                <p className='time-element' id="hour">{timeArray[0]}</p>
+                <p className='time-element' id="hour" data-testid="watch-hour">{timeArray[0]}</p>
                 <p className='caption'>Hours</p>
             </div>
             <p className='colon'>:</p>
             <div className="min">
-                <p className='time-element' id="minute">{timeArray[1]}</p>
+                <p className='time-element' id="minute" data-testid="watch-min">{timeArray[1]}</p>
                 <p className='caption'>Minutes</p>
             </div>
             <p className='colon'>:</p>
             <div className="sec">
-                <p className='time-element' id="second">{timeArray[2]}</p>
+                <p className='time-element' id="second" data-testid="watch-sec">{timeArray[2]}</p>
                 <p className='caption'>Seconds</p>
             </div>
 
