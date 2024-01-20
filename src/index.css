@@ -1,0 +1,40 @@
+.container {
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.timerText {
+    font-size: 6rem;
+    /* Accounting for ms offset so buttons are aligned with visual center. */
+    margin-left: 3rem; 
+}
+
+.ms {
+    font-size: 3rem;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.lapped {
+    margin-top: 2rem;
+    box-shadow: 0 0 2px #564949;
+    border-radius: 6px;
+}
+
+td, th {
+    text-align: left;
+    padding: 1rem;
+    padding-right: 5rem;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+  }
