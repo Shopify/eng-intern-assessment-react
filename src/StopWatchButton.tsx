@@ -16,22 +16,22 @@ type ResetButtonProps = {
     setLaps: (laps: number[]) => void;
 };
 
-// Start button, sets stopwatch counting to true.
+// Start button, sets stopwatch counting to true
 export function StartButtonComponent({ setCounting }: StartStopButtonProps) {
     return <div><button onClick={() => setCounting(true)}>Start</button></div>;
 }
 
-// Stop button, sets stopwatch counting to false.
+// Stop button, sets stopwatch counting to false
 export function StopButtonComponent({ setCounting }: StartStopButtonProps) {
     return <div><button onClick={() => setCounting(false)}>Stop</button></div>;
 }
 
-// Lap button to record the current time.
+// Lap button to record the current time
 export function LapButtonComponent({ onLap }: LapButtonProps) {
     return <div><button onClick={onLap}>Lap</button></div>;
 }
 
-// Reset button, resets time and laps to their initial states.
+// Reset button, resets time and laps to their initial states
 export function ResetButtonComponent({ setTime, setLaps }: ResetButtonProps) {
     return <div><button onClick={() => {setTime(0); setLaps([])}}>Reset</button></div>;
 }
