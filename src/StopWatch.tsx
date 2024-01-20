@@ -76,10 +76,12 @@ export default function StopWatch({
                                         <Text variant='headingLg' as='h1' alignment='center'>
                                             Current Lap Time
                                         </Text>
-                                        <Text variant='heading3xl' as='h1' alignment='center'>
+                                        <Text variant='heading3xl' as='h1' alignment='center' >
+                                            <div data-testid="currDisp">
                                             {hours.toString().padStart(2, "0")}:
                                             {minutes.toString().padStart(2, "0")}:
                                             {seconds.toString().padStart(2, "0")}
+                                            </div>
                                         </Text>
                                     </BlockStack>
                                 </div>
@@ -99,9 +101,11 @@ export default function StopWatch({
                                             Total Elapsed Time
                                         </Text>
                                         <Text variant='heading3xl' as='h2' alignment='center'>
+                                            <div data-testid="totalDisp">
                                             {totalHours.toString().padStart(2, "0")}:
                                             {totalMinutes.toString().padStart(2, "0")}:
                                             {totalSeconds.toString().padStart(2, "0")}
+                                            </div>
                                         </Text>
                                     </BlockStack>
                                 </div>
@@ -123,7 +127,8 @@ export default function StopWatch({
                                 "Lap Time", 
                                 "Total Elapsed Time"]}
                                 rows={combinedLapInfo}
-                                stickyHeader/>
+                                stickyHeader
+                                data-testid="findTable"/>
                             </Scrollable>
                         </div>
                     </Box>

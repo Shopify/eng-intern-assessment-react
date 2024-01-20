@@ -33,6 +33,7 @@ export default function LiveWatch({
                     <div 
                     className="second" 
                     id="second" 
+                    data-testid="curr-second-hand"
                     style={{ transform: `rotateZ(${maintainCurr}deg)` }}>
                         <div className="curr"/>
                     </div>
@@ -46,6 +47,7 @@ export default function LiveWatch({
                     <div 
                     className="totalsecond" 
                     id="totalsecond"
+                    data-testid="total-second-hand"
                     style={{ transform: `rotateZ(${maintainTotal}deg)` }}>
                         <div className="total"/>
                     </div>
