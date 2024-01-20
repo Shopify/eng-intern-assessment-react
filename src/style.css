@@ -5,8 +5,10 @@
 /* Neumorphic styling classes */
 .neumorphic-shadow {
     box-shadow: 
-      15px 15px 40px rgba(34, 36, 49, 1),
-      -15px -15px 40px rgba(50, 52, 71, 0.6);
+    15px 15px 40px  rgba(34, 36, 49, 1),
+
+    -15px -15px 40px inset rgba(50, 52, 71, 0.6);
+
 }
 .neumorphic-shadow-inset {
   box-shadow: 
