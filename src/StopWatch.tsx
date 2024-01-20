@@ -9,8 +9,8 @@ export default function StopWatch() {
   useEffect(() => {
     if (isRunning) {
       const id = window.setInterval(() => {
-        setElapsedTime((prevElapsedTime) => prevElapsedTime + 10); // Update every 10 milliseconds
-      }, 10); // Update interval set to 10 milliseconds
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + 20); // Update every 10 milliseconds
+      }, 20); // Update interval set to 10 milliseconds
       setIntervalId(id);
     } else if (intervalId) {
       clearInterval(intervalId);
@@ -57,15 +57,27 @@ export default function StopWatch() {
     const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
     const formattedMilliseconds = milliseconds < 10 ? `0${milliseconds}` : milliseconds;
 
-    return `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
+    return `${formattedMinutes} ${formattedSeconds} ${formattedMilliseconds}`;
   };
 
+
+  const [formattedMinutes, formattedSeconds, formattedMilliseconds] = formatTime(elapsedTime).split(/[ ]/); // Split when there's a space found
+
+
   return (
-    <div>
-      <div className='text-main'>{formatTime(elapsedTime)}</div>
-      <button className='button-outline' onClick={handleStart}>Start</button>
-      <button className='button-outline' onClick={handlePause}>Pause</button>
-      <button className='button-outline' onClick={reset}>Reset</button>
+    <div className='flex-col'>
+      <div className="stopwatch-container">
+        <div className="time-box">{formattedMinutes}</div>
+        <div className="box">:</div>
+        <div className="time-box">{formattedSeconds}</div>
+        <div className="box">.</div>
+        <div className="time-box">{formattedMilliseconds}</div>
+      </div>
+      <div className="stopwatch-container">
+        <button className='button-outline' onClick={handleStart}>Start</button>
+        <button className='button-outline' onClick={handlePause}>Pause</button>
+        <button className='button-outline' onClick={reset}>Reset</button>
+      </div>
     </div>
   );
 }

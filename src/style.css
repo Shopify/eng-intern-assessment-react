@@ -35,7 +35,45 @@ body {
     background-color: #88b04b;
 }
 
+.stopwatch-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .text-main {
-    font-size: 8rem; /* Extra large font size */
+    font-size: 8rem; 
     font-weight: 600; 
+    min-width: 30px; /* Adjust width as needed to ensure fixed positioning */
+    text-align: center;
+}
+
+.time-box {
+    font-size: 4rem; 
+    display: inline-block;
+    padding: 10px;
+    
+}
+
+
+.box {
+    font-size: 8rem; 
+    display: inline-block;
+    line-height: 180px; /* Align text vertically */
+    text-align: center; /* Align text horizontally */
+    margin: 0 5px; /* Spacing between boxes */
+    text-shadow: 2px 2px 4px #000000
+}
+
+
+.time-box {
+    /* background: #88b04b; */
+    font-size: 8rem; 
+    display: inline-block;
+    width: 180px; /* Adjust as needed */
+    height: 180px; /* Adjust as needed */
+    line-height: 180px; /* Align text vertically */
+    text-align: top; /* Align text horizontally */
+    border: 5px solid #ffffff;
+    margin: 0 10px; /* Spacing between boxes */
+    box-shadow: 4px 4px 20px #262626;
 }
