@@ -1,0 +1,232 @@
+:root {
+    --shopify-green: #96bf48;
+    --shopify-dark-green: #5C6F42;
+    --shopify-light-green: #B4D3B2;
+    --shopify-charcoal: #212B36;
+    --shopify-grey: #DFE3E8;
+}
+
+body {
+
+    color: var(--shopify-charcoal); /* Charcoal color for the text */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%; /* Ensure the body takes full viewport height */
+    margin: 0; /* Reset default margins */
+    position: relative; /* Required for absolute positioning of the pseudo-element */
+
+}
+
+
+
+button {
+    transition: background-color 0.3s ease;
+    background-color: var(--shopify-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Rounded buttons */
+    font-weight: bold;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for buttons */
+    cursor: pointer;
+    outline: none;
+    margin: 5px; /* Space between buttons */
+  }
+
+.start-button {
+    background-color: var(--shopify-green);
+}
+
+.stop-button {
+    background-color: red;
+}
+
+.lap-button {
+    background-color: yellow;
+    color: black; /* For better readability on yellow */
+}
+
+.reset-button {
+    background-color: white;
+    color: var(--shopify-charcoal); /* Ensure text is visible on white */
+}
+
+button:hover {
+    background-color: var(--shopify-dark-green);
+}
+
+.text-center {
+    text-align: center;
+}
+  
+.bg-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.stopwatch-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align to the top */
+    padding-top: 20px; /* Adjust as needed */
+    min-height: 100vh;
+    position: relative;
+}
+
+.stopwatch-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./shopify-logo-png-transparent.png'); /* Direct path from the public folder */
+    background-size: contain;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+
+
+.stopwatch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Add padding for visual spacing */
+    margin-bottom: 20px; /* Space between stopwatch and laps list */
+    background-color: var(--shopify-light-green); /* Soft green background for the container */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+}
+
+
+/* Base styles */
+.stopwatch-display {
+    display: flex;
+    flex-direction: column; /* Stack the children vertically */
+    align-items: center; /* Center align the items */
+}
+
+.timer-display {
+    text-align: center;
+    color: var(--shopify-dark-green); /* Dark green color for better contrast */
+}
+
+
+
+.laps-container {
+    width: 100%; /* Take full width to maintain layout */
+    max-height: 50vh; /* Adjust as needed */
+    overflow-y: auto; /* Enable scrolling */
+    margin-top: 20px; /* Space between buttons and lap list */
+    background-color: #fff; /* White background for laps list */
+    border: 2px solid var(--shopify-green);
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Padding inside the laps container */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05); /* Slight shadow for the laps list */
+}
+
+.laps-container ul {
+    list-style: none; /* Remove default list style */
+    padding: 0;
+    margin: 0;
+}
+
+.laps-container li {
+    padding: 5px 0; /* Padding for each lap */
+    border-bottom: 1px solid var(--shopify-grey); /* Separator for each lap */
+}
+
+.lap-time-display {
+    text-align: center; /* Center the lap time text */
+    margin-top: 0.1em; /* Add some space above the lap time */
+}
+
+/* Style for scrollbar (webkit browsers) */
+.laps-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.laps-container::-webkit-scrollbar-track {
+    background: var(--shopify-grey);
+}
+
+.laps-container::-webkit-scrollbar-thumb {
+    background: var(--shopify-dark-green);
+    border-radius: 4px;
+}
+
+.laps-container::-webkit-scrollbar-thumb:hover {
+    background: var(--shopify-green);
+}
+
+.milliseconds-display {
+    font-size: 0.5em;
+    margin-left: 0.1em;
+}
+
+button:disabled {
+    opacity: 0.5; /* Dim the button */
+    cursor: not-allowed; /* Change cursor */
+}
+
+button:not(:disabled):hover {
+    /* Hover effect only for enabled buttons */
+    opacity: 0.8;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Align buttons in the center */
+}
+
+.stopwatch-container, .laps-container, .button-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+
+}
+
+/* Media query for smaller screens to reduce the margin */
+@media (max-width: 800px) {
+    .button-container {
+        margin-top: 2vh; /* Smaller margin for small screens */
+    }
+}
+
+@media (max-height: 700px) {
+    .laps-container {
+        max-height: 30vh; /* Smaller max height for shorter screens */
+    }
+}
+
+@media (max-height: 500px) {
+    .laps-container {
+        max-height: 20vh; /* Even smaller max height for very short screens */
+    }
+}
+
+/* Additional styles for very small screens */
+@media (max-height: 400px) {
+    .laps-container {
+        margin-top: 0px;
+        max-height: 50px; /* Minimal height for extremely small screens */
+    }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 800px) {
+    .stopwatch-display,
+    .laps-container {
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
+        width: auto; /* Adjust the width to fit the container */
+    }
+
+    /* Adjust the main container for a column layout */
+    .stopwatch-container {
+        flex-direction: column;
+        align-items: center; /* Center align items for a column layout */
+    }
+}

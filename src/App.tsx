@@ -1,7 +1,7 @@
 import React from 'react';
 import Stopwatch from './StopWatch'; // Importing the Stopwatch component
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles/App.css';
+import './App.css';
 
 /**
  * The main App component.

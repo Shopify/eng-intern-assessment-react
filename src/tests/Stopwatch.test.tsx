@@ -24,7 +24,7 @@ describe('Stopwatch', () => {
 
   it('renders correctly', () => {
     render(<Stopwatch />);
-    expect(screen.getByText(/0:0:0.0/)).toBeInTheDocument();
+    expect(screen.getByText(/0:0.0/)).toBeInTheDocument();
     expect(screen.getByText('Start')).toBeInTheDocument();
     expect(screen.getByText('Stop')).toBeInTheDocument();
     expect(screen.getByText('Lap')).toBeInTheDocument();

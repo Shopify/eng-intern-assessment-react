@@ -48,7 +48,7 @@ const useStopwatch = (): StopwatchState & {
         setLaps([]);
     }
 
-    const milliseconds = time % 1000
+    const milliseconds = time % 10
     return { time, lapTime, isRunning, laps, milliseconds, start, stop, lap, reset};
 };
 
