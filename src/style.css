@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Main Body Background */
+body {
+    background-color: #31373B;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Buttons */
+.button-outline {
+    background-color: #9cbd56;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.button:hover {
+    background-color: #88b04b;
+}
