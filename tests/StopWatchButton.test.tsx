@@ -2,11 +2,11 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import StopWatchButton from "../src/StopWatchButton";
 
-describe("StopWatchButton Component", () => {
-	it("renders without crashing", () => {
+describe("Stopwatch Button Component", () => {
+	it("Test: Render test", () => {
 		render(<StopWatchButton label="Test" methodCall={() => {}} />);
 	});
-	it("calls methodCall when button is clicked", () => {
+	it("Test: methodCall when button is clicked", () => {
 		const mockMethodCall = jest.fn();
 		const { getByText } = render(
 			<StopWatchButton label="Test" methodCall={mockMethodCall} />

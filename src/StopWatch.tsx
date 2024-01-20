@@ -76,6 +76,11 @@ export default function StopWatch({ updateTimeshowcase }: StopwatchProps) {
 	};
 
 	const lapTiming = () => {
+		// OPTIONAL, you may uncomment the following lines to prevent adding laps when the stopwatch is not running.
+		// if (!isRunning) {
+		// 	alert("Start the stopwatch to add a lap");
+		// 	return;
+		// }
 		const lapTime = `${hr.toString().padStart(2, "0")}:${min
 			.toString()
 			.padStart(2, "0")}:${sec.toString().padStart(2, "0")}.${ms
