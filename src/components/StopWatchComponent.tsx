@@ -137,7 +137,7 @@ export default function StopWatchComponent() {
               </thead>
               <tbody>
                 {laps.map((lap, index) => (
-                  <tr>
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{formatTime(lap.lap)}</td>
                     <td>{formatTime(lap.total)}</td>
