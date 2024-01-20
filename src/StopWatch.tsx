@@ -5,10 +5,19 @@ const formatTime = (time: number) => {
     const hours = Math.floor(time / 1000 / 60 / 60);
     const minutes = Math.floor(time / 1000 / 60) % 60;
     const seconds = Math.floor(time / 1000) % 60;
+    const milliseconds = time % 1000;
 
     return `${hours < 10 ? `0${hours}` : hours}:${
         minutes < 10 ? `0${minutes}` : minutes
-    }:${seconds < 10 ? `0${seconds}` : seconds}`;
+    }:${seconds < 10 ? `0${seconds}` : seconds}.${
+        milliseconds < 10
+            ? `00${milliseconds}`
+            : milliseconds < 100
+            ? `0${milliseconds}`
+            : milliseconds < 1000
+            ? `${milliseconds}`
+            : milliseconds
+    }`;
 };
 
 export default function StopWatch() {
@@ -19,6 +28,7 @@ export default function StopWatch() {
     // List of lap times
     const [lapTimes, setLapTimes] = useState<number[]>([]);
 
+    // Runs every time the time or running status changes. Increases milliseconds by 1.
     useEffect(() => {
         if (!isRunning) return;
 
@@ -36,8 +46,8 @@ export default function StopWatch() {
                 setIsRunning={setIsRunning}
                 isRunning={isRunning}
                 reset={() => {
-                    setTime(0)
-                    setLapTimes([])
+                    setTime(0);
+                    setLapTimes([]);
                 }}
                 addLapTime={() => setLapTimes([...lapTimes, time])}
             />
