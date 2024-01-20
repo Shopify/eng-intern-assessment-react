@@ -11,13 +11,13 @@ export default function DisplayComponent({time}: {time: number}) {
 }
 
 const formatTime = (time: number) => {
-    // compute hours, minutes, seconds, and milliseconds
+    // Compute hours, minutes, seconds, and milliseconds
     const hr = Math.floor(time / 60 / 60 / 1000 % 24)
     const min = Math.floor(time / 60 / 1000 % 60)
     const sec = Math.floor(time / 1000 % 60)
     const ms = Math.floor(time / 10 % 100)
 
-    // convert time into 00:00:00:00 format
+    // Convert time into 00:00:00:00 format
     const formattedHr: string = hr.toString().padStart(2, '0');
     const formattedMin: string = min.toString().padStart(2, '0');
     const formattedSec: string = sec.toString().padStart(2, '0');
