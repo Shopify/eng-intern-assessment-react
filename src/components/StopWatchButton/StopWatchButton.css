@@ -1,0 +1,46 @@
+.controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.controls-container button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  border: none;
+  border-radius: 50%;
+  margin: 0 10px;
+  cursor: pointer;
+
+  background-color: rgb(51, 51, 51);
+  color: #fff;
+}
+
+.controls-container button:hover,
+.controls-container button:disabled {
+  background-color: rgba(51, 51, 51, 0.5);
+}
+
+.controls-container .start-button {
+  background-color: rgb(10, 42, 16);
+  color: rgb(49, 209, 88);
+}
+
+.controls-container .start-button:hover {
+  background-color: rgba(10, 42, 16, 0.5);
+}
+
+.controls-container .stop-button {
+  background-color: rgb(51, 15, 11);
+  color: rgb(254, 69, 55);
+}
+
+.controls-container .stop-button:hover {
+  background-color: rgba(51, 15, 11, 0.5);
+}
