@@ -27,11 +27,17 @@ export default function StopWatch({
 }: StopWatchProps) {
   return (
     <div className="stop-watch-container">
-      <div className="topHalf">
+      <div className="top-half">
         <div className="display">
           <p data-testid="digits-section" className="digits">
             {formattedTime}
           </p>
+          <div className="display-headings">
+            <p>hours</p>
+            <p>mins</p>
+            <p>secs</p>
+            <p>milli-secs</p>
+          </div>
         </div>
         <div className="controls-container">
           <StopWatchButton label={label} onClick={onStartClick} />
@@ -40,14 +46,17 @@ export default function StopWatch({
           <StopWatchButton label="Reset" onClick={onResetClick} />
         </div>
       </div>
-      <div data-testid="laps-section" className="laps">
-        <ul>
-          {laps.map((lap, index) => (
-            <li key={index}>
-              <p>{`Lap ${index + 1}: ${lap}`}</p>
-            </li>
-          ))}
-        </ul>
+      <div className="bottom-half">
+        <p>Laps</p>
+        <div data-testid="laps-section" className="laps">
+          <ul>
+            {laps.map((lap, index) => (
+              <li key={index}>
+                <p>{`Lap ${index + 1}: ${lap}`}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

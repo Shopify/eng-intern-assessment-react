@@ -12,9 +12,9 @@ describe("StopWatch", () => {
   });
 
   // check if values on display is formatted correctly but formatTimer Function
-  it("initial value is 00:00.00", () => {
+  it("initial value is 00:00:00.00", () => {
     render(<App />);
-    const paragraphElement = screen.getByText(/\d{2}:\d{2}.\d{2}/);
+    const paragraphElement = screen.getByText("00:00:00.00");
     expect(paragraphElement).toBeInTheDocument();
   });
 
@@ -31,7 +31,7 @@ describe("StopWatch", () => {
     });
 
     // Assert that the timer has started
-    expect(screen.getByText("00:01.00")).toBeInTheDocument();
+    expect(screen.getByText("00:00:01.00")).toBeInTheDocument();
 
     // check if the label changes to stop
     expect(startButton).toHaveTextContent("Stop");
@@ -51,7 +51,7 @@ describe("StopWatch", () => {
     });
 
     // Assert that the timer has started
-    expect(screen.getByText("00:01.00")).toBeInTheDocument();
+    expect(screen.getByText("00:00:01.00")).toBeInTheDocument();
 
     // Fire the Newly labelled "Stop" startButton to stop timer
     fireEvent.click(startButton);
@@ -62,7 +62,7 @@ describe("StopWatch", () => {
     });
 
     // Assert that the timer remains at 1 even after time progresses.
-    expect(screen.getByText("00:01.00")).toBeInTheDocument();
+    expect(screen.getByText("00:00:01.00")).toBeInTheDocument();
   });
 
   // Testing if the reset button changes the display back to 00:00.00
@@ -79,13 +79,15 @@ describe("StopWatch", () => {
     });
 
     // Assert that the timer has started
-    expect(screen.getByText("00:01.00")).toBeInTheDocument();
+    expect(screen.getByText("00:00:01.00")).toBeInTheDocument();
 
     const resetButton = screen.getByText("Reset");
     fireEvent.click(resetButton);
 
     // Assert that the timer resets back to 00:00.00
-    expect(screen.getByTestId("digits-section")).toHaveTextContent("00:00.00");
+    expect(screen.getByTestId("digits-section")).toHaveTextContent(
+      "00:00:00.00"
+    );
   });
 
   // Testing if the lap button records the time to the lap display
@@ -102,14 +104,14 @@ describe("StopWatch", () => {
     });
 
     // Assert that the timer has started
-    expect(screen.getByText("00:01.00")).toBeInTheDocument();
+    expect(screen.getByText("00:00:01.00")).toBeInTheDocument();
 
     const lapButton = screen.getByText("Lap");
     fireEvent.click(lapButton);
 
     // Assert that the timer records lap time in lap section
     expect(screen.getByTestId("laps-section")).toHaveTextContent(
-      "Lap 1: 00:01.00"
+      "Lap 1: 00:00:01.00"
     );
   });
 });
