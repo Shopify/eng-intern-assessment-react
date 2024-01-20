@@ -11,7 +11,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
-import './styles/App.css'
+import '../styles/App.css'
 export default function App() {
     const [isRunning, setIsRunning] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0);
@@ -80,8 +80,11 @@ export default function App() {
             <StopWatch elapsedTime={formatTime(elapsedTime)}></StopWatch>
             <StopWatchButton isRunning={isRunning} runningHandler={runningHandler} resetHandler={resetHandler} lapHandler={lapHandler}></StopWatchButton>
             <p> Lap: {formatTime(lapTime)}</p>
-            { laps.map((lap) => 
-            <p key={lap.id}>Lap {lap.id}: {lap.time}</p>)}
+            <ul data-testid="lap-list">
+                { laps.map((lap) => 
+                <li key={lap.id}>Lap {lap.id}: {lap.time}</li>)}
+            </ul>
+            
         
         </div>
     )

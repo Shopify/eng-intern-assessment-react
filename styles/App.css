@@ -4,3 +4,13 @@
     justify-content: center;
     font-family: sans-serif;
 }
+
+ul {
+    padding: 0;
+    list-style-position: inside;
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 7px;
+}
