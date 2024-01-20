@@ -14,7 +14,6 @@ export default function App() {
     let timer: NodeJS.Timeout;
 
     // if the timer is running (isRunning state = true) then run the setInterval, if false then clear the intervalTimer
-    // Dependency array watches the isRunning state for it to change to false
     if (isRunning) {
       timer = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
@@ -22,6 +21,7 @@ export default function App() {
     }
 
     return () => clearInterval(timer);
+    // Dependency array watches the isRunning state for it to change to false and re-renders the component
   }, [isRunning]);
 
   // function the handle if the start button has been clicked
@@ -65,7 +65,7 @@ export default function App() {
 
   return (
     <div className="stopWatch">
-      <h1>Stop Watch - By Dean Lane</h1>
+      <h1>Stop Watch</h1>
       <StopWatch
         label={isRunning ? "Stop" : "Start"}
         onStartClick={isRunning ? handleStopClick : handleStartClick}

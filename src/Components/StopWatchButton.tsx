@@ -11,5 +11,9 @@ export default function StopWatchButton({
   label,
   onClick,
 }: StopWatchButtonProps) {
-  return <button onClick={onClick}>{label}</button>;
+  return (
+    <button className="btn" onClick={onClick}>
+      {label}
+    </button>
+  );
 }

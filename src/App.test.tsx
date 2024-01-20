@@ -11,6 +11,7 @@ describe("StopWatch", () => {
     jest.resetAllMocks();
   });
 
+  // check if values on display is formatted correctly but formatTimer Function
   it("initial value is 00:00.00", () => {
     render(<App />);
     const paragraphElement = screen.getByText(/\d{2}:\d{2}.\d{2}/);
@@ -24,12 +25,12 @@ describe("StopWatch", () => {
     const startButton = screen.getByText("Start");
     fireEvent.click(startButton);
 
-    // Advance timers so that the useEffect in StopWatch runs
+    // Advance timer so that the StopWatch runs
     act(() => {
-      jest.advanceTimersByTime(1000); // Advance by 1 second (adjust as needed)
+      jest.advanceTimersByTime(1000); // Advance by 1 second
     });
 
-    // Assert that the timer has started (you might want to adjust the expected value)
+    // Assert that the timer has started
     expect(screen.getByText("00:01.00")).toBeInTheDocument();
 
     // check if the label changes to stop
@@ -44,19 +45,20 @@ describe("StopWatch", () => {
     const startButton = screen.getByText("Start");
     fireEvent.click(startButton);
 
-    // Advance timers so that the useEffect in StopWatch runs
+    // Advance timer so that the StopWatch runs
     act(() => {
-      jest.advanceTimersByTime(1000); // Advance by 1 second (adjust as needed)
+      jest.advanceTimersByTime(1000); // Advance by 1 second
     });
 
-    // Assert that the timer has started (you might want to adjust the expected value)
+    // Assert that the timer has started
     expect(screen.getByText("00:01.00")).toBeInTheDocument();
 
+    // Fire the Newly labelled "Stop" startButton to stop timer
     fireEvent.click(startButton);
 
-    // Advance timers so that the useEffect in StopWatch runs
+    // Advance timer so that the StopWatch runs
     act(() => {
-      jest.advanceTimersByTime(1000); // Advance by 1 second (adjust as needed)
+      jest.advanceTimersByTime(1000); // Advance by 1 second
     });
 
     // Assert that the timer remains at 1 even after time progresses.
@@ -71,12 +73,12 @@ describe("StopWatch", () => {
     const startButton = screen.getByText("Start");
     fireEvent.click(startButton);
 
-    // Advance timers so that the useEffect in StopWatch runs
+    // Advance timer so that the StopWatch runs
     act(() => {
-      jest.advanceTimersByTime(1000); // Advance by 1 second (adjust as needed)
+      jest.advanceTimersByTime(1000); // Advance by 1 second
     });
 
-    // Assert that the timer has started (you might want to adjust the expected value)
+    // Assert that the timer has started
     expect(screen.getByText("00:01.00")).toBeInTheDocument();
 
     const resetButton = screen.getByText("Reset");
@@ -94,18 +96,18 @@ describe("StopWatch", () => {
     const startButton = screen.getByText("Start");
     fireEvent.click(startButton);
 
-    // Advance timers so that the useEffect in StopWatch runs
+    // Advance timer so that the StopWatch runs
     act(() => {
-      jest.advanceTimersByTime(1000); // Advance by 1 second (adjust as needed)
+      jest.advanceTimersByTime(1000); // Advance by 1 second
     });
 
-    // Assert that the timer has started (you might want to adjust the expected value)
+    // Assert that the timer has started
     expect(screen.getByText("00:01.00")).toBeInTheDocument();
 
     const lapButton = screen.getByText("Lap");
     fireEvent.click(lapButton);
 
-    // Assert that the timer continues
+    // Assert that the timer records lap time in lap section
     expect(screen.getByTestId("laps-section")).toHaveTextContent(
       "Lap 1: 00:01.00"
     );

@@ -7,7 +7,7 @@ import StopWatchButton from "./StopWatchButton";
   Represents the properties needed for controlling a stopwatch, including
   callbacks for start, reset, and lap functions, along with a label for the button
  */
-export interface StopWatchProps {
+interface StopWatchProps {
   onStartClick: () => void;
   onResetClick: () => void;
   onLapClick: () => void;
@@ -27,16 +27,18 @@ export default function StopWatch({
 }: StopWatchProps) {
   return (
     <div className="stop-watch-container">
-      <div className="display">
-        <p data-testid="digits-section" className="digits">
-          {formattedTime}
-        </p>
-      </div>
-      <div className="controls-container">
-        <StopWatchButton label={label} onClick={onStartClick} />
-        {/* Passing the result of the ternary to populate the correct label based of the state isRunning on App.tsx */}
-        <StopWatchButton label="Lap" onClick={onLapClick} />
-        <StopWatchButton label="Reset" onClick={onResetClick} />
+      <div className="topHalf">
+        <div className="display">
+          <p data-testid="digits-section" className="digits">
+            {formattedTime}
+          </p>
+        </div>
+        <div className="controls-container">
+          <StopWatchButton label={label} onClick={onStartClick} />
+          {/* Passing the result of the ternary to populate the correct label based of the state isRunning on App.tsx */}
+          <StopWatchButton label="Lap" onClick={onLapClick} />
+          <StopWatchButton label="Reset" onClick={onResetClick} />
+        </div>
       </div>
       <div data-testid="laps-section" className="laps">
         <ul>
