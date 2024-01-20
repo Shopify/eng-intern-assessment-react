@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import './styles.css'
 
-export default function StopWatchButton() {
-    
+
+// StopWatchButtonProps interface defines props for the StopWatchButton components
+interface StopWatchButtonProps {
+
+    onClick: () => void;
+    disabled?: boolean;
+    label: string;
+}
+
+
+// StopWatchButton component, control button for a stopwatch
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onClick, disabled, label }) => {
     return (
-        <div className="container">
-            <div className="watch">
-                <div className="button-wrapper">
-                    <button className="button reset">Reset</button>
-                    <button className="button play">Play</button>
-                    <button className="button lap">Lap</button>
-                </div>
-            </div>
-            <ul className="laps">
-                <button className="lap-clear-button">Clear All</button>
-            </ul>
-        </div>
+        <button onClick={onClick} disabled={disabled}>
+            {label}
+        </button>
     )
 }
+
+export default StopWatchButton;
