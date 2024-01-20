@@ -3,6 +3,8 @@
 
 This document provides detailed instructions for setting up, testing, and contributing to the InternAssessmentSolution project.
 
+Note: The InternAssessment solution branch is from https://github.com/EDHE08232001/InternAssessmentSolution.git, where I implemented all components and tests for the fron-end challenge
+
 ## Prerequisites
 
 Ensure you have the following installed before you begin:
