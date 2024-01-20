@@ -32,7 +32,7 @@
     max-height: 200px;
     height: 200px;
     overflow-y: scroll;
-    scrollbar-width: thin;
+    scrollbar-width: none;
 }
 
 .button {
@@ -57,13 +57,8 @@
     border: 1px 1px gray;
 }
 
-.lap {
-    border: 1px 1px gray;
-}
-
 .lap-time-container {
     display: flex;
-    /* flex-direction: column-reverse; */
     flex-direction: column;
 }
 

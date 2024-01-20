@@ -23,11 +23,12 @@ export default function StopWatch() {
         setUsed(false)
     }
     const handleLap = () => {
-        setLapTime(time)
-        setLapStore([...lapStore, time])
+        let tmpTime = time
+        setLapStore([...lapStore, tmpTime - lapTime])
+        setLapTime(tmpTime)
     }
     useEffect(() => {
-        let interval: any;
+        let interval: NodeJS.Timer;
         if (isRunning) {
             interval = setInterval(() => {
                 setTime((time) => time + 10)
@@ -38,7 +39,7 @@ export default function StopWatch() {
         return () => clearInterval(interval)
     }, [isRunning])
 
-    const processTime = (time: any) => {
+    const processTime = (time: number) => {
         const miliseconds = Math.floor((time / 10) % 100).toString().padStart(2, '0') ;
         const seconds = Math.floor((time / 1000) % 60).toString().padStart(2, '0');
         const minutes = Math.floor((time / 60000) % 60).toString().padStart(2, '0');
@@ -49,10 +50,10 @@ export default function StopWatch() {
             <div className='time-value'>{processTime(time)}</div>
             <StopWatchButton isUsed={isUsed} isRunning={isRunning} onStart={handleStart} onStop={handleStop} onReset={handleReset} onLap={handleLap}/>
             <div className='lap-time-container'>
-                {lapStore.slice().reverse().map((lapTime, index) => (
+                {lapStore.slice().reverse().map((currLapTime, index) => (
                     <div className='lap-item'>
                         <div className='lap-label'>{"lap " + (lapStore.length - index) + " "}</div>
-                        <div className={(lapTime == Math.max(...lapStore) ? 'max' : (lapTime == Math.min(...lapStore) ? 'min' : ''))}>{processTime(lapTime)}</div>
+                        <div className={(currLapTime == Math.max(...lapStore) ? 'max' : (currLapTime == Math.min(...lapStore) ? 'min' : ''))}>{processTime(currLapTime)}</div>
                     </div>
                 ))}
             </div>
