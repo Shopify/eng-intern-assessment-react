@@ -1,15 +1,17 @@
-import React from "react"
-import { DisplayTime } from "./App"
+import React from 'react'
+import { DisplayTime } from './Utils'
+import './styles/main.css'
 
-interface props {
+interface time {
   time: number
 }
 
-export default function StopWatch(props: props) {
-
+export default function StopWatch(props: time) {
+  // displays the current stopwatch time
   return (
     <div>
-        <DisplayTime time={props.time}/>
+      <p>Stopwatch</p>
+      <h1 className='clock'><DisplayTime time={props.time} /></h1>
     </div>
   )
 }

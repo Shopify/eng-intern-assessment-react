@@ -1,14 +1,18 @@
 import React from 'react'
+import './styles/main.css'
 
-interface props {
-    action: () => void
-    text: string
+interface button {
+  action: () => void
+  text: string
 }
 
-export default function StopWatchButton(props: props) {
-    return(
-        <div>
-            <button onClick={props.action}>{props.text}</button>
-        </div>
-    )
+export default function StopWatchButton(props: button) {
+  // a button that activates a stopwatch function s
+  return (
+    <div>
+      <button onClick={props.action} className='button'>
+        {props.text}
+      </button>
+    </div>
+  )
 }
