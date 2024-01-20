@@ -99,7 +99,30 @@ describe('Stopwatch', () => {
         expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
     });
 
-    test.todo('displays correct lap times');
+    test('displays correct lap times', () => {
+        const startBtn = screen.getByRole('button', { name: /Start/i });
+        fireEvent.click(startBtn);
+
+        act(() => {
+            // Move stopwatch forward by 30 seconds
+            jest.advanceTimersByTime(30 * 1000);
+        })
+
+        const lapBtn = screen.getByRole('button', { name: /Lap/i });
+        fireEvent.click(lapBtn);
+
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:30');
+
+        act(() => {
+            // Move stopwatch forward by another minute
+            jest.advanceTimersByTime(60 * 1000);
+        })
+
+        fireEvent.click(lapBtn);
+
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:01:30');
+    });
+    
     test.todo('displays time with proper formatting');
     test.todo('does not allow for seconds to overflow');
     test.todo('does not allow for minutes to overflow');
