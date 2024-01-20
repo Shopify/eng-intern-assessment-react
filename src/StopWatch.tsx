@@ -12,13 +12,15 @@ export default function StopWatch() {
   }, [timeInSeconds])
 
     return(
-        <div className = "time-container">
+      <main>
+        <div className = "time-container" title="display">
           <p className='timer-text'>{timerArray[0]}</p>
           <span>:</span>
           <p className='timer-text'>{timerArray[1]}</p>
           <span>:</span>
           <p className='timer-text'>{timerArray[2]}</p>
-          <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
         </div>
+        <StopWatchButton setTimeInSeconds={setTimeInSeconds} timeInSeconds={timeInSeconds}/>
+      </main>
     )
 }
