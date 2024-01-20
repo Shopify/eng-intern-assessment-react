@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import StopWatchButtonComponent from "./StopWatchButtonComponent";
 
 export default function StopWatchComponent() {
-  const [time, setTime] = useState<number>(0); //store the time, in miliseconds
   const [isRunning, setIsRunning] = useState<boolean>(false); // state to track if watch is running ot not
   const [laps, setLaps] = useState<number[]>([]); // numeric array to store laps
+
+  // State for watch
+  const [time, setTime] = useState<number>(0); //store the time, in miliseconds
   const intervalRef = useRef<NodeJS.Timeout | null>(null); // state to track interval id
   const startTimeRef = useRef<number | null>(null);
 
