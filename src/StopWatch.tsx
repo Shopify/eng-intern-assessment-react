@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * A component that gets and displays the current time
+ */
+
 interface StopWatchProps {
   time: number;
   format: (time: number) => string;
