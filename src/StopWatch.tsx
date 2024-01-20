@@ -10,6 +10,7 @@ const formatTime = (time: number) => {
     const hours = Math.floor(time / 1000 / 60 / 60);
     const minutes = Math.floor(time / 1000 / 60) % 60;
     const seconds = Math.floor(time / 1000) % 60;
+    // I added milliseconds because I'm extremely passionate about stopwatches and timers, being a speedcuber myself.
     const milliseconds = time % 1000;
 
     return `${hours < 10 ? `0${hours}` : hours}:${

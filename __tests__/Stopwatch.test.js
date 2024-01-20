@@ -42,17 +42,21 @@ describe("Stopwatch", () => {
     test("pauses and resumes the stopwatch", () => {
         render(<Stopwatch />);
 
+        // Starting stopwatch
         fireEvent.click(screen.getByText("Start"));
         let pausedTime;
+        // Stopping stopwatch after some time
         setTimeout(() => {
             fireEvent.click(screen.getByText("Stop"));
             pausedTime = screen.getByText(
                 /(\d{2}:){2}\d{2}\.\d{3}/
             ).textContent;
 
+            // Re-starting stopwatch
             fireEvent.click(screen.getByText("Start"));
         }, 500);
 
+        // Waiting longer to make sure that time has run after re-starting
         setTimeout(() => {
             expect(
                 screen.getByText(/(\d{2}:){2}\d{2}\.\d{3}/).textContent
@@ -63,12 +67,14 @@ describe("Stopwatch", () => {
     test("records and displays lap times", () => {
         render(<Stopwatch />);
 
+        // Checking if first lap created a lap
         fireEvent.click(screen.getByText("Start"));
         fireEvent.click(screen.getByText("Lap"));
         expect(screen.getByTestId("lap-list")).toContainElement(
             screen.getByTestId("lap-1")
         );
 
+        // Checking if second lap press creates a new lap
         fireEvent.click(screen.getByText("Lap"));
         expect(screen.getByTestId("lap-list").children.length).toBe(2);
     });
