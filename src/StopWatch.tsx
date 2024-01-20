@@ -13,7 +13,7 @@ export default function StopWatch() {
 
     return(
       <main>
-        <div className = "time-container">
+        <div className = "time-container" title="display">
           <p className='timer-text'>{timerArray[0]}</p>
           <span>:</span>
           <p className='timer-text'>{timerArray[1]}</p>
