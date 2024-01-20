@@ -1,5 +1,5 @@
 // Import Libraries & Components
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import StopWatchButton from './StopWatchButton';
@@ -9,7 +9,7 @@ import "./stylesheets/stopWatch.css";
 export default function StopWatch() {
     const [timeInSeconds, setTimeInSeconds] = useState(0);
     const [timeArray, setTimeArray] = useState<Array<string>>([]);
-    const [timeLaps, setTimeLaps] = useState<Array<string>>([])
+    const [timeLaps, setTimeLaps] = useState<Array<string>>([]);
 
     /*
     Parameter: Takes in 1 parameter `timeInSeconds`, with the type `number`.
@@ -37,19 +37,19 @@ export default function StopWatch() {
 
         if (timeLaps.length === 0) {
             if (timeArray[0] != "00" || timeArray[1] != "00" || timeArray[2] != "00") {
-                let currentLoggedLap = timeArray[0] + ":" + timeArray[1] + ":" +  timeArray[2]
-                setTimeLaps([...timeLaps, currentLoggedLap])
+                let currentLoggedLap = timeArray[0] + ":" + timeArray[1] + ":" +  timeArray[2];
+                setTimeLaps([...timeLaps, currentLoggedLap]);
             } else {
                 // A toast notification
                 toast.error('[Error Code: 00:00:00] Please Start the Stopwatch First');
             }
         } else {
             let lastIndex = timeLaps.length-1;
-            let lastLoggedTime = timeLaps[lastIndex].split(":")
+            let lastLoggedTime = timeLaps[lastIndex].split(":");
 
             if (timeArray[0] !=  lastLoggedTime[0] || timeArray[1] != lastLoggedTime[1] || timeArray[2] != lastLoggedTime[2]) {
-                let currentLoggedLap = timeArray[0] + ":" + timeArray[1] + ":" +  timeArray[2]
-                setTimeLaps([...timeLaps, currentLoggedLap])
+                let currentLoggedLap = timeArray[0] + ":" + timeArray[1] + ":" +  timeArray[2];
+                setTimeLaps([...timeLaps, currentLoggedLap]);
             } else {
                 // A toast notification
                 toast.error('[Error Code: Duplicate Lap Found] The Current Lap Already Exists');

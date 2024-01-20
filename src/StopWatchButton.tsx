@@ -21,14 +21,14 @@ export default function StopWatchButton(props:Props) {
     */
     const handleStartPauseButton = () => {
         if (currentState == "Start") {
-            setCurrentState("Pause")
+            setCurrentState("Pause");
             const interval:any = setInterval(() => {
                 setTimeInSeconds((previousState:number) => previousState + 1);
             }, 1000);
             setIntervalId(interval);
         }
         else if (currentState === "Pause"){
-            setCurrentState("Start")
+            setCurrentState("Start");
             clearInterval(intervalId);
         }
     }
