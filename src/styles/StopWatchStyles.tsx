@@ -1,8 +1,13 @@
 
+export const titleStyle = {
+    textAlign: 'center' as 'center',
+    fontSize: "xxx-large"
+}
+
 export const containerStyles = {
     stopwatchContainer: {
-        height: "75vh",
-        width: "75vw",
+        height: "50vh",
+        width: "100%",
         justifyContent: "center",
         alignItems: "center",
         display: "flex",
@@ -13,7 +18,7 @@ export const containerStyles = {
         position: "fixed" as "fixed",
         height: "fit-content",
         width: "fit-content",
-        fontSize:" xxx-large",
+        fontSize: "xxx-large",
         backgroundColor: "antiquewhite",
         borderStyle: "solid",
         borderColor: "burlywood",
@@ -25,7 +30,7 @@ export const containerStyles = {
         position: "fixed" as "fixed",
         width: "50%",
         display: "inline-flex",
-        marginTop: "20%",
+        marginTop: "10%",
         justifyContent: "space-evenly",
     },
 
@@ -33,7 +38,7 @@ export const containerStyles = {
         display: "block",
         height: "50%",
         width: "fit-content",
-        marginTop: "80%",
+        marginTop: "30%",
     },
 };
 
@@ -46,10 +51,5 @@ export const buttonStyles = {
     },
 };
 
-// .stopwatch-button {
-//     height: 25%;
-//     width: 100%;
-//     background-color: aquamarine;
-// };
 
 

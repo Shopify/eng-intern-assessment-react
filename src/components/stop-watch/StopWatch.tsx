@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StopWatchProps } from '../../props/StopWatchProps';
 import StopWatchButton from './StopWatchButton';
 import { StopWatchLap } from './StopWatchLap';
-import { containerStyles } from '../../styles/StopWatchStyles';
+import { containerStyles, titleStyle } from '../../styles/StopWatchStyles';
 
 export default function StopWatch(
     {
@@ -14,8 +14,8 @@ export default function StopWatch(
     }: StopWatchProps) {
 
     // Hooks:
-    const [runningTime, setRunningTime] = useState(time);
-    const [displayTime, setDisplayTime] = useState("00:00:000");
+    const [runningTime, setRunningTime] = useState(Math.max(time, 0));
+    const [displayTime, setDisplayTime] = useState("00:00:00");
     const [increment, setIncrement] = useState(10); // increment of increase in milliseconds
     const [isRunning, setIsRunning] = useState(false);
     const [laps, setLaps] = useState(timelaps);
@@ -87,8 +87,10 @@ export default function StopWatch(
 
 
     return (
+        <div>
+            <div className='stopwatch-title' style={titleStyle}>{title}</div>
         <div className='stopwatch-container' style={containerStyles.stopwatchContainer}>
-            <div className='stopwatch-timer' style={containerStyles.stopwatchTimer}>
+            <div className='stopwatch-timer' style={containerStyles.stopwatchTimer} title='timer'>
                 {displayTime}
             </div>
             <div className='stopwatch-button-container' style={containerStyles.stopwatchButtonContainer}>
@@ -97,13 +99,14 @@ export default function StopWatch(
                 <StopWatchButton title='Reset' callback={ResetTimer} />
                 <StopWatchButton title='Lap' callback={AddLap} />
             </div>
-            <div className='stopwatch-lap-container' style={containerStyles.stopwatchLapContainer}>
+            <div className='stopwatch-lap-container' style={containerStyles.stopwatchLapContainer} title='laps'>
                 {
                     // display most recent MAX_LAPS_DISPLAY_NUM laps
                     laps.slice(0).reverse().slice(0, MAX_LAPS_DISPLAY_NUM).map(
-                        (lap) => { return <StopWatchLap time={lap.time} displayTime={lap.displayTime} /> })
+                        (lap) => { return <StopWatchLap key={lap.time} time={lap.time} displayTime={lap.displayTime} /> })
                 }
             </div>
-        </div> //
+        </div>
+        </div>
     );
 };
