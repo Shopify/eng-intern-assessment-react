@@ -13,24 +13,24 @@ export default function StopWatch({ timer }: StopWatchProps) {
     return(
         <div className="stopwatch">
             {/* Hours */}
-            <div className="digit">{hours[0]}</div>
-            <div className="digit">{hours[1]}</div>
+            <div className="digit" data-testid="hours-1">{hours[0]}</div>
+            <div className="digit" data-testid="hours-2">{hours[1]}</div>
             <div className="colon">:</div>
 
             {/* Minutes */}
-            <div className="digit">{minutes[0]}</div>
-            <div className="digit">{minutes[1]}</div>
+            <div className="digit" data-testid="min-1">{minutes[0]}</div>
+            <div className="digit" data-testid="min-2">{minutes[1]}</div>
             <div className="colon">:</div>
 
             {/* Seconds */}
-            <div className="digit">{seconds[0]}</div>
-            <div className="digit">{seconds[1]}</div>
+            <div className="digit" data-testid="seconds-1">{seconds[0]}</div>
+            <div className="digit" data-testid="seconds-2">{seconds[1]}</div>
             <div className="dot">.</div>
 
             {/* Milliseconds */}
-            <div className="digit">{milliseconds[0]}</div>
-            <div className="digit">{milliseconds[1]}</div>
-            <div className="digit">{milliseconds[2]}</div>
+            <div className="digit" data-testid="ms-1">{milliseconds[0]}</div>
+            <div className="digit" data-testid="ms-2">{milliseconds[1]}</div>
+            <div className="digit" data-testid="ms-3">{milliseconds[2]}</div>
         </div>
         
     )

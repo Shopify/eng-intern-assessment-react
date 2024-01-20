@@ -12,7 +12,7 @@ export default function StopWatchButton({ onStart, onStop, onReset, onLap}: Stop
     return (
         <div className = "button-container">
             <div className= "button-row">
-                <button className= 'start_button' onClick={onStart}>Start</button>
+                <button className= 'start_button' data-testid="start" onClick={onStart}>Start</button>
                 <button className= 'stop_button' onClick={onStop}>Stop</button>
                 <button className= 'reset_button' onClick={onReset}>Reset</button>
                 <button className= 'lap_button' onClick={onLap}>Lap</button>

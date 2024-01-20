@@ -28,13 +28,13 @@ body {
     padding-top: 100px
   }
 
-  .laps-container {
+  .laps-container{
     display: flex;
     background-color: #f0f0f0;
     flex-direction: column;
     width: 100%;
     flex-grow: 1;
-    overflow-y: auto;
+    overflow: auto;
     animation: slideIn 0.5s ease forwards;
 }
 

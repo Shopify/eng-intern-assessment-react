@@ -18,15 +18,15 @@ export default function App() {
         let startTime: number;
         if (timerOn) {
             startTime = Date.now();
-            // Every 1000ms setInterval is called and increments the previous time value by 1 second.
+            // Every 1ms setInterval is called and increments the previous time value by 1 second.
             interval = setInterval(() => {
                 setTime(Date.now() - startTime);
-            });
+            },1);
         }
         // Cleanup function to clear the interval when the timer state changes.
         return () => {
             if (interval) {
-                clearInterval(interval);
+                clearInterval(interval);         
             }
         }
         // Dependecy array to prevent unnecessary executions, to ensure that the stopwatch 
