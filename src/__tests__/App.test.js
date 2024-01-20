@@ -16,7 +16,7 @@ describe('Stopwatch', () => {
     });
 
     test('renders initial state correctly', () => {
-        expect(screen.getByText('00:00:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:00');
 
         expect(screen.getByRole('button', { name: /Start/i })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: /Stop/i })).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Stopwatch', () => {
             // Move stopwatch forward by 5 seconds
             jest.advanceTimersByTime(5 * 1000);
         })
-        expect(screen.getByText('00:00:05')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:05');
     });
 
     test('counts minutes correctly', () => {
@@ -45,7 +45,7 @@ describe('Stopwatch', () => {
             // Move stopwatch forward by 2 minutes
             jest.advanceTimersByTime(2 * 60 * 1000);
         })
-        expect(screen.getByText('00:02:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
     });
     
     test('counts hours correctly', () => {
@@ -56,7 +56,7 @@ describe('Stopwatch', () => {
             // Move stopwatch forward by 3 hours
             jest.advanceTimersByTime(3 * 60 * 60 * 1000);
         })
-        expect(screen.getByText('03:00:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('03:00:00');
     });
 
     test('stops the stopwatch', () => {
@@ -67,7 +67,7 @@ describe('Stopwatch', () => {
             // Move stopwatch forward by 2 minutes
             jest.advanceTimersByTime(2 * 60 * 1000);
         })
-        expect(screen.getByText('00:02:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
 
         const stopBtn = screen.getByRole('button', { name: /Stop/i });
         fireEvent.click(stopBtn);
@@ -77,7 +77,7 @@ describe('Stopwatch', () => {
             jest.advanceTimersByTime(30 * 1000);
         })
         // Stopwatch time should not have changed
-        expect(screen.getByText('00:02:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
     });
 
     test('resets the stopwatch to zero', () => {
@@ -95,7 +95,7 @@ describe('Stopwatch', () => {
         const resetBtn = screen.getByRole('button', { name: /Reset/i });
         fireEvent.click(resetBtn);
 
-        expect(screen.getByText('00:00:00')).toBeInTheDocument();
+        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:00');
         expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
     });
 
