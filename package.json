@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -51,6 +52,10 @@
   "jest": {
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    }
+    },
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/test/styleMock.tsx"
+    },
+    "testEnvironment": "jsdom"
   }
 }

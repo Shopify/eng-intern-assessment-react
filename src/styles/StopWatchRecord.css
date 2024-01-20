@@ -9,6 +9,9 @@
     transition-property: height, opacity;
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
+
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .lap-records.expand {

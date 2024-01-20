@@ -100,7 +100,7 @@
 
     --color-shadow: rgba(0, 0, 0, 0.102);
 
-    --background-color: var(0,0,0);
+    --background-color: white;
     background-color: var(--background-color);
 
     --text-color: rgb(58, 58, 60);
@@ -141,4 +141,15 @@
 
     --text-color: rgb(240, 240, 240);
     color: var(--text-color);
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+    width: 10px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gray6);
+    -webkit-border-radius: 100px;
 }

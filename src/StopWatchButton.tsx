@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef, useContext, useCallback, useEffect } from 'react'
+import React, { CSSProperties, useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { faPlay, faPause, faStop, faFlag } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +11,8 @@ import "./styles/StopWatchButton.css"
 interface ButtonProps {
     icon: IconDefinition,
     callback: Function,
-    style ?: CSSProperties | undefined
+    style ?: CSSProperties | undefined,
+    title ?: string | undefined
 }
 
 export default function StopWatchButton() {
@@ -37,28 +38,28 @@ export default function StopWatchButton() {
     // Button component
     const Button = (props:ButtonProps) => {
 
-        const {icon,style,callback} = props
+        const {icon,style,callback,title} = props
 
         return(
-        <button className='button' style={style} onClick={()=>{callback()}}>
+        <button className='button' type="button" title={title} style={style} onClick={()=>{callback()}} >
             <FontAwesomeIcon icon={icon}></FontAwesomeIcon>
         </button>)
     }
 
     // All buttons with be used in different status
-    const startButton = <Button key={0} icon={faPlay} style={{color:"var(--color-blue)", width:"150px"}} 
+    const startButton = <Button key={0} icon={faPlay} style={{color:"var(--color-blue)", width:"150px"}} title='Start'
         callback={() => {setStartTime(Date.now()); setCurrentTime(Date.now()); setStatus(1); setLapNumber(1)}} />
 
-    const flagButton = <Button key={4}  icon={faFlag} style={{color:"var(--color-indigo)"}} 
+    const flagButton = <Button key={4}  icon={faFlag} style={{color:"var(--color-indigo)"}}  title='Lap'
         callback={() => setLapNumber(lapNumber+1)}/>
 
-    const pauseButton =<Button key={2} icon={faPause} style={{color:"var(--color-blue)"}} 
+    const pauseButton =<Button key={2} icon={faPause} style={{color:"var(--color-blue)"}} title='Pause'
         callback={() => setStatus(2)}/>
 
-    const resetButton =<Button key={3} icon={faStop} style={{color:"var(--color-red)"}} 
+    const resetButton =<Button key={3} icon={faStop} style={{color:"var(--color-red)"}} title='Reset'
         callback={() => {setStatus(0); setStartTime(0); setCurrentTime(0); setLapNumber(1)}}/>
 
-    const resumeButton =<Button key={1}icon={faPlay} style={{color:"var(--color-blue)"}} 
+    const resumeButton =<Button key={1}icon={faPlay} style={{color:"var(--color-blue)"}} title='Resume'
         callback={() => {setStartTime(startTime+Date.now()-currentTime); setStatus(1); setCurrentTime(Date.now())}}/>
     
     let buttonList : React.JSX.Element[] = []

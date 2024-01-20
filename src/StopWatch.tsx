@@ -16,12 +16,12 @@ export default function StopWatch() {
 
     // Display the elsapsed time
     return(
-        <div className='time-section'>
+        <p className='time-section' hidden={true}>
             <span>{formatedTime[0]}</span>:
             <span>{formatedTime[1]}</span>:
             <span>{formatedTime[2]}</span>
             <span className="ms-span">.</span>
             <span className="ms-span">{formatedTime[3]}</span>
-        </div>
+        </p>
     )
 }

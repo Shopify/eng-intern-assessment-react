@@ -1,3 +1,4 @@
+
 .time-section {
     display: flex;
     align-items:baseline;
@@ -7,6 +8,7 @@
     font-variant-numeric: tabular-nums;
 
     user-select: none;
+    margin: 0px;
 
 }
 
