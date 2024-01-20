@@ -15,7 +15,7 @@ Ensure you have the following installed before you begin:
 Clone the repository to your local machine to start working on the project:
 
 \```bash
-git clone https://github.com/EDHE08232001/InternAssessmentSolution.git
+git clone https://github.com/EDHE08232001/InternAssessment.git
 cd InternAssessmentSolution
 \```
 
