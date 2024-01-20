@@ -68,6 +68,34 @@ export default function StopWatchComponent() {
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
   };
 
+  const handleKeyPress = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case "A":
+      case "a":
+        handleStartStop();
+        break;
+      case "S":
+      case "s":
+        handleReset();
+        break;
+      case "D":
+      case "d":
+        handleLap();
+        break;
+      default:
+        break;
+    }
+  };
+  useEffect(() => {
+    // Add keydown event listener
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      // Remove keydown event listener
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
   //   handling the effect of start and end of watch
   //   If stopwatch is running set interval to increase in every 10ms
   //   clean the interval when stop watch is not running
@@ -116,14 +144,17 @@ export default function StopWatchComponent() {
             <StopWatchButtonComponent
               onClick={handleStartStop}
               buttonPlaceHolder={!isRunning ? "Start" : "Pause"}
+              isRunning={true}
             />
             <StopWatchButtonComponent
               onClick={handleReset}
               buttonPlaceHolder="Reset"
+              isRunning={true}
             />
             <StopWatchButtonComponent
               onClick={handleLap}
               buttonPlaceHolder="Lap"
+              isRunning={isRunning}
             />
           </section>
           <section>

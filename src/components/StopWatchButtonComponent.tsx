@@ -3,6 +3,7 @@ import "./StopWatchButtonComponent.css";
 type StopWatchButtonProps = {
   onClick: () => void;
   buttonPlaceHolder: string;
+  isRunning: boolean;
 };
 
 // reuseable button component
@@ -13,12 +14,19 @@ type StopWatchButtonProps = {
 const StopWatchButtonComponent: React.FC<StopWatchButtonProps> = ({
   onClick,
   buttonPlaceHolder,
+  isRunning = false,
 }) => {
   return (
     <>
-      <button onClick={onClick} className="button">
-        <span>{buttonPlaceHolder}</span>
-      </button>
+      {isRunning ? (
+        <button onClick={onClick} className="button">
+          <span>{buttonPlaceHolder}</span>
+        </button>
+      ) : (
+        <button onClick={onClick} className="button" disabled>
+          <span>{buttonPlaceHolder}</span>
+        </button>
+      )}
     </>
   );
 };
