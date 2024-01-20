@@ -82,7 +82,9 @@ export default function App() {
             <p> Lap: {formatTime(lapTime)}</p>
             <ul data-testid="lap-list">
                 { laps.map((lap) => 
-                <li key={lap.id}>Lap {lap.id}: {lap.time}</li>)}
+                <li key={lap.id}>
+                    Lap {lap.id}: {lap.time}
+                </li>)}
             </ul>
             
         

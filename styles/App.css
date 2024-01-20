@@ -3,14 +3,28 @@
     text-align: center;
     justify-content: center;
     font-family: sans-serif;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
 }
 
+p {
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+
+}
 ul {
     padding: 0;
+    margin-top: 0px;
     list-style-position: inside;
 }
 
 li {
     list-style-type: none;
-    margin-bottom: 7px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid gray;
+
 }
