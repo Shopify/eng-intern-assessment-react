@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.app-container {
+  background-color: black;
+
+  height: 100vh;
+  width: 100%;
+  padding-right: 25px;
+  padding-left: 25px;
+}

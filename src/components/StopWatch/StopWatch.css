@@ -1,0 +1,26 @@
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50%;
+  align-items: center;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #242427;
+}
+
+.stopwatch-text {
+  color: white;
+
+  display: flex;
+  flex-direction: row;
+  font-size: 52px;
+  letter-spacing: 2px;
+}
+
+.bottom {
+  display: flex;
+  align-items: flex-start;
+  height: 50%;
+  overflow: scroll;
+  justify-content: center;
+}
