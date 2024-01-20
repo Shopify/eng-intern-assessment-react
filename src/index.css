@@ -29,6 +29,11 @@
     margin: 0 0.5rem 0;
 }
 
+btn:disabled,
+btn[disabled] {
+    background-color: #cccccc;
+}
+
 .lapped {
     margin-top: 2rem;
     box-shadow: 0 0 2px #564949;

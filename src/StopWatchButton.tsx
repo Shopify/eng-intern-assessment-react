@@ -1,11 +1,19 @@
 import React from "react";
 
-export default function StopWatchButton() {
+interface StopWatchButtonProps {
+  type: string;
+  onBtnClick(): void;
+  isDisabled: boolean;
+}
+
+export default function StopWatchButton({
+  type,
+  onBtnClick,
+  isDisabled,
+}: StopWatchButtonProps) {
   return (
-    <div className="buttonContainer">
-      <button className="btn">Reset</button>
-      <button className="btn">Start</button>
-      <button className="btn">Lap</button>
-    </div>
+    <button disabled={isDisabled} className="btn" onClick={onBtnClick}>
+      {type}
+    </button>
   );
 }
