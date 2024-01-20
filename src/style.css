@@ -34,3 +34,8 @@ body {
 .button:hover {
     background-color: #88b04b;
 }
+
+.text-main {
+    font-size: 8rem; /* Extra large font size */
+    font-weight: 600; 
+}
