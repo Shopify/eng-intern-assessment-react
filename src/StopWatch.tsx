@@ -2,18 +2,26 @@ import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 import { motion } from "framer-motion";
 
+// StopwatchProps to set the type of the props passed to the component
 interface StopwatchProps {
 	updateTimeshowcase: (lapData: string[]) => void;
 }
 
 export default function StopWatch({ updateTimeshowcase }: StopwatchProps) {
+	//React State variables to hold the time values
 	const [hr, setHr] = useState(0);
 	const [min, setMin] = useState(0);
 	const [sec, setSec] = useState(0);
 	const [ms, setMs] = useState(0);
+
+	//React State variable to hold the current state of the stopwatch
 	const [isRunning, setIsRunning] = useState(false);
+
+	//React State variable to hold the list of laps
 	const [laps, setLaps] = useState<string[]>([]);
 
+	// The time is constantly updated using the setInterval function. Triggered only when the
+	// stop watch is running (isRunning state is set to True) .
 	useEffect(() => {
 		let interval: NodeJS.Timeout;
 
@@ -44,10 +52,12 @@ export default function StopWatch({ updateTimeshowcase }: StopwatchProps) {
 		return () => clearInterval(interval);
 	}, [isRunning]);
 
+	// Update lapData array when the laps state is updated
 	useEffect(() => {
 		updateTimeshowcase(laps);
 	}, [laps]);
 
+	// Helper functions to alter the running state
 	const startTiming = () => {
 		setIsRunning(true);
 	};
@@ -65,6 +75,7 @@ export default function StopWatch({ updateTimeshowcase }: StopwatchProps) {
 		setLaps([]);
 	};
 
+	// Function to add the current time to the laps array
 	const lapTiming = () => {
 		const lapTime = `${hr.toString().padStart(2, "0")}:${min
 			.toString()

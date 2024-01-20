@@ -3,8 +3,10 @@ import StopWatch from "./StopWatch";
 import Timeshowcase from "./Timeshowcase";
 
 export default function App() {
+	// Array to maintain the state of the list of laps
 	const [lapData, setLapData] = useState<string[]>([]);
 
+	// Function to update the lapData array, passed as a prop
 	const updateTimeshowcase = (lapData: string[]) => {
 		setLapData(lapData);
 	};

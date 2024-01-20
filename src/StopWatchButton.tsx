@@ -9,10 +9,18 @@ export default function StopWatchButton({
 	methodCall,
 }: StopWatchButtonProps) {
 	return (
+		/**
+		 *
+		 * Reusable buttom component for the stopwatch
+		 * Props:
+		 * 	label: text that showcases the function of the button, and is used to style them accordingly
+		 *  methodCall: function that is called when the button is clicked
+		 *
+		 */
 		<button
 			onClick={methodCall}
 			className={` transition font-bold rounded-3xl h-16 w-16 bg-[#2a2c3c] hover:bg-[#303243] neumorphic-invert-shadow active:scale-95 border-0 ease-in-out duration-100
-            ${
+			${
 				label === "Start"
 					? "text-green-500 border-4 border-green-500"
 					: label === "Stop"
