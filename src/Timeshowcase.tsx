@@ -29,14 +29,17 @@ const Timeshowcase = ({ lapData }: TimeshowcaseProps) => {
 				{lapData.map((lap, index) => {
 					return (
 						<motion.div
-							initial={{ y: 10, opacity: 0 }}
+							initial={{ y: -10, opacity: 0 }}
 							animate={{ y: 0, opacity: 1 }}
 							transition={{ duration: 0.2 }}
 							className="text-center text-xl"
 							key={index}
 						>
 							{index !== 0 && <hr className="m-1" />}
-							{lap}
+							<div className="flex justify-around">
+								<p>Lap {lapData.length - index}</p>
+								<p>{lap}</p>
+							</div>
 						</motion.div>
 					);
 				})}

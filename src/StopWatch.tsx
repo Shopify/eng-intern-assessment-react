@@ -75,14 +75,13 @@ export default function StopWatch({ updateTimeshowcase }: StopwatchProps) {
 		setLaps([]);
 	};
 
-	// Function to add the current time to the laps array
 	const lapTiming = () => {
 		const lapTime = `${hr.toString().padStart(2, "0")}:${min
 			.toString()
 			.padStart(2, "0")}:${sec.toString().padStart(2, "0")}.${ms
 			.toString()
 			.padStart(2, "0")}`;
-		setLaps((prevLaps) => [...prevLaps, lapTime]);
+		setLaps((prevLaps) => [lapTime, ...prevLaps]);
 	};
 
 	return (

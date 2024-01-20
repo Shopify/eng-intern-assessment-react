@@ -19,15 +19,15 @@ export default function StopWatchButton({
 		 */
 		<button
 			onClick={methodCall}
-			className={` transition font-bold rounded-3xl h-16 w-16 bg-[#2a2c3c] hover:bg-[#303243] neumorphic-invert-shadow active:scale-95 border-0 ease-in-out duration-100
+			className={` transition font-bold rounded-3xl h-16 w-16 bg-[#2a2c3c] neumorphic-invert-shadow active:scale-95 border-0 ease-in-out duration-100
 			${
 				label === "Start"
-					? "text-green-500 border-4 border-green-500"
+					? "text-green-500 border-4 border-green-500 hover:bg-[#3c5e39]"
 					: label === "Stop"
-					? "text-red-500 border-4 border-red-500"
+					? "text-red-500 border-4 border-red-500 hover:bg-[#6a2d2d]"
 					: label === "Lap"
-					? "text-yellow-500 border-4 border-yellow-500"
-					: `text-[rgb(92,110,245)] border-4 border-[rgb(92,110,245)]`
+					? "text-yellow-500 border-4 border-yellow-500 hover:bg-[#5a602b]"
+					: `text-[rgb(92,110,245)] border-4 border-[rgb(92,110,245)] hover:bg-[rgb(65,75,151)]`
 			}`}
 		>
 			{label}
