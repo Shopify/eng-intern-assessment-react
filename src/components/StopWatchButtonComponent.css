@@ -1,0 +1,12 @@
+.button {
+  padding: 10px 24px 10px 24px;
+  border-radius: 5px;
+  background-color: #5e8e3e;
+  margin: 1px 10px;
+}
+.button > span {
+  font-size: 1.5rem;
+  color: white;
+  margin: 1px 16px;
+  filter: blur(0.3px);
+}

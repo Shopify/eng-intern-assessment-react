@@ -1,0 +1,71 @@
+/* I am using BEM naming convention for ease */
+
+.container__title {
+  font-size: 3rem;
+  color: rgba(70, 70, 70, 1);
+  font-weight: 400;
+}
+.container__title > span {
+  color: #5e8e3e;
+  font-weight: 900;
+}
+.container__body {
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.container__timer {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+
+  margin-bottom: 40px;
+}
+.container__timeHeading {
+  font-size: 44px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.container__lapHeading {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.container__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  font-size: 24px;
+  margin-top: 32px;
+}
+
+.container__table thead tr {
+  background-color: #5e8e3e;
+  color: #ffffff;
+  text-align: left;
+  text-align: center;
+}
+.container__table th,
+.container__table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+.container__table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.container__table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.container__table tbody tr:last-of-type {
+  border-bottom: 2px solid #5e8e3e;
+}
+.container__table tbody tr.active-row {
+  font-weight: bold;
+  color: #5e8e3e;
+}

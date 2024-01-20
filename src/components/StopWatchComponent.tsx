@@ -1,9 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import StopWatchButtonComponent from "./StopWatchButtonComponent";
+import "./../utils/utils.css";
+import "./StopWatchComponent.css";
+
+// type for lap info
+type LapInfo = {
+  lap: number;
+  total: number;
+};
 
 export default function StopWatchComponent() {
   const [isRunning, setIsRunning] = useState<boolean>(false); // state to track if watch is running ot not
-  const [laps, setLaps] = useState<number[]>([]); // numeric array to store laps
+  const [laps, setLaps] = useState<LapInfo[]>([]); // LapInfo type to store laps
 
   // State for watch
   const [time, setTime] = useState<number>(0); //store the time, in miliseconds
@@ -27,7 +35,11 @@ export default function StopWatchComponent() {
   };
 
   const handleLap = () => {
-    setLaps((prevLaps) => [...prevLaps, time]);
+    const lastTotalTime = laps.length > 0 ? laps[laps.length - 1].total : 0;
+    const newLapTime = time - lastTotalTime;
+
+    setLaps((prevLaps) => [...prevLaps, { lap: newLapTime, total: time }]);
+
     if (lapTimerRef.current) {
       clearInterval(lapTimerRef.current);
     }
@@ -87,30 +99,54 @@ export default function StopWatchComponent() {
   }, [isRunning]);
   return (
     <>
-      <main>
-        <h1>Timer: {formatTime(time)}</h1>
-        <h2>Lap Timer :{formatTime(lapTime)}</h2>
-        <div>
-          <StopWatchButtonComponent
-            onClick={handleStartStop}
-            buttonPlaceHolder={!isRunning ? "Start" : "Stop"}
-          />
-          <StopWatchButtonComponent
-            onClick={handleReset}
-            buttonPlaceHolder="Reset"
-          />
-          <StopWatchButtonComponent
-            onClick={handleLap}
-            buttonPlaceHolder="Lap"
-          />
-        </div>
-        <div>
-          {laps.map((lap, index) => (
-            <p key={index}>
-              Lap {index + 1}: {formatTime(lap)}s
-            </p>
-          ))}
-        </div>
+      <main className="d-flex flex-dir-col align-center container">
+        <h1 className="container__title">
+          <span>Shopify</span> : StopWatch
+        </h1>
+        <section className="container__body">
+          <div className="d-flex flex-dir-col align-center container__timer">
+            <div className="container__timeHeading">
+              <span className="font-stopwatch">{formatTime(time)}</span>
+            </div>
+            <div className="container__lapHeading">
+              <span className="font-stopwatch">{formatTime(lapTime)}</span>
+            </div>
+          </div>
+          <section className="container__button">
+            <StopWatchButtonComponent
+              onClick={handleStartStop}
+              buttonPlaceHolder={!isRunning ? "Start" : "Pause"}
+            />
+            <StopWatchButtonComponent
+              onClick={handleReset}
+              buttonPlaceHolder="Reset"
+            />
+            <StopWatchButtonComponent
+              onClick={handleLap}
+              buttonPlaceHolder="Lap"
+            />
+          </section>
+          <section>
+            <table className="container__table">
+              <thead>
+                <tr>
+                  <th>Lap</th>
+                  <th>Time</th>
+                  <th>Total Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {laps.map((lap, index) => (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{formatTime(lap.lap)}</td>
+                    <td>{formatTime(lap.total)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </section>
       </main>
     </>
   );

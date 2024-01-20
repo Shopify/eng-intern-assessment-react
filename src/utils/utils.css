@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Stopwatch W00 Regular";
+  src: url("https://db.onlinewebfonts.com/t/001f92d59a64338e706b15a97a1f615f.eot");
+  src: url("https://db.onlinewebfonts.com/t/001f92d59a64338e706b15a97a1f615f.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/001f92d59a64338e706b15a97a1f615f.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/001f92d59a64338e706b15a97a1f615f.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/001f92d59a64338e706b15a97a1f615f.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/001f92d59a64338e706b15a97a1f615f.svg#Stopwatch W00 Regular")
+      format("svg");
+}
+
+.font-stopwatch {
+  font-family: "Stopwatch W00 Regular";
+}
+
+.d-flex {
+  display: flex;
+}
+.flex-dir-col {
+  flex-direction: column;
+}
+.align-center {
+  align-items: center;
+}
