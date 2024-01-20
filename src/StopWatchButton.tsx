@@ -49,10 +49,10 @@ export default function StopWatchButton(props:Props) {
   }
     return(
         <div className="controls">
-          <button onClick={handlePlayButton}>Start</button>
-          <button onClick={handleStopButton}>Stop</button>
-          <button onClick={handleResetButton}>Reset</button>
-          <button onClick={handleLapButton}>Lap</button>
+          <button title="start" onClick={handlePlayButton}>Start</button>
+          <button title="stop" onClick={handleStopButton}>Stop</button>
+          <button title="reset" onClick={handleResetButton}>Reset</button>
+          <button title="lap" onClick={handleLapButton}>Lap</button>
           <ul>
           {laps.map((lap) => (
           <li key={lap.id}>{`Lap ${lap.id}: ${lap.time}`}</li>
