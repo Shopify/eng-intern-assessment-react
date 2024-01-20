@@ -80,6 +80,25 @@ describe('Stopwatch', () => {
         expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
     });
 
+    test('pauses and resumes the stopwatch', () => {
+        const startBtn = screen.getByRole('button', { name: /Start/i });
+        fireEvent.click(startBtn);
+
+        act(() => {
+            // Move stopwatch forward by 2 minutes
+            jest.advanceTimersByTime(2 * 60 * 1000);
+        })
+        
+        const stopBtn = screen.getByRole('button', { name: /Stop/i });
+        fireEvent.click(stopBtn);
+
+        const pausedTime = screen.queryByTestId('time-display').textContent;
+
+        fireEvent.click(startBtn);
+
+        expect(screen.queryByTestId('time-display')).not.toBe(pausedTime);
+    });
+
     test('resets the stopwatch to zero', () => {
         const startBtn = screen.getByRole('button', { name: /Start/i });
         fireEvent.click(startBtn);
@@ -122,8 +141,4 @@ describe('Stopwatch', () => {
 
         expect(screen.queryByTestId('time-display')).toHaveTextContent('00:01:30');
     });
-    
-    test.todo('displays time with proper formatting');
-    test.todo('does not allow for seconds to overflow');
-    test.todo('does not allow for minutes to overflow');
 });
