@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import StopWatchButton from "./StopWatchButton";
+import SavedLaps from "./SavedLaps";
 
 export default function StopWatch() {
-    return(
-        <div></div>
-    )
+  return (
+    <>
+      <StopWatchButton />
+      <SavedLaps />
+    </>
+  );
 }
