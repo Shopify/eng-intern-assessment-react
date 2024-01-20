@@ -24,16 +24,13 @@ export default function StopWatch() {
     };
   }, [isRunning]);
 
-  // Start the stopwatch
-  const handleStart = () => setIsRunning(true);
-
-  // Pause the stopwatch
-  const handlePause = () => {
-    if (intervalId) {
+  // To toggle the timer on or off
+  const toggleStartStop = () => {
+    setIsRunning(!isRunning);
+    if (isRunning && intervalId) {
       clearInterval(intervalId);
       setIntervalId(null);
     }
-    setIsRunning(false);
   };
 
   // Reset the stopwatch
@@ -74,8 +71,9 @@ export default function StopWatch() {
         <div className="time-box">{formattedMilliseconds}</div>
       </div>
       <div className="stopwatch-container">
-        <button className='button-outline' onClick={handleStart}>Start</button>
-        <button className='button-outline' onClick={handlePause}>Pause</button>
+      <button className='button-outline' onClick={toggleStartStop}>
+          {isRunning ? 'Stop' : 'Start'}
+        </button>
         <button className='button-outline' onClick={reset}>Reset</button>
       </div>
     </div>
