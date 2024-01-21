@@ -62,11 +62,11 @@ export default function App() {
       <Grid item>
         <List sx={{ overflow: "auto", height: 200, width: 200, boxShadow: 2 }}>
           <ListSubheader>Laps</ListSubheader>
-          {lapsList.map((lap) => {
+          {lapsList.map((lap, index) => {
             const format_time_arr: string[] = formatTime(lap);
-            const time_string: string = `${format_time_arr[0]}: ${format_time_arr[1]}: ${format_time_arr[2]}`;
+            const time_string: string = `lap time: ${format_time_arr[0]}: ${format_time_arr[1]}: ${format_time_arr[2]}`;
             return (
-              <ListItem>
+              <ListItem key={time_string}>
                 <ListItemText primary={time_string} />
               </ListItem>
             );
