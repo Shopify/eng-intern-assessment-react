@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
+import '../styles/StopWatch.css';
 
-// Effect hook to set up the interval when the stopwatch is running
 const StopWatch = () => {
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-    const [laps, setLaps] = useState<number[]>([]); // Store individual lap times
-    const [cumulativeLaps, setCumulativeLaps] = useState<number[]>([]); // Store cumulative times
+    const [laps, setLaps] = useState<{ lapTime: number; totalTime: number }[]>([]);
 
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
-
         if (isRunning) {
             interval = setInterval(() => {
                 setTime(prevTime => prevTime + 100);
             }, 100);
         } else if (!isRunning && interval) {
+            // Clear the interval when the stopwatch is stopped
             clearInterval(interval);
         }
-
         return () => interval && clearInterval(interval);
     }, [isRunning]);
 
@@ -30,41 +28,57 @@ const StopWatch = () => {
         setIsRunning(false);
         setTime(0);
         setLaps([]);
-        setCumulativeLaps([]);
     };
 
     const handleLap = () => {
-        setLaps([...laps, time]);
-        // For cumulative time, add the current time to the last cumulative time
-        setCumulativeLaps([...cumulativeLaps, time + (cumulativeLaps[cumulativeLaps.length - 1] || 0)]);
+        if (isRunning) {
+            setLaps([...laps, { lapTime: time - (laps.slice(-1)[0]?.totalTime || 0), totalTime: time }]);
+        }
     };
 
     const formatTime = (time: number) => {
-        // Format time to HH:MM:SS.ms
+        // Converting time into hours, minutes, seconds, and milliseconds
         const milliseconds = time % 1000;
         const seconds = Math.floor(time / 1000) % 60;
         const minutes = Math.floor(time / 60000) % 60;
         const hours = Math.floor(time / 3600000);
-
         const pad = (num: number) => num.toString().padStart(2, '0');
-
         return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${Math.floor(milliseconds / 100)}`;
     };
 
     return (
-        <div>
-            <div>{formatTime(time)}</div>
-            <StopWatchButton label={isRunning ? 'Stop' : 'Start'} onClick={handleStartStop} />
-            <StopWatchButton label='Lap' onClick={handleLap} />
-            <StopWatchButton label='Reset' onClick={handleReset} />
-            <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                {laps.map((lap, index) => (
-                    <div key={index}>
-                        <div>Lap #{laps.length - index}</div>
-                        <div>Time: {formatTime(lap)}</div>
-                        <div>Cumulative Time: {formatTime(cumulativeLaps[index])}</div>
-                    </div>
-                )).reverse()}
+        <div className="stopwatch-container">
+            <div className="clock-and-buttons">
+                <div className="clock-display">{formatTime(time)}</div>
+                <div className="buttons-container">
+                    <StopWatchButton
+                        label={isRunning ? 'Stop' : 'Start'}
+                        onClick={handleStartStop}
+                        buttonStyle={isRunning ? 'stop-button' : 'start-button'}
+                        disabled={false}
+                    />
+                    <StopWatchButton
+                        label='Lap'
+                        onClick={handleLap}
+                        buttonStyle='lap-button'
+                        disabled={!isRunning} // Disable the Lap button when the stopwatch is not running
+                    />
+                    <StopWatchButton
+                        label='Reset'
+                        onClick={handleReset}
+                        buttonStyle='reset-button'
+                        disabled={false}
+                    />
+                </div>
+            </div>
+            <div className="lap-history-container">
+            {[...laps].reverse().map((lap, index) => ( // Reverse the copy of laps array for rendering
+                <div className="lap" key={index}>
+                    <span>Lap #{laps.length - index}</span> 
+                    <span>Time: {formatTime(lap.lapTime)}</span>
+                    <span>Cumulative Time: {formatTime(lap.totalTime)}</span>
+                </div>
+                ))}
             </div>
         </div>
     );

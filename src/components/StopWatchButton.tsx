@@ -1,14 +1,19 @@
 import React from 'react';
+import '../styles/StopWatchButton.css';
 
 type StopWatchButtonProps = {
     label: string;
-    onClick: () => void; 
-    // Function to be called when the button is clicked
+    onClick: () => void;
+    buttonStyle: string;
+    disabled: boolean;
 };
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ label, onClick }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ label, onClick, buttonStyle, disabled }) => {
     return (
-        <button onClick={onClick}>
+        <button
+            className={`stopwatch-button ${buttonStyle}`}
+            onClick={onClick}
+            disabled={disabled}>
             {label}
         </button>
     );
