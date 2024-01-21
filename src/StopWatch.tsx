@@ -49,7 +49,7 @@ export default function StopWatch() {
     }, [time, isRunning]);
 
     return (
-        <div className="flex flex-col justify-center gap-10">
+        <div className="flex flex-col justify-center gap-5">
             <div className="flex flex-col gap-5">
                 <p className="font-mono text-5xl">{formatTime(time)}</p>
                 <div className="flex justify-center gap-4">
