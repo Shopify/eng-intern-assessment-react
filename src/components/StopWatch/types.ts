@@ -1,8 +1,8 @@
 import { StopWatchController, UseStopWatchProps } from ".";
-
-
-
-
+import { AnalogDisplayProps } from ".";
+import { StopWatchButtonGroupProps } from "./StopWatchButton";
+import { LapDisplayProps } from "./LapDisplay";
+import { StopWatchButtonProps } from "./StopWatchButton";
 export interface Resolution {
     divisor: number;
     modulus: number;
@@ -30,6 +30,15 @@ export interface StopWatchUIElement {
     containerStyles?: React.CSSProperties;
 }
 
+export interface AnalogProps {
+    complication?: boolean;
+    secondTicks?: boolean;
+    clockSize?: number;
+    handColor?: string;
+    milliseconds?: number;
+    laps?: number[];
+    centerIconStyles?: React.CSSProperties;
+}
 export interface StopWatchLogicComponent{
     laps?: number[];
     milliseconds?: number;
@@ -41,4 +50,4 @@ export interface StopWatchLogicComponent{
 export type stopWatch = StopWatchController
 
 
-export {StopWatchController, UseStopWatchProps}
+export {StopWatchController, UseStopWatchProps, AnalogDisplayProps, StopWatchButtonGroupProps, LapDisplayProps, StopWatchButtonProps}
