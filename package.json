@@ -14,9 +14,9 @@
   "dependencies": {
     "install": "^0.13.0",
     "npm": "^10.3.0",
+    "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.4.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
