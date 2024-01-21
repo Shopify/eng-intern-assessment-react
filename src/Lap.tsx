@@ -9,14 +9,14 @@ interface lap {
 }
 
 export default function Lap(props: lap) {
-  // display an entry in the lap table
+  // display a row in the lap table containing the lap number, lap time and total time
   return (
-    <div className='lap'>
+    <div className='lap' data-testid='lap-table'>
       <p className='lap-num'>{props.lapNum}</p>
       <p>
         <DisplayTime time={props.lapTime} />
       </p>
-      <p>
+      <p data-testid='total-time'>
         <DisplayTime time={props.totalTime} />
       </p>
     </div>

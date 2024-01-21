@@ -7,7 +7,7 @@ interface button {
 }
 
 export default function StopWatchButton(props: button) {
-  // a button that activates a stopwatch function s
+  // a button that activates a stopwatch function
   return (
     <div>
       <button onClick={props.action} className='button'>
