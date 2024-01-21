@@ -63,6 +63,26 @@
     border-radius: 10%;
 }
 
+.lap-container {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+    max-height: 150px; /* Adjust the maximum height as needed */
+
+
+}
+.lap-card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 2rem 0rem;
+    border-radius: 5%;
+    margin: 1rem 0rem;
+}
+.most-recent-lap {font-weight: bold;}
+
 
 /* small screen styling */
 @media screen and (max-width: 1000px) {

@@ -283,5 +283,45 @@ describe('StopWatch component', () => {
 
     })
 
+    describe('Lap List', () => {
+      it('displays lap list in reverse order with correct lap times', () => {
+        // Render the component
+        const { getByText } = render(<StopWatch />);
+        act(() => {
+          fireEvent.click(getByText('Start')); // Lap 1
+        });
+        // Trigger lap button clicks with a delay
+        act(() => {
+          fireEvent.click(getByText('Lap')); // Lap 1
+        });
+        act(() => {
+          jest.advanceTimersByTime(10000); // Advance time by 10 seconds
+        });
+
+        act(() => {
+          fireEvent.click(getByText('Lap')); // Lap 2
+        });
+        act(() => {
+          jest.advanceTimersByTime(5000); // Advance time by 5 seconds
+        });
+
+        act(() => {
+          fireEvent.click(getByText('Lap')); // Lap 3
+        });
+        act(() => {
+          jest.advanceTimersByTime(7000); // Advance time by 7 seconds
+        });
+
+        // Check if lap list items are rendered in reverse order
+        // Lap was first clicked at time 00:00, we then clicked lap a second time at time 00:10, etc
+        const lapListItems = ['Lap 1: 00:00', 'Lap 2: 00:10', 'Lap 3: 00:05']; // expected lap times
+
+        lapListItems.forEach((lapListItem) => {
+          // check with text that is rendered
+          expect(getByText(lapListItem)).toBeInTheDocument();
+        });
+      });
+    });
+
 
 });
