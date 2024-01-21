@@ -35,6 +35,17 @@ export default function StopWatch() {
     }
   }
 
+  function onClickReset() {
+    setIsCounting(false);
+    setTime(0);
+    setLaps([]);
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }
+
   useEffect(() => {
     let { hours, min, sec } = secsToTime(time);
     setHours(hours);
@@ -46,7 +57,13 @@ export default function StopWatch() {
     <div>
       <div>{formatTime({ hours, min, sec })}</div>
       <div>
-        <StopWatchButton onClick={onClick} isCounting={isCounting}/>
+        <StopWatchButton onClick={onClick} isCounting={isCounting} />
+        <div onClick={onClickReset}>Reset</div>
+      </div>
+      <div>
+        {laps.map((lap, index) => (
+          <div key={index}>{formatTime(lap)}</div>
+        ))}
       </div>
     </div>
   );
