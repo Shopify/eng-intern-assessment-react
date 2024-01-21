@@ -33,6 +33,7 @@ export default function StopWatchButton({
 				color={buttonTheme}
 				size="large"
 				onClick={() => buttonAction()}
+				data-testid={buttonName}
 			>
 				{buttonName.toUpperCase()}
 			</Button>
