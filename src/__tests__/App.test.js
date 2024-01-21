@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { act } from 'react-dom/test-utils';
 
@@ -130,8 +130,6 @@ describe('Stopwatch', () => {
         const lapBtn = screen.getByRole('button', { name: /Lap/i });
         fireEvent.click(lapBtn);
 
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:30');
-
         act(() => {
             // Move stopwatch forward by another minute
             jest.advanceTimersByTime(60 * 1000);
@@ -139,6 +137,10 @@ describe('Stopwatch', () => {
 
         fireEvent.click(lapBtn);
 
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:01:30');
+        const lapList = screen.queryByTestId('lap-list');
+        const { getAllByRole } = within(lapList);
+        const laps = getAllByRole("listitem");
+        expect(laps[0]).toHaveTextContent('00:00:30');
+        expect(laps[1]).toHaveTextContent('00:01:30');
     });
 });
