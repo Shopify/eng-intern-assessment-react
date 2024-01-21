@@ -58,8 +58,10 @@ export default function StopWatchButton({
           </div>
         )}
         {/*conditionally render pause/play buttons based on if timer is running */}
-        <div className={!isTimerOnRef.current ? "start" : "pause"}>
+        <div className={!isTimerOnRef.current ? "start" : "pause"}  >
           <button
+           data-testid="toggle-timer-button" // Unique identifier for querying the button in tests. 
+                                            
             onClick={() => {
               toggletimer();
             }}

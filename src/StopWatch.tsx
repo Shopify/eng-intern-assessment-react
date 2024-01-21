@@ -82,7 +82,7 @@ export default function StopWatch() {
           />
         </svg>
         <Box position={"absolute"}>
-          <div className="digitalDisplay">
+          <div className="digitalDisplay" data-testid="time-display">
           <span>
             {("0" + (Math.floor(time / 60000) % 60)).toString().slice(-2) + ":"}
           </span>
@@ -116,18 +116,18 @@ export default function StopWatch() {
         overflowY={"scroll"}
       >
         <UnorderedList listStyleType={"none"} margin={"0"}>
-          {laps.map((lap) => {
+          {laps.map((lap, index) => {
             return (
-              <ListItem>
-                <text>
+              <ListItem key={index}>
+                <span>
                   {("0" + (Math.floor(lap / 60000) % 60)).toString().slice(-2) +
                     ":"}
-                </text>
-                <text>
+                </span>
+                <span>
                   {("0" + (Math.floor(lap / 1000) % 60)).toString().slice(-2) +
                     ":"}
-                </text>
-                <text>{("0" + ((lap / 10) % 100)).toString().slice(-2)}</text>
+                </span>
+                <span>{("0" + ((lap / 10) % 100)).toString().slice(-2)}</span>
               </ListItem>
             );
           })}
