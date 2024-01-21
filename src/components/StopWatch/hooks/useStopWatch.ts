@@ -47,11 +47,12 @@ export const useStopWatch = (
     }, [curTime, setMilliseconds]);
 
     const start = useCallback(() => {
-
-        setRunning(true)
-        curTime = performance.now();
-        pref.current = requestAnimationFrame(calculateTime);
-    },[calculateTime, setRunning, curTime]);
+        if(!running){
+            setRunning(true)
+            curTime = performance.now();
+            pref.current = requestAnimationFrame(calculateTime);
+        }
+    },[calculateTime, setRunning, curTime,running]);
 
     const stop = useCallback (() => {
         setRunning(false)

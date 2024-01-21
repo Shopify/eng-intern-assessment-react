@@ -19,10 +19,6 @@ export default function StopWatch({
     return(
         <StopWatchContext.Provider value={{darkTheme:darkTheme, sw:sw}}>
         <div style={containerStyles}>
-            <button onClick={sw.actions.start}>Start</button>
-            <button onClick={sw.actions.stop}>Stop</button>
-            <button onClick={sw.actions.reset}>Reset</button>
-            {sw.milliseconds}
             {children}
         </div>
         </StopWatchContext.Provider>
