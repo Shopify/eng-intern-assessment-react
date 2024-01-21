@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // lap type format
 type Lap = {
@@ -47,7 +47,7 @@ export default function StopWatch({time, laps} : {time: number, laps: Lap[]}) {
             justifyContent: 'center',
             width: '100%',
         }}>
-            <h1 style={{fontSize: '40px', margin: '0px'}}>{formatTime(time)}</h1>
+            <h1 data-testid={'timer'} style={{fontSize: '40px', margin: '0px'}}>{formatTime(time)}</h1>
             <div style={{
                 width: '100%'
             }}>

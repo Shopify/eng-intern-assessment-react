@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
+import React, { useState, useEffect } from 'react';
+import StopWatch from './StopWatch';
+import StopWatchButton from './StopWatchButton';
 
 // NOTE: Styles should be in their own CSS file, however the problem stated that all necessary files are included
 
@@ -86,7 +86,7 @@ export default function App() {
                         justifyContent: 'space-between',
                         marginTop: '12px'
                     }}>
-                        <StopWatchButton text={'START'} color={'green'} handleClick={startStopTimer}/>
+                        <StopWatchButton data-testid="startbtn" text={time > 0 ? 'RESUME' : 'START'} color={'green'} handleClick={startStopTimer}/>
                         <StopWatchButton text={'RESET'} color={'dimgrey'} handleClick={resetTimer}/>
                     </div>
                 :

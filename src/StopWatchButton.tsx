@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 /*
 A separate component that represents the start, stop, and reset buttons
@@ -11,7 +11,7 @@ handleClick: button function
 export default function StopWatchButton({text, color, handleClick} : {text: string, color: string, handleClick: Function}) {
     
     return(
-        <div style={{
+        <button style={{
             width: '160px',
             height: '60px',
             background: color,
@@ -24,6 +24,6 @@ export default function StopWatchButton({text, color, handleClick} : {text: stri
             onClick={() => handleClick()}
         >
             <h4>{text}</h4>
-        </div>
+        </button>
     )
 }
