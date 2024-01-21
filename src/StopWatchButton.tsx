@@ -46,19 +46,21 @@ export default function StopWatchButton(props:Props) {
 
   const handleLapButton = () => {
     const lapTime = calculateTime(timeInSeconds);
-    setLaps((prevLap) => [...prevLap, {id: laps.length + 1, time: lapTime }])
+    setLaps((prevLap) => [...prevLap, {id: laps.length + 1, time: `${lapTime[0]}:${lapTime[1]}:${lapTime[2]}` }])
   }
     return(
         <div className="controls">
-          <button title="start" onClick={handlePlayButton}>Start</button>
-          <button title="stop" onClick={handleStopButton}>Stop</button>
-          <button title="reset" onClick={handleResetButton}>Reset</button>
-          <button title="lap" onClick={handleLapButton}>Lap</button>
-          <ul>
-          {laps.map((lap) => (
-          <li key={lap.id}>{`Lap ${lap.id}: ${lap.time}`}</li>
-            ))}
-          </ul>
+          <button title="start" className="start" onClick={handlePlayButton}>Start</button>
+          <button title="stop" className="stop" onClick={handleStopButton}>Stop</button>
+          <button title="reset" className="reset" onClick={handleResetButton}>Reset</button>
+          <button title="lap" className="lapButton" onClick={handleLapButton}>Lap</button>
+          <section className="lap-container">
+            <ul>
+              {laps.map((lap) => (
+              <li className="lap" key={lap.id}>{`Lap ${lap.id}: ${lap.time}`}</li>
+              ))}
+            </ul>
+          </section>
         </div>
     )
 }
