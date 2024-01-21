@@ -74,7 +74,7 @@ export default function StopWatch() {
             </div>
             <div className="flex flex-col gap-5">
                 <h3 className="text-3xl">Lap List</h3>
-                <ol data-testid="lap-list" className="list-decimal font-mono">
+                <ol data-testid="lap-list" className="list-decimal list-inside font-mono">
                     {lapTimes.map((lapTime, index) => (
                         <li key={index} data-testid={`lap-${index + 1}`}>
                             {formatTime(lapTime)}
