@@ -12,44 +12,72 @@ export default function StopWatch() {
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
     const [laps, setLaps] = useState<Lap[]>([]); // Array of laps
+    const [prevTime, setPrevTime] = useState<number>(0);
 
     useEffect(() => {
+        // intervalRef.current = setInterval(() => {
+        //     setElapsed((prevElapsed) => prevElapsed + 10);
+        //     setLapElapsed((prevLapElapsed) => prevLapElapsed + 10);
+        //   }, 10);
+        //   setIsRunning(true);
+
         if (isRunning) {
             const id = setInterval(() => {
-                setElapsedTime((prevElapsedTime) => prevElapsedTime + 20);
-            }, 20); // Interval set to 20 milliseconds
+                const newElapsedTime = elapsedTime + 20;
+                setElapsedTime(newElapsedTime);
+
+                // Update the current active lap time
+                setLaps((laps) => {
+                    const newLaps = [...laps];
+                    if (newLaps.length > 0) {
+                        newLaps[newLaps.length - 1].time = formatTime(
+                            newElapsedTime - prevTime
+                        );
+                    }
+                    return newLaps;
+                });
+            }, 20);
             setIntervalId(id);
         } else if (intervalId) {
             clearInterval(intervalId);
         }
 
-        // Clean up the interval on unmount
         return () => {
             if (intervalId) {
                 clearInterval(intervalId);
             }
         };
-    }, [isRunning]);
+    }, [isRunning, elapsedTime, laps]);
 
     // To toggle the timer on or off
     const toggleStartStop = () => {
         setIsRunning(!isRunning);
-        if (isRunning && intervalId) {
-            clearInterval(intervalId);
-            setIntervalId(null);
+        if (!isRunning) {
+            // Starting the stopwatch
+            if (laps.length === 0) {
+                // If no laps have been recorded, start the first lap
+                setLaps([{ label: "Lap 1", time: formatTime(0) }]);
+                setPrevTime(0);
+            }
+        } else {
+            // Stopping the stopwatch
+            if (intervalId) {
+                clearInterval(intervalId);
+                setIntervalId(null);
+            }
         }
     };
 
-    //Depending on the state of the timer, either record a new lap or reset the timer
-    const toggleResetLap = () => {
+    const toggleResetAndLap = () => {
         if (isRunning) {
-            //Record a new lap
-            const newLap: Lap = {
-                label: `Lap ${laps.length + 1}`,
-                time: formatTime(elapsedTime),
-            };
-            setLaps([newLap, ...laps]);
+            // Finalize the current lap and start a new one
+            setLaps((prevLaps) => [
+                ...prevLaps,
+                { label: `Lap ${prevLaps.length + 1}`, time: formatTime(0) },
+            ]);
+            setPrevTime(elapsedTime);
         } else {
+            // Reset logic
             if (intervalId) {
                 clearInterval(intervalId);
                 setIntervalId(null);
@@ -57,6 +85,7 @@ export default function StopWatch() {
             setLaps([]);
             setIsRunning(false);
             setElapsedTime(0);
+            setPrevTime(0);
         }
     };
 
@@ -89,7 +118,7 @@ export default function StopWatch() {
                 <div className="stopwatch-container">
                     <StopWatchButton
                         label={isRunning ? "Lap" : "Reset"}
-                        onClick={toggleResetLap}
+                        onClick={toggleResetAndLap}
                         isRunning={isRunning}
                         className="button-outline"
                     />
@@ -104,11 +133,15 @@ export default function StopWatch() {
                 <hr className="custom-hr" />
                 <div className="scrollable">
                     {/* Laps Display */}
-                    {laps.map((lap, index) => (
-                        <div key={index} className="lap py-2">
-                            <span>{lap.label}</span>: <span>{lap.time}</span>
-                        </div>
-                    ))}
+                    {laps
+                        .slice()
+                        .reverse()
+                        .map((lap, index) => (
+                            <div key={index} className="lap py-2">
+                                <span>{lap.label}</span>:{" "}
+                                <span>{lap.time}</span>
+                            </div>
+                        ))}
                 </div>
             </div>
         </section>
