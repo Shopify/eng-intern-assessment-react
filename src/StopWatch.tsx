@@ -1,6 +1,29 @@
 import React from 'react';
 
-// lap type format
+// style sheet
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column' as 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    globalTimer: {
+        fontSize: '40px',
+        margin: '0px'
+    },
+    lapEntry: {
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'space-between'
+    },
+    lapFont: {
+        fontSize: '20px'
+    }
+}
+
+// lap type definition
 type Lap = {
     number: number;
     duration: number;
@@ -40,27 +63,15 @@ export default function StopWatch({time, laps} : {time: number, laps: Lap[]}) {
     }
 
     return(
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-        }}>
-            <h1 data-testid={'timer'} style={{fontSize: '40px', margin: '0px'}}>{formatTime(time)}</h1>
-            <div style={{
-                width: '100%'
-            }}>
+        <div style={styles.container}>
+            <h1 data-testid={'timer'} style={styles.globalTimer}>{formatTime(time)}</h1>
+            <div style={{width: '100%'}}>
                 {(laps[0].duration > 0) && 
                 laps.map((lap) => {
                     return(
-                        <div key={lap.number} style={{
-                            display: 'flex',
-                            width: '100%',
-                            justifyContent: 'space-between'
-                        }}>
-                            <h4 style={{fontSize: '20px'}}>Lap {lap.number}</h4>
-                            <h4 style={{fontSize: '20px'}}>{formatTime(lap.duration)}</h4>
+                        <div key={lap.number} style={styles.lapEntry}>
+                            <h4 style={styles.lapFont}>Lap {lap.number}</h4>
+                            <h4 style={styles.lapFont}>{formatTime(lap.duration)}</h4>
                         </div>
                     )
                 })}

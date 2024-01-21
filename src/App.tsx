@@ -2,7 +2,30 @@ import React, { useState, useEffect } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 
-// NOTE: Styles should be in their own CSS file, however the problem stated that all necessary files are included
+// style sheet
+const styles = {
+    body: {
+        marginTop: '40px',
+        justifyContent: 'center',
+        display: 'flex'
+    },
+    container: {
+            display: 'flex',
+            flexDirection: 'column' as 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '360px',
+            padding: '20px',
+            background: 'gainsboro',
+            borderRadius: '10px'     
+    },
+    buttonBox: {    
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'space-between',
+            marginTop: '12px'
+    }
+}
 
 /*
 The main component that renders the stopwatch and handles its functionality
@@ -63,39 +86,16 @@ export default function App() {
     }
     
     return(
-        <div style={{
-            marginTop: '40px',
-            justifyContent: 'center',
-            display: 'flex',
-        }}>
-            <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '360px',
-            padding: '20px',
-            background: 'gainsboro',
-            borderRadius: '10px'
-            }}>
+        <div style={styles.body}>
+            <div style={styles.container}>
                 <StopWatch time={time} laps={laps}/>
                 {!running ?
-                    <div style={{
-                        display: 'flex',
-                        width: '100%',
-                        justifyContent: 'space-between',
-                        marginTop: '12px'
-                    }}>
+                    <div style={styles.buttonBox}>
                         <StopWatchButton data-testid="startbtn" text={time > 0 ? 'RESUME' : 'START'} color={'green'} handleClick={startStopTimer}/>
                         <StopWatchButton text={'RESET'} color={'dimgrey'} handleClick={resetTimer}/>
                     </div>
                 :
-                <div style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'space-between',
-                    marginTop: '12px'
-                }}>
+                    <div style={styles.buttonBox}>
                         <StopWatchButton text={'STOP'} color={'red'} handleClick={startStopTimer}/>
                         <StopWatchButton text={'LAP'} color={'dimgrey'} handleClick={lapTimer}/>
                     </div>
