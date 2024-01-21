@@ -5,6 +5,23 @@ import {StopWatchUIElement, Resolution, stopWatch} from "@types";
 import { defaultListItemStyle,defaultLapListStyle } from './utils';
 import {DigitalDisplay, DigitalDisplayProps} from '../DigitalDisplay/';
 import { StopWatchContext } from '../'
+
+
+/**
+ * LapDisplayProps interface for the LapDisplay component.
+ *
+ * @interface
+ * @extends {StopWatchUIElement} - Base UI element for the component.
+ *
+ * @property {React.CSSProperties} digitStyles - An optional property that allows you to pass in custom styles for the digits.
+ * @property {React.CSSProperties} orderedListStyles - An optional property that allows you to pass in custom styles for the ordered list.
+ * @property {React.CSSProperties} orderedListItemStyles - An optional property that allows you to pass in custom styles for the items in the ordered list.
+ * @property {Partial<DigitalDisplayProps>} DigitalDisplayProps - An optional property that allows you to pass in props for the DigitalDisplay component.
+ * @property {number[]} laps - An optional property that represents the lap times. If not provided, the lap times from the `StopWatchContext` will be used.
+ * @property {Resolution[]} resolutions - An optional property that represents the resolutions of the lap times. If not provided, the resolutions from the `StopWatchContext` will be used.
+ * @property {boolean} darkTheme - An optional property that determines whether the lap display should use a dark theme. If not provided, the theme from the `StopWatchContext` will be used.
+ * By default number, Resolution, and darkTheme are pulled from the StopWatchContext
+ */
 export interface LapDisplayProps extends StopWatchUIElement{
     digitStyles?: React.CSSProperties;
     orderedListStyles?: React.CSSProperties;

@@ -3,6 +3,20 @@ import {StopWatchUIElement, StopWatchLogicComponent} from "@types";
 import StopWatchButton from './StopWatchButton';
 import { baseContainer } from './utils';
 import { StopWatchContext } from '../'
+
+
+/**
+ * StopWatchButtonGroupProps interface for the StopWatchButtonGroup component.
+ *
+ * @interface
+ * @extends {StopWatchUIElement} - Base UI element for the component.
+ * @extends {StopWatchLogicComponent} - This component extends from StopWatchLogicComponent which includes the logic necessary for the stopwatch, by default this component uses cntext to access the state of the stopwatch.
+ *
+ * @property {React.CSSProperties} startButtonStyles - An optional property that allows you to pass in custom styles for the start button.
+ * @property {React.CSSProperties} stopButtonStyles - An optional property that allows you to pass in custom styles for the stop button.
+ * @property {React.CSSProperties} resetButtonStyles - An optional property that allows you to pass in custom styles for the reset button.
+ * @property {React.CSSProperties} lapButtonStyles - An optional property that allows you to pass in custom styles for the lap button.
+ */
 export interface StopWatchButtonGroupProps extends StopWatchUIElement, StopWatchLogicComponent {
     startButtonStyles?: React.CSSProperties;
     stopButtonStyles?: React.CSSProperties;
