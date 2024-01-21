@@ -46,4 +46,5 @@ resolve: {
 devServer: {
   historyApiFallback: true,
 },
+
 };
