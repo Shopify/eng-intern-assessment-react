@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import StopWatchButton from "./StopWatchButton";
 import { formatTime, secsToTime } from "./utils";
 
+import "../styles/stopwatch.css";
+
 export type Lap = {
   hours: number;
   min: number;
@@ -54,15 +56,15 @@ export default function StopWatch() {
   }, [time]);
 
   return (
-    <div>
-      <div>{formatTime({ hours, min, sec })}</div>
-      <div>
+    <div className="stopwatch-container">
+      <div className="stopwatch-time">{formatTime({ hours, min, sec })}</div>
+      <div className="stopwatch-buttons">
         <StopWatchButton onClick={onClick} isCounting={isCounting} />
-        <div onClick={onClickReset}>Reset</div>
+        <div className="stopwatch-button" onClick={onClickReset}>Reset</div>
       </div>
       <div>
         {laps.map((lap, index) => (
-          <div key={index}>Lap {index+1}: {formatTime(lap)}</div>
+          <div className="lap-item" key={index}>Lap {index+1}: {formatTime(lap)}</div>
         ))}
       </div>
     </div>

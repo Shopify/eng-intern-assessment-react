@@ -6,5 +6,5 @@ type Props = {
 };
 
 export default function StopWatchButton({ onClick, isCounting }: Props) {
-  return <div onClick={onClick}>{isCounting ? "Stop" : "Start"}</div>;
+  return <div  className="stopwatch-button" onClick={onClick}>{isCounting ? "Stop" : "Start"}</div>;
 }
