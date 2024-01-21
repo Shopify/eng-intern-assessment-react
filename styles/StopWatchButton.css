@@ -1,0 +1,70 @@
+
+.start{
+    background-color: #5e8d3e;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    transition: all 0.3s ease /*transition animation when change of state in DOM*/
+    
+}
+
+.pause{
+    background-color: #5e8d3e;
+    height: 4rem;
+    color: white;
+    width: 5.5rem;
+    border-radius: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    transition: all 0.3s ease
+
+}
+
+.reset{
+    background-color: #5e8d3e;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    transition: all 0.3s ease;
+    color: white;
+
+
+
+}
+
+.lap{
+    background-color: #5e8d3e;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    color: white;
+
+}
+
+.lapinvisible{
+    visibility: hidden;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+}
