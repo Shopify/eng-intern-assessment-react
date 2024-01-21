@@ -14,10 +14,12 @@ interface StopwatchButtonProps {
  * This component enhances reusability and reduces redundancy in rendering
  * similar buttons for different stopwatch actions.
  */
-const StopwatchButton: React.FC<StopwatchButtonProps> = ({ action, disabled = false, label }) => {
+const StopwatchButton: React.FC<StopwatchButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>> = 
+    ({ action, disabled = false, label, ...props }) => {
     return (
-        <button onClick={action} disabled={disabled}>{label}</button>
+        <button onClick={action} disabled={disabled} {...props}>{label}</button>
     );
 };
+
 
 export default StopwatchButton;

@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
+import StopwatchButton from './StopWatchButton';
 import { formatBigTime } from './utils/timeUtils'; // Utility for time formatting
 import { exportLapsToCSV } from './utils/csvExport';
 import useStopwatch from './hooks/useStopwatch'; // Custom hook for stopwatch logic
 import useMiniStopwatch from './hooks/useMiniStopWatch';
 import backgroundImage from './shopify-logo-png-transparent.png'; // Background image
+import useSvgAnimation from './hooks/useSVGAnimation';
 
 
 // Stopwatch component definition
@@ -18,35 +20,8 @@ const Stopwatch = () => {
     const textRef = useRef(null);
     const circleRef = useRef(null);
 
-
-    useEffect(() => {
-        if (pathRef.current && textRef.current) {
-            const pathLength = pathRef.current.getTotalLength();
-            pathRef.current.style.strokeDasharray = `${pathLength}`;
-
-            const updateTextPosition = () => {
-
-                if (miniTime >= 6000) {
-                    resetMini()
-                    startMini();
-                }
-
-                const elapsedTimeInCurrentMinute = miniTime % 36000; // 60000 milliseconds in a minute
-                const proportion = elapsedTimeInCurrentMinute / 6000;
-                const pathPoint = pathRef.current.getPointAtLength(pathLength * proportion);
-
-                textRef.current.setAttribute("x", pathPoint.x);
-                textRef.current.setAttribute("y", pathPoint.y);
-                textRef.current.textContent = Math.floor(elapsedTimeInCurrentMinute / 100);
-
-                circleRef.current.setAttribute("cx", pathPoint.x);
-                circleRef.current.setAttribute("cy", pathPoint.y);
-            };
-
-            // Update text position based on elapsed time
-            updateTextPosition();
-        }
-    }, [time, isRunning]);
+    // Animate Shopify-clock
+    useSvgAnimation(miniTime, pathRef, textRef, circleRef, resetMini, startMini);
     
     // Conditional class name based on laps
     const containerClass = laps.length > 0 ? "stopwatch-container stopwatch-container--laps-added" : "stopwatch-container";
@@ -57,7 +32,7 @@ const Stopwatch = () => {
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        opacity: 0.2, // Semi-transparent background
+        opacity: 0.05, // Semi-transparent background
         position: 'absolute',
         top: 0,
         left: 0,
@@ -90,15 +65,35 @@ const Stopwatch = () => {
                     )}
                 </div>
 
-                
-
                 {/* Control Buttons */}
                 <div className="button-container">
-                    <button className="start-button" onClick={() => { start(); startMini(); }} disabled={isRunning}>Start</button>
-                    <button className="stop-button" onClick={() => { stop(); stopMini(); }} disabled={!isRunning}>Stop</button>
-                    <button className="reset-button" onClick={() => { reset(); resetMini(); }}>Reset</button>
+                    <StopwatchButton 
+                        className="start-button" 
+                        action={() => { start(); startMini(); }} 
+                        disabled={isRunning} 
+                        label="Start" 
+                    />
 
-                    <button className="lap-button" onClick={lap} disabled={!isRunning}>Lap</button>
+                    <StopwatchButton 
+                        className="stop-button" 
+                        action={() => { stop(); stopMini(); }} 
+                        disabled={!isRunning} 
+                        label="Stop" 
+                    />
+
+                    <StopwatchButton 
+                        className="lap-button" 
+                        action={lap} 
+                        disabled={!isRunning} 
+                        label="Lap" 
+                    />
+
+                    <StopwatchButton 
+                        className="reset-button" 
+                        action={() => { reset(); resetMini(); }} 
+                        label="Reset" 
+                    />
+
                 </div>
             </div>
                 <div className="svg-overlay-container">
