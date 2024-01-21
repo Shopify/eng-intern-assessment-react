@@ -38,7 +38,7 @@ export const useStopWatch = (
 
         const delta = time - curTime;
         if(delta > 0) {
-            console.log("DELTA: ", delta)
+            // console.log("DELTA: ", delta)
             curTime = time;
             setMilliseconds(prev => prev + delta);
         }

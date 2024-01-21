@@ -30,6 +30,14 @@ export interface StopWatchUIElement {
     containerStyles?: React.CSSProperties;
 }
 
+export interface StopWatchLogicComponent{
+    laps?: number[];
+    milliseconds?: number;
+    resolutions?: Resolution[];
+    running?: boolean;
+    actions?: SwActions;
+
+}
 export type stopWatch = StopWatchController
 
 
