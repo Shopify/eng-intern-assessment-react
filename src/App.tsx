@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import StopWatch from "./StopWatch";
+import Footer from "./Footer";
 
 export default function App() {
-    return(
-        <div></div>
-    )
+	return (
+		<>
+			<StopWatch />
+			<Footer />
+		</>
+	);
 }
