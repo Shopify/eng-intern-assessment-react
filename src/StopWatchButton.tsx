@@ -7,6 +7,8 @@ interface StopWatchButtonProps {
 
 export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButtonProps) {
   const [isRunning, setIsRunning] = useState(false);
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
+  const [lapStartTime, setLapStartTime] = useState<number | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -16,7 +18,7 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
       interval = setInterval(() => {
         const newElapsed = Date.now() - startTime;
         setElapsed(newElapsed);
-      }, 10); // Updating every 10 milliseconds for precision
+      }, 10);
     } else {
       clearInterval(interval);
     }
@@ -37,7 +39,30 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
   };
 
   const handleStartStopClick = () => {
-    setIsRunning(!isRunning);
+    if (isRunning) {
+      setIsRunning(false);
+      setLapStartTime(null);
+    } else {
+      setIsRunning(true);
+      if (lapStartTime === null) {
+        setLapStartTime(Date.now() - elapsed);
+      }
+    }
+  };
+
+  const handleLapClick = () => {
+    if (lapStartTime !== null) {
+      const lapTime = Date.now() - lapStartTime;
+      setLapTimes([...lapTimes, lapTime]);
+      setLapStartTime(Date.now());
+    }
+  };
+
+  const handleResetClick = () => {
+    setIsRunning(false);
+    setElapsed(0);
+    setLapTimes([]);
+    setLapStartTime(null);
   };
 
   return (
@@ -46,8 +71,17 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
       <button onClick={handleStartStopClick}>
         {isRunning ? 'Stop' : 'Start'}
       </button>
-      <button>Lap</button>
-      <button>Reset</button>
+      <button onClick={handleLapClick}>Lap</button>
+      <button onClick={handleResetClick}>Reset</button>
+
+      <div>
+        <h2>Lap Times</h2>
+        <ul>
+          {lapTimes.map((lap, index) => (
+            <li key={index}>{formatTime(lap)}</li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
