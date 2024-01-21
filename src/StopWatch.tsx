@@ -62,7 +62,7 @@ export default function StopWatch() {
       </div>
       <div>
         {laps.map((lap, index) => (
-          <div key={index}>{formatTime(lap)}</div>
+          <div key={index}>Lap {index+1}: {formatTime(lap)}</div>
         ))}
       </div>
     </div>
