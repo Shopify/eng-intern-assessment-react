@@ -1,5 +1,5 @@
 import React from 'react'
-import StopWatch from './StopWatch'
+import { StopWatch } from './StopWatch'
 import './App.css'
 
 export default function App() {

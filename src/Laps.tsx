@@ -33,7 +33,7 @@ export default function Laps({ laps }: LapProps) {
     return (
         <div className="laps-container">
             <div className="laps-title">
-                <span className="lap-column">Lap</span>
+                <span className="lap-column">Lap #</span>
                 <span className="lap-column">Lap Time</span>
                 <span className="lap-column">Total Time</span>
             </div>

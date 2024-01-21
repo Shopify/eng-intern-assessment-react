@@ -1,24 +1,25 @@
 .stopwatch-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-
 .timer {
-    display: flex;
-    justify-content: center;
-    letter-spacing: 5px;
-    font-size: 6rem;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 5px;
+  font-size: 6rem;
 }
 
 .timer p {
-    margin: 3rem 0;
+  margin: 3rem 0;
 }
 
 .timer-colon {
-    position: relative;
-    bottom: 5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 5px;
 }

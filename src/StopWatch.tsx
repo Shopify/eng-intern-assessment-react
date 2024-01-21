@@ -17,7 +17,7 @@ export const calculateTime = (time: number) => {
     return [minutes.toString().padStart(2, "0"), seconds.toString().padStart(2, "0"), milliseconds.toString().padStart(2, "0")]
 }
 
-export default function StopWatch() {
+export const StopWatch = () => {
     const [time, setTime] = useState<number>(0);
     const [timerData, setTimerData] = useState<string[]>([]);
     const [laps, setLaps] = useState<string[]>([]);
@@ -46,7 +46,7 @@ export default function StopWatch() {
     }
 
     const handleLap = () => {
-        if (time === 0) return
+        if (!isRunning) return
         const lap = timerData[0] + ':' + timerData[1] + ':' + timerData[2]
         setLaps((prev) => [...prev, lap])
     }
@@ -55,9 +55,9 @@ export default function StopWatch() {
         <div className='stopwatch-container'>
             <div className='timer'>
                 <p className='timer-text'>{timerData[0]}</p>
-                <p className='timer-colon'>:</p>
+                <span role="colon" className='timer-colon'>:</span>
                 <p className='timer-text'>{timerData[1]}</p>
-                <p className='timer-colon'>:</p>
+                <span role="colon" className='timer-colon'>:</span>
                 <p className='timer-text'>{timerData[2]}</p>
             </div>
             <div className='buttons-container'>
