@@ -16,7 +16,12 @@ export default function StopWatchButton({
 }: Props) {
     // I added an aria-disabled attribute to the lap button to make it more accessible. This is a common practice in React.
     return (
-        <button onClick={onClick} disabled={disabled} aria-disabled={disabled}>
+        <button
+            className="rounded-lg px-4 py-2 bg-gray-400 hover:bg-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-300"
+            onClick={onClick}
+            disabled={disabled}
+            aria-disabled={disabled}
+        >
             {children}
         </button>
     );

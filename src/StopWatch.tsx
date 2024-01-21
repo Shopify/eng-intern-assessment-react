@@ -19,10 +19,10 @@ const formatTime = (time: number) => {
         milliseconds < 10
             ? `00${milliseconds}`
             : milliseconds < 100
-            ? `0${milliseconds}`
-            : milliseconds < 1000
-            ? `${milliseconds}`
-            : milliseconds
+              ? `0${milliseconds}`
+              : milliseconds < 1000
+                ? `${milliseconds}`
+                : milliseconds
     }`;
 };
 
@@ -49,35 +49,39 @@ export default function StopWatch() {
     }, [time, isRunning]);
 
     return (
-        <div>
-            <p>{formatTime(time)}</p>
-            <div>
-                <StopWatchButton onClick={() => setIsRunning(!isRunning)}>
-                    {isRunning ? "Stop" : "Start"}
-                </StopWatchButton>
-                <StopWatchButton
-                    onClick={() => setLapTimes([...lapTimes, time])}
-                    disabled={!isRunning}
-                >
-                    Lap
-                </StopWatchButton>
-                <StopWatchButton
-                    onClick={() => {
-                        setTime(0);
-                        setLapTimes([]);
-                    }}
-                >
-                    Reset
-                </StopWatchButton>
+        <div className="flex flex-col justify-center gap-10">
+            <div className="flex flex-col gap-5">
+                <p className="font-mono text-5xl">{formatTime(time)}</p>
+                <div className="flex justify-center gap-4">
+                    <StopWatchButton onClick={() => setIsRunning(!isRunning)}>
+                        {isRunning ? "Stop" : "Start"}
+                    </StopWatchButton>
+                    <StopWatchButton
+                        onClick={() => setLapTimes([...lapTimes, time])}
+                        disabled={!isRunning}
+                    >
+                        Lap
+                    </StopWatchButton>
+                    <StopWatchButton
+                        onClick={() => {
+                            setTime(0);
+                            setLapTimes([]);
+                        }}
+                    >
+                        Reset
+                    </StopWatchButton>
+                </div>
             </div>
-            <h3>Lap List</h3>
-            <ol data-testid="lap-list">
-                {lapTimes.map((lapTime, index) => (
-                    <li key={index} data-testid={`lap-${index + 1}`}>
-                        {formatTime(lapTime)}
-                    </li>
-                ))}
-            </ol>
+            <div className="flex flex-col gap-5">
+                <h3 className="text-3xl">Lap List</h3>
+                <ol data-testid="lap-list" className="list-decimal font-mono">
+                    {lapTimes.map((lapTime, index) => (
+                        <li key={index} data-testid={`lap-${index + 1}`}>
+                            {formatTime(lapTime)}
+                        </li>
+                    ))}
+                </ol>
+            </div>
         </div>
     );
 }
