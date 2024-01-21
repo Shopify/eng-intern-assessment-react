@@ -16,7 +16,6 @@ export interface Lap {
 export interface Stopwatch {
   milliseconds: number;
   laps: Lap[];
-  isPaused: boolean;
   resume: () => void;
   pause: () => void;
   reset: () => void;
@@ -47,7 +46,6 @@ export function useStopwatch(): Stopwatch {
   return {
     milliseconds,
     laps,
-    isPaused,
     resume: () => {
       if (!isPaused) return;
       checkpoint.current = getCheckpoint();
