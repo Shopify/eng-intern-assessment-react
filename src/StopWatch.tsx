@@ -5,6 +5,7 @@ import SavedLaps from "./SavedLaps";
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
   const [timeOn, setTimeOn] = useState<boolean>(false);
+  const [lappedTimes, setLappedTimes] = useState<number[]>([]);
 
   useEffect(() => {
     // setInterval returns Timeout object as an ID for the interval
@@ -25,12 +26,16 @@ export default function StopWatch() {
 
   const handleTimeReset = () => {
     setTime(0);
+    setLappedTimes([]);
   };
   const handleTimeStart = () => {
     setTimeOn(true);
   };
   const handleTimeStop = () => {
     setTimeOn(false);
+  };
+  const handleLapClick = () => {
+    setLappedTimes((prevTimes) => [time, ...prevTimes]);
   };
 
   return (
@@ -60,9 +65,13 @@ export default function StopWatch() {
           onBtnClick={handleTimeStop}
           isDisabled={!timeOn}
         />
-        <button className="btn">Lap</button>
+        <StopWatchButton
+          type="Lap"
+          onBtnClick={handleLapClick}
+          isDisabled={!timeOn}
+        />
       </div>
-      <SavedLaps />
+      <SavedLaps lappedTotalTimes={lappedTimes} />
     </>
   );
 }
