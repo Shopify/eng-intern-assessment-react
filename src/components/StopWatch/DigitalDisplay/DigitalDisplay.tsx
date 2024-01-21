@@ -1,6 +1,7 @@
 import React from 'react'
 import {StopWatchUIElement, Resolution, stopWatch} from "@types";
-import { StopWatchContext } from "../"
+import { defaultContainerStyles } from './utils';
+import { StopWatchContext } from '../'
 export interface DigitalDisplayProps extends StopWatchUIElement{
     isLap?: boolean;
     digitStyles?: React.CSSProperties;
@@ -28,11 +29,11 @@ export function DigitalDisplay({
     const finalDigitStyles = digitStyles ? {...defaultTextStyles, ...digitStyles} : defaultTextStyles;
     
 
-
+    if(!isLap){    
         return(
             <div
                 data-testid="digital-display-container"
-                style={{...containerStyles,}}
+                style={{...defaultContainerStyles,...containerStyles,}}
             >
                 {resolutions.map((resolution, index) => {
                     return (
@@ -55,4 +56,28 @@ export function DigitalDisplay({
         )
     }
 
-
+    return (
+        <div
+            data-testid="lap-display-container"
+            style={{...defaultContainerStyles,...containerStyles}}
+        >
+        {resolutions.map((resolution, index:number) => {
+            return (
+                <h4 data-test data-testid={`digital-display-item-${index}`} style={finalDigitStyles} key={index}>
+                    {index !== 0
+                        ? resolution.modulus === 100
+                            ? "."
+                            : ":"
+                        : ""}
+                    {(
+                        Math.floor(milliseconds / resolution.divisor) %
+                        resolution.modulus
+                    )
+                        .toString()
+                        .padStart(2, "0")}
+                </h4>
+            );
+        })}
+    </div>
+    )
+}
