@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton';
 
 // This is the stopwatch, where the time is displayed and also number of laps
+// We also call StopWatchButtons, which allow us to control time and laps
 export default function StopWatch() {
     // Global Variables
     const [isPaused, setIsPaused] = useState<boolean>(true); // Is the timer running or paused? Initially paused
