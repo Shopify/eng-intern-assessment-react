@@ -1,0 +1,27 @@
+@import './../variables.scss';
+
+.lap-list {
+  max-height: 700px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  :nth-child(even) div {
+    background-color: $primary;
+  }
+}
+
+.lap-row {
+  display: flex;
+  font-size: 40px;
+  border: 1px solid $secondary;
+  div{
+    width: 50%;
+    display: flex;
+    justify-content: center; /* For horizontal alignment */
+  }
+  :last-child{
+    border-left: 1px solid $secondary;
+  }
+}

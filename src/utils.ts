@@ -4,7 +4,7 @@
  * @param {number} value - The value to be formatted as a time string.
  * @returns {string} The formatted time string.
  */
-const getTimeString = (value: number) => `0${value}`.slice(-2);
+export const getTimeString = (value: number) => `0${value}`.slice(-2);
 /**
  * Formats the given elapsed time into a string in the format "HH:MM:SS,CC".
  *

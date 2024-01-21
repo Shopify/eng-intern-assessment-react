@@ -3,10 +3,16 @@ import StopWatchButton from "./StopWatchButton";
 import { faCirclePlay, faCirclePlus, faCirclePause, faTrash } from '@fortawesome/free-solid-svg-icons'
 import {formatTime} from "../utils";
 import './StopWatch.scss'
-export default function StopWatch() {
+import {Lap} from "../Laps/types";
+
+type Props = {
+    setLaps: React.Dispatch<React.SetStateAction<Array<Lap>>>;
+}
+export default function StopWatch({setLaps}:Props) {
     const [isActive, setIsActive] = useState(false);
     const [startTime, setStartTime] = useState(0);
     const [elapsedTime, setElapsedTime] = useState(0);
+    const [lastLapTime, setLastLapTime] = useState(0);
 
     const start = useCallback(() => {
         setIsActive(true);
@@ -17,7 +23,9 @@ export default function StopWatch() {
         setIsActive(false);
         setStartTime(0)
         setElapsedTime(0);
-    },[]);
+        setLastLapTime(0);
+        setLaps([])
+    },[setLaps]);
 
     useEffect(() => {
         let interval: number | null = null;
@@ -29,17 +37,27 @@ export default function StopWatch() {
         return () => !!interval && window.clearInterval(interval);
     }, [isActive, startTime]);
 
+    const createLap = useCallback(() => {
+        const newLapTime = elapsedTime - lastLapTime;
+        setLaps((prevState) => [
+            ...prevState,
+            { lapNumber: prevState.length, lapTime: newLapTime }
+        ])
+        setLastLapTime(elapsedTime);
+    },[elapsedTime, lastLapTime, setLaps])
+
     return(
         <div className="stopwatch-container">
             <div className="stopwatch" data-testid="stopwatch">{formatTime(elapsedTime)}</div>
             {isActive ? (
                 <div className="buttons-container">
-                    <StopWatchButton testId="faCirclePause" icon={faCirclePause} onClick={() => {setIsActive(false)}} />
+                    <StopWatchButton testId="pause" icon={faCirclePause} onClick={() => {setIsActive(false)}} />
+                    <StopWatchButton testId="create-lap" icon={faCirclePlus} onClick={createLap} />
                 </div>
             ) : (
                 <div className="buttons-container">
-                    <StopWatchButton data-testid="faCirclePlay" testId="faCirclePlay" icon={faCirclePlay} onClick={start}/>
-                    {elapsedTime > 0 && <StopWatchButton testId="faTrash" icon={faTrash} onClick={reset}/>}
+                    <StopWatchButton data-testid="play" testId="play" icon={faCirclePlay} onClick={start}/>
+                    {elapsedTime > 0 && <StopWatchButton testId="reset" icon={faTrash} onClick={reset}/>}
                 </div>
             )}
         </div>
