@@ -269,4 +269,35 @@ describe("useStopwatch hook - lap functionality", () => {
     expect(result.current.laps.length).toBe(1);
 
   })
+
+
+  it("Triggering start multiple times should not require multiple stops to stop", ()=>{
+    const {result} = renderHook(() => useStopwatch({}));
+
+    act(() => {
+      result.current.actions.start();
+      
+    });
+    act(() => {
+      result.current.actions.start();
+      
+    });
+    act(() => {
+      result.current.actions.start();
+      
+    });
+    act(() => {
+      jest.advanceTimersByTime(1000);      
+    });
+
+    act(() => {
+      result.current.actions.stop();
+    })
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    })
+
+    expect(result.current.running).toBe(false);
+    expect(result.current.milliseconds).toBe(1000);
+  })
 });
