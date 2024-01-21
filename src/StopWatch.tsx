@@ -117,14 +117,14 @@ export default function StopWatch() {
                 </div>
                 <div className="stopwatch-container">
                     <StopWatchButton
-                        label={isRunning ? "Lap" : "Reset"}
+                        label={isRunning ? "LAP" : "RESET"}
                         onClick={toggleResetAndLap}
                         isRunning={isRunning}
                         className="button-outline"
                     />
 
                     <StopWatchButton
-                        label={isRunning ? "Stop" : "Start"}
+                        label={isRunning ? "STOP" : "START"}
                         onClick={toggleStartStop}
                         isRunning={isRunning}
                         className="button-outline"
@@ -137,9 +137,14 @@ export default function StopWatch() {
                         .slice()
                         .reverse()
                         .map((lap, index) => (
-                            <div key={index} className="lap py-2">
-                                <span>{lap.label}</span>:{" "}
-                                <span>{lap.time}</span>
+                            <div key={index} className="">
+                                <div className="lap">
+                                    <div>{lap.label}: </div>
+                                    <div>
+                                        <span>{lap.time}</span>
+                                    </div>
+                                </div>
+                                <hr className="custom-hr" />
                             </div>
                         ))}
                 </div>

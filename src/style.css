@@ -16,18 +16,29 @@ body {
 
 /* Buttons */
 .button-outline {
-    background-color: #9cbd56;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 2em;
     color: #ffffff;
-    border: none;
-    padding: 10px 20px;
+    background-color: #9cbd56;
+    border: 2px solid #ffffff;
+    padding: 12px 24px;
     margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-}
 
-.button:hover {
-    background-color: #88b04b;
+    width: 160px;
+    height: 60px;
+
+    border-radius: 8px; /* Slightly more rounded */
+    cursor: pointer;
+    letter-spacing: 1px; /* Adding some spacing between letters */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+    box-shadow: 4px 4px 20px #262626;
+
+    &:hover {
+        background-color: #7e9846; /* Invert colors on hover */
+        color: #ffffff;
+        border-color: #c3c3c4;
+    }
 }
 
 .stopwatch-container {
@@ -40,12 +51,6 @@ body {
     font-weight: 600;
     min-width: 30px;
     text-align: center;
-}
-
-.time-box {
-    font-size: 4rem;
-    display: inline-block;
-    padding: 10px;
 }
 
 .box {
@@ -61,36 +66,41 @@ body {
     /* background: #88b04b; */
     font-size: 8rem;
     display: inline-block;
-    width: 180px; /* Adjust as needed */
-    height: 180px; /* Adjust as needed */
+    width: 180px;
+    height: 180px;
     line-height: 180px; /* Align text vertically */
     text-align: top; /* Align text horizontally */
-    border: 5px solid #ffffff;
-    margin: 0 10px; /* Spacing between boxes */
-    box-shadow: 4px 4px 20px #262626;
+    border: 5px solid #9cbd56;
+    margin: 0 10px;
+    box-shadow: 4px 4px 30px #545151;
 }
 
 .custom-margin {
     margin: -35% 0;
 }
 
-.laps-container {
-    margin-top: 20px;
-}
-
 .lap {
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    padding: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .scrollable {
     overflow: scroll;
-    height: 300px;
-    box-shadow: 4px 4px 20px #2c2b2b;
+    height: 290px;
+    /* box-shadow: 4px 4px 20px #2c2b2b; */
 }
 
 .custom-hr {
     border: none;
-    border-top: 2px solid #494f53;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* border-top: 2px solid #494f53; */
+    border-top: 2px solid #5c634d;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
