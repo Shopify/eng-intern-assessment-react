@@ -6,7 +6,6 @@ import Laps from './Laps';
 
 // Format time into minutes, seconds and milliseconds
 export const calculateTime = (time: number) => {
-    console.log(time)
     const minutes = Math.floor(time / 6000);
     const seconds = Math.floor((time % 6000) / 100);
     const milliseconds = time % 100;
