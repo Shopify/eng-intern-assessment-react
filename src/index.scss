@@ -1,0 +1,21 @@
+@import 'variables.scss';
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #2D3250;
+  color: $text;
+  padding: 20px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  height: 100%;
+  max-width: 650px;
+}
