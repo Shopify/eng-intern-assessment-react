@@ -55,11 +55,11 @@ export default function StopWatchButton(props:Props) {
           <button title="reset" className="reset" onClick={handleResetButton}>Reset</button>
           <button title="lap" className="lapButton" onClick={handleLapButton}>Lap</button>
           <section className="lap-container">
-            <ul>
+            <div>
               {laps.map((lap) => (
-              <li className="lap" key={lap.id}>{`Lap ${lap.id}: ${lap.time}`}</li>
+              <div className="lap" key={lap.id}>{`Lap ${lap.id} ➡️ ${lap.time}`}</div>
               ))}
-            </ul>
+            </div>
           </section>
         </div>
     )

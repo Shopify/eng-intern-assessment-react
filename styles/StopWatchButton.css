@@ -19,16 +19,20 @@
   border-radius: 10px;
   font-size: large;
   background-color: rgb(247, 247, 244);
-  color: black
+  color: black;
+  overflow: overlay;
 }
 
 ::-webkit-scrollbar-track {
   background-color: transparent;
+  margin-block: .5em;
+  border-radius: 10px;
 }
 
 .lap {
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .start {
