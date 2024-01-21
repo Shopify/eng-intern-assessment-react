@@ -72,6 +72,7 @@ export default function StopWatch() {
 				gutterBottom
 				align="center"
 				style={{ paddingTop: "50px" }}
+				data-testid="title"
 			>
 				Frontend Engineering Technical Challenge
 			</Typography>
@@ -86,16 +87,16 @@ export default function StopWatch() {
 							"linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)",
 					}}
 				>
-					<Typography variant="h1" gutterBottom>
-						<div
-							style={{
-								width: "75%",
-								margin: "auto",
-							}}
-						>
+					<div
+						style={{
+							width: "75%",
+							margin: "auto",
+						}}
+					>
+						<Typography variant="h1" gutterBottom data-testid="timer">
 							{formatTime(time)}
-						</div>
-					</Typography>
+						</Typography>
+					</div>
 				</div>
 
 				<Grid container spacing={2} justifyContent="center" alignItems="center">
@@ -125,7 +126,7 @@ export default function StopWatch() {
 				<Typography variant="h5" gutterBottom align="left">
 					Laps:
 				</Typography>
-				<ol>
+				<ol data-testid="lapslist">
 					{laps.map((lap, index) => (
 						<li key={index}>{formatTime(lap)}</li>
 					))}
