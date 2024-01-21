@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 
 export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+  // I am not using this file as I am creating my own Button component inside component folder
+  return <div></div>;
 }
