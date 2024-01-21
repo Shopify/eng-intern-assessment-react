@@ -6,7 +6,7 @@ import Laps from './Laps';
 // The main component of the stopwatch, renders all subcomponents
 // Responsible for state setup, variable declarations and function definitions
 export default function App() {
-    const [timeElapsed, setTimeElapsed] = useState<number>(0); // Time value of stopwatch
+    const [timeElapsed, setTimeElapsed] = useState<number>(0); // Time value of stopwatch in 10 milliseconds
     const [status, setStatus] = useState<boolean>(false); // Status of stopwatch, true/false meaning on/off
     const [laps, setLaps] = useState<number[]>([]); // Laps that store the time between when the button to record it was pressed vs last pressed
     const [prevLap, setPrevLap] = useState<number>(0); // Previous total time elapsed of when the last lap was recorded
@@ -15,15 +15,21 @@ export default function App() {
     let timeUnits: string[];
     let lapTimeUnits: string[];
 
-    // Use of the useEffect hook allows for the time to continuously increase by 1 millisecond every 10 milliseconds
+    // Variables to manage updating the time
+    let timeInterval: ReturnType<typeof setInterval>;
+    let curTime: number;
+
+    // Use of the useEffect hook allows for the time to continuously update every 10 milliseconds (smallest amount of time it can update)
+    // Updates time by checking the difference in time between that instant and the last time Date.now() was called
     // When the status is set to true, the time interval updates and is returned in a call to clear interval
     // useEffect is dependent on changes to status and timeElapsed
     useEffect(() => {
-        let timeInterval: ReturnType<typeof setInterval>;
+        curTime = Date.now();
+        
+        // Only updates time if the status is set to true
+        if(status) timeInterval = setInterval(() => 
+            setTimeElapsed(timeElapsed+(Date.now()-curTime)) , 10);
 
-        if(status){
-            timeInterval = setInterval(() => setTimeElapsed(timeElapsed+1) , 10);
-        } 
         return () => clearInterval(timeInterval);
     }, [status, timeElapsed]);
 
@@ -32,9 +38,9 @@ export default function App() {
     function convertToTimeUnits(time: number): string[]{
         let milliseconds, seconds, minutes;
 
-        milliseconds = (time%100).toString().padStart(2, "0");
-        seconds = Math.floor((time/100)%60).toString().padStart(2, "0");
-        minutes = Math.floor(time/6000).toString().padStart(2, "0");
+        milliseconds = (time%1000).toString().padStart(2, "0");
+        seconds = Math.floor((time/1000)%60).toString().padStart(2, "0");
+        minutes = Math.floor(time/60000).toString().padStart(2, "0");
         return[minutes, seconds, milliseconds];
     }
     
@@ -64,6 +70,7 @@ export default function App() {
         setPrevLap(time)
     }
 
+    // Renders each of the components and passes them the props they need
     return(
         <div>
             <StopWatch timeElapsed={timeElapsed} timeUnits={timeUnits} convertToTimeUnits={convertToTimeUnits} />
