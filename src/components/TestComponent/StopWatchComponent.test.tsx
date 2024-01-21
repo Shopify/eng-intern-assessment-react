@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StopWatchComponent from "./StopWatchComponent";
+import StopWatchComponent from "../stopWatchComponent/StopWatchComponent";
 
 describe("StopWatchComponent", () => {
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe("StopWatchComponent", () => {
       jest.advanceTimersByTime(1000);
     });
 
-    expect(screen.getByText(/00:00:01:000/)).toBeInTheDocument();
+    expect(screen.getByTestId("main-time").textContent).toBe("00:00:01:000");
 
     const stopButton = screen.getByText("Pause");
     fireEvent.click(stopButton);
@@ -31,7 +31,7 @@ describe("StopWatchComponent", () => {
     });
 
     // Timer should remain at 1 second
-    expect(screen.getByText(/00:00:01:000/)).toBeInTheDocument();
+    expect(screen.getByTestId("main-time").textContent).toBe("00:00:01:000");
   });
 
   test("should reset the timer", () => {
@@ -46,22 +46,26 @@ describe("StopWatchComponent", () => {
     const resetButton = screen.getByText("Reset");
     fireEvent.click(resetButton);
 
-    expect(screen.getByText(/00:00:00:000/)).toBeInTheDocument();
+    expect(screen.getByTestId("main-time").textContent).toBe("00:00:00:000");
   });
 
   test("should record a lap", () => {
     render(<StopWatchComponent />);
-    const startButton = screen.getByText("Start");
+    const startButton = screen.getByTestId("start-stop-button");
     fireEvent.click(startButton);
 
     act(() => {
       jest.advanceTimersByTime(1500);
     });
 
-    const lapButton = screen.getByText("Lap");
+    const lapButton = screen.getByTestId("lap-button");
     fireEvent.click(lapButton);
 
-    expect(screen.getByText("Lap 1")).toBeInTheDocument();
-    expect(screen.getByText(/00:00:01:500/)).toBeInTheDocument();
+    const lapRows = screen.getAllByRole("row");
+    expect(lapRows).toHaveLength(2);
+
+    const firstLapRow = lapRows[1];
+    expect(firstLapRow).toHaveTextContent("1");
+    expect(firstLapRow).toHaveTextContent("00:00:01:500");
   });
 });

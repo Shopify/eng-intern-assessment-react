@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import StopWatchButtonComponent from "./StopWatchButtonComponent";
-import "./../utils/utils.css";
+import StopWatchButtonComponent from "../StopWatchButtonComponent/StopWatchButtonComponent";
+import "./../../utils/utils.css";
 import "./StopWatchComponent.css";
 
 // type for lap info
 type LapInfo = {
   lap: number;
   total: number;
+  difference: number;
 };
 
 export default function StopWatchComponent() {
@@ -37,9 +38,13 @@ export default function StopWatchComponent() {
   const handleLap = () => {
     const lastTotalTime = laps.length > 0 ? laps[laps.length - 1].total : 0;
     const newLapTime = time - lastTotalTime;
+    const difference =
+      laps.length > 0 ? newLapTime - laps[laps.length - 1].lap : 0;
 
-    setLaps((prevLaps) => [...prevLaps, { lap: newLapTime, total: time }]);
-
+    setLaps((prevLaps) => [
+      ...prevLaps,
+      { lap: newLapTime, total: time, difference: difference },
+    ]);
     if (lapTimerRef.current) {
       clearInterval(lapTimerRef.current);
     }
@@ -134,27 +139,40 @@ export default function StopWatchComponent() {
         <section className="container__body">
           <div className="d-flex flex-dir-col align-center container__timer">
             <div className="container__timeHeading">
-              <span className="font-stopwatch">{formatTime(time)}</span>
+              <span
+                className="font-stopwatch"
+                // data-testid="main-time" uncomment while testing
+              >
+                {formatTime(time)}
+              </span>
             </div>
             <div className="container__lapHeading">
-              <span className="font-stopwatch">{formatTime(lapTime)}</span>
+              <span
+                className="font-stopwatch"
+                // data-testid="lap-time" uncomment while testing
+              >
+                {formatTime(lapTime)}
+              </span>
             </div>
           </div>
-          <section className="container__button">
+          <section className="d-flex container__button">
             <StopWatchButtonComponent
               onClick={handleStartStop}
               buttonPlaceHolder={!isRunning ? "Start" : "Pause"}
               isRunning={true}
+              // data-testid="start-stop-button" uncomment while testing
             />
             <StopWatchButtonComponent
               onClick={handleReset}
               buttonPlaceHolder="Reset"
               isRunning={true}
+              // data-testid="reset-button" uncomment while testing
             />
             <StopWatchButtonComponent
               onClick={handleLap}
               buttonPlaceHolder="Lap"
               isRunning={isRunning}
+              // data-testid="lap-button" uncomment while testing
             />
           </section>
           <section>
@@ -164,6 +182,7 @@ export default function StopWatchComponent() {
                   <th>Lap</th>
                   <th>Time</th>
                   <th>Total Time</th>
+                  <th>Time Difference</th>
                 </tr>
               </thead>
               <tbody>
@@ -172,6 +191,11 @@ export default function StopWatchComponent() {
                     <td>{index + 1}</td>
                     <td>{formatTime(lap.lap)}</td>
                     <td>{formatTime(lap.total)}</td>
+                    <td>
+                      {lap.difference >= 0
+                        ? `+${formatTime(lap.difference)}`
+                        : `-${formatTime(-lap.difference)}`}
+                    </td>
                   </tr>
                 ))}
               </tbody>

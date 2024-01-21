@@ -1,5 +1,6 @@
 import React from "react";
 import "./StopWatchButtonComponent.css";
+
 type StopWatchButtonProps = {
   onClick: () => void;
   buttonPlaceHolder: string;
@@ -15,11 +16,12 @@ const StopWatchButtonComponent: React.FC<StopWatchButtonProps> = ({
   onClick,
   buttonPlaceHolder,
   isRunning = false,
+  ...props
 }) => {
   return (
     <>
       {isRunning ? (
-        <button onClick={onClick} className="button">
+        <button onClick={onClick} className="button" {...props}>
           <span>{buttonPlaceHolder}</span>
         </button>
       ) : (
