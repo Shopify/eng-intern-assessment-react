@@ -51,30 +51,31 @@ export default function StopWatch() {
     return (
         <div>
             <p>{formatTime(time)}</p>
-            {/**
-             * I personally wouldn't have implemented the stopwatch buttons this way. I would've either made the other component
-             * in this same file, or just put the buttons right here. This keeps the state in one place, and makes it easier to
-             * understand what's going on, and work on it later. In my opinion, prop-drilling this way is bad-practice in React.
-             * If this stopwatch continued to be built upon, adding features to it would be difficult with the state structured
-             * this way. At best, I would've made a separate button UI component for styling purposes only, and localized the logic
-             * and state here.
-             *
-             * I did it this way anyway because this is how the problem asked it to be structured. I tried to keep StopWatchButton
-             * as simple and logic/state-less as possible.
-             */}
-            <StopWatchButton
-                setIsRunning={setIsRunning}
-                isRunning={isRunning}
-                reset={() => {
-                    setTime(0);
-                    setLapTimes([]);
-                }}
-                addLapTime={() => setLapTimes([...lapTimes, time])}
-            />
+            <div>
+                <StopWatchButton onClick={() => setIsRunning(!isRunning)}>
+                    {isRunning ? "Stop" : "Start"}
+                </StopWatchButton>
+                <StopWatchButton
+                    onClick={() => setLapTimes([...lapTimes, time])}
+                    disabled={!isRunning}
+                >
+                    Lap
+                </StopWatchButton>
+                <StopWatchButton
+                    onClick={() => {
+                        setTime(0);
+                        setLapTimes([]);
+                    }}
+                >
+                    Reset
+                </StopWatchButton>
+            </div>
             <h3>Lap List</h3>
             <ol data-testid="lap-list">
                 {lapTimes.map((lapTime, index) => (
-                    <li key={index} data-testid={`lap-${index+1}`}>{formatTime(lapTime)}</li>
+                    <li key={index} data-testid={`lap-${index + 1}`}>
+                        {formatTime(lapTime)}
+                    </li>
                 ))}
             </ol>
         </div>
