@@ -23,6 +23,7 @@ describe("StopWatch", () => {
     it('displays initial state of stopwatch correctly', async () => {
         render(<StopWatch />)
 
+        // Assert initial rendering of the stopwatch UI
         expect(screen.getByText(startBtnText)).toBeInTheDocument()
         expect(screen.getByText(resetBtnText)).toBeInTheDocument()
         expect(screen.getByText(lapBtnText)).toBeInTheDocument()
@@ -43,8 +44,10 @@ describe("StopWatch", () => {
 
         const stopBtn = screen.getByText(stopBtnText)
         fireEvent.click(stopBtn)
+
+        // Display after stopping the stopwatch
         expect(screen.getAllByText('00')).toHaveLength(2)
-        expect(screen.getByText('01'))
+        expect(screen.getByText('01')).toBeInTheDocument()
     })
 
     it('start stopwatch for 1sec and reset', () => {
@@ -59,6 +62,8 @@ describe("StopWatch", () => {
 
         const resetBtn = screen.getByText(resetBtnText)
         fireEvent.click(resetBtn)
+
+        // Resetting should set the timer back to 00:00:00
         expect(screen.getAllByText('00')).toHaveLength(3)
     })
 
@@ -69,21 +74,26 @@ describe("StopWatch", () => {
         const startBtn = screen.getByText(startBtnText)
         fireEvent.click(startBtn)
 
+        // Advance timer
         act(() => {
             jest.advanceTimersByTime(1000)
         })
 
+        // Add lap
         fireEvent.click(lapBtn)
 
+        // Once again advance the timer
         act(() => {
             jest.advanceTimersByTime(1000)
         })
 
+        // Add lap
         fireEvent.click(lapBtn)
 
         // Stop the stopwatch
         fireEvent.click(screen.getByText('Stop'));
 
+        // Assert 2 laps are displayed
         expect(screen.getByText('Lap 1')).toBeInTheDocument()
         expect(screen.getByText('Lap 2')).toBeInTheDocument()
     })
@@ -92,6 +102,29 @@ describe("StopWatch", () => {
         render(<StopWatch />)
 
         const lapBtn = screen.getByText(lapBtnText)
+
+        // Trying to add laps when stopwatch not started
+        fireEvent.click(lapBtn)
+        fireEvent.click(lapBtn)
+
+        expect(screen.queryByText('Lap 1')).not.toBeInTheDocument()
+        expect(screen.queryByText('Lap 2')).not.toBeInTheDocument()
+    })
+
+    it('render no laps when stopwatch is paused', () => {
+        render(<StopWatch />)
+
+        // Start and Stop the stopwatch
+        const startBtn = screen.getByText(startBtnText)
+        fireEvent.click(startBtn)
+        act(() => {
+            jest.advanceTimersByTime(1000)
+        })
+        const stopBtn = screen.getByText(stopBtnText)
+        fireEvent.click(stopBtn)
+
+        const lapBtn = screen.getByText(lapBtnText)
+        // Trying to add laps when stopwatch paused
         fireEvent.click(lapBtn)
         fireEvent.click(lapBtn)
 

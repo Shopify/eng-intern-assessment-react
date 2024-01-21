@@ -1,24 +1,27 @@
 import React from "react";
 
 import "./Laps.css";
-import { calculateTime } from "./StopWatch";
 
 type LapProps = {
     laps: string[];
 };
 
 export default function Laps({ laps }: LapProps) {
+
+    // Calculates the diff between 2 laps, and returns formatted time 
     const calculateLapDiff = (currLap: string, prevLap: string) => {
+        // Convert time into ms count
         const parseTime = (timeStr: string) => {
             const [minutes, seconds, milliseconds] = timeStr.split(":").map(Number);
             return minutes * 60000 + seconds * 1000 + milliseconds;
         };
 
+        // Find ms time difference between the laps
         const time1 = parseTime(currLap);
         const time2 = parseTime(prevLap);
-
         const timeDiff = time1 - time2;
 
+        // Format time into minutes, seconds and milliseconds
         const minutes = Math.floor(timeDiff / 60000)
             .toString()
             .padStart(2, "0");
