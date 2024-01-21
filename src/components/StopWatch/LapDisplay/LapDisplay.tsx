@@ -76,7 +76,7 @@ export function LapDisplay({
             laps.map((lap, index) => {
                 return (
                     <li style={{...defaultListItemStyle}} key={index}>
-                        <h4 style={{...labelStyles ,...digitStyles}}>lap {index+1}{ '\u00A0'}</h4>
+                        <h4 style={{...labelStyles ,...digitStyles}}>lap {index+1} + {' '}</h4>
                         <DigitalDisplay {...DigitalDisplayProps} milliseconds={lap} isLap darkTheme={darkTheme} />
                     </li>
                 )
