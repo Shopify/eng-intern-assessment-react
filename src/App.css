@@ -87,6 +87,43 @@ button:hover {
     z-index: -1;
 }
 
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adds space between items */
+    gap: 100px; /* Space between stopwatch and logo/path */
+}
+
+  
+.svg-overlay-container {
+    
+    position: relative;
+    margin-left: 20px; /* Space between the stopwatch and the logo */
+    padding: 10px;
+    
+}
+
+/* CSS for the SVG logo */
+.shopify-logo-svg {
+    width: 100px; /* Adjust size of the SVG */
+    height: auto;
+    display: block; /* Ensures proper alignment */
+}
+
+/* CSS for the text inside the SVG */
+.shopify-logo-svg text {
+    font-size: 1px; /* Smaller font size for the number */
+    fill: white; /* Text color */
+    text-anchor: middle; /* Horizontal alignment */
+}
+
+/* CSS for the circle inside the SVG */
+.shopify-logo-svg circle {
+    fill: #5C6F42; /* Circle color (Shopify dark green) */
+    size: 5px;
+}
+
+
 
 
 .stopwatch-container {
@@ -186,6 +223,26 @@ button:not(:disabled):hover {
 
 }
 
+.svg-overlay-container {
+    position: relative;
+    /* Set the size to match your image */
+    width: 300px; /* Example size */
+    height: 300px; /* Example size */
+  }
+
+.shopify-logo-image {
+    width: 100%;
+    height: 100%;
+  }
+
+.shopify-logo-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
 /* Media query for smaller screens to reduce the margin */
 @media (max-width: 800px) {
     .button-container {
@@ -228,5 +285,15 @@ button:not(:disabled):hover {
     .stopwatch-container {
         flex-direction: column;
         align-items: center; /* Center align items for a column layout */
+    }
+    .svg-overlay-container {
+        display: none;
+    }
+
+}
+
+@keyframes trace {
+    to {
+        stroke-dashoffset: 0;
     }
 }
