@@ -22,8 +22,8 @@ color: button color
 handleClick: button function
 */
 export default function StopWatchButton({text, color, handleClick} : {text: string, color: string, handleClick: Function}) {
-    
     return(
+        // displays button with parameterized color, text, and function
         <button style={{...styles.button, background: color}} onClick={() => handleClick()}>
             <h4>{text}</h4>
         </button>

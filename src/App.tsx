@@ -59,12 +59,12 @@ export default function App() {
     }, [running]);
 
     // toggles the running status
-    const startStopTimer = () => {
+    const onStartStop = () => {
         setRunning(!running);
     }
 
     // resets the time and laps
-    const resetTimer = () => {
+    const onReset = () => {
         setTime(0);
         setLaps([
             {
@@ -75,7 +75,7 @@ export default function App() {
     }
 
     // adds a new lap to laps array
-    const lapTimer = () => {
+    const onLap = () => {
         setLaps(laps => {
             laps.push({
                 number: laps.length + 1,
@@ -88,16 +88,21 @@ export default function App() {
     return(
         <div style={styles.body}>
             <div style={styles.container}>
+                {/* displays global and lap timers */}
                 <StopWatch time={time} laps={laps}/>
+                {/* buttons conditionally rendered based on running status */}
                 {!running ?
+                    // Start/Resume and Reset buttons
                     <div style={styles.buttonBox}>
-                        <StopWatchButton data-testid="startbtn" text={time > 0 ? 'RESUME' : 'START'} color={'green'} handleClick={startStopTimer}/>
-                        <StopWatchButton text={'RESET'} color={'dimgrey'} handleClick={resetTimer}/>
+                        {/* start/resume button conditionally labeled based on timer value */}
+                        <StopWatchButton data-testid="startbtn" text={time > 0 ? 'RESUME' : 'START'} color={'green'} handleClick={onStartStop}/>
+                        <StopWatchButton text={'RESET'} color={'dimgrey'} handleClick={onReset}/>
                     </div>
                 :
+                    // Stop and Lap buttons
                     <div style={styles.buttonBox}>
-                        <StopWatchButton text={'STOP'} color={'red'} handleClick={startStopTimer}/>
-                        <StopWatchButton text={'LAP'} color={'dimgrey'} handleClick={lapTimer}/>
+                        <StopWatchButton text={'STOP'} color={'red'} handleClick={onStartStop}/>
+                        <StopWatchButton text={'LAP'} color={'dimgrey'} handleClick={onLap}/>
                     </div>
                 }
             </div>
