@@ -7,10 +7,6 @@ import { useNuMorphicTheme, StopWatchContext,  } from './utils';
 
 export interface StopWatchProps extends StopWatchUIElement, StopWatchLogicComponent{
     sw?: stopWatch,
-    AnalogDisplayProps?: Partial<AnalogDisplayProps>,
-    StopWatchButtonGroupPropsProps?: Partial<StopWatchButtonGroupProps>,
-    LapDisplayProps?: Partial<LapDisplayProps>,
-    DigitalDisplayProps?: Partial<DigitalDisplayProps>,
     darkTheme?: boolean,
     children: ReactNode
 }
