@@ -1,6 +1,6 @@
 
 .start{
-    background-color: #5e8d3e;
+    background-color: #4c9a2a;
     height: 4rem;
     width: 4rem;
     border-radius: 50%;
@@ -8,12 +8,15 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    transition: all 0.3s ease /*transition animation when change of state in DOM*/
+    transition: all 0.3s ease; /*transition animation when change of state in DOM*/
     
+}
+.start:hover,.reset:hover,.pause:hover,.lap:hover{
+    background-color:#293e1b ;
 }
 
 .pause{
-    background-color: #5e8d3e;
+    background-color: #4c9a2a;
     height: 4rem;
     color: white;
     width: 5.5rem;
@@ -26,7 +29,7 @@
 }
 
 .reset{
-    background-color: #5e8d3e;
+    background-color: #4c9a2a;
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
@@ -43,7 +46,7 @@
 }
 
 .lap{
-    background-color: #5e8d3e;
+    background-color: #4c9a2a;
     height: 3rem;
     width: 3rem;
     border-radius: 50%;

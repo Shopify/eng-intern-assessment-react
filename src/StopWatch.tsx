@@ -74,7 +74,7 @@ export default function StopWatch() {
             r={radius}
             strokeWidth="8"
             fill="none"
-            stroke="#5e8d3e"
+            stroke="#e4fcd4"
             style={{
               strokeDasharray: dashArray, //wrap entire circle with progress bar
               strokeDashoffset: dashArrayOffset, //we manipulate starting point to give illusion of growing progress bar
@@ -83,17 +83,17 @@ export default function StopWatch() {
         </svg>
         <Box position={"absolute"}>
           <div className="digitalDisplay">
-          <text>
+          <span>
             {("0" + (Math.floor(time / 60000) % 60)).toString().slice(-2) + ":"}
-          </text>
+          </span>
           {/*I had to round down to get whole seconds */}
-          <text>
+          <span>
             {("0" + (Math.floor(time / 1000) % 60)).toString().slice(-2) + ":"}
-          </text>
+          </span>
           {/* i had to convert to string, so i could slice the 3rd digit,
             this fixes formatting issues when ms is under 10, adding a placeholder 0
         */}
-          <text>{("0" + ((time / 10) % 100)).toString().slice(-2)}</text>
+          <span>{("0" + ((time / 10) % 100)).toString().slice(-2)}</span>
           </div>
         </Box>
       </Box>

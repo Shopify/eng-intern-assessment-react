@@ -9,7 +9,7 @@ import "../styles/StopWatch.css";
 export default function App() {
     return(
    <ChakraProvider>
-    <Box display={"flex"} height={"100vh"} backgroundColor="#f0e7db" flexDirection={'column'}><StopWatch/></Box>
+    <Box display={"flex"} height={"100vh"} backgroundColor="#f0e7eb" flexDirection={'column'}><StopWatch/></Box>
     </ChakraProvider>
     )
 }
