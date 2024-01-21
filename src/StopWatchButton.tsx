@@ -11,9 +11,24 @@ interface StopWatchButtonProps {
 export default function StopWatchButton(props:StopWatchButtonProps) {
     return(
         <div className='custom-button-container'>
-            <button className="custom-button" style={{backgroundColor: props.isPaused? "green": "orange"}} onClick={props.handleStartPause}>{props.isPaused? "Start": "Pause"}</button>
-            <button className="custom-button" style={{backgroundColor: "red"}} onClick={props.handleReset}>Reset</button>
-            <button className="custom-button" style={{backgroundColor: "blue"}} onClick={props.handleLap}>Lap</button>
+            {/* Start/Pause button */}
+            <button 
+                className={`custom-button ${props.isPaused ? 'start-button' : 'pause-button'}` }
+                onClick={props.handleStartPause}
+                aria-label={props.isPaused ? "Start" : "Pause"}
+            >{props.isPaused? "Start": "Pause"}</button>
+            {/* Reset button */}
+            <button 
+                className="custom-button reset-button" 
+                onClick={props.handleReset}
+                aria-label="Reset"
+            >Reset</button>
+            {/* Lap button */}
+            <button 
+                className="custom-button lap-button" 
+                onClick={props.handleLap}
+                aria-label="Lap"
+            >Lap</button>
         </div>
     )
 }

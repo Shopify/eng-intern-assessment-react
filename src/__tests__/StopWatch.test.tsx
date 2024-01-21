@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import StopWatch from '../StopWatch';
@@ -7,9 +7,20 @@ import StopWatch from '../StopWatch';
 jest.useFakeTimers();
 
 describe('StopWatch component', () => {
+    afterEach(() => {
+        jest.clearAllTimers();
+      });
+      
   it('renders without crashing', () => {
     render(<StopWatch />);
   });
+
+  it('has the correct initial state', () => {
+    const { getByText } = render(<StopWatch />);
+    expect(getByText('00:00')).toBeInTheDocument();
+    expect(getByText('Current Lap: 0 laps')).toBeInTheDocument();
+  });
+  
   // START/PAUSE Cases
   // - timer starts at 0 initially and increments when not paused
   describe('Start/Pause Button', () => {
@@ -219,6 +230,55 @@ describe('StopWatch component', () => {
                 expect(getByText('Current Lap: 0 laps')).toBeInTheDocument();
             });
             
+          });
+          // Edge case: Rapid clicks on lap button
+          it('handles rapid clicks on lap button', () => {
+            const { getByText } = render(<StopWatch />);
+            
+            // Click the start button
+            act(() => {
+              fireEvent.click(getByText('Start'));
+            });
+          
+            // Rapidly click the lap button multiple times
+            
+            for (let i = 0; i < 5; i++) {
+                act(() => {
+                    fireEvent.click(getByText('Lap'));
+                });
+            }
+          
+            // Expect lap count to be accurate
+            act(() => {
+              expect(getByText('Current Lap: 5 laps')).toBeInTheDocument();
+            });
+          });
+
+          it('handles lap count after pause', async () => {
+            const { getByText } = render(<StopWatch />);
+            
+            // Click the start button
+            act(() => {
+              fireEvent.click(getByText('Start'));
+            });
+          
+            // Click the lap button
+            act(() => {
+              fireEvent.click(getByText('Lap'));
+            });
+          
+            // Click the pause button
+            act(() => {
+              fireEvent.click(getByText('Pause'));
+            });
+          
+            // Wait for some time (e.g., 1 second) for potential updates
+            await waitFor(() => {}, { timeout: 1000 });
+          
+            // Expect lap count to remain the same after pause
+            act(() => {
+              expect(getByText('Current Lap: 1 lap')).toBeInTheDocument();
+            });
           });
 
     })

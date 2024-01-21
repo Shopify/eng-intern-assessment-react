@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import StopWatchButton from '../StopWatchButton';
 
 describe('StopWatchButton component', () => {
@@ -28,7 +29,11 @@ describe('StopWatchButton component', () => {
   });
 
   it('renders without crashing', () => {
-    // just renders    
+    // just renders 
+    // Add assertions for the initial state, styles, or content
+    expect(getByText(isPaused ? 'Start' : 'Pause')).toHaveClass('custom-button', isPaused ? 'start-button' : 'pause-button');
+    expect(getByText('Reset')).toHaveClass('custom-button','reset-button');
+    expect(getByText('Lap')).toHaveClass('custom-button', 'lap-button');   
   });
 
   it('handles start/pause button click', () => {
@@ -44,5 +49,26 @@ describe('StopWatchButton component', () => {
   it('handles lap button click', () => {
     fireEvent.click(getByText('Lap'));
     expect(mockHandleLap).toHaveBeenCalledTimes(1);
+  });
+  // Styling tests:
+
+  it('applies correct styles based on isPaused prop', () => {
+    const button = getByText(isPaused ? 'Start' : 'Pause');
+    expect(button).toHaveClass(isPaused ? 'start-button' : 'pause-button');
+  });
+
+  it('applies correct ARIA label based on isPaused prop', () => {
+    const button = getByText(isPaused ? 'Start' : 'Pause');
+    expect(button).toHaveAttribute('aria-label', isPaused ? 'Start' : 'Pause');
+  });
+  
+  it('applies correct ARIA label for Reset button', () => {
+    const button = getByText('Reset');
+    expect(button).toHaveAttribute('aria-label', 'Reset');
+  });
+  
+  it('applies correct ARIA label for Lap button', () => {
+    const button = getByText('Lap');
+    expect(button).toHaveAttribute('aria-label', 'Lap');
   });
 });

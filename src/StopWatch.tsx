@@ -12,6 +12,7 @@ export default function StopWatch() {
         let timer: NodeJS.Timeout;
     
         if (!isPaused) {
+        // if not paused, we increment the timer by 1 second at every second
           timer = setInterval(() => {
             setCurrentTime((prevTime) => prevTime + 1);
           }, 1000);
@@ -45,16 +46,19 @@ export default function StopWatch() {
     var second = currentTime % 60
     var minuteString, secondString
 
+    // set the minute/second string (in the case that they are only one digit)
     minute < 10 ? minuteString = "0" + minute : minuteString = minute
     second < 10 ? secondString = "0" + second : secondString = second
 
     return(
         <div style={{width: "100%"}}>
             <div className='time-lap-display'>
+                {/* Time display */}
                 <h1 style={{fontSize: "5rem"}}>{minuteString}:{secondString}</h1>
+                {/* Lap display */}
                 <h3 style={{fontSize: "2rem"}}>Current Lap: {currentLapCount} {currentLapCount == 1 ? "lap" : "laps"}</h3>
             </div>
-            
+            {/* Button Controls */}
             <StopWatchButton
                 handleStartPause={handleStartPause}
                 handleReset={handleReset}

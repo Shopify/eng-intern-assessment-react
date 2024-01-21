@@ -30,7 +30,6 @@
 }
 .custom-button {
     margin: 2rem;
-    background-color: #04AA6D; /* default colour of button is green */
     border: none;
     color: white;
     padding: 1rem 2rem;
@@ -45,10 +44,17 @@
     background-color: grey;
 }
 .custom-button:active {
-    background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+.start-button {background-color: green;}
+
+.pause-button {background-color: orange;}
+
+.reset-button {background-color: red;}
+
+.lap-button{background-color: blue;}
 
 
 /* Time display */
