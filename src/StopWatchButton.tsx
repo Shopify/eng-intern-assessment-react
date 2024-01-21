@@ -13,6 +13,7 @@ export default function StopWatchButton(props:Props) {
   const [timerOn, setTimerOn] = useState<boolean>(false);
   const [laps, setLaps] = useState<Array<any>>([]);
 
+  //Whenever the timer is on, set the interval.
   useEffect(() => {
     let timerInterval:any = null;
 

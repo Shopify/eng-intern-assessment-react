@@ -1,3 +1,5 @@
+//Helper function for calculating and formatting time. Returns an array.
+
 const calculateTime = (timeInSeconds: number): Array<number|string> => {
   
   const milliseconds = (timeInSeconds / 10) % 100;

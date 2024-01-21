@@ -6,6 +6,7 @@ export default function StopWatch() {
   const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
   const [timerArray, setTimerArray] = useState<Array<number|string>>([]);
 
+  //Whenever timeInSeconds changes, set timerArray to timeArray.
   useEffect(() => {
     let timeArray: Array<number|string> = calculateTime(timeInSeconds);
     setTimerArray(timeArray);
