@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
 
-
 const StopWatch: React.FC = () => {
     // State variables for managing stopwatch functionality
     const [isRunning, setIsRunning] = useState(false)
@@ -35,7 +34,7 @@ const StopWatch: React.FC = () => {
     const stop = () => {
         setIsRunning(false);
     }
-    
+
     // Function to reset the stopwatch
     const reset = () => {
         setIsRunning(false);
@@ -49,7 +48,7 @@ const StopWatch: React.FC = () => {
         setLaps((prevLaps) => [...prevLaps, time])
     }
 
-    // Function to format the time in HH:MM:SS.rms format
+    // Function to format the time in HH:MM:SS.mmm format
     const formatTime = (milliseconds: number): string => {
 
         const hours = Math.floor(milliseconds / 3600000)
@@ -64,14 +63,14 @@ const StopWatch: React.FC = () => {
     // Render the stopwatch component
     return (
         <div>
-            <h1>Stopwatch</h1>
             <div>
+                <h1>Stopwatch</h1>
                 <p>{formatTime(time)}</p>
                 {/* Buttons to control the stopwatch */}
-                <StopWatchButton onClick={start} disabled={isRunning} label="Start" />
-                <StopWatchButton onClick={stop} disabled={!isRunning} label="Stop" />
-                <StopWatchButton onClick={addLap} disabled={!isRunning} label="Lap" />
-                <StopWatchButton onClick={reset} label="Reset" />
+                <StopWatchButton onClick={start} disabled={isRunning} text="Start" />
+                <StopWatchButton onClick={stop} disabled={!isRunning} text="Stop" />
+                <StopWatchButton onClick={addLap} disabled={!isRunning} text="Lap" />
+                <StopWatchButton onClick={reset} text="Reset" />
             </div>
             <div>
                 {/* Display the list of laps */}
@@ -84,8 +83,6 @@ const StopWatch: React.FC = () => {
             </div>
         </div>
     )
-
-
 }
 
 export default StopWatch;
