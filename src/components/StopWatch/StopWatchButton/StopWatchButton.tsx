@@ -1,9 +1,10 @@
 import React from 'react'
 import {StopWatchUIElement} from "@types";
-import { StopWatchContext } from '../utils';
+import { useButtonTheme  } from './utils';
+
 
 export interface stopWatchButton extends StopWatchUIElement{
-    type: 'start' | 'stop' | 'reset' | 'lap';
+    type: 'Start' | 'Stop' | 'Reset' | 'Lap';
     action: () => void;
     disabled?: boolean;
     textStyles?: React.CSSProperties;
@@ -20,12 +21,15 @@ export default function StopWatchButton(
         testId
     }:stopWatchButton)  {
         
+    const {baseNuMorphic} = useButtonTheme(darkTheme);
+
     return(
         <button
             data-testid = {testId}
             onClick={action}
+            style={{...baseNuMorphic as  React.CSSProperties, ...styles}}
         >
-            {type.toString().charAt(0).toUpperCase() + type.toString().slice(1)}
+            {type.toString()}
             {children}
         </button>
     )
