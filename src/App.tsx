@@ -2,6 +2,7 @@ import React from 'react'
 import StopWatch from "./components/StopWatch/StopWatch"
 import useStopWatch from './components/StopWatch/hooks/useStopWatch'
 import StopWatchButton from './components/StopWatch/StopWatchButton/StopWatchButton'
+import { DigitalDisplay } from './components/StopWatch/DigitalDisplay'
 export default function App() {
     const sw = useStopWatch({})
 
@@ -11,11 +12,11 @@ export default function App() {
                 <div>
                     <h1>Stop Watch</h1>
                 </div>
-                <StopWatchButton action={sw.actions.start} type='start' />
-                <StopWatchButton action={sw.actions.stop} type='stop' />
-                <StopWatchButton action={sw.actions.reset} type='reset' />
+                <StopWatchButton action={sw.actions.start} type='Start' />
+                <StopWatchButton action={sw.actions.stop} type='Stop' />
+                <StopWatchButton action={sw.actions.reset} type='Reset' />
 
-            {sw.milliseconds}
+                <DigitalDisplay />
             </StopWatch>
         </div>
     )
