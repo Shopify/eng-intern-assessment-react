@@ -3,7 +3,7 @@ import {StopWatchUIElement} from "@types";
 import { useButtonTheme  } from './utils';
 
 
-export interface stopWatchButton extends StopWatchUIElement{
+export interface StopWatchButtonProps extends StopWatchUIElement{
     type: 'Start' | 'Stop' | 'Reset' | 'Lap';
     action: () => void;
     disabled?: boolean;
@@ -19,7 +19,7 @@ export default function StopWatchButton(
         darkTheme,
         styles,
         testId
-    }:stopWatchButton)  {
+    }:StopWatchButtonProps)  {
         
     const {baseNuMorphic} = useButtonTheme(darkTheme);
 

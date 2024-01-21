@@ -1,26 +1,37 @@
-import React from 'react'
-import { StopWatchController, useStopWatch } from './hooks'
-import { StopWatchUIElement } from '@types'
-import { StopWatchContext } from './utils'
-export interface StopWatchProps extends StopWatchUIElement{
-    sw?: StopWatchController,
+import React, {ReactNode} from 'react'
+import {StopWatchUIElement, stopWatch, AnalogDisplayProps, StopWatchButtonGroupProps, StopWatchLogicComponent, LapDisplayProps} from "@types";
+import {useStopWatch,DigitalDisplay,DigitalDisplayProps, AnalogDisplay,} from "."
+import { LapDisplay } from './LapDisplay';
+// import StopWatchButtonGroupProps from './StopWatchButton/StopWatchButtonGroupProps';
+import { useNuMorphicTheme, StopWatchContext,  } from './utils';
+
+export interface StopWatchProps extends StopWatchUIElement, StopWatchLogicComponent{
+    sw?: stopWatch,
+    AnalogDisplayProps?: Partial<AnalogDisplayProps>,
+    StopWatchButtonGroupPropsProps?: Partial<StopWatchButtonGroupProps>,
+    LapDisplayProps?: Partial<LapDisplayProps>,
+    DigitalDisplayProps?: Partial<DigitalDisplayProps>,
     darkTheme?: boolean,
-    children: React.ReactNode
+    children: ReactNode
 }
+// export const StopWatchContext = React.createContext<{darkTheme:boolean,sw:stopWatch}>(null);
 
 export default function StopWatch({
-    children,
-    darkTheme,
+    sw = useStopWatch({}),
+    darkTheme = true,
     containerStyles,
-    sw = useStopWatch({})
+    children
+    }:StopWatchProps) {
 
-}:StopWatchProps) {
-
+    const defaultContainer = useNuMorphicTheme(containerStyles,darkTheme);
     return(
-        <StopWatchContext.Provider value={{darkTheme:darkTheme, sw:sw}}>
-        <div style={containerStyles}>
-            {children}
-        </div>
+        <StopWatchContext.Provider value={{ darkTheme, sw }}>
+
+            <div style={defaultContainer}>
+                {children}
+            </div>
         </StopWatchContext.Provider>
     )
 }
+
+

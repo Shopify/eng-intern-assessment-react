@@ -11,7 +11,7 @@ export interface StopWatchButtonGroupProps extends StopWatchUIElement, StopWatch
 
 }
 
-export function StopWatchButtonGroupProps(
+export function StopWatchButtonGroup(
     {
         startButtonStyles,
         stopButtonStyles,

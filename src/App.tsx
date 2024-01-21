@@ -3,20 +3,22 @@ import StopWatch from "./components/StopWatch/StopWatch"
 import useStopWatch from './components/StopWatch/hooks/useStopWatch'
 import StopWatchButton from './components/StopWatch/StopWatchButton/StopWatchButton'
 import { DigitalDisplay } from './components/StopWatch/DigitalDisplay'
+import {StopWatchButtonGroup} from "./components/StopWatch"
+import { LapDisplay } from './components/StopWatch/LapDisplay'
 export default function App() {
     const sw = useStopWatch({})
 
     return(
         <div>
-            <StopWatch sw={sw}>
+            <StopWatch darkTheme sw={sw}>
                 <div>
-                    <h1>Stop Watch</h1>
+                    <h1 style={{
+                        color:"#96BF48"
+                    }}>Stop Watch</h1>
                 </div>
-                <StopWatchButton action={sw.actions.start} type='Start' />
-                <StopWatchButton action={sw.actions.stop} type='Stop' />
-                <StopWatchButton action={sw.actions.reset} type='Reset' />
-
+                <StopWatchButtonGroup />
                 <DigitalDisplay />
+                <LapDisplay />
             </StopWatch>
         </div>
     )

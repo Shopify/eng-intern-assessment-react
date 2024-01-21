@@ -1,5 +1,5 @@
 import React from 'react'
-import {StopWatchUIElement, Resolution, stopWatch} from "@types";
+import {StopWatchUIElement, Resolution} from "@types";
 import { defaultContainerStyles } from './utils';
 import { StopWatchContext } from '../'
 export interface DigitalDisplayProps extends StopWatchUIElement{
