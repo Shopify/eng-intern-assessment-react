@@ -5,6 +5,8 @@
   "main": "src/index.tsx",
   "scripts": {
     "test": "jest && cypress run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
@@ -60,8 +62,7 @@
       "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>/node_modules/@testing-library/jest-dom",
-      "<rootDir>/jest.setup.ts"
+      "<rootDir>/node_modules/@testing-library/jest-dom"
     ],
     "testEnvironment": "jest-environment-jsdom"
   }

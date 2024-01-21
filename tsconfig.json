@@ -8,6 +8,11 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "types": ["jest", "@testing-library/jest-dom", "node"]
-  }
+    "types": ["jest", "@testing-library/jest-dom", "node", "cypress"]
+  },
+
+  "exclude": [
+    "node_modules",
+    "cypress",
+    "cypress.config.ts"]
 }
