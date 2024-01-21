@@ -5,11 +5,19 @@ import TimerOffIcon from "@mui/icons-material/TimerOff";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import SportsScoreIcon from "@mui/icons-material/SportsScore";
 
+/**
+ * Component that dynamically takes 3 props and returns a button that does a timer-specific function.
+ * @param buttonAction A function that the button will execute on click
+ * @param buttonName The name of the button
+ * @param buttonTheme The theme of the button. This is the variant keyword like "success", "error", etc.
+ * @returns
+ */
 export default function StopWatchButton({
 	buttonAction,
 	buttonName,
 	buttonTheme,
 }: any) {
+	// Function with a switch-case to match a button name to its corresponding icon.
 	const getButtonIcon = (buttonName: any) => {
 		switch (buttonName) {
 			case "start":

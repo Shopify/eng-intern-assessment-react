@@ -6,6 +6,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 
 export default function Footer() {
 	return (
+		// Creating a "sticky" footer that remains at the bottom of the page at all times
 		<footer
 			style={{
 				position: "fixed",
@@ -16,8 +17,10 @@ export default function Footer() {
 				padding: "20px",
 			}}
 		>
+			{/* 1 Row and 3 column center-aligned grid */}
 			<Grid container spacing={2} justifyContent="center" alignItems="center">
 				<Grid item>
+					{/* A button that links to my GitHub */}
 					<Button
 						variant="contained"
 						color="info"
@@ -30,6 +33,7 @@ export default function Footer() {
 					</Button>
 				</Grid>
 				<Grid item>
+					{/* A button that links to my LinkedIn */}
 					<Button
 						variant="contained"
 						color="info"
@@ -42,6 +46,7 @@ export default function Footer() {
 					</Button>
 				</Grid>
 				<Grid item>
+					{/* A button that links to my resume */}
 					<Button
 						variant="contained"
 						color="info"
