@@ -1,0 +1,52 @@
+/* StopWatch.css */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.stopwatch-time {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.stopwatch-container {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.stopwatch-buttons {
+  display: flex;
+}
+
+.stopwatch-button {
+  background-color: #1e88e5; /* Blue color for buttons */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.lap-item {
+  background-color: #424242; /* Darker shade for laps */
+  color: #ffffff;
+  padding: 10px 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 165px; /* Adjust width as needed */
+  text-align: center;
+}
