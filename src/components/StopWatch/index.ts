@@ -1,6 +1,6 @@
 export * from "./hooks/useStopWatch"
 export * from "./DigitalDisplay/"
 export * from "./AnalogDisplay/"
-export * from "./StopWatch"
+export * from "./StopWatchWrapper"
 export * from "./utils"
 export * from "./StopWatchButton/"
