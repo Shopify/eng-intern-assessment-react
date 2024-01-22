@@ -54,7 +54,7 @@ export default function StopWatch() {
     return (
         <div className='h-full flex flex-col'>
             <div className='h-1/3 border-b-2 flex justify-center items-center border-neutral-200 dark:border-neutral-800'>
-                <div className='text-3xl font-mono'>
+                <div data-testid='timeDisplay' className='text-3xl font-mono'>
                     {formatTime(currentTime)}
                 </div>
             </div>
@@ -63,7 +63,7 @@ export default function StopWatch() {
                     <StopWatchButton color={(showReset || running) ? 'gray' : 'disabled'} onClick={showReset ? resetHandler : lapHandler}>
                         {showReset ? 'Reset' : 'Lap'}
                     </StopWatchButton>
-                    <StopWatchButton color={running ? 'red' : 'green'} onClick={running ? stopHandler : startHandler}>
+                    <StopWatchButton data-testid='startStopButton' color={running ? 'red' : 'green'} onClick={running ? stopHandler : startHandler}>
                         {running ? 'Stop' : 'Start'}
                     </StopWatchButton>
                 </div>
@@ -75,7 +75,7 @@ export default function StopWatch() {
                     .filter(x => !isNaN(x))
                     .reverse()
                     .map((x, idx, arr) => (
-                        <div key={idx} className='mx-8 px-8 h-16 border-b-2 flex justify-between items-center border-neutral-200 dark:border-neutral-800'>
+                        <div data-testid='lap' key={idx} className='mx-8 px-8 h-16 border-b-2 flex justify-between items-center border-neutral-200 dark:border-neutral-800'>
                             <div>Lap {arr.length - idx}</div>
                             <div>{formatTime(x)}</div>
                         </div>

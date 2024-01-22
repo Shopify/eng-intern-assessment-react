@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function StopWatchButton(
-    { children, color, onClick }:
+    { children, color, onClick, ...props }:
     { children: React.ReactNode, color: string, onClick: () => void }
 ) {
     const commonStyle = 'text-white focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2'
@@ -14,7 +14,7 @@ export default function StopWatchButton(
                 color === 'gray' ? grayStyle :
                 disabled
     return (
-        <button type='button' disabled={color === 'disabled'} onClick={onClick} className={commonStyle + s}>
+        <button {...props} type='button' disabled={color === 'disabled'} onClick={onClick} className={commonStyle + s}>
             {children}
         </button>
     )
