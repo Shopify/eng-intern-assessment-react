@@ -1,0 +1,82 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(to left top, #3a7f80, #212a6c); /* Purple gradient */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    
+}
+
+/* StopWatch.css */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul li {
+    margin-bottom: 8px;
+  }
+  
+  /* Style.css */
+  
+.stopwatch-container {
+    position: relative;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  
+  .buttons-container {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    font-size: 25px;
+    margin: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 4px solid #004e01;
+    border-radius: 20px;
+    background-color: #16be2c;
+    color: #ffffff;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #ffcc00;
+  }
+  
+.timer-box {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    
+    display: inline-block;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 150px;
+    margin-bottom: 50px;
+    margin-top: 100px;
+  }
+  
+  .lap-times {
+    text-align: left;
+  }
+
+  .lap-times-heading {
+    color: #00bf95; /* Change this to the desired color for the heading "Lap Times" */
+    font-size: 30px;
+}
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    color: #ffffff;
+    font-size: 30px;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }

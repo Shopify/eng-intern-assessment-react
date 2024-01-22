@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import "./Style.css";
 
 interface StopWatchButtonProps {
   elapsed: number;
@@ -66,22 +67,24 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
   };
 
   return (
-    <>  
-      <div>{formatTime(elapsed)}</div>
-      <button onClick={handleStartStopClick}>
-        {isRunning ? 'Stop' : 'Start'}
-      </button>
-      <button onClick={handleLapClick}>Lap</button>
-      <button onClick={handleResetClick}>Reset</button>
-
-      <div>
-        <h2>Lap Times</h2>
-        <ul>
-          {lapTimes.map((lap, index) => (
-            <li key={index}>{formatTime(lap)}</li>
-          ))}
-        </ul>
+    <>
+      <div className="timer-container">
+        <div className="timer-box">{formatTime(elapsed)}</div>
       </div>
+      <button onClick={handleStartStopClick}>
+        {isRunning ? 'STOP' : 'START'}
+      </button>
+      <button onClick={handleLapClick}>LAP</button>
+      <button onClick={handleResetClick}>RESET</button>
+  
+      <div>
+    <h2 className="lap-times-heading">LAP TIMES</h2>
+    <ul>
+        {lapTimes.map((lap, index) => (
+            <li key={index}>{formatTime(lap)}</li>
+        ))}
+    </ul>
+    </div>
     </>
   );
 }
