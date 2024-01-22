@@ -35,11 +35,11 @@ export default function App() {
     }, [status, timeElapsed]);
 
     // Converts the number type time representing milliseconds into strings representing units of time
-    // Strings less than 2 chars long get a leading 0
+    // Strings less than 2 chars long get a leading 0, millisecond checks for 3
     function convertToTimeUnits(time: number): string[]{
         let milliseconds, seconds, minutes;
 
-        milliseconds = (time%1000).toString().padStart(2, "0");
+        milliseconds = (time%1000).toString().padStart(3, "0");
         seconds = Math.floor((time/1000)%60).toString().padStart(2, "0");
         minutes = Math.floor(time/60000).toString().padStart(2, "0");
         return[minutes, seconds, milliseconds];

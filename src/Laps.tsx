@@ -15,7 +15,7 @@ export default function Laps({ laps, lapTimeUnits, convertToTimeUnits }: LapsPro
             {laps.map((lap, index) => {
             lapTimeUnits = convertToTimeUnits(lap) // Converts to time units for better display of time
             return(
-                <p className="lap-elements">Lap {index+1} | &emsp; {lapTimeUnits[0]}:{lapTimeUnits[1]}.{lapTimeUnits[2]}</p>
+                <p className="lap-elements">Lap {index+1} &emsp; {lapTimeUnits[0]}:{lapTimeUnits[1]}.{lapTimeUnits[2]}</p>
             )
         })}
         </div>
