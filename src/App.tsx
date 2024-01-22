@@ -43,8 +43,10 @@ export default function App() {
                     setLaps([]);
                 }} />
                 <StopWatchButton text='Lap' handleClick={() => {
-                    // Add current time to lap list
-                    setLaps([...laps, { id: uuidv4(), seconds: seconds }])
+                    if (counting) {
+                        // Add current time to lap list
+                        setLaps([...laps, { id: uuidv4(), seconds: seconds }])
+                    }
                 }} />
             </div>
 
