@@ -44,15 +44,21 @@ export default function App() {
                 }} />
                 <StopWatchButton text='Lap' handleClick={() => {
                     if (counting) {
-                        // Add current time to lap list
-                        setLaps([...laps, { id: uuidv4(), seconds: seconds }])
+                        if (laps.length == 0) {
+                            // First lap, just add current time to lap list
+                            setLaps([{ id: uuidv4(), length: seconds, timeClicked: seconds }]);
+                        } else {
+                            // Calculate time passed since last lap
+                            const currentLapTime = seconds - laps[laps.length - 1].timeClicked;
+                            setLaps([...laps, { id: uuidv4(), length: currentLapTime, timeClicked: seconds }]);
+                        }
                     }
                 }} />
             </div>
 
             <ol data-testid='lap-list'>
                 {laps.map(lap => (
-                    <li key={lap.id}>{new Date(lap.seconds * 1000).toISOString().slice(11, 19)}</li>
+                    <li key={lap.id}>{new Date(lap.length * 1000).toISOString().slice(11, 19)}</li>
                 ))}
             </ol>
         </div>
