@@ -1,7 +1,14 @@
 import React from 'react'
+import StopWatch from './Pages/StopWatch/StopWatch'
+import { AppProvider } from '@shopify/polaris';
+import enTranslations from '@shopify/polaris/locales/en.json';
 
-export default function App() {
+function App() {
     return(
-        <div></div>
+        <AppProvider i18n={enTranslations}>
+            <StopWatch></StopWatch>
+        </AppProvider>
     )
 }
+
+export default App;
