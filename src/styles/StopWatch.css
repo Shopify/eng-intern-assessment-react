@@ -49,6 +49,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s;
+    overflow: auto;
+    max-height: 200px;
+    margin-top: 15px;
 }
 
 .lap-title {
@@ -62,6 +65,7 @@ body {
     padding: 0;
     margin: 0;
     color: var(--text-light);
+    overflow: auto;
 }
 
 .lap-list li {
@@ -70,7 +74,7 @@ body {
     color: var(--text-light);
 }
 
-/* Toggle Button Styles */
+
 .toggle-button {
     background-color: var(--background-dark);
     color: var(--text-dark);
@@ -98,7 +102,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin: 0 5px;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .stop-button {
@@ -108,4 +112,11 @@ body {
 .stopwatch-button:disabled {
     background: #ccc;
     cursor: not-allowed;
+}
+
+@media only screen and (min-width: 768px) {
+    .stopwatch-container {
+        font-size: 36px;
+        padding: 10px;
+    }
 }

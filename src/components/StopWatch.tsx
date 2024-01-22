@@ -1,12 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
-import './StopWatch.css';
+import '../styles/StopWatch.css'
+
+interface Lap {
+    id: number;
+    time: number;
+}
 
 const StopWatch: React.FC = () => {
     // State variables for managing stopwatch functionality
     const [isRunning, setIsRunning] = useState(false)
     const [time, setTime] = useState(0)
-    const [laps, setLaps] = useState<number[]>([]);
+    const [laps, setLaps] = useState<Lap[]>([]);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
 
@@ -47,7 +52,8 @@ const StopWatch: React.FC = () => {
 
     // Function to add a lap to the list
     const addLap = () => {
-        setLaps((prevLaps) => [...prevLaps, time])
+        const newLap: Lap = { id: laps.length + 1, time };
+        setLaps((prevLaps) => [...prevLaps, newLap])
     }
 
 
@@ -88,8 +94,8 @@ const StopWatch: React.FC = () => {
                 {/* Display the list of laps */}
                 <h2 className='lap-title'>Laps</h2>
                 <ul className='lap-list'>
-                    {laps.map((lap, index) => (
-                        <li key={index}>{`Lap ${index + 1}: ${formatTime(lap)}`}</li>
+                    {laps.map((lap) => (
+                        <li key={lap.id}>{`Lap ${lap.id}: ${formatTime(lap.time)}`}</li>
                     ))}
                 </ul>
             </div>

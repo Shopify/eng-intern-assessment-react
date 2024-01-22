@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react'
-import './StopWatch.css'
+import React from 'react'
 
 // StopWatchButtonProps interface defines props for the StopWatchButton components
 interface StopWatchButtonProps {

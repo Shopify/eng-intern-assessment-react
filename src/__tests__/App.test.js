@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import App from "../src/App";
+import App from "../App";
 
 // Test to check if the stopwatch component renders
 test("renders stopwatch component", () => {
