@@ -7,7 +7,6 @@ import { Time } from './Time'
     2. AnalogTime_View
 */
 
-
 interface View_Props {
     time: Time
 };
@@ -17,27 +16,10 @@ function DigitalTime_View(props: View_Props) {
         In this view, the time is displayed as:
         "hours : minutes : seconds : milliseconds"
     */
-    const style: React.CSSProperties = {
-        // Style for main div
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-end",
-        fontVariantNumeric: "tabular-nums",
-        fontSize:50,
-    };
-    const style_alt: React.CSSProperties = {
-        // Style for the 2 least significant digits
-        fontSize:30,
-        color: "#707070"
-    };
     return (
-        <div id="DigitalTime" style={style}>
-            <p id="time" style={style}>
-                {props.time.display().slice(0, -2)}
-            </p>
-            <p id="ms" style={style_alt}>
-                {props.time.display().slice(-2)}
-            </p>
+        <div className="DigitalTime">
+            <p>{props.time.display().slice(0, -2)}</p>
+            <p id="time-ms">{props.time.display().slice(-2)}</p>
         </div>
     );
 }
@@ -48,8 +30,8 @@ function AnalogTime_View(props: View_Props) {
         clock (drawn on a canvas element)
     */
     const canvasRef = useRef<HTMLCanvasElement>(null); //reference the canvas element
-    const w = 200;      //canvas width
-    const h = 200;      //canvas height
+    let w = 200;    //canvas width
+    let h = w;      //canvas height
     const radius = w/2; //radius of the clock
 
     //Drawing:
@@ -155,18 +137,9 @@ export default function StopWatch(props: StopWatch_Props) {
     /*
         The StopWatch display: <DigitalTime_View> + <AnalogTime_View>
     */
-    const style: React.CSSProperties = {
-        width: "100%",
-        padding: 30,
-        backgroundColor: "black",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-    };
     return(
-        <div id={`StopWatch-${props.caption}`} style={style}>
-            <p style={{fontWeight: "bold"}}>{props.caption}</p>
+        <div className="StopWatch" id={props.caption}>
+            <h1>{props.caption}</h1>
             <DigitalTime_View
                 time={props.time}
             />

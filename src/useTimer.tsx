@@ -1,14 +1,17 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
+import { Time, Lap } from "./Time"
 
 export function useTimer() {
   /*
-        Hook to createa a timer
+        Hook to create a timer
         - keeps track of:  elapsedTime, interval reference and lapStart
+        - returns: total_time (Time), lap_time (Time), laps (Lap[]), handlers
     */
-  const [elapsedTime, setElapsedTime] = useState(0); //Total time since first start
-  const [lapStart, setLapStart] = useState(undefined); //Time start of curr lap
-  const [isRunning, setIsRunning] = useState(false); //Is the timer active?
-  const countRef = useRef(null); //reference to interval
+  const [isRunning, setIsRunning] = useState(false);    // Is the timer active?
+  const [elapsedTime, setElapsedTime] = useState(0);    // Total time since first start
+  const [lapStart, setLapStart] = useState(undefined);  // Time start of curr lap
+  const [laps, setLaps] = useState([] as Lap[]);        // Store an array of laps
+  const countRef = useRef(null);                        // Reference to interval
 
   const handleStart = () => {
     const startTime = Date.now(); //Time in ms from Jan 1st
@@ -20,10 +23,10 @@ export function useTimer() {
     setIsRunning(true);
   };
 
-  const handleLap = (lap_callback: () => void) => {
-    if (!isRunning) return; //Don't lap if timer is stopped/not started
-    setLapStart(Date.now());
-    lap_callback(); //Do the specified action
+  const handleLap = () => {
+    if (!isRunning) return;                         // Don't lap if timer is stopped/not started
+    setLapStart(Date.now());                        // Start a new lap
+    laps.push({ total_t: total_t, lap_t: lap_t });  //Push the last lap
   };
 
   const handleStop = () => {
@@ -32,17 +35,22 @@ export function useTimer() {
   };
 
   const handleReset = () => {
-    clearInterval(countRef.current); //Stop the interval
+    clearInterval(countRef.current);  // Stop the interval
+    setLaps([]);                      // Clear all laps
     //Reset the timer:
     setElapsedTime(0);
     setLapStart(undefined);
     setIsRunning(false);
   };
 
+  //Create the time objects based on the timer:
+  const total_t = new Time(elapsedTime);
+  const lap_t = new Time(lapStart ? Date.now() - lapStart : 0);
   //Return the data / functionality needed:
   return {
-    elapsedTime,
-    lapTime: lapStart ? Date.now() - lapStart : 0,
+    total_t,
+    lap_t,
+    laps,
     handleStart,
     handleStop,
     handleReset,
