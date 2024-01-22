@@ -1,25 +1,20 @@
 import React from "react";
+import { TimeComponents } from "./types";
 
 interface StopWatchProps {
-  elapsedTime: number;
+  timeComponents: TimeComponents;
 }
 
-export default function StopWatch({ elapsedTime }: StopWatchProps) {
-  const centiseconds = elapsedTime % 100;
-  const seconds = Math.floor(elapsedTime / 100) % 60;
-  const minutes = Math.floor(elapsedTime / 6000) % 60;
-  const hours = Math.floor(elapsedTime / 360000);
-
-  const formatTime = (num: number) => {
-    return num.toString().padStart(2, "0");
-  };
-
+export default function StopWatch({
+  timeComponents: [hours, minutes, seconds, centiseconds],
+}: StopWatchProps) {
   return (
     <div>
       <span>
-        {formatTime(hours)}:{formatTime(minutes)}:{formatTime(seconds)}
+        {hours === "00" ? "" : hours + ":"}
+        {minutes}:{seconds}
       </span>
-      <span>.{formatTime(centiseconds)}</span>
+      <span>.{centiseconds}</span>
     </div>
   );
 }
