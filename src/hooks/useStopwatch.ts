@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 
 /**
  * Gets time since some origin in milliseconds
@@ -37,6 +37,13 @@ export function useStopwatch(): Stopwatch {
   const [milliseconds, setMilliseconds] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [laps, setLaps] = useState<Lap[]>([]);
+
+  // the sum of all laps to determine how long the current lap has been
+  // memoized to avoid unnecessarily O(n) recalculations on every render
+  const lapsSum = useMemo(
+    () => laps.reduce((acc, lap) => acc + lap.milliseconds, 0),
+    [laps],
+  );
 
   // `checkpoint` is the time when the stopwatch was last resumed
   const checkpoint = useRef(getCheckpoint());
@@ -79,7 +86,7 @@ export function useStopwatch(): Stopwatch {
         ...arr,
         {
           id: `Lap ${arr.length + 1}`,
-          milliseconds: milliseconds - (arr[arr.length - 1]?.milliseconds ?? 0),
+          milliseconds: milliseconds - lapsSum,
         },
       ]),
   };

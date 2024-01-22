@@ -105,8 +105,14 @@ describe('StopWatch', () => {
     act(() => jest.advanceTimersByTime(1000));
     act(() => fireEvent.click(lapButton));
     act(() => jest.advanceTimersByTime(1000));
+    act(() => fireEvent.click(lapButton));
+    act(() => jest.advanceTimersByTime(1000));
+    act(() => fireEvent.click(lapButton));
+    act(() => jest.advanceTimersByTime(1000));
     expect(getByTestId('Lap 1')).toHaveTextContent('Lap 1: 00:00:01.00');
     expect(getByTestId('Lap 2')).toHaveTextContent('Lap 2: 00:00:01.00');
+    expect(getByTestId('Lap 3')).toHaveTextContent('Lap 3: 00:00:01.00');
+    expect(getByTestId('Lap 4')).toHaveTextContent('Lap 4: 00:00:01.00');
   });
 
   test('resets laps when reset button is clicked', () => {
