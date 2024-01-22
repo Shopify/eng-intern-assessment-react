@@ -1,0 +1,67 @@
+body {
+    background-color: #2d384d;
+    font-family: SegoeUI, 'Segoe UI', 'Open Sans', Helvetica;
+}
+
+.stopwatch-container {
+    padding-top: 50px;
+    position: relative;
+}
+
+.stopwatch-time {
+    font-size: 120px;
+    margin: 10px 0px;
+    font-weight: 200;
+    color: white;
+    width: 580px;
+}
+
+.stopwatch-time-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stopwatch-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+
+}
+
+.stopwatch-button {
+    display: block;
+    margin: 30px;
+    height: 80px;
+    width: 120px;
+    background-color: rgb(237, 237, 237);
+    border: 2px solid rgb(215, 215, 215);
+    border-radius: 40px;
+    font-size: 22px;
+    font-weight: 300;
+    transition: 0.3s;
+
+}
+
+.stopwatch-button:hover {
+    background-color: #617395;
+    border: 2px solid rgb(215, 215, 215);
+    color: white;
+}
+
+.lap-times-title,
+.lap-times-list {
+    text-align: center;
+    color: white;
+}
+
+.lap-times-title {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.lap-times-list {
+    list-style-type: none;
+    font-size: 30px;
+    font-weight: 100;
+}
