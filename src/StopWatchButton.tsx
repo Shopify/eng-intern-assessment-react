@@ -1,7 +1,11 @@
 import React from 'react'
 
+interface Props{ 
+
+}
+
 export default function StopWatchButton() {
     return(
-        <div></div>
+        <div>Hello</div>
     )
 }
