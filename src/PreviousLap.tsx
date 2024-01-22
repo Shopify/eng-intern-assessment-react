@@ -5,11 +5,6 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Typography, ButtonGroup, Button } from '@mui/material';
 
-type Lap = {
-    number: number;
-    time: number;
-}
-
 export default function PreviousLap(props: {number: number, time: number}) {
 
     const minutes = Math.floor((props.time % 360000) / 6000);
@@ -18,7 +13,7 @@ export default function PreviousLap(props: {number: number, time: number}) {
 
     return (
         <div>
-            <Typography variant="h5" gutterBottom>{props.number} - {minutes} : {seconds} : {miliseconds}</Typography>
+            <Typography style={{color: "#3e98c7", textAlign: 'center'}} variant="h5" gutterBottom>{props.number} - {minutes} : {seconds} : {miliseconds}</Typography>
         </div>
     )
 }
