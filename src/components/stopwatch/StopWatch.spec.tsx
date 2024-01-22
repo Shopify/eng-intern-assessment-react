@@ -34,16 +34,21 @@ describe('StopWatch', () => {
     expect(lapButton).toBeInTheDocument();
   });
 
-  test('starts the stopwatch when start button is clicked', () => {
+  test('starts the stopwatch when start button is clicked, and pauses when pause button is clicked', () => {
     const {getByTestId} = render(<StopWatch />);
     const startButton = getByTestId('start-button');
+    const pauseButton = getByTestId('pause-button');
 
     act(() => fireEvent.click(startButton));
     act(() => jest.advanceTimersByTime(1000));
     expect(getByTestId('timer-display')).toHaveTextContent('00:00:01.00');
+
+    act(() => fireEvent.click(pauseButton));
+    act(() => jest.advanceTimersByTime(1000));
+    expect(getByTestId('timer-display')).toHaveTextContent('00:00:01.00');
   });
 
-  test('pauses the stopwatch when pause button is clicked', () => {
+  test('pauses the stopwatch when pause button is clicked, and starts when start button is clicked', () => {
     const {getByTestId} = render(<StopWatch />);
     const startButton = getByTestId('start-button');
     const pauseButton = getByTestId('pause-button');
@@ -53,6 +58,10 @@ describe('StopWatch', () => {
     act(() => fireEvent.click(pauseButton));
     act(() => jest.advanceTimersByTime(1000));
     expect(getByTestId('timer-display')).toHaveTextContent('00:00:01.00');
+
+    act(() => fireEvent.click(startButton));
+    act(() => jest.advanceTimersByTime(1000));
+    expect(getByTestId('timer-display')).toHaveTextContent('00:00:02.00');
   });
 
   test('resets the stopwatch when reset button is clicked', () => {
