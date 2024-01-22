@@ -22,6 +22,19 @@ Before starting, I considered these key aspects:
    - To manage the display when minutes exceed `99`, an additional column for `hours` will appear. This column won't be visible initially, as hours are not commonly needed in a typical stopwatch usage scenario.
    - To ensure a clean design when the `Lap` button is used repeatedly, laps will be displayed within a fixed-size box. This box will allow users to scroll through their lap times without hiding the stopwatch or buttons, maintaining the visibility of essential controls and information at all times.
    - The stopwatch layout is designed to be responsive on all screen sizes, ensuring a consistent user experience.
+   - The Stopwatch should continue to run even when not on the window/tab.
+
+## Problems I faced
+1. Making the stopwatch continue to run after user leaves the tab/window
+    - I switched to calculating elapsed time by taking the difference between the current time and the start time whenever the component re-renders, rather than relying on setInterval.
+    - This approach bypassed the issue of browsers throttling setInterval in inactive tabs, which was causing the timer to pause.
+    - I also added a state variable to trigger re-renders every few milliseconds, ensuring that the UI consistently displays the updated time.
+
+2. Resolving the display flashing issue in the stopwatch
+    - I fixed the random flashing of 00:00.00 by optimizing state updates, ensuring that they occurred sequentially to avoid conflicts between rendering cycles and state changes.
+    - I implemented a conditional rendering logic that updated the display only when there were significant elapsed time changes, preventing the flickering effect caused by minor and rapid state fluctuations.
+
+
 
 
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
-// StopWatchButton component for buttons controlls
+//control buttons
 interface StopWatchButtonProps {
-  isRunning: boolean;
-  start: () => void;
-  stop: () => void;
-  reset: () => void;
-  lap: () => void;
+  isRunning: boolean;  // Indicates if the stopwatch is running
+  start: () => void;  // Function to start the timer
+  stop: () => void;  // Function to stop the timer
+  reset: () => void;  // Function to reset the timer
+  lap: () => void;  // Function to record a lap
 }
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({
@@ -18,16 +18,16 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({
 }) => {
   return (
     <div>
-      {/* "Start" button shown when stopwatch isn't running */}
+      {/* Render the "Start" button only if the stopwatch is not running */}
       {!isRunning && <button onClick={start}>Start</button>}
-      
-      {/* "Stop" button shown when stopwatch is running */}
+
+      {/* Render the "Stop" button only if the stopwatch is running */}
       {isRunning && <button onClick={stop}>Stop</button>}
-      
-      {/* "Reset" button, always displayed */}
+
+      {/* The "Reset" button is always rendered and can be clicked at any time */}
       <button onClick={reset}>Reset</button>
 
-      {/* "Lap" button shown when stopwatch is running */}
+      {/* Render the "Lap" button only if the stopwatch is running */}
       {isRunning && <button onClick={lap}>Lap</button>}
     </div>
   );

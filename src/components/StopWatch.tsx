@@ -1,22 +1,22 @@
 import React from 'react';
 
-// StopWatch component to display time and laps
+//display time and laps
 interface StopWatchProps {
-  elapsedTime: number;
-  laps: number[];
+  elapsedTime: number;  // The elapsed time to display
+  laps: number[];  // Array of lap times
 }
 
 const StopWatch: React.FC<StopWatchProps> = ({ elapsedTime, laps }) => {
-
   // Format time to min:sec.milliseconds
   const formatTime = (time: number) => {
+    // Format time
     const milliseconds = `0${Math.floor(time / 10) % 100}`.slice(-2);
     const seconds = `0${Math.floor(time / 1000) % 60}`.slice(-2);
     const minutes = `0${Math.floor(time / 60000)}`.slice(-2);
     return `${minutes}:${seconds}.${milliseconds}`;
   };
 
-  // Renders stopwatch and laps
+  // Renders the stopwatch and laps
   return (
     <div>
       <h2>Stopwatch</h2>

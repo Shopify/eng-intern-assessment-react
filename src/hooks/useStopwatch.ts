@@ -1,51 +1,74 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
-// Custom hook for managing stopwatch logic
+// Custom hook for stopwatch logic
 const useStopwatch = () => {
   const [isRunning, setIsRunning] = useState(false);  // Manages the running state of the stopwatch
-  const [elapsedTime, setElapsedTime] = useState(0);  // Tracks the amount of time passed since start
-  const intervalRef = useRef<number | null>(null);    // Holds the timer's ID
-  const [laps, setLaps] = useState<number[]>([]);     // Stores recorded laps
+  const [startTime, setStartTime] = useState<number | null>(null);  // Records the start time of the stopwatch
+  const [laps, setLaps] = useState<number[]>([]);  // Stores recorded laps
+  // Add a state to trigger re-renders
+  const [, setTick] = useState(0);  // Used to force component re-renders
 
-  // Starts the stopwatch and updates time every 10ms
+  const getElapsedTime = () => {
+    // Calculate elapsed time as the difference from the current time to the start time
+    return startTime ? Date.now() - startTime : 0;
+  };
+
+  // Starts the stopwatch
   const start = () => {
+    // Sets the start time and begins the timer
     if (!isRunning) {
+      setStartTime(prevStartTime => prevStartTime ?? Date.now());
       setIsRunning(true);
-      intervalRef.current = setInterval(() => {
-        setElapsedTime(prevTime => prevTime + 10);
-      }, 10) as unknown as number;
     }
   };
 
-  // Stops the stopwatch and clears the interval
+  // Stops the stopwatch
   const stop = () => {
+    // Stops the timer
     if (isRunning) {
-      clearInterval(intervalRef.current);
       setIsRunning(false);
     }
   };
 
-  // Resets the stopwatch: stops the timer and sets time and laps to 0
+  // Resets the stopwatch
   const reset = () => {
-    clearInterval(intervalRef.current);
+    // Stops the timer and resets the elapsed time and laps
     setIsRunning(false);
-    setElapsedTime(0);
-    setLaps([]); // Clear laps on reset
+    setStartTime(null);
+    setLaps([]);
   };
 
   // Records a lap
   const lap = () => {
-    if (isRunning) {
-      setLaps([...laps, elapsedTime]);
+    // Records the current elapsed time as a lap
+    if (isRunning && startTime) {
+      setLaps([...laps, getElapsedTime()]);
     }
   };
 
-  // Clears the interval when the component unmounts
+  // Effect to trigger re-renders every 10ms when the stopwatch is running
   useEffect(() => {
-    return () => clearInterval(intervalRef.current);
-  }, []);
+    let interval: NodeJS.Timeout | null = null;
+    if (isRunning) {
+      // This interval will trigger a re-render every 10ms
+      interval = setInterval(() => {
+        // Force state update to re-render component
+        setTick(tick => tick + 1);
+      }, 10);
+    } else if (interval) {
+      // Clear interval when stopwatch stops
+      clearInterval(interval);
+    }
 
-  return { isRunning, elapsedTime, start, stop, reset, laps, lap };
+    return () => {
+      // Cleanup interval when component unmounts
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isRunning, startTime]);
+
+  return { isRunning, elapsedTime: getElapsedTime(), start, stop, reset, laps, lap };
 };
 
 export default useStopwatch;
