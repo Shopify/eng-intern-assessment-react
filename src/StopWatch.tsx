@@ -9,7 +9,17 @@ export default function StopWatch() {
 	const [lapCount, setLapCount] = useState(0)
 
 	const handleStart = () => {
+		setStart(true)
+	}
+
+	const handleStop = () => {
 		setStart(false)
+	}
+
+	const handleReset = () => {
+		setStart(false)
+		setTime(0)
+		setLapCount(0)
 	}
 
 	useEffect(() => {
@@ -20,6 +30,8 @@ export default function StopWatch() {
 		}
 	}, [time, start, lapCount])
 
+	
+
     return(
         <div>
 			<div>
@@ -27,6 +39,8 @@ export default function StopWatch() {
 			</div>
 			<div>
 				<button onClick={handleStart}>start</button>
+				<button onClick={handleStop}>stop</button>
+				<button onClick={handleReset}>reset</button>
 				<StopWatchButton />
 			</div>
 			<div>
