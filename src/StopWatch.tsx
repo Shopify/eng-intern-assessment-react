@@ -2,6 +2,18 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import StopWatchButton from './StopWatchButton'
 
+const TimeDisplay = ({ hours, minutes, seconds, milliseconds } : 
+	{ hours: number, minutes: number, seconds: number, milliseconds: number}) => {
+		return (
+			<>
+				{hours.toString().padStart(2, '0')}:
+				{minutes.toString().padStart(2, '0')}:
+				{seconds.toString().padStart(2, '0')}:
+				{milliseconds.toString().padStart(2, '0')} 
+			</>
+		)
+}
+
 export default function StopWatch() {
 	//stores time such that one unit represents 10 milliseconds
 	const [time, setTime] = useState(0)
@@ -30,12 +42,22 @@ export default function StopWatch() {
 		}
 	}, [time, start, lapCount])
 
-	
+	const hours = Math.floor(time / 360000)
+	const minutes = Math.floor((time % 360000) / 6000)
+	const seconds = Math.floor((time % 6000) / 100)
+
+	//every unit represents 10 milliseconds
+	const milliseconds = time % 100
 
     return(
         <div>
 			<div>
-				{time}
+				<TimeDisplay 
+					hours={hours} 
+					minutes={minutes} 
+					seconds={seconds} 
+					milliseconds={milliseconds} 
+				/>
 			</div>
 			<div>
 				<button onClick={handleStart}>start</button>
