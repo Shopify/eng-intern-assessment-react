@@ -14,3 +14,4 @@ I wrote unit tests using Jest for both the components and utility functions such
 ## Modularity
 I debated between embedding styles directly within components and maintaining them in separate CSS files. Each method has its advantages: Inline styles or CSS-in-JS solutions like styled-components provide better encapsulation, while external CSS files offer a clear separation of concerns. I considered project complexity and a hypothetical collaborative setting in making my choice.
 
+![Image of Project](image.png)
