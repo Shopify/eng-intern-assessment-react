@@ -37,7 +37,13 @@ JSDoc annotations are used to document the codebase, with more detailed descript
   - The call to `performance.now()` is abstracted into a `getCheckpoint` function, so if the component is being used in an environment where `performance` is not available, it can be easily swapped out for `Date.now()`.
 - Tailwind CSS
   - Tailwind CSS was used to style the application, as it is a simple and easy-to-use CSS framework.
-  - It also skips any bundle size pitfalls of CSS-in-JS solutions, and makes prefers-color-scheme handling trivial.
+  - It also skips any bundle size pitfalls of CSS-in-JS solutions, and makes `prefers-color-scheme` handling trivial.
+
+## Important Notes
+
+- `src/StopWatch.tsx` was moved to `src/components/stopwatch/StopWatch.tsx`
+- `src/StopWatchButton.tsx` was moved to `src/components/stopwatch/StopWatchButton.tsx`
+- Tests are colocated with their respective components
 
 ### Easter Egg
 
