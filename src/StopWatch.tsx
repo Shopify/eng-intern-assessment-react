@@ -20,31 +20,67 @@ const formatTime = (time: number) => {
 
 export default function StopWatch() {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+  const [laps, setLaps] = useState<{ id: number; time: number }[]>([]);
+  const [lapIdCounter, setLapIdCounter] = useState<number>(0);
 
+  // Start the timer if it's not running and set up an interval to increment elapsed time.
   const handleStart = () => {
-    // Implement the start logic here
+    if (!intervalId) {
+      const id = setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+      setIntervalId(id);
+    }
   };
 
+  // Stop the running timer by clearing the interval and updating state.
   const handleStop = () => {
-    // Implement the stop logic here
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+    }
   };
 
+  // Reset the elapsed time to 0 and stop the running timer if any.
   const handleReset = () => {
-    // Implement the reset logic here
+    setElapsedTime(0);
+    setLaps([]);
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+    }
   };
-
+  // Add a new lap with current elapsed time to the laps array and update the lap ID counter.
   const handleLaps = () => {
-    // Implement the reset logic here
+    setLaps((prevLaps) => [
+      ...prevLaps,
+      { id: lapIdCounter, time: elapsedTime },
+    ]);
+    setLapIdCounter((prevCounter) => prevCounter + 1);
   };
 
   return (
     <section className="stopwatch-container">
-      {<div className="stopwatch-time">{formatTime(elapsedTime)}</div>}
-      <div className="stopwatch-button-container">
-        <StopWatchButton label="Start" onClick={handleStart} />
-        <StopWatchButton label="Stop" onClick={handleStop} />
-        <StopWatchButton label="Reset" onClick={handleReset} />
-        <StopWatchButton label="Laps" onClick={handleLaps} />
+      <div className="stopwatch-display">
+        {<div className="stopwatch-time">{formatTime(elapsedTime)}</div>}
+        <div className="stopwatch-buttons">
+          <StopWatchButton label="Start" onClick={handleStart} />
+          <StopWatchButton label="Stop" onClick={handleStop} />
+          <StopWatchButton label="Reset" onClick={handleReset} />
+          <StopWatchButton label="Laps" onClick={handleLaps} />
+        </div>
+      </div>
+
+      <div className="laps-container">
+        <h3 className="laps-title">Laps</h3>
+        <ul className="laps-list">
+          {laps.map((lap) => (
+            <li className="laps-item" key={lap.id}>
+              {formatTime(lap.time)}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
