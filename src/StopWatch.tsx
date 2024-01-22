@@ -122,7 +122,6 @@ export default function StopWatch() {
                         isRunning={isRunning}
                         className="button-outline"
                     />
-
                     <StopWatchButton
                         label={isRunning ? "STOP" : "START"}
                         onClick={toggleStartStop}

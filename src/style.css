@@ -18,21 +18,25 @@ body {
 .button-outline {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size: 2em;
+    font-size: 1.5em;
     color: #ffffff;
-    background-color: #9cbd56;
-    border: 2px solid #ffffff;
+    background-color: #31373b;
+    border: 2px solid #9cbd56;
     padding: 12px 24px;
     margin: 5px;
+    text-align: center;
 
     width: 160px;
     height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    border-radius: 8px; /* Slightly more rounded */
+    border-radius: 5px;
     cursor: pointer;
     letter-spacing: 1px; /* Adding some spacing between letters */
     transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
-    box-shadow: 4px 4px 20px #262626;
+    box-shadow: 2px 2px 4px #000000;
 
     &:hover {
         background-color: #7e9846; /* Invert colors on hover */
@@ -42,6 +46,9 @@ body {
 }
 
 .stopwatch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -63,7 +70,7 @@ body {
 }
 
 .time-box {
-    /* background: #88b04b; */
+    /* background: #565b4f; */
     font-size: 8rem;
     display: inline-block;
     width: 180px;
@@ -72,7 +79,8 @@ body {
     text-align: top; /* Align text horizontally */
     border: 5px solid #9cbd56;
     margin: 0 10px;
-    box-shadow: 4px 4px 30px #545151;
+    /* box-shadow: 4px 4px 30px #545151; */
+    border-radius: 5px;
 }
 
 .custom-margin {
