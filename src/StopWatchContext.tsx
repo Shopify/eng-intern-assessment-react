@@ -1,7 +1,6 @@
 import React from 'react';
 
 export interface LapData {
-    time: number,
     laptime: number,
     totaltime: number
 }
@@ -63,8 +62,7 @@ export const StopWatchProvider = (props: { children: React.ReactNode }) => {
 
     function createLap() {
         setLaps((laps) => [...laps, {
-            time: Date.now(),
-            laptime: Date.now() - (laps.length > 0 ? laps.pop().time : starttime),
+            laptime: Date.now() - starttime - (laps.length > 0 ? laps.pop().totaltime : 0),
             totaltime: Date.now() - starttime
         }])
     }
