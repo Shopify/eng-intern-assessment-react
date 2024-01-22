@@ -22,8 +22,10 @@ export default function App() {
     useEffect(() => {
         
         const listener = (e?: MediaQueryListEvent) => {
-            const newColorScheme = e.matches ? "dark" : "light"
-            setIsDarkMode(newColorScheme=="dark")
+            if(e){
+                const newColorScheme = e.matches ? "dark" : "light"
+                setIsDarkMode(newColorScheme=="dark")
+            }
         }
         
         // Run once on load

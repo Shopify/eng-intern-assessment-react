@@ -19,5 +19,5 @@ export interface SWContextType {
     setStatus: React.Dispatch<React.SetStateAction<StopWatchStatus>>;
 }
 
-const SWContext = createContext<SWContextType>(null);
+const SWContext = createContext<SWContextType>({} as SWContextType);
 export default SWContext;
