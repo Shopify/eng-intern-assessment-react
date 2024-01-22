@@ -1,7 +1,11 @@
+// A component that represents the stopwatch display
 import React from 'react'
-
-export default function StopWatch() {
+import '../styles/StopWatch.css'
+interface Props {
+    elapsedTime: String
+}
+export default function StopWatch({elapsedTime}: Props) {
     return(
-        <div></div>
+        <div className="stopwatch">{elapsedTime}</div>
     )
 }
