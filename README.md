@@ -9,7 +9,7 @@ I created a custom function to format the time for display. The rationale was to
 I added the functionality to record individual lap times and determine the slowest and fastest laps. This decision was driven by the desire to make the stopwatch more versatile and useful, particularly for users needing detailed time tracking, such as in sports.
 
 ## Testing
-I wrote unit tests for both the components and utility functions such as the format function and lap display/accuracy. My goal here was to ensure code reliability and ease future maintenance. 
+I wrote unit tests using Jest for both the components and utility functions such as the format function and lap display/accuracy. My goal here was to ensure code reliability and ease future maintenance. 
 
 ## Modularity
 I debated between embedding styles directly within components and maintaining them in separate CSS files. Each method has its advantages: Inline styles or CSS-in-JS solutions like styled-components provide better encapsulation, while external CSS files offer a clear separation of concerns. I considered project complexity and a hypothetical collaborative setting in making my choice.

@@ -30,7 +30,7 @@ export default function StopWatch() {
                         key={index}
                         className={`${lap.elapsedTime === slowestLap ? 'slowest-lap' : ''} ${lap.elapsedTime === fastestLap ? 'fastest-lap' : ''}`}
                     >
-                        {formatTime(lap.elapsedTime)}
+                        Lap {index + 1} {formatTime(lap.elapsedTime)}
                     </div>
                 ))}
             </div>
