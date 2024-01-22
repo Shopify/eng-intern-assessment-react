@@ -1,0 +1,81 @@
+
+.start{
+    background-color: #4c9a2a;
+    cursor:pointer;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease; /*transition animation when change of state in DOM*/
+    
+}
+.start:hover,.reset:hover,.pause:hover,.lap:hover{
+    background-color:#293e1b ;
+}
+
+.pause{
+    background-color: #4c9a2a;
+    height: 4rem;
+    color: white;
+    width: 5.5rem;
+    border-radius: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor:pointer;
+
+}
+
+.reset{
+    background-color: #4c9a2a;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    transition: all 0.3s ease;
+    color: white;
+    cursor:pointer;
+
+
+
+
+}
+
+.lap{
+    background-color: #4c9a2a;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    color: white;
+    cursor:pointer;
+
+
+}
+
+.lapinvisible{
+    visibility: hidden;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+}
