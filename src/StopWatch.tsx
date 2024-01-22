@@ -1,6 +1,12 @@
-import { time } from 'console';
 import React, { useLayoutEffect, useRef } from 'react'
-import { Time } from './App'
+import { Time } from './Time'
+
+/*
+    This file defines the <StopWatch> view which comes in 2 types:
+    1. DigitalTime_View
+    2. AnalogTime_View
+*/
+
 
 interface View_Props {
     time: Time
@@ -9,27 +15,21 @@ interface View_Props {
 function DigitalTime_View(props: View_Props) {
     /*
         In this view, the time is displayed as:
-        <days - hours - seconds - milliseconds>
+        "hours : minutes : seconds : milliseconds"
     */
-
-    const pad = (n: number, l: number) => {
-        let s = n.toString();
-        return s.padStart(l, '0');
-    };
-
     const style: React.CSSProperties = {
+        // Style for main div
         display: "flex",
         justifyContent: "center",
         alignItems: "flex-end",
         fontVariantNumeric: "tabular-nums",
         fontSize:50,
     };
-
     const style_alt: React.CSSProperties = {
+        // Style for the 2 least significant digits
         fontSize:30,
-        color: "lightgray"
+        color: "#707070"
     };
-
     return (
         <div id="DigitalTime" style={style}>
             <p id="time" style={style}>
@@ -43,15 +43,20 @@ function DigitalTime_View(props: View_Props) {
 }
 
 function AnalogTime_View(props: View_Props) {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const w = 200;
-    const h = 200;
-    const radius = w/2;
+    /*
+        In this view, the time is displayed as a
+        clock (drawn on a canvas element)
+    */
+    const canvasRef = useRef<HTMLCanvasElement>(null); //reference the canvas element
+    const w = 200;      //canvas width
+    const h = 200;      //canvas height
+    const radius = w/2; //radius of the clock
 
-    //Drawing
+    //Drawing:
     useLayoutEffect(() => {
         const gc = canvasRef.current?.getContext("2d");
         if(!gc) return;
+        //Draw the clock and the hands of time (for hours and seconds)
         drawClock(gc, 60, 5);
         drawHand(gc, props.time.s, 60, 3, 0.9);
         drawHand(gc, props.time.min, 60, 6, 0.6);
@@ -130,7 +135,7 @@ function AnalogTime_View(props: View_Props) {
         gc.restore();
     };
 
-
+    // Render
     return (
         <canvas
             ref={canvasRef}
@@ -148,7 +153,7 @@ interface StopWatch_Props {
 
 export default function StopWatch(props: StopWatch_Props) {
     /*
-        The stopwatch display
+        The StopWatch display: <DigitalTime_View> + <AnalogTime_View>
     */
     const style: React.CSSProperties = {
         width: "100%",
@@ -161,7 +166,7 @@ export default function StopWatch(props: StopWatch_Props) {
     };
     return(
         <div id={`StopWatch-${props.caption}`} style={style}>
-            <p className='bold-p'>{props.caption}</p>
+            <p style={{fontWeight: "bold"}}>{props.caption}</p>
             <DigitalTime_View
                 time={props.time}
             />

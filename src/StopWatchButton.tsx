@@ -1,5 +1,10 @@
 import React from 'react'
 
+/*
+    This file defines a standard button for
+    controlling the stopwatch
+*/
+
 interface ButtonProps {
     name: string;
     callback: ()=>void;
