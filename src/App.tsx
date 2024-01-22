@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 import Laps from './Laps';
-
+import "./styles.css"
 // The main component of the stopwatch, renders all subcomponents
 // Responsible for state setup, variable declarations and function definitions
 export default function App() {
@@ -19,17 +19,17 @@ export default function App() {
     let timeInterval: ReturnType<typeof setInterval>;
     let curTime: number;
 
-    // Use of the useEffect hook allows for the time to continuously update every 10 milliseconds (smallest amount of time it can update)
-    // Updates time by checking the difference in time between that instant and the last time Date.now() was called
-    // When the status is set to true, the time interval updates and is returned in a call to clear interval
+    // Keeping track of time
+    // Use of the setInterval method allows for the time to continuously update every 10 milliseconds
+    // When status is true, updates time by checking the difference in time between that instant and the last time Date.now() was called
+    // When status is false, stops updating time by using clearInterval to stop the execution of setInterval
     // useEffect is dependent on changes to status and timeElapsed
     useEffect(() => {
         curTime = Date.now();
-        
+
         // Only updates time if the status is set to true
         if(status) timeInterval = setInterval(() => 
             setTimeElapsed(timeElapsed+(Date.now()-curTime)) , 10);
-
         return () => clearInterval(timeInterval);
     }, [status, timeElapsed]);
 
@@ -50,7 +50,7 @@ export default function App() {
         status ? document.getElementById("toggle-stopwatch").innerHTML = "Start" :
         document.getElementById("toggle-stopwatch").innerHTML = "Stop";
 
-        setStatus(prevStatus => {return !prevStatus});
+        setStatus(prevStatus => {return !prevStatus}); // Inverses the status
     }
 
     // Resets the stopwatch by setting the time elapsed, laps and previous lap all to 0 or empty
