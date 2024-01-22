@@ -1,4 +1,4 @@
-// Responsible for buttons
+// Component that represents the start, stop, reset, and lap buttons
 
 import React from 'react'
 import '../styles/StopWatchButton.css'

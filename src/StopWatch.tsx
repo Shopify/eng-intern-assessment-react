@@ -1,5 +1,5 @@
-// Responsible for time display
-import React, {useState, useEffect} from 'react'
+// A component that represents the stopwatch display
+import React from 'react'
 import '../styles/StopWatch.css'
 interface Props {
     elapsedTime: String

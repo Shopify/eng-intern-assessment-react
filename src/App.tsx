@@ -1,13 +1,4 @@
-// Overall app
-// TODO:
-// - add stopwatch display functionality (ie. just counting up time) - done
-// - add start functionality - done
-// - add stop functionality - done
-// - add reset functionality - done
-// - add lap functionality - done
-// - add css - done
-// - code cleanup - done
-// - write tests
+// The main component that renders the stopwatch and handles its functionality
 import React, {useState, useEffect, useRef} from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
@@ -21,14 +12,24 @@ export default function App() {
     const [lapTime, setLapTime] = useState(0);
     const [laps, setLaps] = useState([]);
 
+
+    // Handler for reset button
     const resetHandler = () => {
         setReset(true);
     }
 
+    // Handler for start/stop button
     const runningHandler = () => {
         setIsRunning(!isRunning);
     }
 
+    // Handler for lap button
+    const lapHandler = () => {
+        setLaps([ ... laps, { id: laps.length + 1, time: formatTime(lapTime)} ]);
+        setLapTime(0);
+    }
+
+    // Padding zero to timer for display
     const padZero = (n : number) => {
         if (n < 10) {
             return `0${n}`
@@ -37,6 +38,7 @@ export default function App() {
         return `${n}`
     }
 
+    // Converts milliseconds to time in form of minutes:second.milliseconds
     const formatTime = (time: number) => {
 
         let seconds = padZero(Math.floor(time / 1000) % 60);
@@ -46,12 +48,10 @@ export default function App() {
         return `${minutes}:${seconds}.${milliseconds}`
     }
 
-    const lapHandler = () => {
-        setLaps([ ... laps, { id: laps.length + 1, time: formatTime(lapTime)} ]);
-        setLapTime(0);
-    }
-
+    // callback for timer
     useEffect(() => {
+
+        // If the timer is running, then use setInterval to update the time and current lap time
         if (isRunning) {
             setStartTime(Date.now());
             intervalID.current = setInterval(() => {
@@ -61,8 +61,10 @@ export default function App() {
             }, 10);
         }
         else {
-            clearInterval(intervalID.current );
+            clearInterval(intervalID.current); // Clear the interval ID
         }
+
+        // If the reset button is pressed, then reset everything
         if (reset) {
             setReset(false);
             setIsRunning(false);
