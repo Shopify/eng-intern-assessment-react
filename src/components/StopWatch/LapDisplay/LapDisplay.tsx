@@ -71,18 +71,18 @@ export function LapDisplay({
             }
         }>
 
-        <ol style={{...defaultLapListStyle,...orderedListStyles}} className={'lapDisplay'}>
-        {
-            laps.map((lap, index) => {
-                return (
-                    <li style={{...defaultListItemStyle}} key={index}>
-                        <h4 style={{...labelStyles ,...digitStyles}}>lap {index+1} {' '}</h4>
-                        <DigitalDisplay {...DigitalDisplayProps} milliseconds={lap} isLap darkTheme={darkTheme} />
-                    </li>
-                )
-            })
-        }
-    </ol>
+            <ol style={{...defaultLapListStyle,...orderedListStyles}} className={'lapDisplay'}>
+                {
+                    laps.map((lap, index) => {
+                        return (
+                            <li style={{...defaultListItemStyle}} key={index}>
+                                <h4 style={{...labelStyles ,...digitStyles}}>lap {index+1} {' '}</h4>
+                                <DigitalDisplay {...DigitalDisplayProps} milliseconds={lap} isLap darkTheme={darkTheme} />
+                            </li>
+                        )
+                    })
+                }
+            </ol>
         </div>
     )
 }

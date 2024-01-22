@@ -33,12 +33,14 @@ export const useStopWatch = (
     const [running, setRunning] = React.useState<boolean>()
 
     const pref = useRef(null);
-    let curTime = 0;
+    let curTime = performance.now();
+
+
     const calculateTime = useCallback((time) => {
 
         const delta = time - curTime;
         if(delta > 0) {
-            // console.log("DELTA: ", delta)
+
             curTime = time;
             setMilliseconds(prev => prev + delta);
         }
