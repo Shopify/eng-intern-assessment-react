@@ -26,34 +26,42 @@ export default function App() {
         }
     }, [counting, seconds])
 
+    function handleStartClick() {
+        setCounting(true);
+    }
+
+    function handleStopClick() {
+        setCounting(false);
+    }
+
+    function handleResetClick() {
+        setCounting(false);
+        setSeconds(0);
+        setLaps([]);
+    }
+
+    function handleLapClick() {
+        if (counting) {
+            if (laps.length == 0) {
+                // First lap, just add current time to lap list
+                setLaps([{ id: uuidv4(), length: seconds, timeClicked: seconds }]);
+            } else {
+                // Calculate time passed since last lap
+                const currentLapTime = seconds - laps[laps.length - 1].timeClicked;
+                setLaps([...laps, { id: uuidv4(), length: currentLapTime, timeClicked: seconds }]);
+            }
+        }
+    }
+
     return (
         <div id='app-container'>
             <StopWatch seconds={seconds} />
 
             <div id='btns-container'>
-                <StopWatchButton text='Start' handleClick={() => {
-                    setCounting(true);
-                }} />
-                <StopWatchButton text='Stop' handleClick={() => {
-                    setCounting(false);
-                }} />
-                <StopWatchButton text='Reset' handleClick={() => {
-                    setCounting(false);
-                    setSeconds(0);
-                    setLaps([]);
-                }} />
-                <StopWatchButton text='Lap' handleClick={() => {
-                    if (counting) {
-                        if (laps.length == 0) {
-                            // First lap, just add current time to lap list
-                            setLaps([{ id: uuidv4(), length: seconds, timeClicked: seconds }]);
-                        } else {
-                            // Calculate time passed since last lap
-                            const currentLapTime = seconds - laps[laps.length - 1].timeClicked;
-                            setLaps([...laps, { id: uuidv4(), length: currentLapTime, timeClicked: seconds }]);
-                        }
-                    }
-                }} />
+                <StopWatchButton text='Start' handleClick={handleStartClick} />
+                <StopWatchButton text='Stop' handleClick={handleStopClick} />
+                <StopWatchButton text='Reset' handleClick={handleResetClick} />
+                <StopWatchButton text='Lap' handleClick={handleLapClick} />
             </div>
 
             <ol data-testid='lap-list'>
