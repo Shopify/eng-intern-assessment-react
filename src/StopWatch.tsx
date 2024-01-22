@@ -6,7 +6,9 @@ export default function StopWatch() {
 
     return (
         <div>
+            {/* the timer */}
             <h2>{fmtTime(data.endtime - data.starttime)}</h2>
+            {/* the laps, which are only visible if there is at least 1 */}
             <table style={{ visibility: data.laps.length == 0 ? 'hidden' : 'visible' }}>
                 <thead>
                     <tr>
@@ -20,6 +22,7 @@ export default function StopWatch() {
                 </thead>
                 <tbody>
                     {
+                        // all the laps
                         data.laps.map((lap, idx) => {
                             return <tr key={idx}>
                                 <th>{idx + 1}</th>

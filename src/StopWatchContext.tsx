@@ -62,6 +62,7 @@ export const StopWatchProvider = (props: { children: React.ReactNode }) => {
 
     function createLap() {
         setLaps((laps) => [...laps, {
+            // lap time would be the current total time - the total time from the last lap (which is 0 if this is the first lap)
             laptime: Date.now() - starttime - (laps.length > 0 ? laps.pop().totaltime : 0),
             totaltime: Date.now() - starttime
         }])
@@ -70,6 +71,7 @@ export const StopWatchProvider = (props: { children: React.ReactNode }) => {
     React.useEffect(() => {
         let timerinterval : NodeJS.Timer;
         if(!paused) {
+            // increase timer every 10 millis
             timerinterval = setInterval(() => {
                 setEndtime(Date.now());
             }, 10)
