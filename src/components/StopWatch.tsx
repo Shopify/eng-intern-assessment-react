@@ -1,76 +1,36 @@
 import React, { useState, useEffect } from "react";
-import StopWatchButton from "./StopWatchButton";
+import ButtonFactory from "./ButtonFactory";
 import SavedLaps from "./SavedLaps";
+import { useStopWatchTime } from "../hooks/useStopWatchTime";
+import { formatTime } from "../utils/formatTime";
 
+/* 
+Entry point for the StopWatch component
+StopWatches have a Timer, Buttons, and Saved Laps
+*/
 export default function StopWatch() {
-  const [time, setTime] = useState<number>(0);
-  const [timeOn, setTimeOn] = useState<boolean>(false);
+  const { time, setTime, timeOn, setTimeOn } = useStopWatchTime();
   const [lappedTimes, setLappedTimes] = useState<number[]>([]);
 
-  useEffect(() => {
-    // setInterval returns Timeout object as an ID for the interval
-    let interval: NodeJS.Timeout | null = null;
-
-    if (timeOn) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
-      }, 10);
-    } else {
-      clearInterval(interval);
-    }
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [timeOn]);
-
-  const handleTimeReset = () => {
-    setTime(0);
-    setLappedTimes([]);
+  const buttonFactoryProps = {
+    time,
+    timeOn,
+    setTime,
+    setTimeOn,
+    setLappedTimes,
   };
-  const handleTimeStart = () => {
-    setTimeOn(true);
-  };
-  const handleTimeStop = () => {
-    setTimeOn(false);
-  };
-  const handleLapClick = () => {
-    setLappedTimes((prevTimes) => [time, ...prevTimes]);
-  };
+  // miliseconds are extracted from the rest of time - to be rendered differently
+  let [formattedTime, formattedMs] = formatTime(time).split(".");
 
   return (
     <>
       <span className="timerText">
-        <span>{("0" + Math.floor(time / (60 * 60 * 1000))).slice(-2)}:</span>
-
-        <span>{("0" + Math.floor((time / (60 * 1000)) % 60)).slice(-2)}:</span>
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
-        <span className="ms">
-          .{("0" + Math.floor((time / 10) % 100)).slice(-2)}
-        </span>
+        {formattedTime}
+        <span className="ms">.{formattedMs}</span>
       </span>
 
       <div className="buttonContainer">
-        <StopWatchButton
-          type="Restart"
-          onBtnClick={handleTimeReset}
-          isDisabled={timeOn}
-        />
-        <StopWatchButton
-          type="Start"
-          onBtnClick={handleTimeStart}
-          isDisabled={timeOn}
-        />
-        <StopWatchButton
-          type="Stop"
-          onBtnClick={handleTimeStop}
-          isDisabled={!timeOn}
-        />
-        <StopWatchButton
-          type="Lap"
-          onBtnClick={handleLapClick}
-          isDisabled={!timeOn}
-        />
+        <ButtonFactory {...buttonFactoryProps} />
       </div>
 
       <SavedLaps lappedTotalTimes={lappedTimes} />
