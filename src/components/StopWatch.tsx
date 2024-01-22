@@ -49,6 +49,7 @@ export default function StopWatch() {
           .{("0" + Math.floor((time / 10) % 100)).slice(-2)}
         </span>
       </span>
+
       <div className="buttonContainer">
         <StopWatchButton
           type="Restart"
@@ -71,6 +72,7 @@ export default function StopWatch() {
           isDisabled={!timeOn}
         />
       </div>
+
       <SavedLaps lappedTotalTimes={lappedTimes} />
     </>
   );
