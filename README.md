@@ -1,6 +1,7 @@
 # Video Demo: 
 [![Component Demo](https://img.youtube.com/vi/SpiKz3W5t68/0.jpg)](https://youtu.be/SpiKz3W5t68)
 
+[[LiveComponentDemo](https://dev.d3dz6kzx9yt5n7.amplifyapp.com/)]
 
 # Component Documention 
 
