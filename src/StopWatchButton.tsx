@@ -15,7 +15,7 @@ export default function StopWatchButton() {
                     data.stopTimer();
                 }
             }}>
-                {data.paused ? 'Start' : 'Stop'} Timer
+                {data.paused ? 'Start' : 'Stop'}
             </button>
             {/* lap/reset btn */}
             <button onClick={() => {
