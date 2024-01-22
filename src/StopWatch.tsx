@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react'
 import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
+    const [darkMode, setDarkMode] = useState(true)
     const [, forceUpdate] = useReducer(x => x + 1, 0)
     const [startedAt, setStartedAt] = useState(0)
     const [elapsed, setElapsed] = useState(0)
@@ -41,6 +42,11 @@ export default function StopWatch() {
         setLaps([])
     }
 
+    const themeHandler = () => {
+        setDarkMode(x => !x);
+        document.documentElement.classList.toggle('dark')
+    }
+
     useEffect(() => {
         const interval = setInterval(() => {
             forceUpdate()
@@ -52,7 +58,10 @@ export default function StopWatch() {
       }, [])
 
     return (
-        <div className='h-full flex flex-col'>
+        <div className='relative h-full flex flex-col'>
+            <div onClick={themeHandler} className='absolute text-3xl top-5 right-5 hover:opacity-60 cursor-pointer'>
+                {darkMode ? '🌑' : '☀️'}
+            </div>
             <div className='h-1/3 border-b-2 flex justify-center items-center border-neutral-200 dark:border-neutral-800'>
                 <div data-testid='timeDisplay' className='text-3xl font-mono'>
                     {formatTime(currentTime)}

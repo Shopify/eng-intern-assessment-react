@@ -14,7 +14,7 @@ export default function StopWatchButton(
                 color === 'gray' ? grayStyle :
                 disabled
     return (
-        <button {...props} type='button' disabled={color === 'disabled'} onClick={onClick} className={commonStyle + s}>
+        <button {...props} type='button' disabled={color === 'disabled'} onClick={onClick} className={commonStyle + ' ' + s}>
             {children}
         </button>
     )
