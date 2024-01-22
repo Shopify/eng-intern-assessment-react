@@ -33,6 +33,10 @@ export default function StopWatch() {
     // Implement the reset logic here
   };
 
+  const handleLaps = () => {
+    // Implement the reset logic here
+  };
+
   return (
     <section className="stopwatch-container">
       {<div className="stopwatch-time">{formatTime(elapsedTime)}</div>}
@@ -40,6 +44,7 @@ export default function StopWatch() {
         <StopWatchButton label="Start" onClick={handleStart} />
         <StopWatchButton label="Stop" onClick={handleStop} />
         <StopWatchButton label="Reset" onClick={handleReset} />
+        <StopWatchButton label="Laps" onClick={handleLaps} />
       </div>
     </section>
   );
