@@ -1,38 +1,37 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, UnorderedList, ListItem } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import StopWatchButton from "./StopWatchButton";
-import { UnorderedList, ListItem } from "@chakra-ui/react";
 
 export default function StopWatch() {
-  let [laps, setLaps] = useState<number[]>([]);
+  const [laps, setLaps] = useState<number[]>([]);
 
-  let [time, setTime] = useState<number>(0); //manage time state
-  let [lapTime, setLapTime] = useState<number>(0);
-  let [isTimerOn, setisTimerOn] = useState<boolean>(false); //manage status of timer'
-  const isTimerOnRef = useRef(isTimerOn); //used for toggletimer, to immediately change the isTimerOn state
+  const [time, setTime] = useState<number>(0); //manage time state
+  const [lapTime, setLapTime] = useState<number>(0);
+  const [isTimerOn, setisTimerOn] = useState<boolean>(false); //manage status of timer'
+  const isTimerOnRef = useRef(isTimerOn); //used for toggletimer in button component, to immediately change the isTimerOn state.
   const intervalRef = useRef(null); //used for toggletimer, to immediately clear interval when pausing or stopping timer
   //this will make stop buttons responsive, and stop the progress bar synchronously
   //relying on state changes to isTimerOn to stop timer is slow and asynchrous
   const radius: number = 85;
-  const dashArray: number = radius * Math.PI * 2; //progress bar circumference
-  const duration: number = laps.reduce((a, b) => a + b, 0) / laps.length; //how many ms you want the progress bar to complete 1 cycle
+  const dashArray: number = radius * Math.PI * 2; //lap progress bar circumference
+  const duration: number = laps.reduce((a, b) => a + b, 0) / laps?.length; //how many ms you want the lap progress bar to complete 1 cycle, ? safeguards against runtime
   //one cycle should be the duration of the average of all laps
   const intervals: number = 10; //the amount of ms in 1 interval, which is 10ms set by window.setinterval
   const decrementAmount: number = dashArray / (duration / intervals); //The total duration of one cycle, when divided by
   //the interval duration, gives you the number of intervals
-  //needed to complete a single cycle. This is what you decrement the progress bar.
+  //needed to complete a single cycle. This is what you decrement the lap progress bar.
 
-  let [dashArrayOffset, setDashArrayOffset] = useState<number>(dashArray); //state of progress bar
+  const [dashArrayOffset, setDashArrayOffset] = useState<number>(dashArray); //state of lap progress bar
 
   //the lap button's functionality
   const handleLap = function () {
     setLaps((prev) => [...prev, lapTime]); //adds the lap time of previous lap
-    setDashArrayOffset(dashArray); //reset the progress bar to 0
+    setDashArrayOffset(dashArray); //reset the lap progress bar to 0
     setLapTime(0); //reset lap time
   };
 
-  //handle primary timer and lap timer
+  //handle primary timer and lap timer, and lap progress bar increasing
   useEffect(() => {
     if (isTimerOn) {
       intervalRef.current = window.setInterval(() => {
@@ -46,7 +45,7 @@ export default function StopWatch() {
         laps.length > 0 &&
           setDashArrayOffset((prev) => {
             while (prev > 0) {
-              //progress bar is filled when state of progressbar reaches 0, (dasharrayoffset is 0)
+              //lap progress bar is filled when state of progressbar reaches 0, (dasharrayoffset is 0)
               prev -= decrementAmount;
               return prev;
             }
@@ -58,7 +57,7 @@ export default function StopWatch() {
     } else {
       clearInterval(intervalRef.current); //stop timer
     }
-    return () => clearInterval(intervalRef.current); //cleanup
+    return () => intervalRef.current && clearInterval(intervalRef.current); //cleanup if interval exists
   }, [isTimerOn, laps]);
 
   return (
@@ -129,7 +128,7 @@ export default function StopWatch() {
       >
         <UnorderedList listStyleType={"none"} margin={"0"}>
           {/* This displays the current lap elapsed time */}
-          <ListItem>
+          <ListItem data-testid="current-lap-display" >
             <span>
               {("0" + (Math.floor(lapTime / 60000) % 60)).toString().slice(-2) +
                 ":"}
@@ -144,8 +143,8 @@ export default function StopWatch() {
           {/* This displays a list of laps */}
           {laps.map((lap, index) => {
             return (
-              <>
-                <ListItem key={index}>
+              <div data-testid="lap-list-display" key={index} >
+                <ListItem>
                   <span>
                     {("0" + (Math.floor(lap / 60000) % 60))
                       .toString()
@@ -158,7 +157,7 @@ export default function StopWatch() {
                   </span>
                   <span>{("0" + ((lap / 10) % 100)).toString().slice(-2)}</span>
                 </ListItem>
-              </>
+              </div>
             );
           })}
         </UnorderedList>

@@ -42,6 +42,7 @@ export default function StopWatchButton({
         {/*only render reset button after timer has started */}
         {started && (
           <div
+            data-testid="toggle-timer-reset"
             className="reset"
             onClick={() => {
               setisTimerOn(false); //turn off the timer, which triggers useEffect
@@ -52,7 +53,7 @@ export default function StopWatchButton({
               isTimerOnRef.current = false; //turn off timer
             }}
           >
-            reset
+            <button aria-label="reset button">reset</button>
           </div>
         )}
         {/*conditionally render pause/play buttons based on if timer is running */}
@@ -63,17 +64,18 @@ export default function StopWatchButton({
             toggletimer();
           }}
         >
-          {isTimerOnRef.current ? "pause" : "start"}
+          <button aria-label={isTimerOnRef.current ? "pause" : "start"}>{isTimerOnRef.current ? "pause" : "start"}</button>
         </div>
         {/*render lap button only if timer has started, hide lapbutton when timer isnt runnin */}
         {started && (
           <div
+            data-testid="toggle-timer-lap"
             onClick={() => {
               handleLap();
             }}
             className={isTimerOnRef.current ? "lap" : "lapinvisible"}
           >
-            lap
+            <button aria-label="lap button">lap</button>
           </div>
         )}
       </Box>
