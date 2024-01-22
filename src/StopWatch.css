@@ -1,0 +1,111 @@
+:root {
+    --background-light: #f0f0f0;
+    --background-dark: #333;
+    --text-light: #333;
+    --text-dark: #fff;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.stopwatch-container {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.stopwatch-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.stopwatch-content {
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s;
+}
+
+.time-display {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.lap-container {
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s;
+}
+
+.lap-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.lap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--text-light);
+}
+
+.lap-list li {
+    font-size: 16px;
+    margin: 5px 0;
+    color: var(--text-light);
+}
+
+/* Toggle Button Styles */
+.toggle-button {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+.dark-mode {
+    --background-light: #333;
+    --background-dark: #f0f0f0;
+    --text-light: #fff;
+    --text-dark: #333;
+}
+
+.stopwatch-button {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background 0.3s;
+}
+
+.stop-button {
+    background: #FF4500;
+}
+
+.stopwatch-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}

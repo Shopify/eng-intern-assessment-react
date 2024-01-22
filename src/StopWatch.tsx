@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
+import './StopWatch.css';
 
 const StopWatch: React.FC = () => {
     // State variables for managing stopwatch functionality
     const [isRunning, setIsRunning] = useState(false)
     const [time, setTime] = useState(0)
     const [laps, setLaps] = useState<number[]>([]);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
 
     //Effect to handle the timer logic when the component mounts or is updated
@@ -48,6 +50,11 @@ const StopWatch: React.FC = () => {
         setLaps((prevLaps) => [...prevLaps, time])
     }
 
+
+    const toggleDarkMode = () => {
+        setIsDarkMode((prevMode) => !prevMode);
+    }
+
     // Function to format the time in HH:MM:SS.mmm format
     const formatTime = (milliseconds: number): string => {
 
@@ -62,20 +69,25 @@ const StopWatch: React.FC = () => {
 
     // Render the stopwatch component
     return (
-        <div>
-            <div>
-                <h1>Stopwatch</h1>
-                <p>{formatTime(time)}</p>
+        <div className={`stopwatch-container ${isDarkMode ? 'dark-mode' : ''}`}>
+            <h1 className='stopwatch-title'>Stopwatch</h1>
+            <div className='stopwatch-content'>
+                <p className='time-display'>{formatTime(time)}</p>
                 {/* Buttons to control the stopwatch */}
-                <StopWatchButton onClick={start} disabled={isRunning} text="Start" />
-                <StopWatchButton onClick={stop} disabled={!isRunning} text="Stop" />
-                <StopWatchButton onClick={addLap} disabled={!isRunning} text="Lap" />
-                <StopWatchButton onClick={reset} text="Reset" />
+                <div className="button-container">
+                    <StopWatchButton onClick={start} disabled={isRunning} text="Start" />
+                    <StopWatchButton onClick={stop} disabled={!isRunning} text="Stop" isStopped={isRunning} />
+                    <StopWatchButton onClick={addLap} disabled={!isRunning} text="Lap" />
+                    <StopWatchButton onClick={reset} text="Reset" />
+                </div>
+                <button className="toggle-button" onClick={toggleDarkMode}>
+                    {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                </button>
             </div>
-            <div>
+            <div className='lap-container'>
                 {/* Display the list of laps */}
-                <h2>Laps</h2>
-                <ul>
+                <h2 className='lap-title'>Laps</h2>
+                <ul className='lap-list'>
                     {laps.map((lap, index) => (
                         <li key={index}>{`Lap ${index + 1}: ${formatTime(lap)}`}</li>
                     ))}
