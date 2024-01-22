@@ -4,17 +4,20 @@ import StopWatchButton from './components/StopWatchButton';
 import useStopwatch from './hooks/useStopwatch'; 
 
 const App = () => {
-  const stopwatch = useStopwatch(); 
+  const stopwatch = useStopwatch();
 
   return (
     <div>
-      <StopWatch elapsedTime={stopwatch.elapsedTime} /> 
+      {/* Stopwatch display */}
+      <StopWatch elapsedTime={stopwatch.elapsedTime} laps={stopwatch.laps} /> 
+      
+      {/* Control buttons */}
       <StopWatchButton
         isRunning={stopwatch.isRunning}
         start={stopwatch.start}
         stop={stopwatch.stop}
         reset={stopwatch.reset}
-        
+        lap={stopwatch.lap}
       /> 
     </div>
   );
