@@ -9,7 +9,10 @@ export default function App() {
     const { formCallback, darkMode,setDarkMode,setAnalogBackgroundImage, useSecondTicks, analogBackgroundImage, analogSize, complicationSize } = useDemo();
     console.log("COMLPICATION SIZE: ", complicationSize)
     return(
-        <div>
+        <div style={{
+            display:'flex',
+            flexDirection:'row',
+        }}>
             <StopWatch darkTheme={darkMode}  >
                 <AnalogDisplay 
                     secondTicks={useSecondTicks}
