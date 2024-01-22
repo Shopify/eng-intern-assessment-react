@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
+import './styles.css'
 
 export default function App() {
     let intervalID: ReturnType<typeof setInterval>;
@@ -26,23 +27,26 @@ export default function App() {
     }, [counting, seconds])
 
     return (
-        <div>
+        <div id='app-container'>
             <StopWatch seconds={seconds} />
-            <StopWatchButton text='Start' handleClick={() => {
-                setCounting(true);
-            }} />
-            <StopWatchButton text='Stop' handleClick={() => {
-                setCounting(false);
-            }} />
-            <StopWatchButton text='Reset' handleClick={() => {
-                setCounting(false);
-                setSeconds(0);
-                setLaps([]);
-            }} />
-            <StopWatchButton text='Lap' handleClick={() => {
-                // Add current time to lap list
-                setLaps([...laps, { id: uuidv4(), seconds: seconds }])
-            }} />
+
+            <div id='btns-container'>
+                <StopWatchButton text='Start' handleClick={() => {
+                    setCounting(true);
+                }} />
+                <StopWatchButton text='Stop' handleClick={() => {
+                    setCounting(false);
+                }} />
+                <StopWatchButton text='Reset' handleClick={() => {
+                    setCounting(false);
+                    setSeconds(0);
+                    setLaps([]);
+                }} />
+                <StopWatchButton text='Lap' handleClick={() => {
+                    // Add current time to lap list
+                    setLaps([...laps, { id: uuidv4(), seconds: seconds }])
+                }} />
+            </div>
 
             <ol data-testid='lap-list'>
                 {laps.map(lap => (
