@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 
 export default function App() {
-  // The stopwatch app will only be in any of these 3 states at one time.
-  const [watchState, setWatchState] = useState<"reset" | "running" | "paused">(
-    "reset"
-  );
+  const [isRunning, setIsRunning] = useState(false);
+  const [isReset, setIsReset] = useState(true);
+
   const [elapsedTime, setElapsedTime] = useState(0); // in centiseconds
+  let timer = useRef<NodeJS.Timer | null>(null);
 
   const handleStart = () => {
-    setWatchState("running");
-    setInterval(() => {
+    setIsRunning(true);
+    setIsReset(false);
+
+    timer.current = setInterval(() => {
       setElapsedTime((prevTime) => prevTime + 1);
     }, 10);
   };
 
+  const handleStop = () => {
+    setIsRunning(false);
+
+    clearInterval(timer.current);
+  };
+
+  const handleLap = () => {};
+
+  const handleReset = () => {
+    setIsReset(true);
+    setElapsedTime(0);
+  };
+
+  const primaryButton = isRunning ? "Stop" : "Start";
+  const primaryFunction = isRunning ? handleStop : handleStart;
+
+  const secondaryButton = isRunning ? "Lap" : "Reset";
+  const secondaryFunction = isRunning ? handleLap : handleReset;
+
   return (
     <div>
       <StopWatch elapsedTime={elapsedTime} />
-      <StopWatchButton text={"Start"} onClick={handleStart} />
+      <div>
+        <StopWatchButton text={primaryButton} onClick={primaryFunction} />
+        {!isReset && (
+          <StopWatchButton text={secondaryButton} onClick={secondaryFunction} />
+        )}
+      </div>
     </div>
   );
 }
