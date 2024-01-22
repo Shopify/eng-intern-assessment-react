@@ -63,6 +63,8 @@ describe("StopWatch", () => {
     render(<StopWatch />);
     const timeDisplayContainer = screen.getByTestId("time-display");
     const start_pauseButton = screen.getByTestId("toggle-timer-button");
+    const currentLapDisplay = screen.getByTestId("current-lap-display") //grab current lap timer
+
     fireEvent.click(start_pauseButton);
 
     const reset_button = screen.getByTestId("toggle-timer-reset") //grab reset button
@@ -91,7 +93,7 @@ describe("StopWatch", () => {
     });
     expect(timeDisplayContainer.textContent).toMatch(/00:00:00/); // prove timer remains 0 after reset
     expect(allLaps[0]).not.toBeInTheDocument();; //prove no lap list rendered after reset button
-
+    expect(currentLapDisplay.textContent).toMatch(/00:00:00/); //current lap timer reset
   });
 
   

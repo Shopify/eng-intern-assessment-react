@@ -11,6 +11,7 @@ type StopWatchProps = {
   dashArray: number; //the circumference of the timer, to draw the progress bar
   handleLap: () => void; //updates the lap array
   setLaps: (laps: number[]) => void; //access the lap array, so we can set it to 0 when reset is clicked.
+  setLapTime: (lapTime:number)=>void;//current lap time state
 };
 
 export default function StopWatchButton({
@@ -21,6 +22,7 @@ export default function StopWatchButton({
   dashArray,
   handleLap,
   setLaps,
+  setLapTime
 }: StopWatchProps) {
   const [started, setStarted] = useState<boolean>(false); //this flag checks to see if timer has started, its only false after each reset, or before the first start.
 
@@ -47,6 +49,7 @@ export default function StopWatchButton({
             onClick={() => {
               setisTimerOn(false); //turn off the timer, which triggers useEffect
               setTime(0); //reset the time
+              setLapTime(0);//reset current lap time
               setDashArrayOffset(dashArray); //reset the progress bar to 0
               setStarted(false); //set started flag to false when pressing reset, hiding reset button and resetting timer.
               setLaps([]); //reset array containing the lap times

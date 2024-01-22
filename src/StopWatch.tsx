@@ -115,6 +115,7 @@ export default function StopWatch() {
         dashArray={dashArray}
         handleLap={handleLap}
         setLaps={setLaps}
+        setLapTime={setLapTime}
       />
       
       <Box //This div contains the list of laps, and current lap time
