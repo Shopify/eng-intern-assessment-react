@@ -16,12 +16,22 @@ describe('Stopwatch', () => {
     });
 
     test('renders initial state correctly', () => {
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:00');
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '00:00:00'
+        );
 
-        expect(screen.getByRole('button', { name: /Start/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /Stop/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /Reset/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /Lap/i })).toBeInTheDocument();
+        expect(
+            screen.getByRole('button', { name: /Start/i })
+        ).toBeInTheDocument();
+        expect(
+            screen.getByRole('button', { name: /Stop/i })
+        ).toBeInTheDocument();
+        expect(
+            screen.getByRole('button', { name: /Reset/i })
+        ).toBeInTheDocument();
+        expect(
+            screen.getByRole('button', { name: /Lap/i })
+        ).toBeInTheDocument();
 
         expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
     });
@@ -33,8 +43,10 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 5 seconds
             jest.advanceTimersByTime(5 * 1000);
-        })
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:05');
+        });
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '00:00:05'
+        );
     });
 
     test('counts minutes correctly', () => {
@@ -44,10 +56,12 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 2 minutes
             jest.advanceTimersByTime(2 * 60 * 1000);
-        })
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
+        });
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '00:02:00'
+        );
     });
-    
+
     test('counts hours correctly', () => {
         const startBtn = screen.getByRole('button', { name: /Start/i });
         fireEvent.click(startBtn);
@@ -55,8 +69,10 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 3 hours
             jest.advanceTimersByTime(3 * 60 * 60 * 1000);
-        })
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('03:00:00');
+        });
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '03:00:00'
+        );
     });
 
     test('stops the stopwatch', () => {
@@ -66,8 +82,10 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 2 minutes
             jest.advanceTimersByTime(2 * 60 * 1000);
-        })
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
+        });
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '00:02:00'
+        );
 
         const stopBtn = screen.getByRole('button', { name: /Stop/i });
         fireEvent.click(stopBtn);
@@ -75,9 +93,11 @@ describe('Stopwatch', () => {
         act(() => {
             // Attempt to move stopwatch forward by 30 seconds
             jest.advanceTimersByTime(30 * 1000);
-        })
+        });
         // Stopwatch time should not have changed
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:02:00');
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '00:02:00'
+        );
     });
 
     test('pauses and resumes the stopwatch', () => {
@@ -87,8 +107,8 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 2 minutes
             jest.advanceTimersByTime(2 * 60 * 1000);
-        })
-        
+        });
+
         const stopBtn = screen.getByRole('button', { name: /Stop/i });
         fireEvent.click(stopBtn);
 
@@ -106,7 +126,7 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 5 minutes and 30 seconds
             jest.advanceTimersByTime(5 * 60 * 1000 + 30 * 1000);
-        })
+        });
 
         const lapBtn = screen.getByRole('button', { name: /Lap/i });
         fireEvent.click(lapBtn);
@@ -114,7 +134,9 @@ describe('Stopwatch', () => {
         const resetBtn = screen.getByRole('button', { name: /Reset/i });
         fireEvent.click(resetBtn);
 
-        expect(screen.queryByTestId('time-display')).toHaveTextContent('00:00:00');
+        expect(screen.queryByTestId('time-display')).toHaveTextContent(
+            '00:00:00'
+        );
         expect(screen.queryByTestId('lap-list')).toBeEmptyDOMElement();
     });
 
@@ -125,7 +147,7 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by 30 seconds
             jest.advanceTimersByTime(30 * 1000);
-        })
+        });
 
         const lapBtn = screen.getByRole('button', { name: /Lap/i });
         fireEvent.click(lapBtn);
@@ -133,13 +155,13 @@ describe('Stopwatch', () => {
         act(() => {
             // Move stopwatch forward by another minute
             jest.advanceTimersByTime(60 * 1000);
-        })
+        });
 
         fireEvent.click(lapBtn);
 
         const lapList = screen.queryByTestId('lap-list');
         const { getAllByRole } = within(lapList);
-        const laps = getAllByRole("listitem");
+        const laps = getAllByRole('listitem');
         expect(laps[0]).toHaveTextContent('00:00:30');
         expect(laps[1]).toHaveTextContent('00:01:30');
     });
