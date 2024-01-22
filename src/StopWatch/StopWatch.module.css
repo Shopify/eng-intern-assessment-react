@@ -10,3 +10,10 @@
     margin-bottom: 20px;
 }
 
+.laps {
+    margin-top: 20px;
+}
+
+.laps div {
+    padding: 5px;
+}
