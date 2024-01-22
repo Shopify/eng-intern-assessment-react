@@ -29,10 +29,12 @@ export default function StopWatch() {
   const milliseconds = time % 100;
 
   return (
-    <div>
-      <h1>
-        {hours}:{minutes}:{seconds}:{milliseconds}
-      </h1>
+    <>
+      <div className="time-display">
+        <p className="time-display-text">
+          {hours}:{minutes}:{seconds}:{milliseconds}
+        </p>
+      </div>
       <StopWatchButton
         isRunning={isRunning}
         setIsRunning={setIsRunning}
@@ -40,11 +42,24 @@ export default function StopWatch() {
         setLaps={setLaps}
         time={time}
       />
-      <ul>
-        {laps.map((lap) => (
-          <li>{lap}</li>
-        ))}
-      </ul>
-    </div>
+      <div className="lap-display">
+        <ul className="laps">
+          {laps.map((lap, index) => {
+            const hours = Math.floor(lap / 360000);
+            const minutes = Math.floor((lap % 360000) / 6000);
+            const seconds = Math.floor((lap % 6000) / 100);
+            const milliseconds = lap % 100;
+            return (
+              <li key={index} className="lap">
+                <p className="lap-number">Lap {index + 1}</p>
+                <p className="lap-text">
+                  {hours}:{minutes}:{seconds}:{milliseconds}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 }
