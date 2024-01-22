@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 import Laps from './Laps';
-import "./styles.css"
+import "./styles.css";
+
 // The main component of the stopwatch, renders all subcomponents
 // Responsible for state setup, variable declarations and function definitions
 export default function App() {

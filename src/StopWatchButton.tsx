@@ -12,10 +12,10 @@ interface StopWatchButtonProps{
 // Has 3 buttons for reseting, starting/stopping, and to keep track of laps
 export default function StopWatchButton({ timeElapsed, toggleStopwatch, resetStopwatch, addLap }: StopWatchButtonProps) {
     return(
-        <div>
-            <button id="reset-stopwatch" onClick={() => resetStopwatch()}>Reset</button>
-            <button id="toggle-stopwatch" onClick={() => toggleStopwatch()}>Start</button>
-            <button id="lap-stopwatch" onClick={() => addLap(timeElapsed)}>Lap</button>
+        <div className="btn-wrapper">
+            <button id="reset-stopwatch" className="stopwatch-btn" onClick={() => resetStopwatch()}>Reset</button>
+            <button id="toggle-stopwatch" className="stopwatch-btn" onClick={() => toggleStopwatch()}>Start</button>
+            <button id="lap-stopwatch" className="stopwatch-btn" onClick={() => addLap(timeElapsed)}>Lap</button>
         </div>
     )
 }

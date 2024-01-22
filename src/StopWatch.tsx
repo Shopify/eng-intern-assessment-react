@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 // Interface to assign types of the props of the component StopWatch
 interface StopWatchProps{
@@ -12,7 +12,7 @@ export default function StopWatch({ timeElapsed, timeUnits, convertToTimeUnits }
     timeUnits = convertToTimeUnits(timeElapsed);
     
     return(
-        <div>
+        <div id="stopwatch-time" className="stopwatch">
             {timeUnits[0]}:{timeUnits[1]}.{timeUnits[2]}
         </div>
     )
