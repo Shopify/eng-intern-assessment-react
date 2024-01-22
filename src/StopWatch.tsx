@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
   // state to keep track of the time
@@ -29,28 +30,16 @@ export default function StopWatch() {
 
   return (
     <div>
-      <button onClick={() => setIsRunning(!isRunning)}>
-        {isRunning ? "Stop" : "Start"}
-      </button>
-      <button
-        onClick={() => {
-          setTime(0);
-          setIsRunning(false);
-          setLaps([]);
-        }}
-      >
-        Reset
-      </button>
-      {`${hours}:${minutes}:${seconds}:${milliseconds}`}
-      {isRunning && (
-        <button
-          onClick={() => {
-            setLaps((laps) => [...laps, time]);
-          }}
-        >
-          Lap
-        </button>
-      )}
+      <h1>
+        {hours}:{minutes}:{seconds}:{milliseconds}
+      </h1>
+      <StopWatchButton
+        isRunning={isRunning}
+        setIsRunning={setIsRunning}
+        setTime={setTime}
+        setLaps={setLaps}
+        time={time}
+      />
       <ul>
         {laps.map((lap) => (
           <li>{lap}</li>
