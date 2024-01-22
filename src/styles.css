@@ -32,6 +32,6 @@ html, body {
     font-size: 20px;
     background-color: rgb(43, 43, 43);
     color: white;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 15px;
+    padding: 10px 15px;
 }
