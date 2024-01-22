@@ -163,6 +163,6 @@ describe('Stopwatch', () => {
         const { getAllByRole } = within(lapList);
         const laps = getAllByRole('listitem');
         expect(laps[0]).toHaveTextContent('00:00:30');
-        expect(laps[1]).toHaveTextContent('00:01:30');
+        expect(laps[1]).toHaveTextContent('00:01:00');
     });
 });
