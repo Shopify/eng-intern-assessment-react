@@ -1,0 +1,112 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+
+#App {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial;
+  height: 100vh;
+  background-color: black;
+}
+
+/* ------------------------------
+  Lap View
+------------------------------ */
+
+#LapView {
+  width: 100%;
+  display: flex;
+  transition: 2s;
+}
+
+#LapView.disabled {
+  display: none;
+}
+
+#Laps {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  max-height: 100vh;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  padding-right: 40px;
+  border-right: 1px solid grey;
+}
+
+.LapTime {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ------------------------------
+  Controller
+------------------------------ */
+
+#Controller {
+  display: flex;
+  gap: 50px;
+  padding: 50px;
+  border-bottom: 2px solid white;
+}
+
+.ControlButton {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  min-width: 100px;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.ControlButton:hover {
+  background-color: red;
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+
+/* ------------------------------
+  Views
+------------------------------ */
+
+#ViewArea {
+  display: flex;
+  flex: 0 0 100%;
+}
+
+.StopWatch {
+  width: 100%;
+  padding: 30px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.StopWatch > h1 {
+  font-size: 35px;
+  color: #9e9e9e;
+}
+
+.DigitalTime {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-variant-numeric: tabular-nums;
+  font-size: 50px;
+}
+
+#time-ms {
+  font-size: 30px;
+  color: #707070;
+}
