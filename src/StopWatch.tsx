@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import "./StopWatch.css";
 
 // A function that takes a total time in seconds and formats it into the "HH:MM:SS" time format
 const formatTime = (time: number) => {
@@ -33,11 +34,13 @@ export default function StopWatch() {
   };
 
   return (
-    <section>
+    <section className="stopwatch-container">
       {<div className="stopwatch-time">{formatTime(elapsedTime)}</div>}
-      <StopWatchButton label="Start" onClick={handleStart} />
-      <StopWatchButton label="Stop" onClick={handleStop} />
-      <StopWatchButton label="Reset" onClick={handleReset} />
+      <div className="stopwatch-button-container">
+        <StopWatchButton label="Start" onClick={handleStart} />
+        <StopWatchButton label="Stop" onClick={handleStop} />
+        <StopWatchButton label="Reset" onClick={handleReset} />
+      </div>
     </section>
   );
 }
