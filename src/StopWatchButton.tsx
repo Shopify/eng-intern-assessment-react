@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { WatchContext } from './WatchContext'
+import "../styles/StopWatchButton.css"
 
 export default function StopWatchButton() {
     const { isRunning, handleStart, handleStop, handleLap, handleReset } = useContext(WatchContext);

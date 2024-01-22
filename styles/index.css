@@ -12,3 +12,35 @@ body {
     text-align: center;
     overflow: hidden;
 }
+
+/* Customize the scrollbar track */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Customize the scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+  
+  /* Customize the scrollbar thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
+  /* Customize the scrollbar track when scrollbar is actively being dragged */
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #2c2c2c; 
+  }
+  
+  /* Customize the scrollbar track colour */
+  ::-webkit-scrollbar-track {
+    background-color: #cecece;
+    border-radius: 10px;
+  }
+  
+  /* Customize the scrollbar corner */
+  ::-webkit-scrollbar-corner {
+    background-color: #f2f2f2; 
+  }

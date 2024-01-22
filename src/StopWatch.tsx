@@ -17,15 +17,13 @@ export default function StopWatch() {
 
     return(
         <div className='stopwatch'>
-            <div>{formatTime(elapsedTime)}</div>
+            <div className='time-display'>{formatTime(elapsedTime)}</div>
             <StopWatchButton />
             <div className='lap-times'>
                 {laps.map((lap, index) => (
                     <div
                         key={index}
-                        style={{
-                            color: lap.elapsedTime === slowestLap ? 'red' : lap.elapsedTime === fastestLap ? 'green' : 'black',
-                        }}
+                        className={`${lap.elapsedTime === slowestLap ? 'slowest-lap' : ''} ${lap.elapsedTime === fastestLap ? 'fastest-lap' : ''}`}
                     >
                         {formatTime(lap.elapsedTime)}
                     </div>
