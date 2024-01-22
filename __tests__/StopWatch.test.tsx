@@ -24,6 +24,8 @@ describe('StopWatch', () => {
 
         expect(getByText('Stop')).toBeInTheDocument();
 
+        // ensure watch is counting
+
         act(() => jest.advanceTimersByTime(180));
 
         expect(getByText('00:00.18')).toBeInTheDocument();
@@ -31,6 +33,12 @@ describe('StopWatch', () => {
         act(() => fireEvent.click(startStopButton));
 
         expect(getByText('Start')).toBeInTheDocument();
+
+        // ensure watch stops counting
+
+        act(() => jest.advanceTimersByTime(100));
+
+        expect(getByText('00:00.18')).toBeInTheDocument();
     });
 
     test('resumes after stopping the stopwatch', () => {
@@ -59,6 +67,7 @@ describe('StopWatch', () => {
     });
 
     test('records laps', () => {
+        // ensure watch records and displays laps
         const { getAllByText, getByText } = render(<App />);
         const startStopButton = getByText('Start');
 
@@ -87,6 +96,7 @@ describe('StopWatch', () => {
     });
 
     test('resets the stopwatch', () => {
+        // ensure everything is reset
         const { getByText } = render(<App />);
         const startStopButton = getByText('Start');
 
