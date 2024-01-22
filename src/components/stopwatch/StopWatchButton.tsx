@@ -22,6 +22,9 @@ export interface StopWatchButtonProps {
   onLap: () => void;
 }
 
+/**
+ * Renders a resume, pause, reset, and lap button, accepting handler functions for each.
+ */
 export default function StopWatchButton({
   onResume,
   onPause,

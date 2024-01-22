@@ -5,6 +5,7 @@ import {useEffect, useRef, useState} from 'react';
  * @returns {number}
  */
 function getCheckpoint(): number {
+  // could be replaced with `Date.now()` or other relative time
   return performance.now();
 }
 
@@ -14,14 +15,24 @@ export interface Lap {
 }
 
 export interface Stopwatch {
+  /** The current stopwatch time in milliseconds */
   milliseconds: number;
+  /** The list of captured laps */
   laps: Lap[];
+  /** Resumes the stopwatch */
   resume: () => void;
+  /** Pauses the stopwatch */
   pause: () => void;
+  /** Resets the stopwatch */
   reset: () => void;
+  /** Captures a lap measuring the amount of milliseconds since last lap */
   lap: () => void;
 }
 
+/**
+ * A hook for tracking time and laps, with the ability to pause and resume
+ * @returns {Stopwatch}
+ */
 export function useStopwatch(): Stopwatch {
   const [milliseconds, setMilliseconds] = useState(0);
   const [isPaused, setIsPaused] = useState(true);

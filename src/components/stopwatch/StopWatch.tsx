@@ -65,6 +65,10 @@ function LapList({laps}: LapListProps) {
   );
 }
 
+/**
+ * Renders a stopwatch that displays the current time, and has buttons to resume, pause, reset, and lap.
+ * Also shows a list of the recorded lap times.
+ */
 export default function StopWatch() {
   const stopwatch = useStopwatch();
 
