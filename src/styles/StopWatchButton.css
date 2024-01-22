@@ -1,0 +1,77 @@
+.button {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 0.01px solid var(--background-color);
+    border-radius: 1000px;
+    background: var(--background-color);
+    box-shadow: 0px 0px 10px 0px var(--color-shadow);
+
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+
+    cursor: pointer;
+}
+
+.button.long{
+    width:50%
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    box-shadow: 0px 0px 10px 5px var(--color-shadow)
+}
+
+
+.button svg {
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.button:hover svg {
+    transform: scale(1.1);
+}
+
+@media screen and (min-width: 600px) {
+
+    .button {
+        width: 70px;
+        height: 70px;
+        
+        font-size: 24px;
+    }
+
+    .button-section {
+        gap: 200px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+
+    .button {
+        width: 60px;
+        height: 60px;
+        
+        font-size: 20px;
+    }
+
+    .button-section {
+        gap: 100px;
+    }
+}

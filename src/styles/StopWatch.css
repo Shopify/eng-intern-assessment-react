@@ -1,0 +1,38 @@
+
+.time-section {
+    display: flex;
+    align-items:baseline;
+    gap: 10px;
+
+    /* prevent the number from shrinking */
+    font-variant-numeric: tabular-nums;
+
+    user-select: none;
+    margin: 0px;
+
+}
+
+/* Desktop */
+@media screen and (min-width: 600px) {
+    .time-section {
+        font-size: 96px;
+        height: 20%;
+
+    }
+
+    .ms-span {
+        font-size: 64px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 599px) {
+    .time-section {
+        font-size: 60px;
+        height: 10%;
+    }
+
+    .ms-span {
+        font-size: 36px;
+    }
+}
