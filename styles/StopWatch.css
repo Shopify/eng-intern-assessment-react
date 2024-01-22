@@ -1,0 +1,47 @@
+.stopwatch {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 50px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 400px;
+    height: 400px;
+    max-width: 300px;
+}
+
+.stopwatch .time-display {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.lap-times {
+    overflow-y: auto;
+    border-top: 1px solid #ccc;
+    max-height: 200px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.lap-times > div {
+    padding: 5px;
+    margin: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Colors for fastest and slowest laps */
+.fastest-lap {
+    color: green;
+}
+
+.slowest-lap {
+    color: red;
+}
