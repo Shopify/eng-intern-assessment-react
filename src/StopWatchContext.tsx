@@ -58,6 +58,7 @@ export const StopWatchProvider = (props: { children: React.ReactNode }) => {
         setPaused(true);
         setStarttime(0);
         setEndtime(0);
+        setLaps([]);
     }
 
     function createLap() {
