@@ -28,11 +28,15 @@ const TimeDisplay = ({ time } : {time: number}) => {
 }
 
 const LapDisplay = ({ laps } : {laps: number[]}) => {
+	let id = 1;
 	return (
 		<div>
-
-
-
+			<h1>My Laps</h1>
+			{laps.map(lap => {
+				let curId = id.toString();
+				id += 1;
+				return (<p key={curId}>{curId}: {timeToString(lap)}</p>)
+			})}
 		</div>
 	)
 }
@@ -54,6 +58,7 @@ export default function StopWatch() {
 	const handleReset = () => {
 		setStart(false)
 		setTime(0)
+		setLaps([])
 	}
 
 	const handleLap = () => {
@@ -72,7 +77,7 @@ export default function StopWatch() {
     return(
         <div>
 			<div>
-				<TimeDisplay time={time}/>
+				<TimeDisplay time={time} />
 			</div>
 			<div>
 				<StopWatchButton 
@@ -83,7 +88,7 @@ export default function StopWatch() {
 				/>
 			</div>
 			<div>
-
+				<LapDisplay laps={laps} />
 			</div>			
         </div>
     )
