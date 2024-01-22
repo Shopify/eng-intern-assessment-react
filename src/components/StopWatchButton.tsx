@@ -1,34 +1,50 @@
 import React from 'react';
+import '../styles/StopWatchButton.css';
 
-//control buttons
+// Interface for the stopwatch control buttons
 interface StopWatchButtonProps {
   isRunning: boolean;  // Indicates if the stopwatch is running
-  start: () => void;  // Function to start the timer
-  stop: () => void;  // Function to stop the timer
-  reset: () => void;  // Function to reset the timer
-  lap: () => void;  // Function to record a lap
+  isPaused: boolean;   // Indicates if the stopwatch is paused
+  start: () => void;   // Function to start or resume the timer
+  pause: () => void;   // Function to pause the timer
+  reset: () => void;   // Function to reset the timer
+  lap: () => void;     // Function to record a lap
+  startTime: number | null;
 }
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   isRunning,
+  isPaused,
   start,
-  stop,
+  pause,
   reset,
   lap,
 }) => {
   return (
     <div>
-      {/* Render the "Start" button only if the stopwatch is not running */}
-      {!isRunning && <button onClick={start}>Start</button>}
+      {/* When the timer is not running and not paused, show "Start" and a disabled "Lap" button */}
+      {!isRunning && !isPaused && (
+        <>
+          <button className="stopwatch-button" onClick={start}>Start</button>
+          <button className="stopwatch-button" disabled>Lap</button>
+        </>
+      )}
 
-      {/* Render the "Stop" button only if the stopwatch is running */}
-      {isRunning && <button onClick={stop}>Stop</button>}
+      {/* When the timer is running, show "Pause" and "Lap" */}
+      {isRunning && (
+        <>
+          <button className="stopwatch-button" onClick={pause}>Pause</button>
+          <button className="stopwatch-button" onClick={lap}>Lap</button>
+        </>
+      )}
 
-      {/* The "Reset" button is always rendered and can be clicked at any time */}
-      <button onClick={reset}>Reset</button>
-
-      {/* Render the "Lap" button only if the stopwatch is running */}
-      {isRunning && <button onClick={lap}>Lap</button>}
+      {/* When the timer is paused, show "Resume" and "Reset" */}
+      {isPaused && (
+        <>
+          <button className="stopwatch-button" onClick={start}>Resume</button>
+          <button className="stopwatch-button" onClick={reset}>Reset</button>
+        </>
+      )}
     </div>
   );
 };
