@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/react",
+    "plugin:@shopify/prettier",
+  ],
+  "rules": {
+    "@shopify/jsx-no-hardcoded-content": "off",
+  },
+  "ignorePatterns": ["webpack.*.js", "babel.config.js", "tailwind.config.js", "postcss.config.js"]
+}
