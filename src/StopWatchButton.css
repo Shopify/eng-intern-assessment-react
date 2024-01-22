@@ -1,0 +1,14 @@
+.stopwatch-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #228be6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.stopwatch-button:hover {
+  background-color: #1864ab;
+}
