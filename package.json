@@ -32,6 +32,7 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react-test-renderer": "^18.2.0",
     "style-loader": "^3.3.2",
     "ts-jest": "^29.1.1",
@@ -44,6 +45,7 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }
