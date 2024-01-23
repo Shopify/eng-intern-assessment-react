@@ -6,17 +6,17 @@ interface LapsDisplayProps {
 }
 
 export default function LapsDisplay({ laps }: LapsDisplayProps) {
-  const formatLapTime = (lapTime: number) => {
-    const [hours, minutes, seconds, centiseconds] = functions.getTimeComponents(lapTime);
-
-    return lapTime >= 360000 ? hours + ":" : "" + minutes + ":" + seconds + "." + centiseconds;
-  };
-
   return (
-    <div>
+    <div className="laps-container">
+      <div className="lap-row-container">
+        <div className="lap-index extra-small-text">Lap</div>
+        <div className="lap-time extra-small-text">Time</div>
+      </div>
+      <hr className="lap-divider" />
       {laps.map((lap, index) => (
-        <div key={index}>
-          Lap {index + 1} : {formatLapTime(lap)}
+        <div className="lap-row-container" key={index}>
+          <div className="lap-index extra-small-text">{index + 1}</div>
+          <div className="lap-time extra-small-text">{functions.timeToString(lap)}</div>
         </div>
       ))}
     </div>

@@ -75,9 +75,7 @@ export default function App() {
             {!isReset && <StopWatchButton {...secondaryButtonProps} />}
           </div>
         </div>
-        <div className="laps-container">
-          <LapsDisplay laps={laps} />
-        </div>
+        {laps.length > 0 && <LapsDisplay laps={laps} />}
       </div>
     </div>
   );

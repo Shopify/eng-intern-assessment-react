@@ -14,6 +14,12 @@ const getTimeComponents = (elapsedTime: number) => {
   ] as TimeComponents;
 };
 
+const timeToString = (time: number) => {
+  const [hours, minutes, seconds, centiseconds] = getTimeComponents(time);
+  return `${time >= 360000 ? hours + ":" : ""}${minutes}:${seconds}.${centiseconds}`;
+};
+
 export default {
   getTimeComponents,
+  timeToString,
 };

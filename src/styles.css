@@ -69,7 +69,7 @@ body {
 
 .stopwatch-container {
   width: 90%;
-  padding-top: 8rem;
+  padding-top: 6rem;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -93,8 +93,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 1rem;
 
-  /* border: 1px solid blue; */
+  /* border: 1px solid green; */
 }
 
 .button-container {
@@ -107,14 +108,35 @@ body {
   /* border: 1px solid black; */
 }
 
-/* .footer {
-  position: fixed;
-  color: #8dac89;
-  width: 100%;
-  text-align: right;
-  right: 0.5rem;
-  bottom: 0.5rem;
-} */
+.laps-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 2rem;
+
+  gap: 0.2rem;
+
+  /* border: 1px solid blue; */
+}
+
+.lap-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  /* border: 1px solid red; */
+}
+
+.lap-index {
+  /* border: 1px solid yellow; */
+}
+
+.lap-time {
+  /* border: 1px solid yellow; */
+}
+
+/* COMPONENTS */
 
 .pause-button {
   width: 8rem;
@@ -127,4 +149,9 @@ body {
   height: 8rem;
 }
 
-
+.lap-divider {
+  width: 98%;
+  height: 0.08rem;
+  background-color: #fff;
+  border: none;
+}
