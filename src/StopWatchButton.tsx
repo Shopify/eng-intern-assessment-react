@@ -1,14 +1,27 @@
 import React, {useState} from 'react'
+import "./styles.css";
 
-export default function StopWatchButton() {
+type Props = {
+    setStart: Function;
+    setStop: Function;
+}
 
-    const [start, setStart] = useState()
+export default function StopWatchButton({setStart, setStop}: Props) {
 
+    function handleStart(): void{
+        setStart();
+    }
+
+    function handleStop(): void{
+        setStop();
+    }
+    
     return(
-        <div>
-            <button>Start</button>
-            <button>Stop</button>
-            <button>Lap</button>
+        <div className='stopwatch-buttons'>
+            <button className="start-button" onClick={handleStart}>Start</button>
+            <button className="stop-button" onClick={handleStop}>Stop</button>
+            <button className="lap-button">Lap</button>
+            <button className="reset-button">Reset</button>
         </div>
     )
 }

@@ -1,20 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import "./styles.css";
 
-export default function StopWatch() {
-    const [time, setTime] = useState(0)
-    const [start, setStart] = useState(false)
+type Props = {
+    start: boolean
+}
 
+export default function StopWatch({start}: Props) {
+    //Initializing useState for the stopwatch
+    const [time, setTime] = useState(0);
+
+    //useEffect with dependency array rerendering on start and time states
     useEffect(()=>{
-        let interval: number;
+        let interval: ReturnType<typeof setTimeout>;
         if (start) {
-            interval = setInterval(()=> setTime(time+1), 10)
+            interval = setInterval(()=> setTime(time+1), 10);
         }
         return () => clearInterval(interval);
     }, [start, time])
 
+    //Calculations for stopwatch
+    const hours = Math.floor(time/360000);
+    const minutes = Math.floor((time % 360000)/6000);
+    const seconds = Math.floor((time%6000)/100);
+    const milliseconds = Math.floor(time%100);
+
     return(
-        <div>
-            <p>{time}</p>
+        <div className='stopwatch'>
+            <p className='title'>Miruo's Stopwatch</p>
+            <p className='stopwatch-time'>{hours}:{minutes.toString().padStart(2,"0")}:
+            {seconds.toString().padStart(2, "0")}:
+            {milliseconds.toString().padStart(2, "0")}
+            </p>
         </div>
     )
 }
