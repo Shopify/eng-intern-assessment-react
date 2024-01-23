@@ -47,6 +47,6 @@ td, th {
     font-family: monospace;
 }
   
-tr:nth-child(even) {
+.tableBody:nth-child(odd) {
     background-color: #dddddd;
-  }
+}

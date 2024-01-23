@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ButtonFactory from "./ButtonFactory";
 import SavedLaps from "./SavedLaps";
 import { useStopWatchTime } from "../hooks/useStopWatchTime";
-import { formatTime } from "../utils/formatTime";
+import { formatTime } from "../utils/FormatTime";
 
 /* 
 Entry point for the StopWatch component
@@ -24,7 +24,7 @@ export default function StopWatch() {
 
   return (
     <>
-      <span className="timerText">
+      <span className="timerText" data-testid="timer-text">
         {formattedTime}
         <span className="ms">.{formattedMs}</span>
       </span>

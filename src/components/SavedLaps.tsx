@@ -1,5 +1,5 @@
 import React from "react";
-import { formatTime } from "../utils/formatTime";
+import { formatTime } from "../utils/FormatTime";
 
 interface SavedLapsProps {
   lappedTotalTimes: number[];
@@ -21,18 +21,22 @@ const SavedLaps = ({ lappedTotalTimes }: SavedLapsProps) => {
 
   return (
     <table className="lapped">
-      <tr>
-        <th>Lap</th>
-        <th>Lap Time</th>
-        <th>Total Time</th>
-      </tr>
-      {lappedTotalTimes.map((totalTime, index) => (
+      <thead>
         <tr>
-          <th>{lappedTotalTimes.length - index}</th>
-          <th>{formatTime(calcLappedLocalTime(totalTime))}</th>
-          <th>{formatTime(totalTime)}</th>
+          <th>Lap</th>
+          <th>Lap Time</th>
+          <th>Total Time</th>
         </tr>
-      ))}
+      </thead>
+      <tbody role="tbody">
+        {lappedTotalTimes.map((totalTime, index) => (
+          <tr className="tableBody" key={index}>
+            <th>{lappedTotalTimes.length - index}</th>
+            <th>{formatTime(calcLappedLocalTime(totalTime))}</th>
+            <th>{formatTime(totalTime)}</th>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
