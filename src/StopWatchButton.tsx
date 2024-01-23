@@ -1,5 +1,3 @@
-// StopwatchButton.tsx
-
 import React from 'react';
 
 

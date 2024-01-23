@@ -57,4 +57,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App; // Export the App component for use in other parts of the application
+export default App; 
