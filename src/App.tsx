@@ -1,7 +1,29 @@
-import React from 'react'
+import * as React from "react";
+import StopWatch from './StopWatch';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function App() {
-    return(
-        <div></div>
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#3e98c7',
+            }
+        },
+        typography: {
+            fontFamily: "Roboto"
+        }
+    });
+
+    return (
+        <div  role="root" style={{ backgroundColor: "#2f2b57", height: "100%"}}>
+            <ThemeProvider theme={theme}>
+                <StopWatch />
+            </ThemeProvider>
+        </div>
     )
 }
