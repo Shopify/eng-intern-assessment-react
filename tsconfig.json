@@ -7,6 +7,11 @@
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@types":["./src/components/StopWatch/types.ts"],
+      "@sw":["./src/components/StopWatch/index"],
+      "@sw/hooks":["./src/components/StopWatch/hooks"],
+    }
+  },
 }
