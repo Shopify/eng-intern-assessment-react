@@ -4,6 +4,7 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import StopWatch from "../src/components/StopWatch";
 
+// Require for jest Timer Mocks API
 jest.useFakeTimers();
 
 describe("StopWatch", () => {
@@ -18,7 +19,7 @@ describe("StopWatch", () => {
     expect(timerTextElement).toHaveTextContent("00:00:00.00");
   });
 
-  test("Should contain no lapped times in intial state", () => {
+  test("Should render no lapped times in intial state", () => {
     const tBody = screen.getByRole("tbody");
     // should be empty array - no children
     expect(tBody.children).toHaveLength(0);
@@ -29,6 +30,7 @@ describe("StopWatch", () => {
     const timerTextElement = screen.getByTestId("timer-text");
 
     fireEvent.click(startButton);
+    // act block required to ensure state is updated prior to assertions
     act(() => {
       jest.advanceTimersByTime(6500);
     });
@@ -69,6 +71,7 @@ describe("StopWatch", () => {
 
     const intermediateTime = timerTextElement.textContent;
 
+    // second start press
     fireEvent.click(startButton);
     act(() => {
       jest.advanceTimersByTime(6500);
@@ -92,7 +95,7 @@ describe("StopWatch", () => {
     fireEvent.click(lapButton);
 
     const tBody = screen.getByRole("tbody");
-    // table bodies contain a structure as: <tr> <th> </tr>
+    // table bodies contain a structure as: <tr> <th/> <th/> <th/> </tr>
     // <th> has the lapped text of interest
     const row = tBody.querySelector("tr.tableBody");
 

@@ -39,7 +39,7 @@ btn[disabled] {
     box-shadow: 0 0 2px #564949;
     border-radius: 6px;
 }
-
+/* Table styles */
 td, th {
     text-align: left;
     padding: 1rem;

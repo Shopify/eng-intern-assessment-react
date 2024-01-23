@@ -9,6 +9,7 @@ Entry point for the StopWatch component
 StopWatches have a Timer, Buttons, and Saved Laps
 */
 export default function StopWatch() {
+  // time state managed by custom hook
   const { time, setTime, timeOn, setTimeOn } = useStopWatchTime();
   const [lappedTimes, setLappedTimes] = useState<number[]>([]);
 

@@ -5,16 +5,16 @@ interface SavedLapsProps {
   lappedTotalTimes: number[];
 }
 
-// Component for rendering lapped times in a table
+/* Component for rendering lapped times in a table */
 const SavedLaps = ({ lappedTotalTimes }: SavedLapsProps) => {
   // Calculates the duration of the CURRENT lap
-  // by finding difference in time between the instance the lap button was just pressed and when it was last pressed
+  // by finding time @ current lap press minus time @ previous lap press
   const calcLappedLocalTime = (lapEndTime: number) => {
     const endIndex = lappedTotalTimes.indexOf(lapEndTime);
     const lapStartTime =
       endIndex === lappedTotalTimes.length - 1
         ? 0
-        : lappedTotalTimes[endIndex + 1];
+        : lappedTotalTimes[endIndex + 1]; // lapped times are sorted from newer to older
 
     return lapEndTime - lapStartTime;
   };

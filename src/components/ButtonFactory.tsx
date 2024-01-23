@@ -11,7 +11,7 @@ interface ButtonFactoryProps {
 
 /* 
 Inputs: States to be managed by buttons
-Outputs: Individual buttons that perform the specified function onClick
+Outputs: Individual buttons that perform the respective onClick functionality
 */
 const ButtonFactory = ({
   time,
@@ -20,7 +20,7 @@ const ButtonFactory = ({
   setTimeOn,
   setLappedTimes,
 }: ButtonFactoryProps) => {
-  // Button logic handle functions
+  // Button logic
   const handleTimeReset = () => {
     setTime(0);
     setLappedTimes([]);
