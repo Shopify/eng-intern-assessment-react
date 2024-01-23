@@ -40,13 +40,9 @@ export default function App() {
   };
 
   const primaryButtonProps = {
-    Icon: isRunning ? (
-      <PauseIcon className="pause-button" />
-    ) : (
-      <StartIcon className="start-button" />
-    ),
+    Icon: isRunning ? <PauseIcon className="pause-icon" /> : <StartIcon className="start-icon" />,
     handleClick: isRunning ? handleStop : handleStart,
-    buttonStyle: isRunning ? "pause-button" : "play-button",
+    buttonStyle: "primary-button",
     alt: isRunning ? "Stop" : "Start",
   };
 
@@ -58,6 +54,7 @@ export default function App() {
     ),
     handleClick: isRunning ? handleLap : handleReset,
     buttonStyle: "secondary-button",
+    alt: isRunning ? "Lap" : "Reset",
   };
 
   return (

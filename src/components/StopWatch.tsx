@@ -10,11 +10,11 @@ export default function StopWatch({ time }: StopWatchProps) {
   const [hours, minutes, seconds, centiseconds] = functions.getTimeComponents(time);
   return (
     <div>
-      <span className="extra-large-text">
+      <span className="timer-large-text">
         {time >= 360000 ? hours + ":" : ""}
         {minutes}:{seconds}
       </span>
-      <span className="small-text">.{centiseconds}</span>
+      <span className="timer-small-text">.{centiseconds}</span>
     </div>
   );
 }
