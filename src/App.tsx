@@ -13,10 +13,9 @@ const App: React.FC = () => {
     // Function to start the timer by setting up an interval
     const startTimer = () => {
         if (!intervalId) {
-            // Set interval to increase time by 1 every second
             const id = window.setInterval(() => {
-                setTime((prevTime) => prevTime + 1);
-            }, 1000);
+                setTime((prevTime) => prevTime + 10);
+            }, 10);
             setIntervalId(id);
         }
     };

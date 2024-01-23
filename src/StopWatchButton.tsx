@@ -15,18 +15,22 @@ interface StopwatchButtonProps {
 const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onReset, onLap, laps }) => {
     return (
         <div>
-            <button onClick={onStart}>Start</button> 
-            <button onClick={onStop}>Stop</button>   
-            <button onClick={onReset}>Reset</button> 
-            <button onClick={onLap}>Lap</button>     
+            <button onClick={onStart}>Start</button>
+            <button onClick={onStop}>Stop</button>
+            <button onClick={onReset}>Reset</button>
+            <button onClick={onLap}>Lap</button>
 
-            {/* Display recorded laps if there are any */}
+            {/* Display laps */}
             {laps.length > 0 && (
                 <div>
                     <h2>Laps:</h2>
                     <ul>
                         {laps.map((lap, index) => (
-                            <li key={index}>{lap}</li> 
+                            <li key={index}>
+                                {("0" + Math.floor((lap / 60000) % 60)).slice(-2)}:
+                                {("0" + Math.floor((lap / 1000) % 60)).slice(-2)}:
+                                {("0" + ((lap / 10) % 100)).slice(-2)}
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -34,5 +38,6 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onRe
         </div>
     );
 };
+
 
 export default StopwatchButton;

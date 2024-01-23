@@ -9,7 +9,9 @@ const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
     return (
         <div>
             <div>
-                <span>{time}</span> {/* Display the elapsed time */}
+                <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+                <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+                <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </div>
         </div>
     );
