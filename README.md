@@ -1,7 +1,7 @@
 # Stopwatch App
 
 ## Overview
-Developed by the adept Edward He, this Stopwatch App epitomizes the fusion of elegance and functionality. Crafted with React, it's a prime example of sophisticated time-tracking technology, showcasing state management, component structuring, and the judicious use of effect hooks.
+Developed by the Edward He, this Stopwatch App epitomizes the fusion of elegance and functionality. Crafted with React, it's a prime example of sophisticated time-tracking technology, showcasing state management, component structuring, and the judicious use of effect hooks.
 
 ## Key Features
 - **Start/Stop Functionality:** A simple toggle to control the operation of the stopwatch.
@@ -10,7 +10,7 @@ Developed by the adept Edward He, this Stopwatch App epitomizes the fusion of el
 - **Readable Time Display:** Time displayed in a user-friendly format (hh:mm:ss), a reflection of your attention to detail.
 
 ## Technical Architecture
-Master He's Stopwatch App is ingeniously structured, demonstrating the power of compartmentalization:
+Stopwatch App is ingeniously structured, demonstrating the power of compartmentalization:
 
 1. **StopWatch.tsx:** The heart of the app, handling logic and user interface.
 2. **StopWatchButton.tsx:** A specialized component for rendering interactive buttons.
@@ -44,6 +44,3 @@ A visual showcase of the app, demonstrating its seamless functionality:
 
 ## Getting Started
 Embark on this journey by cloning the repository and installing dependencies with `npm install`. Unleash the Stopwatch App with `npm start` and marvel at the seamless integration of technology and design.
-
-## Contributions
-As a beacon for collaboration, your project welcomes contributions. Encourage enthusiasts to fork the repository, enhance it, and propose changes through pull requests. Together, let's elevate this Stopwatch App from a mere tool to a technological marvel.
