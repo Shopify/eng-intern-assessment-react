@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 // Context
 import RunningContext from "./Context/RunningContext";
 import TimeContext from "./Context/TimeContext";
@@ -19,6 +19,24 @@ export default function StopWatchButton() {
       clearLap();
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === " ") {
+        event.preventDefault();
+        changeRunning();
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        handleLapResetClick();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [changeRunning, handleLapResetClick]);
 
   return (
     <div>
