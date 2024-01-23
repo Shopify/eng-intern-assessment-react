@@ -1,0 +1,15 @@
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    box-shadow: 2px 2px 5px #d0d0d0, -2px -2px 5px #ffffff;
+  }
+  
+  button:hover {
+    box-shadow: inset 2px 2px 5px #d0d0d0, inset -2px -2px 5px #ffffff;
+  }
