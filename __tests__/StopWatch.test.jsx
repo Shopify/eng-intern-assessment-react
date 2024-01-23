@@ -15,7 +15,7 @@ describe("Stopwatch component", () => {
     })
 
     test("Render the time and buttons", async () => {
-        const { getByText } = render(<StopWatch />);
+        const { getByText, getByTestId } = render(<StopWatch />);
         
         // Time format
         expect(getByText(/00:00:00/)).toBeInTheDocument();
@@ -23,6 +23,9 @@ describe("Stopwatch component", () => {
         expect(getByText(/Start/)).toBeInTheDocument();
         expect(getByText(/Reset/)).toBeInTheDocument();
         expect(getByText(/Lap/)).toBeInTheDocument();
+
+        // Lap times is a list of elelments
+        expect(getByTestId("lap-times")).toBeEmptyDOMElement();
     })
 
     test("Start stopwatch", async () => {
@@ -106,7 +109,7 @@ describe("Stopwatch component", () => {
         expect(getByText(/01:00:00/)).toBeInTheDocument();
     });
 
-    test('Start stopwatch and stop stopwatch edge case: 99 hours to 100 hours', async () => {
+    test("Start stopwatch and stop stopwatch edge case: 99 hours to 100 hours", async () => {
         const { getByText } = render(<StopWatch />);
         const startStopButton = getByText(/Start/);
         
@@ -134,10 +137,11 @@ describe("Stopwatch component", () => {
         expect(getByText(/100:00:00/)).toBeInTheDocument();
     })
 
-    test('Start and reset stopwatch after 2 seconds', async () => {
+    test("Start and reset stopwatch after 2 seconds", async () => {
         const { getByText, getByTestId } = render(<StopWatch />)
         const startButton = getByText(/Start/);
         const resetButton = getByText(/Reset/);
+        const lapButton = getByText(/Lap/);
         
         fireEvent.click(startButton);
         expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
@@ -146,7 +150,29 @@ describe("Stopwatch component", () => {
             jest.advanceTimersByTime(2000);
         })
 
+        fireEvent.click(lapButton);
+
         fireEvent.click(resetButton);
         expect(getByText(/00:00:00/)).toBeInTheDocument();
+        expect(getByTestId("lap-times")).toBeEmptyDOMElement();
+    })
+
+    test("Start stopwatch and record multiple laps", async () => {
+        const { getByText, getByTestId } = render(<StopWatch />)
+        const startButton = getByText(/Start/);
+        const lapButton = getByText(/Lap/);
+
+        fireEvent.click(startButton);
+
+        act(() => {
+            jest.advanceTimersByTime(2000);
+        })
+
+        fireEvent.click(lapButton);
+
+        expect(getByTestId("lap-times")).toContainElement(getByText(/Lap \d{1}: \d{2}:\d{2}:\d{2}/));
+
+        fireEvent.click(lapButton);
+        expect(getByTestId("lap-times").children.length).toBe(2);
     })
 })
