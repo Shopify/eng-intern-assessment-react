@@ -93,7 +93,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  text-align: right;
   padding: 1rem;
 
   /* border: 1px solid green; */
@@ -110,7 +109,7 @@ body {
 }
 
 .laps-container {
-  width: 30rem;
+  width: 15rem;
   display: flex;
   flex-direction: column;
   padding: 1rem;
