@@ -69,7 +69,7 @@ export default function App() {
             <StopWatchButton {...primaryButtonProps} />
           </div>
           <div className="button-container">
-            {!isReset && <StopWatchButton {...secondaryButtonProps} />}
+            {isReset || <StopWatchButton {...secondaryButtonProps} />}
           </div>
         </div>
         {laps.length > 0 && <LapsDisplay laps={laps} />}
