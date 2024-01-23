@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 import '../styles/StopWatch.css';
+import formatTime from '../utils/formatTime';
 
 const StopWatch = () => {
     const [time, setTime] = useState(0);
@@ -34,16 +35,6 @@ const StopWatch = () => {
         if (isRunning) {
             setLaps([...laps, { lapTime: time - (laps.slice(-1)[0]?.totalTime || 0), totalTime: time }]);
         }
-    };
-
-    const formatTime = (time: number) => {
-        // Converting time into hours, minutes, seconds, and milliseconds
-        const milliseconds = time % 1000;
-        const seconds = Math.floor(time / 1000) % 60;
-        const minutes = Math.floor(time / 60000) % 60;
-        const hours = Math.floor(time / 3600000);
-        const pad = (num: number) => num.toString().padStart(2, '0');
-        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${Math.floor(milliseconds / 100)}`;
     };
 
     return (
