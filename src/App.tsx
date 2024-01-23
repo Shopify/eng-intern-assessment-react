@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";
 import LapsDisplay from "./components/LapsDisplay";
+import StartIcon from "./components/StartIcon";
+import PauseIcon from "./components/PauseIcon";
 import "./styles.css";
 
 export default function App() {
@@ -38,14 +40,22 @@ export default function App() {
   };
 
   const primaryButtonProps = {
-    text: isRunning ? "⏸︎" : "▶",
+    Icon: isRunning ? (
+      <PauseIcon className="pause-button" />
+    ) : (
+      <StartIcon className="start-button" />
+    ),
     handleClick: isRunning ? handleStop : handleStart,
     buttonStyle: isRunning ? "pause-button" : "play-button",
     alt: isRunning ? "Stop" : "Start",
   };
 
   const secondaryButtonProps = {
-    text: isRunning ? "Lap" : "Reset",
+    Icon: isRunning ? (
+      <div className="small-text">Lap</div>
+    ) : (
+      <div className="small-text">Reset</div>
+    ),
     handleClick: isRunning ? handleLap : handleReset,
     buttonStyle: "secondary-button",
   };
@@ -53,18 +63,20 @@ export default function App() {
   return (
     <div className="App">
       <div className="stopwatch-container">
-        <StopWatch time={elapsedTime} />
-      </div>
-      <div className="buttons-container">
-        <div className="secondary-button-container">
-          <StopWatchButton {...primaryButtonProps} />
+        <div className="display-container">
+          <StopWatch time={elapsedTime} />
         </div>
-        <div className="secondary-button-container">
-          {!isReset && <StopWatchButton {...secondaryButtonProps} />}
+        <div className="buttons-container">
+          <div className="secondary-button-container">
+            <StopWatchButton {...primaryButtonProps} />
+          </div>
+          <div className="secondary-button-container">
+            {!isReset && <StopWatchButton {...secondaryButtonProps} />}
+          </div>
         </div>
-      </div>
-      <div className="laps-container">
-        <LapsDisplay laps={laps} />
+        <div className="laps-container">
+          <LapsDisplay laps={laps} />
+        </div>
       </div>
     </div>
   );

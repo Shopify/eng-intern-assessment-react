@@ -6,13 +6,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
-
 /* TOP */
 
 .top-large {
@@ -42,7 +35,7 @@ body {
 }
 
 .small-text {
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .extra-small-text {
@@ -67,12 +60,31 @@ body {
 
 /* CONTAINERS */
 
-.stopwatch-container {
+.App {
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
-  justify-content: center;
+}
+
+.stopwatch-container {
+
+  border:  1px solid black;
+}
+
+.display-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+}
+
+.buttons-container {
+
+
+  border: 1px solid black;
 }
 
 .primary-button-container {
@@ -82,6 +94,8 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  border: 1px solid black;
 }
 
 .secondary-button-container {
@@ -89,6 +103,8 @@ body {
   height: 5rem;
   position: relative;
   left: 10rem;
+
+  border: 1px solid black;
 }
 
 /* .footer {
@@ -101,11 +117,14 @@ body {
 } */
 
 .pause-button {
-  font-size: 8rem;
+  width: 5rem;
+  height: 5rem;
+
 }
 
-.play-button {
-  font-size: 5rem;
+.start-button {
+  width: 5rem;
+  height: 5rem;
 }
 
 
