@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
 import "./Style.css";
 
 interface StopWatchButtonProps {
@@ -10,6 +10,8 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
   const [isRunning, setIsRunning] = useState(false);
   const [lapTimes, setLapTimes] = useState<number[]>([]);
   const [lapStartTime, setLapStartTime] = useState<number | null>(null);
+
+  const lapTimesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -56,6 +58,11 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
       const lapTime = Date.now() - lapStartTime;
       setLapTimes([...lapTimes, lapTime]);
       setLapStartTime(Date.now());
+
+      // Scroll to the bottom after adding a new lap time
+      if (lapTimesContainerRef.current) {
+        lapTimesContainerRef.current.scrollTop = lapTimesContainerRef.current.scrollHeight;
+      }
     }
   };
 
@@ -76,12 +83,14 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
       </button>
       <button onClick={handleLapClick}>LAP</button>
       <button onClick={handleResetClick}>RESET</button>
-  
-      <div className="lap-times-container">
-        <h2 className="lap-times-heading">LAP TIMES</h2>
+      
+      <h2 className="lap-times-heading">L A P S</h2>
+      <div className="lap-times-container" ref={lapTimesContainerRef}>
         <ul className="lap-times-list">
           {lapTimes.map((lap, index) => (
-            <li key={index}>{formatTime(lap)}</li>
+            <li key={index}>
+              Lap {index + 1}: {formatTime(lap)}
+            </li>
           ))}
         </ul>
       </div>
