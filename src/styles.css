@@ -29,6 +29,11 @@
     border-radius: 10px;
 }
 
+.start-button:hover{
+    background-color: rgb(201, 236, 149);
+    cursor: pointer;
+}
+
 .stop-button{
     font-family: "Noto Sans", sans-serif;
     font-size: large;
@@ -39,6 +44,11 @@
     border: 2px solid;
     border-color: rgb(255, 72, 72);
     border-radius: 10px;
+}
+
+.stop-button:hover{
+    background-color: rgb(250, 167, 167);
+    cursor: pointer;
 }
 
 .lap-button{
@@ -53,6 +63,11 @@
     border-radius: 10px;
 }
 
+.lap-button:hover{
+    background-color: rgb(186, 230, 255);
+    cursor: pointer;
+}
+
 .reset-button{
     font-family: "Noto Sans", sans-serif;
     font-size: large;
@@ -63,6 +78,11 @@
     border: 2px solid;
     border-color: rgb(63, 63, 63);
     border-radius: 10px;
+}
+
+.reset-button:hover{
+    background-color: rgb(223, 223, 223);
+    cursor: pointer;
 }
 
 .stopwatch-buttons{
