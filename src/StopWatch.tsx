@@ -2,32 +2,42 @@ import React, { useState, useRef } from "react";
 import StopWatchButton from "./StopWatchButton";
 import "../styles/StopWatchStyles.css";
 
+// The main Stopwatch component
 const StopWatch = () => {
+  // State variables for elapsed time, running state, lap times, and last lap timestamp
   const [elapsedTime, setElapsedTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [lapTimes, setLapTimes] = useState<number[]>([]);
   const [lastLapTimestamp, setLastLapTimestamp] = useState<number | null>(null);
+
+  // Ref to store the timer interval ID
   const timerRef = useRef<NodeJS.Timer | null>(null);
 
+  // Function to start the timer
   const startTimer = () => {
     if (!isRunning) {
+      // Calculate the start time and set the running state to true
       const startTime = Date.now() - elapsedTime;
       setIsRunning(true);
 
+      // Set up an interval to update the elapsed time every 10 milliseconds
       timerRef.current = setInterval(() => {
         setElapsedTime(Date.now() - startTime);
       }, 10) as NodeJS.Timer;
     }
   };
 
+  // Function to stop the timer
   const stopTimer = () => {
     if (isRunning && timerRef.current !== null) {
+      // Clear the interval, set running state to false, and reset the timer reference
       clearInterval(timerRef.current);
       setIsRunning(false);
       timerRef.current = null;
     }
   };
 
+  // Function to reset the timer and lap times
   const resetTimer = () => {
     stopTimer();
     setElapsedTime(0);
@@ -35,8 +45,10 @@ const StopWatch = () => {
     setLastLapTimestamp(null);
   };
 
+  // Function to record a lap
   const recordLap = () => {
     if (isRunning) {
+      // Calculate the current lap time and update lap times array and last lap timestamp
       const currentTimestamp = elapsedTime;
       const currentLapTime =
         lastLapTimestamp !== null
@@ -44,11 +56,11 @@ const StopWatch = () => {
           : elapsedTime;
 
       setLapTimes((prevLapTimes) => [currentLapTime, ...prevLapTimes]);
-
       setLastLapTimestamp(currentTimestamp);
     }
   };
 
+  // Function to format time in hours, minutes, seconds, and milliseconds
   const formatTime = (milliseconds: number) => {
     const padZero = (num: number, length: number) => {
       return num.toString().padStart(length, "0");
@@ -65,6 +77,7 @@ const StopWatch = () => {
     return `${hours}:${minutes}:${seconds}.${remainingMilliseconds}`;
   };
 
+  // Render the Stopwatch component
   return (
     <div className="stopwatchContainer">
       <div className="headerStyle">Stopwatch</div>
@@ -82,6 +95,7 @@ const StopWatch = () => {
       </div>
 
       <div className="buttonsContainer">
+        {/* Render the StopWatchButton component with appropriate event handlers and running state */}
         <StopWatchButton
           onStart={startTimer}
           onStop={stopTimer}
@@ -94,4 +108,5 @@ const StopWatch = () => {
   );
 };
 
+// Export the Stopwatch component as the default export
 export default StopWatch;
