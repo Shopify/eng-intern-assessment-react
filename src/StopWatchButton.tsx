@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../styles/StopWatchButton.css'
 import calculateTime from './helpers/calculateTime';
 
-type Props = {
+interface Lap {
+  id: number;
+  time: string;
+}
+
+type StopWatchButtonProps = {
   setTimeInSeconds: Function,
-  timeInSeconds: number
+  timeInSeconds: number,
+  setTimerOn: Function
 };
 
-export default function StopWatchButton(props:Props) {
-  const { setTimeInSeconds, timeInSeconds } = props;
-  const [intervalId, setIntervalId] = useState<number>(0);
-  const [timerOn, setTimerOn] = useState<boolean>(false);
-  const [laps, setLaps] = useState<Array<any>>([]);
-
-  //Whenever the timer is on, set the interval.
-  useEffect(() => {
-    let timerInterval:any = null;
-
-    if (timerOn) {
-      timerInterval = setInterval(() => {
-        setTimeInSeconds((prevState:number) => prevState + 10)
-      }, 10);
-    } else {
-      clearInterval(intervalId)
-      setIntervalId(0);
-    }
-
-    return () => clearInterval(timerInterval)
-
-  }, [timerOn])
-
+export default function StopWatchButton(props:StopWatchButtonProps) {
+  const { setTimeInSeconds, timeInSeconds, setTimerOn } = props;
+  const [laps, setLaps] = useState<Lap[]>([]);
+  
   const handlePlayButton = () => {
     setTimerOn(true);
   }
@@ -45,9 +32,14 @@ export default function StopWatchButton(props:Props) {
   }
 
   const handleLapButton = () => {
-    const lapTime = calculateTime(timeInSeconds);
-    setLaps((prevLap) => [...prevLap, {id: laps.length + 1, time: `${lapTime[0]}:${lapTime[1]}:${lapTime[2]}` }])
-  }
+    if (timeInSeconds > 0) {
+      const lapTime = calculateTime(timeInSeconds);
+      setLaps((prevLap) => [
+        ...prevLap, {id: laps.length + 1, time: `${lapTime.minutesFormatted}:${lapTime.secondsFormatted}:${lapTime.millisecondsFormatted}` }
+      ]);
+    }
+  };
+  
     return(
         <div className="controls">
           <button title="start" className="start" onClick={handlePlayButton}>Start</button>
