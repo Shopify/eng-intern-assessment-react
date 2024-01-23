@@ -1,4 +1,4 @@
-import { TimeComponents } from "./types";
+type TimeComponents = [string, string, string, string];
 
 const getTimeComponents = (elapsedTime: number) => {
   const centiseconds = elapsedTime % 100;
