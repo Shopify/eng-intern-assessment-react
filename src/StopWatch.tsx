@@ -5,8 +5,7 @@ import './StopWatch.css';
 export default function StopWatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [lapTimes, setLapTimes] = useState<{ lap: number; time: number }[]>([]);
-  const [lapCount, setLapCount] = useState(0);
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
 
   const [buttonColor, setButtonColor] = useState<string>('#0B2B11');
   const [textColor, setTextColor] = useState<string>('#45C465');
@@ -27,17 +26,15 @@ export default function StopWatch() {
 
   const startStop = () => {
     setIsRunning((prevIsRunning) => !prevIsRunning);
-    setButtonColor((prevColor) => (isRunning ? '#0B2B11' : '#330D0B'));
-    setTextColor((prevColor) => (isRunning ? '#45C465' : '#E5493C'));
+    setButtonColor(() => (isRunning ? '#0B2B11' : '#330D0B'));
+    setTextColor(() => (isRunning ? '#45C465' : '#E5493C'));
   };
 
   const resetLap = () => {
     if (isRunning) {
-      setLapTimes((prevLapTimes) => [{ lap: lapCount + 1, time: time }, ...prevLapTimes]);
-      setLapCount((prevLapCount) => prevLapCount + 1);
+      setLapTimes((prevLapTimes) => [time, ...prevLapTimes]);
     } else {
       setTime(0);
-      setLapCount(0);
       setIsRunning(false);
       setLapTimes([]);
     }
@@ -72,7 +69,7 @@ export default function StopWatch() {
           <li></li>
         {lapTimes.map((lap, index) => (
             <li key={index}>
-              Lap {lap.lap} &emsp; &emsp; &emsp; &emsp; {formatTime(lap.time)}
+              Lap {lapTimes.length - index} &emsp; &emsp; &emsp; &emsp; { lapTimes.length - index === 1 ? formatTime(lap) : formatTime(lap - lapTimes[index + 1])}
             </li>
           ))}
         </ul>
@@ -80,3 +77,4 @@ export default function StopWatch() {
     </div>
   );
 }
+
