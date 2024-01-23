@@ -19,3 +19,13 @@ button#Stop {
     background-color: #ff0000;
 }
 
+/* Style for the "Reset" and "Lap" buttons */
+button#Reset {
+    background-color: #808080;
+}
+
+/* Style for the red "Stop" button */
+button#Lap {
+    background-color: #808080;
+}
+
