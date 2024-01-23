@@ -1,0 +1,6 @@
+.mainContainer {
+    display: flex;
+    justify-content: center; /* Align horizontally */
+    align-items: center;     /* Align vertically */
+    height: 100vh;           /* Optional: Full viewport height */
+}

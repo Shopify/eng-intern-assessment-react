@@ -2,10 +2,34 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 10px;
 }
 
 
 .buttons button {
     padding: 10px 15px;
     font-size: 1em;
+    min-width: 80px;
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    text-align: center;
+    border: 0;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset;
+}
+
+
+.startButton {
+    background-color: green;
+    color: #ffffff;
+}
+
+.stopButton {
+    background-color: red;
+    color: #ffffff;
 }

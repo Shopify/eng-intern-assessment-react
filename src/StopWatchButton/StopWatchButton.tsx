@@ -9,7 +9,7 @@ interface StopWatchButtonProps {
 export default function StopWatchButton({ isRunning, onStartStop, onLapReset }: StopWatchButtonProps) {
     return(
         <div className={styles.buttons}>
-            <button onClick={onStartStop}>{isRunning ? 'Stop' : 'Start'}</button>
+            <button onClick={onStartStop} className={isRunning ? styles.stopButton : styles.startButton}>{isRunning ? 'Stop' : 'Start'}</button>
             <button onClick={onLapReset}>{isRunning ? 'Lap' : 'Reset'}</button>
         </div>
     )
