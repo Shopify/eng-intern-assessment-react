@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";
 import LapsDisplay from "./components/LapsDisplay";
@@ -13,7 +13,15 @@ export default function App() {
   const [elapsedTime, setElapsedTime] = useState(0); // in centiseconds
   const [laps, setLaps] = useState<number[]>([]);
 
-  let timer = useRef<NodeJS.Timer | null>(null);
+  const timer = useRef<NodeJS.Timer | null>(null);
+
+  const lastLapTime = useRef(0);
+  const fastestLap = useRef(Number.MAX_VALUE);
+  const slowestLap = useRef(-1);
+  const fastestLapIndex = useRef(-1);
+  const slowestLapIndex = useRef(-1);
+
+  // Event handlers
 
   const handleStart = () => {
     setIsRunning(true);
@@ -30,7 +38,17 @@ export default function App() {
   };
 
   const handleLap = () => {
-    setLaps((prevLaps) => [...prevLaps, elapsedTime]);
+    const newLap = elapsedTime - lastLapTime.current;
+    setLaps((prevLaps) => [...prevLaps, newLap]);
+    lastLapTime.current = elapsedTime;
+
+    if (newLap < fastestLap.current) {
+      fastestLap.current = newLap;
+      fastestLapIndex.current = laps.length;
+    } else if (newLap > slowestLap.current) {
+      slowestLap.current = newLap;
+      slowestLapIndex.current = laps.length;
+    }
   };
 
   const handleReset = () => {
@@ -38,6 +56,8 @@ export default function App() {
     setElapsedTime(0);
     setLaps([]);
   };
+
+  // Props for the Start/Stop and Lap/Reset buttons
 
   const primaryButtonProps = {
     Icon: isRunning ? <PauseIcon className="pause-icon" /> : <StartIcon className="start-icon" />,
@@ -57,6 +77,9 @@ export default function App() {
     alt: isRunning ? "Lap" : "Reset",
   };
 
+  // Clear timer on unmount to prevent memory leaks
+  useEffect(() => () => clearInterval(timer.current), []);
+
   return (
     <div className="App">
       <div className="stopwatch-container">
@@ -72,7 +95,13 @@ export default function App() {
             {isReset || <StopWatchButton {...secondaryButtonProps} />}
           </div>
         </div>
-        {laps.length > 0 && <LapsDisplay laps={laps} />}
+        {laps.length > 0 && (
+          <LapsDisplay
+            laps={laps}
+            fastest={fastestLapIndex.current}
+            slowest={slowestLapIndex.current}
+          />
+        )}
       </div>
       <div className="footer-container">
         <div className="footer-section" />
