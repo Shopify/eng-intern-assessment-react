@@ -11,20 +11,6 @@ body {
   color: #fff;
 }
 
-/* TOP */
-
-.top-large {
-  padding-top: 8rem;
-}
-
-.top-medium {
-  padding-top: 4rem;
-}
-
-.top-small {
-  padding-top: 1rem;
-}
-
 /* TYPOGRAPHY */
 
 .extra-large-text {
@@ -118,18 +104,6 @@ body {
   justify-content: center;
 }
 
-.button-effect {
-  transition: linear 0.1s;
-
-  &:hover {
-    background-color: #97b191;
-  }
-
-  &:active {
-    background-color: #798e74;
-  }
-}
-
 .laps-container {
   width: 15rem;
   display: flex;
@@ -144,12 +118,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.lap-index {
-}
-
-.lap-time {
 }
 
 .footer-container {
@@ -193,5 +161,17 @@ body {
 
   &:hover {
     color: #798e74;
+  }
+}
+
+.button-effect {
+  transition: linear 0.1s;
+
+  &:hover {
+    background-color: #97b191;
+  }
+
+  &:active {
+    background-color: #798e74;
   }
 }
