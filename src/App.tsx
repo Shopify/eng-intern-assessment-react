@@ -67,10 +67,11 @@ export default function App() {
           <StopWatch time={elapsedTime} />
         </div>
         <div className="buttons-container">
-          <div className="secondary-button-container">
+          <div className="button-container" />
+          <div className="button-container">
             <StopWatchButton {...primaryButtonProps} />
           </div>
-          <div className="secondary-button-container">
+          <div className="button-container">
             {!isReset && <StopWatchButton {...secondaryButtonProps} />}
           </div>
         </div>
