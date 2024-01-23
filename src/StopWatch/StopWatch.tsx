@@ -19,7 +19,7 @@ export default function StopWatch() {
             const updateStopwatch = () => {
                 setTime(prevTime => {
                     const now = Date.now();
-                    const interval = now - referenceTime;
+                    const interval = now - referenceTime; // This takes into account drift in callback execution
                     setReferenceTime(now)
                     return prevTime + interval;
                 })
