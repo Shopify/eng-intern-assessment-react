@@ -1,27 +1,64 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import calculateTime from './helpers/calculateTime'
 import StopWatchButton from './StopWatchButton';
 
 export default function StopWatch() {
-  const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
-  const [timerArray, setTimerArray] = useState<Array<number|string>>([]);
 
-  //Whenever timeInSeconds changes, set timerArray to timeArray.
+  const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
+  const [timerOn, setTimerOn] = useState<boolean>(false);
+  const [formattedTime, setFormattedTime] = useState({
+    minutesFormatted: '00',
+    secondsFormatted: '00',
+    millisecondsFormatted: '00'
+  });
+
+  const intervalIdRef = useRef<NodeJS.Timeout | null>(null)
+
   useEffect(() => {
-    let timeArray: Array<number|string> = calculateTime(timeInSeconds);
-    setTimerArray(timeArray);
-  }, [timeInSeconds])
+    const handleMovement = () => {
+      setTimeInSeconds((prevState: number) => prevState + 10);
+    };
+
+    const startMovement = () => {
+      intervalIdRef.current = setInterval(handleMovement, 10);
+    };
+
+    const stopMovement = () => {
+      if (intervalIdRef.current !== null) {
+        clearInterval(intervalIdRef.current);
+        intervalIdRef.current = null;
+      }
+    };
+
+    if (timerOn) {
+      startMovement();
+    } else {
+      stopMovement();
+    }
+
+    return () => {
+      stopMovement();
+    };
+  }, [timerOn]);
+
+  useEffect(() => {
+    setFormattedTime(calculateTime(timeInSeconds));
+  }, [timeInSeconds]);
 
     return(
       <main>
         <div className = "time-container" title="display">
-          <p className='timer-text'>{timerArray[0]}</p>
+          <p className='timer-text'>{formattedTime.minutesFormatted}</p>
           <span>:</span>
-          <p className='timer-text'>{timerArray[1]}</p>
+          <p className='timer-text'>{formattedTime.secondsFormatted}</p>
           <span>:</span>
-          <p className='timer-text'>{timerArray[2]}</p>
+          <p className='timer-text'>{formattedTime.millisecondsFormatted}</p>
         </div>
-        <StopWatchButton setTimeInSeconds={setTimeInSeconds} timeInSeconds={timeInSeconds}/>
+        <StopWatchButton 
+          setTimeInSeconds={setTimeInSeconds} 
+          timeInSeconds={timeInSeconds} 
+          setTimerOn={setTimerOn}
+        />
       </main>
     )
 }
