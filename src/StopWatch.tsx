@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
 
     const [timeInSeconds, setTimeInSeconds] = useState<number>(0)
     const [stopWatchTime, setStopWatchTime] = useState<Array<number | string>>([])
 
+    // formats numbers on stopwatch properly (everything has two digits, has the right amount of seconds/minutes/hours)
     function calculateTime(timeInSeconds: number): Array<number | string> {
 
         let hours: number= Math.floor(timeInSeconds/ 3600);
@@ -19,19 +21,23 @@ export default function StopWatch() {
         return [hoursFormat, minutesFormat, secondsFormat]
     }
 
+    // function that updates time on stopwatch with the right formatting
     useEffect (() => {
-        let stopWatchArray: Array<number | string> = calculateTime(timeInSeconds);
+        let stopWatchArray: Array<number|string> = calculateTime(timeInSeconds);
         setStopWatchTime(stopWatchArray)
     }, [timeInSeconds])
     
 
     return(
+       <main>
         <section className='stopwatch_container'>
-            <span className='stopwatch_text'>{stopWatchTime[0]}</span>
-            <span>:</span>
-            <span className='stopwatch_text'>{stopWatchTime[1]}</span>
-            <span>:</span>
-            <span className='stopwatch_text'>{stopWatchTime[2]}</span>
-        </section>
+                <span className='stopwatch_text'>{stopWatchTime[0]}</span>
+                <span>:</span>
+                <span className='stopwatch_text'>{stopWatchTime[1]}</span>
+                <span>:</span>
+                <span className='stopwatch_text'>{stopWatchTime[2]}</span>
+            </section>
+            <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
+        </main>
     )
 }
