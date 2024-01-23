@@ -15,7 +15,7 @@ describe("Stopwatch component", () => {
     })
 
     test("Render the time and buttons", async () => {
-        const { getByText, getByTestId } = render(<StopWatch />);
+        const { getByText } = render(<StopWatch />);
         
         // Time format
         expect(getByText(/00:00:00/)).toBeInTheDocument();
@@ -47,13 +47,13 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/00:00:00/)).toBeInTheDocument();
+        expect(getByText(/00:00:02/)).toBeInTheDocument();
     });
 
     test("Start and stop stopwatch edge case: seconds to minutes", async () => {
         const { getByText } = render(<StopWatch />);
         const startStopButton = getByText(/Start/);
-
+        
         // Start timer
         fireEvent.click(startStopButton);
         expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
@@ -22,7 +22,7 @@ export default function StopWatch() {
 
     const formatTime = (timeInSeconds: number): string => {
         const hours: number = Math.floor(timeInSeconds / 3600);
-        const minutes: number = Math.floor((timeInSeconds / 3600) / 60);
+        const minutes: number = Math.floor((timeInSeconds % 3600) / 60);
         const seconds: number = timeInSeconds % 60;
 
         return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`
@@ -37,11 +37,23 @@ export default function StopWatch() {
         return `${num < 10 ? '0' : ''}${num}`
     }
 
+    // Set up an interval that updates the time ever second whenever isRunning is changed (start/stopped)
+    useEffect(() => {
+        let interval: NodeJS.Timeout;
+
+        if (isRunning) {
+            interval = setInterval(() => {
+                setTime((prev_time) => prev_time + 1)
+            }, 1000)
+        }
+
+        return () => clearInterval(interval);
+    }, [isRunning]);
+
     return(
         <div>
             <div id={"time"}>{formatTime(time)}</div>
-            <StopWatchButton onClick={handleStartStop} label={"Start"}/>
-            <StopWatchButton onClick={handleStartStop} label={"Stop"}/>
+            <StopWatchButton onClick={handleStartStop} label={isRunning ? "Stop" : "Start"}/>
             <StopWatchButton onClick={handleReset} label={"Reset"}/>
             <StopWatchButton onClick={handleLap} label={"Lap"}/>
         </div>
