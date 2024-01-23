@@ -1,59 +1,61 @@
-// src/App.tsx
+
 import React, { useState, useEffect } from 'react';
-import Stopwatch from './StopWatch';
-import StopwatchButton from './StopWatchButton';
+import Stopwatch from './StopWatch'; 
+import StopwatchButton from './StopWatchButton'; 
+
 
 const App: React.FC = () => {
-    // State to manage the current time and the interval ID
+    // States to track elapsed time, interval ID for managing the timer, and an array to store laps
     const [time, setTime] = useState(0);
     const [intervalId, setIntervalId] = useState<number | null>(null);
+    const [laps, setLaps] = useState<number[]>([]);
 
-    // Function to start the timer
+    // Function to start the timer by setting up an interval
     const startTimer = () => {
-        // Check if the timer is not already running
         if (!intervalId) {
-            // Set up an interval to increase time every second
+            // Set interval to increase time by 1 every second
             const id = window.setInterval(() => {
                 setTime((prevTime) => prevTime + 1);
-            }, 1000); 
+            }, 1000);
             setIntervalId(id);
         }
     };
 
-    // Function to stop the timer
+    // Stop the timer by clearing the interval
     const stopTimer = () => {
-        
         if (intervalId !== null) {
-            
             clearInterval(intervalId);
             setIntervalId(null);
         }
     };
 
-    // Function to reset the timer
+    // Reset the timer and clear recorded laps
     const resetTimer = () => {
-       
         setTime(0);
+        setLaps([]);
     };
 
-    // Clean-up effect to clear the interval when the component unmounts
+    // Function to record a lap 
+    const recordLap = () => {
+        setLaps((prevLaps) => [...prevLaps, time]);
+    };
+
+    // Cleanup to clear the interval when the component unmounts
     useEffect(() => {
         return () => {
-            
             if (intervalId !== null) {
-                
                 clearInterval(intervalId);
             }
         };
     }, [intervalId]);
 
-    // Render the Stopwatch and StopwatchButton components
+    // Render the Stopwatch component and StopwatchButton component with lap recording functionality
     return (
         <div>
-            <Stopwatch time={time} />
-            <StopwatchButton onStart={startTimer} onStop={stopTimer} onReset={resetTimer} />
+            <Stopwatch time={time} /> 
+            <StopwatchButton onStart={startTimer} onStop={stopTimer} onReset={resetTimer} onLap={recordLap} laps={laps} /> {/* Buttons for controlling the timer and recording laps */}
         </div>
     );
 };
 
-export default App;
+export default App; // Export the App component for use in other parts of the application

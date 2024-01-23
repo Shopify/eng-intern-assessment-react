@@ -1,19 +1,19 @@
-// src/Stopwatch.tsx
 import React from 'react';
 
 interface StopwatchProps {
-    time: number;
+    time: number; 
 }
 
-//component recieves time as prop
+// Stopwatch functional component receives time as a prop and renders the elapsed time
 const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
     return (
         <div>
             <div>
-                <span>{time}</span>
+                <span>{time}</span> {/* Display the elapsed time */}
             </div>
         </div>
     );
 };
 
-export default Stopwatch;
+export default Stopwatch; 
+
