@@ -1,37 +1,55 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Dispatch, SetStateAction} from 'react'
 
 interface StopWatchState {
     formattedTime: string
-    laps: string[]
-    setLaps: Dispatch<SetStateAction<string[]>>
     time: number
     setTime: Dispatch<SetStateAction<number>>
-    isRunning: boolean
-    setIsRunning: (value: boolean) => void;
 }
 
+/**
+ * Function for start/stop, reset and lap buttons
+ *
+ * @param formattedTime Properly formatted time
+ * @param time raw unconverted time
+ * @param setTime setState for updating the time
+ * @constructor
+ */
 export default function StopWatchButton({
                                             formattedTime,
-                                            laps, setLaps,
                                             time, setTime,
-                                            isRunning, setIsRunning
-                                        }: StopWatchState) {
+                                        }: StopWatchState): React.JSX.Element {
 
+    //state management for updating start/stop state
+    const [isRunning, setIsRunning] = useState<boolean>(false);
+    //state management for storing laps
+    const [laps, setLaps] = useState<string[]>([]);
+
+    //Function for starting and stopping the stopwatch
     const handleStartStop = () => {
-        /*Function for starting and stopping the stopwatch*/
         setIsRunning(!isRunning)
     }
+
+    //Function for resetting the stopwatch
     const handleReset = () => {
-        /*Function for resetting the stopwatch*/
         setIsRunning(false)
         setTime(0)
         setLaps([])
     }
+    //Function for recording laps
     const handleLaps = () => {
-        /*Function for recording laps*/
         setLaps([...laps, formattedTime])
     }
+
+    useEffect(() => {
+        let interval: any
+        if (isRunning) {
+            interval = setInterval(() => {
+                setTime(time + 1);
+            }, 10);
+        }
+        return () => clearInterval(interval)
+    }, [time, isRunning])
 
     return (
         <>
