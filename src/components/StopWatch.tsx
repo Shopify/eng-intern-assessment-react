@@ -7,10 +7,11 @@ interface StopWatchProps {
 }
 
 export default function StopWatch({ time }: StopWatchProps) {
-  const [hours, minutes, seconds, centiseconds] = functions.getTimeComponents(time);
+  const [sign, hours, minutes, seconds, centiseconds] = functions.getTimeComponents(time);
   return (
     <div>
       <span className="timer-large-text">
+        {sign}
         {time >= 360000 ? hours + ":" : ""}
         {minutes}:{seconds}
       </span>

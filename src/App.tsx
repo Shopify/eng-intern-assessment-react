@@ -6,18 +6,19 @@ import StartIcon from "./components/StartIcon";
 import PauseIcon from "./components/PauseIcon";
 import "./styles.css";
 
-const ZERO_TIME = 0;
+const START_TIME: number = -1000; // When the stopwatch starts counting
+const LAP_START_TIME: number = 0; // When laps can start to be recorded
 
 export default function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [isReset, setIsReset] = useState(true);
 
-  const [elapsedTime, setElapsedTime] = useState(ZERO_TIME); // in centiseconds
+  const [elapsedTime, setElapsedTime] = useState(START_TIME); // in centiseconds
   const [laps, setLaps] = useState<number[]>([]);
 
   const timer = useRef<NodeJS.Timer | null>(null);
 
-  const lastLapTime = useRef(0);
+  const lastLapTime = useRef(LAP_START_TIME);
   const fastestLap = useRef(Number.MAX_VALUE);
   const slowestLap = useRef(-1);
   const fastestLapIndex = useRef(-1);
@@ -40,6 +41,9 @@ export default function App() {
   };
 
   const handleLap = () => {
+    // Ignore laps before the stopwatch starts
+    if (elapsedTime < LAP_START_TIME) return;
+
     const newLap = elapsedTime - lastLapTime.current;
     setLaps((prevLaps) => [...prevLaps, newLap]);
     lastLapTime.current = elapsedTime;
