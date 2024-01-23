@@ -4,16 +4,20 @@ import "./styles.css";
 type Props = {
     setStart: Function;
     setStop: Function;
+    setReset: Function;
 }
 
-export default function StopWatchButton({setStart, setStop}: Props) {
+export default function StopWatchButton({setStart, setStop, setReset}: Props) {
 
+    //Handler functions for buttons
     function handleStart(): void{
         setStart();
     }
-
     function handleStop(): void{
         setStop();
+    }
+    function handleReset(): void{
+        setReset();
     }
     
     return(
@@ -21,7 +25,7 @@ export default function StopWatchButton({setStart, setStop}: Props) {
             <button className="start-button" onClick={handleStart}>Start</button>
             <button className="stop-button" onClick={handleStop}>Stop</button>
             <button className="lap-button">Lap</button>
-            <button className="reset-button">Reset</button>
+            <button className="reset-button" onClick={handleReset}>Reset</button>
         </div>
     )
 }
