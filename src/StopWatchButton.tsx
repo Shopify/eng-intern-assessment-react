@@ -1,7 +1,22 @@
-import React from 'react'
+// src/StopwatchButton.tsx
+import React from 'react';
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+interface StopwatchButtonProps {
+    onStart: () => void;
+    onStop: () => void;
+    onReset: () => void;
 }
+
+//component receives onStart, onStop, and onReset functions as props
+
+const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onReset }) => {
+    return (
+        <div>
+            <button onClick={onStart}>Start</button>
+            <button onClick={onStop}>Stop</button>
+            <button onClick={onReset}>Reset</button>
+        </div>
+    );
+};
+
+export default StopwatchButton;
