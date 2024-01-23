@@ -1,0 +1,60 @@
+.stopwatch-container {
+    display: flex;
+    justify-content: center;
+    align-items: start; /* Align items to the start for a better layout */
+    padding-top: 50px; /* Add some space at the top */
+    height: calc(100vh - 50px); /* Adjust height accordingly */
+    text-align: center;
+}
+
+.stopwatch-section {
+    flex: 1;
+    margin-right: 20px; /* Add some space between the stopwatch and laps */
+}
+
+.laps-section {
+    flex: 1;
+    max-width: 300px;
+}
+
+.timer-display {
+    font-size: 3rem;
+    margin: 20px 0;
+}
+
+.timer-display span {
+    font-size: 2rem;
+}
+
+.laps-container {
+    height: 300px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for the laps container */
+}
+
+.no-laps {
+    color: #666;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .stopwatch-container {
+        flex-direction: column; /* Stack sections on smaller screens */
+    }
+
+    .stopwatch-section, .laps-section {
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    .timer-display {
+        font-size: 2rem;
+    }
+
+    .timer-display span {
+        font-size: 1.5rem;
+    }
+}
