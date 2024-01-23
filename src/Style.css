@@ -80,3 +80,18 @@ ul {
   li {
     margin-bottom: 5px;
   }
+
+  .lap-times-container {
+    max-height: 150px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  .lap-times-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  

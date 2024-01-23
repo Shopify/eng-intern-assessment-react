@@ -77,14 +77,14 @@ export default function StopWatchButton({ elapsed, setElapsed }: StopWatchButton
       <button onClick={handleLapClick}>LAP</button>
       <button onClick={handleResetClick}>RESET</button>
   
-      <div>
-    <h2 className="lap-times-heading">LAP TIMES</h2>
-    <ul>
-        {lapTimes.map((lap, index) => (
+      <div className="lap-times-container">
+        <h2 className="lap-times-heading">LAP TIMES</h2>
+        <ul className="lap-times-list">
+          {lapTimes.map((lap, index) => (
             <li key={index}>{formatTime(lap)}</li>
-        ))}
-    </ul>
-    </div>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
