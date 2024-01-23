@@ -1,0 +1,59 @@
+.stopwatchContainer {
+    justify-content: center;
+    position: relative;
+    font-family: "Arial, sans-serif";
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 400px;
+  }
+  
+  .headerStyle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .elapsedTimeStyle {
+    font-size: 18px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+  }
+  
+  .lapTimesHeader {
+    font-size: 18px;
+    height: 30px;
+  }
+  
+  .lapTimesContainer {
+    width: 200px;
+    min-height: 60px;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    margin: 0 auto 10px;
+  }
+  
+  
+  .lapTimesList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .lapTimeItem {
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  .buttonsContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
