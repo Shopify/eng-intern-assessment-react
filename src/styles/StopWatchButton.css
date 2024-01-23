@@ -1,0 +1,40 @@
+/* Toggle Button Styles */
+.toggle-button {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    --background-light: #333;
+    --background-dark: #f0f0f0;
+    --text-light: #fff;
+    --text-dark: #333;
+}
+
+/* Stopwatch Button Style */
+.stopwatch-button {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.3s;
+}
+
+.stop-button {
+    background: #FF4500;
+}
+
+.stopwatch-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
