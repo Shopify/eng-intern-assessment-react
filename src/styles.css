@@ -6,6 +6,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+*::selection, *::-moz-selection {
+  background-color: #798e74;
+  color: #fff;
+}
+
 /* TOP */
 
 .top-large {
@@ -42,6 +47,10 @@ body {
   font-size: 1rem;
 }
 
+.extra-extra-small-text {
+  font-size: 0.8rem;
+}
+
 .black {
   font-weight: 900;
 } 
@@ -74,8 +83,6 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
-
-  /* border:  1px solid black; */
 }
 
 .display-container {
@@ -84,9 +91,7 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  
-  /* border: 1px solid black; */
-}
+  }
 
 .buttons-container {
   width: 30rem;
@@ -94,8 +99,6 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
-
-  /* border: 1px solid green; */
 }
 
 .button-container {
@@ -104,8 +107,27 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  user-select: none ;
+}
 
-  /* border: 1px solid black; */
+.secondary-button {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-effect {
+  transition: linear 0.1s;
+
+  &:hover {
+    background-color: #97b191;
+  }
+
+  &:active {
+    background-color: #798e74;
+  }
 }
 
 .laps-container {
@@ -115,26 +137,32 @@ body {
   padding: 1rem;
   padding-top: 3rem;
   padding-bottom: 2rem;
-
   gap: 0.2rem;
-
-  /* border: 1px solid blue; */
 }
 
 .lap-row-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  /* border: 1px solid red; */
 }
 
 .lap-index {
-  /* border: 1px solid yellow; */
 }
 
 .lap-time {
-  /* border: 1px solid yellow; */
+}
+
+.footer-container {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer-section {
+  padding: 1rem 1.5rem;
 }
 
 /* COMPONENTS */
@@ -152,16 +180,18 @@ body {
   height: 8rem;
 }
 
-.primary-button {
-
-}
-
-.secondary-button {
-}
-
 .lap-divider {
   width: 98%;
   height: 0.08rem;
   background-color: #fff;
   border: none;
+}
+
+.made-by-msg {
+  color:#8ca986;
+  text-decoration: none;
+
+  &:hover {
+    color: #798e74;
+  }
 }

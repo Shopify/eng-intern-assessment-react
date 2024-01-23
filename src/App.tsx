@@ -42,7 +42,7 @@ export default function App() {
   const primaryButtonProps = {
     Icon: isRunning ? <PauseIcon className="pause-icon" /> : <StartIcon className="start-icon" />,
     handleClick: isRunning ? handleStop : handleStart,
-    buttonStyle: "primary-button",
+    buttonStyle: "button-effect",
     alt: isRunning ? "Stop" : "Start",
   };
 
@@ -53,7 +53,7 @@ export default function App() {
       <div className="small-text">Reset</div>
     ),
     handleClick: isRunning ? handleLap : handleReset,
-    buttonStyle: "secondary-button",
+    buttonStyle: "secondary-button button-effect",
     alt: isRunning ? "Lap" : "Reset",
   };
 
@@ -73,6 +73,15 @@ export default function App() {
           </div>
         </div>
         {laps.length > 0 && <LapsDisplay laps={laps} />}
+      </div>
+      <div className="footer-container">
+        <div className="footer-section" />
+        <a
+          href="https://www.maxzhang.ca"
+          className="footer-section made-by-msg extra-extra-small-text"
+        >
+          Made with ♥ by Max Zhang
+        </a>
       </div>
     </div>
   );
