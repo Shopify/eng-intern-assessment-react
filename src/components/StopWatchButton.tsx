@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/StopWatchButton.css'
 
 // StopWatchButtonProps interface defines props for the StopWatchButton components
 interface StopWatchButtonProps {

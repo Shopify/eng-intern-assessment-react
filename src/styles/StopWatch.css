@@ -1,3 +1,4 @@
+/* Global Styles */
 :root {
     --background-light: #f0f0f0;
     --background-dark: #333;
@@ -12,17 +13,20 @@ body {
     transition: background-color 0.5s, color 0.5s;
 }
 
+/* Container Styles */
 .stopwatch-container {
     max-width: 400px;
     margin: 50px auto;
     text-align: center;
 }
 
+/* Title Style */
 .stopwatch-title {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
+/* Content Styles */
 .stopwatch-content {
     background-color: var(--background-light);
     padding: 20px;
@@ -31,18 +35,21 @@ body {
     transition: background-color 0.5s;
 }
 
+/* Time Display Styles */
 .time-display {
     font-size: 36px;
     margin-bottom: 20px;
     color: var(--text-light);
 }
 
+/* Button Container Styles */
 .button-container {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
 }
 
+/* Lap Container Styles */
 .lap-container {
     background-color: var(--background-light);
     padding: 20px;
@@ -54,12 +61,14 @@ body {
     margin-top: 15px;
 }
 
+/* Lap Title Styles */
 .lap-title {
     font-size: 20px;
     margin-bottom: 10px;
     color: var(--text-light);
 }
 
+/* Lap List Styles */
 .lap-list {
     list-style: none;
     padding: 0;
@@ -75,45 +84,7 @@ body {
 }
 
 
-.toggle-button {
-    background-color: var(--background-dark);
-    color: var(--text-dark);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.5s, color 0.5s;
-}
-
-
-.dark-mode {
-    --background-light: #333;
-    --background-dark: #f0f0f0;
-    --text-light: #fff;
-    --text-dark: #333;
-}
-
-.stopwatch-button {
-    background: linear-gradient(45deg, #4CAF50, #2E8B57);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: all 0.3s;
-}
-
-.stop-button {
-    background: #FF4500;
-}
-
-.stopwatch-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-
+/* Responsive web design */
 @media only screen and (min-width: 768px) {
     .stopwatch-container {
         font-size: 36px;
