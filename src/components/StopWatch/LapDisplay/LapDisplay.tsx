@@ -49,7 +49,7 @@ export function LapDisplay({
     if(resolutions === undefined){ resolutions = React.useContext(StopWatchContext).sw.resolutions}
     if(darkTheme === undefined){ darkTheme = React.useContext(StopWatchContext).darkTheme}
     
-    
+
     const labelStyles: React.CSSProperties = {
 		fontSize:"1rem",
 		fontWeight:"bold",
@@ -58,7 +58,6 @@ export function LapDisplay({
         marginBottom:"0px",
         color:darkTheme ? "#c0c0c0" : "#333",
 	}
-
 
     return (
         <div data-testid="lap-display-wrapper" style={

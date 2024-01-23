@@ -2,8 +2,6 @@ import { AnalogDisplayProps, AnalogProps } from "@types";
 import { useMemo } from 'react';
 
 export interface UseAnalogClockProps extends AnalogDisplayProps {
-    secondHandLength: number,
-    secondHandShift:number,
     laps: number[],
 }
 
@@ -22,11 +20,21 @@ export const centerIconStyle:React.CSSProperties = {
 };
 
 
+export interface UseAnalogStylesProps{
+    containerStyles?: React.CSSProperties,
+    faceColor?: string,
+    darkTheme?: boolean,
+    clockSize: number,
+    borderWidth: number,
+    borderColor: string,
+    borderRadius: string,
+    backgroundImage?: string,
+    secondTicks?: boolean,
+    clockStyle?: React.CSSProperties,
 
+}
 
-
-
-export const useAnalogClock = ({
+export const useAnalogContainerStyles = ({
     containerStyles,
     faceColor,
     darkTheme,
@@ -37,11 +45,8 @@ export const useAnalogClock = ({
     backgroundImage,
     secondTicks,
     clockStyle,
-    secondHandShift,
-    laps,
-    milliseconds,
 
-}: UseAnalogClockProps) => {
+}: UseAnalogStylesProps )=>{
     const cs = containerStyles ? containerStyles : {};
     const finalContainerStyle: React.CSSProperties = {
         ...cs,
@@ -77,6 +82,27 @@ export const useAnalogClock = ({
         boxShadow: `0 2vw 4vw -1vw rgba(0,0,0,0.8)`,
         maskImage: `radial-gradient(circle at center,transparent 60%,white 60.1%)`
     };
+    return useMemo(() => {
+        return {
+            finalContainerStyle,
+            finalClockStyle,
+
+        }
+    }, [finalContainerStyle, finalClockStyle])
+    
+}
+
+export const useAnalogClock = ({
+
+    clockSize,
+
+    laps,
+    milliseconds,
+
+}: UseAnalogClockProps) => {
+
+    const secondHandLength = clockSize / 2;
+    const secondHandShift = secondHandLength * 0.15;
 
 
     const secondHandStyle = {
@@ -110,10 +136,9 @@ export const useAnalogClock = ({
 
     return useMemo(() => {
         return {
-            finalContainerStyle,
-            finalClockStyle,
+
             secondHandStyle,
             lapHandStyle,
         }
-    }, [finalContainerStyle, finalClockStyle, secondHandStyle, lapHandStyle])
+    }, [ secondHandStyle, lapHandStyle])
 }

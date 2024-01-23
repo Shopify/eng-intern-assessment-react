@@ -1,10 +1,28 @@
 import React from 'react'
 import {AnalogProps, StopWatchUIElement } from "@types";
-import { useAnalogClock, centerIconStyle } from './utils';
+import { useAnalogClock, centerIconStyle, useAnalogContainerStyles} from './utils';
 import {Complication} from './Complication';
 
 import { StopWatchContext } from '../'
 
+/**
+ * AnalogDisplayProps interface for the AnalogDisplay component.
+ *
+ * @interface
+ * @extends {StopWatchUIElement} - Base UI element for the component.
+ * @extends {AnalogProps} - This component extends from AnalogProps which includes optional properties related to the analog display of the stopwatch.
+ *
+ * @property {React.CSSProperties} clockStyle - An optional property that allows you to pass in custom styles for the clock.
+ * @property {string} backgroundImage - An optional property that sets the background image of the clock.
+ * @property {React.CSSProperties} secondHandStyle - An optional property that allows you to pass in custom styles for the second hand.
+ * @property {any} ComplicationProps - An optional property that allows you to pass in props for the Complication component.
+ * @property {number} complicationSize - An optional property that sets the size of the complication.
+ * @property {number} borderWidth - An optional property that sets the border width of the clock. Defaults to `12`.
+ * @property {string} faceColor - An optional property that sets the color of the clock face.
+ * @property {number} milliseconds - An optional property that represents the time in milliseconds. If not provided, the time from the `StopWatchContext` will be used.
+ * @property {number[]} laps - An optional property that represents the lap times. If not provided, the lap times from the `StopWatchContext` will be used.
+ * @property {boolean} darkTheme - An optional property that determines whether the analog display should use a dark theme. If not provided, the theme from the `StopWatchContext` will be used.
+ */
 export interface AnalogDisplayProps extends StopWatchUIElement, AnalogProps{
     clockStyle?: React.CSSProperties;
     backgroundImage?: string;
@@ -40,26 +58,24 @@ export function AnalogDisplay({
     if(!laps){ laps = React.useContext(StopWatchContext).sw.laps}
 
 
-    const secondHandLength = clockSize / 2;
-    const secondHandShift = secondHandLength * 0.15;
 
-    const {finalContainerStyle, finalClockStyle, secondHandStyle, lapHandStyle} = useAnalogClock({
-        darkTheme,
-        containerStyles,
-        backgroundImage,
+
+    const { secondHandStyle, lapHandStyle, } = useAnalogClock({
         milliseconds,
-        clockStyle,
-        secondTicks,
-        borderColor,
-        styles,
+        clockSize,
+        laps
+    })
+    const {finalClockStyle, finalContainerStyle} = useAnalogContainerStyles({
+        containerStyles,
         faceColor,
-        complication,
+        darkTheme,
         clockSize,
         borderWidth,
+        borderColor,
         borderRadius,
-        laps,
-        secondHandLength,
-        secondHandShift
+        backgroundImage,
+        secondTicks,
+        clockStyle,
     })
 
 
