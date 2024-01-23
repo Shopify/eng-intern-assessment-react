@@ -23,7 +23,7 @@ The app uses `useState` for managing the timer, laps, and running state, and `us
 Comprehensive tests are written using React Testing Library and Jest. The tests cover various functionalities like start/stop, lap recording, and resetting.
 
 ### Test Results
-![Test Results](./Test Results/test.png)
+![Test Results](./test_results/test.png)
 
 ## User Interface
 Here's how the Stopwatch App looks:
@@ -33,7 +33,7 @@ Here's how the Stopwatch App looks:
 ## Demo Video
 Check out this demo of the app in action:
 
-[![Demo Video](./src/video_demo/demo.mp4)](./src/video_demo/demo.mp4)
+[![Watch the video](./video_demo/thumbnail.png)](./video_demo/demo.mp4)
 
 ## Getting Started
 To run this project, clone the repo and install the dependencies using `npm install`. Then, start the project with `npm start`.
