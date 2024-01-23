@@ -1,7 +1,6 @@
 .lapTableContainer h3 {
   padding: 10px;
   margin: 0;
-  position: sticky;
   background-color: white;
 }
 
@@ -25,7 +24,7 @@ ul li {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ffc0cb99;
 }
 
 .laps::-webkit-scrollbar {

@@ -3,9 +3,9 @@
   margin-top: 20px;
   margin-bottom: 20px;
   color: white;
-  font-size: 18px;
+  font-size: calc(15px + 0.5vw);
   background-color: pink;
-  width: 150px;
+  width: calc(150px + 4vw);
   height: 50px;
   border: none;
   border-radius: 15px;

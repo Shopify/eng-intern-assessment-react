@@ -27,7 +27,7 @@
 }
 
 .timerContainer {
-  font-size: 45px;
+  font-size: calc(45px + 1vw);
   padding-top: 1rem;
   top: 0;
 }
@@ -73,20 +73,17 @@
 
 @keyframes run {
   0% {
-    transform: rotateY(0deg);
     left: 100%;
   }
   20% {
-    transform: rotateY(0deg);
     left: -100%;
   }
   100% {
-    transform: rotateY(0deg);
     left: -100%;
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1200px) {
   .timerContainer,
   .lapContainer {
     width: 80%;
