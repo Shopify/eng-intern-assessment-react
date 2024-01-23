@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
-import StopWatchButton from './StopWatchButton';
-import "./Style.css";
+import React from 'react';
 
-
-export default function StopWatch() {
-  const [elapsed, setElapsed] = useState<number>(0);
-
-  return (
-    <div className="stopwatch-container">
-      <div className="buttons-container">
-        <StopWatchButton elapsed={elapsed} setElapsed={setElapsed} />
-      </div>
-      <div className="lap-times">
-        
-      </div>
-    </div>
-  );
+interface StopWatchProps {
+    elapsed: number;
+    formatTime: (time: number) => string;
+    lapTimes: number[];
+    lapTimesContainerRef: React.RefObject<HTMLDivElement>;
 }
+
+const StopWatch: React.FC<StopWatchProps> = ({ elapsed, formatTime, lapTimes, lapTimesContainerRef }) => {
+    return (
+        <>
+            <div className="timer-container">
+                <div className="timer-box">{formatTime(elapsed)}</div>
+            </div>
+            <h2 className="lap-times-heading">L A P S</h2>
+            <div className="lap-times-container" ref={lapTimesContainerRef}>
+                <ul className="lap-times-list">
+                    {lapTimes.map((lap, index) => (
+                        <li key={index}>
+                            Lap {index + 1}: {formatTime(lap)}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </>
+    );
+};
+
+export default StopWatch;
