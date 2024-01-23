@@ -1,0 +1,47 @@
+.stopwatch-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stopwatch-time {
+  font-size: 3rem;
+}
+
+.stopwatch-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.laps-container {
+  text-align: left;
+  margin-top: 1rem;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.laps-title {
+  margin-top: 1rem;
+}
+
+.laps-list {
+  list-style: none;
+}
+
+.laps-item {
+  position: relative;
+  padding: 1rem 0 0.5rem;
+}
+
+.laps-item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 4%;
+  height: 1px;
+  background-color: #ccc;
+}
