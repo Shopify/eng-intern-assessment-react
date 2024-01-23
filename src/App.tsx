@@ -6,11 +6,13 @@ import StartIcon from "./components/StartIcon";
 import PauseIcon from "./components/PauseIcon";
 import "./styles.css";
 
+const ZERO_TIME = 0;
+
 export default function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [isReset, setIsReset] = useState(true);
 
-  const [elapsedTime, setElapsedTime] = useState(0); // in centiseconds
+  const [elapsedTime, setElapsedTime] = useState(ZERO_TIME); // in centiseconds
   const [laps, setLaps] = useState<number[]>([]);
 
   const timer = useRef<NodeJS.Timer | null>(null);
@@ -42,10 +44,12 @@ export default function App() {
     setLaps((prevLaps) => [...prevLaps, newLap]);
     lastLapTime.current = elapsedTime;
 
+    // Update fastest and slowest lap times
     if (newLap < fastestLap.current) {
       fastestLap.current = newLap;
       fastestLapIndex.current = laps.length;
-    } else if (newLap > slowestLap.current) {
+    }
+    if (newLap > slowestLap.current) {
       slowestLap.current = newLap;
       slowestLapIndex.current = laps.length;
     }
