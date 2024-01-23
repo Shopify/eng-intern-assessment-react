@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import StopWatchButton from './StopWatchButton';
 
@@ -10,21 +10,21 @@ export default function StopWatch() {
   const [lastLapTime, setLastLapTime] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
 
+  //Interval  is defined outside of hooks, advoiding redeclaration & potential bugs
+  const interval = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-
     if (isActive) {
-      interval = setInterval(() => {
+      interval.current = setInterval(() => {
         setTime((time) => time + 10);
       }, 10);
     } else {
       // clear intervals when components unmounted and isActive changes
-      clearInterval(interval);
+      clearInterval(interval.current);
     }
 
     return () => {
       // clear intervals when components unmounted and isActive changes
-      clearInterval(interval);
+      if (interval.current) clearInterval(interval.current);
     };
   }, [isActive]);
 
