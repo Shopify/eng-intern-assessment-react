@@ -170,9 +170,10 @@ describe("Stopwatch component", () => {
 
         fireEvent.click(lapButton);
 
-        expect(getByTestId("lap-times")).toContainElement(getByText(/Lap \d{1}: \d{2}:\d{2}:\d{2}/));
+        expect(getByTestId("lap-times")).toContainElement(getByTestId("split-time"));
+        expect(getByTestId("lap-times")).toContainElement(getByTestId("total-time"));
 
         fireEvent.click(lapButton);
-        expect(getByTestId("lap-times").children.length).toBe(2);
+        expect(getByTestId("lap-times").children.length).toBe(3); // 3 to include the title
     })
 })

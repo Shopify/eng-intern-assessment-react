@@ -63,11 +63,13 @@ export default function StopWatch() {
             <StopWatchButton onClick={handleReset} label={"Reset"}/>
             <StopWatchButton onClick={handleLap} label={"Lap"}/>
             <div data-testid="lap-times">
-                <div className="grid-container title">
-                    <div>Laps</div>
-                    <div>Splits</div>
-                    <div>Total</div>
-                </div>
+                {lapTimes.length > 0 && (
+                    <div className="grid-container title">
+                        <div>Number</div>
+                        <div>Splits</div>
+                        <div>Total</div>
+                    </div>
+                )}
                 {/*
                     For potential optimization, only keep track of most recent lap time/last time the lap button was hit
                     and calcualte the split and current lap at that time. Discard older values and only update container
@@ -76,8 +78,8 @@ export default function StopWatch() {
                 {lapTimes.map((lap, index) => (
                     <div key={index} className="grid-container" >
                         <div>Lap {index + 1}</div>
-                        <div>{formatTime(index > 0 ? lap - lapTimes[index - 1] : lap)}</div>
-                        <div>{formatTime(lap)}</div>
+                        <div data-testid="split-time">{formatTime(index > 0 ? lap - lapTimes[index - 1] : lap)}</div>
+                        <div data-testid="total-time">{formatTime(lap)}</div>
                     </div>
                 ))}
             </div>
