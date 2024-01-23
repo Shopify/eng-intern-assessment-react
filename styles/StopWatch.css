@@ -1,0 +1,38 @@
+/* Style for the container */
+div {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
+}
+
+div#time {
+    margin-bottom: 25px;
+}
+
+
+/* Style for lap times */
+[data-testid="lap-times"] {
+    margin-top: 20px;
+    width: 50%;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style for lap time entries */
+[data-testid="lap-times"] div {
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+/* Grid layout for lap time entries */
+[data-testid="lap-times"] div.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+[data-testid="lap-times"] div.title {
+    font-weight: bold;
+    font-size: 0.9em
+}

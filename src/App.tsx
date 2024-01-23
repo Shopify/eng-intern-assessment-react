@@ -1,6 +1,7 @@
 import React from 'react'
 import StopWatch from './StopWatch';
 import '../styles/StopWatchButton.css';
+import '../styles/StopWatch.css';
 
 export default function App() {
     return(
