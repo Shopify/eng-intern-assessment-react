@@ -1,13 +1,22 @@
 import React from "react";
+import "../styles.css";
 
 interface StopWatchButtonProps {
   text: string;
-  onClick: () => void;
+  handleClick: () => void;
+  buttonStyle?: string;
+  alt?: string;
 }
 
 export default function StopWatchButton({
   text,
-  onClick,
+  handleClick,
+  buttonStyle,
+  alt,
 }: StopWatchButtonProps) {
-  return <div onClick={onClick}>{text}</div>;
+  return (
+    <div className={buttonStyle} onClick={handleClick} title={alt}>
+      {text ? text : <img src={alt} alt={alt} />}
+    </div>
+  );
 }

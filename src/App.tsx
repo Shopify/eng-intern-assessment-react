@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";
 import LapsDisplay from "./components/LapsDisplay";
+import "./styles.css";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState(false);
@@ -23,7 +24,6 @@ export default function App() {
 
   const handleStop = () => {
     setIsRunning(false);
-
     clearInterval(timer.current);
   };
 
@@ -37,20 +37,35 @@ export default function App() {
     setLaps([]);
   };
 
-  const primaryButton = isRunning ? "Stop" : "Start";
-  const primaryFunction = isRunning ? handleStop : handleStart;
+  const primaryButtonProps = {
+    text: isRunning ? "⏸︎" : "▶",
+    handleClick: isRunning ? handleStop : handleStart,
+    buttonStyle: isRunning ? "pause-button" : "play-button",
+    alt: isRunning ? "Stop" : "Start",
+  };
 
-  const secondaryButton = isRunning ? "Lap" : "Reset";
-  const secondaryFunction = isRunning ? handleLap : handleReset;
+  const secondaryButtonProps = {
+    text: isRunning ? "Lap" : "Reset",
+    handleClick: isRunning ? handleLap : handleReset,
+    buttonStyle: "secondary-button",
+  };
 
   return (
-    <div>
-      <StopWatch time={elapsedTime} />
-      <div>
-        <StopWatchButton text={primaryButton} onClick={primaryFunction} />
-        {!isReset && <StopWatchButton text={secondaryButton} onClick={secondaryFunction} />}
+    <div className="App">
+      <div className="stopwatch-container">
+        <StopWatch time={elapsedTime} />
       </div>
-      <LapsDisplay laps={laps} />
+      <div className="buttons-container">
+        <div className="secondary-button-container">
+          <StopWatchButton {...primaryButtonProps} />
+        </div>
+        <div className="secondary-button-container">
+          {!isReset && <StopWatchButton {...secondaryButtonProps} />}
+        </div>
+      </div>
+      <div className="laps-container">
+        <LapsDisplay laps={laps} />
+      </div>
     </div>
   );
 }

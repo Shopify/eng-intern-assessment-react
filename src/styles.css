@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #9DBC98;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+/* TOP */
+
+.top-large {
+  padding-top: 8rem;
+}
+
+.top-medium {
+  padding-top: 4rem;
+}
+
+.top-small {
+  padding-top: 1rem;
+}
+
+/* TYPOGRAPHY */
+
+.extra-large-text {
+  font-size: 16rem;
+}
+
+.large-text {
+  font-size: 12rem;
+}
+
+.medium-text {
+  font-size: 8rem;
+}
+
+.small-text {
+  font-size: 4rem;
+}
+
+.extra-small-text {
+  font-size: 1rem;
+}
+
+.black {
+  font-weight: 900;
+} 
+
+.bold {
+  font-weight: 700;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.light {
+  font-weight: 300;
+}
+
+/* CONTAINERS */
+
+.stopwatch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.primary-button-container {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.secondary-button-container {
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+  left: 10rem;
+}
+
+/* .footer {
+  position: fixed;
+  color: #8dac89;
+  width: 100%;
+  text-align: right;
+  right: 0.5rem;
+  bottom: 0.5rem;
+} */
+
+.pause-button {
+  font-size: 8rem;
+}
+
+.play-button {
+  font-size: 5rem;
+}
+
+
