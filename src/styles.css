@@ -1,0 +1,44 @@
+.StopWatch {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+}
+
+.Time {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    font-size: 10rem;
+}
+
+.ButtonsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stopwatchButton {
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 12rem;
+    font-size: 2rem;
+    margin: 1rem;
+    background-color: #95bf47;
+    transition-duration: 0.4s;
+}
+
+.stopwatchButton:hover {
+    background-color: #64943e;
+    color: white;
+}
+
+.stopwatchButton:disabled {
+    background-color: #c5cdb6;
+    color:rgb(116, 116, 116);
+}
+
+#Laps {
+    list-style-type: none;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+}
