@@ -11,11 +11,11 @@ The stopwatch should have the following functionality:
 # Screenshots
 Light Mode       | Dark Mode
 :---------------:|:----------:
-![](./src/assets/images/stopwatch.png) | ![](./src/assets/images/Dark-Stopwatch.png)
+![](./src/assets/images/Stopwatch.png) | ![](./src/assets/images/Dark-Stopwatch.png)
 
 Tests | 
 :-----:
 ![](./src/assets/images/tests.png)
 
 # Demo Video
-[![StopWatch Video Demo](./src/assets/images/stopwatch.png)](https://youtu.be/Z3zlbC5Vytk)
+[![StopWatch Video Demo](./src/assets/images/Stopwatch.png)](https://youtu.be/Z3zlbC5Vytk)
