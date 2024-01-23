@@ -1,0 +1,66 @@
+.stopwatch {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 640px;
+    width: 100%;
+}
+
+.timeDisplay {
+    font-size: 4vw;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .timeDisplay {
+        font-size: 6vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .timeDisplay {
+        font-size: 8vw;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .timeDisplay {
+        font-size: 12vw;
+    }
+}
+
+.laps {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.laps div {
+    padding: 5px;
+    border-bottom: 1px solid #cbd5e1;
+    font-size: 1.5em;
+}
+
+.shortestLap {
+    color: green;
+}
+
+.longestLap {
+    color: red;
+}
+
+.laps::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+.laps::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
