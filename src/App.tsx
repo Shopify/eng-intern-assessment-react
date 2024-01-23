@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import StopWatch from "./StopWatch";
-import StopWatchButton from "./StopWatchButton";
-import { TimeComponents } from "./types";
+import StopWatch from "./components/StopWatch";
+import StopWatchButton from "./components/StopWatchButton";
+import LapsDisplay from "./components/LapsDisplay";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState(false);
@@ -9,6 +9,7 @@ export default function App() {
 
   const [elapsedTime, setElapsedTime] = useState(0); // in centiseconds
   const [laps, setLaps] = useState<number[]>([]);
+
   let timer = useRef<NodeJS.Timer | null>(null);
 
   const handleStart = () => {
@@ -33,20 +34,7 @@ export default function App() {
   const handleReset = () => {
     setIsReset(true);
     setElapsedTime(0);
-  };
-
-  const getTimeComponents = (elapsedTime: number) => {
-    const centiseconds = elapsedTime % 100;
-    const seconds = Math.floor(elapsedTime / 100) % 60;
-    const minutes = Math.floor(elapsedTime / 6000) % 60;
-    const hours = Math.floor(elapsedTime / 360000);
-
-    return [
-      hours.toString().padStart(2, "0"),
-      minutes.toString().padStart(2, "0"),
-      seconds.toString().padStart(2, "0"),
-      centiseconds.toString().padStart(2, "0"),
-    ] as TimeComponents;
+    setLaps([]);
   };
 
   const primaryButton = isRunning ? "Stop" : "Start";
@@ -57,24 +45,12 @@ export default function App() {
 
   return (
     <div>
-      <StopWatch timeComponents={getTimeComponents(elapsedTime)} />
+      <StopWatch time={elapsedTime} />
       <div>
         <StopWatchButton text={primaryButton} onClick={primaryFunction} />
-        {!isReset && (
-          <StopWatchButton text={secondaryButton} onClick={secondaryFunction} />
-        )}
+        {!isReset && <StopWatchButton text={secondaryButton} onClick={secondaryFunction} />}
       </div>
-      <div>
-        {laps.map((lap, index) => {
-          const [hours, minutes, seconds, centisecond] = getTimeComponents(lap);
-          return (
-            <div>
-              {index + 1} - {hours === "00" ? "" : hours + ":"}
-              {minutes}:{seconds}.{centisecond}
-            </div>
-          );
-        })}
-      </div>
+      <LapsDisplay laps={laps} />
     </div>
   );
 }
