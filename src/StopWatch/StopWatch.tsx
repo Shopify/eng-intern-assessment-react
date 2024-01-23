@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styles from './StopWatch.module.css'
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
-import exp from "constants";
 
 export default function StopWatch() {
     const [time, setTime] = useState<number>(0);
