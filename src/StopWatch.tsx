@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import StopWatchButton from './StopWatchButton';
 
+import './StopWatch.css';
+
 export default function StopWatch() {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
@@ -9,17 +11,19 @@ export default function StopWatch() {
   const [laps, setLaps] = useState<number[]>([]);
 
   useEffect(() => {
-    let interval: any = null;
+    let interval: NodeJS.Timeout | null = null;
 
     if (isActive) {
       interval = setInterval(() => {
         setTime((time) => time + 10);
       }, 10);
     } else {
+      // clear intervals when components unmounted and isActive changes
       clearInterval(interval);
     }
 
     return () => {
+      // clear intervals when components unmounted and isActive changes
       clearInterval(interval);
     };
   }, [isActive]);
@@ -31,15 +35,18 @@ export default function StopWatch() {
     }
   };
 
-  const handleReset = () => {
+  const handleLap = () => {
+    // Handle Lap
     if (isActive) {
       const lapTime = time - lastLapTime;
       setLaps([...laps, lapTime]);
       setLastLapTime(time);
-    } else {
-      setTime(0);
-      setLaps([]);
     }
+  };
+  const handleReset = () => {
+    // Handle Reset
+    setTime(0);
+    setLaps([]);
   };
 
   const formatTime = (time: number) => {
@@ -52,25 +59,28 @@ export default function StopWatch() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>StopWatch</h1>
-        <span>{formatTime(time)}</span>
-        <div>
+    <div className='stopwatch-container'>
+      <div className='stopwatch-head'>
+        <h1 className='stopwatch-title'>StopWatch</h1>
+        <span className='stopwatch-display'>{formatTime(time)}</span>
+        <div className='stopwatch-buttons'>
           <StopWatchButton
             onClick={handleStartStop}
             label={isActive ? 'Stop' : 'Start'}
           />
           <StopWatchButton
-            onClick={handleReset}
+            onClick={!isActive ? handleReset : handleLap}
             label={!isActive ? 'Reset' : 'Lap'}
           />
         </div>
       </div>
       {laps.length > 0 && (
-        <ul>
+        <ul className='lap-container'>
           {laps.map((lap, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className='lap-item'
+            >
               Lap {index + 1}: {formatTime(lap)}
             </li>
           ))}

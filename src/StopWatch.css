@@ -1,0 +1,40 @@
+.stopwatch-container {
+  font-family: Cambria, serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.stopwatch-head {
+  padding-bottom: 10px;
+}
+
+.stopwatch-display {
+  font-size: 2em;
+}
+
+.stopwatch-buttons {
+  margin-top: 20px;
+  padding: 0;
+}
+button {
+  border-width: 1px;
+  width: 100px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+button:hover {
+  color: white;
+  background-color: rgb(155, 147, 147);
+}
+.lap-container {
+  list-style: none;
+  padding: 0;
+}
+.lap-item {
+  padding: 5px;
+  font-size: 18px;
+}
