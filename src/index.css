@@ -1,0 +1,52 @@
+.container {
+    min-height: 100vh;
+    max-width: 1200px;
+    padding-top: 8rem;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timerText {
+    font-family: monospace; /* Prevents layout changes when state updates */
+    font-size: 6rem;
+    margin-left: 3rem; /* Accounting for ms offset so buttons are aligned with visual center. */
+}
+
+.ms {
+    font-size: 3rem;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem 0.5rem;
+    margin: 0 0.5rem 0;
+}
+
+btn:disabled,
+btn[disabled] {
+    background-color: #cccccc;
+}
+
+.lapped {
+    margin-top: 2rem;
+    box-shadow: 0 0 2px #564949;
+    border-radius: 6px;
+}
+/* Table styles */
+td, th {
+    text-align: left;
+    padding: 1rem;
+    padding-right: 5rem;
+    font-family: monospace;
+}
+  
+.tableBody:nth-child(odd) {
+    background-color: #dddddd;
+}
