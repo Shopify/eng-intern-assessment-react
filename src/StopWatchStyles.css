@@ -1,0 +1,43 @@
+.stopwatch-container{
+    background-color: white;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.time-display{
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 10rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.buttons-container{
+    width: 100%;
+    height: 20%;
+    padding-bottom: 50px;
+}
+
+
+
+.lap-display-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    grid-row-gap: 2rem; 
+    row-gap: 2rem; 
+    overflow-y: scroll;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 4rem;
+    font-weight: 500;
+}
+.lap{
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+}
