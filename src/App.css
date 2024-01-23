@@ -1,0 +1,14 @@
+html {
+    background-color: #8CC152;
+}
+.stopwatch-frame {
+    padding-top: 7.5rem;
+    text-align: center;
+}
+.stopwatch-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: 3rem;
+    font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
