@@ -2,11 +2,17 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "esnext",
     "target": "es5",
     "jsx": "react",
+    "types": ["@testing-library/jest-dom", "jest", "node"],
     "allowJs": true,
+    "lib": ["ES2015", "DOM", "dom", "esnext"],
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+
+  },
+  "exclude": ["node_modules"]
+
 }

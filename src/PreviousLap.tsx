@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import { Typography, ButtonGroup, Button } from '@mui/material';
+import React from 'react'
+import { Typography} from '@mui/material';
 
 export default function PreviousLap(props: {number: number, time: number}) {
 
+    
+    // Calculating time increments
     const minutes = Math.floor((props.time % 360000) / 6000);
     const seconds = Math.floor((props.time % 6000) / 100);
     const miliseconds = props.time % 100;

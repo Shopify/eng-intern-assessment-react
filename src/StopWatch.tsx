@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import React, { useEffect, useState } from 'react';
 import { Typography, ButtonGroup, Button, Hidden } from '@mui/material';
 import Lap from './PreviousLap';
 import PreviousLap from './PreviousLap';
 import RadialSegment from './RadialSegment';
 
+// Type created for lap object
 type Lap = {
     number: number;
     time: number;
@@ -15,7 +12,7 @@ type Lap = {
 
 export default function StopWatch() {
 
-
+    // functional helpers for resizing radial segment with screen width
     function getWindowDimensions() {
         const { innerWidth: width, innerHeight: height } = window;
         return {
@@ -24,6 +21,7 @@ export default function StopWatch() {
         };
     }
 
+    //Custom hook that returns the dimensions of the window.
     function useWindowDimensions() {
         const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
@@ -39,24 +37,32 @@ export default function StopWatch() {
         return windowDimensions;
     }
 
+    // get screen height and wdith
     const { height, width } = useWindowDimensions();
+
+    // states
     const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
     const [lapCount, setLapCount] = useState(0);
     const [laps, setLaps] = useState<Array<Lap>>([]);
+
+    // useEffect to use setInterval for time keeping
     useEffect(() => {
         let interval: NodeJS.Timer;
+        // only increment if running state is true
         if (running) {
             interval = setInterval(() => setTime(time + 10), 100);
         }
         return () => clearInterval(interval);
     }, [running, time])
 
+    // function to change state of timer (running or not running)
     const changeState = (newState: boolean) => {
         //console.log(newState);
         setRunning(newState);
     }
 
+    // function to add lap
     const addLap = () => {
         let currentLaps = laps;
         let newLap = { number: lapCount, time: time };
@@ -66,45 +72,38 @@ export default function StopWatch() {
         setLapCount(lapCount + 1);
     }
 
+    // function to reset timer
     const reset = () => {
         setTime(0);
         changeState(false);
         setLapCount(0);
         setLaps([]);
     }
-    // console.log(width);
-    // console.log(100 - (width / 10));
-    // let widthMultiplier = (width / 1080) * 100;
 
-    //console.log(widthMultiplier + 20);
     return (
-        <div style={{ height: "100%" }}>
-            <Typography variant="h2" style={{ textAlign: "center", color: "#3e98c7", marginBottom: 0}} gutterBottom>Stopwatch</Typography>
+        <div style={{ height: "100%", textAlign: 'center' }}>
+            <Typography role='title_heading' variant="h2" style={{
+                color: '#3e98c7',
+                marginBottom: 0,
+            }} gutterBottom>Stopwatch</Typography>
             <RadialSegment time={time} width={width} />
-            <div style={{ textAlign: "start", color: "#3e98c7", position: "absolute", left: "35%", top: "15%", width: "100%" }}>
-                <Typography variant="h5" style={{ textAlign: 'center' }}>Laps: </Typography>
+            <div data-testid="lap_list" style={{
+                color: "#3e98c7", position: "absolute", left: "35%", top: "15%", width: "100%"
+            }}>
+                <Typography variant="h5" style={{ textAlign: 'center'}}>Laps: </Typography>
                 {laps.map(lap => <PreviousLap number={lap.number} time={lap.time} key={lap.number} />)}
 
             </div>
             <div style={{ textAlign: 'center', position: "absolute", bottom: "5%", left: 0, right: 0, marginLeft: "auto", marginRight: "auto", width: "100%" }}>
-                <Typography variant="h5" style={{ textAlign: "center", color: "#3e98c7" }} gutterBottom>Lap {lapCount}</Typography>
-
-                <ButtonGroup size="small" variant="outlined" aria-label="outlined primary button group">
-                    <Button onClick={() => changeState(true)}>Start</Button>
-                    <Button onClick={() => changeState(false)}>Stop</Button>
-                    <Button onClick={addLap}>Lap</Button>
-                    <Button onClick={reset}>Reset</Button>
+                <Typography data-testid="lap_indicator" role="lap_count" variant="h5" style={{ textAlign: "center", color: "#3e98c7" }} gutterBottom>Lap {lapCount}</Typography>
+                {/* Didn't use StopWatchButton component as it didnt seem necessary */}
+                <ButtonGroup variant="outlined" aria-label="outlined primary button group">
+                    <Button data-testid="start_button" onClick={() => changeState(true)}>Start</Button>
+                    <Button data-testid="stop_button" onClick={() => changeState(false)}>Stop</Button>
+                    <Button data-testid="lap_button" onClick={addLap}>Lap</Button>
+                    <Button data-testid="reset_button" onClick={reset}>Reset</Button>
                 </ButtonGroup>
             </div>
-            {/* <div style={{ textAlign: 'center', position: "absolute", left: 0, right: 0, bottom: (100 - widthMultiplier + 25)+ "%", marginLeft: "auto", marginRight: "auto", width: "100%" }}>
-                <ButtonGroup size="small" variant="outlined" aria-label="outlined primary button group">
-                    <Button onClick={() => changeState(true)}>Start</Button>
-                    <Button onClick={() => changeState(false)}>Stop</Button>
-                    <Button onClick={addLap}>Lap</Button>
-                    <Button onClick={reset}>Reset</Button>
-                </ButtonGroup>
-            </div> */}
-
         </div>
     )
 }
