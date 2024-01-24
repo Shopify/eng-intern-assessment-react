@@ -1,0 +1,43 @@
+.controls button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 5px;
+    min-width: 125px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: hsl(0, 0%, 30%);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.start-button:hover {
+    background-color: hsl(147, 47%, 28%);
+}
+.stop-button:hover{
+    background-color: hsl(0, 47%, 28%);
+
+}
+.reset-button:hover{
+    background-color: hsl(0, 0%, 22%);
+
+}
+.lap-button:hover{
+    background-color: hsl(0, 0%, 22%);
+
+}
+
+.controls button:active {
+    transform: scale(0.90); 
+}
+
+nav ul{
+    overflow:hidden; 
+    overflow-y:scroll;
+    height:200px; 
+    width:80%;
+    text-align: center;
+    list-style: none;
+
+}
