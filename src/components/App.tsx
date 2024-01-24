@@ -13,8 +13,8 @@ export default function App() {
     const lapTimesContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
-
+        let interval: NodeJS.Timeout | undefined;
+    
         if (isRunning) {
             const startTime = Date.now() - elapsed;
             interval = setInterval(() => {
@@ -22,13 +22,18 @@ export default function App() {
                 setElapsed(newElapsed);
             }, 10);
         } else {
-            clearInterval(interval);
+            if (interval !== undefined) {
+                clearInterval(interval);
+            }
         }
-
+    
         return () => {
-            clearInterval(interval);
+            if (interval !== undefined) {
+                clearInterval(interval);
+            }
         };
     }, [isRunning, elapsed, setElapsed]);
+    
 
     const formatTime = (time: number) => {
         const minutes = Math.floor(time / 60000);
