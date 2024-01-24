@@ -17,6 +17,3 @@ https://github.com/Ahmedelj/eng-intern-assessment-react/assets/133712972/80e81ec
 
 
 
-### Test ###
--
-
