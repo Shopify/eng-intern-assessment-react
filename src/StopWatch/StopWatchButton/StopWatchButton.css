@@ -1,17 +1,17 @@
-.stop_watch_button{
-    color: white;
-    background-color: rgb(138, 138, 138);
-    width: 7rem;
-    height: 2.5rem;
-    border: none;
-    outline: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
+.stop_watch_button {
+  color: white;
+  background-color: rgb(138, 138, 138);
+  width: 7rem;
+  height: 2.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
-.start{
-    background-color: rgb(38, 150, 38);
+.start {
+  background-color: rgb(38, 150, 38);
 }
-.stop{
-    background-color: red
+.stop {
+  background-color: red;
 }
