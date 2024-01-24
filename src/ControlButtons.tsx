@@ -1,4 +1,5 @@
 import React from "react";
+import StopWatchButton from "./StopWatchButton";
 
 interface ControlButtonsProps {
   handleStart: () => void;
@@ -15,25 +16,58 @@ export default function ControlButtons({
   isPaused,
   active,
 }: ControlButtonsProps) {
-  const StartButton = (
-    <div className="btn btn-one btn-start" onClick={handleStart}>
-      Start
+  const StartButtons = (
+    <div className="btn-grp">
+      <StopWatchButton
+        children={"Lap"}
+        isDisabled={false}
+        onClick={() => console.log("Lap")}
+        type={"dark"}
+      />
+      <StopWatchButton
+        children={"Start"}
+        isDisabled={false}
+        onClick={handleStart}
+        type={"primary"}
+      />
     </div>
   );
   const ActiveButtons = (
     <div className="btn-grp">
-      <div className="btn btn-two" onClick={handleReset}>
-        Reset
-      </div>
-      <div className="btn btn-one" onClick={handlePauseResume}>
-        {isPaused ? "Resume" : "Pause"}
-      </div>
+      <StopWatchButton
+        children={"Lap"}
+        isDisabled={false}
+        onClick={() => console.log("Lap")}
+        type={"dark"}
+      />
+      <StopWatchButton
+        children={"Stop"}
+        isDisabled={false}
+        onClick={handlePauseResume}
+        type={"warning"}
+      />
+    </div>
+  );
+  const StopButtons = (
+    <div className="btn-grp">
+      <StopWatchButton
+        children={"Reset"}
+        isDisabled={false}
+        onClick={handleReset}
+        type={"dark"}
+      />
+      <StopWatchButton
+        children={"Resume"}
+        isDisabled={false}
+        onClick={handlePauseResume}
+        type={"primary"}
+      />
     </div>
   );
 
   return (
-    <div className="Control-Buttons">
-      <div>{active ? ActiveButtons : StartButton}</div>
+    <div className="control-buttons">
+      {!active ? StartButtons : isPaused ? StopButtons : ActiveButtons}
     </div>
   );
 }
