@@ -39,7 +39,7 @@ export default function StopWatchButton(props:StopWatchButtonProps) {
       ]);
     }
   };
-  
+
     return(
         <div className="controls">
           <button title="start" className="start" onClick={handlePlayButton}>Start</button>
@@ -49,7 +49,7 @@ export default function StopWatchButton(props:StopWatchButtonProps) {
           <section className="lap-container">
             <div>
               {laps.map((lap) => (
-              <div className="lap" key={lap.id}>{`Lap ${lap.id} ➡️ ${lap.time}`}</div>
+              <div className="lap" id='round' data-testid='lap-item' key={lap.id} >{`Lap ${lap.id} ➡️ ${lap.time}`}</div>
               ))}
             </div>
           </section>
