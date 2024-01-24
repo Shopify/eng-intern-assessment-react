@@ -45,7 +45,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 80%;
 }
+
+/* Timer Styles */
 
 .timer {
   display: flex;
@@ -57,30 +60,86 @@ body {
 .main-timer {
   color: var(--primaryDark1Color);
   display: flex;
-  font-size: 54px;
-}
-.main-timer h2 {
-  margin-bottom: 10px;
 }
 
-.lap-timer {
-  font-size: 24px;
+.main-timer h2 {
+  margin-bottom: 10px;
+  font-size: 8rem;
 }
 
 .lap-timer h2 {
   margin-top: 10px;
+  font-size: 4rem;
 }
 
 /* Lap Table styles */
 
 .lap-table-container {
-  width: 80%;
   margin: auto;
+  margin-bottom: 5vh;
+  /* height: 300px; */
+}
+@media (min-width: 320px) {
+  .lap-table-container {
+    width: 80%;
+    height: 500px;
+  }
+  .control-buttons {
+    width: 80%;
+  }
+  .btn {
+    font-size: 1.5vh;
+    padding: 1vh 0;
+    min-width: 200px;
+    border-radius: 2vh;
+    font-weight: 400;
+  }
+  .lap-table th {
+    font-size: 1.3rem;
+  }
+  .lap-table td {
+    font-size: 1.4rem;
+  }
+  .lap-table tbody {
+    max-height: 400px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .lap-table-container {
+    width: 60%;
+    height: 260px;
+  }
+  .control-buttons {
+    width: 60%;
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+    border-radius: 3vh;
+    min-width: 100px;
+  }
+  .lap-table th {
+    font-size: 1rem;
+  }
+  .lap-table td {
+    font-size: 1rem;
+  }
+  .lap-table tbody {
+    max-height: 200px;
+  }
 }
 
 .lap-table {
   border-collapse: collapse;
   width: 100%;
+}
+
+.lap-table thead,
+table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .lap-table th,
@@ -90,25 +149,57 @@ body {
 }
 
 .lap-table td {
-  font-size: 16px;
+  /* font-size: 16px; */
   color: #40607f;
 }
 
 .overall-time {
   color: var(--primaryDark2Color) !important;
 }
+.lap-s {
+  color: var(--infoColor) !important;
+}
+
+.lap-l {
+  color: var(--warningColor) !important;
+}
 
 .lap-table th {
   border-bottom: 1px solid var(--textLight1Color); /* Add a line under the headers */
   color: var(--primaryDark2Color);
-  font-size: 13.28px;
   font-weight: 600;
 }
+
+.lap-table tbody {
+  margin-top: 10px;
+  display: block;
+  overflow-y: auto;
+  width: 100%;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  /* height: 10px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primaryDark2Color);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondaryLight2Color);
+}
+
+/* .lap-table-container table thead th {
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  background: var(--secondaryLight2Color);
+} */
 
 /* Control Buttons styles */
 
 .control-buttons {
-  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -125,14 +216,9 @@ body {
   justify-content: center;
   align-items: center;
   border: none;
-  border-radius: 22px;
   color: white;
-  font-size: 16px;
   font-weight: 600;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
-  padding: 8px 16px;
-  min-width: 105px;
-  height: 44px;
 }
 
 .btn:disabled {

@@ -9,11 +9,21 @@ interface LapTime {
   overall_time: number;
 }
 
+interface LSTime {
+  time: number;
+  index: number;
+}
+
 export default function StopWatch() {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
   const [lapTime, setLapTime] = useState(0);
+  const [lLapTime, setLLapTime] = useState({ time: 0, index: null });
+  const [sLapTime, setSLapTime] = useState({
+    time: Math.pow(10, 1000),
+    index: null,
+  });
   const [lapData, setLapData] = useState([]);
 
   React.useEffect(() => {
@@ -50,18 +60,28 @@ export default function StopWatch() {
 
   const handleLap = () => {
     const newLapTime: LapTime = {
-      lap: lapData.length,
+      lap: lapData.length + 1,
       lap_time: lapTime,
       overall_time: time,
     };
+    const newLSTime: LSTime = {
+      time: lapTime,
+      index: lapData.length + 1,
+    };
+    setLapData([newLapTime, ...lapData]);
+    if (lapTime > lLapTime.time) {
+      setLLapTime(newLSTime);
+    }
+    if (lapTime < sLapTime.time) {
+      setSLapTime(newLSTime);
+    }
     setLapTime(0);
-    setLapData([...lapData, newLapTime]);
   };
 
   return (
     <div className="stop-watch">
       <Timer time={time} lapTime={lapTime} />
-      <LapTable lapData={lapData} />
+      <LapTable lapData={lapData} lLapTime={lLapTime} sLapTime={sLapTime} />
       <ControlButtons
         active={isActive}
         isPaused={isPaused}
