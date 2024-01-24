@@ -1,3 +1,11 @@
+/**
+ * StopWatch component that implements a basic stopwatch with lap times.
+ * It uses React state to track elapsed time, whether the stopwatch is running,
+ * and an array of lap obejcts.
+ * @author Victoria Mazilu
+ * Date Last Modified 23 January, 2024
+ */
+
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
@@ -16,10 +24,10 @@ export default function StopWatch() {
     useEffect(() => {
         if (isRunning) {
             const id = setInterval(() => {
+                // Increment the elapsed time and update laps with the new time by taking the difference.
                 const newElapsedTime = elapsedTime + 45;
                 setElapsedTime(newElapsedTime);
 
-                // Update the current active lap time
                 setLaps((laps) => {
                     const newLaps = [...laps];
                     if (newLaps.length > 0) {
@@ -29,12 +37,15 @@ export default function StopWatch() {
                     }
                     return newLaps;
                 });
-            }, 45);
+            }, 45); // Interval updates every 45 milliseconds.
+
             setIntervalId(id);
         } else if (intervalId) {
+            // Clear the interval when the stopwatch stops running.
             clearInterval(intervalId);
         }
 
+        // Cleanup function to clear the interval when the component stops.
         return () => {
             if (intervalId) {
                 clearInterval(intervalId);
@@ -42,18 +53,15 @@ export default function StopWatch() {
         };
     }, [isRunning, elapsedTime, laps]);
 
-    // To toggle the timer on or off
     const toggleStartStop = () => {
         setIsRunning(!isRunning);
         if (!isRunning) {
-            // Starting the stopwatch
             if (laps.length === 0) {
                 // If no laps have been recorded, start the first lap
                 setLaps([{ label: "Lap 1", time: formatTime(0) }]);
                 setPrevTime(0);
             }
         } else {
-            // Stopping the stopwatch
             if (intervalId) {
                 clearInterval(intervalId);
                 setIntervalId(null);
@@ -61,16 +69,17 @@ export default function StopWatch() {
         }
     };
 
+    // Function to handle laps and reset.
     const toggleResetAndLap = () => {
         if (isRunning) {
-            // Finalize the current lap and start a new one
+            // Append new lap object
             setLaps((prevLaps) => [
                 ...prevLaps,
                 { label: `Lap ${prevLaps.length + 1}`, time: formatTime(0) },
             ]);
             setPrevTime(elapsedTime);
         } else {
-            // Reset logic
+            // Reset the stopwatch
             if (intervalId) {
                 clearInterval(intervalId);
                 setIntervalId(null);
@@ -95,6 +104,7 @@ export default function StopWatch() {
         return `${formattedMinutes} ${formattedSeconds} ${formattedMilliseconds}`;
     };
 
+    // Splitting the formatted time.
     const [formattedMinutes, formattedSeconds, formattedMilliseconds] =
         formatTime(elapsedTime).split(" ");
 
@@ -124,16 +134,28 @@ export default function StopWatch() {
                 </div>
                 <hr className="custom-hr" />
                 <div className="scrollable">
-                    {/* Laps Display */}
+                    {/* Laps Display: Split and map through the laps to display each in the array with the label and time */}
                     {laps
                         .slice()
                         .reverse()
                         .map((lap, index) => (
                             <div key={index} className="">
                                 <div className="lap">
-                                    <div>{lap.label}: </div>
-                                    <div>
-                                        <span>{lap.time}</span>
+                                    <div className="lap-label">
+                                        {lap.label}:{" "}
+                                    </div>
+                                    <div className="lap">
+                                        <span className="lap-time">
+                                            {lap.time.slice(0, 2)}
+                                        </span>
+                                        :
+                                        <span className="lap-time">
+                                            {lap.time.slice(3, 5)}
+                                        </span>
+                                        .
+                                        <span className="lap-time">
+                                            {lap.time.slice(6, 8)}
+                                        </span>
                                     </div>
                                 </div>
                                 <hr className="custom-hr" />

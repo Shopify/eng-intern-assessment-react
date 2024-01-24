@@ -24,7 +24,7 @@ body {
     cursor: pointer;
 
     border-radius: 67.5px;
-    border: 6px solid #a5db80;
+    border: 6px solid #8ccd61;
     background: #31373b;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
@@ -43,13 +43,6 @@ body {
     margin-bottom: 20px;
 }
 
-.text-main {
-    font-size: 8rem;
-    font-weight: 600;
-    min-width: 30px;
-    text-align: center;
-}
-
 .time-box {
     display: inline-block;
     width: 250px;
@@ -66,17 +59,31 @@ body {
 
 .lap {
     font-size: 1.5rem;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 15px;
     padding: 5px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    line-height: 5px;
+    margin-top: 20px;
+
+    .lap-label {
+        flex: 0 0 auto;
+        width: 150px;
+        text-align: left;
+        margin-top: 15px;
+    }
+
+    .lap-time {
+        display: inline-block;
+        width: 40px;
+        height: 10px;
+        text-align: top;
+        margin-left: 10px;
+        margin-top: 5px;
+    }
 }
 
-.scrollable-container {
+.scrollable {
     overflow: scroll;
     height: 290px;
     scrollbar-color: #fff;
@@ -112,13 +119,13 @@ body {
     background: radial-gradient(
         64.33% 64.33% at 71.16% 35.69%,
         #fff 0%,
-        #ebffc0 14.29%,
-        #e1ffa0 28.57%,
+        #dbfcc4 14.29%,
+        #a8ed8a 28.57%,
         #c1ff98 42.86%,
         #a9f776 57.14%,
-        #a2f967 71.43%,
-        #92ee54 85.71%,
-        #70cf32 100%
+        #a7f474 71.43%,
+        #8df348 85.71%,
+        #6ece2e 100%
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -133,14 +140,14 @@ body {
 
     background: radial-gradient(
         64.33% 64.33% at 71.16% 35.69%,
-        #fff 0%,
-        #ebffc0 14.29%,
-        #e1ffa0 28.57%,
-        #bef897 42.86%,
-        #b7f38f 57.14%,
-        #9aed62 71.43%,
-        #7fe03f 85.71%,
-        #69d421 100%
+        #ffffff 0%,
+        #ffffff 14.29%,
+        #d2ffb4 28.57%,
+        #d2ffb5 42.86%,
+        #cdffac 57.14%,
+        #ebffdd 71.43%,
+        #ffffff 85.71%,
+        #ffffff 100%
     );
     background-clip: text;
     -webkit-background-clip: text;

@@ -14,12 +14,7 @@ export default function StopWatchButton({
     className,
 }: Props) {
     return (
-        <button
-            className={`button-outline ${className} ${
-                isRunning ? "running" : ""
-            }`}
-            onClick={onClick}
-        >
+        <button className={`button-outline ${className}`} onClick={onClick}>
             {label}
         </button>
     );
