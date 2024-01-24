@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import StopWatchButton from "./StopWatchButton";
 
 /**
@@ -32,11 +32,13 @@ export default function StopWatch(): React.JSX.Element {
             alignItems: 'center',
             width: '100%'
         }}>
-            <div style={{
-                fontSize: '90px',
-                width: '500px',
-                margin: '30px',
-            }}>{formattedTime}</div>
+            <div
+                data-testid={"timer-display"}
+                style={{
+                    fontSize: '90px',
+                    width: '500px',
+                    margin: '30px',
+                }}>{formattedTime}</div>
             <StopWatchButton
                 formattedTime={formattedTime}
                 time={time}
