@@ -28,4 +28,12 @@
 
 - [x] Responsive
 
-- [x] Add running game with start, stop, reset, and lap buttons
+- [x] Add running game with start, stop, reset, and lap buttons:
+    - The running animation should start when the user clicks the start button and continue running when lap is clicked
+    - The running animation should stop when the user clicks the stop and reset buttons
+
+- [x] Maybe additions?
+    - [x] Have "workout" button to increase distance ran, using a "workout" stat
+        - [x] Have animation speed up or slow down depending on "workout" stat
+    - [x] When start, stop, reset, lap clicked, have text and sound effect pop up
+    - [x] Multiple sprites to choose from?
