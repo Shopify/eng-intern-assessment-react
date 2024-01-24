@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StopwatchButton from "./StopWatchButton";
+import ScrollingBackground from "./ScrollingBackground";
 
 type LapRecord = {
   time: number;
@@ -68,6 +69,8 @@ export default function Stopwatch() {
 
   return (
     <div>
+      <ScrollingBackground isRunning={isRunning} workout={workout} />
+
       <div>{formatTime(time)}</div>
       <div>Current Distance: {formatDistance(distance)}</div>
       <div>Current Lap: {formatTime(currentLap)}</div>
