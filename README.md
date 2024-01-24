@@ -15,3 +15,8 @@ The initial buttons of the Timer should be the Start & Reset buttons.
 
 Unit code stopwatch functionality has been prepared and run. The stopwatch starts, stops, resets, and records laps works as expected.
 
+
+### Demo
+
+https://github.com/vyhoangquocnguyen/eng-intern-assessment-react/assets/36269757/181a452d-1738-4f4f-a305-a464c4d39745
+
