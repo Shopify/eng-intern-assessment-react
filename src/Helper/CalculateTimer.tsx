@@ -9,9 +9,11 @@ function calculateTimer(timeInSeconds: number): Array<number|string> {
 
 
    let hoursFormat = hours < 10 ? `0${hours}`: hours;
+   let minutesFormat = minutes < 10 ? `0${minutes}`: minutes;
+   let secondsFormat = seconds < 10 ? `0${seconds}`: seconds;
 
 
-   return [hoursFormat, minutes, seconds];
+   return [hoursFormat, minutesFormat, secondsFormat];
 }
 
 

@@ -10,9 +10,10 @@ body {
 }
 
 .time-container{
-    color: #ccc;
+    color: rgb(255, 255, 255);
     display: flex;
-    letter-spacing: 2px;
+    letter-spacing: 12px;
+    position: center;
 }
 
 .time-container span{
