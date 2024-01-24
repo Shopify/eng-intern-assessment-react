@@ -42,10 +42,5 @@
     "webpack-dev-server": "^4.15.0",
     "webpack-merge": "^5.8.0",
     "webpack-obj-loader": "^1.0.4"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    }
   }
 }
