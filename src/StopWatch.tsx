@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Timer from "./Timer";
-import ControlButtons from "./ControlButtons";
-import LapTable from "./LapTable";
+import Timer from "./components/Timer";
+import ControlButtons from "./components/ControlButtons";
+import LapTable from "./components/LapTable";
 
 interface LapTime {
   lap: number;

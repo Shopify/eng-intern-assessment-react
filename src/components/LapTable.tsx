@@ -1,5 +1,5 @@
 import React from "react";
-import dateFormatter from "./utils/DateFormatter";
+import dateFormatter from "../utils/TimeFormatter";
 
 interface LapTime {
   lap: number;
