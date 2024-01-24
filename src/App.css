@@ -1,0 +1,104 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5EEE6;
+}
+
+button{
+    font-size:1rem;
+    font-weight:bold;
+    padding:10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor:pointer;
+    color:white;
+    transition: background-color 0.5s ease;
+}
+
+.button-display{
+    display:flex;
+    gap:10px;
+    margin-top: 10px;
+    padding:10px;
+}
+
+
+.stopwatch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid;
+    background-color: rgb(237, 231, 231);
+    padding:30px;
+    border-radius: 100px;
+    margin-top:5rem;
+}
+
+
+/* Displays */
+
+.stopwatch-display{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+}
+
+.lap-display{
+    padding:10px;
+    font-family: monospace;
+    font-weight:bold;
+    font-size:12px;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+}
+
+
+.time-display{
+    font-size:4rem;
+    font-family:monospace;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.50);
+}
+
+
+
+/* Stop Watch Buttons */
+
+.start{
+    background-color: hsl(120, 60%, 36%,0.85);
+}
+
+.start:hover{
+    background-color: hsl(120, 60%, 36%,1);
+    transform: scale(1.1);
+}
+
+.stop{
+    background-color: hsla(0, 58%, 44%, 0.819);
+}
+.stop:hover{
+    background-color: hsla(0, 58%, 44%, 0.994);
+    transform: scale(1.1);
+}
+
+.reset{
+    background-color: hsla(238, 79%, 55%, 0.85);
+}
+
+.reset:hover{
+    background-color: hsla(238, 79%, 38%, 0.92);
+    transform: scale(1.1);
+}
+
+.lap{
+    margin-top:10px;
+    background-color: hsl(47, 69%, 58%, 0.85);
+}
+
+.lap:hover{
+    background-color: hsl(47, 69%, 58%, 0.95);
+    transform: scale(1.1);
+}
