@@ -1,0 +1,31 @@
+.stopwatch-button{
+    border: 0px solid #999999;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 30px;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.stop{
+    color: #da1930;
+    background-color: #45040C;
+}
+
+.start{
+    color: #21ad52;
+    background-color: #063A21;
+}
+
+.lap{
+    color: #d8d8d8;
+    background-color: #555555;
+}
+
+.reset{
+    color: #d8d8d8;
+    background-color: #555555;
+}

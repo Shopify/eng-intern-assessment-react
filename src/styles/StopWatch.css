@@ -1,0 +1,42 @@
+body{
+    background-color: #141414;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.timer{
+    font-size: 15rem;
+    text-align: center;
+    color: #F5F5F5;
+    margin-top: 5%;
+}
+
+.lap-time {
+    text-align: right;
+}
+
+.laps-list-container {
+    color: #F5F5F5;
+    font-size: 30px;
+    margin-top: 3%;
+    padding: 0% 30%;
+}
+
+.laps-list {
+    width: 100%; 
+    border-collapse: collapse;
+}
+
+.laps-list td {
+    border-top: 1px solid #5a5a5a;
+    border-bottom: 1px solid #5a5a5a;
+    padding: 15px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 40px;
+}
