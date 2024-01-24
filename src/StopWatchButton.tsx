@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './StopWatchButton.css';
 
 export default function StopWatchButton() {
+  
     const [isRunning, setIsRunning] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0);
     const intervalId = useRef(null);
@@ -9,6 +10,7 @@ export default function StopWatchButton() {
     const [lap, setLap] = useState(1);
     const [lapList, setLapList] = useState([]);
 
+    // Effect for updating elapsed time when the stopwatch is running
     useEffect(() => {
         if (isRunning) {
             intervalId.current = setInterval(() => {
@@ -16,28 +18,31 @@ export default function StopWatchButton() {
             }, 10);
         }
 
+        // Cleanup function to clear the interval when the component unmounts or when isRunning changes
         return () => {
             clearInterval(intervalId.current);
         };
     }, [isRunning]);
 
+    // Function to handle lap button click
     function lapsButton() {
-        if(isRunning){
-            getLap()
+        if (isRunning) {
+            getLap();
         }
-        
-
     }
 
+    // Function to handle start button click
     function startButton() {
         setIsRunning(true);
         stTimeRef.current = Date.now() - elapsedTime;
     }
 
+    // Function to handle stop button click
     function stopButton() {
         setIsRunning(false);
     }
 
+    // Function to handle reset button click
     function resetButton() {
         setElapsedTime(0);
         setIsRunning(false);
@@ -45,6 +50,7 @@ export default function StopWatchButton() {
         setLapList([]);
     }
 
+    // Function to format elapsed time
     function timingFormat() {
         let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
         let seconds = Math.floor((elapsedTime / 1000) % 60);
@@ -57,13 +63,14 @@ export default function StopWatchButton() {
         ].join(':');
     }
 
+    // Function to handle lap creation
     const getLap = () => {
-    
         const lapItem = `Lap ${lap}: ${timingFormat()}`;
         setLap((count) => count + 1);
         setLapList([lapItem, ...lapList]);
     };
 
+   
     return (
         <>
             <div className="stopwatch">
