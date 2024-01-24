@@ -16,6 +16,10 @@ distributed, cloud-based service to figure out if a number is divisible by
 -   **StopWatchButtons.tsx:** Design and functionality for control buttons.
 -   **StopWatch.test.tsx:** Comprehensive testing of stopwatch features.
 
+## Demo
+
+[Short demo video](https://drive.google.com/file/d/13FzQLQJFNnQMBYph76VizDoBtNbVIS6W/view?usp=sharing)
+
 ## Testing
 
 -   Testing in `StopWatch.test.tsx` covering display rendering, timing accuracy, and interactive features.
