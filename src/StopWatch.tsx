@@ -7,23 +7,16 @@ interface Lap {
 }
 
 export default function StopWatch() {
-    // Explicitly set the type of the state
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
-    const [laps, setLaps] = useState<Lap[]>([]); // Array of laps
     const [prevTime, setPrevTime] = useState<number>(0);
+    const [laps, setLaps] = useState<Lap[]>([]);
 
     useEffect(() => {
-        // intervalRef.current = setInterval(() => {
-        //     setElapsed((prevElapsed) => prevElapsed + 10);
-        //     setLapElapsed((prevLapElapsed) => prevLapElapsed + 10);
-        //   }, 10);
-        //   setIsRunning(true);
-
         if (isRunning) {
             const id = setInterval(() => {
-                const newElapsedTime = elapsedTime + 20;
+                const newElapsedTime = elapsedTime + 45;
                 setElapsedTime(newElapsedTime);
 
                 // Update the current active lap time
@@ -36,7 +29,7 @@ export default function StopWatch() {
                     }
                     return newLaps;
                 });
-            }, 20);
+            }, 45);
             setIntervalId(id);
         } else if (intervalId) {
             clearInterval(intervalId);
@@ -108,25 +101,25 @@ export default function StopWatch() {
     return (
         <section>
             <div className="flex-col flex custom-margin bg-blue-500">
-                <div className="stopwatch-container">
-                    <div className="time-box">{formattedMinutes}</div>
-                    <div className="box">:</div>
-                    <div className="time-box">{formattedSeconds}</div>
-                    <div className="box">.</div>
+                <div className="stopwatch-container font-gradient">
+                    {" "}
+                    <div className="time-box">{formattedMinutes}</div>:{" "}
+                    <div className="time-box">{formattedSeconds}</div>.
                     <div className="time-box">{formattedMilliseconds}</div>
                 </div>
+
                 <div className="stopwatch-container">
                     <StopWatchButton
-                        label={isRunning ? "LAP" : "RESET"}
+                        label={isRunning ? "Lap" : "Reset"}
                         onClick={toggleResetAndLap}
                         isRunning={isRunning}
-                        className="button-outline"
+                        className="button-outline font-gradient-small"
                     />
                     <StopWatchButton
-                        label={isRunning ? "STOP" : "START"}
+                        label={isRunning ? "Stop" : "Start"}
                         onClick={toggleStartStop}
                         isRunning={isRunning}
-                        className="button-outline"
+                        className="button-outline font-gradient-small"
                     />
                 </div>
                 <hr className="custom-hr" />

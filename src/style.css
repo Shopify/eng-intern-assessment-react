@@ -1,6 +1,9 @@
-/* Main Body Background */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
 body {
     background-color: #31373b;
+    min-height: 100vh;
+    width: 100%;
     color: #ffffff;
     font-family: "Poppins", sans-serif;
 
@@ -9,39 +12,26 @@ body {
     align-items: center;
     overflow: hidden;
 
-    height: 100vh;
-    width: 100%;
     padding: 0;
 }
 
-/* Buttons */
 .button-outline {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-size: 1.5em;
-    color: #ffffff;
-    background-color: #31373b;
-    border: 2px solid #9cbd56;
-    padding: 12px 24px;
-    margin: 5px;
-    text-align: center;
-
-    width: 160px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 5px;
+    width: 215px;
+    height: 75px;
+    flex-shrink: 0;
+    padding: 12px px;
+    margin: 15px;
     cursor: pointer;
-    letter-spacing: 1px; /* Adding some spacing between letters */
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
-    box-shadow: 2px 2px 4px #000000;
+
+    border-radius: 67.5px;
+    border: 6px solid #a5db80;
+    background: #31373b;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 
     &:hover {
-        background-color: #7e9846; /* Invert colors on hover */
-        color: #ffffff;
-        border-color: #c3c3c4;
+        background-color: #202224;
+        border-color: #6a8f51;
     }
 }
 
@@ -60,26 +50,13 @@ body {
     text-align: center;
 }
 
-.box {
-    font-size: 8rem;
-    display: inline-block;
-    line-height: 180px; /* Align text vertically */
-    text-align: center; /* Align text horizontally */
-    margin: 0 5px; /* Spacing between boxes */
-    text-shadow: 2px 2px 4px #000000;
-}
-
 .time-box {
-    /* background: #565b4f; */
-    font-size: 8rem;
     display: inline-block;
-    width: 180px;
-    height: 180px;
-    line-height: 180px; /* Align text vertically */
-    text-align: top; /* Align text horizontally */
-    border: 5px solid #9cbd56;
+    width: 250px;
+    height: 160px;
+    line-height: 180px;
+    text-align: top;
     margin: 0 10px;
-    /* box-shadow: 4px 4px 30px #545151; */
     border-radius: 5px;
 }
 
@@ -99,16 +76,73 @@ body {
     align-items: center;
 }
 
-.scrollable {
+.scrollable-container {
     overflow: scroll;
     height: 290px;
-    /* box-shadow: 4px 4px 20px #2c2b2b; */
+    scrollbar-color: #fff;
+    border-radius: 4px;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    &::-webkit-scrollbar-corner {
+        background: rgba(0, 0, 0, 0);
+    }
 }
 
 .custom-hr {
     border: none;
-    /* border-top: 2px solid #494f53; */
-    border-top: 2px solid #5c634d;
+    border-top: 2px solid #d4ff7acc;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.font-gradient {
+    font-family: "Poppins", sans-serif;
+    font-size: 10rem;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: 1.6px;
+    text-shadow: 1px 5px 10px rgba(170, 168, 168, 0.133);
+
+    background: radial-gradient(
+        64.33% 64.33% at 71.16% 35.69%,
+        #fff 0%,
+        #ebffc0 14.29%,
+        #e1ffa0 28.57%,
+        #c1ff98 42.86%,
+        #a9f776 57.14%,
+        #a2f967 71.43%,
+        #92ee54 85.71%,
+        #70cf32 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.font-gradient-small {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    line-height: 140%;
+    letter-spacing: 1.5px;
+
+    background: radial-gradient(
+        64.33% 64.33% at 71.16% 35.69%,
+        #fff 0%,
+        #ebffc0 14.29%,
+        #e1ffa0 28.57%,
+        #bef897 42.86%,
+        #b7f38f 57.14%,
+        #9aed62 71.43%,
+        #7fe03f 85.71%,
+        #69d421 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
