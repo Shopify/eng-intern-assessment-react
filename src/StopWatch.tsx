@@ -2,9 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import StopWatchButton from './StopWatchButton'
 
-export default function StopWatch() {
+interface timeInSecondsProps {
+    timeInSeconds: number;
+  }
 
-    const [timeInSeconds, setTimeInSeconds] = useState<number>(0)
+  const StopWatch: React.FC<timeInSecondsProps> = (props) => {
+    const { timeInSeconds } = props;
+
     const [stopWatchTime, setStopWatchTime] = useState<Array<number | string>>([])
 
     // formats numbers on stopwatch properly (everything has two digits, has the right amount of seconds/minutes/hours)
@@ -37,7 +41,8 @@ export default function StopWatch() {
                 <span>:</span>
                 <span className='stopwatch_text'>{stopWatchTime[2]}</span>
             </section>
-            <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
         </main>
     )
 }
+
+export default StopWatch
