@@ -13,6 +13,7 @@ type Props = {
 export default function Laps({laps}: Props) {
     
     //Displaying lap format using stopwatch calculations
+    //Laps div is scrollable to maintain page size
     return(
         <div>
             <h2>Laps:</h2>
