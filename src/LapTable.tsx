@@ -1,4 +1,5 @@
 import React from "react";
+import dateFormatter from "./utils/DateFormatter";
 
 interface LapTime {
   lap: number;
@@ -26,19 +27,9 @@ export default function LapTable({ lapData }: LapTableProps) {
             return (
               <tr>
                 <td>{lap}</td>
-                <td>
-                  {("0" + Math.floor((lap_time / 60000) % 60)).slice(-2) +
-                    ":" +
-                    ("0" + Math.floor((lap_time / 1000) % 60)).slice(-2) +
-                    "." +
-                    ("0" + ((lap_time / 10) % 100)).slice(-2)}
-                </td>
+                <td>{dateFormatter.formatLapTime(lap_time)}</td>
                 <td className="overall-time">
-                  {("0" + Math.floor((overall_time / 60000) % 60)).slice(-2) +
-                    ":" +
-                    ("0" + Math.floor((overall_time / 1000) % 60)).slice(-2) +
-                    "." +
-                    ("0" + ((overall_time / 10) % 100)).slice(-2)}
+                  {dateFormatter.formatLapTime(overall_time)}
                 </td>
               </tr>
             );

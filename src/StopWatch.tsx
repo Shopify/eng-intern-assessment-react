@@ -13,6 +13,7 @@ export default function StopWatch() {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
+  const [lapTime, setLapTime] = useState(0);
   const [lapData, setLapData] = useState([]);
 
   React.useEffect(() => {
@@ -21,6 +22,7 @@ export default function StopWatch() {
     if (isActive && isPaused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 10);
+        setLapTime((lapTime) => lapTime + 10);
       }, 10);
     } else {
       clearInterval(interval);
@@ -42,22 +44,23 @@ export default function StopWatch() {
   const handleReset = () => {
     setIsActive(false);
     setTime(0);
+    setLapTime(0);
     setLapData([]);
   };
 
   const handleLap = () => {
     const newLapTime: LapTime = {
       lap: lapData.length,
-      lap_time:
-        lapData.length > 0 ? time - lapData[lapData.length - 1].lap_time : time,
+      lap_time: lapTime,
       overall_time: time,
     };
+    setLapTime(0);
     setLapData([...lapData, newLapTime]);
   };
 
   return (
     <div className="stop-watch">
-      <Timer time={time} />
+      <Timer time={time} lapTime={lapTime} />
       <LapTable lapData={lapData} />
       <ControlButtons
         active={isActive}

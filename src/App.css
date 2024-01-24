@@ -47,10 +47,28 @@ body {
   align-items: center;
 }
 
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-timer {
   color: var(--primaryDark1Color);
   display: flex;
   font-size: 54px;
+}
+.main-timer h2 {
+  margin-bottom: 10px;
+}
+
+.lap-timer {
+  font-size: 24px;
+}
+
+.lap-timer h2 {
+  margin-top: 10px;
 }
 
 /* Lap Table styles */
