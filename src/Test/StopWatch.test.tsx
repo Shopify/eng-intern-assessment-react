@@ -8,7 +8,7 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import StopWatch from './StopWatch';
+import StopWatch from '../StopWatch';
 
 describe('StopWatch Component Tests', () => {
   // Using fake timers to control time-dependent behavior
