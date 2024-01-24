@@ -1,10 +1,17 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+type StopWatchButtonProps = {
+    timerOn: boolean
+}
+
+export default function StopWatchButton({ timerOn }: StopWatchButtonProps) {
+
+
 
     return (
         <div>
-            jhi
+            <button>{timerOn === false ? "Start" : "Stop"}</button>
+            <button>Lap</button>
         </div>
     )
 }

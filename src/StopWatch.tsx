@@ -7,10 +7,14 @@ export default function StopWatch() {
     const [minutes, setMinutes] = useState<number>(0)
     const [seconds, setSeconds] = useState<number>(0)
 
+
+
     return (
         <div>
             <p className='timer__display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}</p>
-            <StopWatchButton />
+            <StopWatchButton
+                timerOn={timerOn}
+            />
         </div>
     )
 }
