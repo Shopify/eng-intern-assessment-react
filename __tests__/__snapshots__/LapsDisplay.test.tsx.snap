@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test LapsDisplay renders properly 1`] = `
+<div
+  class="laps-container"
+>
+  <div
+    class="lap-row-container"
+  >
+    <div
+      class="lap-index extra-small-text"
+    >
+      Lap
+    </div>
+    <div
+      class="lap-time extra-small-text"
+    >
+      Time
+    </div>
+  </div>
+  <hr
+    class="lap-divider"
+  />
+</div>
+`;
