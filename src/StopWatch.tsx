@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import "./styles.css";
+import logo from "../public/Shopify-Logo.png";
 
 type Props = {
     start: boolean;
@@ -8,7 +9,6 @@ type Props = {
 }
 
 export default function StopWatch({start, time, setTime}: Props) {
-    //Initializing useState for the stopwatch
 
     //useEffect with time rerendering on start and time states
     useEffect(()=>{
@@ -27,6 +27,7 @@ export default function StopWatch({start, time, setTime}: Props) {
 
     return(
         <div className='stopwatch'>
+            <img className="logo" src={logo} alt="Shopify_Logo"></img>
             <p className='title'>Miruo's Stopwatch</p>
             <p className='stopwatch-time'>{hours}:{minutes.toString().padStart(2,"0")}:
             {seconds.toString().padStart(2, "0")}:

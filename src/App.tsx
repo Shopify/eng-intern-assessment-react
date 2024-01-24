@@ -1,28 +1,47 @@
 import React from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
+import Laps from './Laps';
 import { useState } from 'react';
+
 
 export default function App() {
     //useStates for timer
     const [start, setStart] = useState(false);
     const [time, setTime] = useState(0);
+    const [laps, setLaps] = useState([]);
+    const [lapNumber, setlapNumber] = useState(1);
 
     //setting functions for buttons
-    function setTimerStart():void {
+    function setTimerStart():void{
         setStart(true);
     }
-    function setTimerStop():void {
+    function setTimerStop():void{
         setStart(false);
     }
-    function setTimerReset() {
-        setTime(0)
+    function setTimerReset():void{
+        //Reset timer and laps
+        setTime(0);
+        setLaps([]);
+        setlapNumber(1);
+    }
+    function setLap():void{
+        //Add lap number and time
+        setlapNumber(lapNumber+1);
+        setLaps((laps)=>[...laps, {
+            lapNum: lapNumber,
+            lapTime: time
+        }]);
     }
 
     return(
         <div>
             <StopWatch start={start} time={time} setTime={setTime}></StopWatch>
-            <StopWatchButton setStart={setTimerStart} setStop={setTimerStop} setReset={setTimerReset}></StopWatchButton>
+            <StopWatchButton
+            setStart={setTimerStart} setStop={setTimerStop} setReset={setTimerReset} setLap={setLap} start={start}
+            ></StopWatchButton>
+            <Laps laps={laps}></Laps>
+
         </div>
     )
 }

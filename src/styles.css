@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+h2{
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: underline;
+}
+
 .stopwatch-time{
     font-size: 50px;
     font-family: "Noto Sans", sans-serif;
@@ -14,6 +21,7 @@
     margin: auto;
     width: 50%;
     padding: 10px;
+    padding-bottom: 0;
     text-align: center;
 }
 
@@ -90,4 +98,32 @@
     width: 50%;
     padding: 10px;
     text-align: center;
+}
+
+.laps{
+    margin: auto;
+    width: 25%;
+    border: 2px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    padding-right: 10px;
+    text-align: center;
+    max-height: 180px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+.lap{
+    font-family: "Noto Sans", sans-serif;
+    font-size: medium;
+    margin: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.laps::-webkit-scrollbar{
+    display: none
+}
+
+.logo{
+    max-height: 80px;
 }
