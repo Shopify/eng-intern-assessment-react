@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './StopWatchButton.css';
 
+
 export default function StopWatchButton() {
   
     const [isRunning, setIsRunning] = useState(false);
@@ -76,16 +77,16 @@ export default function StopWatchButton() {
             <div className="stopwatch">
                 <div className="display">{timingFormat()}</div>
                 <div className="controls">
-                    <button onClick={startButton} className="start-button">
+                    <button data-testid='start-button1' onClick={startButton} className="start-button">
                         Start
                     </button>
-                    <button onClick={stopButton} className="stop-button">
+                    <button data-testid='stop-button1'onClick={stopButton} className="stop-button">
                         Stop
                     </button>
-                    <button onClick={resetButton} className="reset-button">
+                    <button data-testid='reset-button1' onClick={resetButton} className="reset-button">
                         Reset
                     </button>
-                    <button onClick={lapsButton} className="lap-button">
+                    <button data-testid='lap-button1' onClick={lapsButton} className="lap-button">
                         Lap
                     </button>
                 </div>
