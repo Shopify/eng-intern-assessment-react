@@ -110,8 +110,11 @@ export default function StopWatch() {
 
     return (
         <section>
-            <div className="flex-col flex custom-margin bg-blue-500">
-                <div className="stopwatch-container font-gradient">
+            <div className="flex-col flex custom-margin">
+                <div
+                    className="stopwatch-container font-gradient"
+                    data-testid="time-display"
+                >
                     {" "}
                     <div className="time-box">{formattedMinutes}</div>:{" "}
                     <div className="time-box">{formattedSeconds}</div>.
@@ -140,7 +143,10 @@ export default function StopWatch() {
                         .reverse()
                         .map((lap, index) => (
                             <div key={index} className="">
-                                <div className="lap">
+                                <div
+                                    className="lap"
+                                    data-testid="lap-container"
+                                >
                                     <div className="lap-label">
                                         {lap.label}:{" "}
                                     </div>
