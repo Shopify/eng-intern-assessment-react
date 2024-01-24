@@ -1,6 +1,5 @@
 import React from "react";
 import functions from "../functions";
-import "../styles.css";
 
 interface StopWatchProps {
   time: number;
