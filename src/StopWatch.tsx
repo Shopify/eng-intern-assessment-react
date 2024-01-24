@@ -1,34 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import calculateTime from './helpers/calculateTime'
 import StopWatchButton from './StopWatchButton';
+import { movement } from './helpers/movement';
 
 export default function StopWatch() {
-
-  const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
-  const [timerOn, setTimerOn] = useState<boolean>(false);
-  const [formattedTime, setFormattedTime] = useState({
-    minutesFormatted: '00',
-    secondsFormatted: '00',
-    millisecondsFormatted: '00'
-  });
-
-  const intervalIdRef = useRef<NodeJS.Timeout | null>(null)
+  const { 
+    setTimeInSeconds,
+    timeInSeconds,
+    setTimerOn,
+    timerOn,
+    startMovement,
+    stopMovement} = movement();
 
   useEffect(() => {
-    const handleMovement = () => {
-      setTimeInSeconds((prevState: number) => prevState + 10);
-    };
-
-    const startMovement = () => {
-      intervalIdRef.current = setInterval(handleMovement, 10);
-    };
-
-    const stopMovement = () => {
-      if (intervalIdRef.current !== null) {
-        clearInterval(intervalIdRef.current);
-        intervalIdRef.current = null;
-      }
-    };
 
     if (timerOn) {
       startMovement();
@@ -41,18 +25,16 @@ export default function StopWatch() {
     };
   }, [timerOn]);
 
-  useEffect(() => {
-    setFormattedTime(calculateTime(timeInSeconds));
-  }, [timeInSeconds]);
+    let formattedTime = calculateTime(timeInSeconds);
 
     return(
       <main>
         <div className = "time-container" title="display">
-          <p className='timer-text'>{formattedTime.minutesFormatted}</p>
+          <p className='timer-text' id='minutes'>{formattedTime.minutesFormatted}</p>
           <span>:</span>
-          <p className='timer-text'>{formattedTime.secondsFormatted}</p>
+          <p className='timer-text' id='seconds'>{formattedTime.secondsFormatted}</p>
           <span>:</span>
-          <p className='timer-text'>{formattedTime.millisecondsFormatted}</p>
+          <p className='timer-text' id='milliseconds'>{formattedTime.millisecondsFormatted}</p>
         </div>
         <StopWatchButton 
           setTimeInSeconds={setTimeInSeconds} 
