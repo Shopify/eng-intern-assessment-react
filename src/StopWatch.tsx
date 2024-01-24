@@ -3,12 +3,12 @@ import React from 'react'
 export default function StopWatch({
   timer
 }: {
-  timer: number
+  timer: string
 }) {
 
   return (
     <div>
-      {timer.toString()}
+      <h1>{timer}</h1>
     </div>
   )
 }
