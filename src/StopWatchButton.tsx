@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
+
+interface ButtonProps {
+    type: string
+    isDisabled: boolean
+}
+
+export default function StopWatchButton( {type, isDisabled} : ButtonProps ) {
+    return (
+        <button disabled={isDisabled}>
+            {type}
+        </button>
     )
 }
