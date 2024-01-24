@@ -1,7 +1,7 @@
 // StopWatchButton.tsx
 
 import React from 'react';
-import './StopWatchButton.css'; // Import the CSS file
+import './StopWatchButton.css'; 
 
 interface StopWatchButtonProps {
   isRunning: boolean;
