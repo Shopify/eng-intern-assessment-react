@@ -1,7 +1,13 @@
 /**
- * StopWatch component that implements a basic stopwatch with lap times.
- * It uses React state to track elapsed time, whether the stopwatch is running,
- * and an array of lap obejcts.
+ * StopWatch component that implements a basic stopwatch with lap times using
+ * React state to track elapsed time, whether the stopwatch is running, and
+ * an array of lap objects.
+ *
+ * Unlike the FizzBuzz Enterprise Edition, this component aims for simplicity
+ * and performance, without overengineering. Similar to how you don't need a
+ * distributed, cloud-based service to figure out if a number is divisible by
+ * 3 or 5, sometimes a stopwatch just needs to count time.
+ *
  * @author Victoria Mazilu
  * Date Last Modified 23 January, 2024
  */
@@ -41,7 +47,6 @@ export default function StopWatch() {
 
             setIntervalId(id);
         } else if (intervalId) {
-            // Clear the interval when the stopwatch stops running.
             clearInterval(intervalId);
         }
 
@@ -69,7 +74,7 @@ export default function StopWatch() {
         }
     };
 
-    // Function to handle laps and reset.
+    // I know this isn't complex enough to be enterprise edition. However, I promise to add 15 dependencies to the next project.
     const toggleResetAndLap = () => {
         if (isRunning) {
             // Append new lap object
@@ -79,7 +84,7 @@ export default function StopWatch() {
             ]);
             setPrevTime(elapsedTime);
         } else {
-            // Reset the stopwatch
+            // Reset
             if (intervalId) {
                 clearInterval(intervalId);
                 setIntervalId(null);
@@ -137,7 +142,7 @@ export default function StopWatch() {
                 </div>
                 <hr className="custom-hr" />
                 <div className="scrollable">
-                    {/* Laps Display: Split and map through the laps to display each in the array with the label and time */}
+                    {/* Split and map through the laps to display each in the array with the label and time */}
                     {laps
                         .slice()
                         .reverse()
