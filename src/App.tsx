@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
+import StopWatch from './components/StopWatch';
 
-export default function App() {
-    return(
-        <div></div>
-    )
-}
+const App: React.FC = () => {
+    return (
+        <>
+            <StopWatch />
+        </>
+    );
+};
+
+export default App;
