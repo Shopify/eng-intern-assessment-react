@@ -59,6 +59,7 @@ export default function StopWatch() {
 
     /*
     This function formats the time in the format m:ss:ms
+    @params {number} time - the time to be formatted
     */
     const formatTime = (time: number) => {
         // Get minutes, seconds, and milliseconds
@@ -81,7 +82,7 @@ export default function StopWatch() {
 
     return(
         <div className='stopwatch'>
-            <div className='timer'>
+            <div className='timer' data-testid='timer'>
                 {formatTime(time)}
             </div>
             
