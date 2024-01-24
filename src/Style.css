@@ -4,25 +4,11 @@ body::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%; /* Adjust the width of the circle relative to the viewport width */
-  padding-bottom: 50%; /* Maintain a 1:1 aspect ratio (height = width) */
+  width: 50vmin; /* Use 50vmin for both width and height for a 1:1 aspect ratio */
+  padding-bottom: 50vmin; /* Maintain a 1:1 aspect ratio (height = width) */
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.2); /* Color of the translucent circle background */
-  border: 2px solid #69c2e3; /* Border color */
-}
-
-body::after {
-  content: '';
-  position: absolute;
-  margin-top: -128px;
-  top: 50%;
-  left: 50%;
-  border-radius: 10px; /* Adjust the border-radius for normal rounded corners */
-  transform: translate(-50%, -50%);
-  width: 50%; /* Adjust the width of the square relative to the viewport width */
-  height: 15vw; /* Adjust the height of the square relative to the viewport width */
-  background-color: rgba(0, 0, 0, 0.2); /* Color of the translucent circle background */
-  border: 1px solid #69c2e3; /* Border color */
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px solid #69c2e3;
 }
 
 @font-face {
@@ -30,34 +16,19 @@ body::after {
   src: url('./assets/Digital.ttf') format('truetype');
 }
 
-
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: linear-gradient(to left top, #3a7f80, #212a6c); /* Purple gradient */
+  background: linear-gradient(to left top, #3a7f80, #212a6c);
   font-family: 'Digital';
-  overflow: hidden; /* Disable overall page scrollbar */
+  overflow: hidden;
 }
-
-/* StopWatch.css */
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  margin-bottom: 8px;
-}
-
-/* Style.css */
 
 .stopwatch-container {
-  margin-top: 5vw; /* Adjust the margin relative to the viewport width */
+  margin: 5vmin auto;
   position: relative;
-  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,17 +37,24 @@ ul li {
 }
 
 .buttons-container {
-  margin-bottom: 5vw; /* Adjust the margin relative to the viewport width */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  align-items: center;
+  width: 100%;
 }
 
 button {
-  font-size: 3vw; /* Adjust font-size relative to the viewport width */
-  margin: 1vw; /* Adjust margin relative to the viewport width */
+  font-size: 2vmin;
+  margin: 1vmin; /* Adjust as needed to decrease or increase space between buttons */
   font-family: fantasy;
-  padding: 2vw 3vw; /* Adjust padding relative to the viewport width */
+  padding: 1vmin 1vmin;
   cursor: pointer;
   border: 2px solid #33ff00;
-  border-radius: 2vw; /* Adjust border-radius relative to the viewport width */
+  border-radius: 2vmin;
   background-color: #16be2c;
   color: #ffffff;
   transition: background-color 0.3s ease-in-out;
@@ -86,39 +64,51 @@ button:hover {
   background-color: #ffcc00;
 }
 
+
+
 .timer-box {
   font-family: 'Digital';
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.2); /* Color of the translucent circle background */
-  border: 1px solid #69c2e3; /* Border color */
-  padding: 2vw; /* Adjust padding relative to the viewport width */
-  border-radius: 2vw; /* Adjust border-radius relative to the viewport width */
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid #69c2e3;
+  padding: 2vmin;
+  border-radius: 2vmin;
   color: #ffffff;
-  font-size: 5vw; /* Adjust font-size relative to the viewport width */
-  margin-bottom: 2vw; /* Adjust margin relative to the viewport width */
-  margin-top: 5vh; /* Adjust margin relative to the viewport height */
+  font-size: 9vmin;
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2vmin;
 }
 
 .lap-times-heading {
   font-family: fantasy;
   color: #ffffff;
-  font-size: 2vw; /* Adjust font-size relative to the viewport width */
-  margin-top: 2vh; /* Adjust margin relative to the viewport height */
+  font-size: 2vmin;
+  margin-top: 5.5vmin;
+  position: absolute;
+  top: 51.4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2vmin;
 }
 
 .lap-times-container {
-  position: relative;
-  max-width: 50vw; /* Adjust the max-width relative to the viewport width */
-  height: 30vh; /* Adjust the fixed height relative to the viewport height */
+  max-width: 30vmin; /* Maximum width relative to the viewport width */
+  width: 13%; /* Adjust the width relative to the viewport width */
+  height: 9vmin; /* Maximum height relative to the viewport height */
   overflow-y: auto;
   border: 1px solid #69c2e3;
-  margin-top: 1vh; /* Adjust margin-top relative to the viewport height */
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2vw; /* Adjust padding relative to the viewport width */
-  border-radius: 2vw; /* Adjust border-radius relative to the viewport width */
-  flex-direction: column-reverse; /* Reverse the order of laps */
+  margin-top: 5vmin; /* Adjust margin-top relative to the viewport width */
+  padding: 1vmin; /* Adjust padding relative to the viewport width */
+  border-radius: 2vmin; /* Adjust border-radius relative to the viewport width */
   background-color: rgba(0, 0, 0, 0.2); /* Background color with opacity */
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: -10vmin; /* Adjust margin relative to the viewport width */
 }
 
 .lap-times-container::before {
@@ -128,19 +118,25 @@ button:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 2vw; /* Adjust border-radius relative to the viewport width */
+  border-radius: 2vmin; /* Adjust border-radius relative to the viewport width */
   z-index: -1;
 }
 
 .lap-times-list {
+  color: white;
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 
 h2 {
   font-family: Arial, Helvetica, sans-serif;
-  margin-bottom: 1vw; /* Adjust margin-bottom relative to the viewport width */
+  margin-bottom: 1vmin;
 }
 
 .lap-times-container::-webkit-scrollbar {

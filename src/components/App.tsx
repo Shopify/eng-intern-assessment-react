@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
-import './Style.css';
+import '../Style.css';
+
 
 export default function App() {
     const [elapsed, setElapsed] = useState<number>(0);
