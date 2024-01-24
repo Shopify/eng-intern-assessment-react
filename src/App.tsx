@@ -4,7 +4,6 @@ import StopWatchButton from "./components/StopWatchButton";
 import LapsDisplay from "./components/LapsDisplay";
 import StartIcon from "./components/StartIcon";
 import PauseIcon from "./components/PauseIcon";
-import "./styles.css";
 
 const START_TIME: number = 0; // When the stopwatch starts counting
 const LAP_START_TIME: number = 0; // When laps can start to be recorded
