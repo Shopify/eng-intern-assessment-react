@@ -2,16 +2,16 @@ import React from 'react'
 
 
 interface Props {
-    elaspedTime: number,
-    className: string,
+    elapsedTime: number;
+    className: string;
 }
 
-export default function StopWatch({elaspedTime,className}:Props) {
+export default function StopWatch({elapsedTime,className}:Props) {
     function formatTime(){
-        let hours = Math.floor(elaspedTime / (1000 * 60 * 60));
-        let minutes = Math.floor (elaspedTime/ (1000 * 60) % 60);
-        let seconds = Math.floor (elaspedTime/ (1000) % 60);
-        let milliseconds = Math.floor ((elaspedTime % 1000)/ 10);
+        let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+        let minutes = Math.floor (elapsedTime/ (1000 * 60) % 60);
+        let seconds = Math.floor (elapsedTime/ (1000) % 60);
+        let milliseconds = Math.floor ((elapsedTime % 1000)/ 10);
 
         // PadStart for display to show "00" if below double digit
         let formatHours= String(hours).padStart(2,"0");

@@ -5,7 +5,7 @@ import "./App.css"
 
 export default function App() {
     const[isRunning, setIsRunning] = useState(false);
-    const[elaspedTime, setElaspedTime]= useState(0);
+    const[elapsedTime, setElapsedTime]= useState(0);
     const[laps,setLaps]= useState(0);
     const [lapTimes, setLapTimes] = useState([]);
     const intervalIdRef = useRef(null);
@@ -14,7 +14,7 @@ export default function App() {
     useEffect(()=>{
         if(isRunning){
             intervalIdRef.current = setInterval(()=>{
-                setElaspedTime(Date.now() - startTimeRef.current);
+                setElapsedTime(Date.now() - startTimeRef.current);
             },10);
         }
 
@@ -28,7 +28,7 @@ export default function App() {
     // Functions
     function start(){
         setIsRunning(true);
-        startTimeRef.current = Date.now()- elaspedTime;
+        startTimeRef.current = Date.now()- elapsedTime;
     }
 
     function stop(){
@@ -36,7 +36,7 @@ export default function App() {
     }
 
     function reset(){
-        setElaspedTime(0);
+        setElapsedTime(0);
         setIsRunning(false);
         setLaps(0);
         setLapTimes([]);
@@ -47,10 +47,16 @@ export default function App() {
         const lapTime = (Date.now() - startTimeRef.current)/1000;
         setLaps((prevLaps) => prevLaps + 1);
         setLapTimes((prevTimes) => [...prevTimes, lapTime])
+       }else{
+        window.alert("Cannot record lap when the stopwatch is not running.");
        }
     }
 
-   
+    function formatLapTime(lapTime: number) {
+        const minutes = Math.floor((lapTime % 3600) / 60).toString().padStart(2, '0');
+        const seconds = (lapTime % 60).toFixed(4).padStart(7, '0');
+        return `${minutes}:${seconds}`;
+    }
 
     return(
         <div className='stopwatch'>
@@ -58,30 +64,23 @@ export default function App() {
 
                {/* Display Timer*/}
                <div>
-                 <StopWatch elaspedTime={elaspedTime} className="time-display"/>
+                 <StopWatch elapsedTime={elapsedTime} className="time-display"/>
                </div>
               
                {/* Display Laps*/}
                <div className='lap-display'>
-              {/* Display laps and lap times */}
-              {lapTimes.map((lapTime, index) => {
-    // Convert lapTime to hours, minutes, and seconds
-    const hours = Math.floor(lapTime / 3600).toString().padStart(2, '0');
-    const minutes = Math.floor((lapTime % 3600) / 60).toString().padStart(2, '0');
-    const seconds = (lapTime % 60).toFixed(4).padStart(7, '0');
+                {/* Using .map() we can map through the laps and display them on screen */}
+                {lapTimes.map((lapTime, index) => (
+                    <div key={index}>{`Lap ${index + 1}: ${formatLapTime(lapTime)}`}</div>
+                ))}
 
-    return (
-        <div key={index}>{`Lap ${index + 1}: ${hours}:${minutes}:${seconds}`}</div>
-    );
-})}
-
+                
                 <StopWatchButton name="Lap" onClick={lap} className='lap'/> 
                </div>
 
              </div>
-          
 
-           {/* Display Buttons*/}
+           {/* StopWatch Buttons*/}
            <div className="button-display">
                <StopWatchButton name="Start" onClick={start} className='start' />
                <StopWatchButton name="Stop" onClick={stop} className='stop'/>

@@ -5,6 +5,25 @@ body{
     background-color: #F5EEE6;
 }
 
+button{
+    font-size:1rem;
+    font-weight:bold;
+    padding:10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor:pointer;
+    color:white;
+    transition: background-color 0.5s ease;
+}
+
+.button-display{
+    display:flex;
+    gap:10px;
+    margin-top: 10px;
+    padding:10px;
+}
+
+
 .stopwatch{
     display: flex;
     flex-direction: column;
@@ -16,12 +35,8 @@ body{
     margin-top:5rem;
 }
 
-.button-display{
-    display:flex;
-    gap:10px;
-    margin-top: 10px;
-    padding:10px;
-}
+
+/* Displays */
 
 .stopwatch-display{
     display: flex;
@@ -48,16 +63,9 @@ body{
     text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.50);
 }
 
-button{
-    font-size:1rem;
-    font-weight:bold;
-    padding:10px 20px;
-    border: none;
-    border-radius: 50px;
-    cursor:pointer;
-    color:white;
-    transition: background-color 0.5s ease;
-}
+
+
+/* Stop Watch Buttons */
 
 .start{
     background-color: hsl(120, 60%, 36%,0.85);
@@ -65,7 +73,7 @@ button{
 
 .start:hover{
     background-color: hsl(120, 60%, 36%,1);
-    scale:1.1;
+    transform: scale(1.1);
 }
 
 .stop{
@@ -73,7 +81,7 @@ button{
 }
 .stop:hover{
     background-color: hsla(0, 58%, 44%, 0.994);
-    scale:1.1
+    transform: scale(1.1);
 }
 
 .reset{
@@ -82,7 +90,7 @@ button{
 
 .reset:hover{
     background-color: hsla(238, 79%, 38%, 0.92);
-    scale:1.1;
+    transform: scale(1.1);
 }
 
 .lap{
@@ -92,5 +100,5 @@ button{
 
 .lap:hover{
     background-color: hsl(47, 69%, 58%, 0.95);
-    scale:1.1
+    transform: scale(1.1);
 }
