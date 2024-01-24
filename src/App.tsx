@@ -1,7 +1,23 @@
-import React from 'react'
-
+import { time } from 'console';
+import React, {useEffect, useState} from 'react';
+import './App.css';
+import calculateTimer from './Helper/CalculateTimer';
 export default function App() {
-    return(
-        <div></div>
-    )
+   const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
+   const [timerArray, setTimerArray] = useState<Array<number|string>>([]);
+   useEffect(()=>{
+       let timeArray: Array<number|string> = calculateTimer(timeInSeconds);
+       setTimerArray(timeArray);
+   },[timeInSeconds]);
+
+
+   return(
+       <section className='time-container'>
+           <p className='timer-text'>{timerArray[0]}</p>
+           <span>:</span>
+           <p className='timer-text'>{timerArray[1]}</p>
+           <span>:</span>
+           <p className='timer-text'>{timerArray[2]}</p>
+       </section>
+   ); 
 }
