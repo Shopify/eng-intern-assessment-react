@@ -2,6 +2,7 @@
   font-family: Cambria, serif;
   text-align: center;
   padding: 20px;
+  flex: content;
 }
 
 .stopwatch-head {
