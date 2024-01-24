@@ -7,6 +7,13 @@ export default function StopWatch() {
     const [minutes, setMinutes] = useState<number>(0)
     const [seconds, setSeconds] = useState<number>(0)
 
+    const handleStartStopTimer = () => {
+        if (timerOn === false) {
+            setTimerOn(true)
+        } else {
+            setTimerOn(false)
+        }
+    }
 
 
     return (
@@ -14,6 +21,7 @@ export default function StopWatch() {
             <p className='timer__display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}</p>
             <StopWatchButton
                 timerOn={timerOn}
+                handleStartTimer={handleStartStopTimer}
             />
         </div>
     )
