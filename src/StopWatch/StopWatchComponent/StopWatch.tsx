@@ -65,6 +65,7 @@ export default function StopWatch() {
 
   // HandleLap appends a watchTime object into the laps state then sets the current lapTime so it can be used in later iterations
   const handleLap = () => {
+    //Calculate laptime by subtracting total time with previous laptime
     setLaps([...laps, calculateWatchTime(totalTime - lapTime)]);
     setLapTime(totalTime);
   };
