@@ -50,7 +50,8 @@ export default function App() {
        }
     }
 
-  
+   
+
     return(
         <div className='stopwatch'>
             <div className='stopwatch-display'>
@@ -62,10 +63,18 @@ export default function App() {
               
                {/* Display Laps*/}
                <div className='lap-display'>
-               {/* Display laps and lap times */}
-               {lapTimes.map((lapTime, index) => (
-                   <div key={index}>{`Lap ${index + 1}: ${lapTime > 60 ? `${(lapTime/60).toFixed(4)}` : `00:${(Math.round(lapTime))}`}`}</div>
-               ))}
+              {/* Display laps and lap times */}
+              {lapTimes.map((lapTime, index) => {
+    // Convert lapTime to hours, minutes, and seconds
+    const hours = Math.floor(lapTime / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((lapTime % 3600) / 60).toString().padStart(2, '0');
+    const seconds = (lapTime % 60).toFixed(4).padStart(7, '0');
+
+    return (
+        <div key={index}>{`Lap ${index + 1}: ${hours}:${minutes}:${seconds}`}</div>
+    );
+})}
+
                 <StopWatchButton name="Lap" onClick={lap} className='lap'/> 
                </div>
 

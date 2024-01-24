@@ -2,7 +2,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: #F5EEE6;
 }
 
 .stopwatch{
@@ -13,6 +13,7 @@ body{
     background-color: rgb(237, 231, 231);
     padding:30px;
     border-radius: 100px;
+    margin-top:5rem;
 }
 
 .button-display{
@@ -85,6 +86,7 @@ button{
 }
 
 .lap{
+    margin-top:10px;
     background-color: hsl(47, 69%, 58%, 0.85);
 }
 
