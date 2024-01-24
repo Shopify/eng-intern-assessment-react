@@ -63,27 +63,31 @@ const StopWatch: React.FC = () => {
 
     return (
         <div className='watch-container'>
-            <h2> Stopwatch </h2>
+            <div className='upper-container'>
+                <h2 className='watch-title'> Stopwatch </h2>
 
-            <div className='watch-timer'>
-                { formatTime(elapsedTime) }
+                <div className='watch-timer'>
+                    { formatTime(elapsedTime) }
+                </div>
+
+                <div className='watch-buttons'>
+                    <StopWatchButton onClick={clickLap} label={'Lap'} />
+                    <StopWatchButton onClick={clickStartStop} label={isRunning ? 'Stop' : 'Start'} />
+                    <StopWatchButton onClick={clickReset} label={'Reset'} />
+                </div>
             </div>
 
-            <div className='watch-buttons'>
-                <StopWatchButton onClick={clickStartStop} label={isRunning ? 'Stop' : 'Start'} />
-                <StopWatchButton onClick={clickLap} label={'Lap'} />
-                <StopWatchButton onClick={clickReset} label={'Reset'} />
+            <div className='laps-container'>
+                {laps.length > 0 && (
+                    <ul>
+                        {laps.map((lap, count) => (
+                            <li key={count}>
+                                {formatTime(lap)}
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
-
-            {laps.length > 0 && (
-                <ul>
-                    {laps.map((lap, count) => (
-                        <li key={count}>
-                            {formatTime(lap)}
-                        </li>
-                    ))}
-                </ul>
-            )}
         </div>
     );
 };
