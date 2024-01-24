@@ -1,17 +1,3 @@
-/**
- * StopWatch component that implements a basic stopwatch with lap times using
- * React state to track elapsed time, whether the stopwatch is running, and
- * an array of lap objects.
- *
- * Unlike the FizzBuzz Enterprise Edition, this component aims for simplicity
- * and performance, without overengineering. Similar to how you don't need a
- * distributed, cloud-based service to figure out if a number is divisible by
- * 3 or 5, sometimes a stopwatch just needs to count time.
- *
- * @author Victoria Mazilu
- * Date Last Modified 23 January, 2024
- */
-
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
