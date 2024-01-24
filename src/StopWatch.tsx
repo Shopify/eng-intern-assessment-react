@@ -6,7 +6,7 @@
  *
  * Author: Vy
  * Date of Creation: Jan 20, 2024
- * Last Revision Date: Jan 23, 2024
+ * Last Revision Date: Jan 24, 2024
  */
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -95,7 +95,7 @@ export default function StopWatch() {
 
     // Divided by 10 for two digits, %100 to ensure minute count roll over after 99
     const milliseconds = Math.floor((time / 10) % 100);
-    return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}.${(
+    return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}:${(
       '0' + milliseconds
     ).slice(-2)}`;
   };
