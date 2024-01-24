@@ -1,7 +1,21 @@
-import React from 'react'
+import React from "react";
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+interface Props {
+    label: string;
+    onClick: () => void; // Function to call when the button is clicked
+    isRunning: boolean;
+    className?: string;
+}
+
+export default function StopWatchButton({
+    label,
+    onClick,
+    isRunning,
+    className,
+}: Props) {
+    return (
+        <button className={`button-outline ${className}`} onClick={onClick}>
+            {label}
+        </button>
+    );
 }
