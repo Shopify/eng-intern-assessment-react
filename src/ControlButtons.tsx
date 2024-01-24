@@ -5,6 +5,7 @@ interface ControlButtonsProps {
   handleStart: () => void;
   handleReset: () => void;
   handlePauseResume: () => void;
+  handleLap: () => void;
   isPaused: boolean;
   active: boolean;
 }
@@ -13,6 +14,7 @@ export default function ControlButtons({
   handleStart,
   handleReset,
   handlePauseResume,
+  handleLap,
   isPaused,
   active,
 }: ControlButtonsProps) {
@@ -21,7 +23,7 @@ export default function ControlButtons({
       <StopWatchButton
         children={"Lap"}
         isDisabled={false}
-        onClick={() => console.log("Lap")}
+        onClick={handleLap}
         type={"dark"}
       />
       <StopWatchButton
@@ -37,7 +39,7 @@ export default function ControlButtons({
       <StopWatchButton
         children={"Lap"}
         isDisabled={false}
-        onClick={() => console.log("Lap")}
+        onClick={handleLap}
         type={"dark"}
       />
       <StopWatchButton

@@ -53,6 +53,42 @@ body {
   font-size: 54px;
 }
 
+/* Lap Table styles */
+
+.lap-table-container {
+  width: 80%;
+  margin: auto;
+}
+
+.lap-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.lap-table th,
+.lap-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.lap-table td {
+  font-size: 16px;
+  color: #40607f;
+}
+
+.overall-time {
+  color: var(--primaryDark2Color) !important;
+}
+
+.lap-table th {
+  border-bottom: 1px solid var(--textLight1Color); /* Add a line under the headers */
+  color: var(--primaryDark2Color);
+  font-size: 13.28px;
+  font-weight: 600;
+}
+
+/* Control Buttons styles */
+
 .control-buttons {
   width: 100%;
   display: flex;
