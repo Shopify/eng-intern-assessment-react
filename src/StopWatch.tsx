@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
@@ -6,6 +6,7 @@ export default function StopWatch() {
     const [timerOn, setTimerOn] = useState<boolean>(false)
     const [minutes, setMinutes] = useState<number>(0)
     const [seconds, setSeconds] = useState<number>(0)
+    const [laps, setLaps] = useState<number>(0)
 
     const handleStartStopTimer = () => {
         if (timerOn === false) {
@@ -15,6 +16,16 @@ export default function StopWatch() {
         }
     }
 
+    const handleLapResetClick = () => {
+        if (timerOn === false) {
+            setMinutes(0)
+            setSeconds(0)
+            setLaps(0)
+        } else {
+            setLaps(laps + 1)
+        }
+
+    }
 
     return (
         <div>
@@ -22,6 +33,7 @@ export default function StopWatch() {
             <StopWatchButton
                 timerOn={timerOn}
                 handleStartTimer={handleStartStopTimer}
+                handleLapResetClick={handleLapResetClick}
             />
         </div>
     )
