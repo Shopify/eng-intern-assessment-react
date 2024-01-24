@@ -1,15 +1,14 @@
-import React from 'react';
-
+import React, { Children } from 'react';
 
 type ButtonProps = {
     title: string;
-    time?: number;
-    onClick: (time?: number) => void;
+    children?: React.ReactChild;
+    onClick: (children?: React.ReactChild) => void;
 };
 
-export default function StopWatchButton({ title, time, onClick }: ButtonProps) {
+export default function StopWatchButton({ title, children, onClick }: ButtonProps) {
     return (
-        <span className={"button"} onClick={() => onClick(time)}>
+        <span onClick={() => onClick(children)}>
             {title}
         </span>
     );
