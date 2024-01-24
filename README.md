@@ -8,6 +8,15 @@ The goal of this project was to implement a Stopwatch application using React an
 
 - Reset: Users can reset the stopwatch to zero, clearing the elapsed time and lap record.
 
+### DEMO ###
+
+
+
+https://github.com/Ahmedelj/eng-intern-assessment-react/assets/133712972/80e81ec6-3012-4ed7-8bc2-3567f92822bd
+
+
+
+
 ### Test ###
 -
 
