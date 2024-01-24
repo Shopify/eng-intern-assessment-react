@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Stopwatch from './StopWatch'; 
 import StopwatchButton from './StopWatchButton'; 
+import "./styles.css";
 
 
 const App: React.FC = () => {
@@ -50,10 +51,16 @@ const App: React.FC = () => {
 
     // Render the Stopwatch component and StopwatchButton component with lap recording functionality
     return (
-        <div>
+        <body>
+        <div className = "container">
+            <div className = "timer-display">
             <Stopwatch time={time} /> 
-            <StopwatchButton onStart={startTimer} onStop={stopTimer} onReset={resetTimer} onLap={recordLap} laps={laps} /> {/* Buttons for controlling the timer and recording laps */}
+            </div>
+            <div className = "buttons">
+            <StopwatchButton onStart={startTimer} onStop={stopTimer} onReset={resetTimer} onLap={recordLap} laps={laps} />
+             </div>
         </div>
+        </body>
     );
 };
 

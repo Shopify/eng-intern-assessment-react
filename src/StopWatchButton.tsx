@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 interface StopwatchButtonProps {
     onStart: () => void;   // onStart function is called when the "Start" button is clicked
     onStop: () => void;    // onStop function is called when the "Stop" button is clicked
@@ -20,11 +21,10 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onRe
 
             {/* Display laps */}
             {laps.length > 0 && (
-                <div>
-                    <h2>Laps:</h2>
+                <div className = "laps-list" data-testid = "laps-list">
                     <ul>
                         {laps.map((lap, index) => (
-                            <li key={index}>
+                            <li key={index} className = "laps-list-item">
                                 {("0" + Math.floor((lap / 60000) % 60)).slice(-2)}:
                                 {("0" + Math.floor((lap / 1000) % 60)).slice(-2)}:
                                 {("0" + ((lap / 10) % 100)).slice(-2)}
