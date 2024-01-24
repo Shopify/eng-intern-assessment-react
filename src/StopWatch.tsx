@@ -14,12 +14,13 @@ export default function StopWatch({start, time, setTime}: Props) {
     useEffect(()=>{
         let interval: ReturnType<typeof setTimeout>;
         if (start) {
+            //Increments stopwatch
             interval = setInterval(()=> setTime(time+1), 10);
         }
         return () => clearInterval(interval);
     }, [start, time]);
 
-    //Calculations for stopwatch for display
+    //Calculations for stopwatch display
     const hours = Math.floor(time/360000);
     const minutes = Math.floor((time % 360000)/6000);
     const seconds = Math.floor((time%6000)/100);

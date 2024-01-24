@@ -6,13 +6,14 @@ import { useState } from 'react';
 
 
 export default function App() {
-    //useStates for timer
+
+    //useStates for timer, lap number, lap time, and start
     const [start, setStart] = useState(false);
     const [time, setTime] = useState(0);
     const [laps, setLaps] = useState([]);
     const [lapNumber, setlapNumber] = useState(1);
 
-    //setting functions for buttons
+    //Setting functions for buttons
     function setTimerStart():void{
         setStart(true);
     }
@@ -26,7 +27,7 @@ export default function App() {
         setlapNumber(1);
     }
     function setLap():void{
-        //Add lap number and time
+        //Add lap number and time to array
         setlapNumber(lapNumber+1);
         setLaps((laps)=>[...laps, {
             lapNum: lapNumber,

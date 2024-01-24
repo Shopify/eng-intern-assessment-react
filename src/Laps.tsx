@@ -12,7 +12,7 @@ type Props = {
 
 export default function Laps({laps}: Props) {
     
-    //Displaying lap format
+    //Displaying lap format using stopwatch calculations
     return(
         <div>
             <h2>Laps:</h2>

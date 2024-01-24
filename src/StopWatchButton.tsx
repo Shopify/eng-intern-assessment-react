@@ -25,6 +25,7 @@ export default function StopWatchButton({setStart, setStop, setReset, setLap, st
         setLap();
     }
     
+    //Renders stop and start buttons based on start prop
     return(
         <div className='stopwatch-buttons'>
             {!start && <button className="start-button" onClick={handleStart}>Start</button>}
