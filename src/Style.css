@@ -38,7 +38,8 @@ html {
 
 .buttons-container {
   position: fixed;
-  top: 50%;
+  display: inline-block;
+  top: 53.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -51,7 +52,7 @@ button {
   font-size: 2vmin;
   margin: 1vmin; /* Adjust as needed to decrease or increase space between buttons */
   font-family: fantasy;
-  padding: 1vmin 1vmin;
+  padding: 0.8vmin 0.8vmin;
   cursor: pointer;
   border: 2px solid #33ff00;
   border-radius: 2vmin;
@@ -64,11 +65,10 @@ button:hover {
   background-color: #ffcc00;
 }
 
-
-
 .timer-box {
   font-family: 'Digital';
   display: inline-block;
+  position: relative;
   background-color: rgba(0, 0, 0, 0.2);
   border: 1px solid #69c2e3;
   padding: 2vmin;
@@ -86,7 +86,7 @@ button:hover {
   font-family: fantasy;
   color: #ffffff;
   font-size: 2vmin;
-  margin-top: 5.5vmin;
+  margin-top: 6.5vmin;
   position: absolute;
   top: 51.4%;
   left: 50%;
@@ -95,20 +95,21 @@ button:hover {
 }
 
 .lap-times-container {
-  max-width: 30vmin; /* Maximum width relative to the viewport width */
-  width: 13%; /* Adjust the width relative to the viewport width */
-  height: 9vmin; /* Maximum height relative to the viewport height */
+  display: inline-block;
+  max-width: 30vmin;
+  width: 13%;
+  height: 9vmin;
   overflow-y: auto;
   border: 1px solid #69c2e3;
-  margin-top: 5vmin; /* Adjust margin-top relative to the viewport width */
-  padding: 1vmin; /* Adjust padding relative to the viewport width */
-  border-radius: 2vmin; /* Adjust border-radius relative to the viewport width */
-  background-color: rgba(0, 0, 0, 0.2); /* Background color with opacity */
+  margin-top: 5vmin;
+  padding: 1vmin;
+  border-radius: 2vmin;
+  background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 59%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-bottom: -10vmin; /* Adjust margin relative to the viewport width */
+  margin-bottom: 2vmin;
 }
 
 .lap-times-container::before {
@@ -118,9 +119,10 @@ button:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 2vmin; /* Adjust border-radius relative to the viewport width */
+  border-radius: 2vmin;
   z-index: -1;
 }
+
 
 .lap-times-list {
   color: white;
@@ -142,4 +144,27 @@ h2 {
 .lap-times-container::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+@media screen and (max-width: 980px) {
+  .timer-box {
+    top: 45%;
+    font-size: 8vmin; /* Adjust the font size for better readability on smaller screens */
+  }
+
+  .lap-times-heading {
+    font-size: 2vmin; /* Adjust the font size for better readability on smaller screens */
+    top: 50%;
+  }
+
+  .lap-times-container {
+    width: 20%;
+    height: 4%; /* Adjust the height based on your design preferences */
+    margin-top: -7vmin; /* Adjust the margin-top based on your design preferences */
+  }
+
+  .buttons-container {
+    bottom: 1vmin; /* Adjust the bottom spacing based on your design preferences */
+    top: 49.4%;
+  }
 }
