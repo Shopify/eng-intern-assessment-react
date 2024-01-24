@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button } from '@mui/material';
 import './styles.css'
+import { timeStamp } from 'console';
 
 export default function StopWatchButton(props: any) {
 
-    const { isStopped, setIsStopped, setTime } = props;
-
+    const { isStopped, setIsStopped, time, setTime, setLaps } = props;
 
     function handleStartStopClick() {
         setIsStopped(!isStopped);
@@ -14,6 +14,13 @@ export default function StopWatchButton(props: any) {
     function handleResetClick() {
         setTime(0);
         setIsStopped(true);
+        setLaps([]);
+    }
+
+    function handleLapTimeClick() {
+        if (time !== 0) {
+            setLaps((prevLaps: number[]) => [...prevLaps, time]);
+        }
     }
 
     return(
@@ -27,16 +34,11 @@ export default function StopWatchButton(props: any) {
             </Button>
             <Button 
                     id="stop-watch-button"
+                    sx={{minWidth: "85px"}}
                     color="info"
-                    variant="contained">
-                Lap
-            </Button>
-            <Button
-                    id="stop-watch-button"
-                    variant="contained" 
-                    color="info" 
-                    onClick={handleResetClick}>
-                Reset
+                    variant="contained"
+                    onClick={isStopped ? handleResetClick : handleLapTimeClick}>
+                {isStopped ? "Reset" : "Lap"}
             </Button>
         </div>
     )
