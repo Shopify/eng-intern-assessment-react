@@ -1,0 +1,29 @@
+.stopwatch-button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .start-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .stop-button {
+    background-color: #F44336;
+    color: white;
+  }
+  
+  .reset-button {
+    background-color: #555;
+    color: white;
+  }
+  
+  .lap-button {
+    background-color: #FFC107;
+    color: white;
+  }
+  
