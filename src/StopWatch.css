@@ -1,0 +1,90 @@
+.stopwatch-container {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #090707;
+    border-radius: 8px;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #bbd;
+}
+
+.stopwatch-title {
+    font-size: 24px;
+    margin-bottom: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h5 {
+    font-weight:lighter;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+.time-display {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.lap-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lap-item {
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.lap-item.newest {
+  font-style: italic;
+  font-size: 20px;
+  color: #3498db;
+  background-color: #f0f8ff; /* Light blue background for better visibility */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.button.running {
+    background-color: #e74c3c;
+}
+
+.button.lap {
+    background-color: #3498db;
+}
+
+.button.reset {
+    background-color: #f39c12;
+}  
+
+.button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color:#bbb;
+}
+
+.button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
