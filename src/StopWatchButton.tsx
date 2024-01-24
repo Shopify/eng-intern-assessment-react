@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { useState } from 'react';
 
 type Props = {
-    setTimeInSeconds: Function
+    setTimeInSeconds?: Function
 };
 
 export default function StopWatchButton(props:Props) {
@@ -21,7 +21,11 @@ export default function StopWatchButton(props:Props) {
 
     return(
         <div className='control_container'>
-            <button onClick={handleStartButton} className='control_button'>Start</button>
+            <button
+                onClick={handleStartButton} id="start_button"
+                className='control_button'>
+                    Start
+                </button>
             {/* <button onClick={handleStopButton} className='control_button'>Stop</button>
             <button onClick={handleResetButton} className='control_button'>Reset</button> */}
         </div>
