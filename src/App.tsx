@@ -78,6 +78,8 @@ export default function App() {
     // reset runningMs and pausedMs
     setTimerMs(0);
     setPausedMs(0);
+    // reset laps
+    setLapTimes([]);
   };
 
   const addLap = () => {
