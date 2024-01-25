@@ -1,6 +1,5 @@
 //Import required modules - UseState to declare state of varialbe and useEffect allows hooking
-import React from 'react'
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
 import StopWatchButton from './StopWatchButton';
 
 
@@ -15,7 +14,7 @@ const StopWatch = () => {
 
     //Function to handle the Start/stop button
     const handleStartButton = () => {
-        setRunning(isRunning);  //Like a lightswitch - Flips the state if timer is going on/off
+        setRunning(!isRunning);  //Like a lightswitch - Flips the state if timer is going on/off
         setStarted(true);      //Timer started
     }
 
@@ -28,7 +27,9 @@ const StopWatch = () => {
 
     //Functions handles lap button - Add the current time to laps array
     const handleLapButton = () => {
+        if (time > 0) {
         setLaps(laps.concat(time));
+        }
     }
 
     //Function formats time to HH:MM:SS:MS
@@ -47,28 +48,53 @@ const StopWatch = () => {
 
     //useEffect to update timer for the running state
     useEffect (() => {
-        let timer: NodeJS.Timeout | null = null;
+        let timer: ReturnType<typeof setInterval> | undefined;
 
         //If StopWatch is running, start timer by adding 10ms 
         if (isRunning) {
             timer = setInterval (() => {
                 setTime(prevTime => prevTime +10);
             }, 10);
-
-        //If the stopwatch pauses (Time is not resetted), stop the timer 
-        }else if (time !=0) {
-            clearInterval(timer);
         }
-
         //Clean up function that when isRunnign state or time changes, timer stops and cleanup process occurs
-        return () => {clearInterval(timer as NodeJS.Timeout);
-    };
-    }, [isRunning, time]);
+        return () => {
+            if (timer) {
+            clearInterval(timer);
+            }
+        };
+    }, [isRunning]); 
+
+    //Render the stopwatch component
+    return (
+        <div>
+            
+            <h3>Hour:Minutes:Seconds:Milliseconds</h3>
+            <h1>{formatTime(time)}</h1>
+
+            <StopWatchButton onClick = 
+                {handleStartButton} 
+                buttonLabel = {isRunning? 'Stop': (isStarted ? 'Resume' : 'Start')}
+            />
+
+            <StopWatchButton onClick = 
+                {handleLapButton}
+                buttonLabel = "Lap"
+            />
+
+            <StopWatchButton onClick = 
+                {handleResetButton}
+                buttonLabel = "Reset"
+            />
+
+            {laps.map((lap,numLaps) => (
+                <h2 key = {numLaps}> LAP {numLaps+1}: {formatTime(lap)} </h2>
+            ))}
+
+        </div>
+    );
+
 }
 
 
-
-
-
-
+//Export component for use
 export default StopWatch;
