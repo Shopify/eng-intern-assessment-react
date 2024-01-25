@@ -42,9 +42,12 @@ export default function Stopwatch() {
   };
 
   const recordLap = () => {
-    setLaps([...laps, { time: currentLap, distance }]);
-    setCurrentLap(0);
-    setDistance(0);
+    // only add a new lap if time, currentLap, and distance are greater than zero
+    if (time > 0 || currentLap > 0 || distance > 0) {
+      setLaps([...laps, { time: currentLap, distance }]);
+      setCurrentLap(0);
+      setDistance(0);
+    }
   };
 
   const increaseWorkout = () => {

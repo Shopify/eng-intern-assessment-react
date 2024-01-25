@@ -68,8 +68,18 @@
     - The running animation should stop when the user clicks the stop and reset buttons
     - Should move with the workout stat/distance, and speed up or slow down depending on the workout stat
 
+- [x] Bug Fixes:
+    - [✅] When Sonic stands still and increase workout is clicked the scrolling background moves
+        - Distance, time, lap do not change, just the scrolling background
+    - [✅] When reset/refreshed and time, distance, lap are 0, adding a lap with 0 time and 0 distance
+          gets added, should not allow adding a lap if stopped and 0 time and 0 distance
+    - [x] When reset is clicked, Sonic does not appear back at starting line, he stays where he is
+          -> reset should reset the animation if clicked
+
 - [x] Maybe additions?
     - [✅] Have "workout" button to increase distance ran, using a "workout" stat
         - [x] Have animation speed up or slow down depending on "workout" stat
     - [x] When start, stop, reset, lap clicked, have text and sound effect pop up
     - [x] Multiple sprites to choose from?
+    - [x] 8-bit music?
+    - [x] Add current meters/sec in same style as current distance, lap, workout level box
