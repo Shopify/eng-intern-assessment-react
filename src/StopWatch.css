@@ -1,0 +1,32 @@
+/* StopWatch.css */
+
+.stopwatch-container {
+    text-align: center;
+  }
+  
+  h1 {
+    font-weight: bold;
+    font-size: 80px;
+    font-family: 'Montserrat', sans-serif;
+    color: #f4f1de;
+  }
+  
+  .laps-container {
+    height: 100px;
+    width: 200px;
+    overflow-y: auto;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    color: #f2cc8f;
+    /* Add your styles for laps text here */
+    font-weight: normal; /* Example: Remove bold styling */
+  }
+  
