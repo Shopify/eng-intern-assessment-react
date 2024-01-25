@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Define a type for the props expected by the StopwatchButton component
 type StopwatchButtonProps = {
   action: () => void;
   label: string;
