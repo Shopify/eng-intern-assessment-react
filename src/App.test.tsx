@@ -52,3 +52,44 @@ it("measures 1 second correctly", async () => {
   // the timer does not advance when it's stopped
   expect(queryByText("00:01:000")).toBeTruthy();
 });
+
+it("resets time correctly when running", async () => {
+  jest.useFakeTimers();
+
+  const { queryByText } = render(<App />);
+
+  // buttons exist
+  const [start, reset] = ["Start", "Reset"].map((t) => queryByText(t));
+  [start, reset].forEach((e) => expect(e).toBeTruthy());
+
+  // timer starts at 0
+  expect(queryByText("00:00:000")).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(start);
+  });
+
+  expect(queryByText("00:00:000")).toBeTruthy();
+
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
+
+  // after 1 second passes, the timer displays exactly 1 second
+  expect(queryByText("00:01:000")).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(reset);
+  });
+
+  // the reset button stops and resets displayed time
+  expect(queryByText("00:00:000")).toBeTruthy();
+
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
+
+  // the timer does not advance when it's stopped
+  expect(queryByText("00:00:000")).toBeTruthy();
+});
+
