@@ -39,12 +39,14 @@ describe("StopWatch", () => {
 
     fireEvent.click(screen.getByText("Start"));
 
-    // check time isn't 0s after 2 seconds
+    // check last digit for time isn't 0s after 50 milliseconds
     await waitFor(
       () => {
-        expect(screen.queryByText("0s")).toBeNull();
+        expect(screen.getByTestId("subsecond-digit").textContent).not.toEqual(
+          "0"
+        );
       },
-      { timeout: 2000 }
+      { timeout: 50 }
     );
 
     fireEvent.click(screen.getByText("Reset"));
@@ -54,14 +56,15 @@ describe("StopWatch", () => {
     expect(getByText("0m")).toBeInTheDocument();
     expect(getByText("0s")).toBeInTheDocument();
 
-    // check after 2 seconds time is still stopped
+    // check after 0.1 second time is still stopped
     await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     });
 
     expect(getByText("0h")).toBeInTheDocument();
     expect(getByText("0m")).toBeInTheDocument();
     expect(getByText("0s")).toBeInTheDocument();
+    expect(screen.getByTestId("subsecond-digit").textContent).toEqual("0");
   });
 
   it("click on laps 3 times and make sure only 3 lap items show", () => {

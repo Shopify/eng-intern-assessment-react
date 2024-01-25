@@ -60,7 +60,7 @@ export default function StopWatch() {
         <div>{hours}h</div>
         <div>{minutes}m</div>
         <div>{seconds}s</div>
-        <div>{milliseconds}</div>
+        <div data-testid="subsecond-digit">{milliseconds}</div>
       </div>
       <StopWatchButton
         text={isRunning ? "Stop" : "Start"}
