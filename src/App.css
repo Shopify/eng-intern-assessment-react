@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.App {
+  width: 100%;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  padding-top: 100px;
+}
+
+/* stop watch time styles */
+.digits {
+  display: flex;
+  justify-content: center;
+  padding-top: 32px;
+}
+
+.digits > div {
+  font-size: 4rem;
+  margin: 0 8px;
+  width: 100px;
+}
+
+/* button styles */
+button {
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  background-color: rgb(4, 98, 213);
+  font-size: 1.2rem;
+  padding: 12px 22px;
+  border-radius: 4px;
+  margin: 20px 4px;
+  cursor: pointer;
+}
+
+/* lap styles */
+
+.lap-list {
+  margin: 20px 0 40px;
+}
+
+.lap-row {
+  display: flex;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.lap-time-container > div {
+  margin: 0 4px;
+  width: 35px;
+}
+
+.lap-time-container {
+  display: flex;
+}
