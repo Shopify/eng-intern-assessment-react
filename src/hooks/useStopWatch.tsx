@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCurrentTime } from "../utils/TimeUtils";
+import { formatTime } from "../utils/FormatTime";
 
 export const useStopWatch = () => {
 
@@ -16,26 +17,38 @@ export const useStopWatch = () => {
     // Start time is the time in which the stop watch session has started
     const [startTime, setStartTime] = useState<number>(getCurrentTime());
 
+    // Accumulatedtime accounts for the time the timer spent pausing
+    const [accumulatedTime, setAccumulatedTime] = useState<number>(0);
+
     const handleStartStop = () => {
-        setIsRunning(!isRunning);
-        //
-        if (newSession) {
+        if (!newSession) {
             setStartTime(getCurrentTime());
-            setNewSession(false);
+            setAccumulatedTime(0);
+            setNewSession(true);
         }
+        // paused
+        if (isRunning) {
+            setAccumulatedTime((prevAccumulatedTime) => prevAccumulatedTime + (getCurrentTime() - startTime));
+        } else {
+            // resumed
+            setStartTime(getCurrentTime());
+        }
+        setIsRunning(!isRunning);
     }
 
     const handleReset = () => {
         setIsRunning(false);
         setTime(0);
-        setNewSession(true)
+        setAccumulatedTime(0);
+        setStartTime(getCurrentTime());
+        setNewSession(false);
         steLapTimes([]);
     }
 
     const handleLap = () => {
         if (isRunning) {
             // Add a new lap time to the list, treating it as a stack
-            const lapTime = getCurrentTime() - startTime;
+            const lapTime = time;
             steLapTimes((prevTimes) => [lapTime, ...prevTimes]);
         }
     }
@@ -46,13 +59,13 @@ export const useStopWatch = () => {
 
         if (isRunning) {
             interval = setInterval(() => {
-                let change = getCurrentTime() - startTime; 
-                setTime(change);
+                let change = getCurrentTime() - startTime;
+                setTime(change + accumulatedTime);
             }, 10)
         }
 
         return () => clearInterval(interval);
     }, [isRunning]);
 
-    return { time, isRunning, lapTimes, handleStartStop, handleReset, handleLap}
+    return { time, isRunning, lapTimes, handleStartStop, handleReset, handleLap }
 }
