@@ -6,6 +6,20 @@ it("formatMs calculates 1000 ms correctly", () => {
   expect(formatMs(1000)).toEqual("00:00:01.000");
 });
 
+it("formatMs calculates 0 ms correctly", () => {
+  expect(formatMs(0)).toEqual("00:00:00.000");
+});
+
+it("formatMs calculates 12 hours, 34 minutes, 56 seconds, and 789 ms correctly", () => {
+  let ms = 0;
+  ms += 12 * 60 * 60 * 1000; // 12 hours
+  ms += 34 * 60 * 1000; // 34 minutes
+  ms += 56 * 1000; // 56 seconds
+  ms += 789; // 789 ms
+
+  expect(formatMs(ms)).toEqual("12:34:56.789");
+});
+
 it("renders all required buttons", async () => {
   const { queryByText } = render(<App />);
 
