@@ -45,10 +45,27 @@ const StopWatch = () => {
         ${milliseconds.toString().padStart(3, '0')}`;
     }
 
-    //Effect hook to handle running state, and updating time
+    //useEffect to update timer for the running state
+    useEffect (() => {
+        let timer: NodeJS.Timeout | null = null;
 
+        //If StopWatch is running, start timer by adding 10ms 
+        if (isRunning) {
+            timer = setInterval (() => {
+                setTime(prevTime => prevTime +10);
+            }, 10);
 
+        //If the stopwatch pauses (Time is not resetted), stop the timer 
+        }else if (time !=0) {
+            clearInterval(timer);
+        }
+
+        //Clean up function that when isRunnign state or time changes, timer stops and cleanup process occurs
+        return () => {clearInterval(timer as NodeJS.Timeout);
+    };
+    }, [isRunning, time]);
 }
+
 
 
 
