@@ -7,16 +7,20 @@ export const formatMs = (ms: number) => {
   // round ms to integer
   ms = Math.round(ms);
 
+  const hours = Math.floor(ms / 1000 / 60 / 60);
+  ms = ms - hours * 1000 * 60 * 60;
+
   const minutes = Math.floor(ms / 1000 / 60);
   ms = ms - minutes * 1000 * 60;
 
   const seconds = Math.floor(ms / 1000);
   ms = ms - seconds * 1000;
 
+  const hoursStr = hours.toString().padStart(2, "0");
   const minutesStr = minutes.toString().padStart(2, "0");
   const secondsStr = seconds.toString().padStart(2, "0");
   const msStr = ms.toString().padStart(3, "0");
-  return `${minutesStr}:${secondsStr}:${msStr}`;
+  return `${hoursStr}:${minutesStr}:${secondsStr}.${msStr}`;
 };
 
 /**

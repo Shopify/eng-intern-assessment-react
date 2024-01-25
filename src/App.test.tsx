@@ -2,8 +2,8 @@ import React from "react";
 import { fireEvent, render, act } from "@testing-library/react";
 import App, { formatMs } from "./App";
 
-it("formatMs calculates 1000ms correctly", () => {
-  expect(formatMs(1000)).toEqual("00:01:000");
+it("formatMs calculates 1000 ms correctly", () => {
+  expect(formatMs(1000)).toEqual("00:00:01.000");
 });
 
 it("renders all required buttons", async () => {
@@ -24,33 +24,33 @@ it("measures 1 second correctly", async () => {
   [start, stop].forEach((e) => expect(e).toBeTruthy());
 
   // timer starts at 0
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     fireEvent.click(start);
   });
 
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // after 1 second passes, the timer displays exactly 1 second
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     fireEvent.click(stop);
   });
 
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // the timer does not advance when it's stopped
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 });
 
 it("resets time correctly when running", async () => {
@@ -63,34 +63,34 @@ it("resets time correctly when running", async () => {
   [start, reset].forEach((e) => expect(e).toBeTruthy());
 
   // timer starts at 0
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     fireEvent.click(start);
   });
 
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // after 1 second passes, the timer displays exactly 1 second
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     fireEvent.click(reset);
   });
 
   // the reset button stops and resets displayed time
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // the timer does not advance when it's stopped
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 });
 
 it("resets time correctly when stopped", async () => {
@@ -105,47 +105,47 @@ it("resets time correctly when stopped", async () => {
   [start, stop, reset].forEach((e) => expect(e).toBeTruthy());
 
   // timer starts at 0
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     fireEvent.click(start);
   });
 
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // after 1 second passes, the timer displays exactly 1 second
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     fireEvent.click(stop);
   });
 
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // the timer does not advance when it's stopped
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     fireEvent.click(reset);
   });
 
   // the reset button stops and resets displayed time
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
 
   // the timer does not advance when it's stopped
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 });
 
 it("records laps accurately", async () => {
@@ -157,36 +157,36 @@ it("records laps accurately", async () => {
   const [start, lap] = ["Start", "Lap"].map((t) => queryByText(t));
   [start, lap].forEach((e) => expect(e).toBeTruthy());
 
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     fireEvent.click(start);
   });
 
-  expect(queryByText("00:00:000")).toBeTruthy();
+  expect(queryByText(formatMs(0))).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(500);
   });
 
-  expect(queryByText("00:00:500")).toBeTruthy();
+  expect(queryByText(formatMs(500))).toBeTruthy();
 
   act(() => {
     fireEvent.click(lap);
   });
 
-  expect(queryByText("Lap 01: 00:00:500")).toBeTruthy();
+  expect(queryByText(`Lap 01: ${formatMs(500)}`)).toBeTruthy();
 
   act(() => {
     jest.advanceTimersByTime(500);
   });
 
-  expect(queryByText("00:01:000")).toBeTruthy();
+  expect(queryByText(formatMs(1000))).toBeTruthy();
 
   act(() => {
     fireEvent.click(lap);
   });
 
-  expect(queryByText("Lap 01: 00:00:500")).toBeTruthy();
-  expect(queryByText("Lap 02: 00:01:000")).toBeTruthy();
+  expect(queryByText(`Lap 01: ${formatMs(500)}`)).toBeTruthy();
+  expect(queryByText(`Lap 02: ${formatMs(1000)}`)).toBeTruthy();
 });
