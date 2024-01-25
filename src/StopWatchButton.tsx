@@ -9,5 +9,10 @@ type buttonProps = {
 
 export default function StopWatchButton(props: buttonProps) {
   const { type, onClick } = props;
-  return <button onClick={onClick}>{type.toUpperCase()}</button>;
+
+  return (
+    <button className={type} onClick={onClick}>
+      {type}
+    </button>
+  );
 }

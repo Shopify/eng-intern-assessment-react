@@ -42,37 +42,37 @@ export default function StopWatch() {
   };
 
   const onLap = () => {
-    setLaps([...laps, time]);
+    setLaps([time, ...laps]);
   };
 
   return (
     <div className="stopwatch-wrapper">
       <div className="timer-wrapper">
         <p className="stopwatch-text">{getPrettyTime(time)}</p>
-      </div>
-      <div className="buttons-wrapper">
-        {timerOn ? (
-          <StopWatchButton type="lap" onClick={onLap} />
-        ) : (
-          <StopWatchButton type="reset" onClick={onReset} />
-        )}
-        {timerOn ? (
-          <StopWatchButton type="stop" onClick={onStop} />
-        ) : (
-          <StopWatchButton type="start" onClick={onStart} />
-        )}
+        <div className="buttons-wrapper">
+          {timerOn ? (
+            <StopWatchButton type="lap" onClick={onLap} />
+          ) : (
+            <StopWatchButton type="reset" onClick={onReset} />
+          )}
+          {timerOn ? (
+            <StopWatchButton type="stop" onClick={onStop} />
+          ) : (
+            <StopWatchButton type="start" onClick={onStart} />
+          )}
+        </div>
       </div>
       <div className="laps-wrapper">
-        {laps.map((lap: any, index: number) => (
-          <div key={index} className="lap-wrapper">
-            <p>Lap {index + 1}</p>
-            <p>{getPrettyTime(lap)}</p>
-          </div>
-        ))}
         <div className="lap-wrapper">
           <p>Lap {laps.length + 1}</p>
           <p>{getPrettyTime(time)}</p>
         </div>
+        {laps.map((lap: any, index: number) => (
+          <div key={index} className="lap-wrapper">
+            <p>Lap {laps.length - index}</p>
+            <p>{getPrettyTime(lap)}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
