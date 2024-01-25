@@ -35,7 +35,7 @@ export default function StyledStopWatchWrapper({ children }: StyledStopWatchWrap
     };
 
     return (
-        <div style={divStyling}>
+        <div style={divStyling} data-testid="stopWatchWrapper">
             {children}
         </div>
     );

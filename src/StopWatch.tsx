@@ -49,7 +49,7 @@ interface TimerDigits {
   return (
     <StyledStopWatchWrapper>
       <h2>Diego's Stopwatch</h2>
-      <div>Time: {new Date(time).toISOString().slice(firstDigits, lastDigits)}</div>
+      <div data-testid="timerDigits">Time: {new Date(time).toISOString().slice(firstDigits, lastDigits)}</div>
       { running ? (
       <StyledButtonWrapper>
         <StopWatchButton color={"#f44336"} hover={"#da190b"} onClick={stopStopwatch} text="Stop" />
