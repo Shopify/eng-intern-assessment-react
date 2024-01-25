@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+interface Props{
+    text:string
+}
+export default function StopWatchButton(props:Props) {
     return(
-        <div></div>
+        <div>
+            <button className="btn btn-primary">{props.text}</button>
+        </div>
     )
 }
