@@ -29,10 +29,16 @@ export default function StopWatch() {
     );
   };
 
+  //stopTime pauses the interval
   const stopTime = () => {
     window.clearInterval(timer);
-    // setTimer(null);
-    console.log(timer);
+    setTimer(null);
+  };
+
+  //resetTime makes stopwatch go back to 0
+  const resetTime = () => {
+    stopTime();
+    setDuration(0);
   };
 
   return (
@@ -40,6 +46,7 @@ export default function StopWatch() {
       <p>{duration}</p>
       <button onClick={startTime}>Start</button>
       <button onClick={stopTime}>Stop</button>
+      <button onClick={resetTime}>Reset</button>
     </>
   );
 }
