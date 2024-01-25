@@ -14,6 +14,23 @@
 - [x] Test your code using React Testing Library:
     - [x] Write unit tests for the stopwatch functionality to ensure it works correctly.
     - [x] Verify that the stopwatch starts, stops, resets, and records laps as expected.
+    
+    - [x] Tests to add:
+        Start/Stop/Reset Buttons:
+        - [x] Start button starts the timer
+        - [x] Stop button stops the timer
+        - [x] Reset button resets the timer
+        Lap Button:
+        - [x] Lap button adds a lap
+        - [x] Lap button adds a lap with the correct time
+        - [x] Lap button adds a lap with the correct time when the timer is stopped
+        - [x] Lap button adds a lap with the correct time when the timer is reset
+        Workout Button:
+        - [x] Increase workout cannot be clicked when the timer is running (only in stop state)
+        Scrolling Background:
+        - [x] Background scrolls when the timer is running
+        - [x] Background does not scroll when the timer is stopped
+        - [x] Background scrolls in relation to workout stat (faster or slower)
 
 - [x] Code documentation:
     - [x] Document your code by adding comments and explanatory notes where necessary.

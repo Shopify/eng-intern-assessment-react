@@ -1,11 +1,12 @@
 @keyframes scrollBackground {
     0% { background-position: 0 0; }
     100% { background-position: -2048px 0; }
-}
-
-.scrolling-background {
+  }
+  
+  .scrolling-background {
     width: 100%;
-    height: 200px;
-    background-image: url('/public/assets/mariotrack-infinitescroll.png');
+    height: 488px; /* height of the png */
+    /* the background-image property applied via inline styles in component */
     background-repeat: repeat-x;
-}
+  }
+  
