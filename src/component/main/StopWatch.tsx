@@ -24,6 +24,13 @@ export default function StopWatch() {
   //Represents the initial state of the timer, true if first, false after
   const initialStartRef = useRef(true);
 
+  //Represents the reset state. True on reset
+  const onResetRef = useRef(false);
+  //Holds the delay value of the laps. Incremented by 250 each lap
+  const delayRef = useRef(0);
+  //Represent the timer to reset lap compoenent. depend on delayRef value
+  let lapsDelayTimer: NodeJS.Timeout;
+
   //State that holds the time of the stopwatch
   const [timeState, setTimeState] = useState({
     time: initialTime,
@@ -81,14 +88,16 @@ export default function StopWatch() {
 
         //Sets value
         initialStartRef.current = true;
+        onResetRef.current = false;
 
-        //Set the current time to currentTime plus the pause time accumulated if it was pause
+        //Set the current and captured time to currentTime plus the pause time accumulated if it was pause
         setTimeState((prev) => {
           return {
             ...prev,
             dateTime: {
               ...prev.dateTime,
               currentTime: prev.dateTime.currentTime + pauseDuration,
+              capturedTime: prev.dateTime.capturedTime + pauseDuration,
             },
           };
         });
@@ -113,12 +122,20 @@ export default function StopWatch() {
     //Set TimeState and Laps to intial value
     if (btnClick === "Reset") {
       if (btnState.btnType.btn4) {
-        setLapsState(() => {
-          return {
-            lapNumber: 0,
-            component: [],
-          };
-        });
+        onResetRef.current = true;
+        lapsDelayTimer = setTimeout(
+          //Wait for the laps animation to finish before setting to initial value
+          () => {
+            setLapsState(() => {
+              return {
+                lapNumber: 0,
+                component: [],
+              };
+            });
+          },
+          delayRef.current <= 1000 ? 3000 : delayRef.current + 1200
+        );
+
         setTimeState(() => {
           return {
             time: initialTime,
@@ -203,6 +220,13 @@ export default function StopWatch() {
     });
   };
 
+  //Clean up function
+  useEffect(() => {
+    return () => {
+      clearTimeout(lapsDelayTimer);
+    };
+  }, []);
+
   //useEffect to track changes buttons and lap number then start the stopwatch timer
   useEffect(() => {
     const startTimer = setInterval(() => {
@@ -278,7 +302,6 @@ export default function StopWatch() {
           component: [...prev.component, timeState.lapTime],
         };
       });
-      console.log("here");
 
       //Reset the lap current time to start counting back to zero
       //Set the lap captured time to now
@@ -304,6 +327,9 @@ export default function StopWatch() {
     ? btnState.btnType.btn3
     : btnState.btnType.btn4;
 
+  //Component renders all the time, make sure delay ref is set to zero
+  delayRef.current = 0;
+
   return (
     <div className="main">
       <div className="container">
@@ -327,22 +353,24 @@ export default function StopWatch() {
       </div>
       <div className={classes["lap-container"]}>
         <ul className={classes.ul}>
-          {laps.component
-            .slice()
-            .reverse()
-            .map((lap, i) => {
-              return (
-                <li className={classes.li}>
-                  <Lap
-                    className="lap"
-                    key={i}
-                    compLen={laps.component.length}
-                    index={i}
-                    lap={lap}
-                  />
-                </li>
-              );
-            })}
+          {laps.component.map((lap, i) => {
+            return (
+              <li title={i.toString()} key={i} className={classes.li}>
+                <Lap
+                  className={
+                    onResetRef.current
+                      ? i % 2 === 0
+                        ? "startLeft"
+                        : "startRight"
+                      : "idle"
+                  }
+                  delay={(delayRef.current += 250)}
+                  index={i}
+                  lap={lap}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

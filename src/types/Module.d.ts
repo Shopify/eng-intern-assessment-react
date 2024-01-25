@@ -57,7 +57,7 @@ declare type DateTimeType = {
  */
 declare type LapProps = {
   index: number;
-  compLen: number;
   className: string;
+  delay: number;
   lap: TimeType;
 };

@@ -13,6 +13,8 @@
 }
 
 .ul {
+  display: flex;
+  flex-direction: column-reverse;
   list-style: none;
   position: absolute;
   height: auto;
@@ -22,13 +24,8 @@
 }
 
 .li {
-  display: flex;
-  justify-content: space-between;
   position: relative;
   margin-bottom: 5px;
-  background-color: #0f3283;
-  border-radius: 25px;
-  padding: 10px;
 }
 
 .lap-container {
