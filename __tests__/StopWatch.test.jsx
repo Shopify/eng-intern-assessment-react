@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent, act } from '@testing-library/react';
 import "@testing-library/jest-dom";
-import StopWatch from '../src/StopWatch';
+import StopWatch from '../src/components/StopWatch';
 
 describe("Stopwatch component", () => {
 

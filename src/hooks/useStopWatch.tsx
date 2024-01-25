@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import StopWatchButton from './StopWatchButton'
-import { formatTime } from './utils/FormatTime';
-import { Laps } from './components/Laps';
+import { useState, useEffect } from "react";
 
-export default function StopWatch() {
+export const useStopWatch = () => {
 
     // Time is in seconds
     const [time, setTime] = useState<number>(0);
@@ -41,13 +38,6 @@ export default function StopWatch() {
         return () => clearInterval(interval);
     }, [isRunning]);
 
-    return(
-        <div>
-            <div id={"time"}>{formatTime(time)}</div>
-            <StopWatchButton onClick={handleStartStop} label={isRunning ? "Stop" : "Start"}/>
-            <StopWatchButton onClick={handleReset} label={"Reset"}/>
-            <StopWatchButton onClick={handleLap} label={"Lap"}/>
-            <Laps lapTimes={lapTimes} />
-        </div>
-    )
+
+    return { time, isRunning, lapTimes, handleStartStop, handleReset, handleLap}
 }
