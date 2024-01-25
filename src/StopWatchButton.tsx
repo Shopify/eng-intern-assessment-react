@@ -25,14 +25,14 @@ export interface StopWatchButtonProps {
  * @param onReset   handler once stopwatch is reset
  * @param onLap     handler once a lap is being save
  *  
- * @returns  
+ * @returns Stop watch buttons
  */
 export default function StopWatchButton({isUsed, isRunning, onStart, onStop, onReset, onLap}: StopWatchButtonProps) {
     return (
         <div className='button-container'>
-            <button className='button reset' disabled={!isUsed || isRunning} onClick={onReset}>Reset</button>
-            <button className='button' disabled={!isUsed || !isRunning} onClick={onLap}>Lap</button>
-            <button className={(!isRunning || !isUsed)? 'button start': 'button stop'} onClick={isRunning ? onStop : onStart}>{isRunning ? "Stop": "Start"}</button>
+            <button className='button reset' disabled={!isUsed || isRunning} onClick={onReset} data-testid="reset-test-btn">Reset</button>
+            <button className='button' disabled={!isUsed || !isRunning} onClick={onLap} data-testid="lap-test-btn">Lap</button>
+            <button className={(!isRunning || !isUsed)? 'button start': 'button stop'} onClick={isRunning ? onStop : onStart} data-testid="start-stop-test-btn">{isRunning ? "Stop": "Start"}</button>
         </div>
     )
 }
