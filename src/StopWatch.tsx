@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
+type props = {
+  time: number;
+};
+
+export default function StopWatch(props: props) {
+  const { time } = props;
+  return <p>{time}</p>;
 }
