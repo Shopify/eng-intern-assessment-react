@@ -1,5 +1,5 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import StopWatchButton from '../StopWatchButton';
+import StopWatchButton from '../components/Controls';
 import React from 'react';
 
 describe('StopWatchButton', () => {

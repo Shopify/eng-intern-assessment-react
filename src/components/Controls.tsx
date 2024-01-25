@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import '../styles/StopWatchButton.css'
-import calculateTime from './helpers/calculateTime';
+import '../../styles/Controls.css'
+import calculateTime from '../helpers/calculateTime';
 
 interface Lap {
   id: number;
   time: string;
 }
 
-type StopWatchButtonProps = {
+type StopWatchButtonsProps = {
   setTimeInSeconds: Function,
   timeInSeconds: number,
   setTimerOn: Function
 };
 
-export default function StopWatchButton(props:StopWatchButtonProps) {
+export default function StopWatchButtons(props:StopWatchButtonsProps) {
   const { setTimeInSeconds, timeInSeconds, setTimerOn } = props;
   const [laps, setLaps] = useState<Lap[]>([]);
   

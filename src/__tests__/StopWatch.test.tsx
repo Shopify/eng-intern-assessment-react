@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import StopWatch from '../StopWatch';
+import StopWatch from '../components/StopWatch';
 import React from 'react';
 
 describe('StopWatch', () => {
 
-  it('should render StopWatch component, with the display showing "00:00:00"', () => {
+  it('should render Display component, with the display showing "00:00:00"', () => {
     render(<StopWatch />);
   
     const display = screen.getByTitle('display');
