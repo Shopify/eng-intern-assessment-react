@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useState } from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 interface DropDownProps {
     onChange: ChangeEventHandler<HTMLSelectElement>,
@@ -6,8 +6,6 @@ interface DropDownProps {
 }
 
 export default function PrecisionDropDown(props: DropDownProps) {
-  const [selectedOption, setSelectedOption] = useState('Option 1');
-
   return (
       <select value={props.selectedOption} onChange={props.onChange}>
         <option value="Seconds">Seconds</option>
