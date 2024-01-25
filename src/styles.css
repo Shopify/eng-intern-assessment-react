@@ -1,0 +1,73 @@
+
+body {
+  background-color: #111111; /* Set the background color of the entire web app to dark grey */
+  color: white; /* Set the default text color to white */
+  font-family: Monaco, Arial, Helvetica, sans-serif;
+}
+
+ul {
+  list-style-type: none; /* Hide the default bullet points in the unordered list */
+}
+
+/* container for our main stopwatch component */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.time-text {
+  font-size: 8em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------------- button styling ------------------- */
+.stop-watch-button {
+  font-family: Monaco, Arial, sans-serif;
+  margin: 20px;
+  color: white;
+  background-color: grey;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+.stop-watch-button:disabled{
+  background-color: #767a7d;
+  color: #afb4b7;
+  cursor: not-allowed;
+}
+
+.start-button {
+  background-color: #89ba6e;
+}
+.stop-button {
+  background-color: #b56c63;
+}
+.lap-button {
+  background-color: #71addd;
+}
+.reset-button {
+  background-color: #ed846d;
+}
+/* --------------------------------------------------------- */
+
+
+.lap-list-container {
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.lap-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -54,14 +54,16 @@ export default function StopWatch() {
 
     return (
         <div>
-            <div>
+            <div className="time-text">
                 {formatTime(timeSinceStart)}
             </div>
-            <StopWatchButton type="Start" isDisabled={isRunning} clickHandler={startStopHandler}/>
-            <StopWatchButton type="Reset" isDisabled={isRunning} clickHandler={resetHandler}/>
-            <StopWatchButton type="Lap" isDisabled={!isRunning} clickHandler={lapsHandler}/>
-            <StopWatchButton type="Stop" isDisabled={!isRunning} clickHandler={startStopHandler}/>
-            <div>
+            <div className="button-container">
+                <StopWatchButton type="Start" isDisabled={isRunning} clickHandler={startStopHandler} className="stop-watch-button start-button"/>
+                <StopWatchButton type="Reset" isDisabled={isRunning} clickHandler={resetHandler} className="stop-watch-button reset-button"/>
+                <StopWatchButton type="Stop" isDisabled={!isRunning} clickHandler={startStopHandler} className="stop-watch-button stop-button"/>
+                <StopWatchButton type="Lap" isDisabled={!isRunning} clickHandler={lapsHandler} className="stop-watch-button lap-button"/>
+            </div>
+            <div className="lap-list-container">
                 <ul>
                     {laps.map((lap) => (
                         <li key={lap.number}>

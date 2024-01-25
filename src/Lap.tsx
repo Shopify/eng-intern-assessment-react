@@ -7,8 +7,8 @@ interface LapProps {
 
 export default function Lap({time, lapNumber} : LapProps) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '200px' }}>
-        <p>Lap {lapNumber}</p>
+      <div className="lap-item">
+        <p>LAP {lapNumber}</p>
         <p> {time}</p>
       </div>
     )
