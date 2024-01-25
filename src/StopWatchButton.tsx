@@ -1,16 +1,28 @@
 import React from 'react'
 
 interface StopWatchButtonProps{
-    onClick: () => void;
-    text: string;
-    disabled?: boolean;
+    onStart: () => void;
+    onStop: ()=> void;
+    onReset: () => void;
+    onLap: () => void;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onClick, text, disabled }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onStart, onStop, onReset, onLap }) => {
     return (
-        <button onClick={onClick} disabled={disabled}>
-            {text}
-        </button>
+        <div>
+            <button onClick={onStart}>
+                Start
+            </button>
+            <button onClick={onStop}>
+                Stop
+            </button>
+            <button onClick={onReset}>
+                Reset
+            </button>
+            <button onClick={onLap}>
+                Lap
+            </button>
+        </div>
     )
 }
 
