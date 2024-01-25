@@ -2,17 +2,17 @@ import React from 'react'
 
 type StopWatchButtonProps = {
     timerOn: boolean
-    handleStartTimer: () => void
+    handleToggleTimer: () => void
     handleLapResetClick: () => void
 }
 
-export default function StopWatchButton({ timerOn, handleStartTimer, handleLapResetClick }: StopWatchButtonProps) {
+export default function StopWatchButton({ timerOn, handleToggleTimer, handleLapResetClick }: StopWatchButtonProps) {
 
 
 
     return (
         <div>
-            <button onClick={() => handleStartTimer()}>{timerOn === false ? "Start" : "Stop"}</button>
+            <button onClick={() => handleToggleTimer()}>{timerOn === false ? "Start" : "Stop"}</button>
             <button onClick={() => handleLapResetClick()}>{timerOn === false ? "Reset" : "Lap"}</button>
         </div>
     )

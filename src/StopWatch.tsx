@@ -8,7 +8,28 @@ export default function StopWatch() {
     const [seconds, setSeconds] = useState<number>(0)
     const [laps, setLaps] = useState<number>(0)
 
-    const handleStartStopTimer = () => {
+    useEffect(() => {
+        let stopWatchInterval: NodeJS.Timer
+
+        if (timerOn) {
+            stopWatchInterval = setInterval(updateTimer, 1000)
+        }
+        return () => { clearInterval(stopWatchInterval) }
+
+    }, [timerOn, seconds])
+
+    const updateTimer = () => {
+        setSeconds((seconds) => {
+            if (seconds === 59) {
+                setMinutes(minutes + 1)
+                return 0
+            } else {
+                return seconds + 1
+            }
+        })
+    }
+
+    const handleToggleTimer = () => {
         if (timerOn === false) {
             setTimerOn(true)
         } else {
@@ -24,15 +45,17 @@ export default function StopWatch() {
         } else {
             setLaps(laps + 1)
         }
-
     }
+
+
 
     return (
         <div>
             <p className='timer__display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}</p>
+            <p>{laps}</p>
             <StopWatchButton
                 timerOn={timerOn}
-                handleStartTimer={handleStartStopTimer}
+                handleToggleTimer={handleToggleTimer}
                 handleLapResetClick={handleLapResetClick}
             />
         </div>
