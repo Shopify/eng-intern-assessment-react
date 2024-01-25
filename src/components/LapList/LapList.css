@@ -10,7 +10,6 @@
     margin-bottom: 12px;
 }
 
-.lap {
-    width: 100%;
-    margin-top: 24px;
+.lap-item-label {
+    font-weight: 700;
 }

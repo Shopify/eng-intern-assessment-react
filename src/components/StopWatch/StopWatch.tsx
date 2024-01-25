@@ -36,6 +36,7 @@ export function StopWatch() {
 
   const handleReset = () => {
     handleStop();
+    setLapData([]);
     setTime(0);
   };
 
@@ -47,11 +48,11 @@ export function StopWatch() {
   return (
     <main className="container">
       <section>
-        <h1>Stopwatch App</h1>
-        <p>Made by Richard Marquez</p>
+        <h1 className="stopwatch-header-title">Stopwatch App</h1>
+        <p className="stopwatch-header-caption">Made by Richard Marquez</p>
       </section>
       <section className="app">
-        <div className="stopwatch-text">{formatTime(time)}</div>
+        <h2 className="stopwatch-text">{formatTime(time)}</h2>
         <StopWatchButton
           isStopWatchActive={active}
           handleStart={handleStart}

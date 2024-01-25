@@ -11,8 +11,8 @@ export function LapList({ laps = [] }: LapListProps) {
         <ul className="lap-list">
           {laps.map((currLap, i) => (
             <li data-testid={`lap-item-${i + 1}`} className="lap-item" key={i}>
-              <div>Lap {i + 1}</div>
-              <div>{formatTime(currLap)}</div>
+              <div className="lap-item-label">Lap {i + 1}</div>
+              <div className="lap-item-time">{formatTime(currLap)}</div>
             </li>
           ))}
         </ul>

@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 .btn {
@@ -15,6 +17,7 @@
 
 .btn:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
 .btn:active {
@@ -30,9 +33,9 @@
 }
 
 .lapBtn {
-    background-color: gray;
+    background-color: #91949a;
 }
 
 .resetBtn {
-    background-color: gray;
+    background-color: #91949a;
 }
