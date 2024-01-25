@@ -7,9 +7,8 @@ export default function StopWatchButton() {
     const [counting, setCounting] = useState<boolean>(false);
     const [lap, setLap] = useState<number>(0);
 
- const handleClick = () => {setLap(lap + 1);}
-
- ;
+ const handleClick = () => {setLap(lap + 1);};
+ 
   return (
     <div>
       <h1>Stopwatch</h1>
@@ -22,6 +21,7 @@ export default function StopWatchButton() {
         <button onClick={() =>{setCounting(false)}}>Stop</button>
         <button onClick={() =>{setTimer(0)}}>Reset</button>
         <button onClick={handleClick}>Lap</button>
+        <button onClick={() => {setLap(0)}}>Reset Laps</button>
       </div>
       <p>Laps: {lap}</p>
     </div>
