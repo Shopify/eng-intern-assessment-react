@@ -1,0 +1,19 @@
+.stopwatch {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.stopwatch-text {
+    font-weight: 400;
+    font-size: 48px;
+}
+
+.stopwatch-header-title {
+    font-size: 32px;
+    font-weight: 500;
+}
+.stopwatch-header-caption {
+    color: #91949a;
+    font-weight: 300;
+}

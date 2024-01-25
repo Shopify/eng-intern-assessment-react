@@ -1,0 +1,15 @@
+.lap-list {
+    /* removes default styling of a ul */
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.lap-item-label {
+    font-weight: 700;
+}
