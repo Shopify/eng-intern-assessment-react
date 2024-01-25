@@ -198,10 +198,10 @@ table tbody tr {
     border-radius: 2vh;
   }
   .lap-table th {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .lap-table td {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
   .lap-table tbody {
     max-height: 400px;
@@ -210,7 +210,7 @@ table tbody tr {
 
 @media (min-width: 1025px) {
   .lap-table-container {
-    width: 60%;
+    width: 50%;
     height: 260px;
   }
   .control-buttons {
