@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import StopWatchButton from './StopWatchButton'
-
+import StopWatchButton from '../StopWatchButton/StopWatchButton'
+import './StopWatch.scss'
 
 export default function StopWatch() {
 
@@ -54,9 +54,9 @@ export default function StopWatch() {
     }
 
 
-    // Calculates time between each lap
+    // Calculates time between each lap 
     const calculateLapTime = () => {
-        const lapsArray = [...laps]
+        const lapsArray: Lap[] = [...laps]
         const lastLap = laps[laps.length - 1]
         let calculatedCentiSeconds: number
         let calculatedSeconds: number
@@ -92,7 +92,10 @@ export default function StopWatch() {
         setLaps(lapsArray)
     }
 
+
+    // Records lap into laps array
     const recordLap = () => {
+        // if first lap recorded, no need to calculate time
         if (laps.length === 0) {
             const lap: Lap = {
                 realMinutes: minutes,
@@ -103,14 +106,15 @@ export default function StopWatch() {
                 calculatedCentiseconds: centiseconds
             }
             setLaps([lap])
-
         } else {
+            // if not the first lap recorded, need to calculate lap time
             calculateLapTime()
         }
     }
 
+    // Sets timerOn to opposite boolean when toggled
     const handleToggleTimer = () => {
-        if (timerOn === false) {
+        if (!timerOn) {
             setTimerOn(true)
         } else {
             setTimerOn(false)
@@ -119,12 +123,14 @@ export default function StopWatch() {
 
 
     const handleLapResetClick = () => {
-        if (timerOn === false) {
+        // If timerOn is false, reset time and laps
+        if (!timerOn) {
             setMinutes(0)
             setSeconds(0)
             setCentiseconds(0)
             setLaps([])
         } else {
+            // If timerOn is true, record the lap
             recordLap()
         }
     }
@@ -133,13 +139,20 @@ export default function StopWatch() {
 
     return (
         <div className='timer'>
-            <p className='timer__time-display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}.{centiseconds < 10 ? "0" + centiseconds : centiseconds}</p>
+
+            <h1 className='timer__time-display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}.{centiseconds < 10 ? "0" + centiseconds : centiseconds}</h1>
+
             <StopWatchButton
                 timerOn={timerOn}
                 handleToggleTimer={handleToggleTimer}
                 handleLapResetClick={handleLapResetClick}
             />
+
             <div className='timer__lap-display'>
+                <div className="timer__lap-display__header-container">
+                    <h2 className='timer__lap-display__header'>Lap Number</h2>
+                    <h2 className='timer__lap-display__header'>Lap Time</h2>
+                </div>
                 {laps.map((lap, index) => {
                     return (
                         <div key={index} className='timer__lap-display__container'>
@@ -149,6 +162,7 @@ export default function StopWatch() {
                     )
                 })}
             </div>
+
         </div>
     )
 }

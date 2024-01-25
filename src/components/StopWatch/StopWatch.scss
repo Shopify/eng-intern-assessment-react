@@ -1,0 +1,38 @@
+.timer {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    width: 20rem;
+    margin: 12rem auto;
+    padding: 2rem;
+
+    &__time-display {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    &__lap-display {
+
+        margin-top: 1rem;
+
+        &__header-container {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 2rem;
+        }
+
+        &__container {
+            display: flex;
+            justify-content: space-around;
+
+            &:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+        }
+
+        &__text {
+            font-size: 1.25rem;
+            width: 5rem;
+            text-align: center;
+        }
+    }
+}
