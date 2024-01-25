@@ -73,7 +73,6 @@ export default function Stopwatch(){
             Precision:
             <PrecisionDropDown onChange={togglePrecision} selectedOption={precisonLookUpTable[lastDigits]}/>
         </StyledPrecisionDropDownWrapper>
-        
       </StyledTimerToggleWrapper>
       { running ? (
       <StyledButtonWrapper>

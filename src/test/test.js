@@ -19,7 +19,18 @@ describe('Stopwatch Component', () => {
   test('number of digits in the timer can be manipulated', () => {
     render(<Stopwatch />);
     const timerDigits = screen.getByTestId('timerDigits');
-    expect(timerDigits).toBeInTheDocument();
+
+    const dropdown = screen.getByTestId("dropdown")
+    fireEvent.click(dropdown);
+
+    const seconds = screen.getByTestId("seconds");
+    fireEvent.click(seconds);
+    expect(timerDigits).toHaveTextContent('00:00:00');
+
+    const hoursButton = screen.getByText('Hide Hours');
+    fireEvent.click(hoursButton);
+
+    expect(screen.getByText('Show Hours')).toBeInTheDocument() //only passes if the toggle hours button click is successful;
     expect(timerDigits).toHaveTextContent('00:00');
   });
 
