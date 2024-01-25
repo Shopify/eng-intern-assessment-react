@@ -16,24 +16,29 @@ export default function StopWatch() {
     const [timerOn, setTimerOn] = useState<boolean>(false)
     const [minutes, setMinutes] = useState<number>(0)
     const [seconds, setSeconds] = useState<number>(0)
-    const [centiSeconds, setCentiSeconds] = useState<number>(0)
+    const [centiseconds, setCentiseconds] = useState<number>(0)
     const [laps, setLaps] = useState<Lap[]>([])
 
 
+    // Runs everytime timerON and seconds is updated
     useEffect(() => {
         let stopWatchInterval: NodeJS.Timer
-
+        // If timerOn is true, invokes updateTimer function every centisecond
         if (timerOn) {
-            stopWatchInterval = setInterval(updateTimer, 100)
+            stopWatchInterval = setInterval(updateTimer, 10)
         }
+        // stops setInterval function
         return () => { clearInterval(stopWatchInterval) }
 
     }, [timerOn, seconds])
 
 
+    // Function that updates the stop watch when it is clicked on
     const updateTimer = () => {
-        setCentiSeconds((centiSecond) => {
-            if (centiSecond === 9) {
+        setCentiseconds((centiSecond) => {
+            // If centisecond is about to reach 100, reset back to zero and 1 will be added to seconds
+            if (centiSecond === 99) {
+                // If seconds is about to reach 60, reset back to zero and 1 will be added to minutes
                 if (seconds === 59) {
                     setMinutes(minutes + 1)
                     setSeconds(0)
@@ -42,13 +47,16 @@ export default function StopWatch() {
                 }
                 return 0
             } else {
+                // timer counts in centiseconds
                 return centiSecond + 1
             }
         })
     }
 
 
+    // Calculates time between each lap
     const calculateLapTime = () => {
+        const lapsArray = [...laps]
         const lastLap = laps[laps.length - 1]
         let calculatedCentiSeconds: number
         let calculatedSeconds: number
@@ -56,6 +64,7 @@ export default function StopWatch() {
 
         calculatedMinutes = minutes - lastLap.realMinutes
 
+        // prevent negative second values and subtracts 1 from minutes if there would have been a negative second value
         if (seconds < lastLap.realSeconds) {
             calculatedMinutes--
             calculatedSeconds = 60 + seconds - lastLap.realSeconds
@@ -63,33 +72,38 @@ export default function StopWatch() {
             calculatedSeconds = seconds - lastLap.realSeconds
         }
 
-        if (centiSeconds < lastLap.realCentiseconds) {
+        // prevent negative centisecond values and subtracts 1 from minutes if there would have been a negative centisecond value
+        if (centiseconds < lastLap.realCentiseconds) {
             calculatedSeconds--
-            calculatedCentiSeconds = 100 + centiSeconds - lastLap.realCentiseconds
+            calculatedCentiSeconds = 100 + centiseconds - lastLap.realCentiseconds
         } else {
-            calculatedCentiSeconds = centiSeconds - lastLap.realCentiseconds
+            calculatedCentiSeconds = centiseconds - lastLap.realCentiseconds
         }
 
-        laps.push({
+        // pushes new lap object into laps array
+        lapsArray.push({
             realMinutes: minutes,
             realSeconds: seconds,
-            realCentiseconds: centiSeconds,
+            realCentiseconds: centiseconds,
             calculatedMinutes: calculatedMinutes,
             calculatedSeconds: calculatedSeconds,
             calculatedCentiseconds: calculatedCentiSeconds
         })
+        setLaps(lapsArray)
     }
 
     const recordLap = () => {
         if (laps.length === 0) {
-            laps.push({
+            const lap: Lap = {
                 realMinutes: minutes,
                 realSeconds: seconds,
-                realCentiseconds: centiSeconds,
+                realCentiseconds: centiseconds,
                 calculatedMinutes: minutes,
                 calculatedSeconds: seconds,
-                calculatedCentiseconds: centiSeconds
-            })
+                calculatedCentiseconds: centiseconds
+            }
+            setLaps([lap])
+
         } else {
             calculateLapTime()
         }
@@ -108,7 +122,7 @@ export default function StopWatch() {
         if (timerOn === false) {
             setMinutes(0)
             setSeconds(0)
-            setCentiSeconds(0)
+            setCentiseconds(0)
             setLaps([])
         } else {
             recordLap()
@@ -119,7 +133,7 @@ export default function StopWatch() {
 
     return (
         <div className='timer'>
-            <p className='timer__time-display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}.{centiSeconds < 10 ? "0" + centiSeconds : centiSeconds}</p>
+            <p className='timer__time-display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}.{centiseconds < 10 ? "0" + centiseconds : centiseconds}</p>
             <StopWatchButton
                 timerOn={timerOn}
                 handleToggleTimer={handleToggleTimer}
