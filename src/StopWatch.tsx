@@ -156,9 +156,11 @@ export default function StopWatch() {
           <p>Interval</p>
           <p>Time</p>
         </div>
-        {laps.map((lap) => (
-          <LapItem key={lap.number} lap={lap} />
-        ))}
+        {[...laps]
+          .sort((firstItem, secondItem) => secondItem.number - firstItem.number)
+          .map((lap) => (
+            <LapItem key={lap.number} lap={lap} />
+          ))}
       </div>
     </>
   );
