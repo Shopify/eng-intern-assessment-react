@@ -40,10 +40,11 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #cccccc;
+  width: 200px;
+  padding: 16px;
   text-align: center;
 }
-
 
 .wrapper {
   width: 100%;
@@ -55,10 +56,21 @@ button {
   text-align: center;
 }
 
+.stopwatch-wrapper {
+  border: 1px solid #000;
+  padding: 16px;
+}
+
 .button-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   text-align: center;
+}
+
+.stopwatch-text {
+  font-size: 2rem;
+  font-family: monospace;
+  font-weight: 700;
 }

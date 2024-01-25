@@ -1,6 +1,6 @@
 import React from "react";
 
-type buttonTypes = "start" | "stop" | "reset";
+type buttonTypes = "start" | "stop" | "reset" | "lap";
 
 type buttonProps = {
   type: buttonTypes;

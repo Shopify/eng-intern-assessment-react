@@ -1,10 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import StopWatchButton from "./StopWatchButton";
 
-type props = {
-  time: number;
-};
+export default function StopWatch() {
+  const [time, setTime] = useState(0);
+  const [laps, setLaps] = useState([]);
+  const [timerOn, setTimerOn] = useState(false);
 
-export default function StopWatch(props: props) {
-  const { time } = props;
-  return <p>{time}</p>;
+  const getPrettyTime = (time: number) => {
+    const minutes = ("0" + Math.floor((time / 60000) % 60)).slice(-2);
+    const seconds = ("0" + Math.floor((time / 1000) % 60)).slice(-2);
+    const milliseconds = ("0" + ((time / 10) % 100)).slice(-2);
+
+    return `${minutes}:${seconds}:${milliseconds}`;
+  };
+
+  useEffect(() => {
+    let interval: any = null;
+
+    if (timerOn) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    } else if (!timerOn) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [timerOn]);
+
+  const onStart = () => {
+    setTimerOn(true);
+  };
+
+  const onStop = () => {
+    setTimerOn(false);
+  };
+
+  const onReset = () => {
+    setTime(0);
+    setLaps([]);
+  };
+
+  return (
+    <div className="stopwatch-wrapper">
+      <p className="stopwatch-text">{getPrettyTime(time)}</p>
+      <div className="button-wrapper">
+        {timerOn ? (
+          <StopWatchButton type="lap" onClick={() => {}} />
+        ) : (
+          <StopWatchButton type="reset" onClick={onReset} />
+        )}
+        {timerOn ? (
+          <StopWatchButton type="stop" onClick={onStop} />
+        ) : (
+          <StopWatchButton type="start" onClick={onStart} />
+        )}
+      </div>
+    </div>
+  );
 }
