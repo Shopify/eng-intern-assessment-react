@@ -65,7 +65,7 @@ export default function StopWatch() {
             </div>
             <div className="lap-list-container">
                 <ul>
-                    {laps.map((lap) => (
+                    {laps.slice().reverse().map((lap) => (
                         <li key={lap.number}>
                             <Lap lapNumber={lap.number} time={lap.time}/>
                         </li>
