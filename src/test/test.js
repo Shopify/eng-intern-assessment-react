@@ -17,7 +17,7 @@ describe('Stopwatch Component', () => {
   });
 
   test('number of digits in the timer can be manipulated', () => {
-    render(<Stopwatch firstDigits={14} lastDigits={19}/>);
+    render(<Stopwatch />);
     const timerDigits = screen.getByTestId('timerDigits');
     expect(timerDigits).toBeInTheDocument();
     expect(timerDigits).toHaveTextContent('00:00');

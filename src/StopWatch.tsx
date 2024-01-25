@@ -9,24 +9,19 @@ import PrecisionDropDown from './PrecisionDropDown';
 type firstDigits = 11 | 14; // have the first digits be hours or minutes
 type lastDigits = 19 | 21 | 22; // have the last digits be seconds, tenths of a second, or hundredths of a second
 
-interface TimerDigits {
-    firstDigits: firstDigits,
-    lastDigits: lastDigits
-  }
-
 const precisonLookUpTable = {
     19: "Seconds",
     21: "Deciseconds",
     22: "Centiseconds"
 }
 
-export default function Stopwatch(props: TimerDigits){
+export default function Stopwatch(){
   const [time, setTime] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false);
   const [showHours, setShowHours] = useState<boolean>(true)
   const [laps, setLaps] = useState<number[]>([]);
-  const [firstDigits, setFirstDigits] = useState<firstDigits>(props.firstDigits)
-  const [lastDigits, setLastDigits] = useState<lastDigits>(props.lastDigits)
+  const [firstDigits, setFirstDigits] = useState<firstDigits>(11)
+  const [lastDigits, setLastDigits] = useState<lastDigits>(22)
   
   // use effect block will update the time every 10 milliseconds
   useEffect(() => {
