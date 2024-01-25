@@ -46,7 +46,7 @@ export default function LapTable({
                         : lap == sLapTime.index && "s")
                     }`}
                   >
-                    {lap}
+                    {(10 - lap > 0 && "0") + lap}
                   </td>
                   <td>{dateFormatter.formatLapTime(lap_time)}</td>
                   <td className="overall-time">
