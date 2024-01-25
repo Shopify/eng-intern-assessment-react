@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+
 import StopwatchButton from "./StopWatchButton";
 import ScrollingBackground from "./ScrollingBackground";
 import SonicSprite from "./SonicSprite";
+import GameScene from "./GameScene";
 
 type LapRecord = {
   time: number;
@@ -70,21 +72,6 @@ export default function Stopwatch() {
 
   return (
     <div>
-      <ScrollingBackground isRunning={isRunning} workout={workout} />
-
-      <div>{formatTime(time)}</div>
-      <div>Current Distance: {formatDistance(distance)}</div>
-      <div>Current Lap: {formatTime(currentLap)}</div>
-      <div>Current Workout Level: {workout}</div>
-
-      <SonicSprite isRunning={isRunning} workout={workout} />
-
-      <StopwatchButton action={start} label="Start" />
-      <StopwatchButton action={stop} label="Stop" />
-      <StopwatchButton action={reset} label="Reset" />
-      <StopwatchButton action={recordLap} label="Lap" />
-      <StopwatchButton action={increaseWorkout} label="Increase Workout" />
-
       <div>
         <h3>Record Board:</h3>
         {laps
@@ -97,6 +84,19 @@ export default function Stopwatch() {
             </div>
           ))}
       </div>
+
+      <StopwatchButton action={start} label="Start" />
+      <StopwatchButton action={stop} label="Stop" />
+      <StopwatchButton action={reset} label="Reset" />
+      <StopwatchButton action={recordLap} label="Lap" />
+      <StopwatchButton action={increaseWorkout} label="Increase Workout" />
+
+      <GameScene isRunning={isRunning} workout={workout} />
+
+      <div>{formatTime(time)}</div>
+      <div>Current Distance: {formatDistance(distance)}</div>
+      <div>Current Lap: {formatTime(currentLap)}</div>
+      <div>Current Workout Level: {workout}</div>
     </div>
   );
 }

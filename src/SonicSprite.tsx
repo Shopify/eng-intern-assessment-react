@@ -1,4 +1,5 @@
 import React from 'react';
+import './SonicSprite.css';
 
 import standGif from '../public/images/sonic/sonic-stand.gif';
 import slowRunGif from '../public/images/sonic/sonic-slow-run.gif';
