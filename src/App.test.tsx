@@ -148,3 +148,45 @@ it("resets time correctly when stopped", async () => {
   expect(queryByText("00:00:000")).toBeTruthy();
 });
 
+it("records laps accurately", async () => {
+  jest.useFakeTimers();
+
+  const { queryByText } = render(<App />);
+
+  // buttons exist
+  const [start, lap] = ["Start", "Lap"].map((t) => queryByText(t));
+  [start, lap].forEach((e) => expect(e).toBeTruthy());
+
+  expect(queryByText("00:00:000")).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(start);
+  });
+
+  expect(queryByText("00:00:000")).toBeTruthy();
+
+  act(() => {
+    jest.advanceTimersByTime(500);
+  });
+
+  expect(queryByText("00:00:500")).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(lap);
+  });
+
+  expect(queryByText("Lap 01: 00:00:500")).toBeTruthy();
+
+  act(() => {
+    jest.advanceTimersByTime(500);
+  });
+
+  expect(queryByText("00:01:000")).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(lap);
+  });
+
+  expect(queryByText("Lap 01: 00:00:500")).toBeTruthy();
+  expect(queryByText("Lap 02: 00:01:000")).toBeTruthy();
+});
