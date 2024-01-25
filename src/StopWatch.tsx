@@ -94,6 +94,7 @@ export default function StopWatch() {
     stopTime();
     setDuration(0);
     setHasStarted(false);
+    setLaps([]);
   };
 
   //calculateLapTime uses previousLapTime and current duration to find the delta between both of them
