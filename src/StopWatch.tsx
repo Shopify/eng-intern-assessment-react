@@ -6,17 +6,17 @@ import StyledStopWatchWrapper from './StylingComponents/StyledStopWatchWrapper';
 type firstDigits = 11 | 14; // have the first digits be hours or minutes
 type lastDigits = 19 | 21 | 22; // have the last digits be seconds, tenths of a second, or hundredths of a second
 
-const divStyling = {
-    fontFamily: "sans-serif",
-    alignContent: "middle"
-}
-
-export default function Stopwatch(){
+interface TimerDigits {
+    firstDigits: firstDigits,
+    lastDigits: lastDigits
+  }
+  
+  export default function Stopwatch(props: TimerDigits){
   const [time, setTime] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false);
   const [laps, setLaps] = useState<number[]>([]);
-  const firstDigits: firstDigits = 14;
-  const lastDigits: lastDigits = 22;
+  const firstDigits = props.firstDigits
+  const lastDigits = props.lastDigits
 
   
   // use effect block will update the time every 10 milliseconds
@@ -71,3 +71,8 @@ export default function Stopwatch(){
     </StyledStopWatchWrapper>
   );
 };
+
+Stopwatch.defaultProps = {
+    firstDigits: 11,
+    lastDigits: 22
+  }
