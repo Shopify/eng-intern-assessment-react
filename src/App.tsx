@@ -60,20 +60,20 @@ export default function App() {
   }, [running]);
 
   const startTimer = () => {
-    console.log("Start");
+    console.debug("Start");
     setStartMs(performance.now());
     setRunning(true);
   };
 
   const stopTimer = () => {
-    console.log("Stop");
+    console.debug("Stop");
     setRunning(false);
     // update pausedMs
     setPausedMs(timerMs);
   };
 
   const resetTimer = () => {
-    console.log("Reset");
+    console.debug("Reset");
     setRunning(false);
     // reset runningMs and pausedMs
     setTimerMs(0);
@@ -81,7 +81,7 @@ export default function App() {
   };
 
   const addLap = () => {
-    console.log("Lap");
+    console.debug("Lap");
     setLapTimes([runningTimeString, ...lapTimes]);
   };
 
