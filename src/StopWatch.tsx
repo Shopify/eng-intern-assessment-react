@@ -30,7 +30,7 @@ export default function StopWatch({start, time, setTime}: Props) {
         <div className='stopwatch'>
             <img className="logo" src={logo} alt="Shopify_Logo"></img>
             <p className='title'>Miruo's Stopwatch</p>
-            <p className='stopwatch-time'>{hours}:{minutes.toString().padStart(2,"0")}:
+            <p data-testid="stopwatch-time" className='stopwatch-time'>{hours}:{minutes.toString().padStart(2,"0")}:
             {seconds.toString().padStart(2, "0")}:
             {milliseconds.toString().padStart(2, "0")}
             </p>

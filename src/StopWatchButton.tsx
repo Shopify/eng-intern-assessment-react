@@ -28,10 +28,10 @@ export default function StopWatchButton({setStart, setStop, setReset, setLap, st
     //Renders stop and start buttons based on start prop
     return(
         <div className='stopwatch-buttons'>
-            {!start && <button className="start-button" onClick={handleStart}>Start</button>}
-            {start && <button className="stop-button" onClick={handleStop}>Stop</button>}
-            <button className="lap-button" onClick={handleLap}>Lap</button>
-            <button className="reset-button" onClick={handleReset}>Reset</button>
+            {!start && <button data-testid="start-button" className="start-button" onClick={handleStart}>Start</button>}
+            {start && <button data-testid="stop-button" className="stop-button" onClick={handleStop}>Stop</button>}
+            <button data-testid="lap-button" className="lap-button" onClick={handleLap}>Lap</button>
+            <button data-testid="reset-button" className="reset-button" onClick={handleReset}>Reset</button>
         </div>
     )
 }
