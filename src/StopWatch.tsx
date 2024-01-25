@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import StopWatchButton from "./StopWatchButton";
 
 //define time proportions
 const msInSecond = 1000;
@@ -46,9 +47,15 @@ export default function StopWatch() {
   const [timer, setTimer] = useState<number | null>(null);
   const [previousLapTime, setPreviousLapTime] = useState<number | null>(null);
 
+  //isRunning and hasStarted are used to control buttons states
+  const [isRunning, setIsRunning] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+
   //startTime calculates and sets the total duration of the timer in milliseconds.
   const startTime = () => {
     lastTick.current = Date.now();
+    setIsRunning(true);
+    setHasStarted(true);
     setTimer(
       window.setInterval(() => {
         const now = Date.now();
@@ -62,6 +69,7 @@ export default function StopWatch() {
   //stopTime pauses the interval
   const stopTime = () => {
     window.clearInterval(timer);
+    setIsRunning(false);
     setTimer(null);
   };
 
@@ -69,6 +77,7 @@ export default function StopWatch() {
   const resetTime = () => {
     stopTime();
     setDuration(0);
+    setHasStarted(false);
   };
 
   //calculateLapTime uses previousLapTime and current duration to find the delta between both of them
@@ -82,6 +91,14 @@ export default function StopWatch() {
     console.log(calculateLapTime(duration));
   };
 
+  const toggleStopWatch = () => {
+    if (isRunning) {
+      stopTime();
+    } else {
+      startTime();
+    }
+  };
+
   const formattedStopWatch = formatStopWatch(duration);
 
   return (
@@ -90,10 +107,27 @@ export default function StopWatch() {
         {formattedStopWatch.h}:{formattedStopWatch.m}:{formattedStopWatch.s}:
         {formattedStopWatch.ms}
       </p>
-      <button onClick={startTime}>Start</button>
-      <button onClick={stopTime}>Stop</button>
-      <button onClick={resetTime}>Reset</button>
-      <button onClick={lap}>Reset</button>
+      <StopWatchButton
+        action={toggleStopWatch}
+        isRunning={isRunning}
+        hasStarted={hasStarted}
+        kind="player"
+        defaultLabel="Start"
+      />
+      <StopWatchButton
+        action={resetTime}
+        isRunning={isRunning}
+        hasStarted={hasStarted}
+        kind="reset"
+        defaultLabel="Reset"
+      />
+      <StopWatchButton
+        action={lap}
+        isRunning={isRunning}
+        hasStarted={hasStarted}
+        kind="lap"
+        defaultLabel="Lap"
+      />
     </>
   );
 }
