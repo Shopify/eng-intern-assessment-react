@@ -19,7 +19,7 @@ export default function StopWatch() {
         let interval: number;
 
         if(run){
-            interval = setInterval(() => {
+            interval = window.setInterval(() => {
                 setSeconds((seconds: number) => {
                     if(seconds >= 59){
                         setMinutes((minutes: number) =>{
@@ -36,19 +36,24 @@ export default function StopWatch() {
                         return seconds + 1;
                     }
 
-                }
-                
-                
-                )
-            })
+                });
+
+                return 0;
+            }, 10);
         }
+        return () => clearInterval(interval);
     
     
-}, )
+}, [run])
 
 
 
     return(
-        <div></div>
+        <div>
+             <div className="timeDisplay"> 
+                {formatZero(hours)} : {formatZero(minutes)} :{" "} 
+                {formatZero(seconds)} 
+            </div> 
+        </div>
     )
 }
