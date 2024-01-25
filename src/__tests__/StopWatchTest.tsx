@@ -40,11 +40,6 @@ test('Stops the stopwatch', async () => {
     // ARRANGE
     render(<StopWatch />);
     const startButton = screen.getByText(/Start/i)
-    const advanceTimer = () => {
-        act(() => {
-            jest.advanceTimersByTime(500); // Simulate 0.5 second
-        });
-    }
 
     // ACT
     fireEvent.click(startButton);
@@ -84,24 +79,25 @@ test('records laps', async () => {
     render(<StopWatch />);
     const startButton = screen.getByText(/Start/i)
     const lapButton = screen.getByText(/Lap/i)
-    const advanceTimer = () => {
-        act(() => {
-            jest.advanceTimersByTime(500); // Simulate 0.5 second
-        });
-    }
 
     // ACT
     fireEvent.click(startButton);
-    advanceTimer()
+    advanceTimer(100)
     fireEvent.click(lapButton);
-    advanceTimer()
+    advanceTimer(200)
     fireEvent.click(lapButton);
-    advanceTimer()
+    advanceTimer(300)
     fireEvent.click(lapButton);
-    advanceTimer() // Final advanceTimer()  is required to prevent duplicate display of "00:00:02.000" for timer and lap which causes test to fail
 
     // ASSERT
-    expect(screen.getByText(/00:00:00.500/i)); // Lap 1
-    expect(screen.getByText(/00:00:01.500/i)); // Lap 2
-    expect(screen.getByText(/00:00:02.000/i)); // Lap 3
+    expect(screen.getByText(/00:00:00.100/i)); // Lap 1
+    expect(screen.getByText(/00:00:00.200/i)); // Lap 2
+    expect(screen.getByText(/00:00:00.300/i)); // Lap 3
 });
+
+// Function to simulate timer advance
+const advanceTimer = (timeToAdvance: number = 500) => {
+    act(() => {
+        jest.advanceTimersByTime(timeToAdvance);
+    });
+}

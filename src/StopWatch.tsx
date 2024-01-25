@@ -52,7 +52,7 @@ export default function StopWatch() {
       />
       <ul>
         {laps.map((lap, index) => (
-          <li key={index}>{formatTime(lap)}</li>
+          <li key={index}>{formatTime(index > 0 ? lap-laps[index-1] : lap)}</li> // Display difference in time since previous lap
         ))}
       </ul>
     </div>
