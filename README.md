@@ -8,4 +8,5 @@ A Stop Watch application built out of the Shopify 2024 Summer Internship Technic
 ![stopwatch](https://github.com/dantan380/shopify-tech-challenge/blob/main/images/stopwatch.png?raw=true)
 
 ## Demo
-![stopwatch-demo](https://github.com/dantan380/shopify-tech-challenge/blob/main/images/stopwatch-demo.mov)
+Please see this link for a demo of the Stop Watch in action!
+https://www.loom.com/share/387d00cc05e340f1aa645bf86dd6b7ed
