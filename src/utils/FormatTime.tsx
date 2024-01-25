@@ -7,10 +7,12 @@ const addLeadingZero = (num: number): string => {
     return `${num < 10 ? '0' : ''}${num}`
 }
 
-export const formatTime = (timeInSeconds: number): string => {
-    const hours: number = Math.floor(timeInSeconds / 3600);
-    const minutes: number = Math.floor((timeInSeconds % 3600) / 60);
-    const seconds: number = timeInSeconds % 60;
+// Format time to have milisecond pression, up to the hundredth's place
+export const formatTime = (timeInMiliseconds: number): string => {
+    const hours: number = Math.floor(timeInMiliseconds / (1000 * 60 * 60));
+    const minutes: number = Math.floor((timeInMiliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds: number = Math.floor((timeInMiliseconds % (1000 * 60)) / 1000);
+    const miliseconds: number = timeInMiliseconds % 100;
 
-    return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`
+    return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}.${addLeadingZero(miliseconds)}`
 } 

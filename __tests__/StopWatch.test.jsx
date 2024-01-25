@@ -18,7 +18,7 @@ describe("Stopwatch component", () => {
         const { getByText, getByTestId } = render(<StopWatch />);
         
         // Time format
-        expect(getByText(/00:00:00/)).toBeInTheDocument();
+        expect(getByText(/00:00:00.00/)).toBeInTheDocument();
 
         expect(getByText(/Start/)).toBeInTheDocument();
         expect(getByText(/Reset/)).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("Stopwatch component", () => {
         const startButton = getByText(/Start/);
 
         fireEvent.click(startButton);
-        expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
+        expect(getByText(/\d{2}:\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
     })
 
     test("Start and stop stopwatch after 2 seconds", async () => {
@@ -42,7 +42,7 @@ describe("Stopwatch component", () => {
 
         // Start timer
         fireEvent.click(startStopButton);
-        expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
+        expect(getByText(/\d{2}:\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
 
         act(() => {
             jest.advanceTimersByTime(2 * 1000);
@@ -50,7 +50,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/00:00:02/)).toBeInTheDocument();
+        expect(getByText(/00:00:02.00/)).toBeInTheDocument();
     });
 
     test("Start and stop stopwatch edge case: seconds to minutes", async () => {
@@ -59,7 +59,7 @@ describe("Stopwatch component", () => {
         
         // Start timer
         fireEvent.click(startStopButton);
-        expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
+        expect(getByText(/\d{2}:\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
 
         act(() => {
             jest.advanceTimersByTime(59 * 1000);
@@ -67,7 +67,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/00:00:59/)).toBeInTheDocument();
+        expect(getByText(/00:00:59.00/)).toBeInTheDocument();
 
         // Start timer
         fireEvent.click(startStopButton);
@@ -78,7 +78,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/00:01:00/)).toBeInTheDocument();
+        expect(getByText(/00:01:00.00/)).toBeInTheDocument();
     });
 
     test("Start and stop stopwatch edge case: minutes to hours", async () => {
@@ -87,7 +87,7 @@ describe("Stopwatch component", () => {
 
         // Start timer
         fireEvent.click(startStopButton);
-        expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
+        expect(getByText(/\d{2}:\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
 
         act(() => {
             jest.advanceTimersByTime(59 * 60 * 1000);
@@ -95,7 +95,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/00:59:00/)).toBeInTheDocument();
+        expect(getByText(/00:59:00.00/)).toBeInTheDocument();
 
         // Start timer
         fireEvent.click(startStopButton);
@@ -106,7 +106,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/01:00:00/)).toBeInTheDocument();
+        expect(getByText(/01:00:00.00/)).toBeInTheDocument();
     });
 
     test("Start stopwatch and stop stopwatch edge case: 99 hours to 100 hours", async () => {
@@ -115,7 +115,7 @@ describe("Stopwatch component", () => {
         
         // Start timer
         fireEvent.click(startStopButton);
-        expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
+        expect(getByText(/\d{2}:\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
 
         act(() => {
             jest.advanceTimersByTime(99 * 60 * 60 * 1000);
@@ -123,7 +123,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/99:00:00/)).toBeInTheDocument();
+        expect(getByText(/99:00:00.00/)).toBeInTheDocument();
 
         // Start timer
         fireEvent.click(startStopButton);
@@ -134,7 +134,7 @@ describe("Stopwatch component", () => {
 
         // Stop timer
         fireEvent.click(startStopButton);
-        expect(getByText(/100:00:00/)).toBeInTheDocument();
+        expect(getByText(/100:00:00.00/)).toBeInTheDocument();
     })
 
     test("Start and reset stopwatch after 2 seconds", async () => {
@@ -144,7 +144,7 @@ describe("Stopwatch component", () => {
         const lapButton = getByText(/Lap/);
         
         fireEvent.click(startButton);
-        expect(getByText(/\d{2}:\d{2}:\d{2}/)).toBeInTheDocument();
+        expect(getByText(/\d{2}:\d{2}:\d{2}.\d{2}/)).toBeInTheDocument();
 
         act(() => {
             jest.advanceTimersByTime(2000);
@@ -153,7 +153,7 @@ describe("Stopwatch component", () => {
         fireEvent.click(lapButton);
 
         fireEvent.click(resetButton);
-        expect(getByText(/00:00:00/)).toBeInTheDocument();
+        expect(getByText(/00:00:00.00/)).toBeInTheDocument();
         expect(getByTestId("lap-times")).toBeEmptyDOMElement();
     })
 
