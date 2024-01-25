@@ -37,6 +37,7 @@ export function StopWatch() {
   const handleReset = () => {
     handleStop();
     setLapData([]);
+    setCurrentLapTime(0);
     setTime(0);
   };
 
