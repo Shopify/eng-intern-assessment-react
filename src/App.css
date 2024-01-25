@@ -1,5 +1,35 @@
-.stopwatch-body
-{
-    background-color: blueviolet;
-    padding: 20px 20px 20px 20px;
+#page-container{ 
+    padding-top:30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-width:100vw;
+}
+#stopwatch-time
+{ 
+    font-size:10vw;   
+    background-color:antiquewhite;
+    border-style:solid;
+    border-radius: .5em;
+    padding:0px 40px 15px 40px;
+} 
+#button-container{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+button{
+    width: 90px;
+    margin: 10px 10px 100px 10px;
+}
+.list-item{
+    text-align: center; 
+    border-style: solid;
+    background-color:aliceblue;
+}
+#Start{
+    background-color: green;
+}
+#Stop{
+    background-color:red;
 }

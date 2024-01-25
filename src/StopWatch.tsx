@@ -9,7 +9,7 @@ export default function StopWatch() {
     const [paused, setPaused]=useState(true)
     const [laps, setLaps]=useState([])
 
-    //useEffect hook that sets up a timer to increment secondsPassed state every second.
+    //useEffect hook that sets up a timer to increment millisecondsPassed state every 10 ms.
     //Cleans up interval when component dismounts.
     useEffect(()=>{
         let interval: NodeJS.Timer;
@@ -25,6 +25,8 @@ export default function StopWatch() {
 
         return () => clearInterval(interval);
     }) 
+
+    //OnClick functions passed to StopWatchButton components
     const play=()=>{
         setPaused(false);
     }
@@ -38,6 +40,7 @@ export default function StopWatch() {
     const lap=()=>{ 
         setLaps([...laps,millisecondsPassed]);
     }
+    //End OnClick functions
 
     //Uses secondsPassed and returns it in the format 00:00.00
     //NOTE: timer only increments "millisecondsPassed" every 10 seconds, so only 100 "millisecondsPassed" per second.
@@ -53,18 +56,21 @@ export default function StopWatch() {
     };  
     return(
         <>
-            <div className="stopwatch-body">{formatTime(millisecondsPassed)}</div>
-            <div className="button-container"> 
-                 
-                {paused ? <StopWatchButton onButtonClick={reset} text="Reset"/> : <StopWatchButton onButtonClick={lap} text="Lap"/>}
-                {paused ? <StopWatchButton onButtonClick={play} text="Start"/> : <StopWatchButton onButtonClick={pause} text="Stop"/>}
- 
+            <div id="stopwatch-container">
+                <div id="stopwatch-time">{formatTime(millisecondsPassed)}</div>
+
+                <div id="button-container">  
+                    {paused ? <StopWatchButton onButtonClick={reset} text="Reset"/> : <StopWatchButton onButtonClick={lap} text="Lap"/>}
+                    {paused ? <StopWatchButton onButtonClick={play} text="Start"/> : <StopWatchButton onButtonClick={pause} text="Stop"/>} 
+                </div> 
+
+                
+                <ul className="list-group">
+                    {laps.map((item,index) => (
+                        <li className="list-group-item list-item" key={index}>Lap {index+1}: {formatTime(item)} </li>
+                    ))}
+                </ul>
             </div> 
-            <ul>
-                {laps.map((item,index) => (
-                    <li key={index}>Lap {index+1} {formatTime(item)}</li>
-                ))}
-            </ul>
         </> 
     )
 }
