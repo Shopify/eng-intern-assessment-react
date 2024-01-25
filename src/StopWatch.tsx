@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import LapItem, { Lap } from "./LapItem";
 
 //define time proportions
 const msInSecond = 1000;
@@ -56,6 +57,8 @@ export default function StopWatch() {
   const [isRunning, setIsRunning] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
 
+  const [laps, setLaps] = useState<Lap[]>([]);
+
   //startTime calculates and sets the total duration of the timer in milliseconds.
   const startTime = () => {
     lastTick.current = Date.now();
@@ -78,6 +81,14 @@ export default function StopWatch() {
     setTimer(null);
   };
 
+  const toggleStopWatch = () => {
+    if (isRunning) {
+      stopTime();
+    } else {
+      startTime();
+    }
+  };
+
   //resetTime makes stopwatch go back to 0
   const resetTime = () => {
     stopTime();
@@ -87,21 +98,25 @@ export default function StopWatch() {
 
   //calculateLapTime uses previousLapTime and current duration to find the delta between both of them
   const calculateLapTime = (currentDuration: number) => {
-    const lapTime = previousLapTime ? currentDuration - previousLapTime : 0;
+    const lapTime = previousLapTime
+      ? currentDuration - previousLapTime
+      : currentDuration;
     setPreviousLapTime(currentDuration);
     return lapTime;
   };
 
   const lap = () => {
-    console.log(calculateLapTime(duration));
-  };
-
-  const toggleStopWatch = () => {
-    if (isRunning) {
-      stopTime();
-    } else {
-      startTime();
-    }
+    const formattedTime = formatStopWatch(duration);
+    const formattedLapTime = formatStopWatch(calculateLapTime(duration));
+    const lapData = {
+      number: laps.length + 1,
+      interval: `${twoDigits(formattedLapTime.s)}s ${twoDigits(
+        formattedLapTime.ms
+      )}`,
+      time: `${twoDigits(formattedTime.s)}s ${twoDigits(formattedTime.ms)}`,
+    };
+    const newLaps = laps.concat(lapData);
+    setLaps(newLaps);
   };
 
   const formattedStopWatch = formatStopWatch(duration);
@@ -133,6 +148,17 @@ export default function StopWatch() {
         kind="lap"
         defaultLabel="Lap"
       />
+      <div>
+        <h2>Laps</h2>
+        <div style={{ display: "flex", gap: 10 }}>
+          <p>#</p>
+          <p>Interval</p>
+          <p>Time</p>
+        </div>
+        {laps.map((lap) => (
+          <LapItem key={lap.number} lap={lap} />
+        ))}
+      </div>
     </>
   );
 }
