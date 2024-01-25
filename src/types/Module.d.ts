@@ -39,3 +39,13 @@ declare type DateTimeType = {
   pausedTime: number;
   capturedTime: number;
 };
+
+/**
+ * TimeProps: holds laps time value utilize in Lap.tsx component as props
+ */
+declare type LapProps = {
+  index: number;
+  compLen: number;
+  className: string;
+  lap: TimeType;
+};

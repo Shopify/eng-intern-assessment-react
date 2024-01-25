@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StopWatchButton from "../common/button/StopWatchButton";
 import Time from "../common/time/Time";
+import Lap from "../common/lap/Lap";
 
 //Declare and initalize an initialTime for the stopwatch
 const initialTime: TimeType = {
@@ -18,10 +19,23 @@ const initialDateTime: DateTimeType = {
 };
 
 export default function StopWatch() {
+  //Represents the initial state of the timer, true if first, false after
+  const initialStartRef = useRef(true);
+
   //State that holds the time of the stopwatch
   const [timeState, setTimeState] = useState({
     time: initialTime,
+    lapTime: initialTime,
     dateTime: initialDateTime,
+  });
+
+  //State that holds the laps component array of the stopwatch
+  const [laps, setLapsState] = useState<{
+    lapNumber: number;
+    component: TimeType[];
+  }>({
+    lapNumber: 0,
+    component: [],
   });
 
   /**
@@ -63,6 +77,9 @@ export default function StopWatch() {
         //Calculate the pause Duration: d = (now - timeOnStop)
         const pauseDuration = Date.now() - timeState.dateTime.pausedTime;
 
+        //Sets value
+        initialStartRef.current = true;
+
         //Set the current time to currentTime plus the pause time accumulated if it was pause
         setTimeState((prev) => {
           return {
@@ -88,6 +105,26 @@ export default function StopWatch() {
           },
         };
       });
+    }
+
+    //Condition If Reset button is click
+    //Set TimeState and Laps to intial value
+    if (btnClick === "Reset") {
+      if (btnState.btnType.btn4) {
+        setLapsState(() => {
+          return {
+            lapNumber: 0,
+            component: [],
+          };
+        });
+        setTimeState(() => {
+          return {
+            time: initialTime,
+            lapTime: initialTime,
+            dateTime: initialDateTime,
+          };
+        });
+      }
     }
     //Set the button state to know which button to activate or deactivate
     setBtnState((prev) => {
@@ -192,11 +229,69 @@ export default function StopWatch() {
       }
     }, 10);
 
+    //Seocond timer representing the laps timer
+    const startLapTimer = setInterval(() => {
+      if (btnState.btnType.btn2.isActive) {
+        setTimeState((prev) => {
+          //Calculate time difference, if initial lap, get the difference from start time else from time lap button was click
+          const timeDifference =
+            laps.lapNumber === 0
+              ? Date.now() - prev.dateTime.currentTime
+              : Date.now() - prev.dateTime.capturedTime;
+          const temp: TimeType = {
+            milli: prev.time.milli >= 1000 ? 0 : prev.time.milli + 10,
+            hour: Math.floor((timeDifference / (1000 * 60 * 60)) % 24),
+            minute: Math.floor((timeDifference / (1000 * 60)) % 60),
+            second: Math.floor((timeDifference / 1000) % 60),
+          };
+
+          return {
+            ...prev,
+            lapTime: temp,
+          };
+        });
+      }
+    }, 10);
+
     //Clear interval
     return () => {
+      clearInterval(startLapTimer);
       clearInterval(startTimer);
     };
-  }, [btnState.btnType.btn1, btnState.btnType.btn2]);
+  }, [btnState.btnType.btn1, btnState.btnType.btn2, laps.lapNumber]);
+
+  //useEffect to track lap button click
+  useEffect(() => {
+    if (initialStartRef.current) {
+      initialStartRef.current = false;
+      return;
+    }
+
+    //Run function if stop button is active
+    if (btnState.btnType.btn2.isActive) {
+      //Set lap state with lapNumber and laptime
+      setLapsState((prev) => {
+        return {
+          lapNumber: prev.lapNumber + 1,
+          component: [...prev.component, timeState.lapTime],
+        };
+      });
+      console.log("here");
+
+      //Reset the lap current time to start counting back to zero
+      //Set the lap captured time to now
+      setTimeState((prev) => {
+        return {
+          ...prev,
+          lapTime: initialTime,
+          dateTime: {
+            ...prev.dateTime,
+            capturedTime: Date.now(),
+          },
+        };
+      });
+    }
+  }, [btnState.btnType.btn3]);
 
   //Hanlde which button to display for the first button
   const hanldeStartStop = btnState.btnType.btn1.isActive
@@ -227,6 +322,24 @@ export default function StopWatch() {
             name={hanldeLapReset.label}
           />
         </div>
+      </div>
+      <div className="lap-container">
+        <ul className="ul">
+          {laps.component
+            .slice()
+            .reverse()
+            .map((lap, i) => {
+              return (
+                <Lap
+                  className="lap"
+                  key={i}
+                  compLen={laps.component.length}
+                  index={i}
+                  lap={lap}
+                />
+              );
+            })}
+        </ul>
       </div>
     </div>
   );
