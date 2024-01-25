@@ -1,0 +1,31 @@
+/* Style for the buttons */
+button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Style for the red "Stop" button */
+button#Stop {
+    background-color: #ff0000;
+}
+
+/* Style for the "Reset" and "Lap" buttons */
+button#Reset {
+    background-color: #808080;
+}
+
+/* Style for the red "Stop" button */
+button#Lap {
+    background-color: #808080;
+}
+
