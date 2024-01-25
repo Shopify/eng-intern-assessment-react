@@ -9,7 +9,7 @@ type StopWatchButtonProps = {
   isStopWatchActive: boolean;
 };
 
-type ActionType = "start" | "stop";
+type StopWatchAction = "start" | "stop";
 
 export function StopWatchButton({
   isStopWatchActive = false,
@@ -18,7 +18,7 @@ export function StopWatchButton({
   handleReset,
   handleLap,
 }: StopWatchButtonProps) {
-  const [action, setAction] = useState<ActionType>("start");
+  const [action, setAction] = useState<StopWatchAction>("start");
 
   const onStart = () => {
     handleStart();
@@ -35,7 +35,7 @@ export function StopWatchButton({
     setAction("start");
   };
   return (
-    <div className="btn-container">
+    <section className="btn-container">
       <button
         className="btn lapBtn"
         disabled={!isStopWatchActive}
@@ -63,6 +63,6 @@ export function StopWatchButton({
       <button className="btn resetBtn" onClick={onReset}>
         Reset
       </button>
-    </div>
+    </section>
   );
 }
