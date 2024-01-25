@@ -54,7 +54,7 @@ export default function App() {
       intervalId = setInterval(() => {
         // running ms = paused ms + diff since last paused
         setTimerMs(pausedMs + performance.now() - startMs);
-      }, 10);
+      }, 1);
     }
     return () => clearInterval(intervalId);
   }, [running]);

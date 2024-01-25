@@ -44,14 +44,14 @@ it("measures 1 second correctly", async () => {
     fireEvent.click(start);
   });
 
-  expect(queryByText(formatMs(0))).toBeTruthy();
+  // check that it renders correctly for each millisecond
+  for (let i = 0; i < 1000; i += 1) {
+    expect(queryByText(formatMs(i))).toBeTruthy();
 
-  act(() => {
-    jest.advanceTimersByTime(1000);
-  });
-
-  // after 1 second passes, the timer displays exactly 1 second
-  expect(queryByText(formatMs(1000))).toBeTruthy();
+    act(() => {
+      jest.advanceTimersByTime(1);
+    });
+  }
 
   act(() => {
     fireEvent.click(stop);
