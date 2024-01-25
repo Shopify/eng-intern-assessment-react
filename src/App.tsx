@@ -31,6 +31,11 @@ export const formatMs = (ms: number): string => {
   return `${hoursStr}:${minutesStr}:${secondsStr}.${msStr}`;
 };
 
+type Lap = {
+  elapsedTime: number;
+  lapTime: number;
+};
+
 /**
  * This component handles the coordination between the display and buttons,
  * and holds the state for the timer itself.
@@ -50,7 +55,7 @@ export default function App() {
   const runningTimeString = useMemo(() => formatMs(timerMs), [timerMs]);
 
   // list of lap times
-  const [lapTimes, setLapTimes] = useState<Array<string>>([]);
+  const [laps, setLaps] = useState<Array<Lap>>([]);
 
   const [lapsParent] = useAutoAnimate();
 
@@ -88,13 +93,17 @@ export default function App() {
     setTimerMs(0);
     setPausedMs(0);
     // reset laps
-    setLapTimes([]);
+    setLaps([]);
   };
 
   const addLap = () => {
     console.debug("Lap");
     // add lap to top of array, so most recent laps are displayed first
-    setLapTimes([runningTimeString, ...lapTimes]);
+    const lap: Lap = {
+      elapsedTime: timerMs,
+      lapTime: timerMs - (laps.at(0)?.elapsedTime ?? 0),
+    };
+    setLaps([lap, ...laps]);
   };
 
   return (
@@ -107,18 +116,35 @@ export default function App() {
         <StopWatchButton onClick={addLap}>Lap</StopWatchButton>
         <StopWatchButton onClick={resetTimer}>Reset</StopWatchButton>
       </div>
-      <ul className="text-2xl" ref={lapsParent}>
-        {lapTimes.map((lapTime, idx) => {
-          return (
-            // reverse index keys so they stay stable when adding laps from the top
-            <li key={lapTimes.length - idx}>
-              {/* use string index to generate lap number */}
-              Lap {(lapTimes.length - idx).toString().padStart(2, "0")}:{" "}
-              {lapTime}
-            </li>
-          );
-        })}
-      </ul>
+      <table className="w-full table-fixed text-2xl">
+        <thead>
+          <tr>
+            <th className="w-1/5 text-left">Lap Number</th>
+            <th className="w-2/5 text-center">Elapsed Time</th>
+            <th className="w-2/5 text-center">Lap Time</th>
+          </tr>
+        </thead>
+        <tbody ref={lapsParent}>
+          {laps.map((lap, idx) => {
+            const lapNumber = laps.length - idx;
+            return (
+              // reverse index keys so they stay stable when adding laps from the top
+              <tr key={lapNumber} className="w-full">
+                {/* use string index to generate lap number */}
+                <td className="w-1/5 text-left">
+                  Lap {lapNumber.toString().padStart(2, "0")}:
+                </td>
+                <td className="w-2/5 text-center font-mono">
+                  {formatMs(lap.elapsedTime)}
+                </td>
+                <td className="w-2/5 text-center font-mono">
+                  {formatMs(lap.lapTime)}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </main>
   );
 }

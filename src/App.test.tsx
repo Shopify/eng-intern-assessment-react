@@ -189,7 +189,10 @@ it("records laps accurately", async () => {
     fireEvent.click(lap);
   });
 
-  expect(queryByText(`Lap 01: ${formatMs(500)}`)).toBeTruthy();
+  expect(queryByText(`Lap 01:`).nextSibling.textContent).toEqual(formatMs(500));
+  expect(queryByText(`Lap 01:`).nextSibling.nextSibling.textContent).toEqual(
+    formatMs(500),
+  );
 
   act(() => {
     jest.advanceTimersByTime(500);
@@ -201,8 +204,16 @@ it("records laps accurately", async () => {
     fireEvent.click(lap);
   });
 
-  expect(queryByText(`Lap 01: ${formatMs(500)}`)).toBeTruthy();
-  expect(queryByText(`Lap 02: ${formatMs(1000)}`)).toBeTruthy();
+  expect(queryByText(`Lap 01:`).nextSibling.textContent).toEqual(formatMs(500));
+  expect(queryByText(`Lap 02:`).nextSibling.textContent).toEqual(
+    formatMs(1000),
+  );
+  expect(queryByText(`Lap 01:`).nextSibling.nextSibling.textContent).toEqual(
+    formatMs(500),
+  );
+  expect(queryByText(`Lap 02:`).nextSibling.nextSibling.textContent).toEqual(
+    formatMs(500),
+  );
 });
 
 it("resets laps", async () => {
@@ -218,19 +229,19 @@ it("resets laps", async () => {
     fireEvent.click(lap);
   });
 
-  expect(queryByText(`Lap 01: ${formatMs(0)}`)).toBeTruthy();
+  expect(queryByText(`Lap 01:`)).toBeTruthy();
 
   act(() => {
     fireEvent.click(lap);
   });
 
-  expect(queryByText(`Lap 01: ${formatMs(0)}`)).toBeTruthy();
-  expect(queryByText(`Lap 02: ${formatMs(0)}`)).toBeTruthy();
+  expect(queryByText(`Lap 01:`)).toBeTruthy();
+  expect(queryByText(`Lap 02:`)).toBeTruthy();
 
   act(() => {
     fireEvent.click(reset);
   });
 
-  expect(queryByText(`Lap 01: ${formatMs(0)}`)).toBeFalsy();
-  expect(queryByText(`Lap 02: ${formatMs(0)}`)).toBeFalsy();
+  expect(queryByText(`Lap 01:`)).toBeFalsy();
+  expect(queryByText(`Lap 02:`)).toBeFalsy();
 });
