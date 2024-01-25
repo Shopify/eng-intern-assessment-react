@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 import { StyledButtonWrapper } from './StylingComponents/StyledButtonWrapper';
 import StyledStopWatchWrapper from './StylingComponents/StyledStopWatchWrapper';
+import { StyledTimerToggleWrapper } from './StylingComponents/StyledTimerToggleWrapper';
+import { StyledPrecisionDropDownWrapper } from './StylingComponents/StyledPrecisionDropDownWrapper';
+import PrecisionDropDown from './PrecisionDropDown';
 
 type firstDigits = 11 | 14; // have the first digits be hours or minutes
 type lastDigits = 19 | 21 | 22; // have the last digits be seconds, tenths of a second, or hundredths of a second
@@ -10,14 +13,20 @@ interface TimerDigits {
     firstDigits: firstDigits,
     lastDigits: lastDigits
   }
-  
-  export default function Stopwatch(props: TimerDigits){
+
+const precisonLookUpTable = {
+    19: "Seconds",
+    21: "Deciseconds",
+    22: "Centiseconds"
+}
+
+export default function Stopwatch(props: TimerDigits){
   const [time, setTime] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false);
+  const [showHours, setShowHours] = useState<boolean>(true)
   const [laps, setLaps] = useState<number[]>([]);
-  const firstDigits = props.firstDigits
-  const lastDigits = props.lastDigits
-
+  const [firstDigits, setFirstDigits] = useState<firstDigits>(props.firstDigits)
+  const [lastDigits, setLastDigits] = useState<lastDigits>(props.lastDigits)
   
   // use effect block will update the time every 10 milliseconds
   useEffect(() => {
@@ -30,15 +39,23 @@ interface TimerDigits {
     return () => clearInterval(interval);
   }, [running]);
 
-
-  const startStopwatch = (): void => {
-    setRunning(true)
-  };
+  const toggleHours = (): void => {
+    showHours ? setFirstDigits(14) : setFirstDigits(11)
+    setShowHours(!showHours)
+  }
+  const togglePrecision = (event: any) => {
+    if (event.target.value === "Seconds"){
+        setLastDigits(19)
+    } else if (event.target.value === "Deciseconds"){
+        setLastDigits(21)
+    } else {
+        setLastDigits(22)
+    }
+  }
+  const startStopwatch = (): void => setRunning(true)
   const stopStopwatch = (): void => setRunning(false);
   const lapStopwatch = (): void => {
     setLaps([...laps, time])
-    if (!running){
-    }
   };
   const resetStopwatch = (): void => {
     setTime(0);
@@ -50,6 +67,19 @@ interface TimerDigits {
     <StyledStopWatchWrapper>
       <h2>Diego's Stopwatch</h2>
       <div data-testid="timerDigits">Time: {new Date(time).toISOString().slice(firstDigits, lastDigits)}</div>
+      
+      <StyledTimerToggleWrapper>
+         {showHours ? (
+            <StopWatchButton color={"#89CFF0"} hover={"#70B8E0"} onClick={toggleHours} text="Hide Hours" />      
+        ):(
+            <StopWatchButton color={"#89CFF0"} hover={"#70B8E0"} onClick={toggleHours} text="Show Hours" />
+        )}
+        <StyledPrecisionDropDownWrapper>
+            Precision:
+            <PrecisionDropDown onChange={togglePrecision} selectedOption={precisonLookUpTable[lastDigits]}/>
+        </StyledPrecisionDropDownWrapper>
+        
+      </StyledTimerToggleWrapper>
       { running ? (
       <StyledButtonWrapper>
         <StopWatchButton color={"#f44336"} hover={"#da190b"} onClick={stopStopwatch} text="Stop" />
