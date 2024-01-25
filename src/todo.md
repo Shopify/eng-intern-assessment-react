@@ -56,6 +56,13 @@
 
 - [x] Responsive
 
+- [x] README.md
+    - [x] Add project overview
+    - [x] Add project setup
+    - [x] Add project goals
+    - [x] Add getting started
+    - [x] Credits/inspiration
+
 - [x] Fix site title, add favicon
 
 - [✅] Add infinitely scrolling track game with start, stop, reset, and lap buttons:

@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, button, input, textarea {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 400; /* standard weight for pixel art fonts */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* titles */
+h1 {
+  font-size: 32px; /* main titles */
+  /* Press Start 2P does not support different font-weights; usually 400 is used */
+}
+
+h2 {
+  font-size: 24px; /* medium size for secondary titles */
+}
+
+/* subtitles */
+h3 {
+  font-size: 20px; /* subtitles */
+}
+
+/* Body text */
+p {
+  font-size: 16px;
+}
+
+/* additional styles for other elements as needed */
+.button {
+  font-size: 18px; /* larger size for buttons */
+}
+
+.small-text {
+  font-size: 14px; /* smaller size for less important text */
+}
