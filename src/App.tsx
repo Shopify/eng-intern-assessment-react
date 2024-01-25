@@ -58,7 +58,7 @@ export default function App() {
   return (
     <main>
       <StopWatch
-        timer={isRunning ? formatMilliseconds(secondsPassed) : formatMilliseconds(elapsedTime)}
+        timer={formatMilliseconds(secondsPassed)}
       />
       <div>
         <StopWatchButton
@@ -70,11 +70,12 @@ export default function App() {
           clickHandler={isRunning ? handleLap : handleReset}
         />
       </div>
-      <div>
+      <ol data-testid='laps'>
+        <h2>Laps</h2>
         {laps && laps.map((lap, idx) => (
-          <p key={idx}>{formatMilliseconds(lap)}</p>
+          <li key={idx} data-testid={`lap-item-${idx + 1}`}>{formatMilliseconds(lap)}</li>
         ))}
-      </div>
+      </ol>
     </main>
   )
 }
