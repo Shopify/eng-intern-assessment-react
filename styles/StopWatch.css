@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  color: #dce7e5;
+}
+
+.time-container {
+  display: flex;
+  letter-spacing: 2px;
+  font-size: 5rem;
+  padding-left: 21px;
+}
+
+.time-container span {
+  position: relative;
+  top: 5px;
+  font-size: 4rem;
+}
+
+.timer-text {
+  margin: 0;
+}
