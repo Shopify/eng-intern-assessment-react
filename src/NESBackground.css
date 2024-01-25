@@ -1,0 +1,38 @@
+.nes-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: black;
+  color: white;
+  border: 1vw solid white;
+  padding: 2vw;
+  box-sizing: border-box;
+  border-radius: 2vw;
+  background-clip: padding-box; /* don't paint over the border */
+  width: 80vw;
+  max-width: 600px;
+  margin: auto;
+}
+
+.nes-background h1,
+.nes-background h2,
+.nes-background h3 {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+/* size-specific styles */
+.nes-background.small {
+  width: 20em;
+}
+
+.nes-background.medium {
+  width: 25em;
+}
+
+.nes-background.large {
+  width: 60%;
+  height: 5%;
+}
