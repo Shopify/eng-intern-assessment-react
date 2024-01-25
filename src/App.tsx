@@ -1,7 +1,15 @@
-import React from 'react'
+import React from 'react' 
+import 'bootstrap/dist/css/bootstrap.css'
+import StopWatch from './StopWatch';
 
-export default function App() {
+//Main App. 
+export default function App() {  
     return(
-        <div></div>
+        <> 
+            <div id="page-container">
+                <h1>Stopwatch App</h1>
+                <StopWatch/> 
+            </div>  
+        </> 
     )
 }
