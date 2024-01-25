@@ -165,7 +165,8 @@ table tbody tr {
 }
 
 .btn:disabled {
-  background-color: var(--button-disabled);
+  /* background-color: var(--button-disabled); */
+  color: #8d8e8f;
   box-shadow: none;
 }
 

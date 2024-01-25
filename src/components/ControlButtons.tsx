@@ -22,7 +22,7 @@ export default function ControlButtons({
     <div className="btn-grp">
       <StopWatchButton
         children={"Lap"}
-        isDisabled={false}
+        isDisabled={true}
         onClick={handleLap}
         type={"dark"}
       />
