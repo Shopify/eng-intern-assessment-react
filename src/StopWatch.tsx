@@ -33,9 +33,14 @@ const formatStopWatch = (duration: number) => {
     time %= msInSecond;
   }
 
-  timeParts.ms = time;
+  timeParts.ms = Math.floor(time / 10);
 
   return timeParts;
+};
+
+//twoDigits transforms the format of numbers less than 10 to have a 0 on the left.
+const twoDigits = (n: number) => {
+  return n >= 10 ? String(n) : `0${n}`;
 };
 
 //StopWatch handles all timing functionality.
@@ -104,8 +109,8 @@ export default function StopWatch() {
   return (
     <>
       <p>
-        {formattedStopWatch.h}:{formattedStopWatch.m}:{formattedStopWatch.s}:
-        {formattedStopWatch.ms}
+        {twoDigits(formattedStopWatch.h)}:{twoDigits(formattedStopWatch.m)}:
+        {twoDigits(formattedStopWatch.s)}: {twoDigits(formattedStopWatch.ms)}
       </p>
       <StopWatchButton
         action={toggleStopWatch}
