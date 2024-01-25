@@ -4,11 +4,12 @@ import React from 'react'
 interface ButtonProps {
     type: string
     isDisabled: boolean
+    clickHandler(): void 
 }
 
-export default function StopWatchButton( {type, isDisabled} : ButtonProps ) {
+export default function StopWatchButton( {type, isDisabled, clickHandler} : ButtonProps ) {
     return (
-        <button disabled={isDisabled}>
+        <button disabled={isDisabled} onClick={clickHandler}>
             {type}
         </button>
     )
