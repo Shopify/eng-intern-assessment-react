@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import StopWatchButton from "../common/button/StopWatchButton";
 import Time from "../common/time/Time";
 import Lap from "../common/lap/Lap";
+import classes from "./StopWatch.module.css";
+import btnclasses from "../common/button/StopWatchButton.module.css";
 
 //Declare and initalize an initialTime for the stopwatch
 const initialTime: TimeType = {
@@ -305,10 +307,10 @@ export default function StopWatch() {
   return (
     <div className="main">
       <div className="container">
-        <div className="time">
-          <Time className="stopwatch" time={timeState.time} />
+        <div className={classes.time}>
+          <Time time={timeState.time} className="stopwatch" />
         </div>
-        <div className="btn-container">
+        <div className={btnclasses["btn-container"]}>
           <StopWatchButton
             btnType={hanldeStartStop}
             onButtonClick={handleButtonClick}
@@ -323,20 +325,22 @@ export default function StopWatch() {
           />
         </div>
       </div>
-      <div className="lap-container">
-        <ul className="ul">
+      <div className={classes["lap-container"]}>
+        <ul className={classes.ul}>
           {laps.component
             .slice()
             .reverse()
             .map((lap, i) => {
               return (
-                <Lap
-                  className="lap"
-                  key={i}
-                  compLen={laps.component.length}
-                  index={i}
-                  lap={lap}
-                />
+                <li className={classes.li}>
+                  <Lap
+                    className="lap"
+                    key={i}
+                    compLen={laps.component.length}
+                    index={i}
+                    lap={lap}
+                  />
+                </li>
               );
             })}
         </ul>

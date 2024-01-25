@@ -1,4 +1,16 @@
 /**
+ * Type declaration
+ */
+
+/**
+ * Declare module to handle css module import
+ */
+declare module "*.module.css" {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+
+/**
  * StopWatchBtnProps: holds stopwatch button properties utilize in StopWatchBtn.tsx component as props
  */
 declare type StopWatchBtnProps = {

@@ -1,5 +1,6 @@
 import React from "react";
 import StopWatch from "./component/main/StopWatch";
+import "./App.css";
 
 function App() {
   return (

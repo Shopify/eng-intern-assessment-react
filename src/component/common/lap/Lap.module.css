@@ -1,0 +1,7 @@
+.lap,
+.span {
+  position: relative;
+  text-align: right;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
