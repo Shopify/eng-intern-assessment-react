@@ -88,7 +88,7 @@ export default function App() {
   };
 
   return (
-    <main className="mx-auto max-w-3xl p-5">
+    <main className="mx-auto max-w-4xl p-5">
       <h1 className="text-4xl">Stopwatch</h1>
       <StopWatch>{runningTimeString}</StopWatch>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
