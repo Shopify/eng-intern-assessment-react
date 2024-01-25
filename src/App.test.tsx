@@ -6,7 +6,7 @@ it("formatMs calculates 1000ms correctly", () => {
   expect(formatMs(1000)).toEqual("00:01:000");
 });
 
-it("App timer measures 1 second correctly", async () => {
+it("measures 1 second correctly", async () => {
   jest.useFakeTimers();
 
   const { queryByText } = render(<App />);
