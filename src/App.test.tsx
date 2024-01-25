@@ -204,3 +204,33 @@ it("records laps accurately", async () => {
   expect(queryByText(`Lap 01: ${formatMs(500)}`)).toBeTruthy();
   expect(queryByText(`Lap 02: ${formatMs(1000)}`)).toBeTruthy();
 });
+
+it("resets laps", async () => {
+  jest.useFakeTimers();
+
+  const { queryByText } = render(<App />);
+
+  // buttons exist
+  const [lap, reset] = ["Lap", "Reset"].map((t) => queryByText(t));
+  [lap, reset].forEach((e) => expect(e).toBeTruthy());
+
+  act(() => {
+    fireEvent.click(lap);
+  });
+
+  expect(queryByText(`Lap 01: ${formatMs(0)}`)).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(lap);
+  });
+
+  expect(queryByText(`Lap 01: ${formatMs(0)}`)).toBeTruthy();
+  expect(queryByText(`Lap 02: ${formatMs(0)}`)).toBeTruthy();
+
+  act(() => {
+    fireEvent.click(reset);
+  });
+
+  expect(queryByText(`Lap 01: ${formatMs(0)}`)).toBeFalsy();
+  expect(queryByText(`Lap 02: ${formatMs(0)}`)).toBeFalsy();
+});
