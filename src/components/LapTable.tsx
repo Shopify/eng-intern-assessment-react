@@ -35,9 +35,9 @@ export default function LapTable({
             </tr>
           </thead>
           <tbody>
-            {lapData.map(({ lap, lap_time, overall_time }) => {
+            {lapData.map(({ lap, lap_time, overall_time }, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td
                     className={`lap-${
                       lapData.length > 2 &&
