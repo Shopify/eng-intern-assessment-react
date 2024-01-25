@@ -1,29 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
 
 export default function App() {
-
-    const handleStart = () => {
-        console.log('Start button clicked')
+    const [isRunning, setIsRunning] = useState(false);
+    const startTimer = () => {
+        setIsRunning(true)
     }
-    const handleStop = () => {
-        console.log('Stop button clicked')
-    }
-    const handleReset = () => {
-        console.log('Reset button clicked')
-    }
-    const handleLap = () => {
-        console.log('Lap button clicked')
+    const stopTimer = () => {
+        setIsRunning(false)
     }
     return(
         <div>
             <h1>Stopwatch</h1>
-            <StopWatchButton
-                onStart={ handleStart}
-                onStop={ handleStop}
-                onReset={ handleReset}
-                onLap={ handleLap} />
+            <StopWatch isRunning={isRunning} onStart={startTimer} onStop={stopTimer} />
+            
         </div>
     )
 }
