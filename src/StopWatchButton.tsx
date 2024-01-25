@@ -4,19 +4,26 @@ import { useState } from "react";
 
 export default function StopWatchButton() {
     const [timer, setTimer] = useState<number>(0)
+    const [counting, setCounting] = useState<boolean>(false);
+    const [lap, setLap] = useState<number>(0);
+
+ const handleClick = () => {setLap(lap + 1);}
+
+ ;
   return (
     <div>
       <h1>Stopwatch</h1>
       <div>
         <span>{"0" + Math.floor((timer / 60000) % 60)};</span>
         <span>{"0" + Math.floor((timer / 1000) % 60)};</span>
-        <span>{"0" + Math.floor((timer / 10) % 100)};</span>
+        <span>{"0" + ((timer / 10) % 100)};</span>
 
-        <button>Start</button>
-        <button>Stop</button>
-        <button>Reset</button>
-        <button>Lap</button>
+        <button onClick={() =>{setCounting(true)}}>Start</button>
+        <button onClick={() =>{setCounting(false)}}>Stop</button>
+        <button onClick={() =>{setTimer(0)}}>Reset</button>
+        <button onClick={handleClick}>Lap</button>
       </div>
+      <p>Laps: {lap}</p>
     </div>
   );
 }
