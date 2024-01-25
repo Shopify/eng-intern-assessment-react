@@ -1,0 +1,9 @@
+.stopwatch {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.stopwatch-text {
+    font-size: 48px;
+}

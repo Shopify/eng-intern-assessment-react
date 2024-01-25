@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import "./StopWatchButton.css";
 
 type StopWatchButtonProps = {
   handleStart: () => void;
@@ -8,6 +9,8 @@ type StopWatchButtonProps = {
   isStopWatchActive: boolean;
 };
 
+type ActionType = "start" | "stop";
+
 export function StopWatchButton({
   isStopWatchActive = false,
   handleStart,
@@ -15,16 +18,51 @@ export function StopWatchButton({
   handleReset,
   handleLap,
 }: StopWatchButtonProps) {
+  const [action, setAction] = useState<ActionType>("start");
+
+  const onStart = () => {
+    handleStart();
+    setAction("stop");
+  };
+
+  const onStop = () => {
+    handleStop();
+    setAction("start");
+  };
+
+  const onReset = () => {
+    handleReset();
+    setAction("start");
+  };
   return (
-    <div>
-      <button disabled={isStopWatchActive} onClick={handleStart}>
-        Start
+    <div className="btn-container">
+      <button
+        className="btn lapBtn"
+        disabled={!isStopWatchActive}
+        onClick={handleLap}
+      >
+        Lap
       </button>
-      <button disabled={!isStopWatchActive} onClick={handleStop}>
-        Stop
+      {action == "start" ? (
+        <button
+          className="btn startBtn"
+          disabled={isStopWatchActive}
+          onClick={onStart}
+        >
+          Start
+        </button>
+      ) : (
+        <button
+          className="btn stopBtn"
+          disabled={!isStopWatchActive}
+          onClick={onStop}
+        >
+          Stop
+        </button>
+      )}
+      <button className="btn resetBtn" onClick={onReset}>
+        Reset
       </button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleLap}>Lap</button>
     </div>
   );
 }
