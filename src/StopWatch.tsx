@@ -15,6 +15,7 @@ export default function StopWatch() {
   const [duration, setDuration] = useState<number | null>(null);
   //timer holds the setInterval so that it can be stopped.
   const [timer, setTimer] = useState<number | null>(null);
+  const [previousLapTime, setPreviousLapTime] = useState<number | null>(null);
 
   //startTime calculates and sets the total duration of the timer in milliseconds.
   const startTime = () => {
@@ -41,12 +42,23 @@ export default function StopWatch() {
     setDuration(0);
   };
 
+  const calculateLapTime = (currentDuration: number) => {
+    const lapTime = previousLapTime ? currentDuration - previousLapTime : 0;
+    setPreviousLapTime(currentDuration);
+    return lapTime;
+  };
+
+  const lap = () => {
+    console.log(calculateLapTime(duration));
+  };
+
   return (
     <>
       <p>{duration}</p>
       <button onClick={startTime}>Start</button>
       <button onClick={stopTime}>Stop</button>
       <button onClick={resetTime}>Reset</button>
+      <button onClick={lap}>Reset</button>
     </>
   );
 }
