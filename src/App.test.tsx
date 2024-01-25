@@ -6,6 +6,15 @@ it("formatMs calculates 1000ms correctly", () => {
   expect(formatMs(1000)).toEqual("00:01:000");
 });
 
+it("renders all required buttons", async () => {
+  const { queryByText } = render(<App />);
+
+  expect(queryByText("Start")).toBeTruthy();
+  expect(queryByText("Stop")).toBeTruthy();
+  expect(queryByText("Lap")).toBeTruthy();
+  expect(queryByText("Reset")).toBeTruthy();
+});
+
 it("measures 1 second correctly", async () => {
   jest.useFakeTimers();
 
