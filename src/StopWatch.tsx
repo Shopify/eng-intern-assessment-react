@@ -14,7 +14,7 @@ export default function StopWatch() {
       timer = setInterval(() => {
         const newElapsedTime = Date.now() - startTime;
         setElapsedTime(newElapsedTime);
-      }, 25); // delay in milliseconds for callback function
+      }, 25); // Delay in milliseconds for callback function
     }
 
     return () => clearInterval(timer);
@@ -34,9 +34,10 @@ export default function StopWatch() {
     setLaps([]);
   };
 
+  // Function to record a lap
   const lapStopwatch = () => {
     const lapTime = Date.now() - (Date.now() - elapsedTime);
-    setLaps([...laps, lapTime]); // combine old laps with new lap
+    setLaps([...laps, lapTime]); // Combine old laps with new lap
   };
 
   return (
@@ -58,7 +59,7 @@ export default function StopWatch() {
   );
 }
 
-// format time 
+// Function to format milliseconds into a human-readable time format
 function formatTime(milliseconds: number) {
   const date = new Date(milliseconds);
   const hours = date.getUTCHours().toString().padStart(2, '0');
