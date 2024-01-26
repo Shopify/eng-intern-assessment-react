@@ -43,6 +43,8 @@ export default function App() {
 
   return (
     <div className="wrapper">
+      <h1>Ekim's iOS inspired stopwatch</h1>
+      <h4>Created for the 2024 Shopify Frontend Challenge</h4>
       <div className="stopwatch-wrapper">
         <div className="timer-wrapper">
           <StopWatch time={time} />
