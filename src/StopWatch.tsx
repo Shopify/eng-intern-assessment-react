@@ -58,6 +58,7 @@ export default function StopWatch() {
   const [hasStarted, setHasStarted] = useState(false);
 
   const [laps, setLaps] = useState<Lap[]>([]);
+  const [lapTimes, setLapTimes] = useState<number[] | null>([]);
 
   //startTime calculates and sets the total duration of the timer in milliseconds.
   const startTime = () => {
@@ -95,6 +96,7 @@ export default function StopWatch() {
     setDuration(0);
     setHasStarted(false);
     setLaps([]);
+    setLapTimes([]);
   };
 
   //calculateLapTime uses previousLapTime and current duration to find the delta between both of them
@@ -108,7 +110,8 @@ export default function StopWatch() {
 
   const lap = () => {
     const formattedTime = formatStopWatch(duration);
-    const formattedLapTime = formatStopWatch(calculateLapTime(duration));
+    const lapTimeInMs = calculateLapTime(duration);
+    const formattedLapTime = formatStopWatch(lapTimeInMs);
     const lapData = {
       number: laps.length + 1,
       interval: `${twoDigits(formattedLapTime.s)}s ${twoDigits(
@@ -117,16 +120,28 @@ export default function StopWatch() {
       time: `${twoDigits(formattedTime.s)}s ${twoDigits(formattedTime.ms)}`,
     };
     const newLaps = laps.concat(lapData);
+    const newLapTimes = lapTimes.concat(lapTimeInMs);
+    setLapTimes(newLapTimes);
     setLaps(newLaps);
   };
 
   const formattedStopWatch = formatStopWatch(duration);
+  const formattedFastest = formatStopWatch(Math.min(...lapTimes));
+  const formattedSlowest = formatStopWatch(Math.max(...lapTimes));
 
   return (
     <>
       <p>
-        {twoDigits(formattedStopWatch.h)}:{twoDigits(formattedStopWatch.m)}:
-        {twoDigits(formattedStopWatch.s)}: {twoDigits(formattedStopWatch.ms)}
+        {formattedStopWatch.h > 0 && (
+          <span>{twoDigits(formattedStopWatch.h)}:</span>
+        )}
+        {""}
+        {formattedStopWatch.m > 0 && (
+          <span>{twoDigits(formattedStopWatch.m)}:</span>
+        )}
+        {""}
+        <span>{twoDigits(formattedStopWatch.s)}:</span>
+        <span>{twoDigits(formattedStopWatch.ms)}</span>
       </p>
       <StopWatchButton
         action={toggleStopWatch}
@@ -149,6 +164,46 @@ export default function StopWatch() {
         kind="lap"
         defaultLabel="Lap"
       />
+      <div>
+        <p>
+          Fastest:
+          {lapTimes.length ? (
+            <>
+              {formattedFastest.h > 0 && (
+                <span>{twoDigits(formattedFastest.h)}:</span>
+              )}
+              {""}
+              {formattedFastest.m > 0 && (
+                <span>{twoDigits(formattedFastest.m)}:</span>
+              )}
+              {""}
+              <span>{twoDigits(formattedFastest.s)}:</span>
+              <span>{twoDigits(formattedFastest.ms)}</span>
+            </>
+          ) : (
+            ""
+          )}
+        </p>
+        <p>
+          Slowest:
+          {lapTimes.length ? (
+            <>
+              {formattedSlowest.h > 0 && (
+                <span>{twoDigits(formattedSlowest.h)}:</span>
+              )}
+              {""}
+              {formattedSlowest.m > 0 && (
+                <span>{twoDigits(formattedSlowest.m)}:</span>
+              )}
+              {""}
+              <span>{twoDigits(formattedSlowest.s)}:</span>
+              <span>{twoDigits(formattedSlowest.ms)}</span>
+            </>
+          ) : (
+            ""
+          )}
+        </p>
+      </div>
       <div>
         <h2>Laps</h2>
         <div style={{ display: "flex", gap: 10 }}>
