@@ -1,0 +1,23 @@
+.stopwatch-display {
+    font-size: 4em; 
+    font-weight: bold;
+    margin-bottom: 1em; 
+}
+
+.stopwatch-laps {
+    padding: 0; 
+    text-align: center; 
+}
+
+.stopwatch-laps h2 {
+    margin: 1em 0; 
+}
+
+ul{
+    list-style-type: none; 
+}
+
+.stopwatch-laps li {
+    text-align: center; 
+    line-height: 1.5em; 
+}

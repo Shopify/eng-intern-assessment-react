@@ -1,0 +1,22 @@
+
+.stopwatch-buttons{
+    margin-bottom: 20px;
+}
+button {
+    background: none;
+    border: 2px solid white; 
+    border-radius: 25px;
+    color: white;
+    padding: 10px 20px; 
+    font-size: 1em; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: white;
+    color: #0a192e;
+}

@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #0a192e;
+    color: white;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    text-align: center;
+}
+
+.body{
+    margin: 50px;
+}
