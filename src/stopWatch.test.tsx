@@ -21,14 +21,19 @@ const renderStopWatchButton = (props: StopWatchButtonProps) => {
 const mockSetIsStopped = jest.fn();
 const mockSetTime = jest.fn();
 const mockSetLaps = jest.fn();
+const mockSetMinTime = jest.fn();
+const mockSetMaxTime = jest.fn();
+const mockSetCalculatedLapTimes = jest.fn();
 
-const props: any = {
+const props: StopWatchButtonProps = {
     isStopped: true, 
     setIsStopped: mockSetIsStopped, 
     time: 0, 
-    setTime: mockSetTime, 
-    laps: [], 
-    setLaps: mockSetLaps 
+    setTime: mockSetTime,
+    setLaps: mockSetLaps,
+    setMinTime: mockSetMinTime,
+    setMaxTime: mockSetMaxTime,
+    setCalculatedLapTimes: mockSetCalculatedLapTimes
 }
 
 describe('correctly starts the stopwatch', () => {
@@ -87,6 +92,9 @@ describe('correctly resets the stopwatch', () => {
         expect(mockSetIsStopped).toHaveBeenCalledWith(true);
         expect(mockSetTime).toHaveBeenCalledWith(0);
         expect(mockSetLaps).toHaveBeenCalledWith([]);
+        expect(mockSetMinTime).toHaveBeenCalledWith(Number.POSITIVE_INFINITY);
+        expect(mockSetMaxTime).toHaveBeenCalledWith(0);
+        expect(mockSetCalculatedLapTimes).toHaveBeenCalledWith([]);
         expect("00:00:00:00").toBeInTheDocument;
     })
 })
