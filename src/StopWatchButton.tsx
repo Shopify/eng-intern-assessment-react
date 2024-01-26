@@ -62,6 +62,7 @@ export default function StopWatchButton(props: {
       className={`${className} ${label}`}
       onClick={handleClick}
       disabled={!isActive}
+      data-testid={className}
     >
       <IonIcon icon={iconName} className={`icon ${label}`} />
       <span>{label}</span>

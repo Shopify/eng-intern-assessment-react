@@ -138,7 +138,7 @@ export default function StopWatch() {
   return (
     <>
       <div className="timer-container">
-        <p className="screen numbers">
+        <p className="screen numbers" data-testid="screen">
           <span className={formattedStopWatch.h > 0 ? "enabled" : ""}>
             {twoDigits(formattedStopWatch.h)}:
           </span>
@@ -224,7 +224,7 @@ export default function StopWatch() {
           <p className="lap-time">Interval</p>
           <p className="lap-time">Time</p>
         </div>
-        <div className="laps">
+        <div className="laps" data-testid="laps">
           {[...laps]
             .sort(
               (firstItem, secondItem) => secondItem.number - firstItem.number
