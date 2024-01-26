@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    background-color: #282C34;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.time-container {
+    color: #ccc;
+    display: flex;
+    letter-spacing: 2px;
+}
+
+.time-container span {
+    position: relative;
+    top: 2px;
+    font-size: 4rem;
+}
+
+.timer-text {
+    font-size: 5rem;
+    margin: 0;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.controls-container button {
+    margin: 15px;
+    border: none;
+    background-color: #e5ad3d;
+    padding: 3px 12px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+
+.lap-times-container {
+    margin-top: 20px; 
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: center;
+  }
+  
+  .lap-times-container h3 {
+    color: #ccc; 
+    font-size: 1.2rem; 
+  }
+  
+  .lap-times-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .lap-times-container li {
+    margin-bottom: 5px; 
+    color: #ccc; 
+    font-size: 1rem; 
+  }
+  
+  
