@@ -1,5 +1,5 @@
 import React from 'react';
-import {formatTime} from '../utils/StopwatchUtils';
+import {formatTime} from '../utils/stopwatchUtils';
 
 
 type StopwatchProps = {

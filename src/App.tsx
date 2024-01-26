@@ -1,7 +1,7 @@
 import React from 'react';
 import useStopwatch from './hooks/useStopwatch';
-import Stopwatch from './components/Stopwatch';
-import StopwatchButton from './components/StopWatchButton';
+import Stopwatch from "./components/Stopwatch";
+import StopwatchButton from './components/StopwatchButton';
 
 const App: React.FC = () => {
     const { time, laps, start, stop, reset, lap } = useStopwatch();
