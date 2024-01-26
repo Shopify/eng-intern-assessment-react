@@ -30,26 +30,28 @@ export default function StopWatch() {
         // stops setInterval function
         return () => { clearInterval(stopWatchInterval) }
 
-    }, [timerOn, seconds])
+    }, [timerOn])
 
 
     // Function that updates the stop watch when it is clicked on
     const updateTimer = () => {
         setCentiseconds((centiSecond) => {
+
+            let newCentiseconds: number = centiSecond + 1
             // If centisecond is about to reach 100, reset back to zero and 1 will be added to seconds
-            if (centiSecond === 99) {
+            if (newCentiseconds === 100) {
+                newCentiseconds = 0
                 // If seconds is about to reach 60, reset back to zero and 1 will be added to minutes
                 if (seconds === 59) {
-                    setMinutes(minutes + 1)
+                    setMinutes((prevMinute) => prevMinute + 1)
                     setSeconds(0)
                 } else {
-                    setSeconds(seconds + 1)
+                    setSeconds((prevSecond) => prevSecond + 1)
                 }
-                return 0
-            } else {
-                // timer counts in centiseconds
-                return centiSecond + 1
             }
+            // timer counts in centiseconds
+            return newCentiseconds
+
         })
     }
 
@@ -140,7 +142,7 @@ export default function StopWatch() {
     return (
         <div className='timer'>
 
-            <h1 className='timer__time-display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}.{centiseconds < 10 ? "0" + centiseconds : centiseconds}</h1>
+            <h1 className='timer__time-display' data-testid='timer-display'>{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}.{centiseconds < 10 ? "0" + centiseconds : centiseconds}</h1>
 
             <StopWatchButton
                 timerOn={timerOn}
@@ -155,8 +157,8 @@ export default function StopWatch() {
                 </div>
                 {laps.map((lap, index) => {
                     return (
-                        <div key={index} className='timer__lap-display__container'>
-                            <p className='timer__lap-display__text'>{index + 1}</p>
+                        <div key={index} className='timer__lap-display__container' data-testid='lap-object'>
+                            <p className='timer__lap-display__text' data-testid={`lap-${index + 1}`}>{index + 1}</p>
                             <p className='timer__lap-display__text'>{lap.calculatedMinutes < 10 ? "0" + lap.calculatedMinutes : lap.calculatedMinutes}:{lap.calculatedSeconds < 10 ? "0" + lap.calculatedSeconds : lap.calculatedSeconds}.{lap.calculatedCentiseconds < 10 ? "0" + lap.calculatedCentiseconds : lap.calculatedCentiseconds}</p>
                         </div>
                     )
