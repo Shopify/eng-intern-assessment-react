@@ -21,17 +21,16 @@ const timeToString = (time: number) => {
 
 const TimeDisplay = ({ time } : {time: number}) => {
 	return (
-		<>
+		<div id='timeDisplay'>
 			{timeToString(time)}
-		</>
+		</div>
 	)
 }
 
 const LapDisplay = ({ laps } : {laps: number[]}) => {
 	let id = 1;
 	return (
-		<div>
-			<h1>My Laps</h1>
+		<div id='lapDisplay'>
 			{laps.map(lap => {
 				let curId = id.toString();
 				id += 1;

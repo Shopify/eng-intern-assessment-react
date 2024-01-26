@@ -8,11 +8,11 @@ export default function StopWatchButton({ handleStart, handleStop, handleReset, 
       handleLap: MouseEventHandler<HTMLButtonElement>
     }) {
         return(
-            <div>
-                <button onClick={handleStart}>start</button>
-				<button onClick={handleStop}>stop</button>
-				<button onClick={handleReset}>reset</button>
-                <button onClick={handleLap}>lap</button>
+            <div id='timeButtons'>
+                <button className='timeButton' onClick={handleStart}>start</button>
+				<button className='timeButton' onClick={handleStop}>stop</button>
+				<button className='timeButton' onClick={handleReset}>reset</button>
+                <button className='timeButton' onClick={handleLap}>lap</button>
             </div>
         )
 }
