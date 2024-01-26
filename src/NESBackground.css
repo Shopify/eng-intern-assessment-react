@@ -10,7 +10,7 @@
   padding: 2vw;
   box-sizing: border-box;
   border-radius: 2vw;
-  background-clip: padding-box; /* don't paint over the border */
+  background-clip: padding-box; /* dont paint over border */
   width: 80vw;
   max-width: 600px;
   margin: auto;
@@ -29,10 +29,16 @@
 }
 
 .nes-background.medium {
-  width: 25em;
+  width: 50%;
+  height: 50%;
 }
 
 .nes-background.large {
   width: 60%;
   height: 5%;
+}
+
+.record-board-content {
+  max-height: 15em;
+  overflow-y: auto; /* Allows scrolling for overflow content */
 }

@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import "./StopWatch.css";
 
-import StopwatchButton from "./StopWatchButton";
-import ScrollingBackground from "./ScrollingBackground";
-import SonicSprite from "./SonicSprite";
+import StopWatchButton from "./StopWatchButton";
 import GameScene from "./GameScene";
+import { useStopWatch } from "./StopWatchContext";
+import NESBackground from "./NESBackground";
 
-type LapRecord = {
-  time: number;
-  distance: number;
-};
-
-export default function Stopwatch() {
-  const [time, setTime] = useState<number>(0);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [currentLap, setCurrentLap] = useState<number>(0);
-  const [distance, setDistance] = useState<number>(0);
-  const [workout, setWorkout] = useState<number>(1);
-  const [laps, setLaps] = useState<LapRecord[]>([]);
+const StopWatch: React.FC = () => {
+  const {
+    time,
+    setTime,
+    distance,
+    setDistance,
+    currentLap,
+    setCurrentLap,
+    workout,
+    setWorkout,
+    isRunning,
+    setIsRunning,
+    addLap,
+    formatTime,
+    formatDistance,
+  } = useStopWatch();
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -30,21 +35,21 @@ export default function Stopwatch() {
       }, 10);
     }
     return () => clearInterval(interval);
-  }, [isRunning, workout]);
+  }, [isRunning, workout, setTime, setCurrentLap, setDistance]);
 
   const start = () => setIsRunning(true);
   const stop = () => setIsRunning(false);
   const reset = () => {
-    setTime(0);
     setIsRunning(false);
+    setTime(0);
     setCurrentLap(0);
     setDistance(0);
+    setWorkout(1);
   };
 
   const recordLap = () => {
-    // only add a new lap if time, currentLap, and distance are greater than zero
     if (time > 0 && currentLap > 0 && distance > 0) {
-      setLaps([...laps, { time: currentLap, distance }]);
+      addLap({ time: currentLap, distance });
       setCurrentLap(0);
       setDistance(0);
     }
@@ -58,48 +63,28 @@ export default function Stopwatch() {
     return workoutStat / 100; // Increment per 10ms for workoutStat meters per second.
   };
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60000)
-      .toString()
-      .padStart(2, "0");
-    const seconds = Math.floor((time % 60000) / 1000)
-      .toString()
-      .padStart(2, "0");
-    const milliseconds = (time % 1000).toString().padStart(3, "0");
-    return `${minutes}:${seconds}:${milliseconds}`;
-  };
-
-  const formatDistance = (distance: number) => {
-    return `${distance.toFixed(2)} meters`; // toFixed(2) to show two decimal places
-  };
-
   return (
-    <div>
-      <div>
-        <h3>Record Board:</h3>
-        {laps
-          .slice()
-          .reverse()
-          .map((lap, index) => (
-            <div key={index}>
-              Lap {laps.length - index}: {formatTime(lap.time)},{" "}
-              {formatDistance(lap.distance)}
-            </div>
-          ))}
-      </div>
+    <>
+      <NESBackground size="medium">
+        <h2>« Controls »</h2>
 
-      <StopwatchButton action={start} label="Start" />
-      <StopwatchButton action={stop} label="Stop" />
-      <StopwatchButton action={reset} label="Reset" />
-      <StopwatchButton action={recordLap} label="Lap" />
-      <StopwatchButton action={increaseWorkout} label="Increase Workout" />
+        <div className="stopwatch-display">
+          <div>{formatTime(time)}</div>
+          <div>Current Distance: {formatDistance(distance)}</div>
+          <div>Current Lap: {formatTime(currentLap)}</div>
+          <div>Current Workout Level: {workout}</div>
+        </div>
 
-      <GameScene isRunning={isRunning} workout={workout} />
-
-      <div>{formatTime(time)}</div>
-      <div>Current Distance: {formatDistance(distance)}</div>
-      <div>Current Lap: {formatTime(currentLap)}</div>
-      <div>Current Workout Level: {workout}</div>
-    </div>
+        <div className="stopwatch-controls">
+          <StopWatchButton action={start} label="Start" />
+          <StopWatchButton action={stop} label="Stop" />
+          <StopWatchButton action={reset} label="Reset" />
+          <StopWatchButton action={recordLap} label="Lap" />
+          <StopWatchButton action={increaseWorkout} label="Increase Workout" />
+        </div>
+      </NESBackground>
+    </>
   );
-}
+};
+
+export default StopWatch;

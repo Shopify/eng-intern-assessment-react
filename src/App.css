@@ -1,4 +1,13 @@
 body {
-    margin: 0;
-    background-color: green;
+  margin: 0;
+  background-color: green;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 0.5em;
+  padding: 0.5em;
 }
