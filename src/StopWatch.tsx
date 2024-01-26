@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { formatTime } from './utils';
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
-}
+type StopwatchProps = {
+    time: number;
+};
+
+const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
+    
+
+    return <div>{formatTime(time)}</div>;
+};
+
+export default Stopwatch;

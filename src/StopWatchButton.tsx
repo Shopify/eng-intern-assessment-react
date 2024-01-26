@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
-}
+type StopwatchButtonProps = {
+  label: string;
+  disable?: boolean ;
+  onClick: () => void;
+};
+
+const StopwatchButton: React.FC<StopwatchButtonProps> = ({ label, disable = false, onClick }) => {
+    return <button onClick={onClick} disabled={disable}>{label}</button>;
+};
+
+export default StopwatchButton;
