@@ -9,12 +9,26 @@ interface StopWatchProps {
 }
 
 const StopWatch: React.FC<StopWatchProps> = ({ elapsedTime, laps, showLaps }) => {
-  // Function to format time from milliseconds to min:sec.milliseconds format
+  // Function to format elapsed time for display
   const formatTime = (time: number) => {
+    // Extracting milliseconds, seconds, and total minutes
     const milliseconds = `0${Math.floor(time / 10) % 100}`.slice(-2);
     const seconds = `0${Math.floor(time / 1000) % 60}`.slice(-2);
-    const minutes = `0${Math.floor(time / 60000)}`.slice(-2);
-    return `${minutes}:${seconds}.${milliseconds}`;
+    const totalMinutes = Math.floor(time / 60000);
+
+    // Calculating minutes and hours for display
+    const minutes = totalMinutes % 60; // Minutes for the current hour
+    const hours = Math.floor(totalMinutes / 60); // Total hours
+
+    // Formatting the time components
+    const formattedSeconds = `0${seconds}`.slice(-2);
+    // Formatting minutes - displaying as total minutes until 99, then as part of hours
+    const formattedMinutes = hours > 0 ? `0${minutes}`.slice(-2) : `${totalMinutes}`;
+    // Adding hours to the format if total time exceeds 99 minutes
+    const formattedHours = hours > 0 ? `${hours}:` : '';
+    
+    // Returning the formatted time string
+    return `${formattedHours}${formattedMinutes}:${formattedSeconds}.${milliseconds}`;
   };
 
   // Main render method
