@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
 
+interface LapTime {
+    minutes: number;
+    seconds: number;
+  }
+
 const StopWatch: React.FC = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [lapTimes, setLapTimes] = useState<LapTime[]>([]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -43,7 +49,15 @@ const StopWatch: React.FC = () => {
   };
 
   const handleLap = () => {
-    // Do something with the lap time
+    const totalSeconds = elapsedTime % 60;
+    const totalMinutes = Math.floor(elapsedTime / 60);
+
+    const lapTime: LapTime = {
+      minutes: totalMinutes,
+      seconds: totalSeconds,
+    };
+
+    setLapTimes((prevLapTimes) => [...prevLapTimes, lapTime]);
   };
 
   return (
@@ -56,6 +70,9 @@ const StopWatch: React.FC = () => {
         onReset={handleReset}
         onLap={handleLap}
       />
+      {lapTimes.map((lapTime, index) => (
+        <p key={index}>{`Lap ${index+1}: ${String(lapTime.minutes).padStart(2, '0')}:${String(lapTime.seconds).padStart(2, '0')}`}</p>
+      ))}
     </div>
   );
 };
