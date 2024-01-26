@@ -1,0 +1,73 @@
+/* Global styles */
+body {
+    background-color: #262626;
+}
+
+.button-start {
+    background-color: #307B4D;
+    color: white;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.button-stop {
+    background-color: #9D4747;
+    color: white;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.button-reset-lap {
+    background-color: #F1F1F1;
+    color: rgb(40, 40, 40);
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Add to your styles.css */
+.stopwatch {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    margin: 20px;
+}
+
+.stopwatch-time {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.stopwatch-laps {
+    list-style-type: none;
+    padding: 0;
+}
+
+.stopwatch-laps li {
+    margin-bottom: 10px;
+}
