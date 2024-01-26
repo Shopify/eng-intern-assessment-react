@@ -1,7 +1,18 @@
-import React from 'react'
+import React from "react";
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+type buttonTypes = "start" | "stop" | "reset" | "lap";
+
+type buttonProps = {
+  type: buttonTypes;
+  onClick: () => void;
+};
+
+export default function StopWatchButton(props: buttonProps) {
+  const { type, onClick } = props;
+
+  return (
+    <button className={type} onClick={onClick}>
+      {type}
+    </button>
+  );
 }
