@@ -3,12 +3,29 @@ import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";
 import "./styles.css";
 
+type StopWatchProps = {
+  time: number;
+};
+
 export default function App() {
   const [seconds, setSeconds] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [hours, setHours] = useState<number>(0);
 
-  useEffect;
+  const currentTime = (time: number): void => {
+    if (time < 60) {
+      setMinutes(0);
+      setSeconds(time);
+    } else {
+      const mins = Math.ceil(time / 60);
+      const secs = time - mins * 60;
+      setMinutes(mins);
+      setSeconds(secs);
+    }
+    useEffect(() => {
+      currentTime(time);
+    }, [time]);
+  };
 
   return (
     <div className="main-stopwatch">
