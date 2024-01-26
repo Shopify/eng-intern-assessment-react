@@ -1,17 +1,18 @@
 import React, { useState, useRef, useEffect} from 'react'
-import StopWatchButton from './StopWatchButton'
-import Laps from './Laps'
+import StopWatchButton from '../StopWatchButton/StopWatchButton'
+import Laps from '../Laps/Laps'
+import { Time } from '../../Models/timeModel'
+import './StopWatch.css'
 
 export default function StopWatch() {
-    //stopwatch application hh:mm:ss:ms
-    const [time, setTime] = React.useState({
+    const [time, setTime] = useState<Time>({
         ms: 0,
         s: 0,
-        m: 0,
-    })
+        m: 0
+    });
 
     const [isRunning, setIsRunning] = useState(false);
-    const [lapTimes, setLapTimes] = useState([]);
+    const [lapTimes, setLapTimes] = useState<string[]>([]);
 
     const start = () => { 
         console.log("start");
@@ -34,12 +35,18 @@ export default function StopWatch() {
         setLapTimes([...lapTimes, formatTime(time)])
     }
 
-    const formatTime = (time: any) => {
+    const deleteLap = (index: number) => {
+        const updatedLaps = [...lapTimes];
+        updatedLaps.splice(index, 1); // Remove the lap at the specified index
+        setLapTimes(updatedLaps);
+    }
+
+    const formatTime = (time: Time) => {
         return `${(time.m >= 10) ? time.m : "0" + time.m} : ${(time.s >= 10) ? time.s : "0" + time.s} : ${(time.ms >= 10) ? time.ms : "0" + time.ms}`
     }
 
     useEffect(() => {
-        let interval: any = null;
+        let interval: NodeJS.Timer;
 
         if (isRunning) {
           interval = setInterval(() => {
@@ -69,23 +76,23 @@ export default function StopWatch() {
     }, [isRunning])
 
     return(
-        <div>
-            <h1>StopWatch</h1>
-            <div className = "time-container">
-                <span>{(time.m >= 10) ? time.m : "0" + time.m}</span>:
-                <span>{(time.s >= 10) ? time.s : "0" + time.s}</span>:
-                <span>{(time.ms >= 10) ? time.ms : "0" + time.ms}</span>
+        <div className="stopwatch-container">
+            <div className="time-container">
+                <h1>
+                    {(time.m >= 10) ? time.m : "0" + time.m}: 
+                    {(time.s >= 10) ? time.s : "0" + time.s}: 
+                    {(time.ms >= 10) ? time.ms : "0" + time.ms}
+                </h1>
             </div>
 
-            <div className = "buttons-container">
-                <StopWatchButton onClick={start} label="Start" />
-                <StopWatchButton onClick={stop} label="Stop" />
-                <StopWatchButton onClick={reset} label="Reset" />
-                <StopWatchButton onClick={lap} label="Lap" />
+            <div className="buttons-container">
+                <StopWatchButton variant="primary" onClick={start} label="Start" />
+                <StopWatchButton variant="danger" onClick={stop} label="Stop" />
+                <StopWatchButton variant="secondary" onClick={reset} label="Reset" />
+                <StopWatchButton variant="secondary" onClick={lap} label="Lap" />
             </div>
 
-            <Laps lapTimes={lapTimes} />
-                
+            <Laps lapTimes={lapTimes} onDelete={deleteLap} />
         </div>
     )
 }
