@@ -1,9 +1,10 @@
 import React from "react";
+import "./../css/GameScene.css";
 
 import ScrollingBackground from "./ScrollingBackground";
 import SonicSprite from "./SonicSprite";
 import StatsDisplay from "./StatsDisplay";
-import "./../css/GameScene.css";
+import ControlsText from "./ControlsText";
 
 type GameSceneProps = {
   isRunning: boolean;
@@ -16,6 +17,7 @@ const GameScene: React.FC<GameSceneProps> = ({ isRunning, workout }) => {
       <ScrollingBackground isRunning={isRunning} workout={workout} />
       <SonicSprite isRunning={isRunning} workout={workout} />
       <StatsDisplay />
+      <ControlsText />
     </div>
   );
 };

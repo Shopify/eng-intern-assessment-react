@@ -1,5 +1,6 @@
 import React from "react";
 import { useStopWatch } from "./StopWatchContext";
+
 import NESBackground from "./NESBackground";
 
 const RecordBoard: React.FC = () => {

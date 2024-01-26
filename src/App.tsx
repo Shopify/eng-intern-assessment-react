@@ -3,6 +3,7 @@ import "./css/App.css";
 import "./css/fonts.css";
 
 import { StopWatchProvider, useStopWatch } from "./components/StopWatchContext";
+
 import StopWatch from "./components/StopWatch";
 import NESBackground from "./components/NESBackground";
 import RecordBoard from "./components/RecordBoard";

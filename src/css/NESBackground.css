@@ -25,7 +25,7 @@
 
 /* size-specific styles */
 .nes-background.small {
-  width: 80%; 
+  width: 80%;
   max-width: 80%;
   height: auto;
   min-width: fit-content;

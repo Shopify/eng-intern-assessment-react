@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import "./../css/StopWatch.css";
-import StopWatchButton from "./StopWatchButton";
 import { useStopWatch } from "./StopWatchContext";
+import "./../css/StopWatch.css";
+
+import StopWatchButton from "./StopWatchButton";
 import NESBackground from "./NESBackground";
+import KeyBindings from "./KeyBindings";
 
 const StopWatch: React.FC = () => {
   const {
@@ -17,6 +19,8 @@ const StopWatch: React.FC = () => {
     isRunning,
     setIsRunning,
     addLap,
+    formatTime,
+    formatDistance,
   } = useStopWatch();
 
   useEffect(() => {
@@ -61,6 +65,13 @@ const StopWatch: React.FC = () => {
 
   return (
     <>
+      <KeyBindings
+        isRunning={isRunning}
+        toggleStartStop={isRunning ? stop : start}
+        handleWorkout={increaseWorkout}
+        handleLap={recordLap}
+        handleReset={reset}
+      />
       <NESBackground size="medium">
         <h2>« Controls »</h2>
         <div className="stopwatch-controls">

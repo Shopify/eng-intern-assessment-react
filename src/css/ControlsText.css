@@ -1,0 +1,20 @@
+.controls-text {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  z-index: 5; /* ensure its on top of everything else */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  gap: 0.3em;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+.controls-text h3,
+.controls-text p {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-size: calc(10px + 0.5vw); /* Adjust font size */
+}

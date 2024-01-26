@@ -1,5 +1,6 @@
 import React from "react";
 import "./../css/ScrollingBackground.css";
+
 import MarioTrack from "./../../public/images/mario-track.png";
 
 type ScrollingBackgroundProps = {

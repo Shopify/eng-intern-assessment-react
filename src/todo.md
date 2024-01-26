@@ -45,6 +45,14 @@
         - [x] Sprite shows running animation when the timer is running - med run version
         - [x] Sprite shows running animation when the timer is running - fast run version
 
+        Accessibility:
+        - [x] Google ChromeVox screen reader can read the timer, start, stop, reset, and lap buttons
+        - [x] Google ChromeVox screen reader can read the workout stat, distance, and lap
+        - [x] Space bar can be used for start/stop
+        - [x] Enter can be used for lap
+        - [x] W key can be used for workout stat increase
+        - [x] R key can be used for reset
+
 - [x] Code documentation:
     - [x] Document your code by adding comments and explanatory notes where necessary.
     - [x] Provide clear explanations of the implemented functionality and any important details.
