@@ -5,7 +5,16 @@ import StopWatchButton from './StopWatchButton';
 
 export default function App() {
 
-    const [timeInSeconds, setTimeInSeconds] = useState<number>(0)
+    const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
+    const [secondCount, setSecondCount] = useState<number>(0);
+
+    const handleStartButton = (): void => {
+        let second:any = setInterval(():void => {
+            setTimeInSeconds((previousState:number) =>
+                previousState + 1)
+        }, 1000);
+        setSecondCount(second);   
+    }
 
     return(
         <div className='main_container'>
@@ -13,7 +22,9 @@ export default function App() {
                 timeInSeconds={timeInSeconds}
                 />
             <StopWatchButton 
-                setTimeInSeconds={setTimeInSeconds}/>
+                timeInSeconds={timeInSeconds}
+                handleStartButton={handleStartButton}
+                />
         </div>
     )
 }

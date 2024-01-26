@@ -1,23 +1,14 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 
-type Props = {
-    setTimeInSeconds?: Function
+type StopWatchButtonProps = {
+    timeInSeconds: number;
+    handleStartButton: () => void
 };
 
-export default function StopWatchButton(props:Props) {
+export default function StopWatchButton(props:StopWatchButtonProps) {
+    const {timeInSeconds, handleStartButton} = props;
 
-    const {setTimeInSeconds} = props;
-    const [secondCount, setSecondCount] = useState<number>(0);
-
-    const handleStartButton = () => {
-        let second:any = setInterval(() => {
-            setTimeInSeconds((previousState:number) =>
-                previousState + 1)
-        }, 1000);
-        setSecondCount(second);
-        
-    }
 
     return(
         <div className='control_container'>
