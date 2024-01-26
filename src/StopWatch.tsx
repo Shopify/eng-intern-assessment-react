@@ -24,6 +24,7 @@ const StopWatch = () => {
         setTime(0);
         setLaps([]);
         setStarted(false); 
+        setRunning(false); //Stops the timer
     }
 
     //Functions handles lap button - Add the current time to laps array
@@ -33,19 +34,30 @@ const StopWatch = () => {
         }
     }
 
+    //Create a display Component
+    interface TimerDisplayInterface {
+        time: number;
+    }
+
     //Function formats time to HH:MM:SS:MS
     const formatTime = (time: number) => {
         let date = new Date(time);
         let hours = date.getUTCHours();
         let minutes = date.getUTCMinutes();
         let seconds = date.getUTCSeconds();
-        let milliseconds = date.getUTCMilliseconds();
+        let milliseconds = Math.floor(date.getUTCMilliseconds() / 10);
 
         return `${hours.toString().padStart(2, '0')}:
         ${minutes.toString().padStart(2, '0')}:
-        ${seconds.toString().padStart(2, '0')}.
-        ${milliseconds.toString().padStart(3, '0')}`;
+        ${seconds.toString().padStart(2, '0')}:
+        ${milliseconds.toString().padStart(2, '0')}`;
     }
+
+    //Create a display with the formatted time;
+    const TimerDisplay: React.FC<TimerDisplayInterface> = ({ time }) => {
+    return <h1>{formatTime(time)}</h1>;
+}
+
 
     //useEffect to update timer for the running state
     useEffect (() => {
@@ -57,7 +69,7 @@ const StopWatch = () => {
                 setTime(prevTime => prevTime +10);
             }, 10);
         }
-        //Clean up function that when isRunnign state or time changes, timer stops and cleanup process occurs
+        //Clean up function that when isRunning state or time changes, timer stops and cleanup process occurs
         return () => {
             if (timer) {
             clearInterval(timer);
@@ -65,13 +77,22 @@ const StopWatch = () => {
         };
     }, [isRunning]); 
 
-    //Render the stopwatch component
+    //Render the stopwatch component 
     return (
         <div className = "STOPWATCH">
             <h2> STOPWATCH </h2>
-            <h3>Hour:Minutes:Seconds:Milliseconds</h3>
-            <h1>{formatTime(time)}</h1>
+            <div className="timer_Container">
+            <TimerDisplay time={time} />
 
+            <div className="time_Labels">
+                <span>HOURS</span>
+                <span>MINUTES</span>
+                <span>SECONDS</span>
+                <span>MILLISECONDS</span>
+            </div>
+            </div>
+
+        <div className = "Button_Container">
             <StopWatchButton onClick = 
                 {handleStartButton} 
                 buttonLabel = {isRunning? 'Stop': (isStarted ? 'Resume' : 'Start')}
@@ -86,10 +107,12 @@ const StopWatch = () => {
                 {handleResetButton}
                 buttonLabel = "Reset"
             />
-
+            </div>
+            <div className="Lap_Container">
             {laps.map((lap,numLaps) => (
-                <h2 key = {numLaps}> LAP {numLaps+1}: {formatTime(lap)} </h2>
+                <h3 key = {numLaps}> LAP {numLaps+1}: {formatTime(lap)} </h3>
             ))}
+            </div>
 
         </div>
     );
