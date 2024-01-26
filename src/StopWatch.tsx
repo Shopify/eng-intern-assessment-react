@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import "./styles.css";
+
 import StopWatchButton from "./StopWatchButton";
 
 const Stopwatch: React.FC = () => {
