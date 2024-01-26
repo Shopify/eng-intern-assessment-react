@@ -1,45 +1,57 @@
-import React from 'react';
-import { Button } from '@mui/material';
-import { StopWatchButtonProps } from './stopWatchProps';
-import './styles.css';
+import React from "react";
+import { Button } from "@mui/material";
+import { StopWatchButtonProps } from "./stopWatchProps";
+import "./styles.css";
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
+  const {
+    isStopped,
+    setIsStopped,
+    time,
+    resetTime,
+    resetLaps,
+    resetMinTime,
+    resetMaxTime,
+    resetCalculatedLapTimes,
+  } = props;
 
-    const { isStopped, setIsStopped, time, setTime, setLaps, setMinTime, setMaxTime, setCalculatedLapTimes } = props;
+  function onStartStopClick() {
+    setIsStopped(!isStopped);
+  }
 
-    function handleStartStopClick() {
-        setIsStopped(!isStopped);
+  function onResetClick() {
+    resetTime(0);
+    setIsStopped(true);
+    resetLaps([]);
+    resetMinTime(Number.POSITIVE_INFINITY);
+    resetMaxTime(0);
+    resetCalculatedLapTimes([]);
+  }
+
+  function onLapTimeClick() {
+    if (time !== 0) {
+      resetLaps((prevLaps: number[]) => [...prevLaps, time]);
     }
+  }
 
-    function handleResetClick() {
-        setTime(0);
-        setIsStopped(true);
-        setLaps([]);
-        setMinTime(Number.POSITIVE_INFINITY);
-        setMaxTime(0);
-        setCalculatedLapTimes([]);
-    }
-
-    function handleLapTimeClick() {
-        if (time !== 0) {
-            setLaps((prevLaps: number[]) => [...prevLaps, time]);
-        }
-    }
-
-    return(
-        <div className="stop-watch-button-container">
-            <Button id="stop-watch-button"
-                    variant="contained" 
-                    color={isStopped ? "success" : "error"} 
-                    onClick={handleStartStopClick}>
-                {isStopped ? "Start" : "Stop"}
-            </Button>
-            <Button id="stop-watch-button"
-                    color="info"
-                    variant="contained"
-                    onClick={isStopped ? handleResetClick : handleLapTimeClick}>
-                {isStopped ? "Reset" : "Lap"}
-            </Button>
-        </div>
-    )
+  return (
+    <div className="stop-watch-button-container">
+      <Button
+        id="stop-watch-button-start-stop"
+        variant="contained"
+        color={isStopped ? "success" : "error"}
+        onClick={onStartStopClick}
+      >
+        {isStopped ? "Start" : "Stop"}
+      </Button>
+      <Button
+        id="stop-watch-button-reset-lap"
+        color="info"
+        variant="contained"
+        onClick={isStopped ? onResetClick : onLapTimeClick}
+      >
+        {isStopped ? "Reset" : "Lap"}
+      </Button>
+    </div>
+  );
 }

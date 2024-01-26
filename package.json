@@ -53,7 +53,7 @@
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(css|less)$": "/Users/yanzhang/Desktop/eng-intern-assessment-react/src/styleMock.ts"
+      "\\.(css|less)$": "<rootDir>/src/styleMock.ts"
     }
   }
 }
