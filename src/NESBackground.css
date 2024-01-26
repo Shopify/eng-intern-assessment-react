@@ -6,10 +6,10 @@
 
   background-color: black;
   color: white;
-  border: 1vw solid white;
-  padding: 2vw;
+  border: 7px solid white;
+  padding: 0.5em;
   box-sizing: border-box;
-  border-radius: 2vw;
+  border-radius: 20px;
   background-clip: padding-box; /* dont paint over border */
   width: 80vw;
   max-width: 600px;
@@ -25,7 +25,10 @@
 
 /* size-specific styles */
 .nes-background.small {
-  width: 20em;
+  width: 80%; 
+  max-width: 80%;
+  height: auto;
+  min-width: fit-content;
 }
 
 .nes-background.medium {
@@ -35,8 +38,9 @@
 }
 
 .nes-background.large {
-  width: 60%;
-  height: 5%;
+  min-width: fit-content;
+  width: 45vw;
+  height: auto;
   margin: 1em auto;
 }
 

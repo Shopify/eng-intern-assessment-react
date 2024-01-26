@@ -16,6 +16,11 @@
     - [x] Verify that the stopwatch starts, stops, resets, and records laps as expected.
     
     - [x] Tests to add:
+        Timer:
+        - [x] Timer starts at 0
+        - [x] Timer starts at 0 when reset clicked
+        - [x] Timer is accurate
+
         Start/Stop/Reset Buttons:
         - [x] Start button starts the timer
         - [x] Stop button stops the timer
@@ -26,9 +31,6 @@
         - [x] Lap button adds a lap with the correct time
         - [x] Lap button adds a lap with the correct time when the timer is stopped
         - [x] Lap button adds a lap with the correct time when the timer is reset
-
-        Workout Button:
-        - [x] Increase workout cannot be clicked when the timer is running (only in stop state)
 
         Scrolling Background:
         - [x] Background scrolls when the timer is running
@@ -63,7 +65,7 @@
     - [x] Add getting started
     - [x] Credits/inspiration
 
-- [x] Fix site title, add favicon
+- [x] Change site title, add favicon
 
 - [✅] Add infinitely scrolling track game with start, stop, reset, and lap buttons:
     - The scroll should start when the user clicks the start button and continue running when lap is clicked
@@ -80,6 +82,8 @@
         - Distance, time, lap do not change, just the scrolling background
     - [✅] When reset/refreshed and time, distance, lap are 0, adding a lap with 0 time and 0 distance
           gets added, should not allow adding a lap if stopped and 0 time and 0 distance
+    - [x] When more then 10 laps are recorded, size of lap text gets bigger and bigger as demensions of screen are shrunk horizontally
+    - [✅] Borders scaling weird
 
 - [x] Maybe additions?
     - [✅] Have "workout" button to increase distance ran, using a "workout" stat
@@ -89,3 +93,4 @@
     - [x] 8-bit music?
     - [x] Add current meters/sec in same style as current distance, lap, workout level box
     - [x] Shadow under sprite semi-transparent 
+    - [x] Small NES top right box to show fastest m/s?

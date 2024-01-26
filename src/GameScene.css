@@ -4,4 +4,5 @@
   height: 100%;
   max-height: 488px; /* max height to match the track image's aspect ratio */
   overflow: hidden;
+  z-index: 1;
 }

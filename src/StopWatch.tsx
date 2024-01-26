@@ -1,8 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import "./StopWatch.css";
-
 import StopWatchButton from "./StopWatchButton";
-import GameScene from "./GameScene";
 import { useStopWatch } from "./StopWatchContext";
 import NESBackground from "./NESBackground";
 
@@ -19,8 +17,6 @@ const StopWatch: React.FC = () => {
     isRunning,
     setIsRunning,
     addLap,
-    formatTime,
-    formatDistance,
   } = useStopWatch();
 
   useEffect(() => {
@@ -67,14 +63,6 @@ const StopWatch: React.FC = () => {
     <>
       <NESBackground size="medium">
         <h2>« Controls »</h2>
-
-        <div className="stopwatch-display">
-          <div>{formatTime(time)}</div>
-          <div>Lap Distance: {formatDistance(distance)}</div>
-          <div>Lap Time: {formatTime(currentLap)}</div>
-          <div>Workout Level: {workout}</div>
-        </div>
-
         <div className="stopwatch-controls">
           <StopWatchButton action={start} label="Start" />
           <StopWatchButton action={stop} label="Stop" />
