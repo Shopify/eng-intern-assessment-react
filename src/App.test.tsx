@@ -5,7 +5,6 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import StopWatch from "./StopWatch";
-import LapItem from "./LapItem";
 
 describe("Stopwatch Timer", () => {
   test("Stopwatch component renders", () => {
