@@ -5,10 +5,11 @@ type StopWatchButtonProps = {
     timeInSeconds: number;
     handleStartButton: () => void;
     handleStopButton: () => void;
+    handleResetButton: () => void;
 };
 
 export default function StopWatchButton(props:StopWatchButtonProps) {
-    const {timeInSeconds, handleStartButton, handleStopButton} = props;
+    const {timeInSeconds, handleStartButton, handleStopButton, handleResetButton} = props;
 
 
     return(
@@ -19,7 +20,7 @@ export default function StopWatchButton(props:StopWatchButtonProps) {
                     Start
                 </button>
             <button onClick={handleStopButton} className='control_button'>Stop</button>
-            {/* <button onClick={handleResetButton} className='control_button'>Reset</button> */}
+            <button onClick={handleResetButton} className='control_button'>Reset</button>
             {/* <button onClick={handleLapButton} className='control_button'>Lap</button> */}
         </div>
     )

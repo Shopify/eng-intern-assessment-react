@@ -17,7 +17,12 @@ export default function App() {
     }
 
     const handleStopButton = (): void => {
-        clearInterval(secondCount)
+        clearInterval(secondCount);
+    }
+
+    const handleResetButton = (): void => {
+        clearInterval(secondCount);
+        setTimeInSeconds(0)
     }
 
     return(
@@ -29,6 +34,7 @@ export default function App() {
                 timeInSeconds={timeInSeconds}
                 handleStartButton={handleStartButton}
                 handleStopButton={handleStopButton}
+                handleResetButton={handleResetButton}
                 />
         </div>
     )
