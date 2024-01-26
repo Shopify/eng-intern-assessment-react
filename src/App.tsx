@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
+import formatMilliseconds from './utils/formatMilliseconds';
 
 export default function App() {
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -55,6 +56,12 @@ export default function App() {
     secondsPassed = now - startTime;
   };
 
+  // reset the stopwatch if it exceeds 1 hour
+  if (secondsPassed > 3600000) {
+    alert('stopwatch running for more than 1 hour - resetting');
+    handleReset();
+  }
+
   return (
     <main>
       <StopWatch
@@ -78,17 +85,4 @@ export default function App() {
       </ol>
     </main>
   )
-}
-
-function formatMilliseconds(milliseconds: number): string {
-  const totalSeconds = Math.floor(milliseconds / 1000);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  const formattedTime = `${pad(minutes)}:${pad(seconds)}:${pad(milliseconds % 1000, 2)}`;
-
-  return formattedTime;
-}
-
-function pad(number: number, length = 2): string {
-  return String(number).padStart(length, '0');
 }

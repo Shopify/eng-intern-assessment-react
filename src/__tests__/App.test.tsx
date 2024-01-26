@@ -18,7 +18,7 @@ test('starts the StopWatch correctly', () => {
   const timerValue = timerElement.textContent;
 
   waitFor(() => {
-    expect(timerValue).not.toEqual('00:00:00')
+    expect(timerValue).not.toEqual('00:00:000')
   })
 })
 
@@ -73,7 +73,7 @@ test('resets the StopWatch correctly', async () => {
   const timerValue = timerElement.textContent;
 
   await waitFor(() => {
-    expect(timerValue).toEqual('00:00:00');
+    expect(timerValue).toEqual('00:00:000');
   })
 })
 
@@ -102,7 +102,7 @@ test('StopWatch sets laps correctly', async () => {
   })
 
   act(() => {
-    fireEvent.click(lapButton); // lap2 should be 100ms
+    fireEvent.click(lapButton); // lap2 should be 150ms
     fireEvent.click(stopButton)
   })
 

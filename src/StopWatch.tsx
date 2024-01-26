@@ -5,10 +5,10 @@ export default function StopWatch({
 }: {
   timer: string
 }) {
-
   return (
     <div>
-      <h1>{timer}</h1>
+      <h1>StopWatch</h1>
+      <h2>{timer}</h2>
     </div>
   )
 }
