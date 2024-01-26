@@ -1,8 +1,8 @@
 import React from "react";
 import { useStopWatch } from "./StopWatchContext";
 import NESBackground from "./NESBackground";
-import "./NESBackground.css";
-import "./StatsDisplay.css";
+import "./../css/NESBackground.css";
+import "./../css/StatsDisplay.css";
 
 const StatsDisplay: React.FC = () => {
   const { time, distance, currentLap, workout, formatTime, formatDistance } =

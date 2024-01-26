@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
-import "./fonts.css";
+import "./css/App.css";
+import "./css/fonts.css";
 
-import { StopWatchProvider, useStopWatch } from "./StopWatchContext";
-import StopWatch from "./StopWatch";
-import NESBackground from "./NESBackground";
-import RecordBoard from "./RecordBoard";
-import GameScene from "./GameScene";
+import { StopWatchProvider, useStopWatch } from "./components/StopWatchContext";
+import StopWatch from "./components/StopWatch";
+import NESBackground from "./components/NESBackground";
+import RecordBoard from "./components/RecordBoard";
+import GameScene from "./components/GameScene";
 
 const Game: React.FC = () => {
   const { isRunning, workout } = useStopWatch();

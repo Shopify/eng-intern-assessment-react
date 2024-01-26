@@ -1,10 +1,10 @@
 import React from "react";
-import "./SonicSprite.css";
+import "./../css/SonicSprite.css";
 
-import standGif from "../public/images/sonic/sonic-stand.gif";
-import slowRunGif from "../public/images/sonic/sonic-slow-run.gif";
-import medRunGif from "../public/images/sonic/sonic-med-run.gif";
-import fastRunGif from "../public/images/sonic/sonic-fast-run.gif";
+import standGif from "./../../public/images/sonic/sonic-stand.gif";
+import slowRunGif from "./../../public/images/sonic/sonic-slow-run.gif";
+import medRunGif from "./../../public/images/sonic/sonic-med-run.gif";
+import fastRunGif from "./../../public/images/sonic/sonic-fast-run.gif";
 
 type SonicSpriteProps = {
   isRunning: boolean;

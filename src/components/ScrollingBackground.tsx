@@ -1,6 +1,6 @@
 import React from "react";
-import "./ScrollingBackground.css";
-import MarioTrack from "../public/images/mario-track.png";
+import "./../css/ScrollingBackground.css";
+import MarioTrack from "./../../public/images/mario-track.png";
 
 type ScrollingBackgroundProps = {
   isRunning: boolean;

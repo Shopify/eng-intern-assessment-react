@@ -1,5 +1,5 @@
 import React from "react";
-import "./NESBackground.css";
+import "./../css/NESBackground.css";
 
 // define possible sizes as a type
 type NESBackgroundProps = {

@@ -3,7 +3,7 @@ import React from "react";
 import ScrollingBackground from "./ScrollingBackground";
 import SonicSprite from "./SonicSprite";
 import StatsDisplay from "./StatsDisplay";
-import "./GameScene.css";
+import "./../css/GameScene.css";
 
 type GameSceneProps = {
   isRunning: boolean;

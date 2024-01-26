@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./StopWatch.css";
+import "./../css/StopWatch.css";
 import StopWatchButton from "./StopWatchButton";
 import { useStopWatch } from "./StopWatchContext";
 import NESBackground from "./NESBackground";
