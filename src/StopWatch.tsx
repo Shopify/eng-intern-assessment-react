@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(0); // time in milliseconds
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [laps, setLaps] = useState<number[]>([]);
 
@@ -11,8 +11,8 @@ export default function StopWatch() {
 
     if (isRunning) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
+        setTime((prevTime) => prevTime + 10); // update every 10 milliseconds
+      }, 10);
     }
 
     return () => {
@@ -31,20 +31,42 @@ export default function StopWatch() {
     setLaps([...laps, time]);
   };
 
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60000);
+    const seconds = Math.floor((time % 60000) / 1000);
+    const milliseconds = Math.floor((time % 1000) / 10); // 2 digit milliseconds
+
+    return {
+      minutes: `${minutes < 10 ? "0" : ""}${minutes}`,
+      seconds: `${seconds < 10 ? "0" : ""}${seconds}`,
+      milliseconds: `${milliseconds < 10 ? "0" : ""}${milliseconds}`,
+    };
+  };
+
+  const buttons = [
+    { onClick: start, disabled: isRunning, label: "Start" },
+    { onClick: stop, disabled: !isRunning, label: "Stop" },
+    { onClick: reset, label: "Reset" },
+    { onClick: recordLap, disabled: !isRunning, label: "Lap" },
+  ];
+
   return (
     <div>
       <h2>Stopwatch</h2>
-      <p>{time}</p>
-      <StopWatchButton onClick={start} disabled={isRunning} label="Start" />
-      <StopWatchButton onClick={stop} disabled={!isRunning} label="Stop" />
-      <StopWatchButton onClick={reset} label="Reset" />
-      <StopWatchButton onClick={recordLap} disabled={!isRunning} label="Lap" />
+      <div className="time-display">
+        <span className="minutes">{formatTime(time).minutes}</span>:
+        <span className="seconds">{formatTime(time).seconds}</span>:
+        <span className="milliseconds">{formatTime(time).milliseconds}</span>
+      </div>
+      {buttons.map((button, index) => (
+        <StopWatchButton key={index} {...button} />
+      ))}
       {laps.length > 0 && (
         <div>
           <h3>Laps</h3>
           <ul>
             {laps.map((lap, index) => (
-              <li key={index}>{lap}</li>
+              <li key={index}>{formatTime(lap)}</li>
             ))}
           </ul>
         </div>
