@@ -46,6 +46,7 @@ export default function StopWatch() {
 	const [start, setStart] = useState(false)
 	const [laps, setLaps] = useState([])
 
+	//functions for buttons
 	const handleStart = () => {
 		setStart(true)
 	}
