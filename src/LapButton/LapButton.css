@@ -1,0 +1,25 @@
+.button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    width: 100px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-disabled {
+    margin: 10px;
+    padding: 10px 20px;
+    width: 100px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

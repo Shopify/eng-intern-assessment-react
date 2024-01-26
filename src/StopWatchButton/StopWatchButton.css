@@ -1,0 +1,27 @@
+.button-start, .button-stop {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-start {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.button-stop {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.button-start:hover {
+    background-color: #218838; /* Darker Green */
+}
+
+.button-stop:hover {
+    background-color: #c82333; /* Darker Red */
+}
