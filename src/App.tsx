@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Stopwatch from './Stopwatch';
 import StopwatchButton from './StopwatchButton';
-import { formatTime } from './utils';
+import LapTimeList from './LapTimeList';
+import './assets/app.css'; // Add this line
+
 
 const App: React.FC = () => {
   const [time, setTime] = useState<number>(0);
@@ -33,7 +35,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="app">
         <Stopwatch time={time}/>
         <div className='control-buttons'>
             <StopwatchButton label='Start' disable={timerOn} onClick={handleStart}/>
@@ -41,11 +43,7 @@ const App: React.FC = () => {
             <StopwatchButton label='Reset' disable={time === 0} onClick={handleReset}/>
             <StopwatchButton label='Lap' disable={time === 0} onClick={handleLap}/>
         </div>
-        <div className='lap-times'>
-            {laps.map((lapTime, index) => {
-                return <p key={index}>{formatTime(lapTime)}</p>;
-            })}
-        </div>
+        <LapTimeList laps={laps}/>
     </div>
   );
 };

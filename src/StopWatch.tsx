@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatTime } from './utils';
+import './assets/stopWatch.css';
 
 type StopwatchProps = {
     time: number;
@@ -8,7 +9,7 @@ type StopwatchProps = {
 const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
     
 
-    return <div>{formatTime(time)}</div>;
+    return <div className='stopwatch'>{formatTime(time)}</div>;
 };
 
 export default Stopwatch;

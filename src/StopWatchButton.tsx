@@ -1,4 +1,5 @@
 import React from 'react';
+import './assets/stopWatchButton.css';
 
 type StopwatchButtonProps = {
   label: string;
@@ -7,7 +8,7 @@ type StopwatchButtonProps = {
 };
 
 const StopwatchButton: React.FC<StopwatchButtonProps> = ({ label, disable = false, onClick }) => {
-    return <button onClick={onClick} disabled={disable}>{label}</button>;
+    return <button className="stopwatch-button" onClick={onClick} disabled={disable}>{label}</button>;
 };
 
 export default StopwatchButton;

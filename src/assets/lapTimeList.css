@@ -1,0 +1,24 @@
+.lap-times {
+    overflow-y: auto; /* Allows vertical scrolling if overflow */
+    flex: auto;
+    padding: 1rem 1rem;
+    margin: 1rem 0;
+}
+
+.lap-row {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc; /* Border at the bottom of each row */
+    padding: 5px 10px;
+    font-size: 1.5rem;
+}
+
+.lap-times__lap-number {
+    text-align: left;
+    margin-right: 2rem;
+}
+
+.lap-times__lap-time {
+    text-align: right;
+}
