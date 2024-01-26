@@ -70,18 +70,16 @@
     - The scroll should stop when the user clicks the stop and reset buttons
     - Scroll should move with the workout stat/distance, and speed up or slow down depending on the workout stat
 
-- [x] Add running sprite with start, stop, reset, and lap buttons:
+- [✅] Add running sprite with start, stop, reset, and lap buttons:
     - The running animation should start when the user clicks the start button and continue running when lap is clicked
     - The running animation should stop when the user clicks the stop and reset buttons
     - Should move with the workout stat/distance, and speed up or slow down depending on the workout stat
 
-- [x] Bug Fixes:
+- [✅] Bug Fixes:
     - [✅] When Sonic stands still and increase workout is clicked the scrolling background moves
         - Distance, time, lap do not change, just the scrolling background
     - [✅] When reset/refreshed and time, distance, lap are 0, adding a lap with 0 time and 0 distance
           gets added, should not allow adding a lap if stopped and 0 time and 0 distance
-    - [x] When reset is clicked, Sonic does not appear back at starting line, he stays where he is
-          -> reset should reset the animation if clicked
 
 - [x] Maybe additions?
     - [✅] Have "workout" button to increase distance ran, using a "workout" stat
@@ -90,3 +88,4 @@
     - [x] Multiple sprites to choose from?
     - [x] 8-bit music?
     - [x] Add current meters/sec in same style as current distance, lap, workout level box
+    - [x] Shadow under sprite semi-transparent 

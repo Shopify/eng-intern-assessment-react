@@ -1,17 +1,17 @@
 .sonic-sprite {
-    position: absolute;
-    left: 50%;
-    bottom: 20%; /* bring Sprite up a bit from buttom */
-    transform: translateX(-50%);
-    width: 200px;
-    height: 200px;
+  position: absolute;
+  left: 50%;
+  bottom: 20%; /* bring Sprite up a bit from buttom */
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
 }
 
 .sonic-sprite img {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
 }
