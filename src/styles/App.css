@@ -1,0 +1,18 @@
+.timeButton {
+    font-size: 20px;
+}
+
+#timeDisplay {
+    text-align: center;
+    font-size: 70px;
+    padding-top: 10%;
+}
+
+#timeButtons {
+    text-align: center;
+}
+
+#lapDisplay {
+    text-align: center;
+    font-size: 20px;
+}
