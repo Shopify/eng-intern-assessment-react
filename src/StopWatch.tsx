@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
+import {
+  faFlag,
+  faPlay,
+  faRedo,
+  faStop,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
@@ -35,10 +41,25 @@ export default function StopWatch() {
     <div>
       <h2>Stopwatch</h2>
       <p>{time}</p>
-      <StopWatchButton onClick={start} disabled={isRunning} label="Start" />
-      <StopWatchButton onClick={stop} disabled={!isRunning} label="Stop" />
-      <StopWatchButton onClick={reset} label="Reset" />
-      <StopWatchButton onClick={recordLap} disabled={!isRunning} label="Lap" />
+      <StopWatchButton
+        onClick={start}
+        disabled={isRunning}
+        icon={faPlay}
+        label="Start"
+      />
+      <StopWatchButton
+        onClick={stop}
+        disabled={!isRunning}
+        icon={faStop}
+        label="Stop"
+      />
+      <StopWatchButton onClick={reset} icon={faRedo} label="Reset" />
+      <StopWatchButton
+        onClick={recordLap}
+        disabled={!isRunning}
+        icon={faFlag}
+        label="Lap"
+      />
       {laps.length > 0 && (
         <div>
           <h3>Laps</h3>
