@@ -1,14 +1,19 @@
 import React from "react";
-import StopWatch from "./StopWatch";
+import StopWatch from "./components/StopWatch";
+import StopWatchButton from "./components/StopWatchButton";
 import "./styles.css";
 
 export default function App() {
   return (
     <div className="main-stopwatch">
-      <div className="timer-numbers">
-        <h1>00</h1>
-        <h1>00</h1>
-        <h1>00</h1>
+      <div className="stopwatch-face">
+        <h1 className="digits">
+          00 <span>:</span>
+        </h1>
+        <h1 className="digits">
+          00 <span>:</span>
+        </h1>
+        <h1 className="digits">00</h1>
       </div>
       <div className="btns">
         <button className="btn btn-start">START</button>
