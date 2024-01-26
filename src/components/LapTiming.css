@@ -1,0 +1,7 @@
+.timer-list {
+  display: flex;
+}
+.timer-container {
+  display: flex;
+  padding-left: 1rem;
+}
