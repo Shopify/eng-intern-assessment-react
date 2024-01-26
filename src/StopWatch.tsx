@@ -1,4 +1,4 @@
-//Import required modules - UseState to declare state of varialbe and useEffect allows hooking
+//Import required modules - UseState to declare state of variable and useEffect allows hooking
 import React, {useState, useEffect} from 'react'
 import StopWatchButton from './StopWatchButton';
 import './StopWatchStyles.css';
@@ -47,10 +47,7 @@ const StopWatch = () => {
         let seconds = date.getUTCSeconds();
         let milliseconds = Math.floor(date.getUTCMilliseconds() / 10);
 
-        return `${hours.toString().padStart(2, '0')}:
-        ${minutes.toString().padStart(2, '0')}:
-        ${seconds.toString().padStart(2, '0')}:
-        ${milliseconds.toString().padStart(2, '0')}`;
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
     }
 
     //Create a display with the formatted time;
@@ -84,11 +81,12 @@ const StopWatch = () => {
             <div className="timer_Container">
             <TimerDisplay time={time} />
 
+
             <div className="time_Labels">
                 <span>HOURS</span>
-                <span>MINUTES</span>
-                <span>SECONDS</span>
-                <span>MILLISECONDS</span>
+                <span className = "buttonLabels">MINUTES</span>
+                <span className = "buttonLabels" >SECONDS</span>
+                <span className = "buttonLabels">MILLISECONDS</span>
             </div>
             </div>
 
@@ -110,7 +108,7 @@ const StopWatch = () => {
             </div>
             <div className="Lap_Container">
             {laps.map((lap,numLaps) => (
-                <h3 key = {numLaps}> LAP {numLaps+1}: {formatTime(lap)} </h3>
+                <h3 key = {numLaps}> Lap {numLaps+1}: {formatTime(lap)} </h3>
             ))}
             </div>
 

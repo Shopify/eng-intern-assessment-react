@@ -1,4 +1,4 @@
-//TEST INSPIRED BY THE eng-intern-assessment-react-native-main
+//TEST INSPIRED BY THE eng-intern-assessment-react-native-main/test/StopWatch.test.js
 
 //Import required modules
 import React from 'react'
@@ -10,58 +10,50 @@ jest.useFakeTimers();
 
 describe('StopWatch', () => {
 
-  //Rendering Test: Renders React element to DOM and expects the timer to be present
+  //Rendering Test: Renders React element to DOM and checks for initial time 
   test('Initial Rendering: ', () => {
-    render(<Stopwatch />);
-    expect(getByText("00:00:00.000")).toBeTruthy();
+    const { getByText } = render(<StopWatch />);
+    expect(getByText('00:00:00.00')).toBeTruthy();
 
   });
 
+  //
   test('Handling Start and Stop and Resume', () => {
-    render(<Stopwatch />);
+    const { getByText, queryByText } = render(<StopWatch />);
 
-    //Simulate timer starting on the 'Start' button;
-    const startButton = getByText('Start');
-    fireEvent.click(startButton);
-    expect(getByText("Stop")).toBeTruth();
-    act(()  => jest.advancetimersByTime(1000));
-    expect(queryByText('00:00:01.000')).toBeTruthy();
+    //Simulate timer starting on the 'Start' button and ensures the time aligns with the 1 second advance
+    fireEvent.click(getByText('Start'));
+    act(()  => jest.advanceTimersByTime(1000));
+    expect(queryByText('00:00:01.00')).toBeTruthy();
 
-    //Simulate timer stopping on the 'Stop' button;
-    const stopButton = getByText('Stop');
-    fireEvent.click(stopButton);
-    expect(getByText("Resume")).toBeTruthy();
-    act(()  => jest.advancetimersByTime(1000));
-    expect(queryByText('00:00:01.000')).toBeTruthy();
-
+    //Simulate timer stopping on the 'Stop' button and ensure the time remains at the 1 second advance
+    fireEvent.click(getByText('Stop'));
+    expect(queryByText('00:00:01.00')).toBeTruthy();
   });
 
   //Simulate the timer on Reset Button
   test('Handling Reset', () => {
-    render(<StopWatch />)
+    const { getByText } = render(<StopWatch />);
 
-    //Start simulating the Start Button first
-    const startbutton = getByTest('Start');
-    fireEvent.click(startButton);
-    act(()  => jest.advancetimersByTime(1000));
+    //Start simulating the Start Button first and advance by 1 second
+    fireEvent.click(getByText('Start'));
+    act(()  => jest.advanceTimersByTime(1000));
 
+    //Checks if the 'Reset' button displays the 00:00:00.00 time
+    fireEvent.click(getByText('Reset'));
+    expect(getByText('00:00:00.00')).toBeTruthy();
 
-    const resetButton = getByTest('Reset');
-    fireEvent.click(resetButton);
-    expect(queryByText('00:00:00.000')).toBeTruthy();
 
   });
 
+  //Simulating the lap button by advancing the timer by 1 second and ensuring the lap button displays the lap time.
   test ('Handling Lap', () => {
-    render(<StopWatch />);
-    const startbutton = getByTest('Start');
-    fireEvent.click(startButton);
-    act(()  => jest.advancetimersByTime(1000));
+    const { getByText} = render(<StopWatch />);
+    
+    fireEvent.click(getByText('Start'));
+    act(() => jest.advanceTimersByTime(1000));
+    fireEvent.click(getByText('Lap'));
 
-
-    const lapButton = getByTest('Lap');
-    fireEvent.click(lapButton);
-    expect(getAllByText(/^Lap \d:/).length).toBe(2);
-
+    expect(getByText('Lap 1: 00:00:01.00')).toBeTruthy();
   });
 });

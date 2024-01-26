@@ -57,8 +57,8 @@ body, #root{
   width: 100%;
   margin-top:-10%;
   padding-bottom:20px;
-
 }
+
 
 .Lap_Container {
   width: 100%;
@@ -72,8 +72,10 @@ body, #root{
 }
 
 
+
 .timer_Container {
-  width:600px;
+  width:650px;
+  padding:0px;
 }
 
 .Lap_Container::-webkit-scrollbar {
@@ -88,46 +90,3 @@ body, #root{
 .Lap_Container::-webkit-scrollbar-thumb {
   background:  #535558;
 }
-
-
-
-
-
-
-
-
-
-
- /*
-.stopwatch {
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
-
-.stopwatch h1 {
-  color: #333;
-  font-size: 2em;
-}
-
-.stopwatch h2 {
-  color: #666;
-  font-size: 1.5em;
-}
-
-.stopwatch button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.stopwatch button:hover {
-  background-color: #0056b3;
-}
-
-
- */
