@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default function StopWatch() {
+interface StopWatchProps {
+    hours: number,
+    minutes: number,
+    seconds: number,
+    milliseconds: number
+}
+
+export default function StopWatch({ hours, minutes, seconds, milliseconds }: StopWatchProps) {
+    
     return(
-        <div></div>
+        <h1>{hours}:{minutes}:{seconds}.{milliseconds}</h1>
     )
 }
