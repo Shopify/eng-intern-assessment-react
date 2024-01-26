@@ -1,0 +1,112 @@
+@media (max-width: 75em) {
+  #root {
+    gap: 5rem;
+  }
+
+  .numbers {
+    font-size: 7.2rem;
+  }
+
+  .stats {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 54em) {
+  html {
+    font-size: 50%;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5.6rem;
+    margin: 0 auto;
+  }
+
+  .timer-container {
+    padding: 0;
+  }
+
+  .laps-container {
+    width: 65%;
+    padding: 0;
+    border: none;
+    height: 18vh;
+  }
+
+  .screen {
+    width: 100%;
+  }
+
+  .numbers {
+    font-size: 6.7rem;
+  }
+
+  .player {
+    width: 12rem;
+    height: 12rem;
+    font-size: 2.4rem;
+  }
+
+  .player .icon.Start,
+  .player .icon.Resume,
+  .player .icon.Stop {
+    font-size: 5rem;
+    padding-top: 0;
+  }
+
+  .reset,
+  .lap-button {
+    width: 8rem;
+    height: 8rem;
+    font-size: 2rem;
+  }
+
+  .reset .icon,
+  .lap-button .icon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 34em) {
+  #root {
+    margin: 0 auto;
+  }
+
+  .timer-container {
+    width: 90%;
+  }
+  .numbers {
+    font-size: 4.6rem;
+    text-align: center;
+  }
+
+  .player {
+    width: 10rem;
+    height: 10rem;
+    font-size: 1.8rem;
+  }
+
+  .reset,
+  .lap-button {
+    width: 6rem;
+    height: 6rem;
+    font-size: 1.6rem;
+  }
+
+  .reset .icon,
+  .lap-button .icon {
+    font-size: 2.4rem;
+  }
+
+  .laps-container {
+    width: 90%;
+    height: 25vh;
+  }
+
+  .lap {
+    gap: 0;
+  }
+}
