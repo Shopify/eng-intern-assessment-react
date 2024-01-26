@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";
 import "./styles.css";
 
 export default function App() {
+  const [seconds, setSeconds] = useState<number>(0);
+
   return (
     <div className="main-stopwatch">
       <div className="stopwatch-face">
