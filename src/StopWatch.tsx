@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+
 import { calculateTime } from './StopWatchUtils';
 import { StopWatchProps } from './stopWatchProps';
 

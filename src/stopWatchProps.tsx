@@ -12,6 +12,9 @@ export interface StopWatchButtonProps {
     time: number;
     setTime: Dispatch<SetStateAction<number>>;
     setLaps: Dispatch<SetStateAction<number[]>>;
+    setMinTime: Dispatch<SetStateAction<number>>;
+    setMaxTime: Dispatch<SetStateAction<number>>;
+    setCalculatedLapTimes: Dispatch<SetStateAction<number[]>>;
 
 }
   

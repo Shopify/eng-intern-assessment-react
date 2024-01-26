@@ -5,7 +5,7 @@ import './styles.css';
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
 
-    const { isStopped, setIsStopped, time, setTime, setLaps } = props;
+    const { isStopped, setIsStopped, time, setTime, setLaps, setMinTime, setMaxTime, setCalculatedLapTimes } = props;
 
     function handleStartStopClick() {
         setIsStopped(!isStopped);
@@ -15,6 +15,9 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
         setTime(0);
         setIsStopped(true);
         setLaps([]);
+        setMinTime(Number.POSITIVE_INFINITY);
+        setMaxTime(0);
+        setCalculatedLapTimes([]);
     }
 
     function handleLapTimeClick() {
