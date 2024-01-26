@@ -3,44 +3,48 @@ import '../styles/StopWatch.css';
 
 // Display time and laps
 interface StopWatchProps {
-  elapsedTime: number;  // The elapsed time to display
-  laps?: number[];      // Optional laps to display
-  showLaps?: boolean;   // Flag to show laps or not
+  elapsedTime: number;  // The elapsed time to display in milliseconds
+  laps?: number[];      // Optional array of lap times in milliseconds
+  showLaps?: boolean;   // Flag to control the display of laps
 }
 
 const StopWatch: React.FC<StopWatchProps> = ({ elapsedTime, laps, showLaps }) => {
-  // Format time to min:sec.milliseconds
+  // Function to format time from milliseconds to min:sec.milliseconds format
   const formatTime = (time: number) => {
-    // Helper function to format the time
     const milliseconds = `0${Math.floor(time / 10) % 100}`.slice(-2);
     const seconds = `0${Math.floor(time / 1000) % 60}`.slice(-2);
     const minutes = `0${Math.floor(time / 60000)}`.slice(-2);
     return `${minutes}:${seconds}.${milliseconds}`;
   };
 
-  // Render the stopwatch display and laps
+  // Main render method
   return (
-    <div className="stopwatch-display">
-      {!showLaps && (
-        <>
-          {/* Render "Stopwatch" text and the stopwatch display (time) */}
-          <h2>Stopwatch</h2>
-          <div className="stopwatch-display">{formatTime(elapsedTime)}</div>
-        </>
-      )}
-      {/* Render the laps list */}
+    <>
+      {/* Conditionally render the laps section if showLaps is true and laps data is available */}
       {showLaps && laps && (
-        <>
-          <h2>Laps</h2>
-          <div className="lap-list"> {/* Make sure this class is defined in your CSS */}
-            {laps.map((lap, index) => (
-              <div key={index}><strong>Lap {index + 1}:</strong> {formatTime(lap)}</div>
+        <div className="laps-container">
+          <div className="lap-list">
+            {/* Reverse map the laps to display the most recent lap first */}
+            {[...laps].reverse().map((lap, index) => (
+              <div key={laps.length - index - 1} className="lap-time">
+                <strong>Lap {laps.length - index}:</strong> {formatTime(lap)}
+              </div>
             ))}
           </div>
-        </>
+        </div>
       )}
-
-    </div>
+      
+      {/* Stopwatch display container */}
+      <div className="stopwatch-container">
+        <div className="stopwatch-time">
+          {/* Stopwatch title */}
+          <h2 className='stopwatch-title'>S t o p w a t c h</h2>
+          {/* Display the formatted elapsed time */}
+          <div className="time-display">{formatTime(elapsedTime)}</div>
+        </div>
+        {/* Placeholder for buttons, assuming they are rendered in another component */}
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,53 @@
+/* Container for stopwatch buttons */
+.stopwatch-buttons-container {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Style for each stopwatch button */
+.stopwatch-button {
+  font-family: 'Spline Sans Mono', monospace;
+  min-width: 150px;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 3;
+  margin-bottom: 20px;
+}
+
+/* Responsive styles for larger screens */
+@media (max-width: 1550px) {
+  .stopwatch-buttons-container { top: calc(50% - 55px); }
+  .stopwatch-button { padding: 20px 40px; font-size: 1.2em; }
+}
+
+/* Responsive styles for medium screens */
+@media (max-width: 700px) {
+  .stopwatch-buttons-container { top: calc(50% - 55px); }
+  .stopwatch-button { min-width: 50px; padding: 20px 20px; font-size: 1.2em; }
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 580px) {
+  .stopwatch-buttons-container { top: calc(50% - 50px); }
+  .stopwatch-button { min-width: 50px; padding: 20px 20px; font-size: 1.2em; }
+}
+
+/* Responsive styles for very small screens */
+@media (max-width: 506px) {
+  .stopwatch-buttons-container { top: calc(50% - 40px); }
+  .stopwatch-button { min-width: 70px; padding: 17px 10px; font-size: 1em; }
+}
+
+/* Specific styles for start/resume, lap, pause, and reset buttons */
+.start-resume { background-color: rgb(168, 247, 190);}
+.lap { background-color: rgb(0, 161, 233); }
+.pause { background-color: rgb(255, 205, 0); }
+.reset { background-color: rgb(237, 28, 36); }
