@@ -9,5 +9,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src/**/*.tsx", "src/**/*.ts"],
 }
+
+
