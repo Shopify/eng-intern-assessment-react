@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
     const [seconds, setSeconds] = useState<number>(0)
@@ -51,8 +52,8 @@ export default function StopWatch() {
     return(
         <div>
              <div className="timeDisplay"> 
-                {formatZero(hours)} : {formatZero(minutes)} :{" "} 
-                {formatZero(seconds)} 
+                {formatZero(hours)} : {formatZero(minutes)} :{" "} {formatZero(seconds)} 
+                <StopWatchButton />
             </div> 
         </div>
     )
