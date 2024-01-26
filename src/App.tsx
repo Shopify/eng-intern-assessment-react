@@ -5,8 +5,11 @@ import { getPrettyTime } from "./utils";
 import "./styles.css";
 
 export default function App() {
+  // State for the timer and laps
   const [time, setTime] = useState(0);
   const [laps, setLaps] = useState([]);
+
+  // State used to turn the timer logic on and off
   const [timerOn, setTimerOn] = useState(false);
 
   const onStart = () => {
@@ -26,7 +29,7 @@ export default function App() {
     setLaps([time, ...laps]);
   };
 
-  // Logic for the timer, use an interval to increment the timer
+  // Logic for the timer, uses an interval to increment the timer
   useEffect(() => {
     let interval: any = null;
 

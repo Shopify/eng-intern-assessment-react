@@ -1,3 +1,5 @@
+// Takes a time in milliseconds and returns a string in the format of
+// minutes:seconds:milliseconds
 export const getPrettyTime = (time: number) => {
   const minutes = ("0" + Math.floor((time / 60000) % 60)).slice(-2);
   const seconds = ("0" + Math.floor((time / 1000) % 60)).slice(-2);
