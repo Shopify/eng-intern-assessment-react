@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Stopwatch from './StopWatch'
 import StopwatchButton from './StopWatchButton';
+import './styles/App.css'
 
 export default function App() {
     const [time, setTime] = useState(0)
@@ -8,12 +9,22 @@ export default function App() {
     const [laps, setLaps] = useState<number[]>([])
 
     useEffect(() => {
-        if (isRunning){
-            const interval = setInterval(() => {
+        let interval: NodeJS.Timeout | null = null; // Declare interval here for scope
+    
+        if (isRunning) {
+            // Set the interval
+            interval = setInterval(() => {
                 setTime(prevTime => prevTime + 10);
-            }, 10)
+            }, 10);
         }
-    })
+    
+        // Cleanup function
+        return () => {
+            if (interval) {
+                clearInterval(interval);
+            }
+        };
+    }, [isRunning]);
 
     // Start the stopwatch
     const handleStart = () => setIsRunning(true);
@@ -30,11 +41,11 @@ export default function App() {
 
     // Record a lap
     const handleLap = () => {
-        setLaps([...laps, time]);
+        const lastLapTime = laps.length > 0 ? laps[laps.length - 1] : 0;
+        setLaps([...laps, time - lastLapTime]);
     };
     return(
-        <div>
-            <Stopwatch time={time} laps={laps} />
+        <div className='body'>
             <StopwatchButton 
                 isRunning={isRunning} 
                 onStart={handleStart} 
@@ -42,6 +53,7 @@ export default function App() {
                 onReset={handleReset} 
                 onLap={handleLap} 
             />
+            <Stopwatch time={time} laps={laps} />
         </div>
     )
 }
