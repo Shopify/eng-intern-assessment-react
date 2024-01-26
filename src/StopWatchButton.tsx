@@ -3,11 +3,12 @@ import { useState } from 'react';
 
 type StopWatchButtonProps = {
     timeInSeconds: number;
-    handleStartButton: () => void
+    handleStartButton: () => void;
+    handleStopButton: () => void;
 };
 
 export default function StopWatchButton(props:StopWatchButtonProps) {
-    const {timeInSeconds, handleStartButton} = props;
+    const {timeInSeconds, handleStartButton, handleStopButton} = props;
 
 
     return(
@@ -17,8 +18,9 @@ export default function StopWatchButton(props:StopWatchButtonProps) {
                 className='control_button'>
                     Start
                 </button>
-            {/* <button onClick={handleStopButton} className='control_button'>Stop</button>
-            <button onClick={handleResetButton} className='control_button'>Reset</button> */}
+            <button onClick={handleStopButton} className='control_button'>Stop</button>
+            {/* <button onClick={handleResetButton} className='control_button'>Reset</button> */}
+            {/* <button onClick={handleLapButton} className='control_button'>Lap</button> */}
         </div>
     )
 }

@@ -16,6 +16,10 @@ export default function App() {
         setSecondCount(second);   
     }
 
+    const handleStopButton = (): void => {
+        clearInterval(secondCount)
+    }
+
     return(
         <div className='main_container'>
             <StopWatch 
@@ -24,6 +28,7 @@ export default function App() {
             <StopWatchButton 
                 timeInSeconds={timeInSeconds}
                 handleStartButton={handleStartButton}
+                handleStopButton={handleStopButton}
                 />
         </div>
     )
