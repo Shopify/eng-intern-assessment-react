@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import StopWatch from './StopWatch'
+import './App.css'
 
 export default function App() {
     const [isRunning, setIsRunning] = useState(false);
@@ -10,7 +11,7 @@ export default function App() {
         setIsRunning(false)
     }
     return(
-        <div>
+        <div className='container'>
             <h1>Stopwatch</h1>
             <StopWatch isRunning={isRunning} onStart={startTimer} onStop={stopTimer} />
             

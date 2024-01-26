@@ -1,0 +1,40 @@
+/* StopWatch Styles */
+.stopWatch{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.stopWatchDisplay{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.lapTableContainer{
+    display: none;
+}
+
+.lapTableContainer.show{
+    display: block;
+}
+.lapTable{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lapTable th,
+.lapTable td {
+    border: 2px solid #808080;
+    padding: 1rem;
+    color: #fff;
+}
+
+.lapTable th{
+    background-color: #888888;
+}
+
+.newestLap {
+    background-color: #901010;
+}
+.secondLap{
+    background-color: #092010;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './StopWatchButton.css'
 
 interface StopWatchButtonProps{
     startTimer: () => void;
@@ -9,17 +10,17 @@ interface StopWatchButtonProps{
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({ startTimer, stopTimer, reset, lap }) => {
     return (
-        <div>
-            <button onClick={startTimer}>
+        <div className='btnContainer'>
+            <button className='button' onClick={startTimer}>
                 Start
             </button>
-            <button onClick={stopTimer}>
+            <button className='button' onClick={stopTimer}>
                 Stop
             </button>
-            <button onClick={reset}>
+            <button className='button' onClick={reset}>
                 Reset
             </button>
-            <button onClick={lap}>
+            <button className='button' onClick={lap}>
                 Lap
             </button>
         </div>

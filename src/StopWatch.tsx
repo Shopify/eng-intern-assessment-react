@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import StopWatchButton from './StopWatchButton';
+import './StopWatch.css'
 
 interface StopWatchProps {
     isRunning: boolean;
@@ -14,6 +15,9 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
     // the state to store lap times
     const [laps, setLaps] = useState<number[]>([]);
 
+    // the state to display laps table
+    const [showLapsTable, setShowLapsTable] = useState(false)
+
 
     useEffect(() => {
         let intervalId: NodeJS.Timeout;
@@ -27,24 +31,14 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
     }, [isRunning]);
 
     const formatTime = (milliseconds: number) => {
+        const formattedHours = Math.floor(milliseconds / 360000)
         const formattedMinutes = Math.floor((milliseconds % 360000) / 6000);
         const formattedSeconds = Math.floor((milliseconds % 6000) / 100);
         const formattedMilliseconds = milliseconds % 100
 
-        return `${formattedMinutes.toString().padStart(2, '0')}:${formattedSeconds.toString().padStart(2, '0')}:${formattedMilliseconds.toString().padStart(2, '0')}`
+        return `${formattedHours.toString().padStart(2, '0')}:${formattedMinutes.toString().padStart(2, '0')}:${formattedSeconds.toString().padStart(2, '0')}:${formattedMilliseconds.toString().padStart(2, '0')}`
     }
 
-    // calculating hours
-    const hours = Math.floor(time / 360000);
-
-    // calculating minutes
-    const minutes = Math.floor((time % 360000) / 6000);
-
-    // calculating seconds
-    const seconds = Math.floor((time % 6000) / 100);
-
-    // calculating milliseconds
-    const milliseconds = time % 100;
 
     // start timer with 'Start' button
     const startTimer = () => {
@@ -60,28 +54,47 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
         
         // clear laps on reset
         setLaps([]);
+
+        // hide the laps table when reset
+        setShowLapsTable(false)
     }
 
     const lap = () => {
         if (isRunning) {
             // calculate lap time and add to laps array
             const lapTime = time;
-            setLaps((prevLaps)=>[...prevLaps, lapTime])
+            setLaps((prevLaps) => [...prevLaps, lapTime])
+            setShowLapsTable(true);
         }
     }
     return (
-        <div>
-            <p>
-                {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}: {seconds.toString().padStart(2, '0')}:{milliseconds.toString().padStart(2, '0')}
+        <div className='stopWatch'>
+            <p className='stopWatchDisplay'>
+                {formatTime(time)}
             </p>
-            <div>
-                {laps.map((lapTime, index) => (
-                    <div key={index}>
-                        LAP NO. {laps.length - index}
-                        <span>Lap Time: {formatTime(lapTime)}</span>
-                        <span>Total Time: {formatTime(time)}</span>
-                    </div>
-                ))}
+            <div className={`lapTableContainer ${showLapsTable ? 'show': ''}`}>
+                <table className='lapTable'>
+                    <thead>
+                        <tr>
+                            <th>Lap No.</th>
+                            <th>Lap Time</th>
+                            <th>Total Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {laps.map((lapTime, index) => (
+                            <tr key={index} className={index === 0 ? 'newestLap' : index === 1 ? 'secondLap': ''}>
+                                <td>
+                                {laps.length - index}
+                                </td>
+                                <td>{formatTime(lapTime)}</td>
+                                <td>{formatTime(time)}</td>
+                            </tr>
+                    ))}
+                    </tbody>
+                
+                
+                </table>
             </div>
             <StopWatchButton
                 startTimer={startTimer}
