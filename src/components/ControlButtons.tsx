@@ -10,6 +10,8 @@ interface ControlButtonsProps {
   active: boolean;
 }
 
+/* Handles display of the 5 control buttons for the stopwatch, 
+  namely: Start, Lap, Stop, Resume, Reset */
 export default function ControlButtons({
   handleStart,
   handleReset,

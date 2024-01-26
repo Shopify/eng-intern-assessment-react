@@ -1,10 +1,10 @@
 import React from "react";
-import dateFormatter from "../utils/TimeFormatter";
+import LapTableRow from "./LapTableRow";
 
 interface LapTime {
   lap: number;
-  lap_time: number;
-  overall_time: number;
+  lapTime: number;
+  overallTime: number;
 }
 
 interface LSTime {
@@ -35,24 +35,16 @@ export default function LapTable({
             </tr>
           </thead>
           <tbody>
-            {lapData.map(({ lap, lap_time, overall_time }, index) => {
+            {lapData.map(({ lap, lapTime, overallTime }: LapTime) => {
               return (
-                <tr key={index}>
-                  <td
-                    className={`lap-${
-                      lapData.length > 2 &&
-                      (lap == lLapTime.index
-                        ? "l"
-                        : lap == sLapTime.index && "s")
-                    }`}
-                  >
-                    {(10 - lap > 0 && "0") + lap}
-                  </td>
-                  <td>{dateFormatter.formatLapTime(lap_time)}</td>
-                  <td className="overall-time">
-                    {dateFormatter.formatLapTime(overall_time)}
-                  </td>
-                </tr>
+                <LapTableRow
+                  lap={lap}
+                  lapTime={lapTime}
+                  overallTime={overallTime}
+                  lLapTime={lLapTime}
+                  sLapTime={sLapTime}
+                  displayLab={lapData.length > 2}
+                />
               );
             })}
           </tbody>

@@ -7,6 +7,8 @@ interface StopWatchButtonProps {
   type: String;
 }
 
+/* Generic Stopwatch button component that takes in custom
+  onClick, type: primary/warning/dark and children props */
 export default function StopWatchButton({
   children,
   isDisabled,
