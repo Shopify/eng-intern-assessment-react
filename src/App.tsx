@@ -48,14 +48,15 @@ export default function App() {
           <StopWatch time={time} />
           <div className="buttons-wrapper">
             {timerOn ? (
-              <StopWatchButton type="lap" onClick={onLap} />
+              <>
+                <StopWatchButton type="lap" onClick={onLap} />
+                <StopWatchButton type="stop" onClick={onStop} />
+              </>
             ) : (
-              <StopWatchButton type="reset" onClick={onReset} />
-            )}
-            {timerOn ? (
-              <StopWatchButton type="stop" onClick={onStop} />
-            ) : (
-              <StopWatchButton type="start" onClick={onStart} />
+              <>
+                <StopWatchButton type="reset" onClick={onReset} />
+                <StopWatchButton type="start" onClick={onStart} />
+              </>
             )}
           </div>
         </div>

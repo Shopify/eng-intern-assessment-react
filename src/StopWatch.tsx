@@ -7,5 +7,9 @@ type StopWatchProps = {
 
 export default function StopWatch(props: StopWatchProps) {
   const { time } = props;
-  return <p className="stopwatch-text">{getPrettyTime(time)}</p>;
+  return (
+    <p className="stopwatch-text" data-testid="stopwatch-text">
+      {getPrettyTime(time)}
+    </p>
+  );
 }
