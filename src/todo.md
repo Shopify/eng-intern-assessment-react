@@ -57,10 +57,10 @@
     - [x] Document your code by adding comments and explanatory notes where necessary.
     - [x] Provide clear explanations of the implemented functionality and any important details.
 
-- [x] Accessibility:
-    - [x] Ensure that the application is accessible and usable by people with disabilities.
-    - [x] Use semantic HTML elements and ARIA attributes to improve the accessibility of the application.
-    - [x] Use the ChromeVox screen reader to test the accessibility of the application.
+- [✅] Accessibility:
+    - [✅] Ensure that the application is accessible and usable by people with disabilities.
+    - [✅] Use semantic HTML elements and ARIA attributes to improve the accessibility of the application.
+    - [✅] Use the ChromeVox screen reader to test the accessibility of the application.
 
 - [✅] Styling
 
@@ -95,7 +95,7 @@
 
 - [x] Maybe additions?
     - [✅] Have "workout" button to increase distance ran, using a "workout" stat
-        - [x] Have animation speed up or slow down depending on "workout" stat
+        - [✅] Have animation speed up or slow down depending on "workout" stat
     - [x] When start, stop, reset, lap clicked, have text and sound effect pop up
     - [x] Multiple sprites to choose from?
     - [x] 8-bit music?
