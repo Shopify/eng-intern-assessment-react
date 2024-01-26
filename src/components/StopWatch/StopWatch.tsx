@@ -45,6 +45,7 @@ export default function StopWatch() {
                 if (seconds === 59) {
                     setMinutes((prevMinute) => prevMinute + 1)
                     setSeconds(0)
+                    // If not, add 1 to seconds
                 } else {
                     setSeconds((prevSecond) => prevSecond + 1)
                 }
