@@ -1,9 +1,18 @@
 import React from 'react'
 
-export default function StopWatch() {
+type StopWatchProps = {
+    time: number;
+};
+
+export const formatTime = (time: number): string => {
+    const seconds = ((time % 60000) / 1000).toFixed(2);
+    return `${+seconds < 10 ? "0" : ""}${seconds}`;
+};
+
+export default function StopWatch({time} : StopWatchProps) {
     return(
-        <div>
-            <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <div className="stopwatch-display">
+            {formatTime(time)}
         </div>
-    )
-}
+    );
+};

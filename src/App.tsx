@@ -2,26 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 
+import { formatTime } from "./StopWatch";
+
 export default function App() {
     const [time, setTime] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const lapsRef = useRef<number[]>([]);
 
-    const formatTime = (time: number): string => {
-        const seconds = ((time % 60000) / 1000).toFixed(2);
-        return `${+seconds < 10 ? "0" : ""}${seconds}`;
-    };
-
-    const startStopwatch = (): void => {
+    const startWatch = (): void => {
         if (isRunning) {
             setIsRunning(false);
             clearInterval(timerRef.current);
         } else {
             setIsRunning(true);
             timerRef.current = window.setInterval(() => {
-            setTime((prevTime) => prevTime + 10);
+                setTime((prevTime) => prevTime + 10);
             }, 10);
         }
+    };
+
+    const stopWatch = (): void => {
+        setIsRunning(false);
+        clearInterval(timerRef.current);
     };
 
     const resetStopwatch = (): void => {
@@ -40,15 +42,13 @@ export default function App() {
     return(
         <div className="App">
             <h1>Stopwatch</h1>
-            <div className="stopwatch-display">{formatTime(time)}</div>
+            <StopWatch time={time}></StopWatch>
+            <div className="stopwatch-display">{}</div>
                 <div className="button-container">
-                    <StopWatchButton title={"Start"} onClick={startStopwatch} />
-                    <StopWatchButton title={"Stop"} onClick={startStopwatch} />
-                    <StopWatchButton title="Reset" onClick={resetStopwatch} />
-                    <StopWatchButton title="Lap" onClick={recordLap} />
+                    <StopWatchButton startWatch={startWatch} stopWatch={stopWatch} resetStopwatch={resetStopwatch} recordLap={recordLap} />
                 </div>
                 <div className="laps-container">
-                    {lapsRef.current.map((lapTime, index) => (
+                {lapsRef.current.map((lapTime, index) => (
                     <div key={index} className="lap">
                         Lap {index + 1}: {formatTime(lapTime)}
                     </div>

@@ -1,27 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 type ButtonProps = {
-    title: string;
-    onClick: () => void;
-  };
+    startWatch: () => void;
+    stopWatch: () => void;
+    resetStopwatch: () => void;
+    recordLap: () => void;
+};
 
-export default function StopWatchButton({title, onClick}: ButtonProps) {
+export default function StopWatchButton({startWatch, stopWatch, resetStopwatch, recordLap}: ButtonProps) {
     return(
         <div>
-            <button className="button" onClick={onClick}>
-                {title}
+            <div className="button-container">
+            <button className="button" onClick={startWatch}>
+                Start
             </button>
-                {/* <button onClick={startStopwatch} >Start</button>
-                <button onClick={stopStopwatch} >Stop</button>
-                <button onClick={resetStopwatch}>Reset</button>
-                <button onClick={recordLap}>Lap</button> */}
-                
-            
-
-            {/* <button id="button-start">Start</button>
-            <button id="button-stop">Stop</button>
-            <button id="button-reset">Reset</button>
-            <button id="button-lap">Lap</button> */}
+            <button className="button" onClick={stopWatch}>
+                Stop
+            </button>
+            <button className="button" onClick={resetStopwatch}>
+                Reset
+            </button>
+            <button className="button" onClick={recordLap}>
+                Lap
+            </button>
+            </div>
         </div>
     )
 }
