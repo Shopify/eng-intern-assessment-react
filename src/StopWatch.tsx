@@ -72,6 +72,11 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
             <p className='stopWatchDisplay'>
                 {formatTime(time)}
             </p>
+                        <StopWatchButton
+                            startTimer={startTimer}
+                            stopTimer={stopTimer}
+                            reset={reset}
+                            lap={lap} />
             <div className={`lapTableContainer ${showLapsTable ? 'show': ''}`}>
                 <table className='lapTable'>
                     <thead>
@@ -96,11 +101,6 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
                 
                 </table>
             </div>
-            <StopWatchButton
-                startTimer={startTimer}
-                stopTimer={stopTimer}
-                reset={reset}
-                lap={lap} />
 
         </div>
     )
