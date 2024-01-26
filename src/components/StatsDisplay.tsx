@@ -16,7 +16,7 @@ const StatsDisplay: React.FC = () => {
       aria-label="Game statistics"
     >
       <NESBackground size="small">
-        <h2 id="stats-heading">Stats</h2>
+        <h2 id="stats-heading">« Stats »</h2>
         <div role="group" aria-labelledby="stats-heading">
           <div className="stats-text" aria-label={`Time: ${formatTime(time)}`}>
             Time: {formatTime(time)}

@@ -6,7 +6,7 @@
   
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
+  align-items: flex-start; /* align items to the left */
   gap: 0.3em;
   color: white;
   text-shadow: 2px 2px 2px black;
@@ -14,7 +14,7 @@
 
 .controls-text h3,
 .controls-text p {
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  font-size: calc(10px + 0.5vw); /* Adjust font size */
+  margin: 0; 
+  padding: 0;
+  font-size: calc(10px + 0.5vw); /* adjust font size */
 }

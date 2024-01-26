@@ -5,6 +5,7 @@ import ScrollingBackground from "./ScrollingBackground";
 import SonicSprite from "./SonicSprite";
 import StatsDisplay from "./StatsDisplay";
 import ControlsText from "./ControlsText";
+import MusicControl from "./MusicControl";
 
 type GameSceneProps = {
   isRunning: boolean;
@@ -22,6 +23,7 @@ const GameScene: React.FC<GameSceneProps> = ({ isRunning, workout }) => {
       <SonicSprite isRunning={isRunning} workout={workout} />
       <StatsDisplay />
       <ControlsText />
+      <MusicControl />
     </main>
   );
 };
