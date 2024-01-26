@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function StopWatch() {
     return(
-        <div></div>
+        <>
+            <p>Hours</p>
+            <p>Minutes</p>
+            <p>Seconds</p>
+        </>
     )
 }

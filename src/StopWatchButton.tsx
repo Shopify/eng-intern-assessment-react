@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function StopWatchButton() {
     return(
-        <div></div>
+        <>
+            <button>Start</button><button>Reset</button>
+        </>
     )
 }
