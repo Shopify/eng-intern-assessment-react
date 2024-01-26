@@ -11,9 +11,11 @@ export default function App() {
     useEffect(() => {
         if(running) {
             const timer = setInterval(() => {
-                setCounter(c => c + 4);
-            }, 4);
+                setCounter(c => c + 25);
+            }, 25);
             // 4 is chosen here because updating any faster results in incorrect timing
+            // 4 ended up also being incorrect upon multiple tests
+            // 25 chosen again as it's much higher than the previous minimum I encountered. (15) 
             //BE SURE TO RECHECK BEFORE SUBMITTING
         return () => clearInterval(timer);
         }
