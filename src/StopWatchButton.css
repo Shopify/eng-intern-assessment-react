@@ -5,15 +5,17 @@
 }
 .button {
     width: 25%;
-    background-color: #e28743;
+    background-color: #e65100;
     color: #fff;
-    padding: 1rem 2rem;
+    padding: 2rem 3rem;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    text-align: center;   
+    text-align: center;
+    font-size: 2rem;   
 }
 
 .button:hover{
-    background-color: #008080;
+    background-color: #a3ebf6;
+    color: #001f3f;
 }

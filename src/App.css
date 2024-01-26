@@ -3,7 +3,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #154c79;
+    background-color: #001f3f;
     display: flex;
     justify-content: center;
     text-transform: uppercase;
@@ -21,4 +21,5 @@ body {
 .container h1{
     font-weight: 900;
     font-size: 5rem;
+    color: #a3ebf6;
 }
