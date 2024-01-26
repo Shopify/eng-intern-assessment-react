@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import { calculateTime } from './StopWatchUtils';
+import { StopWatchProps } from './stopWatchProps';
 
-export default function StopWatch(props: any) {
+export default function StopWatch(props: StopWatchProps) {
 
-    const { isStopped, time, setTime, laps} = props;
+    const { isStopped, time, setTime} = props;
 
     useEffect(() => {
-        let intervalId: any;
+        let intervalId: ReturnType<typeof setInterval>;
 
         if (!isStopped) {
             // increment timer value every 10 milliseconds
-            intervalId = setInterval(() => setTime((prev: any) => prev + 10), 10);
+            intervalId = setInterval(() => setTime((prev: number) => prev + 10), 10);
         } else {
             clearInterval(intervalId);
         }
@@ -20,8 +21,8 @@ export default function StopWatch(props: any) {
 
     
     return(
-        <div style={{display: "flex", justifyContent: "center", padding: 20}}>
-            <h2>{calculateTime(time)}</h2>
+        <div className="stop-watch">
+            <span className="timer">{calculateTime(time)}</span>
         </div>
     )
 }

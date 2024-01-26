@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Button } from '@mui/material';
-import './styles.css'
-import { timeStamp } from 'console';
+import { StopWatchButtonProps } from './stopWatchProps';
+import './styles.css';
 
-export default function StopWatchButton(props: any) {
+export default function StopWatchButton(props: StopWatchButtonProps) {
 
     const { isStopped, setIsStopped, time, setTime, setLaps } = props;
 
@@ -24,17 +24,14 @@ export default function StopWatchButton(props: any) {
     }
 
     return(
-        <div style={{display: "flex", justifyContent: "center"}}>
+        <div className="stop-watch-button-container">
             <Button id="stop-watch-button"
-                    sx={{minWidth: "85px"}}
                     variant="contained" 
                     color={isStopped ? "success" : "error"} 
                     onClick={handleStartStopClick}>
                 {isStopped ? "Start" : "Stop"}
             </Button>
-            <Button 
-                    id="stop-watch-button"
-                    sx={{minWidth: "85px"}}
+            <Button id="stop-watch-button"
                     color="info"
                     variant="contained"
                     onClick={isStopped ? handleResetClick : handleLapTimeClick}>
