@@ -1,7 +1,7 @@
 .stopwatch-buttons {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .player,
@@ -15,12 +15,12 @@
 }
 
 .player {
-  width: 170px;
-  height: 170px;
+  width: 17rem;
+  height: 17rem;
   background-color: var(--main-button-active);
   color: var(--main-button-text);
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .player span,
@@ -36,6 +36,10 @@
   padding-top: 1rem;
 }
 
+.player.Stop {
+  border-radius: 10px;
+}
+
 .player .icon.Start,
 .player .icon.Resume {
   padding-left: 1rem;
@@ -43,8 +47,8 @@
 
 .reset,
 .lap-button {
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
   background-color: var(--secondary-button-active);
   color: var(--main-text);
   font-size: 2.2rem;

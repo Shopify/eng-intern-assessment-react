@@ -145,8 +145,12 @@ export default function StopWatch() {
           <span className={formattedStopWatch.m > 0 ? "enabled" : ""}>
             {twoDigits(formattedStopWatch.m)}:
           </span>
-          <span className="enabled">{twoDigits(formattedStopWatch.s)}:</span>
-          <span className="enabled">{twoDigits(formattedStopWatch.ms)}</span>
+          <span className={formattedStopWatch.s > 0 ? "enabled" : ""}>
+            {twoDigits(formattedStopWatch.s)}:
+          </span>
+          <span className={formattedStopWatch.ms > 0 ? "enabled" : ""}>
+            {twoDigits(formattedStopWatch.ms)}
+          </span>
         </p>
         <div className="stopwatch-buttons">
           <StopWatchButton
@@ -171,20 +175,21 @@ export default function StopWatch() {
             defaultLabel="Lap"
           />
         </div>
+
         <div className="stats">
           <p className="fastest">
-            Fastest:{" "}
             {lapTimes.length ? (
               <>
+                Fastest:{" "}
                 {formattedFastest.h > 0 && (
-                  <span>{twoDigits(formattedFastest.h)}:</span>
+                  <span>{twoDigits(formattedFastest.h)}h </span>
                 )}
                 {""}
                 {formattedFastest.m > 0 && (
-                  <span>{twoDigits(formattedFastest.m)}:</span>
+                  <span>{twoDigits(formattedFastest.m)}m </span>
                 )}
                 {""}
-                <span>{twoDigits(formattedFastest.s)}:</span>
+                <span>{twoDigits(formattedFastest.s)}s </span>
                 <span>{twoDigits(formattedFastest.ms)}</span>
               </>
             ) : (
@@ -192,18 +197,18 @@ export default function StopWatch() {
             )}
           </p>
           <p className="slowest">
-            Slowest:{" "}
             {lapTimes.length ? (
               <>
+                Slowest:{" "}
                 {formattedSlowest.h > 0 && (
-                  <span>{twoDigits(formattedSlowest.h)}:</span>
+                  <span>{twoDigits(formattedSlowest.h)}h </span>
                 )}
                 {""}
                 {formattedSlowest.m > 0 && (
-                  <span>{twoDigits(formattedSlowest.m)}:</span>
+                  <span>{twoDigits(formattedSlowest.m)}m </span>
                 )}
                 {""}
-                <span>{twoDigits(formattedSlowest.s)}:</span>
+                <span>{twoDigits(formattedSlowest.s)}s </span>
                 <span>{twoDigits(formattedSlowest.ms)}</span>
               </>
             ) : (
