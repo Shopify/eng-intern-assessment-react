@@ -41,6 +41,7 @@ button:enabled:hover {
   margin: 0 auto;
   padding: 7.2rem 0;
   height: 100%;
+  gap: 20px;
 }
 
 .timer-container {
