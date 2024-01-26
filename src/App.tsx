@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import StopWatch from "./component/main/StopWatch";
+import "./App.css";
 
-export default function App() {
-    return(
-        <div></div>
-    )
+function App() {
+  return (
+    <div className="App">
+      <StopWatch />
+    </div>
+  );
 }
+
+export default App;

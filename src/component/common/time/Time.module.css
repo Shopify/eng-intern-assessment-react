@@ -1,0 +1,21 @@
+.time-container {
+  position: relative;
+}
+
+.lap-li {
+  font-variant-numeric: tabular-nums;
+  font-family: "Digital-7", monospace;
+}
+
+.stopwatch.hour,
+.stopwatch.minute,
+.stopwatch.second,
+.stopwatch.milli {
+  position: relative;
+  font-size: clamp(3.375rem, -1.25rem + 10vw, 5.375rem);
+}
+
+.stopwatch.milli {
+  position: relative;
+  font-size: clamp(1.375rem, -1.25rem + 10vw, 2.375em);
+}

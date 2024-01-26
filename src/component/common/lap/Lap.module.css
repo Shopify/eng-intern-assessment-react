@@ -1,0 +1,68 @@
+.lap,
+.span {
+  position: relative;
+  text-align: right;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
+
+.li-child {
+  display: flex;
+  justify-content: space-between;
+  background-color: #878787;
+  border-radius: 25px;
+  padding: 10px;
+  opacity: 1;
+  transition: all 1.2s ease-out;
+}
+
+.li-child.startLeft,
+.li-child.startRight {
+  position: relative;
+  transition: all 1.2s ease-out;
+}
+
+.startLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.startRight {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/*Idea from https://jacekjeznach.com/*/
+.stretching {
+  animation: rubberBand 500ms alternate ease-out;
+}
+
+@keyframes rubberBand {
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+
+  20% {
+    transform: scaleX(1.2) scaleY(0.8);
+  }
+
+  40% {
+    transform: scaleX(0.8) scaleY(1.2);
+  }
+
+  60% {
+    transform: scaleX(1.1) scaleY(0.9);
+  }
+
+  75% {
+    transform: scaleX(0.9) scaleY(1.1);
+  }
+
+  85% {
+    transform: scaleX(1.1) scaleY(1);
+  }
+
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}

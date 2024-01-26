@@ -1,20 +1,46 @@
 {
-  "name": "template",
-  "version": "1.0.0",
-  "description": "",
+  "name": "stopwatch-typescript",
+  "version": "0.1.0",
+  "private": true,
   "main": "src/index.tsx",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.70",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-router-dom": "^5.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
     "test": "jest",
     "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.23.8",
@@ -23,7 +49,6 @@
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^16.18.30",
-    "@types/react": "^17.0.59",
     "@types/react-dom": "^18.2.4",
     "babel-jest": "^29.7.0",
     "babel-loader": "^8.3.0",
@@ -36,12 +61,15 @@
     "style-loader": "^3.3.2",
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.4.2",
-    "typescript": "^4.9.5",
     "webpack": "^5.82.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.0",
     "webpack-merge": "^5.8.0",
-    "webpack-obj-loader": "^1.0.4"
+    "webpack-obj-loader": "^1.0.4",
+    "@types/react": "^18.2.48",
+    "@types/webpack-env": "^1.18.4",
+    "source-map-loader": "^4.0.2",
+    "typescript": "^5.3.3"
   },
   "jest": {
     "transform": {

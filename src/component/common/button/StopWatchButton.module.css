@@ -1,0 +1,44 @@
+.btn-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.stopwatch-btn {
+  position: relative;
+  margin: 10px;
+  height: 40px;
+  width: clamp(7.375rem, 20vw, 13.375rem);
+  background-color: wheat;
+  border-radius: 5px;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.stopwatch-btn.Start {
+  background-color: #008000;
+  transition: background-color 500ms ease-in-out;
+}
+
+.stopwatch-btn.Stop {
+  background-color: #ff0000;
+  transition: background-color 500ms ease-in-out;
+  color: #fff;
+}
+
+.stopwatch-btn.Lap {
+  background-color: #daa21f;
+  transition: background-color 500ms ease-in-out;
+  color: #fff;
+}
+
+.stopwatch-btn.Reset {
+  background-color: #192ed2;
+  transition: background-color 500ms ease-in-out;
+  color: #fff;
+}
