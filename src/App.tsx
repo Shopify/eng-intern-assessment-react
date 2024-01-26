@@ -18,7 +18,7 @@ export default function App() {
             const startTime = Date.now() - time;
             timerId.current = setInterval(() => {
                 setTime(Date.now() - startTime);
-            }, 1000);
+            }, 10); // Update interval set to 10 milliseconds            
         }
     };
 
@@ -32,13 +32,17 @@ export default function App() {
     };
 
     return (
-        <div>
-            <Stopwatch time={time} laps={laps} />
-            <StopWatchButton 
-                isRunning={isRunning}
-                onStartStop={handleStartStop}
-                onResetLap={handleResetLap}
-            />
+        <div className="container">
+            <div className="stopwatch-display">
+                <Stopwatch time={time} laps={laps} />
+            </div>
+            <div className="stopwatch-controls">
+                <StopWatchButton 
+                    isRunning={isRunning}
+                    onStartStop={handleStartStop}
+                    onResetLap={handleResetLap}
+                />
+            </div>
         </div>
     );
 }
