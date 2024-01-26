@@ -11,4 +11,7 @@
   --secondary-button-active: #0f4d66;
   --secondary-button-text-disabled: #394b4d;
   --disabled: #1f2d2f;
+
+  --scrollbar-bg: #112326;
+  --scrollbar-handle: #5bdce5;
 }

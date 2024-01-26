@@ -19,8 +19,26 @@
   height: 170px;
   background-color: var(--main-button-active);
   color: var(--main-button-text);
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 500;
+}
+
+.player span,
+.reset span,
+.lap-button span {
+  line-height: 0.8;
+}
+
+.player .icon.Start,
+.player .icon.Resume,
+.player .icon.Stop {
+  font-size: 6rem;
+  padding-top: 1rem;
+}
+
+.player .icon.Start,
+.player .icon.Resume {
+  padding-left: 1rem;
 }
 
 .reset,
@@ -29,11 +47,16 @@
   height: 100px;
   background-color: var(--secondary-button-active);
   color: var(--main-text);
-  font-size: 1.8rem;
+  font-size: 2.2rem;
 }
 
 .reset:disabled,
 .lap-button:disabled {
   background-color: var(--disabled);
   color: var(--secondary-button-text-disabled);
+}
+
+.reset .icon,
+.lap-button .icon {
+  font-size: 3.6rem;
 }

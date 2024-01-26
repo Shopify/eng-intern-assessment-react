@@ -133,8 +133,12 @@ export default function StopWatch() {
     <>
       <div className="timer-container">
         <p className="screen numbers">
-          <span>{twoDigits(formattedStopWatch.h)}:</span>
-          <span>{twoDigits(formattedStopWatch.m)}:</span>
+          <span className={formattedStopWatch.m > 0 ? "enabled" : ""}>
+            {twoDigits(formattedStopWatch.h)}:
+          </span>
+          <span className={formattedStopWatch.m > 0 ? "enabled" : ""}>
+            {twoDigits(formattedStopWatch.m)}:
+          </span>
           <span className="enabled">{twoDigits(formattedStopWatch.s)}:</span>
           <span className="enabled">{twoDigits(formattedStopWatch.ms)}</span>
         </p>

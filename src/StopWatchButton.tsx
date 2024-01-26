@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { IonIcon } from "@ionic/react";
+import { play, refresh, stopwatch, pause } from "ionicons/icons";
 
 export default function StopWatchButton(props: {
   action: () => void;
@@ -10,6 +12,7 @@ export default function StopWatchButton(props: {
   const [label, setLabel] = useState(props.defaultLabel);
   const [isActive, setIsActive] = useState(true);
   const [className, setClassName] = useState("");
+  const [iconName, setIconName] = useState(null);
 
   //useEffect helps control the states of the different buttons based on their kind
   useEffect(() => {
@@ -17,16 +20,20 @@ export default function StopWatchButton(props: {
       setClassName("player");
       if (!props.isRunning && !props.hasStarted) {
         setLabel("Start");
+        setIconName(play);
       } else if (!props.isRunning && props.hasStarted) {
         setLabel("Resume");
+        setIconName(play);
       } else {
         setLabel("Stop");
+        setIconName(pause);
       }
     }
 
     //Reset is disabled if stopwatch has not started yet.
     if (props.kind === "reset") {
       setClassName("reset");
+      setIconName(refresh);
       if (!props.isRunning && !props.hasStarted) {
         setIsActive(false);
       } else {
@@ -37,6 +44,7 @@ export default function StopWatchButton(props: {
     //Lap is disabled if stopwatch is not running.
     if (props.kind === "lap") {
       setClassName("lap-button");
+      setIconName(stopwatch);
       if (props.isRunning) {
         setIsActive(true);
       } else {
@@ -48,9 +56,10 @@ export default function StopWatchButton(props: {
   const handleClick = () => {
     props.action();
   };
+
   return (
     <button className={className} onClick={handleClick} disabled={!isActive}>
-      <span>icon ph</span>
+      <IonIcon icon={iconName} className={`icon ${label}`} />
       <span>{label}</span>
     </button>
   );

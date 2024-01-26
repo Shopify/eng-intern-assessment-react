@@ -16,6 +16,7 @@ body {
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 button {
@@ -30,6 +31,7 @@ button {
   grid-template-columns: 3fr 2fr;
   justify-items: center;
   width: 80%;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 7.2rem 0;
   height: 100%;
@@ -41,4 +43,19 @@ button {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 30%;
+  gap: 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-handle);
+  border-radius: 5px;
 }
