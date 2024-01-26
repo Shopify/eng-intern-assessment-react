@@ -9,10 +9,12 @@ export default function StopWatchButton(props: {
 }) {
   const [label, setLabel] = useState(props.defaultLabel);
   const [isActive, setIsActive] = useState(true);
+  const [className, setClassName] = useState("");
 
   //useEffect helps control the states of the different buttons based on their kind
   useEffect(() => {
     if (props.kind === "player") {
+      setClassName("player");
       if (!props.isRunning && !props.hasStarted) {
         setLabel("Start");
       } else if (!props.isRunning && props.hasStarted) {
@@ -24,6 +26,7 @@ export default function StopWatchButton(props: {
 
     //Reset is disabled if stopwatch has not started yet.
     if (props.kind === "reset") {
+      setClassName("reset");
       if (!props.isRunning && !props.hasStarted) {
         setIsActive(false);
       } else {
@@ -33,6 +36,7 @@ export default function StopWatchButton(props: {
 
     //Lap is disabled if stopwatch is not running.
     if (props.kind === "lap") {
+      setClassName("lap-button");
       if (props.isRunning) {
         setIsActive(true);
       } else {
@@ -45,7 +49,7 @@ export default function StopWatchButton(props: {
     props.action();
   };
   return (
-    <button onClick={handleClick} disabled={!isActive}>
+    <button className={className} onClick={handleClick} disabled={!isActive}>
       {label}
     </button>
   );

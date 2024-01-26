@@ -9,7 +9,7 @@ export interface Lap {
 //StopWatch handles lap rendering timing functionality.
 export default function LapItem(props: { key: number; lap: Lap }) {
   return (
-    <div style={{ display: "flex", gap: 10 }}>
+    <div className="lap">
       <p>{props.lap.number}</p>
       <p>{props.lap.interval}</p>
       <p>{props.lap.time}</p>

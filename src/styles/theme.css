@@ -1,2 +1,14 @@
 @import url("https://use.typekit.net/ldh1ybc.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+
+:root {
+  --background: #0b1618;
+  --screen: #112326;
+  --main-text: #dbe9ea;
+  --secondary-text: #8e999a;
+  --main-button-active: #5bdce5;
+  --main-button-text: #1f2d2f;
+  --secondary-button-active: #0f4d66;
+  --secondary-button-text-disabled: #394b4d;
+  --disabled: #1f2d2f;
+}

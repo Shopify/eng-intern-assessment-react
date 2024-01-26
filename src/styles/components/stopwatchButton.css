@@ -1,0 +1,19 @@
+.player {
+  background-color: var(--main-button-active);
+  color: var(--main-button-text);
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.reset,
+.lap-button {
+  background-color: var(--secondary-button-active);
+  color: var(--main-text);
+  font-size: 1.8rem;
+}
+
+.reset:disabled,
+.lap-button:disabled {
+  background-color: var(--disabled);
+  color: var(--secondary-button-text-disabled);
+}

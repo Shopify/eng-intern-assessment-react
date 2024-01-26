@@ -131,91 +131,91 @@ export default function StopWatch() {
 
   return (
     <>
-      <p>
-        {formattedStopWatch.h > 0 && (
+      <div>
+        <p className="screen numbers">
           <span>{twoDigits(formattedStopWatch.h)}:</span>
-        )}
-        {""}
-        {formattedStopWatch.m > 0 && (
           <span>{twoDigits(formattedStopWatch.m)}:</span>
-        )}
-        {""}
-        <span>{twoDigits(formattedStopWatch.s)}:</span>
-        <span>{twoDigits(formattedStopWatch.ms)}</span>
-      </p>
-      <StopWatchButton
-        action={toggleStopWatch}
-        isRunning={isRunning}
-        hasStarted={hasStarted}
-        kind="player"
-        defaultLabel="Start"
-      />
-      <StopWatchButton
-        action={resetTime}
-        isRunning={isRunning}
-        hasStarted={hasStarted}
-        kind="reset"
-        defaultLabel="Reset"
-      />
-      <StopWatchButton
-        action={lap}
-        isRunning={isRunning}
-        hasStarted={hasStarted}
-        kind="lap"
-        defaultLabel="Lap"
-      />
-      <div>
-        <p>
-          Fastest:
-          {lapTimes.length ? (
-            <>
-              {formattedFastest.h > 0 && (
-                <span>{twoDigits(formattedFastest.h)}:</span>
-              )}
-              {""}
-              {formattedFastest.m > 0 && (
-                <span>{twoDigits(formattedFastest.m)}:</span>
-              )}
-              {""}
-              <span>{twoDigits(formattedFastest.s)}:</span>
-              <span>{twoDigits(formattedFastest.ms)}</span>
-            </>
-          ) : (
-            ""
-          )}
+          <span className="enabled">{twoDigits(formattedStopWatch.s)}:</span>
+          <span className="enabled">{twoDigits(formattedStopWatch.ms)}</span>
         </p>
-        <p>
-          Slowest:
-          {lapTimes.length ? (
-            <>
-              {formattedSlowest.h > 0 && (
-                <span>{twoDigits(formattedSlowest.h)}:</span>
-              )}
-              {""}
-              {formattedSlowest.m > 0 && (
-                <span>{twoDigits(formattedSlowest.m)}:</span>
-              )}
-              {""}
-              <span>{twoDigits(formattedSlowest.s)}:</span>
-              <span>{twoDigits(formattedSlowest.ms)}</span>
-            </>
-          ) : (
-            ""
-          )}
-        </p>
+        <StopWatchButton
+          action={resetTime}
+          isRunning={isRunning}
+          hasStarted={hasStarted}
+          kind="reset"
+          defaultLabel="Reset"
+        />
+        <StopWatchButton
+          action={toggleStopWatch}
+          isRunning={isRunning}
+          hasStarted={hasStarted}
+          kind="player"
+          defaultLabel="Start"
+        />
+        <StopWatchButton
+          action={lap}
+          isRunning={isRunning}
+          hasStarted={hasStarted}
+          kind="lap"
+          defaultLabel="Lap"
+        />
+        <div className="stats">
+          <p className="fastest">
+            Fastest:
+            {lapTimes.length ? (
+              <>
+                {formattedFastest.h > 0 && (
+                  <span>{twoDigits(formattedFastest.h)}:</span>
+                )}
+                {""}
+                {formattedFastest.m > 0 && (
+                  <span>{twoDigits(formattedFastest.m)}:</span>
+                )}
+                {""}
+                <span>{twoDigits(formattedFastest.s)}:</span>
+                <span>{twoDigits(formattedFastest.ms)}</span>
+              </>
+            ) : (
+              ""
+            )}
+          </p>
+          <p className="slowest">
+            Slowest:
+            {lapTimes.length ? (
+              <>
+                {formattedSlowest.h > 0 && (
+                  <span>{twoDigits(formattedSlowest.h)}:</span>
+                )}
+                {""}
+                {formattedSlowest.m > 0 && (
+                  <span>{twoDigits(formattedSlowest.m)}:</span>
+                )}
+                {""}
+                <span>{twoDigits(formattedSlowest.s)}:</span>
+                <span>{twoDigits(formattedSlowest.ms)}</span>
+              </>
+            ) : (
+              ""
+            )}
+          </p>
+        </div>
       </div>
-      <div>
-        <h2>Laps</h2>
-        <div style={{ display: "flex", gap: 10 }}>
+      <div className="laps-container">
+        <h2 className="laps-title">Laps</h2>
+        <div className="lap headers">
           <p>#</p>
           <p>Interval</p>
           <p>Time</p>
         </div>
-        {[...laps]
-          .sort((firstItem, secondItem) => secondItem.number - firstItem.number)
-          .map((lap) => (
-            <LapItem key={lap.number} lap={lap} />
-          ))}
+        <div className="laps">
+          {[...laps]
+            .sort(
+              (firstItem, secondItem) => secondItem.number - firstItem.number
+            )
+            .map((lap) => (
+              <LapItem key={lap.number} lap={lap} />
+            ))}
+        </div>
       </div>
     </>
   );

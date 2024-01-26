@@ -1,0 +1,24 @@
+.laps-container {
+  border-left: 2px solid var(--disabled);
+}
+
+.laps {
+  display: flex;
+  flex-direction: column;
+}
+
+.laps-title {
+  font-family: "Roboto", sans-serif;
+  color: var(--main-text);
+  font-size: 3.2rem;
+}
+
+.lap {
+  display: flex;
+  font-size: 2.4rem;
+  color: var(--main-text);
+}
+
+.headers {
+  color: var(--secondary-text);
+}

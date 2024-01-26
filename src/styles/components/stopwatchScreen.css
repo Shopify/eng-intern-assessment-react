@@ -1,0 +1,13 @@
+.screen {
+  background-color: var(--screen);
+}
+
+.numbers {
+  font-family: "Roboto", sans-serif;
+  color: var(--disabled);
+  font-size: 10rem;
+}
+
+.numbers .enabled {
+  color: var(--main-text);
+}

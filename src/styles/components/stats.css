@@ -1,0 +1,11 @@
+.stats {
+  font-size: 3.6rem;
+}
+
+.fastest {
+  color: var(--main-text);
+}
+
+.slowest {
+  color: var(--secondary-text);
+}

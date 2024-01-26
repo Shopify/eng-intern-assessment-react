@@ -10,12 +10,22 @@ html {
 
 body {
   font-family: "sofia-pro", sans-serif;
+  font-weight: 600;
+  background-color: var(--background);
   font-size: 1.6rem;
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
 }
 
+button {
+  border: none;
+  text-decoration: none;
+  font-family: "sofia-pro", sans-serif;
+  font-weight: 600;
+}
+
 #root {
+  display: flex;
   height: 100%;
 }
