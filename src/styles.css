@@ -33,12 +33,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /*
   My Styles
+
+  For the sake of simplicity, I'm keeping all of my styles in this one file.
+  In a real-world app, I'd likely have a css file for each component.
 */
 
 #root {
-  width: 100vw;
-  height: 100vh;
-
   --light-gray: #f9fafb;
   --gray: #374151;
   --dark-gray: #111827;
@@ -99,6 +99,7 @@ button.stop:active {
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 16px;
 }
 
 .stopwatch-wrapper {
@@ -148,7 +149,6 @@ button.stop:active {
   border-top: 1px solid var(--gray);
   padding-top: 4px;
   overflow-y: scroll;
-
 }
 
 .lap-wrapper {

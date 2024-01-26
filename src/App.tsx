@@ -26,7 +26,7 @@ export default function App() {
     setLaps([time, ...laps]);
   };
 
-  // Logic for the timer
+  // Logic for the timer, use an interval to increment the timer
   useEffect(() => {
     let interval: any = null;
 
@@ -59,6 +59,7 @@ export default function App() {
             )}
           </div>
         </div>
+        {/* Would be best to refactor this into a component in the real world */}
         <div className="laps-wrapper">
           <div className="lap-wrapper">
             <p>Lap {laps.length + 1}</p>
