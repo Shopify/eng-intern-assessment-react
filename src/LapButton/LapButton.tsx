@@ -1,5 +1,5 @@
 import React from 'react'
-import "./LapButton.css"
+import "./LapButtonStyles.css"
 
 // Props interface for LapButton
 interface LapButtonProps {

@@ -1,6 +1,6 @@
 // StopWatchButton.tsx
 import React from 'react';
-import "./StopWatchButton.css";
+import "./StopWatchButtonStyles.css";
 
 // Props interface for StopWatchButton
 interface StopWatchButtonProps {

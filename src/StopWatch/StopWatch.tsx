@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StopWatchButton from '../StopWatchButton/StopWatchButton';
 import ClearButton from '../ClearButton/ClearButton';
 import LapButton from '../LapButton/LapButton';
-import "./StopWatch.css";
+import "./StopWatchStyles.css";
 
 export default function StopWatch() {
     // State for tracking whether the stopwatch is running

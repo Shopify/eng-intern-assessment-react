@@ -1,5 +1,5 @@
 import React from 'react'
-import "./ClearButton.css"
+import "./ClearButtonStyles.css"
 
 // Interface defining the props for ClearButton
 interface ClearButtonProps {
