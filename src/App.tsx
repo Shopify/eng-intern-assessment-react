@@ -23,9 +23,15 @@ export default function App() {
 
         // Stop the stopwatch by clearing the interval that is updating the stopwatch.
         clearInterval(timer);
+        timer = null;
     }
 
     function startStopWatch() {
+        // If the timer has already started, return.
+        if (timer) {
+            return;
+        }
+
         // Get the elements representing the individual digits of the stopwatch.
         let hours = document.getElementById("hours");
         let minutes = document.getElementById("minutes");
@@ -33,10 +39,10 @@ export default function App() {
         let milliseconds = document.getElementById("milliseconds");
 
         // Initialize the current time.
-        let currentHours = 0;
-        let currentMinutes = 0;
-        let currentSeconds = 0;
-        let currentMS = 0;
+        let currentHours = parseInt(hours.innerHTML);
+        let currentMinutes = parseInt(minutes.innerHTML);
+        let currentSeconds = parseInt(seconds.innerHTML);
+        let currentMS = parseInt(milliseconds.innerHTML);
 
         // Start the stopwatch by updating current time and then displaying this.
         timer = setInterval(function() {
