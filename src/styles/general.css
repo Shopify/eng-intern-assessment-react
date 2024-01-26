@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "sofia-pro", sans-serif;
+  font-size: 1.6rem;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
