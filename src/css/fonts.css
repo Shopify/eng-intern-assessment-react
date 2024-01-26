@@ -3,6 +3,7 @@
 body,
 button,
 input,
+kbd,
 textarea {
   font-family: "Press Start 2P", cursive;
   font-weight: 400; /* standard weight for pixel art fonts */
@@ -26,7 +27,7 @@ h3 {
 }
 
 /* Body text */
-p {
+p, kbd {
   font-size: 16px;
 }
 

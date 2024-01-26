@@ -1,6 +1,5 @@
 import React from "react";
 import { useStopWatch } from "./StopWatchContext";
-
 import NESBackground from "./NESBackground";
 
 const RecordBoard: React.FC = () => {
@@ -8,13 +7,18 @@ const RecordBoard: React.FC = () => {
 
   return (
     <NESBackground size="medium">
-      <h2>« Record Board »</h2>
-      <div className="record-board-content">
+      <h2 id="record-board-title">« Record Board »</h2>
+      <div
+        className="record-board-content"
+        role="list"
+        aria-labelledby="record-board-title"
+        aria-live="polite" // dynamically updates content in an accessible way
+      >
         {laps
           .slice()
-          .reverse() // Reverse to display the most recent laps first
+          .reverse() // reverse to display the most recent laps first
           .map((lap, index) => (
-            <div key={index}>
+            <div key={index} role="listitem">
               Lap {laps.length - index}: {formatTime(lap.time)},{" "}
               {formatDistance(lap.distance)}
             </div>

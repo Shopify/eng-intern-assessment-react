@@ -13,12 +13,16 @@ type GameSceneProps = {
 
 const GameScene: React.FC<GameSceneProps> = ({ isRunning, workout }) => {
   return (
-    <div className="game-scene">
+    <main
+      className="game-scene"
+      role="main"
+      aria-label="Interactive Sonic stopwatch running game scene with keyboard controls to control sonic and stats"
+    >
       <ScrollingBackground isRunning={isRunning} workout={workout} />
       <SonicSprite isRunning={isRunning} workout={workout} />
       <StatsDisplay />
       <ControlsText />
-    </div>
+    </main>
   );
 };
 

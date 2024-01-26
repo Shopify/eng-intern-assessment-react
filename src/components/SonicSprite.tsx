@@ -13,20 +13,24 @@ type SonicSpriteProps = {
 
 const SonicSprite: React.FC<SonicSpriteProps> = ({ isRunning, workout }) => {
   let currentGif = standGif;
+  let altText = "Sonic standing";
 
   if (isRunning) {
     if (workout >= 50) {
       currentGif = fastRunGif;
+      altText = "Sonic running fast";
     } else if (workout >= 20) {
       currentGif = medRunGif;
+      altText = "Sonic running at medium speed";
     } else if (workout >= 1) {
       currentGif = slowRunGif;
+      altText = "Sonic running slowly";
     }
   }
 
   return (
-    <div className="sonic-sprite">
-      <img src={currentGif} alt="Sonic Running" />
+    <div className="sonic-sprite" role="img" aria-label={altText}>
+      <img src={currentGif} alt={altText} />
     </div>
   );
 };
