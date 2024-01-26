@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function StopWatch() {
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(0); // time in milliseconds
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [laps, setLaps] = useState<number[]>([]);
 
@@ -17,8 +17,8 @@ export default function StopWatch() {
 
     if (isRunning) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
+        setTime((prevTime) => prevTime + 10); // update every 10 milliseconds
+      }, 10);
     }
 
     return () => {
@@ -37,35 +37,55 @@ export default function StopWatch() {
     setLaps([...laps, time]);
   };
 
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60000);
+    const seconds = Math.floor((time % 60000) / 1000);
+    const milliseconds = Math.floor((time % 1000) / 10); // 2 digit milliseconds
+
+    return {
+      minutes: `${minutes < 10 ? "0" : ""}${minutes}`,
+      seconds: `${seconds < 10 ? "0" : ""}${seconds}`,
+      milliseconds: `${milliseconds < 10 ? "0" : ""}${milliseconds}`,
+    };
+  };
+
+  const buttons = [
+    {
+      onClick: recordLap,
+      disabled: !isRunning,
+      icon: faFlag,
+      label: "Record Lap",
+    },
+    {
+      onClick: isRunning ? stop : start,
+      icon: isRunning ? faStop : faPlay,
+      label: isRunning ? "Stop" : "Start",
+    },
+    {
+      onClick: reset,
+      disabled: time === 0,
+      icon: faRedo,
+      label: "Reset",
+    },
+  ];
+
   return (
     <div>
       <h2>Stopwatch</h2>
-      <p>{time}</p>
-      <StopWatchButton
-        onClick={start}
-        disabled={isRunning}
-        icon={faPlay}
-        label="Start"
-      />
-      <StopWatchButton
-        onClick={stop}
-        disabled={!isRunning}
-        icon={faStop}
-        label="Stop"
-      />
-      <StopWatchButton onClick={reset} icon={faRedo} label="Reset" />
-      <StopWatchButton
-        onClick={recordLap}
-        disabled={!isRunning}
-        icon={faFlag}
-        label="Lap"
-      />
+      <div className="time-display">
+        <span className="minutes">{formatTime(time).minutes}</span>:
+        <span className="seconds">{formatTime(time).seconds}</span>:
+        <span className="milliseconds">{formatTime(time).milliseconds}</span>
+      </div>
+      {buttons.map((button, index) => (
+        <StopWatchButton key={index} {...button} />
+      ))}
       {laps.length > 0 && (
         <div>
           <h3>Laps</h3>
           <ul>
             {laps.map((lap, index) => (
-              <li key={index}>{lap}</li>
+              <li key={index}>{formatTime(lap)}</li>
             ))}
           </ul>
         </div>
