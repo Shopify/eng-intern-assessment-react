@@ -10,16 +10,28 @@ import classes from "./Time.module.css";
 export default function Time(props: TimeProps) {
   return (
     <div title="time-holder" className={classes["time-container"]}>
-      <span className={`${classes.hour} ${classes[`${props.className}`]}`}>
+      <span
+        role="span"
+        className={`${classes.hour} ${classes[`${props.className}`]}`}
+      >
         {("0" + props.time.hour).slice(-2)}:
       </span>
-      <span className={`${classes.minute} ${classes[`${props.className}`]}`}>
+      <span
+        role="span"
+        className={`${classes.minute} ${classes[`${props.className}`]}`}
+      >
         {("0" + props.time.minute).slice(-2)}:
       </span>
-      <span className={`${classes.second} ${classes[`${props.className}`]}`}>
+      <span
+        role="span"
+        className={`${classes.second} ${classes[`${props.className}`]}`}
+      >
         {("0" + props.time.second).slice(-2)}:
       </span>
-      <span className={`${classes.milli} ${classes[`${props.className}`]}`}>
+      <span
+        role="span"
+        className={`${classes.milli} ${classes[`${props.className}`]}`}
+      >
         {("0" + ((props.time.milli / 10) % 100)).slice(-2)}
       </span>
     </div>

@@ -15,9 +15,7 @@ export default function StopWatchBtn(props: StopWatchBtnProps) {
   return (
     <button
       onClick={handleBtnClick}
-      className={` ${classes[`stopwatch-btn`]} ${
-        classes[`${props.className}`]
-      }`}
+      className={`${classes[`stopwatch-btn`]} ${classes[`${props.className}`]}`}
     >
       {props.name}
     </button>

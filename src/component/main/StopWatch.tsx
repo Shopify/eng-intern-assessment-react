@@ -336,7 +336,7 @@ export default function StopWatch() {
         <div className={classes.time}>
           <Time time={timeState.time} className="stopwatch" />
         </div>
-        <div className={btnclasses["btn-container"]}>
+        <div title={"button"} className={btnclasses["btn-container"]}>
           <StopWatchButton
             btnType={hanldeStartStop}
             onButtonClick={handleButtonClick}
@@ -351,11 +351,11 @@ export default function StopWatch() {
           />
         </div>
       </div>
-      <div className={classes["lap-container"]}>
-        <ul className={classes.ul}>
+      <div title={"laps"} className={classes["lap-container"]}>
+        <ul role={"ul"} className={classes.ul}>
           {laps.component.map((lap, i) => {
             return (
-              <li title={i.toString()} key={i} className={classes.li}>
+              <li role={"li"} key={i} className={classes.li}>
                 <Lap
                   className={
                     onResetRef.current

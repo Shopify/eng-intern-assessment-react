@@ -38,7 +38,7 @@ export default function Lap(props: LapProps) {
         onInitialDisplayRef && classes.stretching
       } ${startReset === true ? classes[`${props.className}`] : ""}`}
     >
-      <span className={classes.span}>Lap {props.index}</span>
+      <span className={classes.span}>Lap {props.index + 1}</span>
       <div className={classes.lap}>
         <Time time={props.lap} className="lap-li" />
       </div>
