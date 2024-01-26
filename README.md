@@ -1,3 +1,21 @@
+# Akash's StopWatch
+
+## Stop Watch Functionality:
+- The stopwatch uses Redux Toolkit for the state management and for handling the running timer values and the different button functionalities.
+- The stopwatch supports Start, Stop, Lap and Reset functionalites along with a Change Watch Face button for the user to change the watch face.
+- The laps table displays the different lap times while also showing the user the current laptime.
+- The analog stopwatch also has a running hand which tracks the current laptime along with a hand which tracks total stopwatch time.
+- The stopwatch was tested and passed all tests.
+
+## Stop Watch Demo:
+
+
+https://github.com/akashr17/eng-intern-assessment-react/assets/44417086/a3b390e5-b634-4f35-aef7-99c65cd4e810
+
+
+## Stop Watch Tests:
+![Screenshot 2024-01-25 175515](https://github.com/akashr17/eng-intern-assessment-react/assets/44417086/814eb82b-d967-4e18-8890-05d7cc18a1da)
+
 # Technical Instructions
 1. Fork this repo to your local Github account.
 2. Create a new branch to complete all your work in.
