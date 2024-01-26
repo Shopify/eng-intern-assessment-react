@@ -62,12 +62,13 @@ export default function App() {
         </div>
         {/* Would be best to refactor this into a component in the real world */}
         <div className="laps-wrapper">
-          <div className="lap-wrapper">
+          {/* The first lap is static */}
+          <div className="lap-wrapper" data-testid="lap-wrapper">
             <p>Lap {laps.length + 1}</p>
             <p>{getPrettyTime(time)}</p>
           </div>
           {laps.map((lap: any, index: number) => (
-            <div key={index} className="lap-wrapper">
+            <div key={index} className="lap-wrapper" data-testid="lap-wrapper">
               <p>Lap {laps.length - index}</p>
               <p>{getPrettyTime(lap)}</p>
             </div>
