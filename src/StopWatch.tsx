@@ -114,10 +114,16 @@ export default function StopWatch() {
     const formattedLapTime = formatStopWatch(lapTimeInMs);
     const lapData = {
       number: laps.length + 1,
-      interval: `${twoDigits(formattedLapTime.s)}s ${twoDigits(
-        formattedLapTime.ms
-      )}`,
-      time: `${twoDigits(formattedTime.s)}s ${twoDigits(formattedTime.ms)}`,
+      interval: `
+      ${formattedLapTime.h > 0 ? twoDigits(formattedLapTime.h) + "h" : ""}
+      ${formattedLapTime.m > 0 ? twoDigits(formattedLapTime.m) + "m" : ""}
+      ${twoDigits(formattedLapTime.s)}s
+      ${twoDigits(formattedLapTime.ms)}`,
+      time: `
+      ${formattedTime.h > 0 ? twoDigits(formattedTime.h) + "h" : ""}
+      ${formattedTime.m > 0 ? twoDigits(formattedTime.m) + "m" : ""}
+      ${twoDigits(formattedTime.s)}s 
+      ${twoDigits(formattedTime.ms)}`,
     };
     const newLaps = laps.concat(lapData);
     const newLapTimes = lapTimes.concat(lapTimeInMs);
@@ -133,7 +139,7 @@ export default function StopWatch() {
     <>
       <div className="timer-container">
         <p className="screen numbers">
-          <span className={formattedStopWatch.m > 0 ? "enabled" : ""}>
+          <span className={formattedStopWatch.h > 0 ? "enabled" : ""}>
             {twoDigits(formattedStopWatch.h)}:
           </span>
           <span className={formattedStopWatch.m > 0 ? "enabled" : ""}>
@@ -167,7 +173,7 @@ export default function StopWatch() {
         </div>
         <div className="stats">
           <p className="fastest">
-            Fastest:
+            Fastest:{" "}
             {lapTimes.length ? (
               <>
                 {formattedFastest.h > 0 && (
@@ -186,7 +192,7 @@ export default function StopWatch() {
             )}
           </p>
           <p className="slowest">
-            Slowest:
+            Slowest:{" "}
             {lapTimes.length ? (
               <>
                 {formattedSlowest.h > 0 && (
