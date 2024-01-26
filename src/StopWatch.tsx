@@ -46,6 +46,8 @@ const StopWatch: React.FC = () => {
     setElapsedTime(0);
     setMinutes(0);
     setSeconds(0);
+    setLapTimes([]);
+
   };
 
   const handleLap = () => {
