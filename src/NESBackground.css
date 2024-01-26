@@ -31,11 +31,13 @@
 .nes-background.medium {
   width: 50%;
   height: 50%;
+  margin: 0;
 }
 
 .nes-background.large {
   width: 60%;
   height: 5%;
+  margin: 1em auto;
 }
 
 .record-board-content {

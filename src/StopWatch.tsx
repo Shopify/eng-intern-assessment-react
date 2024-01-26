@@ -70,9 +70,9 @@ const StopWatch: React.FC = () => {
 
         <div className="stopwatch-display">
           <div>{formatTime(time)}</div>
-          <div>Current Distance: {formatDistance(distance)}</div>
-          <div>Current Lap: {formatTime(currentLap)}</div>
-          <div>Current Workout Level: {workout}</div>
+          <div>Lap Distance: {formatDistance(distance)}</div>
+          <div>Lap Time: {formatTime(currentLap)}</div>
+          <div>Workout Level: {workout}</div>
         </div>
 
         <div className="stopwatch-controls">
@@ -80,7 +80,7 @@ const StopWatch: React.FC = () => {
           <StopWatchButton action={stop} label="Stop" />
           <StopWatchButton action={reset} label="Reset" />
           <StopWatchButton action={recordLap} label="Lap" />
-          <StopWatchButton action={increaseWorkout} label="Increase Workout" />
+          <StopWatchButton action={increaseWorkout} label="+1 Workout" />
         </div>
       </NESBackground>
     </>

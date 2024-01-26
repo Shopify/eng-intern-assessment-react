@@ -8,11 +8,11 @@ import NESBackground from "./NESBackground";
 import RecordBoard from "./RecordBoard";
 import GameScene from "./GameScene";
 
-const AppContent: React.FC = () => {
+const Game: React.FC = () => {
   const { isRunning, workout } = useStopWatch();
 
   return (
-    <div className="app-content">
+    <div className="game">
       <GameScene isRunning={isRunning} workout={workout} />
       <div className="control-panel">
         <StopWatch />
@@ -28,7 +28,7 @@ export default function App() {
       <NESBackground size="large">
         <h1>«« SONICIFY »»</h1>
       </NESBackground>
-      <AppContent />
+      <Game />
     </StopWatchProvider>
   );
 }

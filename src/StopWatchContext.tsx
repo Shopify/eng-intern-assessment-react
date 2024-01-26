@@ -58,7 +58,7 @@ export const StopWatchProvider: React.FC = ({ children }) => {
   };
 
   const formatDistance = (distance: number) => {
-    return `${distance.toFixed(2)} meters`;
+    return `${distance.toFixed(2)} m`;
   };
 
   return (
