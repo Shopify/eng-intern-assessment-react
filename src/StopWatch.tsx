@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./styles.css";
+// import "./styles.css";
 
 import StopWatchButton from "./StopWatchButton";
 
@@ -72,11 +72,14 @@ const Stopwatch: React.FC = () => {
           <StopWatchButton action="Reset" onClick={handleReset} />
         )}
       </div>
-      <ul>
-        {laps.map((lap) => (
-          <li key={lap}>{lap}</li>
-        ))}
-      </ul>
+      <ol reversed>
+        {laps
+          .slice()
+          .reverse()
+          .map((lap) => (
+            <li key={lap}>{lap}</li>
+          ))}
+      </ol>
     </div>
   );
 };
