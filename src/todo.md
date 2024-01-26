@@ -54,9 +54,9 @@
     - [x] Use semantic HTML elements and ARIA attributes to improve the accessibility of the application.
     - [x] Use the ChromeVox screen reader to test the accessibility of the application.
 
-- [x] Styling
+- [✅] Styling
 
-- [x] Responsive
+- [✅] Responsive
 
 - [x] README.md
     - [x] Add project overview
@@ -82,7 +82,7 @@
         - Distance, time, lap do not change, just the scrolling background
     - [✅] When reset/refreshed and time, distance, lap are 0, adding a lap with 0 time and 0 distance
           gets added, should not allow adding a lap if stopped and 0 time and 0 distance
-    - [x] When more then 10 laps are recorded, size of lap text gets bigger and bigger as demensions of screen are shrunk horizontally
+    - [✅] When more then 10 laps are recorded, size of lap text gets bigger and bigger as demensions of screen are shrunk horizontally
     - [✅] Borders scaling weird
 
 - [x] Maybe additions?
