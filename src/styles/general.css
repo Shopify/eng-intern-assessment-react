@@ -26,6 +26,19 @@ button {
 }
 
 #root {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  justify-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 7.2rem 0;
   height: 100%;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30%;
 }

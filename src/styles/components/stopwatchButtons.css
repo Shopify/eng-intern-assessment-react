@@ -1,4 +1,22 @@
+.stopwatch-buttons {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.player,
+.reset,
+.lap-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
 .player {
+  width: 170px;
+  height: 170px;
   background-color: var(--main-button-active);
   color: var(--main-button-text);
   font-size: 2.4rem;
@@ -7,6 +25,8 @@
 
 .reset,
 .lap-button {
+  width: 100px;
+  height: 100px;
   background-color: var(--secondary-button-active);
   color: var(--main-text);
   font-size: 1.8rem;

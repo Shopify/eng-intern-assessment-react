@@ -1,5 +1,7 @@
 .stats {
   font-size: 3.6rem;
+  width: 100%;
+  text-align: center;
 }
 
 .fastest {

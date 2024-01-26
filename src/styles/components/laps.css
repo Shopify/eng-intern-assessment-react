@@ -1,5 +1,8 @@
 .laps-container {
   border-left: 2px solid var(--disabled);
+  justify-self: start;
+  width: 100%;
+  padding-left: 5.6rem;
 }
 
 .laps {
@@ -17,8 +20,18 @@
   display: flex;
   font-size: 2.4rem;
   color: var(--main-text);
+  justify-content: space-between;
 }
 
 .headers {
   color: var(--secondary-text);
+}
+
+.lap-number {
+  min-width: 50px;
+}
+
+.lap-time {
+  min-width: 100px;
+  text-align: center;
 }

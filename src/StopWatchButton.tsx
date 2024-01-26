@@ -50,7 +50,8 @@ export default function StopWatchButton(props: {
   };
   return (
     <button className={className} onClick={handleClick} disabled={!isActive}>
-      {label}
+      <span>icon ph</span>
+      <span>{label}</span>
     </button>
   );
 }

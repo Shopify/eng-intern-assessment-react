@@ -131,34 +131,36 @@ export default function StopWatch() {
 
   return (
     <>
-      <div>
+      <div className="timer-container">
         <p className="screen numbers">
           <span>{twoDigits(formattedStopWatch.h)}:</span>
           <span>{twoDigits(formattedStopWatch.m)}:</span>
           <span className="enabled">{twoDigits(formattedStopWatch.s)}:</span>
           <span className="enabled">{twoDigits(formattedStopWatch.ms)}</span>
         </p>
-        <StopWatchButton
-          action={resetTime}
-          isRunning={isRunning}
-          hasStarted={hasStarted}
-          kind="reset"
-          defaultLabel="Reset"
-        />
-        <StopWatchButton
-          action={toggleStopWatch}
-          isRunning={isRunning}
-          hasStarted={hasStarted}
-          kind="player"
-          defaultLabel="Start"
-        />
-        <StopWatchButton
-          action={lap}
-          isRunning={isRunning}
-          hasStarted={hasStarted}
-          kind="lap"
-          defaultLabel="Lap"
-        />
+        <div className="stopwatch-buttons">
+          <StopWatchButton
+            action={resetTime}
+            isRunning={isRunning}
+            hasStarted={hasStarted}
+            kind="reset"
+            defaultLabel="Reset"
+          />
+          <StopWatchButton
+            action={toggleStopWatch}
+            isRunning={isRunning}
+            hasStarted={hasStarted}
+            kind="player"
+            defaultLabel="Start"
+          />
+          <StopWatchButton
+            action={lap}
+            isRunning={isRunning}
+            hasStarted={hasStarted}
+            kind="lap"
+            defaultLabel="Lap"
+          />
+        </div>
         <div className="stats">
           <p className="fastest">
             Fastest:
@@ -203,9 +205,9 @@ export default function StopWatch() {
       <div className="laps-container">
         <h2 className="laps-title">Laps</h2>
         <div className="lap headers">
-          <p>#</p>
-          <p>Interval</p>
-          <p>Time</p>
+          <p className="lap-number">#</p>
+          <p className="lap-time">Interval</p>
+          <p className="lap-time">Time</p>
         </div>
         <div className="laps">
           {[...laps]

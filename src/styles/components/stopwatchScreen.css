@@ -1,11 +1,13 @@
 .screen {
   background-color: var(--screen);
+  padding: 1.28rem 3.2rem;
+  border-radius: 10px;
 }
 
 .numbers {
   font-family: "Roboto", sans-serif;
   color: var(--disabled);
-  font-size: 10rem;
+  font-size: 9.6rem;
 }
 
 .numbers .enabled {
