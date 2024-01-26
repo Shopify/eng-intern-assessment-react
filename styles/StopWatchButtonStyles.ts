@@ -1,8 +1,27 @@
 import styled from "styled-components";
 
+type StyledButtonProps = {
+  isSecond?: boolean;
+};
+
 const ButtonContainer = styled.div`
   position: relative;
-  display: inline-block;
+`;
+
+const ButtonsGroup = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  transform: translateY(-50%);
+
+  &:nth-child(2) {
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+  }
 `;
 
 const Tooltip = styled.div`
@@ -15,9 +34,6 @@ const Tooltip = styled.div`
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
   margin-bottom: 5px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -28,20 +44,30 @@ const Tooltip = styled.div`
   }
 `;
 
-const StyledButton = styled.button`
-  font-size: 16px;
+const StyledButton = styled.button<StyledButtonProps>`
   border: none;
+  background-color: #00bcd4;
+  color: white;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
   cursor: pointer;
-  display: inline-block;
-  padding: 8px 12px;
-  margin: 4px 2px;
-  transition: background-color 0.3s;
-  border-radius: 4px;
+  font-size: 25px;
+  margin: auto;
+  text-align: center;
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
+  ${(props) =>
+    props.isSecond &&
+    `
+    height: 100px;
+    width: 100px;
+    font-size: 40px;
+    background-color: #007a87;
+  `}
+
+  &:focus {
+    outline: none;
   }
 `;
 
-export { ButtonContainer, Tooltip, StyledButton };
+export { ButtonContainer, Tooltip, StyledButton, ButtonsGroup };
