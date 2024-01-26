@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface StopwatchProps {
-    time: number;
-    laps: number[];
+  time: number;
+  laps: number[];
 }
 
 const formatTime = (time: number) => {
@@ -20,15 +20,27 @@ const formatTime = (time: number) => {
 };
 
 export default function Stopwatch({ time, laps }: StopwatchProps) {
-    return (
-        <div>
-            <h2 className='stopwatch'>{formatTime(time)}</h2>
-            <h3>Laps</h3>
-            <ul>
-                {laps.map((lap, index) => (
-                    <li key={index}>{formatTime(lap)}</li>
-                ))}
-            </ul>
+  return (
+    <div>
+      <h2 className='stopwatch'>{formatTime(time)}</h2>
+
+      <div className="laps-container">
+        <div className="laps-header">
+          <span className="lap-number-title">Lap No.</span>
+          <span className="lap-time-title">Time</span>
         </div>
-    );
+        <div className="header-line"></div>
+        <div className="laps-list">
+          {laps.map((lap, index) => (
+            <div key={index} className="lap-item">
+              <span className="lap-number">Lap {index + 1}</span>
+              <span className="lap-time">{formatTime(lap)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+
+    </div>
+  );
 }

@@ -1,14 +1,40 @@
-/* Define color variables */
 :root {
-    --primary-bg-color: #262626;
-    --button-primary-color: #307B4D;
-    --button-secondary-color: #9D4747;
+    /* Theme */
+    --primary-color: #F1F1F1;
+    --secondary-color: #262626;
+    --tertiary-color: #A4A4A4;
+    --bg-color: var(--secondary-color);
+
+
+    /* Buttons */
+    --button-start-bg: #307B4D;
+    --button-start-bg-hover: #3c955e;
+
+    --button-stop-bg: #9D4747;
+    --button-stop-bg-hover: #bd5858;
+
     --button-reset-lap-bg: #F1F1F1;
-    --button-reset-lap-text: rgb(40, 40, 40); 
-    --text-color: white; /* General text color */
+    --button-reset-lap-bg-hover: #ffffff;
+
+
+    /* Text */
+    --text-color-primary: #ffffff;
+    --text-color-secondary: var(--tertiary-color);
+    --text-color-tertiary: var(--secondary-color);
+    --text-size-small: 8pt;
+    --text-size-medium: 10pt;
+    --text-size-large: 70pt;
 }
 
-/* Container styles */
+/* Global Styles */
+body, html {
+    margin: 0;
+    height: 100%;
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif; /* Global font set to Inter */
+}
+
+/************** Layout Containers **************/
 .container {
     display: flex;
     flex-direction: column;
@@ -18,79 +44,103 @@
     text-align: center;
 }
 
-/* Global styles */
-body, html {
-    margin: 0;
-    height: 100%;
-    background-color: var(--primary-bg-color);
+.laps-container {
+    width: 100%;
+    margin-bottom: 100px;
 }
 
-/* Base class for all buttons */
+.stopwatch-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+/************** Button Styles **************/
 .button {
-    width: 250px;
     height: 40px;
+    width: 280px;
     border: none;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: var(--text-size-medium);
     cursor: pointer;
     outline: none;
     font-weight: bold;
-    text-align: center;
-    display: inline-block;
+    transition: background-color 0.3s;
+    margin: 10px; /* Spacing between buttons */
 }
 
-/* Modifier classes for specific button types */
+/* Start Button Styles */
 .button-start {
-    background-color: var(--button-primary-color);
-    color: var(--text-color);
-    transition: background-color 0.3s;
+    background-color: var(--button-start-bg);
+    color: var(--text-color-primary);
 }
 
 .button-start:hover {
-    background-color: #368f5a;
+    background-color: var(--button-start-bg-hover); /* Lighten color on hover */
 }
 
+/* Stop Button Styles */
 .button-stop {
-    background-color: var(--button-secondary-color);
-    color: var(--text-color);
-    transition: background-color 0.3s;
+    background-color: var(--button-stop-bg);
+    color: var(--text-color-primary);
 }
 
 .button-stop:hover {
-    background-color: #b05a5a;
+    background-color: var(--button-stop-bg-hover);
 }
 
+/* Reset-Lap Button Styles */
 .button-reset-lap {
     background-color: var(--button-reset-lap-bg);
     color: var(--button-reset-lap-text);
-    margin-right: 100px;
-    transition: background-color 0.3s;
 }
 
 .button-reset-lap:hover {
-    background-color: #fafafa;
+    background-color: var(--button-reset-lap-bg-hover); /* Lighten color on hover */
 }
 
 
-/* Stopwatch styles */
+/*************** Stopwatch Display Styles **************/
 .stopwatch {
-    color: var(--text-color);
-    text-align: center;
-    font-size: 6em;
-    margin: 20px;
-    font-family: 'Fahkwang', sans-serif;
+    color: var(--text-color-primary);
+    font-size: var(--text-size-large);
+    font-weight: 100;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: 'Fahkwang', sans-serif; /* Fun font for the stopwatch :) */
 }
 
-.stopwatch-time {
-    font-weight: bold;
+/************** Lap Display Styles **************/
+.laps-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.lap-number-title,
+.lap-time-title {
+    font-weight: 200;
+    color: var(--text-color-secondary);
+}
+
+/* Separator Line Styles */
+.header-line {
+    height: 1px;
+    background-color: var(--text-color-secondary);
+    width: 100%;
     margin-bottom: 20px;
 }
 
-.stopwatch-laps {
-    list-style-type: none;
-    padding: 0;
+/* Lap List Styles */
+.laps-list {
+    color: var(--text-color-primary);
 }
 
-.stopwatch-laps li {
+.lap-item {
+    font-weight: 100;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
 }

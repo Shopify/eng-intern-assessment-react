@@ -13,7 +13,8 @@ export default function App() {
         if (isRunning) {
             setIsRunning(false);
             if (timerId.current) clearInterval(timerId.current);
-        } else {
+        } 
+        else {
             setIsRunning(true);
             const startTime = Date.now() - time;
             timerId.current = setInterval(() => {
@@ -33,11 +34,9 @@ export default function App() {
 
     return (
         <div className="container">
-            <div className="stopwatch-display">
-                <Stopwatch time={time} laps={laps} />
-            </div>
+            <Stopwatch time={time} laps={laps} />
             <div className="stopwatch-controls">
-                <StopWatchButton 
+                <StopWatchButton
                     isRunning={isRunning}
                     onStartStop={handleStartStop}
                     onResetLap={handleResetLap}
