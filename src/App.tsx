@@ -5,6 +5,6 @@ import StartStopButton from './components/buttons/StartStopButton';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default function App() {
-  return (<div></div>
+  return (<StartStopButton></StartStopButton>
   );
 }
