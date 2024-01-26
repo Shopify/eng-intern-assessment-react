@@ -1,20 +1,24 @@
-import React from 'react'
+import React from 'react';
+import './appstyles.css';
 
 interface StopWatchButtonProps {
     isRunning: boolean;
     onStartStopClick: () => void;
     onResetClick: () => void;
+    onLapClick: () => void;
 }
 
 export default function StopWatchButton({
     isRunning,
     onStartStopClick,
-    onResetClick
+    onResetClick,
+    onLapClick
 }: StopWatchButtonProps) {
     return (
-    <div>
-      <button onClick={onStartStopClick}>{isRunning ? 'Stop' : 'Start'}</button>
-      <button onClick={onResetClick}>Reset</button>
+    <div style={{display:'flex'}}>
+      <button className="startstop-button"  onClick={onStartStopClick}>{isRunning ? 'STOP' : 'START'}</button>
+      <button className="reset-button"  onClick={onResetClick}>RESET</button>
+      <button className="lap-button"  onClick={onLapClick}>LAP</button>
     </div>
     )
 }

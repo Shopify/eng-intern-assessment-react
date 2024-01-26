@@ -1,0 +1,128 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Roboto', monospace;
+    font-weight: 900;
+    font-size: 52px;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #EEF1F1;
+    margin: auto;
+    max-width: 600px;
+    max-height: 500px;
+    padding: 45px;
+    border: 0.5px solid transparent;
+    /* background-image: linear-gradient(90.13deg, #89FFBF 1.9%, #A4FA86 97.5%); */
+    border-image-slice: 1;
+    background-color: #0E0E0E;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-color: #EEF1F1;
+}
+
+.time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #EEF1F1;
+    width: 500px;
+    height: 175px;
+    background-color: #1B1F21;
+    border: 0.5px solid transparent;
+    border-image-slice: 1;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-color: #89FFBF;
+}
+
+.startstop-button, .reset-button, .lap-button {
+  background-color: #1B1F21;
+  font-family: 'Roboto', monospace;
+  font-weight: 900;
+  font-size: 18px;
+  color: #EEF1F1;
+  border: 2px solid transparent;
+  border-color: #89FFBF;
+  border-radius: 15px;
+  padding: 15px 45px;
+  margin: 25px 25px 0 0;
+  cursor: pointer;
+}
+
+.startstop-button:hover {
+  background-image: linear-gradient(90.13deg, #85F56D 1.9%, #487AE2 97.5%);
+}
+
+.reset-button:hover {
+  background-image: linear-gradient(90.13deg, #66D08A 1.9%, #85F56D 97.5%);
+  color:#0E0E0E;
+}
+.lap-button:hover {
+  background-image: linear-gradient(90.13deg, #487AE2 1.9%, #66D08A 97.5%);
+}
+
+.LapTimesButton {
+  background-color: #1B1F21;
+  font-family: 'Roboto', monospace;
+  font-weight: 200;
+  font-size: 12px;
+  color: #EEF1F1;
+  border: 0px solid transparent;
+  padding: 0px 0px;
+  margin: 0;
+  cursor: pointer;
+}
+.LapTimesButton:hover {
+  color: #85F56D;
+}
+
+.Laps {
+  font-size: 20px;
+  color: #EEF1F1;
+}
+
+/* Modal styles */
+.modal {
+  display: block; /* Ensure the modal is displayed */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+.modal-content {
+  background-color: #1B1F21;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
