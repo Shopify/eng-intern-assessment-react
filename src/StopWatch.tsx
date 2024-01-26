@@ -10,6 +10,6 @@ interface StopWatchProps {
 export default function StopWatch({ hours, minutes, seconds, milliseconds }: StopWatchProps) {
     
     return(
-        <h1>{hours}:{minutes}:{seconds}.{milliseconds}</h1>
+        <h1>{hours}:{minutes}:{seconds}.<span className='milli'>{milliseconds}</span></h1>
     )
 }
