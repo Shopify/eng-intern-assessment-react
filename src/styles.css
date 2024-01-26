@@ -35,7 +35,10 @@ p, h1, h2, h3, h4, h5, h6 {
   My Styles
 */
 
-* {
+#root {
+  width: 100vw;
+  height: 100vh;
+
   --light-gray: #f9fafb;
   --gray: #374151;
   --dark-gray: #111827;
