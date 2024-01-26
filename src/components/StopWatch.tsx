@@ -8,22 +8,23 @@ interface StopwatchProps {
 const formatTime = (time: number) => {
   // Convert time to a human-readable format
   // Assuming time is in milliseconds
-  const seconds = Math.floor(time / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
+  const milliseconds = Math.floor((time % 1000) / 10); // Get two-digit milliseconds
+  const seconds = Math.floor(time / 1000) % 60;
+  const minutes = Math.floor(time / 60000) % 60;
+  const hours = Math.floor(time / 3600000);
 
-  const formattedSeconds = String(seconds % 60).padStart(2, '0');
-  const formattedMinutes = String(minutes % 60).padStart(2, '0');
+  const formattedMilliseconds = String(milliseconds).padStart(2, '0');
+  const formattedSeconds = String(seconds).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
   const formattedHours = String(hours).padStart(2, '0');
 
-  return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  return `${formattedHours}:${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
 };
-
 
 export default function Stopwatch({ time, laps }: StopwatchProps) {
     return (
         <div>
-            <h2>Time: {formatTime(time)}</h2>
+            <h2 className='stopwatch'>{formatTime(time)}</h2>
             <h3>Laps</h3>
             <ul>
                 {laps.map((lap, index) => (
