@@ -16,10 +16,10 @@ const SonicSprite: React.FC<SonicSpriteProps> = ({ isRunning, workout }) => {
   let altText = "Sonic standing";
 
   if (isRunning) {
-    if (workout >= 50) {
+    if (workout >= 30) {
       currentGif = fastRunGif;
       altText = "Sonic running fast";
-    } else if (workout >= 20) {
+    } else if (workout >= 15) {
       currentGif = medRunGif;
       altText = "Sonic running at medium speed";
     } else if (workout >= 1) {
