@@ -5,6 +5,8 @@ import "./styles.css";
 
 export default function App() {
   const [seconds, setSeconds] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [hours, setHours] = useState<number>(0);
 
   return (
     <div className="main-stopwatch">
