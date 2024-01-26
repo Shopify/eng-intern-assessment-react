@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import StopWatchButton from './StopWatchButton';
 import './StopWatch.css'
 
@@ -17,7 +17,10 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
 
     // the state to display laps table
     const [showLapsTable, setShowLapsTable] = useState(false)
+    
+    const [wasStopped, setWasStopped] = useState(false)
 
+    const lastLapTimeRef = useRef<number | null>(null)
 
     useEffect(() => {
         let intervalId: NodeJS.Timeout;
@@ -25,10 +28,16 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
         if (isRunning) {
             intervalId = setInterval(() => {
                 setTime(prevTime => prevTime + 1);
-            }, 10);
+            }, 0);
+
+            if (wasStopped) {
+                lastLapTimeRef.current = time;
+                setWasStopped(false)
+            }
         }
+
         return () => clearInterval(intervalId);
-    }, [isRunning]);
+    }, [isRunning, time, wasStopped]);
 
     const formatTime = (milliseconds: number) => {
         const formattedHours = Math.floor(milliseconds / 360000)
@@ -36,17 +45,37 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
         const formattedSeconds = Math.floor((milliseconds % 6000) / 100);
         const formattedMilliseconds = milliseconds % 100
 
-        return `${formattedHours.toString().padStart(2, '0')}:${formattedMinutes.toString().padStart(2, '0')}:${formattedSeconds.toString().padStart(2, '0')}:${formattedMilliseconds.toString().padStart(2, '0')}`
+        return `${formattedHours.toString().padStart(2, '0')}:${formattedMinutes.toString().padStart(2, '0')}:${formattedSeconds.toString().padStart(2, '0')}.${formattedMilliseconds.toString().padStart(2, '0')}`
     }
 
 
     // start timer with 'Start' button
     const startTimer = () => {
         onStart();
+
+        if (wasStopped) {
+            lastLapTimeRef.current = time;
+            setWasStopped(false)
+        }
+        else {
+            lastLapTimeRef.current = time;
+        }
+    
     }
 
     const stopTimer = () => {
         onStop();
+
+        if (isRunning) {
+            const lapTime = lastLapTimeRef.current !== null ? time - lastLapTimeRef.current : 0;
+
+            lastLapTimeRef.current = time;
+            setLaps((prevLaps) => [...prevLaps, lapTime])
+            setShowLapsTable(true)
+            lastLapTimeRef.current = null
+        } else {
+            setWasStopped(true)
+        }
     }
 
     const reset = () => {
@@ -57,12 +86,15 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
 
         // hide the laps table when reset
         setShowLapsTable(false)
+
+        lastLapTimeRef.current = null
     }
 
     const lap = () => {
         if (isRunning) {
             // calculate lap time and add to laps array
-            const lapTime = time;
+            const lapTime = lastLapTimeRef.current !== null ? time - lastLapTimeRef.current : time
+            lastLapTimeRef.current = time
             setLaps((prevLaps) => [...prevLaps, lapTime])
             setShowLapsTable(true);
         }
@@ -72,30 +104,32 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
             <p className='stopWatchDisplay'>
                 {formatTime(time)}
             </p>
-                        <StopWatchButton
-                            startTimer={startTimer}
-                            stopTimer={stopTimer}
-                            reset={reset}
-                            lap={lap} />
+            <StopWatchButton
+                startTimer={startTimer}
+                stopTimer={stopTimer}
+                reset={reset}
+                lap={lap}
+            />
             <div className={`lapTableContainer ${showLapsTable ? 'show': ''}`}>
                 <table className='lapTable'>
                     <thead>
                         <tr>
-                            <th>Lap No.</th>
-                            <th>Lap Time</th>
-                            <th>Total Time</th>
+                            <th>lap no.</th>
+                            <th>split</th>
+                            <th>total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {laps.map((lapTime, index) => (
-                            <tr key={index} className={index === 0 ? 'newestLap' : index === 1 ? 'secondLap': ''}>
-                                <td>
-                                {laps.length - index}
-                                </td>
-                                <td>{formatTime(lapTime)}</td>
-                                <td>{formatTime(time)}</td>
-                            </tr>
-                    ))}
+                        {[...laps].reverse().map((lapTime, index) =>  (
+                                <tr key={index} className={index === 0 ? 'newestLap' : index === 1 ? 'secondLap' : ''}>
+                                    <td>
+                                        {laps.length - index}
+                                    </td>
+                                    <td>{formatTime(lapTime)}</td>
+                                    <td>{formatTime(laps.slice(0, laps.length - index).reduce((acc, lap) => acc + lap, 0))}</td>
+                                </tr>
+                            
+                        ))}
                     </tbody>
                 
                 
