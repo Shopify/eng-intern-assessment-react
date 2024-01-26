@@ -1,0 +1,28 @@
+
+.App {
+    margin: auto; 
+    width: fit-content; 
+    display: block;
+    justify-content: center;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+.laps-container {
+    margin-top: 1em;
+}
+
+.laps {
+    padding: 5px;
+}
+
+.button-container {
+    margin: 1em;
+}
+
+button {
+    margin: 2px;
+}

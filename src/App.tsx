@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './style.css';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 
@@ -6,15 +7,14 @@ import { formatTime } from "./StopWatch";
 
 export default function App() {
     const [time, setTime] = useState<number>(0);
-    const [isRunning, setIsRunning] = useState<boolean>(false);
+    const [isRunning] = useState<boolean>(false);
     const lapsRef = useRef<number[]>([]);
+    const timerRef = useRef<number>();
 
     const startWatch = (): void => {
         if (isRunning) {
-            setIsRunning(false);
             clearInterval(timerRef.current);
         } else {
-            setIsRunning(true);
             timerRef.current = window.setInterval(() => {
                 setTime((prevTime) => prevTime + 10);
             }, 10);
@@ -22,12 +22,10 @@ export default function App() {
     };
 
     const stopWatch = (): void => {
-        setIsRunning(false);
         clearInterval(timerRef.current);
     };
 
     const resetStopwatch = (): void => {
-        setIsRunning(false);
         clearInterval(timerRef.current);
         setTime(0);
         lapsRef.current = [];
@@ -36,8 +34,6 @@ export default function App() {
     const recordLap = (): void => {
         lapsRef.current.push(time);
     };
-    
-    const timerRef = useRef<number>();
 
     return(
         <div className="App">
@@ -49,8 +45,8 @@ export default function App() {
                 </div>
                 <div className="laps-container">
                 {lapsRef.current.map((lapTime, index) => (
-                    <div key={index} className="lap">
-                        Lap {index + 1}: {formatTime(lapTime)}
+                    <div key={index} className='laps'>
+                        Lap{index + 1} - {formatTime(lapTime)}
                     </div>
                 ))}
             </div>
