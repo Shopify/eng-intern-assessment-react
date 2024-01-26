@@ -1,6 +1,7 @@
 //Import required modules - UseState to declare state of varialbe and useEffect allows hooking
 import React, {useState, useEffect} from 'react'
 import StopWatchButton from './StopWatchButton';
+import './StopWatchStyles.css';
 
 
 //Define the component for the StopWatch
@@ -66,8 +67,8 @@ const StopWatch = () => {
 
     //Render the stopwatch component
     return (
-        <div>
-            
+        <div className = "STOPWATCH">
+            <h2> STOPWATCH </h2>
             <h3>Hour:Minutes:Seconds:Milliseconds</h3>
             <h1>{formatTime(time)}</h1>
 
