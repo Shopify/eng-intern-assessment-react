@@ -1,5 +1,5 @@
 import React from 'react'
-type Props = {
+type Props = { //created the props for the buttons, which include each buttons functions
     isRunning: boolean;
     onStart: () => void;
     onStop: () => void;
@@ -7,14 +7,14 @@ type Props = {
     onLap: () => void;
   };
   
-  export default function StopWatchButton({
+  export default function StopWatchButton({ //exports this to the components above
     isRunning,
     onStart,
     onStop,
     onReset,
     onLap,
   }: Props) {
-    return (
+    return (//renders the buttons
       <div>
         <button onClick={onStart}>Start</button>
         <button onClick={onStop}>Stop</button>

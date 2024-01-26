@@ -1,7 +1,7 @@
 import React from 'react';
 import StopWatchButton from './StopWatchButton';
 
-interface StopwatchProps {
+interface StopwatchProps { //creates a stopwatch property interface to pass these values up to the app tsx file
   isRunning: boolean;
   elapsedTime: number;
   lapTimes: { minutes: number; seconds: number }[];
@@ -20,10 +20,10 @@ const Stopwatch: React.FC<StopwatchProps> = ({
   onReset,
   onLap,
 }) => {
-  const minutes = Math.floor(elapsedTime / 60);
+  const minutes = Math.floor(elapsedTime / 60);//formats the minutes and seconds to display the watch face
   const seconds = elapsedTime % 60;
 
-  return (
+  return (//the watch face, implements the stopwatch buttons, and lastly, the laptimes which are mapped to a p tag
     <div>
       <h1>{`${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`}</h1>
       <StopWatchButton
