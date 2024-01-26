@@ -92,3 +92,5 @@ export default function StopWatch() {
         </div>
     )
 }
+
+export { timeToString };
