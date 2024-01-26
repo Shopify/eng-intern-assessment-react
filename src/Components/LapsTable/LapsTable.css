@@ -1,0 +1,22 @@
+.list-container {
+    display: flex;
+    align-items: center;
+    padding:10px;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    font-size: 24px;
+    border: 3px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(17, 153, 51, 0.2);
+  }
+
+  .row{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding:5px;
+    align-items:center;
+  }

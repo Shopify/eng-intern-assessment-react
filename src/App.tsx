@@ -1,7 +1,11 @@
 import React from 'react'
+import StopWatch from './Pages/StopWatch/StopWatch'
 
-export default function App() {
-    return(
-        <div></div>
-    )
+
+function App() {
+	return (
+		<StopWatch/>
+	)
 }
+
+export default App;

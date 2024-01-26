@@ -1,0 +1,21 @@
+.button {
+  width: 100px;
+  height: 100px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  background-color: #04AA6D;
+  border-radius: 50%;
+}
+
+.changebutton {
+  padding: 15px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  background-color: #04AA6D;
+  border-radius: 10px;
+}
+
