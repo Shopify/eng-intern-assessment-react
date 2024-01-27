@@ -8,6 +8,8 @@ export type StopWatchButtonProps = {
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
     return(
-      <button className='StopWatchButton' onClick={props.onClick}>{props.label}</button>
+      <div className='buttons-container'>
+        <button className='StopWatchButton' onClick={props.onClick}>{props.label}</button>
+      </div>
     );
 }

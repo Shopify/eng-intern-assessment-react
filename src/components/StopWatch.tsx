@@ -38,7 +38,9 @@ export default function StopWatch() {
   const runReset = () => {
     clearInterval(intervalID);
     setTime(0);
-    setIsTimeRunning(!isTimeRunning);
+    if (isTimeRunning) {
+      setIsTimeRunning(!isTimeRunning);
+    }
   }
 
   const runLap = () => {
@@ -52,6 +54,7 @@ export default function StopWatch() {
         <div className='min'>{min}</div>
         <div className='sec'>{sec}</div>
       </div>
+      
       <div className='buttons-container'>
         <StopWatchButton onClick={runStartStop} label={isTimeRunning ? 'Stop' : 'Start'} />
         <StopWatchButton onClick={runReset} label={'Reset'}/>

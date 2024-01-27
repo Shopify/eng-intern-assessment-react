@@ -1,10 +1,10 @@
 .wrapper-content {
-  height: 36rem;
-  width: 40rem;
-  /* background-image: url("https://cdn.dribbble.com/users/338126/screenshots/3518347/run-cycle.gif"); */
+  width: fit-content;
+  margin:auto;
+  margin-top: 15rem;
   /* outline: 2px solid white; */
-  margin:auto 
 }
-/* .wrapper-content:hover {
-  background: url("/images/stopped-man.png");
+
+/* .picture:hover {
+  transform: rotate(360deg);
 } */

@@ -2,4 +2,10 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: white;
   background-color: #61B6E7;
+  background-image: url("https://cdn.dribbble.com/users/338126/screenshots/3518347/run-cycle.gif");
+  background-repeat: no-repeat;
+}
+
+img {
+  transform: rotate(360deg);
 }
