@@ -63,7 +63,8 @@ export default function App() {
 
         // ------------ Rendering LapsList: -------------------
         return(
-            <div id='laps-list' data-testid='laps-list' >
+            <div id='laps-list' data-testid='laps-list' 
+            >
                 {laps.map((lap, index) => (
                     <li key={index}>Lap #{index + 1} - {formatLap(lap)}</li>
                 ))}
@@ -74,21 +75,29 @@ export default function App() {
 
     // ============================= RENDERING APP.TSX =================================
     return(
-        <div id='page-container'>
-            <div id='header-container'>
-                <h1 id='stopify-header' className='font-bold'>
-                    Stopify
+        <div id='page-container'
+            className='bg-[#96BF48] w-screen h-screen flex flex-col justify-center items-center text-center'
+        >
+            <div id='header-container' className='mb-3'>
+                <h1 id='stopify-header' className='font-bold text-[7rem] italic'>
+                    stopify
                 </h1>
-                <p id='subheader'>
+                <p id='subheader' className='text-4xl font-light'>
                     Shopify Stopwatch
                 </p>
             </div>
 
-            <div id='stopwatch-display-container'>
+            <div id='stopwatch-display-container' 
+                className='bg-black text-white rounded-full 
+                w-[36rem] h-[36rem] flex flex-col justify-center items-center
+                mt-8 mb-6
+                '>
                 <StopWatch timeElapsed={timeElapsed}/>
             </div>
 
-            <div id='stopwatch-buttons-container'>
+            <div id='stopwatch-buttons-container'
+                className='mb-6'
+            >
                 <StopWatchButton
                     handleStart={handleStart}
                     handleStop={handleStop}
@@ -98,7 +107,9 @@ export default function App() {
                 />
             </div>
 
-            <div id='laps-container'>
+            <div id='laps-container'
+            className='w-[37rem] min-h-[6rem] border-[0.2rem] border-black rounded-3xl '
+            >
                 <LapsList />
             </div>
 

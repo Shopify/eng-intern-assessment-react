@@ -12,12 +12,17 @@ interface StopWatchButtonProps {
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleStop, handleReset, handleLap, isRunning }) => {
     // Component for the Start/Stop, Reset, and Lap buttons
 
-    
+    const allButtonsStyling = ' text-3xl rounded-full w-[12rem] h-[4rem]'
+    const primaryButton = ' bg-black text-white font-bold' + allButtonsStyling
+    const secondaryButton = ' text-black  border-black border-[0.2rem]' + allButtonsStyling
+    const disabledButton = ' text-gray-700/70  border-gray-700/70 border-[0.2rem]' + allButtonsStyling
+
     // ========== RENDERING ==============
     return(
-        <>
+        <div id='buttons-row' className='space-x-2'>
+
             <button 
-                className={isRunning ? 'stop-btn' : 'start-btn'}
+                className={isRunning ? 'stop-btn' + secondaryButton : 'start-btn' + primaryButton}
                 id={isRunning ? 'stop-btn' : 'start-btn'}
                 data-testid='start-stop-btn' 
                 onClick={isRunning ? handleStop : handleStart}
@@ -26,7 +31,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
             </button>
 
             <button 
-                className='reset-btn'
+                className={'reset-btn' + allButtonsStyling + ' border-[0.2rem] text-white font-semibold'}                
                 id='reset-btn'
                 data-testid='reset-btn' 
                 onClick={handleReset}
@@ -35,7 +40,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
             </button>
 
             <button 
-                className='lap-btn'
+                className={isRunning ? primaryButton : disabledButton}
                 id='lap-btn'
                 data-testid='lap-btn' 
                 onClick={handleLap}
@@ -44,7 +49,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
                 Lap
             </button>
             
-        </>
+        </div>
     )
 }
 
