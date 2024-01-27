@@ -61,4 +61,13 @@ describe("Testing StopWatch Button Functionality", () => {
     //  Expect initial update in useEffect, on start click and on stop click
     expect(mockSetTimeInSeconds).toHaveBeenCalledTimes(3);
   });
+
+  test("Resets the stopwatch to zero when the reset button is clicked", () => {
+    const resetButton = screen.getByText("Reset");
+    fireEvent.click(resetButton);
+
+    // Expect stopwatch to reset to 0 and lap list array to be empty
+    expect(mockSetTimeInSeconds).toHaveBeenCalledWith(0);
+    expect(mockSetLaps).toHaveBeenCalledWith([]);
+  });
 });
