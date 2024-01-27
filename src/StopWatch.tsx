@@ -8,6 +8,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Colon,
+  LapItem,
+  LapsContainer,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
   TimeDisplay,
   TimeValue,
   TimerContainer,
@@ -45,6 +51,7 @@ export default function StopWatch() {
     setLaps([...laps, time]);
   };
 
+  // Function to format time into minutes, seconds, and milliseconds
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60000);
     const seconds = Math.floor((time % 60000) / 1000);
@@ -55,6 +62,12 @@ export default function StopWatch() {
       seconds: `${seconds < 10 ? "0" : ""}${seconds}`,
       milliseconds: `${milliseconds < 10 ? "0" : ""}${milliseconds}`,
     };
+  };
+
+  // Function to calculate the split time given the current index and laps array
+  const calculateSplit = (index: number) => {
+    if (index === 0) return laps[0];
+    return laps[index] - laps[index - 1];
   };
 
   const buttons = [
@@ -97,25 +110,36 @@ export default function StopWatch() {
           <StopWatchButton key={index} {...button} />
         ))}
       </ButtonsGroup>
-      {laps.length > 0 && (
-        <div>
-          <h3>Laps</h3>
-          <ol>
+      <LapsContainer>
+        <Table>
+          <thead>
+            <TableRow>
+              <TableHeader>Lap No.</TableHeader>
+              <TableHeader>Split</TableHeader>
+              <TableHeader>Total</TableHeader>
+            </TableRow>
+          </thead>
+          <tbody>
             {laps.map((lap, index) => {
-              const formattedLap = formatTime(lap);
+              const splitTime = formatTime(calculateSplit(index));
+              const totalTime = formatTime(lap);
               return (
-                <li key={index}>
-                  <span className="minutes">{formattedLap.minutes}</span>:
-                  <span className="seconds">{formattedLap.seconds}</span>:
-                  <span className="milliseconds">
-                    {formattedLap.milliseconds}
-                  </span>
-                </li>
+                <TableRow key={index}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>
+                    {splitTime.minutes}:{splitTime.seconds}:
+                    {splitTime.milliseconds}
+                  </TableCell>
+                  <TableCell>
+                    {totalTime.minutes}:{totalTime.seconds}:
+                    {totalTime.milliseconds}
+                  </TableCell>
+                </TableRow>
               );
             })}
-          </ol>
-        </div>
-      )}
+          </tbody>
+        </Table>
+      </LapsContainer>
     </TimerContainer>
   );
 }

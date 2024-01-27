@@ -10,6 +10,7 @@ const ButtonContainer = styled.div`
 
 const ButtonsGroup = styled.div`
   position: relative;
+  width: 50%;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
