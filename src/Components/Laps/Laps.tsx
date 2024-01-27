@@ -10,7 +10,7 @@ interface LapsProps {
   
 export default function Laps({lapTimes, onDelete}: LapsProps) {
     return(
-        <div id="lap-list">
+        <div data-testid="lap-list">
           <Table bordered hover>
           <thead>
             <tr>
@@ -23,7 +23,9 @@ export default function Laps({lapTimes, onDelete}: LapsProps) {
             {lapTimes.map((lapTime: string, index: number) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{lapTime}</td>
+                <td data-testid={`lap-time-${index}`}>
+                  {lapTime}
+                </td>
                 <td>
                     <Button variant="dark" size="sm" onClick={() => onDelete(index)}>
                       Delete

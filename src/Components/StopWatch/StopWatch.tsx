@@ -15,23 +15,19 @@ export default function StopWatch() {
     const [lapTimes, setLapTimes] = useState<string[]>([]);
 
     const start = () => { 
-        console.log("start");
         setIsRunning(true)
     }
 
     const stop = () => {
-        console.log("stop");
         setIsRunning(false)
     }
 
     const reset = () => {
-        console.log("reset");
         setTime({ms: 0, s: 0, m: 0})
         setLapTimes([])
     }
 
     const lap = () => {
-        console.log("lap");
         setLapTimes([...lapTimes, formatTime(time)])
     }
 
@@ -42,7 +38,7 @@ export default function StopWatch() {
     }
 
     const formatTime = (time: Time) => {
-        return `${(time.m >= 10) ? time.m : "0" + time.m} : ${(time.s >= 10) ? time.s : "0" + time.s} : ${(time.ms >= 10) ? time.ms : "0" + time.ms}`
+        return `${(time.m >= 10) ? time.m : "0" + time.m}:${(time.s >= 10) ? time.s : "0" + time.s}:${(time.ms >= 10) ? time.ms : "0" + time.ms}`
     }
 
     useEffect(() => {
@@ -78,7 +74,7 @@ export default function StopWatch() {
     return(
         <div className="stopwatch-container">
             <div className="time-container">
-                <h1>
+                <h1 data-testid="stopwatch-time">
                     {(time.m >= 10) ? time.m : "0" + time.m}: 
                     {(time.s >= 10) ? time.s : "0" + time.s}: 
                     {(time.ms >= 10) ? time.ms : "0" + time.ms}
@@ -92,7 +88,12 @@ export default function StopWatch() {
                 <StopWatchButton variant="secondary" onClick={lap} label="Lap" />
             </div>
 
-            <Laps lapTimes={lapTimes} onDelete={deleteLap} />
+            {lapTimes.length > 0 && (
+                <div className="lap-container">
+                    <Laps lapTimes={lapTimes} onDelete={deleteLap} />
+                </div>
+            )}
+
         </div>
     )
 }
