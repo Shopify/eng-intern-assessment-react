@@ -13,11 +13,11 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
     // Component for the Start/Stop, Reset, and Lap buttons
 
     // ========== TAILWIND STYLING =============
-    const allButtonsStyling = ' text-2xl rounded-full w-[10rem] h-[3.5rem]'
+    const allButtonsStyling = ' text-2xl rounded-full w-[10rem] h-[3.2rem]'
     const primaryButton = ' bg-black text-white font-bold hover:bg-black/70' + allButtonsStyling // Start and enabled Lap buttons
-    const secondaryButtonBlack = ' text-black border-black border-[0.23rem] font-semibold hover:bg-black/20' + allButtonsStyling // Stop button
-    const secondaryButtonWhite = ' text-white border-white border-[0.2rem] font-semibold hover:bg-white/20' + allButtonsStyling // Reset button
-    const disabledButton = ' text-gray-700/70  border-gray-700/70 border-[0.22rem]' + allButtonsStyling // Disabled Lap button
+    const secondaryButtonBlack = ' text-black border-black border-[0.18rem] font-semibold hover:bg-black/20' + allButtonsStyling // Stop button
+    const secondaryButtonWhite = ' text-white border-white border-[0.155rem] font-semibold hover:bg-white/20' + allButtonsStyling // Reset button
+    const disabledButton = ' text-gray-700/70  border-gray-700/70 border-[0.157rem]' + allButtonsStyling // Disabled Lap button
 
     // ========== RENDERING ==============
     return(

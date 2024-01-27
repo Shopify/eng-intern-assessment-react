@@ -93,10 +93,10 @@ export default function App() {
             >
                 {/* ======== HEADER SECTION ========= */}
                 <div id='header-container' className='text-center'>
-                    <h1 id='stopify-header' className='font-bold text-[6rem] italic'>
+                    <h1 id='stopify-header' className='font-bold text-[5.7rem] italic'>
                         stopify
                     </h1>
-                    <p id='subheader' className='text-3xl font-extralight'>
+                    <p id='subheader' className='text-[1.7rem] font-extralight -translate-y-2'>
                         Shopify Stopwatch
                     </p>
                 </div>
@@ -105,7 +105,7 @@ export default function App() {
                 <div id='stopwatch-display-container' 
                     className='bg-black text-white rounded-full shadow-black/40 shadow-lg
                     w-[28rem] h-[28rem] min-h-[14rem] flex flex-col justify-center items-center
-                    mt-6 mb-7 transition-transform duration-300 transform-gpu hover:scale-105
+                    mt-4 mb-7 transition-transform duration-300 transform-gpu hover:scale-105
                     relative'>
                     
                     {/* TIME ELAPSED */}
@@ -135,7 +135,7 @@ export default function App() {
 
                 {/* ====== LAPS LIST ======= */}
                 <div id='laps-container'
-                className='w-[31rem] min-h-[5.5rem] max-h-[5.5rem] border-[0.2rem] border-black rounded-3xl py-2 overflow-auto text-center'
+                className='w-[31rem] min-h-[5.5rem] max-h-[5.5rem] border-[0.18rem] border-black rounded-3xl py-2 overflow-auto text-center'
                 >
                     <LapsList />
                 </div>
