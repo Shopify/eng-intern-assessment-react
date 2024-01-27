@@ -56,7 +56,7 @@ export default function App() {
         onLap={lapStopWatch}
       />
       <div className="laps-container">
-        <h2>Laps Total:</h2>
+        <h2>Laps Total: </h2>
         <ul>
           {laps.map((lap, index) => (
             <li key={index}>{`Lap ${index + 1}: ${formatTime(lap)}`}</li>
