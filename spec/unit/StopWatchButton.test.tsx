@@ -9,16 +9,12 @@ const mockHandleReset = jest.fn();
 const mockHandleLap = jest.fn();
 
 
-// Type for buttons
-type ButtonType = HTMLElement | null;
-
-
 // TEST: When the stopwatch is NOT running, the buttons are Start, Reset and Lap (disabled)
 describe("When the stopwatch is NOT running, the buttons are Start, Reset and Lap (disabled)", () => {
     
-    let startStopButton: ButtonType;
-    let resetButton: ButtonType;
-    let lapButton: ButtonType;
+    let startStopButton: HTMLElement | null;
+    let resetButton: HTMLElement | null;
+    let lapButton: HTMLElement | null;
 
     // Arrange: mount the component before each test & reset all mocks after each test
     beforeEach(() => {
