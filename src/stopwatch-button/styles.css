@@ -21,3 +21,8 @@
 .stopwatchButton:active {
     background-color: #e6e6e6;
 }
+
+.stopwatchButton:focus-visible {
+    outline: #6262ff solid 0.15rem;
+    outline-offset: -0.1rem;
+}
