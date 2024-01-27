@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: "PT Sans", sans-serif;
+  background: linear-gradient(to bottom right, #004080, #008060);
+  animation: gradientMovement 5s linear infinite;
+  background-size: 200% 200%;
+  color: white;
+}
+
+@keyframes gradientMovement {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.content-wrapper {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5rem;
+  border-radius: 15%;
+  max-height: calc(100vh - 20rem);
+}
+
+button,
+ul {
+  font-family: "PT Sans", sans-serif;
+}

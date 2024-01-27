@@ -1,0 +1,57 @@
+.buttons-container {
+  display: flex;
+  gap: 2.25rem;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  color: white;
+
+  &:active {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+.start-button {
+  background-color: rgb(23, 155, 94);
+}
+
+.stop-button {
+  background-color: rgba(220, 33, 33, 0.7);
+}
+
+.lap-button {
+  background-color: rgb(24, 6, 6, 0.7);
+}
+
+.reset-button {
+  background-color: rgba(204, 189, 189, 0.7);
+}
+
+.laps {
+  max-height: 12.5rem;
+  overflow-y: auto; /* Triggers the scrollbar when the content exceeds max-height */
+}
+
+.lap-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lap-item {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid white;
+}
