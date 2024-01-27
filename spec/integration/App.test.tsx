@@ -65,15 +65,19 @@ describe("Stopwatch", () => {
 
         // Assert: Laps list should display "Lap #1 - 00:00:01.00"
         expect(document.body.innerHTML).toContain("Lap #");
-        expect(screen.getByText("Lap #1 - 00:00:01.00")).toBeDefined();
+        expect(screen.getByText("Lap #1")).toBeDefined();
+        expect(screen.getByText("- 00:00:01.00")).toBeDefined();
 
         // Act: Advance the time by 1300ms (1.3s) and simulate clicking the lap button
         act(() =>  jest.advanceTimersByTime(1300));
         fireEvent.click(lapButton);
 
         // Assert: Laps list should display "Lap #1 - 00:00:01.00", "Lap #2 - 00:00:01.30"
-        expect(screen.getByText("Lap #1 - 00:00:01.00")).toBeDefined();
-        expect(screen.getByText("Lap #2 - 00:00:01.30")).toBeDefined();
+        expect(screen.getByText("Lap #1")).toBeDefined();
+        expect(screen.getByText("- 00:00:01.00")).toBeDefined();
+        expect(screen.getByText("Lap #2")).toBeDefined();
+        expect(screen.getByText("- 00:00:01.30")).toBeDefined();
+
     })
 
     // TEST: The stopwatch should reset to zero and clear the lap list when the user clicks the reset button.

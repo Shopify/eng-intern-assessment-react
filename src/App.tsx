@@ -63,9 +63,17 @@ export default function App() {
 
         // ------------ Rendering LapsList: -------------------
         return(
-            <div id='laps-list' data-testid='laps-list' >
+            <div id='laps-list' data-testid='laps-list' 
+            >
                 {laps.map((lap, index) => (
-                    <li key={index}>Lap #{index + 1} - {formatLap(lap)}</li>
+                    <li key={index}
+                        className='text-[1.3rem]'
+                    >
+                        <span className='font-semibold'>
+                        Lap #{index + 1}{' '}
+                        </span>
+                        - {formatLap(lap)}
+                    </li>
                 ))}
             </div>
         )
@@ -74,36 +82,69 @@ export default function App() {
 
     // ============================= RENDERING APP.TSX =================================
     return(
-        <div>
-            <div id='header-container'>
-                <h1 id='stopify-header'>
-                    Stopify
-                </h1>
-                <p id='subheader'>
-                    Shopify Stopwatch
-                </p>
+        <div id='page-container'
+        className={`w-screen h-screen flex flex-col items-center justify-center ${
+            isRunning ? 'bg-[#5b5b85]' : 'bg-[#96BF48]'
+        }`}
+        >
+            {/* ============  MAIN CONTAINER ============= */}
+            <div id='main-container'
+            className='w-full h-full flex flex-col items-center justify-center -translate-y-3'
+            >
+                {/* ======== HEADER SECTION ========= */}
+                <div id='header-container' className='text-center'>
+                    <h1 id='stopify-header' className='font-bold text-[5.7rem] italic'>
+                        stopify
+                    </h1>
+                    <p id='subheader' className='text-[1.7rem] font-extralight -translate-y-2'>
+                        Shopify Stopwatch
+                    </p>
+                </div>
+
+                {/* ======= STOPWATCH DISPLAY ====== */}
+                <div id='stopwatch-display-container' 
+                    className='bg-black text-white rounded-full shadow-black/40 shadow-lg
+                    w-[28rem] h-[28rem] min-h-[14rem] flex flex-col justify-center items-center
+                    mt-4 mb-7 transition-transform duration-300 transform-gpu hover:scale-105
+                    relative'>
+                    
+                    {/* TIME ELAPSED */}
+                    <StopWatch timeElapsed={timeElapsed}/>
+
+                    {/* PAUSED LABEL -- when stopwatch has been run and stopped */}
+                    {!isRunning && timeElapsed > 0 &&
+                        <p id='paused-label'
+                        className='text-xl absolute translate-y-[5rem]'>
+                            Paused
+                        </p>
+                    }
+                </div>
+
+                {/* ======= STOPWATCH BUTTONS ======== */}
+                <div id='stopwatch-buttons-container'
+                    className='mb-4'
+                >
+                    <StopWatchButton
+                        handleStart={handleStart}
+                        handleStop={handleStop}
+                        handleReset={handleReset}
+                        handleLap={handleLap}
+                        isRunning={isRunning}
+                    />
+                </div>
+
+                {/* ====== LAPS LIST ======= */}
+                <div id='laps-container'
+                className='w-[31rem] min-h-[5.5rem] max-h-[5.5rem] border-[0.18rem] border-black rounded-3xl py-2 overflow-auto text-center'
+                >
+                    <LapsList />
+                </div>
             </div>
 
-            <div id='stopwatch-display-container'>
-                <StopWatch timeElapsed={timeElapsed}/>
-            </div>
 
-            <div id='stopwatch-buttons-container'>
-                <StopWatchButton
-                    handleStart={handleStart}
-                    handleStop={handleStop}
-                    handleReset={handleReset}
-                    handleLap={handleLap}
-                    isRunning={isRunning}
-                />
-            </div>
-
-            <div id='laps-container'>
-                <LapsList />
-            </div>
-
-            <div id='footer-container'>
-                <p id='footer'>Shopify React Assessment by Claire Peng</p>
+            {/* ====== FOOTER ======= */}
+            <div id='footer-container' className='absolute bottom-0 w-full text-sm text-center'>
+                <p id='footer'>Shopify Frontend Internship React Assessment by Claire Peng</p>
             </div>
         </div>
     )
