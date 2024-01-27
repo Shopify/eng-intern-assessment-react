@@ -50,4 +50,15 @@ describe("Testing StopWatch Button Functionality", () => {
     expect(mockSetTimeInSeconds).toHaveBeenCalledWith(0);
     expect(mockSetTimeInSeconds).toHaveBeenCalledTimes(2);
   });
+
+  test("Pauses the stopwatch when the stop button is clicked", () => {
+    const startButton = screen.getByText("Start");
+    fireEvent.click(startButton);
+
+    const stopButton = screen.getByText("Stop");
+    fireEvent.click(stopButton);
+
+    //  Expect initial update in useEffect, on start click and on stop click
+    expect(mockSetTimeInSeconds).toHaveBeenCalledTimes(3);
+  });
 });
