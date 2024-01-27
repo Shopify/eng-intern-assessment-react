@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './style.css';
+import React, { useState, useRef } from 'react';
+/* import './style.css'; */
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
-
 import { displayTime } from "./StopWatch";
 
 export default function App() {
@@ -50,8 +49,8 @@ export default function App() {
                 </div>
                 <div className="laps-container">
                     {storeLaps.current.map((lapTime, index) => (
-                        <div key={index} className='laps'>
-                            Lap{index+1} - {displayTime(lapTime)}
+                        <div key={index} data-testid={`lap-${index}`} className='laps'>
+                            Lap {index+1} - {displayTime(lapTime)}
                         </div>
                     ))}
             </div>
