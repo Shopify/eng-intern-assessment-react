@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import StopWatchButton from "./StopWatchButton";
+import StopWatchButton from "../components/StopWatchButton";
 
 test("calls onStart when start button is clicked", () => {
   const onStartMock = jest.fn();

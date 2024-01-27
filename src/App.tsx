@@ -11,7 +11,7 @@ export default function App() {
 
   // Effect to update the time every second when stopwatch is running
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: number;
 
     if (isRunning) {
       interval = setInterval(() => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render, screen } from "@testing-library/react";
-import StopWatch from "./StopWatch";
+import StopWatch from "../components/StopWatch";
 
 test("renders stopwatch with initial time", () => {
   render(<StopWatch timerSeconds={0} />);
