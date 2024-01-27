@@ -1,30 +1,33 @@
 import React from 'react'
-import { centerStyle, textStyle } from './StopWatchButton';
+import StopWatchButton, { centerStyle, textStyle } from './StopWatchButton';
 
 export default function StopWatch() {
     const [seconds, setSeconds] = React.useState(0);
     const [running, setRunState] = React.useState(false);
+    const [lapsList, setLaps] = React.useState<number[]>([1]);
 
+    function LapTimes(){
+        return(
+            <div style={centerStyle}>
+                <ul style={unnumberListStyle}>
+                    {lapsList.map(function (lapTime, index) {
+                        return (
+                            <li key={index}>
+                                Lap {index + 1} : {formatHMS(lapTime)}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        )
+    }
+    
     return(
         <div className='Stopwatch'>
             <div style={swStyle}>Stopwatch</div>
             <div style={swStyle}>Time: {formatHMS(seconds)}</div>
-        </div>
-    )
-}
-
-export function LapTimes(){
-    const [lapsList, setLaps] = React.useState<number[]>([1]);
-
-    return(
-        <div style={centerStyle}>
-            <ul style={unnumberListStyle}>
-                {lapsList.map((lapTime, index) => (
-                    <li key={index}>
-                    Lap {index + 1} : {formatHMS(lapTime)}
-                    </li>
-                ))}
-            </ul>
+            <StopWatchButton />
+            <LapTimes />
         </div>
     )
 }
