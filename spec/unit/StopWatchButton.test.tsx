@@ -73,9 +73,9 @@ describe("When the stopwatch is NOT running, the buttons are Start, Reset and La
 // TEST: When the stopwatch IS running, the buttons are Stop, Reset and Lap (enabled)
 describe("When the stopwatch IS running, the buttons are Stop, Reset and Lap (enabled)", () => {
     
-    let startStopButton: ButtonType;
-    let resetButton: ButtonType;
-    let lapButton: ButtonType;
+    let startStopButton: HTMLElement | null;
+    let resetButton: HTMLElement | null;
+    let lapButton: HTMLElement | null;
 
     // Arrange: mount the component before each test & reset all mocks after each test
     beforeEach(() => {

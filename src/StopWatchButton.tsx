@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 // Interface for StopWatchButton props
 interface StopWatchButtonProps {
     handleStart: () => void;
@@ -9,7 +8,6 @@ interface StopWatchButtonProps {
     handleLap: () => void;
     isRunning: boolean;
 }
-
 
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleStop, handleReset, handleLap, isRunning }) => {
     // Component for the Start/Stop, Reset, and Lap buttons
