@@ -14,7 +14,7 @@ const StopWatch: React.FC<StopWatchProps> = ({ timeElapsed}) => {
     return (
         <>
             <h2 data-testid="time-display"
-            className='font-bold text-[5rem] text-center absolute left-[3.1rem]'
+            className='font-bold text-[3.5rem] text-center absolute left-[3.1rem]'
             >
                 {formatTime(timeElapsed)}
             </h2>

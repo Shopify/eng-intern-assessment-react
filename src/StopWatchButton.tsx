@@ -12,7 +12,8 @@ interface StopWatchButtonProps {
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleStop, handleReset, handleLap, isRunning }) => {
     // Component for the Start/Stop, Reset, and Lap buttons
 
-    const allButtonsStyling = ' text-3xl rounded-full w-[12rem] h-[4rem]'
+    // ========== TAILWIND STYLING =============
+    const allButtonsStyling = ' text-2xl rounded-full w-[10rem] h-[3.5rem]'
     const primaryButton = ' bg-black text-white font-bold hover:bg-black/70' + allButtonsStyling // Start and enabled Lap buttons
     const secondaryButtonBlack = ' text-black border-black border-[0.23rem] font-semibold hover:bg-black/20' + allButtonsStyling // Stop button
     const secondaryButtonWhite = ' text-white border-white border-[0.2rem] font-semibold hover:bg-white/20' + allButtonsStyling // Reset button
@@ -22,6 +23,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
     return(
         <div id='buttons-row' className='space-x-2'>
 
+            {/* START / STOP BUTTON */}
             <button 
                 className={isRunning ? 'stop-btn' + secondaryButtonBlack : 'start-btn' + primaryButton}
                 id={isRunning ? 'stop-btn' : 'start-btn'}
@@ -31,6 +33,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
                 {isRunning ? 'Stop' : 'Start'}
             </button>
 
+            {/* RESET BUTTON */}
             <button 
                 className={'reset-btn' + secondaryButtonWhite}                
                 id='reset-btn'
@@ -40,6 +43,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
                 Reset
             </button>
 
+            {/* LAP BUTTON */}
             <button 
                 className={isRunning ? primaryButton : disabledButton}
                 id='lap-btn'
