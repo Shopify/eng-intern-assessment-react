@@ -1,10 +1,16 @@
-import React from 'react';
+import React from "react";
+import { formatTime } from "./helperFunctions";
 
-export default function StopWatch() {
-    
-    return(
-        <div className="number-panel">
-            <p className="number-display">0</p><span>:</span><p className="number-display">0</p><span>:</span><p className="number-display">0</p>
-        </div>
-    )
+interface TimeProps {
+    time: number;
 }
+
+const StopWatch: React.FC<TimeProps> = ({ time }) => {
+    return (
+        <section>
+            <p>{formatTime(time)}</p>
+        </section>
+    );
+};
+
+export default StopWatch;

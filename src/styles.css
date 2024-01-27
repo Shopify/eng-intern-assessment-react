@@ -3,34 +3,33 @@ body {
     padding: 0;
     box-sizing: border-box;
     background: #333;
-    font-size: 1.5rem;  
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    font-size: 2rem;
+    color: ghostwhite;
     height: 100vh;
 }
 
-.number-panel {
-    background: ghostwhite; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-}
-
-.button-panel {
-    padding: 1rem 2rem;
+main {
+    padding: 20%;
 }
 
 button {
-    margin: 0 0.5rem;
     padding: 1rem 2rem;
     font-size: 1.5rem;
     cursor: pointer;
+    border: none;
     border-radius: 0.5rem;
+}
+
+button:not(:last-of-type) {
+    margin-right: 1rem;
+}
+
+ul {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+p, li {
+    margin: 1rem 0;
 }
