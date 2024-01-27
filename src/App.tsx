@@ -29,7 +29,7 @@ export default function App() {
   return (
     <main>
       <StopWatch displayTime={displayTime} />
-      <StopWatchButton />
+      <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
     </main>
   );
 }
