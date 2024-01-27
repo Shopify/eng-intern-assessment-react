@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
-    // State for the time and whether the timer is on
+    // State for the time, whether the timer is on/off, and the lap times
     const [time, setTime] = useState(0);
     const [timerOn, setTimerOn] = useState(false);
+    const [lapTimes, setLapTimes] = useState<number[]>([]);
 
     // Format the time in mm:ss:ms
     const minutes = Math.floor((time / 6000));
@@ -35,8 +36,14 @@ export default function StopWatch() {
             <p>{formattedTime}</p>
             <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
             <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-            <StopWatchButton type={'lap'} onClick={() => {}}></StopWatchButton> {/*TODO: Implement lap functionality*/}
-            <StopWatchButton type={'reset'} onClick={() => setTimerOn(false)}></StopWatchButton> {/* TODO: Implement reset functionality */}
+            <StopWatchButton type={'lap'} onClick={() => {setLapTimes([...lapTimes, time])}}></StopWatchButton>
+            <StopWatchButton type={'reset'} onClick={() => {setTimerOn(false); setTime(0); setLapTimes([])}}></StopWatchButton>
+            {/* Display the lap times */}
+            <ul>
+                {lapTimes.map((lapTime, index) => {
+                    return <li key={index}>{lapTime}</li>
+                })}
+            </ul>
         </div>
     )
 }
