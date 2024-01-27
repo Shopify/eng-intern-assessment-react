@@ -66,14 +66,14 @@ export default function App() {
             <div id='laps-list' data-testid='laps-list' 
             >
                 {laps.map((lap, index) => (
-                    <article key={index}
+                    <li key={index}
                         className='text-[1.3rem]'
                     >
                         <span className='font-semibold'>
                         Lap #{index + 1}{' '}
                         </span>
                         - {formatLap(lap)}
-                    </article>
+                    </li>
                 ))}
             </div>
         )
@@ -89,7 +89,7 @@ export default function App() {
         >
             {/* ============  MAIN CONTAINER ============= */}
             <div id='main-container'
-            className='w-full h-full flex flex-col items-center justify-center -translate-y-2'
+            className='w-full h-full flex flex-col items-center justify-center -translate-y-3'
             >
                 {/* ======== HEADER SECTION ========= */}
                 <div id='header-container' className='text-center'>
