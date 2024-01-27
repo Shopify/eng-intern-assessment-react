@@ -24,7 +24,7 @@ body, #root{
 }
 
 .STOPWATCH h1 {
-  font-size: 100px;
+  font-size: 110px;
   white-space:nowrap;
   margin-top:0px;
   width: 200px;
@@ -32,7 +32,7 @@ body, #root{
 }
 
 .STOPWATCH h2 {
-  font-size: 60px;
+  font-size: 55px;
   margin-top:-250px;
   text-decoration-line:underline;
 }
