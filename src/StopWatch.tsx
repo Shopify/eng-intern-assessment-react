@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// import "./styles.css";
+import "./styles.css";
 
 import StopWatchButton from "./StopWatchButton";
 
@@ -55,11 +55,22 @@ const Stopwatch: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Stopwatch</h1>
-      <div>
-        <span>{formatTime(totalTime)}</span>
+    <div className="text-center w-10/12 mx-auto">
+      <h1 className="text-3xl font-bold underline my-5 py-10">Stopwatch</h1>
+      <div className="flex justify-center">
+        <table className="table-fixed">
+          <tbody className="">
+            <tr className="text-9xl">
+              <td className="w-40">{`${formatTime(totalTime).minutes}:`}</td>
+              <td className="w-40">{`${formatTime(totalTime).seconds}.`}</td>
+              <td className="w-40">{`${
+                formatTime(totalTime).centiseconds
+              }`}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
       <div>
         <StopWatchButton
           action={isRunning ? "Pause" : "Start"}
