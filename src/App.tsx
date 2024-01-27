@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import StopWatchButton from './StopWatchButton'
+import StopWatch from './StopWatch';
 
 export default function App() {
     // This is the main component that renders the stopwatch and handles its functionality
 
     // =========================== STATE VARIABLES ===================================
     const [isRunning, setIsRunning] = useState(false);
+    const [timeElapsed, setTimeElapsed] = useState(0);
 
 
     // ============================= BUTTON FUNCTIONS =================================
@@ -17,6 +19,7 @@ export default function App() {
     }
     const handleReset = () => {
         setIsRunning(false);
+        setTimeElapsed(0);
         console.log("Reset!")
     }
     const handleLap = () => {
@@ -31,13 +34,13 @@ export default function App() {
                 <h1 id='stopify-header'>
                     Stopify
                 </h1>
-                <h2 id='subheader'>
+                <p id='subheader'>
                     Shopify Stopwatch
-                </h2>
+                </p>
             </div>
 
             <div id='stopwatch-display-container'>
-                STOPWATCH DISPLAY
+                <StopWatch timeElapsed={timeElapsed}/>
             </div>
 
             <div id='stopwatch-buttons-container'>
