@@ -4,6 +4,10 @@ const lightBlue = "#1B2E4B";
 const lighterBlue = "#253B57";
 const accentColor = "#4BA8FF";
 
+/**
+ * TimerContainer
+ * The main container for the stopwatch. It has a maximum width for larger screens and adjusts to cover 90% of the width on mobile devices.
+ */
 const TimerContainer = styled.div`
   margin: 0 auto;
   width: 60%;
@@ -33,17 +37,20 @@ const TimerContainer = styled.div`
   }
 `;
 
+/**
+ * TimerHeader
+ * A header for the stopwatch, displaying the title. It includes styling for text size and weight.
+ */
 const TimerHeader = styled.div`
   margin-bottom: 20px;
   font-size: 30px;
   font-weight: 700;
-  h1 {
-    color: ${accentColor};
-    text-align: center;
-    margin: 0;
-  }
 `;
 
+/**
+ * TimeDisplay
+ * A flex container for displaying the current time of the stopwatch.
+ */
 const TimeDisplay = styled.div`
   display: flex;
   justify-content: center;
@@ -51,6 +58,10 @@ const TimeDisplay = styled.div`
   padding: 40px 0;
 `;
 
+/**
+ * TimeValue
+ * Displays individual time units (minutes, seconds, milliseconds) in the stopwatch.
+ */
 const TimeValue = styled.div`
   font-size: 70px;
   color: #fff;
@@ -60,10 +71,20 @@ const TimeValue = styled.div`
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
+/**
+ * Colon
+ * Styled colon characters used to separate time units in the display.
+ */
+
 const Colon = styled.span`
   font-size: 30px;
   color: #d3d3d3;
 `;
+
+/**
+ * LapsContainer
+ * Container for displaying recorded laps. It includes styling for layout and color.
+ */
 
 const LapsContainer = styled.div`
   margin-top: 20px;
@@ -77,6 +98,10 @@ const LapsContainer = styled.div`
   }
 `;
 
+/**
+ * LapItem
+ * Styles individual lap items in the lap list.
+ */
 const LapItem = styled.li`
   font-size: 16px;
   line-height: 1.5;
@@ -86,12 +111,21 @@ const LapItem = styled.li`
   }
 `;
 
+/**
+ * Table
+ * Styles the table used to display lap details such as lap number, split time, and total time.
+ */
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   table-layout: fixed;
 `;
+
+/**
+ * TableRow
+ * Styles each row in the lap table, including alternating background colors for readability.
+ */
 const TableRow = styled.tr`
   text-align: center;
 
@@ -100,12 +134,20 @@ const TableRow = styled.tr`
   }
 `;
 
+/**
+ * TableHeader
+ * Styles the headers in the lap table, such as 'Lap No.', 'Split', and 'Total'.
+ */
 const TableHeader = styled.th`
   text-align: center;
   padding: 8px;
   color: #fff;
 `;
 
+/**
+ * TableCell
+ * Styles each cell in the lap table, formatting the content within.
+ */
 const TableCell = styled.td`
   padding: 8px;
   color: #fff;

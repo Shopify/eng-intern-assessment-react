@@ -5,11 +5,14 @@ import StopWatch from "../components/StopWatch";
 
 jest.useFakeTimers();
 
+// Testing the StopWatch component functionality
 describe("StopWatch Component", () => {
   beforeEach(() => {
+    // Rendering the component before each test
     render(<StopWatch />);
   });
 
+  // Test to check the initial display of the stopwatch
   test("initially displays 00:00:00", () => {
     expect(
       screen.getByText("00", { selector: ".minutes" })
@@ -22,6 +25,7 @@ describe("StopWatch Component", () => {
     ).toBeInTheDocument();
   });
 
+  // Test to check the start functionality of the stopwatch
   test("starts timer when start button is clicked", () => {
     fireEvent.click(screen.getByLabelText("Start Timer"));
     act(() => {
@@ -38,6 +42,7 @@ describe("StopWatch Component", () => {
     ).toBeInTheDocument();
   });
 
+  // Test to check the stop functionality of the stopwatch
   test("stops timer when stop button is clicked", () => {
     fireEvent.click(screen.getByLabelText("Start Timer"));
     act(() => {
@@ -65,6 +70,7 @@ describe("StopWatch Component", () => {
     );
   });
 
+  // Test to check the lap recording functionality of the stopwatch
   test("records multiple laps", () => {
     fireEvent.click(screen.getByLabelText("Start Timer"));
     act(() => {
@@ -82,6 +88,7 @@ describe("StopWatch Component", () => {
     expect(secondLap).toBeInTheDocument();
   });
 
+  // Test to check the reset functionality of the stopwatch
   test("resets the timer and laps when reset button is clicked", () => {
     fireEvent.click(screen.getByLabelText("Start Timer"));
     act(() => {

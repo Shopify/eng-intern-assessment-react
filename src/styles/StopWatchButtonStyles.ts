@@ -4,10 +4,18 @@ type StyledButtonProps = {
   isSecond?: boolean;
 };
 
+/**
+ * ButtonContainer
+ * A container for individual stopwatch buttons, positioning them relatively.
+ */
 const ButtonContainer = styled.div`
   position: relative;
 `;
 
+/**
+ * ButtonsGroup
+ * A flex container grouping all stopwatch buttons, aligning them evenly.
+ */
 const ButtonsGroup = styled.div`
   position: relative;
   width: 50%;
@@ -17,14 +25,12 @@ const ButtonsGroup = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   margin: 5% auto;
-
-  &:nth-child(2) {
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-  }
 `;
 
+/**
+ * Tooltip
+ * A hidden tooltip for buttons, shown on hover with a smooth transition.
+ */
 const Tooltip = styled.div`
   visibility: hidden;
   color: #eee;
@@ -43,6 +49,10 @@ const Tooltip = styled.div`
   }
 `;
 
+/**
+ * StyledButton
+ * A styled button for the stopwatch, with optional secondary styling.
+ */
 const StyledButton = styled.button<StyledButtonProps>`
   border: none;
   color: #fff;
@@ -59,7 +69,6 @@ const StyledButton = styled.button<StyledButtonProps>`
   ${(props) =>
     props.isSecond &&
     `
-
     font-size: 50px;
   `}
 

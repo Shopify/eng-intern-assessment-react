@@ -1,3 +1,17 @@
+/**
+ * StopWatch Component
+ * Created by Vansh Sood
+ *
+ * This component renders the main stopwatch interface, including the timer display
+ * and control buttons (Start/Stop, Record Lap, Reset).
+ *
+ * Features:
+ * - Displays time in minutes, seconds, and milliseconds.
+ * - Allows user to start, stop, record laps, and reset the stopwatch.
+ * - Dynamically updates laps table as laps are recorded.
+ * - Responsive design for optimal viewing on various screen sizes.
+ */
+
 import React, { useState, useEffect, useMemo } from "react";
 import StopWatchButton from "./StopWatchButton";
 import {
