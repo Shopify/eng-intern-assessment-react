@@ -1,7 +1,7 @@
 {
   "name": "template",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. Fork this repo to your local Github account.\r 2. Create a new branch to complete all your work in.\r 3. Write tests to ensure you've completed the requirements\r 3. Create a Pull Request against the main branch when you're done and all tests are passing",
   "main": "src/index.tsx",
   "scripts": {
     "test": "jest",
@@ -47,5 +47,13 @@
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholasan98/eng-intern-assessment-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nicholasan98/eng-intern-assessment-react/issues"
+  },
+  "homepage": "https://github.com/nicholasan98/eng-intern-assessment-react#readme"
 }
