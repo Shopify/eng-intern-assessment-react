@@ -135,7 +135,7 @@ export default function App() {
 
                 {/* ====== LAPS LIST ======= */}
                 <div id='laps-container'
-                className='w-[31rem] min-h-[6rem] max-h-[6rem] border-[0.2rem] border-black rounded-3xl py-2 overflow-auto text-center'
+                className='w-[31rem] min-h-[5.5rem] max-h-[5.5rem] border-[0.2rem] border-black rounded-3xl py-2 overflow-auto text-center'
                 >
                     <LapsList />
                 </div>
