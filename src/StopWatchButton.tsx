@@ -13,16 +13,17 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
     // Component for the Start/Stop, Reset, and Lap buttons
 
     const allButtonsStyling = ' text-3xl rounded-full w-[12rem] h-[4rem]'
-    const primaryButton = ' bg-black text-white font-bold' + allButtonsStyling
-    const secondaryButton = ' text-black  border-black border-[0.2rem]' + allButtonsStyling
-    const disabledButton = ' text-gray-700/70  border-gray-700/70 border-[0.2rem]' + allButtonsStyling
+    const primaryButton = ' bg-black text-white font-bold' + allButtonsStyling // Start and enabled Lap buttons
+    const secondaryButtonBlack = ' text-black  border-black border-[0.2rem] font-semibold' + allButtonsStyling // Stop button
+    const secondaryButtonWhite = ' text-white border-white border-[0.2rem] font-semibold' + allButtonsStyling // Reset button
+    const disabledButton = ' text-gray-700/70  border-gray-700/70 border-[0.2rem]' + allButtonsStyling // 
 
     // ========== RENDERING ==============
     return(
         <div id='buttons-row' className='space-x-2'>
 
             <button 
-                className={isRunning ? 'stop-btn' + secondaryButton : 'start-btn' + primaryButton}
+                className={isRunning ? 'stop-btn' + secondaryButtonBlack : 'start-btn' + primaryButton}
                 id={isRunning ? 'stop-btn' : 'start-btn'}
                 data-testid='start-stop-btn' 
                 onClick={isRunning ? handleStop : handleStart}
@@ -31,7 +32,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ handleStart, handleSt
             </button>
 
             <button 
-                className={'reset-btn' + allButtonsStyling + ' border-[0.2rem] text-white font-semibold'}                
+                className={'reset-btn' + secondaryButtonWhite}                
                 id='reset-btn'
                 data-testid='reset-btn' 
                 onClick={handleReset}

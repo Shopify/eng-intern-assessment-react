@@ -66,7 +66,14 @@ export default function App() {
             <div id='laps-list' data-testid='laps-list' 
             >
                 {laps.map((lap, index) => (
-                    <li key={index}>Lap #{index + 1} - {formatLap(lap)}</li>
+                    <article key={index}
+                        className='text-[1.5rem]'
+                    >
+                        <span className='font-semibold'>
+                        Lap #{index + 1}{' '}
+                        </span>
+                        - {formatLap(lap)}
+                    </article>
                 ))}
             </div>
         )
@@ -76,10 +83,14 @@ export default function App() {
     // ============================= RENDERING APP.TSX =================================
     return(
         <div id='page-container'
-            className='bg-[#96BF48] w-screen h-screen flex flex-col justify-center items-center text-center'
+        className={`w-screen h-screen flex flex-col items-center ${
+            isRunning ? 'bg-[#5b5b85]' : 'bg-[#96BF48]'
+        }`}
         >
-            <div id='header-container' className='mb-3'>
-                <h1 id='stopify-header' className='font-bold text-[7rem] italic'>
+
+            {/* ======== HEADER SECTION ========= */}
+            <div id='header-container' className='mb-3 text-center'>
+                <h1 id='stopify-header' className='font-bold text-[8rem] italic'>
                     stopify
                 </h1>
                 <p id='subheader' className='text-4xl font-light'>
@@ -87,14 +98,26 @@ export default function App() {
                 </p>
             </div>
 
+            {/* ======= STOPWATCH DISPLAY ====== */}
             <div id='stopwatch-display-container' 
-                className='bg-black text-white rounded-full 
-                w-[36rem] h-[36rem] flex flex-col justify-center items-center
-                mt-8 mb-6
-                '>
+                className='bg-black text-white rounded-full shadow-black/40 shadow-lg
+                w-[36rem] h-[36rem] min-h-[14rem] flex flex-col justify-center items-center
+                mt-6 mb-7 transition-transform duration-300 transform-gpu hover:scale-105
+                relative'>
+                
+                {/* TIME ELAPSED */}
                 <StopWatch timeElapsed={timeElapsed}/>
+
+                {/* PAUSED LABEL -- when stopwatch has been run and stopped */}
+                {!isRunning && timeElapsed > 0 &&
+                    <p id='paused-label'
+                    className='text-xl absolute translate-y-[5rem]'>
+                        Paused
+                    </p>
+                }
             </div>
 
+            {/* ======= STOPWATCH BUTTONS ======== */}
             <div id='stopwatch-buttons-container'
                 className='mb-6'
             >
@@ -107,14 +130,16 @@ export default function App() {
                 />
             </div>
 
+            {/* ====== LAPS LIST ======= */}
             <div id='laps-container'
-            className='w-[37rem] min-h-[6rem] border-[0.2rem] border-black rounded-3xl '
+            className='w-[37rem] min-h-[6.5rem] max-h-[6.5rem] border-[0.2rem] border-black rounded-3xl py-2 overflow-auto text-center'
             >
                 <LapsList />
             </div>
 
-            <div id='footer-container'>
-                <p id='footer'>Shopify React Assessment by Claire Peng</p>
+            {/* ====== FOOTER ======= */}
+            <div id='footer-container' className='absolute bottom-2'>
+                <p id='footer'>Shopify Frontend Internship React Assessment by Claire Peng</p>
             </div>
         </div>
     )
