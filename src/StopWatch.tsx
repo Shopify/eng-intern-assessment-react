@@ -3,6 +3,7 @@ import StopWatchButton, { centerStyle, textStyle } from './StopWatchButton';
 
 export default function StopWatch() {
     const [seconds, setSeconds] = React.useState(0);
+    const [prevLapSeconds, setPrevLapSeconds] = React.useState(0);
     const [running, setRunState] = React.useState(false);
     const [lapsList, setLaps] = React.useState<number[]>([]);
 
@@ -28,7 +29,11 @@ export default function StopWatch() {
 
     function updateLaps() {
         if (running) {
-            setLaps((prevList) => [...prevList, seconds]);
+            const currentSeconds: number = seconds; // ensures that seconds are not changed while function runs
+            const currentLapTime: number = (currentSeconds - prevLapSeconds);
+
+            setLaps((prevList) => [...prevList, currentLapTime]);
+            setPrevLapSeconds(currentSeconds);
         }
     }
 
@@ -36,6 +41,7 @@ export default function StopWatch() {
         setRunState(false);
         setSeconds(0);
         setLaps([]);
+        setPrevLapSeconds(0);
     }
 
     function LapTimes(){
