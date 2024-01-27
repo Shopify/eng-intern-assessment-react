@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'digital-clock-font';
+  src: url('./clock.ttf');
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spline-container {
+  bottom: 10%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+@media (max-width: 1370px) {
+  .spline-container {
+    top: 5%; 
+    bottom: auto;
+    height: 70vh; 
+  }
+}
+
+@media (max-width: 1368px) {
+  .spline-container {
+    top: 2%; 
+    height: 60vh;
+    z-index: -5; 
+  }
+}
+
+@media (max-width: 480px) {
+  .spline-container {
+    top: 3%; 
+    width: 90vw; 
+    height: 50vh; 
+    z-index: -2; 
+  }
+}
+
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .spline-container {
+      z-index: -5;
+    }
+}
