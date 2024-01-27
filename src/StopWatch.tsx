@@ -1,13 +1,19 @@
-import React from 'react'
+import React from 'react';
+import StopWatchButton from './StopWatchButton';
 
 export default function StopWatch() {
+    const startTimer = () => {};
+    const stopTimer = () => {};
+    const lapTimer =() => {};
+    const resetTimer = () => {};
+
     return(
         <>
             <div>00:00:00.00</div>
-            <button>Start</button>
-            <button disabled={true}>Stop</button>
-            <button disabled={true}>Lap</button>
-            <button>Reset</button>
+            <StopWatchButton disabled ={false} action = {startTimer} label = 'Start'/>
+            <StopWatchButton disabled={true} action = {stopTimer} label ='Stop'/>
+            <StopWatchButton disabled = {true} action = {lapTimer} label = 'Lap'/>
+            <StopWatchButton disabled = {false} action = {resetTimer} label='Reset'/>
         </>
     )
 }
