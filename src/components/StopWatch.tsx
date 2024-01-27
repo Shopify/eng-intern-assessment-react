@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import '../styles/StopWatch.css';
 import { useState } from 'react';
+import StopWatchButton from './StopWatchButton';
 
 export default function StopWatch() {
 
@@ -19,9 +20,16 @@ export default function StopWatch() {
 
   return(
     <>
-      <div className='hour'>{hour}</div>
-      <div className='min'>{min}</div>
-      <div className='sec'>{sec}</div>
+      <div className='timer-container'>
+        <div className='hour'>{hour}</div>
+        <div className='min'>{min}</div>
+        <div className='sec'>{sec}</div>
+      </div>
+      <div className='buttons-container'>
+        <StopWatchButton label={'Play'}/>
+        <StopWatchButton label={'Stop'}/>
+        <StopWatchButton label={'Reset'}/>
+      </div>
     </>
   );
 
@@ -33,8 +41,8 @@ const timeFormat = (time: number): (number|string)[] => {
   const mins: number = Math.floor(time - (hours * 3600) / 60);
   const secs: number = Math.floor(time - (hours * 3600)- (mins * 60));
 
-  const hourFormat: number|string = hours < 10 ? `0${hours}` : hours;
-  const minsFormat: number|string = hours < 10 ? `0${mins}` : mins;
+  const hourFormat: number|string = hours < 10 ? `0${hours}:` : hours;
+  const minsFormat: number|string = hours < 10 ? `0${mins}:` : mins;
   const secsFormat: number|string = hours < 10 ? `0${secs}` : secs;
 
   return [hourFormat, minsFormat, secsFormat];

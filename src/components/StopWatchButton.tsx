@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../styles/StopWatchButton.css'
 export type StopWatchButtonProps = {
   label: string
 }
@@ -7,7 +7,7 @@ export type StopWatchButtonProps = {
 export default function StopWatchButton(props: StopWatchButtonProps) {
     return(
       <>
-      {props.label}
+        <button className='StopWatchButton'>{props.label}</button>
       </>
     );
 }

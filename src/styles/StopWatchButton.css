@@ -1,0 +1,8 @@
+.StopWatchButton {
+  color: white;
+  font-size: 2rem;
+  border-radius: 8px; 
+  background-color: grey;
+  border: 1px solid black;
+  margin-left: 1rem;
+}
