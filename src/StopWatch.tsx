@@ -6,6 +6,24 @@ export default function StopWatch() {
     const [running, setRunState] = React.useState(false);
     const [lapsList, setLaps] = React.useState<number[]>([1]);
 
+    function setRunning() {
+        setRunState(true);
+    }
+
+    function setStop() {
+        setRunState(false);
+    }
+
+    function updateLaps() {
+        setLaps([11]);
+    }
+
+    function resetStopwatch() {
+        setRunState(false);
+        setSeconds(0);
+        setLaps([]);
+    }
+
     function LapTimes(){
         return(
             <div style={centerStyle}>
@@ -26,7 +44,7 @@ export default function StopWatch() {
         <div className='Stopwatch'>
             <div style={swStyle}>Stopwatch</div>
             <div style={swStyle}>Time: {formatHMS(seconds)}</div>
-            <StopWatchButton />
+            <StopWatchButton setRunning={setRunning} setStop={setStop} updateLaps={updateLaps} resetStopwatch={resetStopwatch}/>
             <LapTimes />
         </div>
     )
