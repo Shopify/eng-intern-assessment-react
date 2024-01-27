@@ -1,5 +1,5 @@
 import React from 'react'
-import StopWatch from './StopWatch'
+import StopWatch, { LapTimes } from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 
 export default function App() {
@@ -7,6 +7,7 @@ export default function App() {
         <div className='App'>
             <StopWatch />
             <StopWatchButton />
+            <LapTimes />
         </div>
     )
 }
