@@ -6,7 +6,7 @@ import StopWatch from "./src/StopWatch";
 import { render, fireEvent, screen } from "@testing-library/react";
 
 test(`Stopwatch initially renders`, () => {
-  render(<StopWatch time={0} />);
+  render(<StopWatch />);
 
   expect(screen.getByText("00:00:000")).toBeTruthy();
 });
