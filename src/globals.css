@@ -1,8 +1,13 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    /* Font from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&family=Poppins:wght@400;600&display=swap');
 
     /* Variables */
     --black: #121212;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: var(--black)
 }

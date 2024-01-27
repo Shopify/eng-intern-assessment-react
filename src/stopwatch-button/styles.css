@@ -1,0 +1,23 @@
+.stopwatchButton {
+    all: unset;
+    display: flex;
+    min-width: 8rem;
+    min-height: 3rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000000bb;
+    border: solid 0.1rem #00000033;
+    transition: background-color 0.1s;
+}
+
+.stopwatchButton:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.stopwatchButton:active {
+    background-color: #e6e6e6;
+}

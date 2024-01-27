@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import './styles.css';
 
 type StopWatchProps = {
     elapsedTime: number;
@@ -20,7 +21,7 @@ export default function StopWatch({ elapsedTime }: StopWatchProps) {
     );
     return (
         <div>
-            <span>{timeString}</span>
+            <span className="elapsedTime">{timeString}</span>
         </div>
     );
 }
