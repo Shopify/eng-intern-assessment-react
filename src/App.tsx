@@ -83,7 +83,7 @@ export default function App() {
     // ============================= RENDERING APP.TSX =================================
     return(
         <div id='page-container'
-        className={`w-screen h-screen flex flex-col items-center ${
+        className={`w-screen h-screen flex flex-col items-center justify-center ${
             isRunning ? 'bg-[#5b5b85]' : 'bg-[#96BF48]'
         }`}
         >
@@ -93,7 +93,7 @@ export default function App() {
                 <h1 id='stopify-header' className='font-bold text-[8rem] italic'>
                     stopify
                 </h1>
-                <p id='subheader' className='text-4xl font-light'>
+                <p id='subheader' className='text-4xl font-extralight'>
                     Shopify Stopwatch
                 </p>
             </div>
@@ -102,7 +102,7 @@ export default function App() {
             <div id='stopwatch-display-container' 
                 className='bg-black text-white rounded-full shadow-black/40 shadow-lg
                 w-[36rem] h-[36rem] min-h-[14rem] flex flex-col justify-center items-center
-                mt-6 mb-7 transition-transform duration-300 transform-gpu hover:scale-105
+                mt-6 mb-8 transition-transform duration-300 transform-gpu hover:scale-105
                 relative'>
                 
                 {/* TIME ELAPSED */}
