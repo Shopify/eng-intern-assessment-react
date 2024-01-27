@@ -1,8 +1,12 @@
 import React from 'react'
 
-const StopWatchButton = () => {
+interface buttonProps {
+    label: string
+}
+
+const StopWatchButton = ({label}:buttonProps) => {
     return(
-        <button>button label</button>
+        <button>{label}</button>
     )
 }
 

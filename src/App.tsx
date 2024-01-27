@@ -7,9 +7,9 @@ function App() {
         <div>
             <StopWatch />
             <div>
-                <StopWatchButton />
-                <StopWatchButton />
-                <StopWatchButton />
+                <StopWatchButton label={"start/stop"}/>
+                <StopWatchButton label={"lap"}/>
+                <StopWatchButton label={"reset"}/>
             </div>
         </div>
     )
