@@ -32,7 +32,7 @@ export default function App() {
   };
 
   return (
-    <main>
+    <main className="content-wrapper">
       <StopWatch displayTime={displayTime} />
       <StopWatchButton
         setTimeInSeconds={setTimeInSeconds}
