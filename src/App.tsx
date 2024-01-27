@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div>
       <StopWatch state={state} />
-      <h2>Buttons</h2>
+      <h2 className="">Buttons</h2>
 
       {/* Only show necessary buttons depending on state */}
       {state.active ? (
