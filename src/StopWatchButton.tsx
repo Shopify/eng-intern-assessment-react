@@ -11,7 +11,8 @@ export default function StopWatchButton({
 }: StopWatchButtonProps) {
   return (
     <button
+      className="stopwatch-button"
       onClick={() => handleClick()}
-    >{`StopWatch Button - ${title}`}</button>
+    >{`${title}`}</button>
   );
 }

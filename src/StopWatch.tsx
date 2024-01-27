@@ -1,49 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import StopWatchButton from "./StopWatchButton";
-import { useState } from "react";
 
 export default function StopWatch() {
-  const [displayedTime, setDisplayedTime] = useState<number>(0);
-  const [startStopAction, setStartStopAction] = useState<boolean>(false);
-  const [milliSecondsIntervalId, setMilliSecondsIntervalId] =
-    useState<NodeJS.Timer | null>(null);
-  const [laps, setLaps] = useState<Array<number>>([]);
+  const [totalTime, setTotalTime] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [intervalID, setIntervalId] = useState<NodeJS.Timer | null>(null);
+  const [laps, setLaps] = useState<string[]>([]);
+  const timeInterval = 10;
 
-  const startStopTimer = () => {
-    setStartStopAction(!startStopAction);
-
-    console.log(startStopAction);
-
-    if (startStopAction) {
-      console.log("first if");
-      const id = setInterval(() => {
-        setDisplayedTime((prevDisplayedTime) => prevDisplayedTime + 1);
-      }, 100);
-      setMilliSecondsIntervalId(id);
+  const handleStartStop = () => {
+    setIsRunning(!isRunning);
+    const clickStartTime = Date.now();
+    if (!isRunning) {
+      const startIntervalID = setInterval(() => {
+        const timeStamp = Date.now();
+        const elapsedTime = timeStamp - clickStartTime;
+        setTotalTime(totalTime + elapsedTime);
+      }, timeInterval);
+      setIntervalId(startIntervalID);
     } else {
-      clearInterval(milliSecondsIntervalId);
+      clearInterval(intervalID);
     }
   };
 
-  const resetStopWatch = () => {
-    setStartStopAction(false);
-    clearInterval(milliSecondsIntervalId);
-    setDisplayedTime(0);
+  const formatTime = (timeUnit: number): string => {
+    return timeUnit.toString().padStart(2, "0").slice(0, 2);
   };
 
-  const recordLap = () => {
-    console.log("lap");
-    setLaps([...laps, displayedTime]);
+  //Numerical Conversions of total time
+  const milliSeconds = totalTime % 1000;
+  const seconds = Math.floor((totalTime / 1000) % 60);
+  const minutes = Math.floor((totalTime / (1000 * 60)) % 60);
+
+  const displayTime = `
+  ${formatTime(minutes)}:
+  ${formatTime(seconds)}:
+  ${formatTime(milliSeconds)}
+  `;
+
+  const handleReset = () => {
+    setTotalTime(0);
+    clearInterval(intervalID);
+    setIsRunning(false);
   };
 
+  const handleLaps = () => {
+    setLaps([...laps, displayTime]);
+  };
+
+  const handleClearLaps = () => {
+    setLaps([]);
+  };
   return (
-    <div>
-      <StopWatchButton title={"Start/Stop"} handleClick={startStopTimer} />
-      <StopWatchButton title={"Reset"} handleClick={resetStopWatch} />
-      <StopWatchButton title={"Lap"} handleClick={recordLap} />
-      <div className="clock-container">{displayedTime}</div>
-      <div className="lap-container">
-        Laps
+    <div className="stopwatch-app">
+      <div className="stopwatch container">
+        <StopWatchButton
+          title={isRunning ? "Pause" : "Start"}
+          handleClick={handleStartStop}
+        />
+        <StopWatchButton title={"Reset"} handleClick={handleReset} />
+        <StopWatchButton title={"Lap"} handleClick={handleLaps} />
+        <div className="clock-container">
+          <div>{displayTime}</div>
+        </div>
+      </div>
+      <div className="lap container">
+        <StopWatchButton title={"Clear Lap"} handleClick={handleClearLaps} />
         <ul>
           {laps.map((lap, index) => (
             <li key={index}>{lap}</li>

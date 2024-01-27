@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #78a1bb;
+  color: #283044;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.stopwatch-app {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.container {
+  border: 1px solid black;
+  width: 300px;
+}
