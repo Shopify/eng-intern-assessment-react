@@ -4,7 +4,19 @@ import StopWatchButton, { centerStyle, textStyle } from './StopWatchButton';
 export default function StopWatch() {
     const [seconds, setSeconds] = React.useState(0);
     const [running, setRunState] = React.useState(false);
-    const [lapsList, setLaps] = React.useState<number[]>([1]);
+    const [lapsList, setLaps] = React.useState<number[]>([]);
+
+    React.useEffect(() => {
+        let updateInterval: NodeJS.Timer;
+
+        if (running) {
+            updateInterval = setInterval(() => {
+                setSeconds((seconds) => seconds + 0.01);
+            }, 10);
+        }
+
+        return () => clearInterval(updateInterval);
+    }, [running])
 
     function setRunning() {
         setRunState(true);
@@ -15,7 +27,9 @@ export default function StopWatch() {
     }
 
     function updateLaps() {
-        setLaps([11]);
+        if (running) {
+            setLaps((prevList) => [...prevList, seconds]);
+        }
     }
 
     function resetStopwatch() {
