@@ -1,0 +1,27 @@
+
+body{
+    margin: 0;
+    background-image:linear-gradient(rgb(139, 214, 139),darkgreen);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items:center;
+}
+.timestring{
+    color:rgb(0, 0, 0);
+    display: flex;
+    letter-spacing: 10px;
+    font-size: 5rem;
+
+
+
+}
+.timestring span{
+    position:relative;
+    bottom: 5px;
+}
+.timertext{
+    margin: 0;
+
+}

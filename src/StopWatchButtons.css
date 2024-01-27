@@ -1,0 +1,10 @@
+.buttons button{
+    margin :11px;
+    margin-right:0cap ;
+    border : none;
+    background-color:aliceblue;
+    padding: 3px 12px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    cursor:pointer;
+}
