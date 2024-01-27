@@ -1,12 +1,13 @@
 import React from 'react'
 
 interface buttonProps {
-    label: string
+    label: string;
+    handleButtonClick: () => void;
 }
 
-const StopWatchButton = ({label}:buttonProps) => {
+const StopWatchButton = ({label, handleButtonClick}:buttonProps) => {
     return(
-        <button>{label}</button>
+        <button onClick={handleButtonClick}>{label}</button>
     )
 }
 

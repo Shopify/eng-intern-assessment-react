@@ -1,8 +1,12 @@
 import React from 'react'
 
-const StopWatch = () => {
+interface stopWatchProps {
+    time: number;
+}
+
+const StopWatch = ({time} : stopWatchProps) => {
     return(
-        <div>time display</div>
+        <div>{time}</div>
     )
 }
 
