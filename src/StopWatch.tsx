@@ -7,16 +7,19 @@ export default function StopWatch() {
     const [timerOn, setTimerOn] = useState(false);
     const [lapTimes, setLapTimes] = useState<number[]>([]);
 
-    // Format the time in mm:ss:ms
-    const minutes = Math.floor((time / 6000));
-    const seconds = Math.floor((time / 100) % 60);
-    const milliseconds = time % 100;
-    // Format the minutes, seconds, and milliseconds to be two digits
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = seconds.toString().padStart(2, '0');
-    const formattedMilliseconds = milliseconds.toString().padStart(2, '0');
-    // Combine the values into a string
-    const formattedTime = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
+    function formatTime(time: number): string {
+        // Format the time in mm:ss:ms
+        const minutes = Math.floor((time / 6000));
+        const seconds = Math.floor((time / 100) % 60);
+        const milliseconds = time % 100;
+        // Format the minutes, seconds, and milliseconds to be two digits
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        const formattedSeconds = seconds.toString().padStart(2, '0');
+        const formattedMilliseconds = milliseconds.toString().padStart(2, '0');
+        // Combine the values into a string
+        const formattedTime = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
+        return formattedTime;
+    }
 
     // Every time timerOn changes, we start or stop the timer
     // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
@@ -33,7 +36,7 @@ export default function StopWatch() {
     return(
         <div>
             <h1>StopWatch</h1>
-            <p>{formattedTime}</p>
+            <p>{formatTime(time)}</p>
             <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
             <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
             <StopWatchButton type={'lap'} onClick={() => {setLapTimes([...lapTimes, time])}}></StopWatchButton>
@@ -41,7 +44,7 @@ export default function StopWatch() {
             {/* Display the lap times */}
             <ul>
                 {lapTimes.map((lapTime, index) => {
-                    return <li key={index}>{lapTime}</li>
+                    return <li key={index}>{formatTime(lapTime)}</li>
                 })}
             </ul>
         </div>
