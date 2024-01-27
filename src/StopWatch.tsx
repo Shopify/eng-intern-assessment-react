@@ -1,7 +1,13 @@
 import React from 'react'
+import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
     return(
-        <div></div>
+        <div>
+            <StopWatchButton />
+            <StopWatchButton />
+            <StopWatchButton />
+            <StopWatchButton />
+        </div>
     )
 }
