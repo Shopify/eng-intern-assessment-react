@@ -111,6 +111,7 @@ const StopWatch = () => {
                 <h3 key = {numLaps}> Lap {numLaps+1}: {formatTime(lap)} </h3>
             ))}
             </div>
+            <span>Made by Shirley Huang</span>
 
         </div>
     );
