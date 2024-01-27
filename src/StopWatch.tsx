@@ -16,28 +16,18 @@ const Stopwatch: React.FC = () => {
   const [lapView, setLapView] = useState<ViewType>("relative");
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: NodeJS.Timeout;
 
-    const startInterval = () => {
+    if (isRunning) {
       interval = setInterval(() => {
         setTotalTime((currTime) => currTime + 10);
       }, 10);
-    };
-
-    if (isRunning) {
-      startInterval();
-    } else {
-      clearInterval(interval);
     }
 
     return () => {
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
     };
   }, [isRunning]);
-
-  const handleStartStop = () => {
-    setIsRunning(!isRunning);
-  };
 
   const handleReset = () => {
     setTotalTime(0);
@@ -55,26 +45,22 @@ const Stopwatch: React.FC = () => {
   };
 
   return (
-    <div className="text-center w-10/12 mx-auto">
-      <h1 className="text-3xl font-bold underline my-5 py-10">Stopwatch</h1>
-      <div className="flex justify-center">
-        <table className="table-fixed">
-          <tbody className="">
-            <tr className="text-9xl">
-              <td className="w-40">{`${formatTime(totalTime).minutes}:`}</td>
-              <td className="w-40">{`${formatTime(totalTime).seconds}.`}</td>
-              <td className="w-40">{`${
-                formatTime(totalTime).centiseconds
-              }`}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="text-center">
+      <h1 className="text-6xl font-bold underline py-10">Stopwatch</h1>
+      <div className="flex justify-center text-9xl py-5 -space-x-5">
+        <div className="min-w-48">{`${formatTime(totalTime).minutes}`}</div>
+        <div>:</div>
+        <div className="min-w-48">{`${formatTime(totalTime).seconds}`}</div>
+        <div>.</div>
+        <div className=" min-w-48">{`${
+          formatTime(totalTime).centiseconds
+        }`}</div>
       </div>
 
       <div>
         <StopWatchButton
           action={isRunning ? "Pause" : "Start"}
-          onClick={handleStartStop}
+          onClick={() => setIsRunning(!isRunning)}
         />
         {isRunning ? (
           <StopWatchButton action="Lap" onClick={createNewLap} />
