@@ -3,12 +3,19 @@ import '../styles/StopWatch.css';
 import { useState } from 'react';
 import StopWatchButton from './StopWatchButton';
 
-export default function StopWatch() {
+export type StopWatchProps = {
+  isTimeRunning: boolean,
+  setIsTimeRunning: Function
+}
 
+export default function StopWatch(props: StopWatchProps) {
+
+  let isTimeRunning: boolean = props.isTimeRunning; 
+  
   // States which will be used to keep track of time, whether the stop watch is being ran and the laps selected by user.
   const [time, setTime] = useState<number>(0);
   const [timeList, setTimeList] = useState<(number|string)>(0);
-  const [isTimeRunning, setIsTimeRunning] = useState<boolean>(false);
+  // const [isTimeRunning, setIsTimeRunning] = useState<boolean>(false);
   const [lapsList, setLapsList] = useState<(number|string)[]>([]);
 
   // Tells the page to re render when the time is changed, which is every second
@@ -26,18 +33,19 @@ export default function StopWatch() {
 
   return(
     <>
+    
       <div className='timer-container'>
         <div>{timeList}</div>
       </div>
 
       <div className='buttons-container'>
         <StopWatchButton onClick={() => runStartStop(isTimeRunning,
-                                               setIsTimeRunning,
+                                               props.setIsTimeRunning,
                                                setTime,
                                                intervalID,
                                                setIntervalID)} label={isTimeRunning ? 'Stop' : 'Start'} />
 
-        <StopWatchButton onClick={() => runReset(setIsTimeRunning, 
+        <StopWatchButton onClick={() => runReset(props.setIsTimeRunning, 
                                            setTime, 
                                            intervalID, 
                                            setLapsList)} label={'Reset'}/>
@@ -46,7 +54,8 @@ export default function StopWatch() {
 
       <div className='laps-container'>
         <div className='lapsTitle'>Laps</div>
-      {/* a ordered list, mapping each lap to a list item */}
+
+      {/* a ordered list, with each lap mapped to a list item */}
           <ol className='lapsList'>
             {lapsList.map((lap) => (
               <li>{lap}</li>

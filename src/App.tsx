@@ -5,15 +5,17 @@ import './App.css';
 import { useState } from 'react';
 
 export default function App() {
-    const [isTimeRunning, setIsTimeRunning] = useState<boolean>(false);
 
-    return(
-      <>
-        <img className='runningManImage' src={runningMan}/>
-        <div className='wrapper-content'>
-          <StopWatch/>
-        </div>
-      </>
-    );
+  //A state that determines if the stop watch is running. Passed into stopwatch component. 
+  const [isTimeRunning, setIsTimeRunning] = useState<boolean>(false);
+
+  return(
+    <>
+      <img className={`${isTimeRunning ? 'runningMan' : 'stillMan'}`} src={runningMan}/>
+      <div className='wrapper-content'>
+        <StopWatch isTimeRunning={isTimeRunning} setIsTimeRunning={setIsTimeRunning}/>
+      </div>
+    </>
+  );
 }
 

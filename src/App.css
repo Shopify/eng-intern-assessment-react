@@ -4,19 +4,26 @@
   /* margin-top: 12rem; */
 }
 
-.runningManImage {
+img {
   height: 15rem;
   -webkit-animation-name: runMan;
-  -webkit-animation-duration: 7s;
+  -webkit-animation-duration: 4s;
   -webkit-animation-iteration-count: infinite;
 }
 
+.runningMan {
+  animation-play-state: running;
+}
+
+.stillMan {
+  animation-play-state: paused;
+}
 
 @-webkit-keyframes runMan {
   0% {
-      -webkit-transform: translateX(-10vw);
+    -webkit-transform: translateX(0vw)
   }
   100% {
-      -webkit-transform: translateX(96vw);
+    -webkit-transform: translateX(97vw);
   }
 }
