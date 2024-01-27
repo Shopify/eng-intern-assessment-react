@@ -1,7 +1,13 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+export type StopWatchButtonProps = {
+  label: string
+}
+
+export default function StopWatchButton(props: StopWatchButtonProps) {
     return(
-    <div></div>
-    )
+      <>
+      {props.label}
+      </>
+    );
 }
