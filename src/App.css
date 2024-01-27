@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.timeDisplay {
+    font-family: "Press Start 2P", system-ui;
+    margin-bottom: 50px;
+    font-size: 70px;
+}
+
+button {
+    padding: 20px;
+    margin-right: 30px;
+    width: 100px;
+    cursor: pointer;
+}
