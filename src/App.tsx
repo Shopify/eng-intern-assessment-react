@@ -7,6 +7,7 @@ export default function App() {
   // States to manage displayed time
   const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
   const [displayTime, setDisplayTime] = useState<Array<number | string>>([]);
+  const [laps, setLaps] = useState<Array<number>>([]);
 
   // Update the display time whenever timeInSeconds changes
   useEffect(() => {
@@ -26,10 +27,20 @@ export default function App() {
     return [hours, minutes, seconds];
   }
 
+  const recordLap = () => {
+    setLaps([...laps, timeInSeconds]);
+  };
+
   return (
     <main>
       <StopWatch displayTime={displayTime} />
-      <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
+      <StopWatchButton
+        setTimeInSeconds={setTimeInSeconds}
+        laps={laps}
+        recordLap={recordLap}
+        setLaps={setLaps}
+        formatTime={formatTime}
+      />
     </main>
   );
 }
