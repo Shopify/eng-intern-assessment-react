@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import StopWatchButton from './StopWatchButton'
 import StopWatch from './StopWatch';
+import formatTime from '../utils/FormatTime';
 
 export default function App() {
     // This is the main component that renders the stopwatch and handles its functionality
@@ -11,7 +12,7 @@ export default function App() {
     const [laps, setLaps] = useState<number[]>([]);
 
 
-    // ============================= TIME ELAPSE =================================
+    // ============================= RUNNING THE STOPWATCH =================================
     useEffect(() => {
         let timer: ReturnType<typeof setInterval> | undefined;
 
@@ -26,7 +27,6 @@ export default function App() {
                 clearInterval(timer);
             }
         }
-
     }, [isRunning])
 
 
@@ -43,11 +43,36 @@ export default function App() {
         setLaps([]);
     }
     const handleLap = () => {
-        console.log("Lap!")
+        setLaps([...laps, timeElapsed]) // add timeElapsed to the list of laps
     }
 
 
-    // ============================= RENDERING =================================
+    // ========================== LAPS LIST =============================
+    const LapsList = () => {
+        
+        // Finds the time between laps and formats the time in ms to HH:MM:SS.CS
+        const formatLap = (lap:number) => {
+            const currentIndex = laps.indexOf(lap)
+            if (currentIndex === 0){
+                return (formatTime(lap))
+            } else {
+                const previousLap = laps[currentIndex-1]
+                return (formatTime(lap-previousLap))
+            }
+        }
+
+        // ------------ Rendering LapsList: -------------------
+        return(
+            <div id='laps-list' data-testid='laps-list' >
+                {laps.map((lap, index) => (
+                    <li key={index}>Lap #{index + 1} - {formatLap(lap)}</li>
+                ))}
+            </div>
+        )
+    }
+
+
+    // ============================= RENDERING APP.TSX =================================
     return(
         <div>
             <div id='header-container'>
@@ -74,10 +99,8 @@ export default function App() {
             </div>
 
             <div id='laps-container'>
-                LAPS
+                <LapsList />
             </div>
-
-
         </div>
     )
 }
