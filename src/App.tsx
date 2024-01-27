@@ -15,17 +15,7 @@ export default function App() {
             }, 25);
             // 4 is chosen here because updating any faster results in incorrect timing
             // 4 ended up also being incorrect upon multiple tests
-            // 25 chosen again as it's much higher than the previous minimum I encountered. (15) 
-            //BE SURE TO RECHECK BEFORE SUBMITTING
-        return () => clearInterval(timer);
-        }
-    }, [running]);
-
-    useEffect(() => {
-        if(running) {
-            const timer = setInterval(() => {
-                setSecCounter(c => c + 1);
-            }, 1000);
+            // 25 chosen again as it's much higher than the previous minimum I encountered. (15)
         return () => clearInterval(timer);
         }
     }, [running]);
@@ -48,7 +38,6 @@ function lap() {
     return(
         <div>
             <StopWatch time={counter} />
-            <StopWatch time={secCounter} />
             <StopWatchButton onclick={toggleTimer} name='Play/Pause' />
             <StopWatchButton onclick={lap} name='Lap' />
             <StopWatchButton onclick={reset} name='Reset' />
