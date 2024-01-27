@@ -40,7 +40,7 @@ export default function StopWatch() {
                 });
 
                 return 0;
-            }, 10);
+            }, 1000);
         }
         return () => clearInterval(interval);
     
@@ -53,7 +53,12 @@ export default function StopWatch() {
         <div>
              <div className="timeDisplay"> 
                 {formatZero(hours)} : {formatZero(minutes)} :{" "} {formatZero(seconds)} 
-                <StopWatchButton />
+                <StopWatchButton 
+                    setRun={setRun} 
+                    setSeconds={setSeconds}
+                    setMinutes={setMinutes}
+                    setHours={setHours}
+                    />
             </div> 
         </div>
     )

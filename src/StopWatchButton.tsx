@@ -1,21 +1,33 @@
 import React, { useState, useEffect } from 'react'
 
-export default function StopWatchButton() {
+interface timerProps {
+    setRun: Function;
+    setSeconds: Function;
+    setMinutes: Function;
+    setHours: Function;
+}
+
+export default function StopWatchButton(props:timerProps) {
+    const setRun = props.setRun
+    const setSeconds = props.setSeconds
+    const setMinutes = props.setMinutes
+   const setHours = props.setHours
 
     const startButton = () => {
-        //setRun(true);
+        setRun(true);
     }
 
     const stopButton = () => {
-        //setRun(false);
+        setRun(false);
     }
 
     const resetButton = () => {
-        /*
         setRun(false);
-        reset sec, min, hrs to 0
-        reset laps to empty
-        */
+        setSeconds(0)
+        setMinutes(0)
+        setHours(0)
+        //reset laps to empty
+        
     }
 
     const lapButton = () => {
