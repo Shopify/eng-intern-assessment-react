@@ -5,8 +5,8 @@
   "main": "src/index.tsx",
   "scripts": {
     "test": "jest",
-    "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "webpack serve --open --config webpack.dev.cjs",
+    "build": "webpack --config webpack.prod.cjs"
   },
   "keywords": [],
   "author": "Patrick Koss",
