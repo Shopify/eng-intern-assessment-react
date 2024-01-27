@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState } from "react";
 
-export default function StartStopButton() {
+interface StartStopButtonProps {
+    setLapResetButtonType: (lapReset: boolean) => void;
+}
+
+export default function StartStopButton({ setLapResetButtonType }: StartStopButtonProps) {
     const buttonStyleStop = {
         borderRadius: '50px',
         padding: '20px 20px',
@@ -27,11 +31,12 @@ export default function StartStopButton() {
     const startText = "Start";
     const stopText = "Stop";
 
-
     const [style, setStyle] = useState(true);
 
     const toggleStyle = () => {
         setStyle((prevStyle) => !prevStyle);
+
+        setLapResetButtonType(style);
     };
 
     const currentStyle = style ? buttonStyleStart : buttonStyleStop;

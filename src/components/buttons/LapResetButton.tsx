@@ -37,7 +37,7 @@ export default function LapResetButton({ lapReset }: LapResetButtonProps) {
     return (
         <button
             style={currentStyle}
-            onClick={() => console.log({ lapReset })}
+        // onClick= {}
         >
             {currentText}
         </button>
