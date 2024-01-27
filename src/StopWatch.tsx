@@ -93,14 +93,12 @@ export default function StopWatch() {
 
   return (
     <TimerContainer>
-      <TimerHeader>
-        <h1>Stopwatch</h1>
-      </TimerHeader>
+      <TimerHeader></TimerHeader>
       <TimeDisplay>
         <TimeValue className="minutes">{formatTime(time).minutes}</TimeValue>
         <Colon>:</Colon>
         <TimeValue className="seconds">{formatTime(time).seconds}</TimeValue>
-        <Colon>:</Colon>
+        <Colon>.</Colon>
         <TimeValue className="milliseconds">
           {formatTime(time).milliseconds}
         </TimeValue>
@@ -110,36 +108,38 @@ export default function StopWatch() {
           <StopWatchButton key={index} {...button} />
         ))}
       </ButtonsGroup>
-      <LapsContainer>
-        <Table>
-          <thead>
-            <TableRow>
-              <TableHeader>Lap No.</TableHeader>
-              <TableHeader>Split</TableHeader>
-              <TableHeader>Total</TableHeader>
-            </TableRow>
-          </thead>
-          <tbody>
-            {laps.map((lap, index) => {
-              const splitTime = formatTime(calculateSplit(index));
-              const totalTime = formatTime(lap);
-              return (
-                <TableRow key={index}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>
-                    {splitTime.minutes}:{splitTime.seconds}:
-                    {splitTime.milliseconds}
-                  </TableCell>
-                  <TableCell>
-                    {totalTime.minutes}:{totalTime.seconds}:
-                    {totalTime.milliseconds}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </tbody>
-        </Table>
-      </LapsContainer>
+      {laps.length > 0 && (
+        <LapsContainer>
+          <Table>
+            <thead>
+              <TableRow>
+                <TableHeader>Lap No.</TableHeader>
+                <TableHeader>Split</TableHeader>
+                <TableHeader>Total</TableHeader>
+              </TableRow>
+            </thead>
+            <tbody>
+              {laps.map((lap, index) => {
+                const splitTime = formatTime(calculateSplit(index));
+                const totalTime = formatTime(lap);
+                return (
+                  <TableRow key={index}>
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>
+                      {splitTime.minutes}:{splitTime.seconds}:
+                      {splitTime.milliseconds}
+                    </TableCell>
+                    <TableCell>
+                      {totalTime.minutes}:{totalTime.seconds}:
+                      {totalTime.milliseconds}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </tbody>
+          </Table>
+        </LapsContainer>
+      )}
     </TimerContainer>
   );
 }

@@ -1,18 +1,31 @@
 import styled from "styled-components";
 
-const darkBlue = "#0D1F2D";
 const lightBlue = "#1B2E4B";
 const lighterBlue = "#253B57";
 const accentColor = "#4BA8FF";
 
 const TimerContainer = styled.div`
   margin: 0 auto;
-  background: ${darkBlue};
   width: 60%;
   border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2); // fallback for old browsers
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15),
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.03)
+  );
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 `;
 
 const TimerHeader = styled.div`
@@ -27,15 +40,10 @@ const TimerHeader = styled.div`
 `;
 
 const TimeDisplay = styled.div`
-  background-color: ${lightBlue};
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 0;
-  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 110%;
-  transform: translateX(-5%);
 `;
 
 const TimeValue = styled.div`

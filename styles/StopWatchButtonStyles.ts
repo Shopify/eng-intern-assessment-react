@@ -46,24 +46,28 @@ const Tooltip = styled.div`
 
 const StyledButton = styled.button<StyledButtonProps>`
   border: none;
-  background-color: #00bcd4;
-  color: white;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  color: #fff;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 30px;
   margin: auto;
   text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+  width: 100%;
 
   ${(props) =>
     props.isSecond &&
     `
-    height: 100px;
-    width: 100px;
-    font-size: 40px;
-    background-color: #007a87;
+
+    font-size: 50px;
   `}
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   &:focus {
     outline: none;
