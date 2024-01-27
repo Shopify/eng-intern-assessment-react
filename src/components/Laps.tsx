@@ -12,7 +12,7 @@ const Laps: React.FC<Props> = ({ laps = [], currentLapTime }: Props) => {
     <div className="lap-table-container" data-testid='lap-table'>
 
       <ul className="">
-        {/* display current lap */}
+        {/* display current lap time */}
         {currentLapTime > 0 &&
         <div className="laps-list scrollable-table">
           <li className="lap-listing current-lap">
@@ -23,7 +23,7 @@ const Laps: React.FC<Props> = ({ laps = [], currentLapTime }: Props) => {
           
         }
 
-        {/* display lap history */}
+        {/* display lap records */}
         <div className="laps-list scrollable-table">
           {laps && laps.length > 0 ?
             laps.map((lapTime: number, lapNum: number) => (
