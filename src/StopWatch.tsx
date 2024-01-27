@@ -1,5 +1,5 @@
 import React from "react";
-import { formatTime } from "./utils/format-time";
+import { formatTime } from "./utils/timeFormatter";
 
 interface StopWatchProps {
   time: number;

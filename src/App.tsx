@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
-import { formatTime } from "./utils/format-time";
-import "./App.css";
+import { formatTime } from "./utils/timeFormatter";
+// import "./App.css";
 
-export default function App() {
+function App() {
   const [time, setTime] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false);
   const [lapTimes, setLapTimes] = useState<number[]>([]);
 
+  //if running is true this will update the time state every 10 miliseconds, and will update the time displayed on the screen.
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (running) {
@@ -48,12 +49,12 @@ export default function App() {
           handleClick={onStartPauseClick}
         />
         <StopWatchButton
-          name="Record Lap"
+          name="Record"
           running={running}
           handleClick={onRecordLapClick}
         />
       </div>
-      <div className="lap-time-container">
+      <div className="lap-time-container" data-testid="lap-time-container">
         {lapTimes.map((lapTime, index) => (
           <div key={index}>
             <p className="lap">
@@ -65,3 +66,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
