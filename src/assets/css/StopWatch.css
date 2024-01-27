@@ -1,35 +1,15 @@
-.title {
-    padding-top: 15vh;
+.stopwatch-container {
     text-align: center;
     font-family: Verdana;
-    font-size: 4em;
+}
+
+.title {
+    padding-top: 8vh;
+    font-size: 3em;
 }
 
 .time-display {
-    display: block;
-    padding-top: 5vh;
-    font-size: 8em;
+    padding: 50px 0;
+    font-size: 5em;
     max-width: 100%;
-    text-align: center;
-    font-family: Verdana;
-}
-
-.lap-container {
-    font-size: 2em;
-    margin: 0 20% 0 20%;
-}
-
-.lap-details {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    font-family: Verdana;
-}
-
-.lap-details.max {
-    color: red;
-}
-
-.lap-details.min {
-    color: rgb(3, 162, 3);
 }

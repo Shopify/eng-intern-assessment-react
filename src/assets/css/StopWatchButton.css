@@ -1,29 +1,29 @@
 button {
-    border: 5px;
+    border: 2px solid;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    color: white;
+    width: 85px;
+    height: 85px;
+    background-color: rgb(255, 255, 255);
     font-size: 1.5em;
     font-family: Verdana;
+    margin: 0 75px;
 }
 
 .button-container {
-    display: flex;
-    padding: 25px;
-    justify-content: space-between;
-    margin: 0 30% 0 30%;
+    padding-bottom: 40px;
 }
 
 .button.lapReset {
-    background-color: rgb(154, 153, 153);
-    color: white;
+    color: rgb(154, 153, 153);
+    border-color: rgb(154, 153, 153);
 }
 
 .button.start {
-    background-color: rgb(86, 165, 89);
+    color: rgb(86, 165, 89);
+    border-color: rgb(86, 165, 89);
 }
 
 .button.stop {
-    background-color: rgb(237, 84, 84);
+    color: rgb(237, 84, 84);
+    border-color: rgb(237, 84, 84);
 }

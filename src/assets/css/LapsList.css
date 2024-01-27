@@ -1,0 +1,25 @@
+.lap-container {
+    overflow-y: scroll;
+    max-height: 40vh;
+    font-size: 1.5em;
+    margin: 25px 30% 50px 30%;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #ecebeb, #bdbdbd, #ecebeb) 1;
+
+}
+
+.lap-details {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid;
+    border-image: linear-gradient(to right, #ecebeb, #bdbdbd, #ecebeb) 1;
+}
+
+.lap-details.max {
+    color: red;
+}
+
+.lap-details.min {
+    color: rgb(3, 162, 3);
+}
