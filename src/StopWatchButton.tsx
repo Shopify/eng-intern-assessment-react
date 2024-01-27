@@ -1,8 +1,16 @@
 import React from 'react'
 
+// props parameter is being sent to StopWatchButton
+// This is expected to pass the data between the buttons and the functions the correlate to
 export default function StopWatchButton(props) {
     return(
         <div>
+
+            {/* Four buttons are being set here for different functionalities
+            The general button function can be found in the reactjs docs provided
+            Each button has an onClick function that is then tied to a function
+            These functions are respectively given onStart, onStop, onReset and onLap
+            Said functions will be tied into StopWatch.tsx when being used in the App */}
             <button 
                 className="startButton" 
                 onClick={() => props.onStart()}
@@ -31,7 +39,7 @@ export default function StopWatchButton(props) {
                 Lap
             </button>
         </div>
-    )
+    );
 }
 
 // Four buttons are needed for this section,
@@ -43,5 +51,4 @@ export default function StopWatchButton(props) {
 // - The stopwatch should record and display laps when user clicks the lap button.
 
 // Based on the react documentation that was given with onClick, I could make 4 different buttons with an onStart, onStop, onReset and onLap
-// Each of these buttons would respectively be tied to their functionality
 // The four buttons here are modifications of the react tutorial on the tictactoe functionality
