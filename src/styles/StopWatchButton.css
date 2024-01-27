@@ -1,9 +1,9 @@
 .StopWatchButton {
   color: white;
-  font-size: 2rem;
+  font-size: 1.7rem;
+  padding: .4rem 1.3rem;
   border-radius: 5px; 
-  background-color: grey;
+  background-color: #a0999b;
   border: 1px solid black;
   margin-left: 2rem;
-
 }
