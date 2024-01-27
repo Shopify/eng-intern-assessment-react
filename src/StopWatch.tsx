@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 export default function StopWatch() {
+    
     return(
-        <>
-            <p>Hours</p>
-            <p>Minutes</p>
-            <p>Seconds</p>
-        </>
+        <div className="number-panel">
+            <p className="number-display">0</p><span>:</span><p className="number-display">0</p><span>:</span><p className="number-display">0</p>
+        </div>
     )
 }
