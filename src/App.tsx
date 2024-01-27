@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 
@@ -7,10 +7,17 @@ function App() {
     const [time, setTime] = useState<number>(0);
     const [isTiming, setIsTiming] = useState<boolean>(false);
 
+    useEffect(() => {
+        console.log(time)
+    }, [time]);
+
+    useEffect(() => {
+        console.log(isTiming)
+    }, [isTiming]);
+
     const startTime = () => {
-        setIsTiming(!isTiming);
+        isTiming === false ? setIsTiming(!isTiming) : null;
         setTime(time + 1);
-        console.log('started!', isTiming, time);
     }
 
     const addLap = () => {
@@ -18,9 +25,8 @@ function App() {
     }
 
     const resetStopwatch = () => {
-        setIsTiming(!isTiming);
+        isTiming === true ? setIsTiming(!isTiming) : null;
         setTime(0);
-        console.log('reset!', isTiming, time);
     }
 
     return(
