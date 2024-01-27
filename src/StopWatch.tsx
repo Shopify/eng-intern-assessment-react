@@ -26,6 +26,7 @@ export default function StopWatch({start, time, setTime}: Props) {
     const seconds = Math.floor((time%6000)/100);
     const milliseconds = Math.floor(time%100);
 
+    //Displaying stopwatch in time format
     return(
         <div className='stopwatch'>
             <img className="logo" src={logo} alt="Shopify_Logo"></img>
