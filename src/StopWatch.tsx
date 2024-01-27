@@ -1,7 +1,7 @@
 //Import required modules - UseState to declare state of variable and useEffect allows hooking
 import React, {useState, useEffect} from 'react'
 import StopWatchButton from './StopWatchButton';
-import './StopWatchStyles.css';
+import '../css/StopWatchStyles.css';
 
 
 //Define the component for the StopWatch
