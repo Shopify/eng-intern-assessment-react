@@ -57,15 +57,15 @@ export default function StopWatch() {
     }, lapList)
     return(
         <div className='container'>
-            <p className="stopwatch-time">
+            <p data-testid='time-string' className="stopwatch-time">
                 {timeString}
             </p>
             <div className='row-container'>
-                <StopWatchButton onClick={toggleTimer} type={isTicking ? ButtonType.STOP : ButtonType.START}/>
-                <StopWatchButton onClick={resetTimer} type={ButtonType.RESET}/>
-                <StopWatchButton onClick={takeLap} type={ButtonType.LAP}/>
+                <StopWatchButton data-testid='start-stop-button' onClick={toggleTimer} type={isTicking ? ButtonType.STOP : ButtonType.START}/>
+                <StopWatchButton data-testid='reset-button' onClick={resetTimer} type={ButtonType.RESET}/>
+                <StopWatchButton data-testid='lap-button' onClick={takeLap} type={ButtonType.LAP} disabled={!isTicking}/>
             </div>
-            <ul>
+            <ul data-testid="laps-list">
                 {lapList.length > 0 && [...lapList].reverse().map((time: String, index: number) => {
                     return <li key={index} className='lap-time'>{`Lap ${index + 1}: ${time}`}</li>
                 })}
