@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function StopWatch(props: { time: number }) {
-  {
     const min = Math.floor(props.time / 60000) % 60000;
     const sec = Math.floor(props.time / 1000) % 1000;
     const msec = props.time % 1000;
@@ -12,5 +11,4 @@ export default function StopWatch(props: { time: number }) {
         {msec > 99 ? msec : msec > 9 ? "0" + msec : "00" + msec}
       </div>
     );
-  }
 }
