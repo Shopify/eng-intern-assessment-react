@@ -3,36 +3,36 @@ import './style.css';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 
-import { formatTime } from "./StopWatch";
+import { displayTime } from "./StopWatch";
 
 export default function App() {
     const [time, setTime] = useState<number>(0);
     const [isRunning] = useState<boolean>(false);
-    const lapsRef = useRef<number[]>([]);
-    const timerRef = useRef<number>();
+    const storeLaps = useRef<number[]>([]);
+    const timer = useRef<number>();
 
     const startWatch = (): void => {
         if (isRunning) {
-            clearInterval(timerRef.current);
+            clearInterval(timer.current);
         } else {
-            timerRef.current = window.setInterval(() => {
+            timer.current = window.setInterval(() => {
                 setTime((prevTime) => prevTime + 10);
             }, 10);
         }
     };
 
     const stopWatch = (): void => {
-        clearInterval(timerRef.current);
+        clearInterval(timer.current);
     };
 
     const resetStopwatch = (): void => {
-        clearInterval(timerRef.current);
         setTime(0);
-        lapsRef.current = [];
+        storeLaps.current = [];
+        clearInterval(timer.current);
     };
 
     const recordLap = (): void => {
-        lapsRef.current.push(time);
+        storeLaps.current.push(time);
     };
 
     return(
@@ -41,14 +41,19 @@ export default function App() {
             <StopWatch time={time}></StopWatch>
             <div className="stopwatch-display">{}</div>
                 <div className="button-container">
-                    <StopWatchButton startWatch={startWatch} stopWatch={stopWatch} resetStopwatch={resetStopwatch} recordLap={recordLap} />
+                    <StopWatchButton 
+                        startWatch={startWatch} 
+                        stopWatch={stopWatch} 
+                        resetStopwatch={resetStopwatch} 
+                        recordLap={recordLap} 
+                    />
                 </div>
                 <div className="laps-container">
-                {lapsRef.current.map((lapTime, index) => (
-                    <div key={index} className='laps'>
-                        Lap{index + 1} - {formatTime(lapTime)}
-                    </div>
-                ))}
+                    {storeLaps.current.map((lapTime, index) => (
+                        <div key={index} className='laps'>
+                            Lap{index+1} - {displayTime(lapTime)}
+                        </div>
+                    ))}
             </div>
         </div>
     )

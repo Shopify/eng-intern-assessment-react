@@ -1,3 +1,12 @@
+body {
+    background-color: gray;
+    color: white;
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 40px;
+}
 
 .App {
     margin: auto; 
@@ -5,10 +14,6 @@
     display: block;
     justify-content: center;
     text-align: center;
-}
-
-body {
-    background-color: rgb(238, 238, 238);
 }
 
 .laps-container {
@@ -24,5 +29,22 @@ body {
 }
 
 button {
-    margin: 2px;
+    margin: 5px;
+    border: 1px solid #2dcde6;
+    background-color: #2dcde6;
+    color: white;
+    padding: 20px;
+    transition: transform 200ms ease-in-out;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #acfd4a;
+    color: black;
+    transform: scale(1.1);
+}
+
+.stopwatch-display {
+    font-size: 46px;
 }
