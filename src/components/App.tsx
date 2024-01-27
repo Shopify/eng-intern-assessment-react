@@ -10,7 +10,7 @@ import ListScroller from './ListScroller';
 export default function App() {
     const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
-    const [timeList, setTimeList] = useState< number[][] >([]);
+    const [timeList, setTimeList] = useState<{ absTime: number, lapTime: number }[]>([]);
     const [timePress, setTimePress] = useState(Date.now());
     const [timePaused, setTimePaused] = useState(0);
     const [lastButton, setLastButton] = useState("Reset");
@@ -52,9 +52,9 @@ export default function App() {
     function lapButton() {
         if (running) {
             if (timeList.length === 0) {
-                setTimeList([[time, time]]);
+                setTimeList([{absTime: time, lapTime: time}]);
             } else {
-                setTimeList([...timeList, [time, time - timeList[timeList.length - 1][0]]]);
+                setTimeList([...timeList, {absTime: time, lapTime: time - timeList[timeList.length - 1].absTime}]);
             }
         }
     }
@@ -89,7 +89,7 @@ export default function App() {
                     </CardContent>
                 </Card>
             </div>
-            <p className="footer-text">Made with ♡ by Joshua Dierickse</p>
+            <h4 className="footer-text">Made with ♡ by Joshua Dierickse</h4>
         </div>
     )
 }

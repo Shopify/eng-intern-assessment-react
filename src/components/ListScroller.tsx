@@ -2,7 +2,7 @@ import React from 'react';
 import List from '@mui/material/List';
 import LapComponent from './LapComponent';
 
-export default function ListScroller(props: { timeList: number[][] }) {
+export default function ListScroller(props: { timeList: { absTime: number, lapTime: number }[] }) {
   return (
     <List
         sx={{
@@ -11,13 +11,13 @@ export default function ListScroller(props: { timeList: number[][] }) {
             maxHeight: "250px",
         }}
     >
-    {props.timeList.map((labTime, index) => {
+    {props.timeList.map((timeItem, index) => {
         return (
             <LapComponent
                 key={index}
                 lapNumber={index}
-                absTime={labTime[0]}
-                lapTime={labTime[1]}
+                absTime={timeItem.absTime}
+                lapTime={timeItem.lapTime}
             />
         );
     })}
