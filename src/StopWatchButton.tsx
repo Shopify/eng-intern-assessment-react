@@ -1,8 +1,15 @@
 import React from 'react'
 
+interface StopWatchButtonProps {
+    onStart: () => void;
+    onStop: () => void;
+    onReset: () => void;
+    onLap: () => void;
+}
+
 // props parameter is being sent to StopWatchButton
 // This is expected to pass the data between the buttons and the functions the correlate to
-export default function StopWatchButton(props) {
+export default function StopWatchButton(props: StopWatchButtonProps) {
     return(
         <div>
 
