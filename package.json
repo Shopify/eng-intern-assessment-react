@@ -12,15 +12,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^16.18.30",
     "@types/react": "^17.0.59",
@@ -32,6 +38,7 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react-test-renderer": "^18.2.0",
     "style-loader": "^3.3.2",
     "ts-jest": "^29.1.1",
@@ -44,8 +51,12 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    }
+    },
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ]
   }
 }
