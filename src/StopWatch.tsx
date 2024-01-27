@@ -2,6 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import StopWatchButton from './StopWatchButton';
 import Timer from './Timer';
+import Laps from './Laps'
 
 export default function StopWatch() {
     const [time, setTime] = useState<number>(0);
@@ -32,17 +33,18 @@ export default function StopWatch() {
         console.log('Stop Timer');
     };
     const lapTimer =() => {
-        console.log('Lap Timer');
+        setRecordedLapTimes([... recordedLapTimes, time]);
     };
     const resetTimer = () => {
         setIsRunning(false);
         setTime(0);
-        console.log('Reset Timer');
+        setRecordedLapTimes([]);
     };
 
     return(
         <>
             <Timer timeInMs={time}/>
+            <Laps recordedLapTimes={recordedLapTimes}/>
             <StopWatchButton disabled = {isRunning} action = {startTimer} label = 'Start'/>
             <StopWatchButton disabled = {!isRunning} action = {stopTimer} label ='Stop'/>
             <StopWatchButton disabled = {!isRunning} action = {lapTimer} label = 'Lap'/>
