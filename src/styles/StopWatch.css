@@ -2,3 +2,28 @@
   display: flex;
   font-size: 10rem;
 }
+
+.buttons-container {
+  margin-top: .5rem;
+  margin-left: 7rem;
+}
+
+.laps-container {
+  border-radius: 3px;
+  outline: 2px solid white;
+  margin-top: 3rem;
+  height: 43vh;
+  background-color: #92cdee;
+  padding-top: .3rem;
+}
+
+.lapsTitle {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.lapsList {
+  margin-left: 1rem;
+  font-size: 1.3rem;
+}

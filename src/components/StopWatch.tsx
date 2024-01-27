@@ -6,17 +6,15 @@ import StopWatchButton from './StopWatchButton';
 export default function StopWatch() {
 
   const [time, setTime] = useState<number>(0);
-  const [timeList, setTimeList] = useState<(number|string)[]>([]);
+  const [timeList, setTimeList] = useState<(number|string)>(0);
   const [isTimeRunning, setIsTimeRunning] = useState<boolean>(false);
+  const [lapsList, setLapsList] = useState<(number|string)[]>([]);
 
   useEffect(() => {
-    let tempTimeList: (number|string)[] = timeFormat(time);
-    setTimeList(tempTimeList);
+    let tempTime: (number|string) = timeFormat(time);
+    setTimeList(tempTime);
   }, [time]);
 
-  const hour: number|string = timeList[0];
-  const min: number|string = timeList[1];
-  const sec: number|string = timeList[2];
   
   const [intervalID, setIntervalID] = useState<number>(0)
 
@@ -38,42 +36,52 @@ export default function StopWatch() {
   const runReset = () => {
     clearInterval(intervalID);
     setTime(0);
+
     if (isTimeRunning) {
       setIsTimeRunning(!isTimeRunning);
     }
+
+    setLapsList([]);
   }
 
   const runLap = () => {
-   console.log('reset')
+   setLapsList(laps => [... laps, timeFormat(time)]);
   }
   
   return(
     <>
       <div className='timer-container'>
-        <div className='hour'>{hour}</div>
-        <div className='min'>{min}</div>
-        <div className='sec'>{sec}</div>
+        <div>{timeList}</div>
       </div>
-      
+
       <div className='buttons-container'>
         <StopWatchButton onClick={runStartStop} label={isTimeRunning ? 'Stop' : 'Start'} />
         <StopWatchButton onClick={runReset} label={'Reset'}/>
         <StopWatchButton onClick={runLap} label={'Lap'}/>
+      </div>
+
+      <div className='laps-container'>
+        <div className='lapsTitle'>Laps</div>
+          <ol className='lapsList'>
+            {lapsList.map((lap) => (
+              <li>{lap}</li>
+            ))}
+          </ol>
       </div>
     </>
   );
 
 }
 
-const timeFormat = (time: number): (number|string)[] => {
+const timeFormat = (time: number): number|string => {
   
-  const hours:number = Math.floor(time / 3600);
-  const minutes:number = Math.floor((time - (hours * 3600)) / 60);
-  const seconds:number = time - (hours * 3600) - (minutes * 60);
+  let hours: number|string = Math.floor(time / 3600);
+  let mins: number|string = Math.floor((time - (hours * 3600)) / 60);
+  let secs: number|string = time - (hours * 3600) - (mins * 60);
+
+  hours = hours < 10 ? `0${hours}` : hours;
+  mins = mins < 10 ? `0${mins}` : mins;
+  secs = secs < 10 ? `0${secs}` : secs;
   
-  return [
-      hours < 10 ? `0${hours}:` : hours,
-      minutes < 10 ? `0${minutes}:` : minutes,
-      seconds < 10 ? `0${seconds}` : seconds
-  ];
+  return `${hours}:${mins}:${secs}`;
 }
