@@ -9,7 +9,7 @@ interface Props {
 
 const Laps: React.FC<Props> = ({ laps = [], currentLapTime }: Props) => {
   return (
-    <div className="lap-table-container">
+    <div className="lap-table-container" data-testid='lap-table'>
 
       <ul className="">
         {/* display current lap */}
@@ -17,7 +17,7 @@ const Laps: React.FC<Props> = ({ laps = [], currentLapTime }: Props) => {
         <div className="laps-list scrollable-table">
           <li className="lap-listing current-lap">
             <span>Lap {laps.length + 1} </span>
-            <span>{formatTime(currentLapTime)}</span>
+            <span data-testid='current-lap-time'>{formatTime(currentLapTime)}</span>
           </li>
         </div>
           
