@@ -16,7 +16,6 @@ const ButtonsGroup = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  // transform: translateY(-50%);
   margin: 5% auto;
 
   &:nth-child(2) {

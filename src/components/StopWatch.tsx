@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import StopWatchButton from "./StopWatchButton";
 import {
   faFlag,
@@ -20,6 +20,7 @@ import {
   TimerHeader,
 } from "../styles/StopWatchStyles";
 import { ButtonContainer, ButtonsGroup } from "../styles/StopWatchButtonStyles";
+import { formatTime, calculateSplit } from "../utils/helpers";
 
 export default function StopWatch() {
   const [time, setTime] = useState<number>(0);
@@ -51,48 +52,32 @@ export default function StopWatch() {
     setLaps([...laps, time]);
   };
 
-  // Function to format time into minutes, seconds, and milliseconds
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60000);
-    const seconds = Math.floor((time % 60000) / 1000);
-    const milliseconds = Math.floor((time % 1000) / 10);
-
-    return {
-      minutes: `${minutes < 10 ? "0" : ""}${minutes}`,
-      seconds: `${seconds < 10 ? "0" : ""}${seconds}`,
-      milliseconds: `${milliseconds < 10 ? "0" : ""}${milliseconds}`,
-    };
-  };
-
-  // Function to calculate the split time given the current index and laps array
-  const calculateSplit = (index: number) => {
-    if (index === 0) return laps[0];
-    return laps[index] - laps[index - 1];
-  };
-
-  const buttons = [
-    {
-      onClick: recordLap,
-      disabled: !isRunning,
-      icon: faFlag,
-      label: "Record",
-      ariaLabel: "Record Lap",
-    },
-    {
-      onClick: isRunning ? stop : start,
-      icon: isRunning ? faStop : faPlay,
-      label: isRunning ? "Stop" : "Start",
-      isSecond: true,
-      ariaLabel: isRunning ? "Stop Timer" : "Start Timer",
-    },
-    {
-      onClick: reset,
-      disabled: time === 0,
-      icon: faRedo,
-      label: "Reset",
-      ariaLabel: "Reset Timer",
-    },
-  ];
+  const buttons = useMemo(
+    () => [
+      {
+        onClick: recordLap,
+        disabled: !isRunning,
+        icon: faFlag,
+        label: "Record",
+        ariaLabel: "Record Lap",
+      },
+      {
+        onClick: isRunning ? stop : start,
+        icon: isRunning ? faStop : faPlay,
+        label: isRunning ? "Stop" : "Start",
+        isSecond: true,
+        ariaLabel: isRunning ? "Stop Timer" : "Start Timer",
+      },
+      {
+        onClick: reset,
+        disabled: time === 0,
+        icon: faRedo,
+        label: "Reset",
+        ariaLabel: "Reset Timer",
+      },
+    ],
+    [isRunning, time]
+  );
 
   return (
     <TimerContainer>
@@ -123,7 +108,7 @@ export default function StopWatch() {
             </thead>
             <tbody>
               {laps.map((lap, index) => {
-                const splitTime = formatTime(calculateSplit(index));
+                const splitTime = formatTime(calculateSplit(index, laps));
                 const totalTime = formatTime(lap);
                 return (
                   <TableRow key={index} data-testid={`lap-${index}`}>

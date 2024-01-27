@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StopWatch from "../StopWatch";
+import StopWatch from "../components/StopWatch";
 
 jest.useFakeTimers();
 
