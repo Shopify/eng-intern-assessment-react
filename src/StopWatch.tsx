@@ -76,18 +76,21 @@ export default function StopWatch() {
       disabled: !isRunning,
       icon: faFlag,
       label: "Record",
+      ariaLabel: "Record Lap",
     },
     {
       onClick: isRunning ? stop : start,
       icon: isRunning ? faStop : faPlay,
       label: isRunning ? "Stop" : "Start",
       isSecond: true,
+      ariaLabel: isRunning ? "Stop Timer" : "Start Timer",
     },
     {
       onClick: reset,
       disabled: time === 0,
       icon: faRedo,
       label: "Reset",
+      ariaLabel: "Reset Timer",
     },
   ];
 

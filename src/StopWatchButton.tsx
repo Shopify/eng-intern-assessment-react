@@ -13,6 +13,7 @@ type StopWatchButtonProps = {
   icon: IconDefinition;
   label: string;
   isSecond?: boolean;
+  ariaLabel: string;
 };
 
 export default function StopWatchButton({
@@ -21,10 +22,16 @@ export default function StopWatchButton({
   icon,
   label,
   isSecond = false,
+  ariaLabel,
 }: StopWatchButtonProps) {
   return (
     <ButtonContainer>
-      <StyledButton onClick={onClick} isSecond={isSecond} disabled={disabled}>
+      <StyledButton
+        aria-label={ariaLabel}
+        onClick={onClick}
+        isSecond={isSecond}
+        disabled={disabled}
+      >
         <FontAwesomeIcon icon={icon} />
       </StyledButton>
       <Tooltip>{label}</Tooltip>
