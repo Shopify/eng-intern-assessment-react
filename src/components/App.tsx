@@ -1,3 +1,8 @@
+/**
+ * @author Joshua Dierickse <jpcdieri@uwaterloo.ca>
+ */
+
+// Imports all dependencies
 import React, { useState, useEffect } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
@@ -6,10 +11,21 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import ListScroller from './ListScroller';
 
-
+/**
+ * Generates the entire visible website and holds all the button press functions
+ *
+ * @param null
+ * @return JSX Element that is essentially the entire visible website
+ */
 export default function App() {
+
+    // Integer variable that holds the time value that gets displayed to the screen
     const [time, setTime] = useState(0);
+
+    // Boolean variable that describes if the stop watch is running or not
     const [running, setRunning] = useState(false);
+
+    // List of laps with both the absolute time (time the stop watch has been running) and the 
     const [timeList, setTimeList] = useState<{ absTime: number, lapTime: number }[]>([]);
     const [timePress, setTimePress] = useState(Date.now());
     const [timePaused, setTimePaused] = useState(0);
