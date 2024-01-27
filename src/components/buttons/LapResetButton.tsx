@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState } from "react";
 
-export default function LapResetButton() {
+interface LapResetButtonProps {
+    lapReset: boolean;
+}
+
+export default function LapResetButton({ lapReset }: LapResetButtonProps) {
     const buttonStyleReset = {
         borderRadius: '50px',
         padding: '20px 20px',
@@ -27,20 +31,13 @@ export default function LapResetButton() {
     const lapText = "Lap";
     const resetText = "Reset";
 
-
-    const [style, setStyle] = useState(true);
-
-    const toggleStyle = () => {
-        setStyle((prevStyle) => !prevStyle);
-    };
-
-    const currentStyle = style ? buttonStyleLap : buttonStyleReset;
-    const currentText = style ? lapText : resetText;
+    const currentStyle = lapReset ? buttonStyleLap : buttonStyleReset;
+    const currentText = lapReset ? lapText : resetText;
 
     return (
         <button
             style={currentStyle}
-            onClick={toggleStyle}
+            onClick={() => console.log({ lapReset })}
         >
             {currentText}
         </button>
