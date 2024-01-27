@@ -5,7 +5,7 @@ export default function LapComponent(props: { lapNumber: number, absTime: number
     return(
         <div>
             <div className="lap-grid">
-                <p>{ props.lapNumber + 1 }.</p>
+                <p>{ (props.lapNumber + 1) + "." }</p>
                 <p>{ timeGenerator(props.absTime) }</p>
                 <p>{ timeGenerator(props.lapTime) }</p>
             </div>
