@@ -7,6 +7,7 @@ const accentColor = "#4BA8FF";
 const TimerContainer = styled.div`
   margin: 0 auto;
   width: 60%;
+  max-width: 800px;
   border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -26,6 +27,10 @@ const TimerContainer = styled.div`
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 const TimerHeader = styled.div`
