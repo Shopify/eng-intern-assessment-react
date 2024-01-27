@@ -1,13 +1,9 @@
 import React from 'react'
-import StopWatchButton from './StopWatchButton'
 
-export default function StopWatch() {
+const StopWatch = () => {
     return(
-        <div>
-            <StopWatchButton />
-            <StopWatchButton />
-            <StopWatchButton />
-            <StopWatchButton />
-        </div>
+        <div>time display</div>
     )
 }
+
+export default StopWatch;
