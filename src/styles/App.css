@@ -37,10 +37,11 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1368px) {
   .spline-container {
     top: 2%; 
-    height: 60vh; 
+    height: 60vh;
+    z-index: -5; 
   }
 }
 
@@ -49,7 +50,7 @@ body {
     top: 3%; 
     width: 90vw; 
     height: 50vh; 
-    z-index: 2; 
+    z-index: -2; 
   }
 }
 
