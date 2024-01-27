@@ -1,9 +1,11 @@
 import React from "react";
 
+// Props interface for the StopWatch component
 type StopWatchProps = {
   timerSeconds: number;
 };
 
+// StopWatch component that displays the formatted time
 const StopWatch: React.FC<StopWatchProps> = ({ timerSeconds }) => {
   let hrs: number = Math.floor(timerSeconds / 3600);
   let mins: number = Math.floor((timerSeconds % 3600) / 60);

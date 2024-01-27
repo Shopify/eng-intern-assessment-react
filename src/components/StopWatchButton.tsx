@@ -1,5 +1,6 @@
 import React from "react";
 
+// Props for StopWatchBtn component
 type StopWatchBtnProps = {
   title: string;
   onClick: () => void;
@@ -15,6 +16,7 @@ const StopWatchBtn: React.FC<StopWatchBtnProps> = ({ title, onClick }) => (
   </button>
 );
 
+// Props for StopWatchButton component
 type StopWatchButtonProps = {
   onStart: () => void;
   onStop: () => void;
@@ -22,6 +24,7 @@ type StopWatchButtonProps = {
   onLap: () => void;
 };
 
+// StopWatchButton component for buttons
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   onStart,
   onStop,
