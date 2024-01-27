@@ -36,6 +36,7 @@ export default function StopWatch() {
                                                setTime,
                                                intervalID,
                                                setIntervalID)} label={isTimeRunning ? 'Stop' : 'Start'} />
+
         <StopWatchButton onClick={() => runReset(setIsTimeRunning, 
                                            setTime, 
                                            intervalID, 

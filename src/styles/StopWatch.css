@@ -12,7 +12,7 @@
   border-radius: 3px;
   outline: 2px solid white;
   margin-top: 3rem;
-  height: 43vh;
+  height: 25rem;
   background-color: #92cdee;
   padding-top: .3rem;
 }
@@ -26,4 +26,19 @@
 .lapsList {
   margin-left: 1rem;
   font-size: 1.3rem;
+}
+
+@media all and (max-width: 900px) {
+  .timer-container {
+    font-size: 5rem;
+    margin-left: 3.5rem;
+  }
+
+  .buttons-container {
+    margin-left: 0;
+  }
+
+  .laps-container {
+    margin-left: 2rem;
+  }
 }
