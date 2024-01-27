@@ -1,0 +1,56 @@
+.stopwatch-controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1rem;
+}
+
+.stopwatch-button{
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: 1px solid #222222;
+    transition: linear 0.1s;
+    background: #fff;
+    color: #101215;
+    border: 1px solid #101215;
+}
+
+.stopwatch-button:hover {
+    background: #74b4f123;
+}
+
+.stopwatch-button:disabled {
+   color: rgb(86, 86, 86);
+   cursor: not-allowed;
+   background: #e7e6e6;
+   border: 1px solid rgb(147, 147, 147);
+}
+
+.start-button{
+    background-color: #81ecc633;
+    color: #04aa75;
+    border: 1px solid #04aa75;
+}
+
+.start-button:hover{
+    background-color: #81ecc656;
+}
+
+
+.stop-button{
+    background-color: #ec818133;
+    color: rgb(213, 45, 45);
+    border: 1px solid rgb(213, 45, 45);
+}
+
+.stop-button:hover {
+    background-color: #ec818156;
+}

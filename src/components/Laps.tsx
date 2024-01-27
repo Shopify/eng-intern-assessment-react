@@ -9,22 +9,25 @@ interface Props {
 
 const Laps: React.FC<Props> = ({ laps = [], currentLapTime }: Props) => {
   return (
-    <div>
+    <div className="lap-table-container">
 
-      <ul >
+      <ul className="">
         {/* display current lap */}
         {currentLapTime > 0 &&
-          <li>
+        <div className="laps-list scrollable-table">
+          <li className="lap-listing current-lap">
             <span>Lap {laps.length + 1} </span>
             <span>{formatTime(currentLapTime)}</span>
           </li>
+        </div>
+          
         }
 
         {/* display lap history */}
-        <div className="laps-list">
+        <div className="laps-list scrollable-table">
           {laps && laps.length > 0 ?
             laps.map((lapTime: number, lapNum: number) => (
-              <li key={lapNum + 1}>
+              <li className="lap-listing" key={lapNum + 1}>
                 <span>Lap {lapNum + 1} </span>
                 <span>{formatTime(lapTime)}</span>
               </li>

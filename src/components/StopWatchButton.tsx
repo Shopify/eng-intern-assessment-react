@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/StopWatchButton.css'
 
 
 interface Props {
@@ -13,17 +14,17 @@ interface Props {
 export default function StopWatchButton({ time, handleStartTimer, handleStopTimer, handleResetTimer, handleNewLap, isRunning }: Props) {
 
     return (
-        <div>
+        <div className='stopwatch-controls'>
             {!isRunning ? (
-                <>
-                    <button onClick={handleResetTimer} disabled={time < 1}>Reset</button>
-                    <button onClick={handleStartTimer}>Start</button>
-                </>
+                <div className='stopwatch-controls'>
+                    <button className='stopwatch-button' onClick={handleResetTimer} disabled={time < 1}>Reset</button>
+                    <button className='stopwatch-button start-button' onClick={handleStartTimer}>Start</button>
+                </div>
             ) : (
-                <>
-                    <button onClick={handleNewLap}>Lap</button>
-                    <button onClick={handleStopTimer}> Stop</button> 
-                </>
+                <div className='stopwatch-controls'>
+                    <button className='stopwatch-button' onClick={handleNewLap}> Lap </button>
+                    <button className='stopwatch-button stop-button' onClick={handleStopTimer}> Stop</button> 
+                </div>
             )}
 
         </div>

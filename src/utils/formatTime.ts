@@ -15,8 +15,8 @@ export const formatTime = (ms: number): string =>{
     const formattedMs = millisecs.toString().padStart(2, '0');
 
     const formattedTime = hours > 0 ?
-        `${formattedHours}:${formattedMins}:${formattedSecs}:${formattedMs}` :
-        `${formattedMins}:${formattedSecs}:${formattedMs}`;
+        `${formattedHours}:${formattedMins}:${formattedSecs}.${formattedMs}` :
+        `${formattedMins}:${formattedSecs}.${formattedMs}`;
 
     return formattedTime;
 }

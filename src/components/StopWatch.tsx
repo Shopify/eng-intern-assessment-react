@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react'
+import './styles/StopWatch.css'
 import { formatTime } from '../utils/formatTime';
 import StopWatchButton from './StopWatchButton';
 import Laps from './Laps';
+
 
 export default function StopWatch() {
 
@@ -60,8 +62,8 @@ export default function StopWatch() {
     }
 
     return(
-        <div>
-            <h3>{formatTime(time)}</h3>
+        <div className='stopwatch-container'>
+            <div className='time'>{formatTime(time)}</div>
             <StopWatchButton 
                 time={time}
                 isRunning={isRunning}
