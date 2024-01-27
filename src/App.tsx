@@ -6,12 +6,13 @@ import './style.css';   //using identity-obj-proxy so jest ignores css file when
 
 export default function App() {
     const [time, setTime] = useState<number>(0);
-    const [isRunning] = useState<boolean>(false);
-    const storeLaps = useRef<number[]>([]);
+    const [checkIfRunning] = useState<boolean>(false);
+    const recordLaps = useRef<number[]>([]);
     const timer = useRef<number>();
 
+    //
     const startWatch = (): void => {
-        if (isRunning) {
+        if (checkIfRunning) {
             clearInterval(timer.current);
         } else {
             timer.current = window.setInterval(() => {
@@ -20,18 +21,21 @@ export default function App() {
         }
     };
 
+    //stop the timer
     const stopWatch = (): void => {
         clearInterval(timer.current);
     };
 
-    const resetStopwatch = (): void => {
+    //reset watch and clear storeLaps array
+    const resetWatch = (): void => {
         setTime(0);
-        storeLaps.current = [];
+        recordLaps.current = [];
         clearInterval(timer.current);
     };
 
+    //push lap record into storeLap array
     const recordLap = (): void => {
-        storeLaps.current.push(time);
+        recordLaps.current.push(time);
     };
 
     return(
@@ -43,14 +47,14 @@ export default function App() {
                     <StopWatchButton 
                         startWatch={startWatch} 
                         stopWatch={stopWatch} 
-                        resetStopwatch={resetStopwatch} 
+                        resetWatch={resetWatch}
                         recordLap={recordLap} 
                     />
                 </div>
                 <div className="laps-container">
-                    {storeLaps.current.map((lapTime, index) => (
-                        <div key={index} data-testid={`lap-${index}`} className='laps'>
-                            Lap {index+1} - {displayTime(lapTime)}
+                    {recordLaps.current.map((lapTime, currindex) => (
+                        <div key={currindex} className='laps'>
+                            Lap{currindex+1} - {displayTime(lapTime)}
                         </div>
                     ))}
             </div>

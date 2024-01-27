@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 type ButtonProps = {
     startWatch: () => void;
     stopWatch: () => void;
-    resetStopwatch: () => void;
+    resetWatch: () => void;
     recordLap: () => void;
 };
 
-export default function StopWatchButton({startWatch, stopWatch, resetStopwatch, recordLap}: ButtonProps) {
+export default function StopWatchButton({startWatch, stopWatch, resetWatch, recordLap}: ButtonProps) {
     return(
         <div>
             <div className="button-container">
@@ -17,7 +17,7 @@ export default function StopWatchButton({startWatch, stopWatch, resetStopwatch, 
             <button className="button" onClick={stopWatch}>
                 Stop
             </button>
-            <button className="button" onClick={resetStopwatch}>
+            <button className="button" onClick={resetWatch}>
                 Reset
             </button>
             <button className="button" onClick={recordLap}>
