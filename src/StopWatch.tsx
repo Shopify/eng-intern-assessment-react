@@ -5,11 +5,15 @@ import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
 import { formatTime } from "./utils";
+import LapList from "./LapList";
+
+type ViewType = "absolute" | "relative";
 
 const Stopwatch: React.FC = () => {
   const [totalTime, setTotalTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [laps, setLaps] = useState<string[]>([]);
+  const [laps, setLaps] = useState<number[]>([]);
+  const [lapView, setLapView] = useState<ViewType>("relative");
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -42,8 +46,12 @@ const Stopwatch: React.FC = () => {
   };
 
   const createNewLap = () => {
-    let newLap: string = formatTime(totalTime);
+    let newLap: number = totalTime;
     setLaps((prevLaps) => [...prevLaps, newLap]);
+  };
+
+  const toggleLapView = () => {
+    setLapView(lapView === "relative" ? "absolute" : "relative");
   };
 
   return (
@@ -63,14 +71,12 @@ const Stopwatch: React.FC = () => {
           <StopWatchButton action="Reset" onClick={handleReset} />
         )}
       </div>
-      <ol reversed>
-        {laps
-          .slice()
-          .reverse()
-          .map((lap) => (
-            <li key={lap}>{lap}</li>
-          ))}
-      </ol>
+      <div>
+        <button onClick={toggleLapView}>
+          {lapView === "relative" ? "absolute" : "relative"}
+        </button>
+        <LapList lapList={laps} viewType={lapView} />
+      </div>
     </div>
   );
 };
