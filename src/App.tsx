@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-/* import './style.css'; */
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 import { displayTime } from "./StopWatch";
+import './style.css';   //using identity-obj-proxy so jest ignores css file when unit testing
 
 export default function App() {
     const [time, setTime] = useState<number>(0);
