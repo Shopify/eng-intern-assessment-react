@@ -3,9 +3,7 @@ const formatTime = (time: number): string => {
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = Math.floor(time % 60);
 
-    return `${formatTimeString(hours)}:
-                ${formatTimeString(minutes)}:
-                ${formatTimeString(seconds)}`;
+    return `${formatTimeString(hours)}:${formatTimeString(minutes)}:${formatTimeString(seconds)}`;
 };
 
 const formatTimeString = (time: number): string => {
