@@ -8,6 +8,26 @@ export default function App() {
     // =========================== STATE VARIABLES ===================================
     const [isRunning, setIsRunning] = useState(false);
     const [timeElapsed, setTimeElapsed] = useState(0);
+    const [laps, setLaps] = useState<number[]>([]);
+
+
+    // ============================= TIME ELAPSE =================================
+    useEffect(() => {
+        let timer: ReturnType<typeof setInterval> | undefined;
+
+        if(isRunning) { // update timer ++10ms every 10ms
+            timer = setInterval (() => {
+                setTimeElapsed(prevTime => prevTime + 10);
+            }, 10);
+        }
+
+        return () => { // cleanup function when isRunning or time changes
+            if (timer) {
+                clearInterval(timer);
+            }
+        }
+
+    }, [isRunning])
 
 
     // ============================= BUTTON FUNCTIONS =================================
@@ -20,7 +40,7 @@ export default function App() {
     const handleReset = () => {
         setIsRunning(false);
         setTimeElapsed(0);
-        console.log("Reset!")
+        setLaps([]);
     }
     const handleLap = () => {
         console.log("Lap!")
