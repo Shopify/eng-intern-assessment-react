@@ -5,9 +5,9 @@ type StopWatchProps = {
 };
 
 const StopWatch: React.FC<StopWatchProps> = ({ timerSeconds }) => {
-  let hrs: number = Math.ceil(timerSeconds / 3600);
-  let mins: number = Math.ceil((timerSeconds % 3600) / 60);
-  let secs: number = Math.ceil(timerSeconds % 60);
+  let hrs: number = Math.floor(timerSeconds / 3600);
+  let mins: number = Math.floor((timerSeconds % 3600) / 60);
+  let secs: number = Math.floor(timerSeconds % 60);
 
   if (hrs < 10) {
     hrs = Number(`0${hrs}`);

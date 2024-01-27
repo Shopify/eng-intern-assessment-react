@@ -1,49 +1,71 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import StopWatch from "./components/StopWatch";
 import StopWatchButton from "./components/StopWatchButton";
 import "./styles.css";
 
-type StopWatchProps = {
-  time: number;
-};
-
 export default function App() {
-  const [seconds, setSeconds] = useState<number>(0);
-  const [minutes, setMinutes] = useState<number>(0);
-  const [hours, setHours] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState(false);
+  const [time, setTime] = useState<number>(0);
+  const [laps, setLaps] = useState<number[]>([]);
 
-  const currentTime = (time: number): void => {
-    if (time < 60) {
-      setMinutes(0);
-      setSeconds(time);
-    } else {
-      const mins = Math.ceil(time / 60);
-      const secs = time - mins * 60;
-      setMinutes(mins);
-      setSeconds(secs);
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (isRunning) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
     }
-    useEffect(() => {
-      currentTime(time);
-    }, [time]);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isRunning]);
+
+  const startStopWatch = () => {
+    setIsRunning(true);
+  };
+
+  const stopStopWatch = () => {
+    setIsRunning(false);
+  };
+
+  const resetStopWatch = () => {
+    setIsRunning(false);
+    setTime(0);
+    setLaps([]);
+  };
+
+  const lapStopWatch = () => {
+    setLaps((prevLaps) => [...prevLaps, time]);
   };
 
   return (
     <div className="main-stopwatch">
-      <div className="stopwatch-face">
-        <h1 className="digits">
-          00 <span>:</span>
-        </h1>
-        <h1 className="digits">
-          00 <span>:</span>
-        </h1>
-        <h1 className="digits">00</h1>
-      </div>
-      <div className="btns">
-        <button className="btn btn-start">START</button>
-        <button className="btn btn-stop">STOP</button>
-        <button className="btn btn-reset">RESET</button>
-        <button className="btn btn-lap">LAP</button>
+      <StopWatch timerSeconds={time} />
+      <StopWatchButton
+        onStart={startStopWatch}
+        onStop={stopStopWatch}
+        onReset={resetStopWatch}
+        onLap={lapStopWatch}
+      />
+      <div className="laps-container">
+        <h2>Laps Total:</h2>
+        <ul>
+          {laps.map((lap, index) => (
+            <li key={index}>{`Lap ${index + 1}: ${formatTime(lap)}`}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 }
+
+const formatTime = (time: number): string => {
+  const pad = (num: number) => (num < 10 ? "0" + num : num);
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor((time % 3600) / 60);
+  const seconds = time % 60;
+
+  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+};

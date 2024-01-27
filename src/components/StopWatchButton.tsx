@@ -2,27 +2,38 @@ import React from "react";
 
 type StopWatchBtnProps = {
   title: string;
-  time?: number;
-  onClick: (time?: number) => void;
+  onClick: () => void;
 };
 
-const StopWatchBtn: React.FC<StopWatchBtnProps> = ({
-  title,
-  time,
-  onClick,
-}) => (
-  <span className="button" onClick={() => onClick(time)}>
+const StopWatchBtn: React.FC<StopWatchBtnProps> = ({ title, onClick }) => (
+  <button
+    className={`btn btn-${title.toLowerCase()}`}
+    title={title}
+    onClick={onClick}
+  >
     {title}
-  </span>
+  </button>
 );
 
-export default function StopWatchButton() {
-  return (
-    <div>
-      <button className="btn btn-start" title="Start" onClick={() => ""} />
-      <button className="btn btn-stop" title="Stop" onClick={() => ""} />
-      <button className="btn btn-reset" title="Reset" onClick={() => ""} />
-      <button className="btn btn-lap" title="Lap" onClick={() => ""} />
-    </div>
-  );
-}
+type StopWatchButtonProps = {
+  onStart: () => void;
+  onStop: () => void;
+  onReset: () => void;
+  onLap: () => void;
+};
+
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+  onStart,
+  onStop,
+  onReset,
+  onLap,
+}) => (
+  <div>
+    <StopWatchBtn title="Start" onClick={onStart} />
+    <StopWatchBtn title="Stop" onClick={onStop} />
+    <StopWatchBtn title="Reset" onClick={onReset} />
+    <StopWatchBtn title="Lap" onClick={onLap} />
+  </div>
+);
+
+export default StopWatchButton;
