@@ -1,9 +1,22 @@
 .wrapper-content {
   width: fit-content;
   margin:auto;
-  margin-top: 12rem;
+  /* margin-top: 12rem; */
 }
 
-/* .picture:hover {
-  transform: rotate(360deg);
-} */
+.runningManImage {
+  height: 15rem;
+  -webkit-animation-name: runMan;
+  -webkit-animation-duration: 7s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes runMan {
+  0% {
+      -webkit-transform: translateX(-10vw);
+  }
+  100% {
+      -webkit-transform: translateX(96vw);
+  }
+}

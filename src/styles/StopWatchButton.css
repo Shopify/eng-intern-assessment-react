@@ -7,3 +7,8 @@
   border: 1px solid black;
   margin-left: 2rem;
 }
+@media all and (max-width: 900px) {
+  .StopWatchButton {
+    font-size: 3.1vw;
+  }
+}
