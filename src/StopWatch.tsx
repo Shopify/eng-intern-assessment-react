@@ -31,8 +31,10 @@ export default function StopWatch() {
   const milliSeconds = totalTime % 1000;
   const seconds = Math.floor((totalTime / 1000) % 60);
   const minutes = Math.floor((totalTime / (1000 * 60)) % 60);
+  const hours = Math.floor((totalTime / (1000 * 60 * 60)) % 60);
 
   const displayTime = `
+  ${formatTime(hours)}:
   ${formatTime(minutes)}:
   ${formatTime(seconds)}:
   ${formatTime(milliSeconds)}
@@ -55,13 +57,13 @@ export default function StopWatch() {
     <div className="stopwatch-app">
       <div className="stopwatch container">
         <StopWatchButton
-          title={isRunning ? "Pause" : "Start"}
+          title={isRunning ? "Stop" : "Start"}
           handleClick={handleStartStop}
         />
         <StopWatchButton title={"Reset"} handleClick={handleReset} />
         <StopWatchButton title={"Lap"} handleClick={handleLaps} />
         <div className="clock-container">
-          <div>{displayTime}</div>
+          <div id="displayedTime">{displayTime}</div>
         </div>
       </div>
       <div className="lap container">
