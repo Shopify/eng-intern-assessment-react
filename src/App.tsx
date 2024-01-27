@@ -101,6 +101,10 @@ export default function App() {
             <div id='laps-container'>
                 <LapsList />
             </div>
+
+            <div id='footer-container'>
+                <p id='footer'>Shopify React Assessment by Claire Peng</p>
+            </div>
         </div>
     )
 }
