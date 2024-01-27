@@ -70,4 +70,14 @@ describe("Testing StopWatch Button Functionality", () => {
     expect(mockSetTimeInSeconds).toHaveBeenCalledWith(0);
     expect(mockSetLaps).toHaveBeenCalledWith([]);
   });
+
+  test("Records laps when the lap button is clicked", () => {
+    const startButton = screen.getByText("Start");
+    fireEvent.click(startButton);
+    const lapButton = screen.getByText("Lap");
+    fireEvent.click(lapButton);
+
+    //  Expect initial update in useEffect, on start click and on lap click
+    expect(mockSetLaps).toHaveBeenCalledTimes(3);
+  });
 });
