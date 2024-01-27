@@ -39,7 +39,7 @@ export default function StopWatch() {
             <p>{formatTime(time)}</p>
             <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
             <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-            <StopWatchButton type={'lap'} onClick={() => {setLapTimes([...lapTimes, time])}}></StopWatchButton>
+            <StopWatchButton type={'lap'} timerOn={timerOn} onClick={() => {setLapTimes([...lapTimes, time])}}></StopWatchButton>
             <StopWatchButton type={'reset'} onClick={() => {setTimerOn(false); setTime(0); setLapTimes([])}}></StopWatchButton>
             {/* Display the lap times */}
             <ul>
