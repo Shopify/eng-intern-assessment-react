@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 
 import StopWatchButton from "./StopWatchButton";
 
+import { formatTime } from "./utils";
+
 const Stopwatch: React.FC = () => {
   const [totalTime, setTotalTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -39,19 +41,8 @@ const Stopwatch: React.FC = () => {
     setLaps([]);
   };
 
-  const milliseconds = Math.floor((totalTime % 1000) / 10);
-  const seconds = Math.floor((totalTime % 60000) / 1000);
-  const minutes = Math.floor(totalTime / 60000);
-
-  const format = (time: number): string => {
-    const padZero = (value: number): string =>
-      value < 10 ? `0${value}` : `${value}`;
-
-    return `${padZero(minutes)}:${padZero(seconds)}.${padZero(milliseconds)}`;
-  };
-
   const createNewLap = () => {
-    let newLap: string = format(totalTime);
+    let newLap: string = formatTime(totalTime);
     setLaps((prevLaps) => [...prevLaps, newLap]);
   };
 
@@ -59,7 +50,7 @@ const Stopwatch: React.FC = () => {
     <div>
       <h1>Stopwatch</h1>
       <div>
-        <span>{format(totalTime)}</span>
+        <span>{formatTime(totalTime)}</span>
       </div>
       <div>
         <StopWatchButton
