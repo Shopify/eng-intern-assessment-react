@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
-import Laps from './Laps';
+import StopwatchLaps from './StopwatchLaps';
 import "./styles.css";
 
 // The main component of the stopwatch, renders all subcomponents
@@ -37,7 +37,7 @@ export default function App() {
     // Converts the number type time representing milliseconds into strings representing units of time
     // Strings less than 2 chars long get a leading 0, millisecond checks for 3
     function convertToTimeUnits(time: number): string[]{
-        let milliseconds, seconds, minutes;
+        let milliseconds: string, seconds: string, minutes: string;
 
         milliseconds = (time%1000).toString().padStart(3, "0");
         seconds = Math.floor((time/1000)%60).toString().padStart(2, "0");
@@ -75,8 +75,13 @@ export default function App() {
     return(
         <div>
             <StopWatch timeElapsed={timeElapsed} timeUnits={timeUnits} convertToTimeUnits={convertToTimeUnits} />
-            <StopWatchButton timeElapsed={timeElapsed} toggleStopwatch={toggleStopwatch} resetStopwatch={resetStopwatch} addLap={addLap}/>
-            <Laps convertToTimeUnits={convertToTimeUnits} laps={laps} lapTimeUnits={lapTimeUnits}/>
+            {/* Renders 3 buttons that resets and toggles the stopwatch as well as adding laps */}
+            <div className="btn-wrapper">
+                <StopWatchButton id="reset-stopwatch" text="Reset" handleClick={resetStopwatch} />
+                <StopWatchButton id="toggle-stopwatch" text="Start" handleClick={toggleStopwatch} />
+                <StopWatchButton id="lap-stopwatch" text="Lap" handleClick={() => addLap(timeElapsed)} />
+            </div>
+            <StopwatchLaps convertToTimeUnits={convertToTimeUnits} laps={laps} lapTimeUnits={lapTimeUnits}/>
         </div>
     )
 }

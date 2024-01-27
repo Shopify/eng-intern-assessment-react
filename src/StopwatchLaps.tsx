@@ -9,7 +9,7 @@ interface LapsProps{
 
 // Component that renders the laps
 // Makes use of the map() method applying a function to each element in the laps array to render them
-export default function Laps({ laps, lapTimeUnits, convertToTimeUnits }: LapsProps){
+export default function StopwatchLaps({ laps, lapTimeUnits, convertToTimeUnits }: LapsProps){
     return(
         <div id="laps-list" className="laps">
             {laps.map((lap, index) => {
