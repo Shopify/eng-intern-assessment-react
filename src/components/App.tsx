@@ -36,9 +36,9 @@ export default function App() {
     function stopButton() {
         if (lastButton === "Start") {
             setTimePaused(Date.now());
+            setLastButton("Stop");
         }
         setRunning(false);
-        setLastButton("Stop");
     }
 
     function resetButton() {
