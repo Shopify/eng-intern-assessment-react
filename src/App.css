@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: "PT Sans", sans-serif;
+  background-color: #008060;
+  color: white;
+}

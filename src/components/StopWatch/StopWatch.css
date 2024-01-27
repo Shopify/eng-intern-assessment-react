@@ -1,0 +1,17 @@
+.stopwatch-numbers {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.number {
+  margin: 0;
+  font-size: 7rem;
+  letter-spacing: 0.5rem;
+}
+
+.stopwatch-numbers span {
+  position: relative;
+  top: 1.5rem;
+  right: 0.3rem;
+  font-size: 5rem;
+}
