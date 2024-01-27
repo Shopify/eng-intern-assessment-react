@@ -126,7 +126,7 @@ export default function StopWatch() {
                 const splitTime = formatTime(calculateSplit(index));
                 const totalTime = formatTime(lap);
                 return (
-                  <TableRow key={index}>
+                  <TableRow key={index} data-testid={`lap-${index}`}>
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>
                       {splitTime.minutes}:{splitTime.seconds}:

@@ -27,10 +27,10 @@ export default function StopWatchButton({
   return (
     <ButtonContainer>
       <StyledButton
-        aria-label={ariaLabel}
         onClick={onClick}
         isSecond={isSecond}
         disabled={disabled}
+        aria-label={ariaLabel}
       >
         <FontAwesomeIcon icon={icon} />
       </StyledButton>
