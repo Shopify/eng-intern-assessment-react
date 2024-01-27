@@ -4,7 +4,6 @@ import StopWatchButton from './StopWatchButton'
 
 export default function App() {
     const [counter, setCounter] = useState(0);
-    const [secCounter, setSecCounter] = useState(0);
     const [running, setRunning] = useState(false);
     const [laps, setLaps] = useState([]);
 
@@ -27,7 +26,6 @@ function toggleTimer() {
 
 function reset() {
     setCounter(0);
-    setSecCounter(0);
 }
 
 function lap() {
