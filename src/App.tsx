@@ -74,9 +74,9 @@ export default function App() {
 
     // ============================= RENDERING APP.TSX =================================
     return(
-        <div>
+        <div id='page-container'>
             <div id='header-container'>
-                <h1 id='stopify-header'>
+                <h1 id='stopify-header' className='font-bold'>
                     Stopify
                 </h1>
                 <p id='subheader'>
