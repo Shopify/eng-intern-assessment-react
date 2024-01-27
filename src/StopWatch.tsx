@@ -64,7 +64,7 @@ export default function StopWatch() {
         <div className='Stopwatch'>
             <div style={swStyle}>Stopwatch</div>
             <div style={swStyle}>Time: {formatHMS(seconds)}</div>
-            <StopWatchButton setRunning={setRunning} setStop={setStop} updateLaps={updateLaps} resetStopwatch={resetStopwatch}/>
+            <StopWatchButton running={running} setRunning={setRunning} setStop={setStop} updateLaps={updateLaps} resetStopwatch={resetStopwatch}/>
             <LapTimes />
         </div>
     )

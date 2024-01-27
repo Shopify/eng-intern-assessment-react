@@ -1,18 +1,19 @@
 import React from 'react'
 
 interface StopWatchButtonProps {
+    running: boolean;
     setRunning: () => void;
     setStop: () => void;
     updateLaps: () => void;
     resetStopwatch: () => void;
 }
 
-export default function StopWatchButton({setRunning, setStop, updateLaps, resetStopwatch }: StopWatchButtonProps) {
+export default function StopWatchButton({running, setRunning, setStop, updateLaps, resetStopwatch}: StopWatchButtonProps) {
     return(
         <div style={centerStyle}>
-            <button style={textStyle} onClick={setRunning}>Start</button>
-            <button style={textStyle} onClick={setStop}>Stop</button>
-            <button style={textStyle} onClick={updateLaps}>Lap</button>
+            <button style={textStyle} onClick={setRunning} disabled={running}>Start</button>
+            <button style={textStyle} onClick={setStop} disabled={!running}>Stop</button>
+            <button style={textStyle} onClick={updateLaps} disabled={!running}>Lap</button>
             <button style={textStyle} onClick={resetStopwatch}>Reset</button>
         </div>
     )
