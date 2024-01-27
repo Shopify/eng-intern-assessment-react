@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+type StopWatchButtonProps = {
+    type: string;
+  };
+  
+  export default function StopWatchButton({ type }: StopWatchButtonProps) {
     return(
-        <div></div>
+        <button>{type}</button>
     )
 }
