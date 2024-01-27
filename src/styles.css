@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+h2{
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.stopwatch-time{
+    font-size: 50px;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.title{
+    font-size: 40px;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.stopwatch{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.start-button{
+    font-family: "Noto Sans", sans-serif;
+    font-size: large;
+    min-width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgb(237, 255, 212);
+    border: 2px solid;
+    border-color: rgb(59, 172, 59);
+    border-radius: 10px;
+}
+
+.start-button:hover{
+    background-color: rgb(201, 236, 149);
+    cursor: pointer;
+}
+
+.stop-button{
+    font-family: "Noto Sans", sans-serif;
+    font-size: large;
+    min-width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgb(255, 223, 223);
+    border: 2px solid;
+    border-color: rgb(255, 72, 72);
+    border-radius: 10px;
+}
+
+.stop-button:hover{
+    background-color: rgb(250, 167, 167);
+    cursor: pointer;
+}
+
+.lap-button{
+    font-family: "Noto Sans", sans-serif;
+    font-size: large;
+    min-width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgb(230, 246, 255);
+    border: 2px solid;
+    border-color: rgb(37, 150, 255);
+    border-radius: 10px;
+}
+
+.lap-button:hover{
+    background-color: rgb(186, 230, 255);
+    cursor: pointer;
+}
+
+.reset-button{
+    font-family: "Noto Sans", sans-serif;
+    font-size: large;
+    min-width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid;
+    border-color: rgb(63, 63, 63);
+    border-radius: 10px;
+}
+
+.reset-button:hover{
+    background-color: rgb(223, 223, 223);
+    cursor: pointer;
+}
+
+.stopwatch-buttons{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.laps{
+    margin: auto;
+    width: 25%;
+    border: 2px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    padding-right: 10px;
+    text-align: center;
+    max-height: 180px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+.lap{
+    font-family: "Noto Sans", sans-serif;
+    font-size: medium;
+    margin: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.laps::-webkit-scrollbar{
+    display: none
+}
+
+.logo{
+    max-height: 80px;
+}
