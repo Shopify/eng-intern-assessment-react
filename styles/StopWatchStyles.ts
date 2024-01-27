@@ -3,6 +3,9 @@ import styled from "styled-components";
 const TimerContainer = styled.div`
   margin: 0 auto;
   background-color: #00bcd4;
+  // background: -webkit-linear-gradient(#4bfe85, #5fd5b6);
+  // background: -o-linear-gradient(#4bfe85, #5fd5b6);
+
   width: 70%;
   border-radius: 10px;
   padding: 20px;
@@ -10,9 +13,15 @@ const TimerContainer = styled.div`
 `;
 
 const TimerHeader = styled.div`
-  color: #fff;
-  text-align: center;
   margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 700;
+
+  h1 {
+    color: #fff;
+    text-align: left;
+    margin: 0;
+  }
 `;
 
 const TimeDisplay = styled.div`
@@ -20,6 +29,7 @@ const TimeDisplay = styled.div`
   border-radius: 10px;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   padding: 40px 10px;
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
@@ -43,6 +53,11 @@ const TimeLabel = styled.div`
   text-transform: uppercase;
 `;
 
+const Colon = styled.span`
+  font-size: 30px;
+  color: #d3d3d3;
+`;
+
 export {
   TimerContainer,
   TimerHeader,
@@ -50,4 +65,5 @@ export {
   TimeSection,
   TimeValue,
   TimeLabel,
+  Colon,
 };

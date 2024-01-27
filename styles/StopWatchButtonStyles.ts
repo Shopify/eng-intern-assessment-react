@@ -11,11 +11,12 @@ const ButtonContainer = styled.div`
 const ButtonsGroup = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
+  margin: 5% auto;
 
   &:nth-child(2) {
     height: 50px;
@@ -26,15 +27,13 @@ const ButtonsGroup = styled.div`
 
 const Tooltip = styled.div`
   visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: white;
+  color: #eee;
+  width: 100%;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+  text-align: center;
   position: absolute;
   z-index: 1;
-  margin-bottom: 5px;
+  margin: 15px 0;
   opacity: 0;
   transition: opacity 0.3s;
 

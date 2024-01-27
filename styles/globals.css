@@ -6,6 +6,19 @@ body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
   background-color: #d0ffd1;
-  overflow-x: hidden;
+  overflow: hidden;
   padding-top: 10%;
+}
+
+footer {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 2%;
+  font-size: 0.8rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

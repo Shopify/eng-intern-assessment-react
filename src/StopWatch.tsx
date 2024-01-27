@@ -7,6 +7,7 @@ import {
   faStop,
 } from "@fortawesome/free-solid-svg-icons";
 import {
+  Colon,
   TimeDisplay,
   TimeValue,
   TimerContainer,
@@ -61,7 +62,7 @@ export default function StopWatch() {
       onClick: recordLap,
       disabled: !isRunning,
       icon: faFlag,
-      label: "Record Lap",
+      label: "Record",
     },
     {
       onClick: isRunning ? stop : start,
@@ -79,10 +80,14 @@ export default function StopWatch() {
 
   return (
     <TimerContainer>
-      <TimerHeader>Stopwatch</TimerHeader>
+      <TimerHeader>
+        <h1>Stopwatch</h1>
+      </TimerHeader>
       <TimeDisplay>
-        <TimeValue className="minutes">{formatTime(time).minutes}</TimeValue>:
-        <TimeValue className="seconds">{formatTime(time).seconds}</TimeValue>:
+        <TimeValue className="minutes">{formatTime(time).minutes}</TimeValue>
+        <Colon>:</Colon>
+        <TimeValue className="seconds">{formatTime(time).seconds}</TimeValue>
+        <Colon>:</Colon>
         <TimeValue className="milliseconds">
           {formatTime(time).milliseconds}
         </TimeValue>
