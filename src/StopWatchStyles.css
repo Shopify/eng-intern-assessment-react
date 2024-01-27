@@ -1,0 +1,98 @@
+/*Styles for body of the page to ensure centered and themed*/
+body, #root{
+  box-sizing: border-box;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color:#292929;
+  color:#E2DDD8;
+  font-family: Ovo;
+  margin-bottom:-250px;
+
+}
+
+/*Displays the buttons in rows*/
+.Button_Container {
+  flex-direction:row;
+}
+
+/*Centers all the components*/
+.STOPWATCH {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+
+}
+
+/*Styling for the timer*/
+.STOPWATCH h1 {
+  font-size: 110px;
+  white-space:nowrap;
+  margin-top:0px;
+  width: 200px;
+
+}
+
+/*Styling for the StopWatch Title*/
+.STOPWATCH h2 {
+  font-size: 55px;
+  margin-top:-250px;
+  text-decoration-line:underline;
+}
+
+
+/*Styles for the buttons*/
+.STOPWATCH button {
+  margin: 10px;
+  padding:10px;
+  border: 1px solid white;
+  background: none;
+  cursor:pointer;
+  font-size: 15px;
+  color:white;
+  font-family: Ovo;
+
+}
+
+
+/*Ensures that the labels hours:minutes:seconds:milliseconds are spaced correctly*/
+.time_Labels {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top:-10%;
+  padding-bottom:20px;
+}
+
+
+/*Added a container for the lap to be placed into*/
+.Lap_Container {
+  width: 100%;
+  padding: 10px;
+  margin:20px;
+  overflow-y: scroll;
+  height: 200px;
+  text-align: center;
+  border:1px solid white;
+  scrollbar-color: #ffffff #535558;
+}
+
+
+/*Ensures that the container surroundign the timer is fixed - prevents shaking of the other components*/
+.timer_Container {
+  width:650px;
+  padding:0px;
+}
+
+/*Styles for the scrollbar in the Lap container*/
+.Lap_Container::-webkit-scrollbar {
+  width: 10px;
+}
+.Lap_Container::-webkit-scrollbar-track {
+  background:  #ffffff;
+  padding:5px;
+}
+.Lap_Container::-webkit-scrollbar-thumb {
+  background:  #535558;
+}
