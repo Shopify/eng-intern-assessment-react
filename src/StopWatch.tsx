@@ -73,6 +73,7 @@ export default function StopWatch() {
       <InlineStack align='space-between'>
         <StopWatchButton
           labels={["Reset", "Lap"]}
+          disabled={elapsedTime === 0}
           active={active}
           tone={active ? 'success' : 'critical'}
           onClick={handleLapResetClick}
@@ -85,9 +86,12 @@ export default function StopWatch() {
         />
       </InlineStack>
       <Divider />
-      {elapsedTime !== 0 && <Text as='p' variant='bodyLg'>Lap {laps.length + 1} {formatTime(currentLapTime)}</Text>}
+      {elapsedTime !== 0 && <><Text as='p' variant='bodyLg'>Lap {laps.length + 1} {formatTime(currentLapTime)}</Text><Divider /></>}
       {[...laps].reverse().map((lap, index) => (
-        <Text as='p' variant='bodyLg' key={index}>Lap {laps.length - index} {formatTime(lap)}</Text>
+        <>
+          <Text as='p' variant='bodyLg' key={index}>Lap {laps.length - index} {formatTime(lap)}</Text>
+          <Divider />
+        </>
       ))}
     </BlockStack>
   )

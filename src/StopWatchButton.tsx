@@ -7,10 +7,11 @@ interface StopWatchButtonProps {
   labels: string[];
   active: boolean;
   tone: 'success' | 'critical';
+  disabled?: boolean;
   onClick: () => void;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, tone, onClick }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, tone, disabled=false, onClick }) => {
   const [label, setLabel] = useState(labels[0]);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, tone,
       size='large'
       tone={tone}
       variant='primary'
+      disabled={disabled}
       onClick={onClick}
     >
       {label}
