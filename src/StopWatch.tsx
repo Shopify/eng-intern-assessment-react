@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import StopWatchButton from './StopWatchButton';
+import {
+  BlockStack,
+  Divider,
+  InlineStack,
+  Text,
+} from '@shopify/polaris';
 
 export default function StopWatch() {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
@@ -55,17 +61,24 @@ export default function StopWatch() {
   }
 
   return (
-    <div>
-      <div>{formatTime(elapsedTime)}</div>
-      <StopWatchButton labels={["Reset", "Lap"]} active={active} onClick={handleLapResetClick}/>
-      <StopWatchButton labels={["Start", "Stop"]} active={active} onClick={handleStartStopClick}/>
-      <hr />
-      <ul>
-        {elapsedTime !== 0 && <li>Lap {laps.length + 1} {formatTime(currentLapTime)}</li>}
-        {[...laps].reverse().map((lap, index) => (
-          <li key={index}>Lap {laps.length - index} {formatTime(lap)}</li>
-        ))}
-      </ul>
-    </div>
+    <BlockStack align='space-between' gap='500'>
+      <Text
+        alignment='center'
+        as='p'
+        variant='heading2xl'
+        numeric={true}
+      >
+        {formatTime(elapsedTime)}
+      </Text>
+      <InlineStack align='space-between'>
+        <StopWatchButton labels={["Reset", "Lap"]} active={active} onClick={handleLapResetClick}/>
+        <StopWatchButton labels={["Start", "Stop"]} active={active} onClick={handleStartStopClick}/>
+      </InlineStack>
+      <Divider />
+      {elapsedTime !== 0 && <Text as='p' variant='bodyLg'>Lap {laps.length + 1} {formatTime(currentLapTime)}</Text>}
+      {[...laps].reverse().map((lap, index) => (
+        <Text as='p' variant='bodyLg' key={index}>Lap {laps.length - index} {formatTime(lap)}</Text>
+      ))}
+    </BlockStack>
   )
 }

@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from 'react'
+import {
+  Button,
+} from '@shopify/polaris';
 
 interface StopWatchButtonProps {
   labels: string[];
@@ -18,7 +21,12 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, onCli
   });
 
   return(
-    <button type="button" onClick={onClick}>{label}</button>
+    <Button
+      size='large'
+      onClick={onClick}
+    >
+      {label}
+    </Button>
   )
 }
 
