@@ -102,28 +102,12 @@ export default function App() {
                 </div>
 
                 {/* ======= STOPWATCH DISPLAY ====== */}
-                <div id='stopwatch-display-container' 
-                    className='bg-black text-white rounded-full shadow-black/40 shadow-lg
-                    w-[28rem] h-[28rem] min-h-[14rem] flex flex-col justify-center items-center
-                    mt-4 mb-7 transition-transform duration-300 transform-gpu hover:scale-105
-                    relative'>
-                    
-                    {/* TIME ELAPSED */}
-                    <StopWatch timeElapsed={timeElapsed}/>
-
-                    {/* PAUSED LABEL -- when stopwatch has been run and stopped */}
-                    {!isRunning && timeElapsed > 0 &&
-                        <p id='paused-label'
-                        className='text-xl absolute translate-y-[5rem]'>
-                            Paused
-                        </p>
-                    }
+                <div id='stopwatch-display-container'>
+                    <StopWatch timeElapsed={timeElapsed} isRunning={isRunning}/>
                 </div>
 
                 {/* ======= STOPWATCH BUTTONS ======== */}
-                <div id='stopwatch-buttons-container'
-                    className='mb-4'
-                >
+                <div id='stopwatch-buttons-container' className='mb-4'>
                     <StopWatchButton
                         handleStart={handleStart}
                         handleStop={handleStop}
@@ -135,8 +119,8 @@ export default function App() {
 
                 {/* ====== LAPS LIST ======= */}
                 <div id='laps-container'
-                className='w-[31rem] min-h-[5.5rem] max-h-[5.5rem] border-[0.18rem] border-black rounded-3xl py-2 overflow-auto text-center'
-                >
+                    className='w-[31rem] min-h-[5.5rem] max-h-[5.5rem] border-[0.18rem] border-black 
+                    rounded-3xl py-2 overflow-auto text-center'>
                     <LapsList />
                 </div>
             </div>
