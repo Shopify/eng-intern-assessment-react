@@ -1,11 +1,10 @@
 export type Timer = {
-	time: number | null;
+	time: number;
 	isRunning: boolean;
 	laps: Lap[];
 };
 
 type Lap = {
 	number: number;
-	lapTime: number;
 	totalTime: number;
 };

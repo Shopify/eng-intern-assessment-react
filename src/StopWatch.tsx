@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StopWatchButton from './StopWatchButton';
 import './styles/StopWatch.css';
-import { Timer } from './types/Timer';
+import { Timer } from './types/timer';
 
 export default function StopWatch() {
 	const [timer, setTimer] = useState<Timer>({
@@ -49,8 +49,12 @@ export default function StopWatch() {
 			<StopWatchButton onClick={toggleTimer}>
 				{!isRunning ? 'Start' : 'Stop'}
 			</StopWatchButton>
-			<StopWatchButton onClick={lapTimer}>Lap</StopWatchButton>
-			<StopWatchButton onClick={resetTimer}>Reset</StopWatchButton>
+			<StopWatchButton onClick={lapTimer} disabled={!!time}>
+				Lap
+			</StopWatchButton>
+			<StopWatchButton onClick={resetTimer} disabled={!!time}>
+				Reset
+			</StopWatchButton>
 		</main>
 	);
 }
