@@ -18,37 +18,40 @@ function getDisplayTime(count: number) {
 }
 
 export default function StopWatch() {
-  const [counter, setCounter] = useState(0);
+  const [start, setStart] = useState(new Date().valueOf());
+  const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [laps, setLaps] = useState([]);
 
   useEffect(() => {
+    setStart(new Date().valueOf());
+    const oldTime = time;
     if (running) {
       const timer = setInterval(() => {
-        setCounter((c) => c + 25);
+        setTime(new Date().valueOf() - start + oldTime)
       }, 25);
-      // 25 chosen again as it's much higher than the previous minimum I encountered (15). i.e. any interval lower than 15 will end up diverging from real time
       return () => clearInterval(timer);
     }
-  }, [running]);
+  }, [running, start]);
 
   function toggleTimer() {
     setRunning((r) => !r);
   }
 
   function reset() {
-    setCounter(0);
+    setTime(0);
+    setStart(new Date().valueOf())
   }
 
   function lap() {
-    setLaps((l) => [...l, counter]);
+    setLaps((l) => [...l, time]);
     reset();
   }
 
   return (
     <div>
       <p data-testid="timeDisplay">
-        {getDisplayTime(counter)}
+        {getDisplayTime(time)}
       </p>
       <StopWatchButton onclick={toggleTimer} name={running ? "Pause" : "Play"} />
       <StopWatchButton onclick={lap} name="Lap" />
