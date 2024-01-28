@@ -8,9 +8,8 @@ import './App.css';
 export default function App() {
     
     const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
-    const [timerArray, setTimerArray] = useState<Array<number|string>>([]);
-    const [storedTime, setStoredTime] = useState<Array<number|string>>([]);
-    const [ lapsedTime, setLapsedTime ] = useState<Array<number|string>>([]);
+    const [currentTime, setcurrentTime] = useState<Array<number|string>>([]);
+    const [previousTime, setpreviousTime] = useState<Array<number|string>>([]);
 
     let hours: number = Math.floor(timeInSeconds / 3600);   //convert seconds to hours
     let minutes: number = Math.floor((timeInSeconds - (hours * 3600)) / 60);  //convert seconds to minutes
@@ -23,20 +22,19 @@ export default function App() {
 
     useEffect (() => {
         let timeArr: Array<number|string> = [hoursFormat, minutesFormat, secondsFormat];
-        setTimerArray(timeArr);
+        setcurrentTime(timeArr);
     }, [hoursFormat, minutesFormat, secondsFormat])
-       
 
     return(
         <>   
-            <div className = "container">
-                <p className="timer-text">{timerArray[0]}</p>
+            <div className = "time-container">
+                <p className="timer-text">{currentTime[0]}</p>
                 <span>:</span>
-                <p className="timer-text">{timerArray[1]}</p>
+                <p className="timer-text">{currentTime[1]}</p>
                 <span>:</span>
-                <p className="timer-text">{timerArray[2]}</p>
-            </div>
-            <StopWatchButton setTimeInSeconds={setTimeInSeconds} />
+                <p className="timer-text">{currentTime[2]}</p>
+            </div> 
+            <StopWatchButton setTimeInSeconds={setTimeInSeconds} currentTime={currentTime} previousTime={previousTime} setpreviousTime={setpreviousTime} />
             
         </>
     )

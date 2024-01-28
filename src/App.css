@@ -9,13 +9,14 @@ body {
     font-family: "Lato";
 }
 
-.container {
+.time-container {
     color: #ccc;
     display: flex;
     letter-spacing: 2px;
+    justify-content: center;
 }
 
-.container span {
+.time-container span {
     position: relative;
     top: 5px;
     font-size: 4rem;
@@ -51,6 +52,23 @@ body {
 }
 
 #lapTime {
-    display: none;
+    display: none flex;
     color: white;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#lapTime h3 span {
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 5px 10px 5px;
+    padding: 55px;
+}
+
+#laptime li::marker {
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 5px 10px 5px;
+    padding: 55px;
 }
