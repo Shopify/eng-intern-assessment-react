@@ -10,19 +10,21 @@ export default function StopWatch() {
 		laps: [],
 	});
 
+	const { time, isRunning } = timer;
+
 	useEffect(() => {
 		let interval: NodeJS.Timer;
-		if (timer.isRunning) {
+		if (isRunning) {
 			interval = setInterval(
-				() => setTimer({ ...timer, time: timer.time + 1 }),
+				() => setTimer({ ...timer, time: time + 1 }),
 				10
 			);
 		}
 		return () => clearInterval(interval);
-	}, [timer.time]);
+	}, [time, isRunning]);
 
 	const toggleTimer = () => {
-		setTimer({ ...timer, isRunning: !timer.isRunning });
+		setTimer({ ...timer, isRunning: !isRunning });
 	};
 
 	const resetTimer = () => {};
@@ -32,9 +34,9 @@ export default function StopWatch() {
 	return (
 		<main>
 			<h1 className='title'>Stopwatch</h1>
-			<h2 className='time'>{timer.time}</h2>
+			<h2 className='time'>{time}</h2>
 			<StopWatchButton onClick={toggleTimer}>
-				{!timer.isRunning ? 'Start' : 'Stop'}
+				{!isRunning ? 'Start' : 'Stop'}
 			</StopWatchButton>
 			<StopWatchButton onClick={lapTimer}>Lap</StopWatchButton>
 			<StopWatchButton onClick={resetTimer}>Reset</StopWatchButton>
