@@ -22,6 +22,7 @@ body {
   width: 100%;
   text-align: center;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 .stopwatch {
@@ -38,15 +39,18 @@ body {
 
 button {
   background: #cfd2d8;
-  border: 1px solid #cfd2d8;
   font-size: 20px;
   padding: 3px 10px;
+  border-radius: 5px;
 }
 
 button:hover {
-  background-color: rgb(112, 8, 8);
+  background: #76787b;
   color: #cfd2d8;
-  border: 1px solid black;
+}
+
+button:focus {
+  border: 2px solid #519fd7;
 }
 
 .clock-container {
