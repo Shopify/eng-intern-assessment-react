@@ -1,0 +1,65 @@
+/* import font from online web font */
+@import url(https://db.onlinewebfonts.com/c/e2b9630cd56b1778e841e805b47c9347?family=Digital+V1);
+@import url(https://db.onlinewebfonts.com/c/2206d6cc490084998d531e8c1b2cbb4a?family=Druk+Wide+Bold);
+@import url(https://db.onlinewebfonts.com/c/5cfc10829ed4fce9e89ca0ae2223d389?family=Druk-WideMedium);
+
+/* style for StopWatch */
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em;
+}
+
+.timer-display {
+    font-family: "Digital V1";
+    font-size: 5em;
+}
+
+.timer-display p {
+    margin: 0;
+}
+
+.lap-section h2 {
+    font-family: "Druk Wide Bold";
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+.lap-display span {
+    font-family: "Druk-WideMedium";
+}
+
+.laps-span {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.lap-display {
+    max-height: 15em;
+    overflow-y: auto;
+}
+
+/* style for StopWatchButton */
+button {
+    border-radius: 50px;
+    padding: 1em;
+    margin: 1em;
+    font-family: "Druk Wide Bold";
+}
+
+.stop-btn, .lap-btn {
+    display: none;
+}
+
+.stopwatch-btns {
+    display: flex;
+    justify-content: space-between;
+}
