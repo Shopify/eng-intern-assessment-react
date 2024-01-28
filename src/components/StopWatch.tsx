@@ -47,10 +47,10 @@ export default function StopWatch() {
         
         return (
             <div className='stopwatch-container'>
-                <div className='stopwatch-digits'>{hour} :&nbsp;</div>
-                <div className='stopwatch-digits'>{minute} : &nbsp;</div>
-                <div className='stopwatch-digits'>{second} :&nbsp;</div>
-                <div className='stopwatch-digits'>{milisecond} </div>
+                <div className='stopwatch-digits'>{hour.toLocaleString('en-US', {minimumIntegerDigits: 2})} :&nbsp;</div>
+                <div className='stopwatch-digits'>{minute.toLocaleString('en-US', {minimumIntegerDigits: 2})} : &nbsp;</div>
+                <div className='stopwatch-digits'>{second.toLocaleString('en-US', {minimumIntegerDigits: 2})} :&nbsp;</div>
+                <div className='stopwatch-digits'>{milisecond.toLocaleString('en-US', {minimumIntegerDigits: 2})} </div>
             </div>
         );
 

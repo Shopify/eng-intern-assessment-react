@@ -18,10 +18,10 @@ export default function LapTiming ({
         
         return (
             <div className='timer-container'>
-                <div className='timer-digits'>{hour} :&nbsp;</div>
-                <div className='timer-digits'>{minute} : &nbsp;</div>
-                <div className='timer-digits'>{second} :&nbsp;</div>
-                <div className='timer-digits'>{milisecond} </div>
+                <div className='timer-digits'>{hour.toLocaleString('en-US', {minimumIntegerDigits: 2})} :&nbsp;</div>
+                <div className='timer-digits'>{minute.toLocaleString('en-US', {minimumIntegerDigits: 2})} : &nbsp;</div>
+                <div className='timer-digits'>{second.toLocaleString('en-US', {minimumIntegerDigits: 2})} :&nbsp;</div>
+                <div className='timer-digits'>{milisecond.toLocaleString('en-US', {minimumIntegerDigits: 2})} </div>
             </div>
         );
 
