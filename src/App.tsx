@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Stopwatch from "./StopWatch";
-import StopwatchButton from "./StopWatchButton";
+import Stopwatch from "./components/StopWatch";
+import StopwatchButton from "./components/StopWatchButton";
 import "./styles/App.css";
 
 export default function App() {

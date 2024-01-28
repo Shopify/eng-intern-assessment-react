@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/StopWatchButton.css";
+import "../styles/StopWatchButton.css";
 
 interface StopWatchButtonProps {
   onClick: () => void;
