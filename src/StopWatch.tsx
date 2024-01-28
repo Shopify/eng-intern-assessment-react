@@ -76,21 +76,19 @@ export default function StopWatch() {
     setLapTimeMs(0);
   }
 
-  // responsible for triggering events based
-  // on user input
+  // responsible for triggering events based on user input
   const timerEvent = (event: string) => {
-    console.log(event);
     switch (event) {
-      case "start":
+      case "start": // stars timer
         setHasStarted(true);
         break;
-      case "stop":
+      case "stop": // stops timer
         setHasStarted(false);
         break;
-      case "lap":
+      case "lap": // laps timer
         lap();
         break;
-      case "reset":
+      case "reset": // resets timer and laptimes
         setTimeMs(0);
         setLapTimeMs(0);
         setLaps([]);
