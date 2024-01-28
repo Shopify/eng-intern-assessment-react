@@ -1,4 +1,5 @@
 import React from 'react'
+import { centerStyle } from './App';
 
 interface StopWatchButtonProps {
     running: boolean;
@@ -8,7 +9,7 @@ interface StopWatchButtonProps {
     resetStopwatch: () => void;
 }
 
-export default function StopWatchButton({running, setRunning, setStop, updateLaps, resetStopwatch}: StopWatchButtonProps) {
+export default function StopWatchButton({running, setRunning, setStop, updateLaps, resetStopwatch }: StopWatchButtonProps) {
     return(
         <div style={centerStyle}>
             <button style={textStyle} onClick={setRunning} disabled={running}>Start</button>
@@ -22,10 +23,4 @@ export default function StopWatchButton({running, setRunning, setStop, updateLap
 export const textStyle = {
     fontFamily: "Arial, sans-serif",
     fontSize: "32px",
-}
-
-export const centerStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
 }
