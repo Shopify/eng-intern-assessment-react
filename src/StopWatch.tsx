@@ -1,12 +1,37 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
+/*
+  This component is responsible for rendering the stopwatch.
+  It takes no props, but it uses the StopWatchButton component.
+  It is responsible for keeping track of time, and displaying it,
+  as well as keeping track of laptimes. and displaying them.
+
+  __________________________________________________________________
+  |                                                                |
+  |  State:                                                        |
+  |    timeMs: number                                              |
+  |    lapTimeMs: number                                           |
+  |    displayTime: string                                         |
+  |    laps: string[]                                              |
+  |    hasStarted: boolean                                         |
+  |                                                                |
+  |  Methods:                                                      |
+  |    getTime(time: number): string                               |
+  |    lap(): void                                                 |
+  |    timerEvent(event: string): void                             |
+  |                                                                |
+  |________________________________________________________________|
+
+*/
+
+
 export default function StopWatch() {
-  const [timeMs, setTimeMs] = useState(0);
-  const [lapTimeMs, setLapTimeMs] = useState(0);
-  const [displayTime, setDisplayTime] = useState("00:00:00:00");
-  const [laps, setLaps] = useState([]);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [timeMs, setTimeMs] = useState(0); // Used to keep track of total time in milliseconds
+  const [lapTimeMs, setLapTimeMs] = useState(0); // Used to keep track of Curent lap time in milliseconds
+  const [displayTime, setDisplayTime] = useState("00:00:00:00"); // Used to display time
+  const [laps, setLaps] = useState([]); // Used to keep track of all laptimes
+  const [hasStarted, setHasStarted] = useState(false); // Used to keep track of if the timer is running
 
   // gets total time and curent lap time in ms
   useEffect(() => {
@@ -74,7 +99,12 @@ export default function StopWatch() {
   };
 
   // renders all laptimes
-  const totLaps = laps.map((laptime, index) => <p key={index}>{laptime}</p>);
+  const totLaps = laps.map((laptime, index, laps) => (
+    <div id="laps-con" key={index}>
+      <h3>{laps.length - index}</h3>
+      <h3>{laptime}</h3>
+    </div>
+  ));
 
   return (
     <div>

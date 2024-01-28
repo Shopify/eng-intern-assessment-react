@@ -20,17 +20,10 @@ body {
   background-color: #3c3c3c;
 }
 
-button {
-  border: 3px solid;
-  border-radius: 999px;
-  width: 70px;
-  height: 70px;
-  cursor: pointer;
-}
-
 /* ↑ CSS Reset ↑ */
 
-/* ↓ Stop Watch Styles ↓ */
+
+/* ↓ App Styles ↓ */
 
 #title {
   font-size: 7vw;
@@ -38,12 +31,22 @@ button {
   text-align: center;
 }
 
+/* ↑ App Styles ↑ */
+
+/* ↓ Stop Watch Styles ↓ */
+
 #timer {
   font-size: 5vw;
   margin: 15px;
   text-align: center;
-  font-family: 'Space Mono', monospace;
+}
 
+#laps-con {
+  border: 2px solid rgb(255, 255, 255);
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between; 
 }
 
 /* ↑ Stop Watch Styles ↑ */
@@ -55,6 +58,14 @@ button {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+button {
+  border: 3px solid;
+  border-radius: 999px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
 }
 
 #start {
