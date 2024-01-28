@@ -1,11 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import StopWatch from "./StopWatch";
 describe("StopWatch tests", () => {
     afterEach(() => {
         jest.clearAllMocks();
+        jest.useRealTimers();
     });
     it("render should match snapshot file", () => {
         const tree = renderer.create(<StopWatch />).toJSON();
@@ -74,4 +75,34 @@ describe("StopWatch tests", () => {
         fireEvent.click(screen.getByText("Stop"));
         expect(clearInterval).toHaveBeenCalled();
     });
+
+    it("should display the expected laps and times", () => {
+        jest.useFakeTimers();
+        render(<StopWatch/>);
+        fireEvent.click(screen.getByText("Start"));
+        renderer.act(() => {
+            jest.advanceTimersByTime(5000);
+        });
+        fireEvent.click(screen.getByText("Lap"));
+        renderer.act(() => {
+            jest.advanceTimersByTime(1000);
+        });
+        fireEvent.click(screen.getByText("Lap"));
+        renderer.act(() => {
+            jest.advanceTimersByTime(500);
+        });
+        fireEvent.click(screen.getByText("Lap"));
+        fireEvent.click(screen.getByText("Stop"));
+        expect(screen.getByText("Lap : Time")).toBeInTheDocument();
+
+        const lapList = screen.getByRole("list");
+        const { getAllByRole } = within(lapList);
+        const lapItems = getAllByRole("listitem");
+
+        expect(lapItems.length).toEqual(3);
+        expect(lapItems[0].textContent).toEqual("00:00:05.00");
+        expect(lapItems[1].textContent).toEqual("00:00:01.00");
+        expect(lapItems[2].textContent).toEqual("00:00:00.50");
+        expect(screen.getByText("00:00:06.50")).toBeInTheDocument();
+    })
 });
