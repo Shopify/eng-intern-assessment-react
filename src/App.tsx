@@ -4,12 +4,12 @@ import StopWatchButton from "./StopWatchButton";
 import "./styles.css";
 
 const App: React.FC = () => {
+    // Declaring state for time, status of stopwatch, and laps
     const [time, setTime] = useState<number>(0);
-
     const [isRunning, setIsRunning] = useState<boolean>(false);
-
     const [laps, setLaps] = useState<number[]>([]);
 
+    // Based on the status of stopwatch, use setInterval to increment time state
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
 
@@ -22,6 +22,7 @@ const App: React.FC = () => {
         };
     }, [isRunning]);
 
+    // Update laps array when the time state is not zero, calculate current lap by subtracting sum of previous laps from time state
     useEffect(() => {
         if (time) {
             const prevLaps = laps.slice(0, laps.length - 1);
