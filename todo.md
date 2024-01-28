@@ -53,6 +53,12 @@
         - [x] W key can be used for workout stat increase
         - [x] R key can be used for reset
 
+        Music:
+        - [x] Music button plays music when clicked
+        - [x] Music button stops music when clicked
+        - [x] Music button stops music when clicked again
+        - [x] Music button plays music when clicked again
+
 - [x] Code documentation:
     - [x] Document your code by adding comments and explanatory notes where necessary.
     - [x] Provide clear explanations of the implemented functionality and any important details.
@@ -70,7 +76,7 @@
     - [x] Add project overview
     - [x] Add project setup
     - [x] Add project goals
-    - [x] Add getting started
+    - [x] Add future implementations
     - [x] Credits/inspiration
 
 - [✅] Change site title, add favicon
