@@ -1,4 +1,3 @@
-
 body {
   background-color: #f0f0f0;
 }
@@ -21,13 +20,29 @@ body {
   margin-top: 20px;
 }
 
-.lap-container {
-  margin-top: 20px;
+.lap-time {
+  font-size: 1.4rem;
+  color: #888;
+  font-weight: bold;
 }
 
-.lap-time {
-  padding: 5px;
-  font-size: 1.4rem;
-  color: #888; 
-  font-weight: bold;
+/* Responsive styles */
+@media (max-width: 600px) {
+  .app-title {
+    font-size: 30px;
+  }
+
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, auto));
+    justify-items: center;
+  }
+
+  .lap-container {
+    padding: 0 10px; /* Add some padding on small screens */
+  }
+
+  .lap-time {
+    font-size: 14px;
+  }
 }

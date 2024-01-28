@@ -13,3 +13,11 @@
 .stopwatch-button:hover {
   background-color: #444;
 }
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .stopwatch-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
