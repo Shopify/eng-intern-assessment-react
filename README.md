@@ -14,7 +14,7 @@ https://github.com/iWolf22/eng-intern-assessment-react-joshua-dierickse/assets/7
 
 ![Screenshot of Stopwatch Tests](https://i.ibb.co/hsQZdLc/Screenshot-2024-01-28-142939.png)
 
-Implemented render, unit, and integration tests with React React Testing Library and Jest. Tests involve 5 sets of randomized testing data, including random button presses and random time intervals between those button presses. This mimics user interaction with the app and ensures that the app is rigorously tested.
+Implemented render, unit, and integration tests with the React Testing Library and Jest. Tests involve 5 sets of randomized testing data, including random button presses and random time intervals between those button presses. This mimics user interaction with the app and ensures that the app is rigorously tested.
 
 ---
 
