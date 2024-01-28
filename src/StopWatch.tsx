@@ -98,7 +98,7 @@ const StopWatch: React.FC = () => {
           <div key={groupIndex} className="lap-times">
             {group.map((lap, index) => (
               <div className="lap-time" key={groupIndex * 10 + index}>
-                Lap {groupIndex * 10 + index + 1}: {formatTime(lap)}
+                <b>Lap {groupIndex * 10 + index + 1}:</b> {formatTime(lap)}
               </div>
             ))}
           </div>

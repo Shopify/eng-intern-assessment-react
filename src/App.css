@@ -12,24 +12,25 @@
   justify-content: center;
   min-height: 100vh;
   background-color: #f2f2f2;
+  font-family: "Roboto", sans-serif;
 }
 
 h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 900;
   margin-bottom: 4rem;
+  text-shadow: 1px 4px 7px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 2rem;
   background-color: #fff;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 /* Buttons */
 .stopwatch-button {
@@ -41,6 +42,8 @@ h2 {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
 }
 
 .reset-button {
@@ -56,7 +59,7 @@ h2 {
 }
 
 .reset-button:hover {
-  background-color: #c82333;
+  background-color: #b51323;
 }
 
 .lap-button:hover {
@@ -64,14 +67,13 @@ h2 {
 }
 
 .stop-button:hover {
-  background-color: #0056b3;
+  background-color: #0362c8;
 }
 
 .stopwatch-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
-
 
 /* Laps */
 .lap-groups {
