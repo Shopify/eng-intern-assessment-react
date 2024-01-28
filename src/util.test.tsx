@@ -1,4 +1,4 @@
-import { getTimeDisplayValue, digitize } from "./util";
+import { getTimeDisplayValue, digitize, incrementTime } from "./util";
 
 describe('util tests', () => {
     describe('getTimeDisplay tests', () => {
@@ -24,4 +24,10 @@ describe('util tests', () => {
             expect(digitize(25)).toEqual('25');
         });
     });
+
+    describe ('incrementTime tests', () => {
+        it('should add 10 to the input time', () => {
+            expect(incrementTime(20)).toEqual(30);
+        });
+    })
 });

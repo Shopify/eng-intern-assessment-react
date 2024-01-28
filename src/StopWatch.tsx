@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import StopWatchButton from './StopWatchButton';
 import Timer from './Timer';
 import Laps from './Laps'
+import {incrementTime} from './util';
 
 export default function StopWatch() {
     const [time, setTime] = useState<number>(0);
@@ -14,7 +15,7 @@ export default function StopWatch() {
 
         if (isRunning) {
             interval = setInterval(() => {
-                setTime(time => time + 10);
+                setTime(incrementTime);
             }, 10);
         } else {
             clearInterval(interval);

@@ -7,3 +7,5 @@ export const getTimeDisplayValue = (timeInMs: number):string => {
 }
 
 export const digitize = (value: number): string => value < 10 ? `0${value}` : `${value}`;
+
+export const incrementTime = (time: number): number => time + 10;

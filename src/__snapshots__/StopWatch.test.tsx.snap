@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StopWatch tests render should match snapshot file 1`] = `
+[
+  <div>
+    00:00:00.00
+  </div>,
+  <button
+    disabled={false}
+    onClick={[Function]}
+  >
+    Start
+  </button>,
+  <button
+    disabled={true}
+    onClick={[Function]}
+  >
+    Stop
+  </button>,
+  <button
+    disabled={true}
+    onClick={[Function]}
+  >
+    Lap
+  </button>,
+  <button
+    disabled={false}
+    onClick={[Function]}
+  >
+    Reset
+  </button>,
+]
+`;
