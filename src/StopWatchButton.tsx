@@ -14,7 +14,7 @@ export const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   return (
     <button
       {...props}
-      className="px-7 py-2 bg-button-primary-default text-white transition duration-200 ease-in-out hover:bg-button-primary-hover focus:outline focus:outline-offset-2 focus:outline-focus-outline font-medium rounded-md"
+      className="px-7 py-2 bg-button-primary-default text-primary-100 transition duration-200 ease-in-out hover:bg-button-primary-hover focus:outline focus:outline-offset-2 focus:outline-focus-outline font-medium rounded-md"
     >
       {children}
     </button>
