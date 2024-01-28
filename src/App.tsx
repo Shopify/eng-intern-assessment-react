@@ -16,15 +16,16 @@ export default function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             if (isRunning) {
-                setTimeCounter(timeCounter + 1);
+                setTimeCounter(prevTimeCounter => prevTimeCounter + 1);
             }
-        }
-        , 1);
-
-        document.title = `Stopwatch: ${formatTime(timeCounter)}`;
-
+        }, 1);
+    
         return () => clearInterval(interval);
-    }, [isRunning, timeCounter]);
+    }, [isRunning]);
+    
+    useEffect(() => {
+        document.title = `Stopwatch: ${formatTime(timeCounter)}`;
+    }, [timeCounter]);
 
     return(
         <div data-testid="app-container" className="app-container">
