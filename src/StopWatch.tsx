@@ -80,12 +80,12 @@ export default function StopWatch() {
     
             {/* I had the lap times stored as an array, so an a hash table was used to grab each lap time and placed into the lap time list */}
             Lap Time:
-            <ul>
+            <ol>
                 {lapTime.map((lap, index) => (
                     <li key={index}>{Math.floor(lap / 1000)} s, {lap % 1000} ms</li>
                 ))}
 
-            </ul>
+            </ol>
         </div>
     );
 }
