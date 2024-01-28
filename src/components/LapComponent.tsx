@@ -18,7 +18,7 @@ export default function LapComponent(props: { lapNumber: number, absTime: number
     return(
         <div>
 
-            {/** Creates a grid for the 3 items */}
+            {/* Creates a grid for the 3 items */}
             <div className="lap-grid">
                 <p>{ (props.lapNumber + 1) + "." }</p>
                 <p>{ timeGenerator(props.absTime) }</p>

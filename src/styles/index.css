@@ -1,3 +1,8 @@
+/**
+ * @author Joshua Dierickse <jpcdieri@uwaterloo.ca>
+ */
+
+/* HTML background styles  */
 html {
     background-color: #c8b88a;
     font-family: 'JetBrains Mono', monospace;
@@ -5,6 +10,7 @@ html {
     overflow-x: hidden;
 }
 
+/* Centers the card vertically and horizontally */
 .center-div {
     height: 100vh;
     width: 100vw;
@@ -13,6 +19,7 @@ html {
     justify-content: center;
 }
 
+/* Styles for the "Shopify Stopwatch" header text */
 .header-text {
     color: #476930;
     text-align: center;
@@ -20,11 +27,13 @@ html {
     margin: 20px 0px 20px 0px;
 }
 
+/* Creates the grid for the lap list items */
 .lap-grid {
     display: grid;
     grid-template-columns: 2fr 5fr 5fr;
 }
 
+/* Styling the lap list items text */
 .lap-grid p {
     margin: 5px;
     text-align: right;
@@ -32,17 +41,20 @@ html {
     color: #86b049;
 }
 
+/* Styling the timer text */
 .timer-text {
     font-size: 175px;
     color: #86b049;
     margin: 0px;
 }
 
+/* Creating a flex-box for the buttons to span horizontally in a row */
 .button-div {
     display: flex;
     gap: 10px;
 }
 
+/* Styles for the "Made with ♡ by Joshua Dierickse" footer text */
 .footer-text {
     width: 100%;
     color: #476930;
@@ -52,6 +64,7 @@ html {
     text-align: center;
 }
 
+/* Media query to shrink fonts for laptop screens */
 @media screen and (max-width: 1200px) {
     .header-text {
         font-size: 60px;
@@ -61,6 +74,7 @@ html {
     }
 }
   
+/* Media query to shrink fonts for tablet/iPad screens */
 @media screen and (max-width: 800px) {
     .header-text {
         font-size: 40px;
@@ -70,6 +84,7 @@ html {
     }
 }
 
+/* Media query to shrink fonts for phone screens */
 @media screen and (max-width: 600px) {
     .header-text {
         font-size: 30px;
