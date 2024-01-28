@@ -6,7 +6,7 @@ import StopWatchButton from './StopWatchButton'
 export default function App() {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(0);
-  const [laps, setLaps] = useState<number[]>([]);
+  const [laps, setLaps] = useState<number[]>([]); // using array here to keep track of multiple timings
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
 
   const handleStart = () => {
@@ -54,6 +54,7 @@ export default function App() {
   };
 
   const handleLap = () => {
+    // update state-managed array for laps to also take the most recent time
     setLaps([...laps, time]);
   };
 
