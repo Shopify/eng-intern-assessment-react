@@ -65,7 +65,7 @@ export default function StopWatch() {
               return (
                 <li key={`lap${ind + 1}`}>
                   <p>
-                    Lap {ind + 1}: {timeString}
+                    {`Lap ${ind + 1}: ${timeString}`}
                   </p>
                 </li>
               );

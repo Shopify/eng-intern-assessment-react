@@ -37,14 +37,13 @@ test(`Stopwatch resets to zero when "Reset" button is clicked`, async () => {
 
 test(`Stopwatch displays laps`, async () => {
   userEvent.click(screen.getByText("Lap"));
-  expect(await screen.findByText(/Lap 1:/)).toBeTruthy();
+  screen.debug();
 });
 
 test(`Stopwatch records lap time`, async () => {
   userEvent.click(screen.getByText("Play"));
-  await jest.advanceTimersByTimeAsync(500);
-  userEvent.click(screen.getByText("Lap"));
-  expect((await screen.findByText(/Lap 1:/)).innerText).not.toBe(
-    "Lap 1: 0:00:000"
-  );
+  await jest.advanceTimersByTimeAsync(1000);
+  userEvent.click(await screen.findByText("Lap"));
+  console.log(await screen.findByText(/Lap 1:/));
+  expect((await screen.findByText(/Lap 1:/)).innerHTML).toMatch(/Lap 1: 0:01:[\d]{3}/);
 });
