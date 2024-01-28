@@ -10,7 +10,7 @@ function App() {
     const startStopwatch = () => {
         intervalRef.current 
             ? null
-            : intervalRef.current = setInterval(() => setTimeElapsed(t => t + 0.01), 10); 
+            : intervalRef.current = setInterval(() => setTimeElapsed(t => t + 10), 10); 
     }
 
     const stopStopwatch = () => {
@@ -28,9 +28,22 @@ function App() {
         setTimeElapsed(0);
     }
 
+    const formatTime = (timeInMilliseconds: number) => {
+        const minutes = Math.floor((timeInMilliseconds % 3600000) / 60000);
+        const seconds = Math.floor((timeInMilliseconds % 60000) / 1000);
+        const milliseconds = Math.floor((timeInMilliseconds % 1000) / 10);
+
+        const doubleDigits = (input: number) => {
+            const output = input < 10 ? `0${input}` : input;
+            return output;
+        };
+
+        return `${doubleDigits(minutes)}:${doubleDigits(seconds)}.${doubleDigits(milliseconds)}`;
+    }
+
     return (
         <div>
-            <StopWatch time={Number(timeElapsed.toFixed(2))} />
+            <StopWatch time={formatTime(timeElapsed)} />
             <div>
                 <StopWatchButton label={"start"} handleButtonClick={() => startStopwatch()} />
                 <StopWatchButton label={"stop"} handleButtonClick={() => stopStopwatch()} />

@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface stopWatchProps {
-    time: number;
+    time: string
 }
 
 const StopWatch = ({time} : stopWatchProps) => {
