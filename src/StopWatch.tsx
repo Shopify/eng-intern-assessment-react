@@ -10,7 +10,7 @@ export default function StopWatch() {
 		laps: [],
 	});
 
-	const { time, isRunning } = timer;
+	const { time, isRunning, laps } = timer;
 
 	useEffect(() => {
 		let interval: NodeJS.Timer;
@@ -27,9 +27,20 @@ export default function StopWatch() {
 		setTimer({ ...timer, isRunning: !isRunning });
 	};
 
-	const resetTimer = () => {};
+	const resetTimer = () => {
+		setTimer({
+			time: 0,
+			isRunning: false,
+			laps: [],
+		});
+	};
 
-	const lapTimer = () => {};
+	const lapTimer = () => {
+		setTimer({
+			...timer,
+			laps: [...laps, { number: laps.length, totalTime: 0 }],
+		});
+	};
 
 	return (
 		<main>

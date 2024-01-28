@@ -6,6 +6,5 @@ export type Timer = {
 
 type Lap = {
 	number: number;
-	lapTime: number;
 	totalTime: number;
 };
