@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
-
+import './styles.css'
+import Laps from './Laps'
 
 export default function App() {
     const [isRunning, setIsRunning] = useState(false)
     const [time, setTime] = useState(0)
+    const [lastLapTime, setLastLapTime] = useState(0)
+    const [laps, setLaps] = useState<number[]>([])
 
     /**
      * Function that uses setTimeout to simulate delay
@@ -33,10 +36,15 @@ export default function App() {
 
     const handleReset = () => {
         setTime(0)
+        setLaps([])
+        setLastLapTime(0)
     }
     
     const handleLap = () => {
-
+        const newLap = time - lastLapTime
+        const newLaps = [...laps, newLap]
+        setLaps(newLaps)
+        setLastLapTime(time)
     }
 
     const handleStart = () => {
@@ -48,7 +56,7 @@ export default function App() {
     }
 
     return(
-        <div>
+        <div className='stopwatch-container'>
             <StopWatch timeInTenMillis={time}/>
             <StopWatchButton
                 isRunning={isRunning}
@@ -57,6 +65,7 @@ export default function App() {
                 lap={handleLap}
                 reset={handleReset}
             />
+            <Laps lapTimes={laps}/>
         </div>
     )
 }

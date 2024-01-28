@@ -40,7 +40,7 @@ export default function StopWatchButton({
     }
 
     return(
-        <div>
+        <div className='button-container'>
             <button onClick={handleLapResetClick}>{isRunning ? "Lap": "Reset"}</button>
             <button onClick={handleStartStopClick}>{isRunning ? "Stop": "Start"}</button>
         </div>
