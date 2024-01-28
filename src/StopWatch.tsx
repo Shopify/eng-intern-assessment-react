@@ -6,7 +6,6 @@ import StopWatchButton from "./StopWatchButton";
   It takes no props, but it uses the StopWatchButton component.
   It is responsible for keeping track of time, and displaying it,
   as well as keeping track of laptimes. and displaying them.
-
   __________________________________________________________________
   |                                                                |
   |  State:                                                        |
@@ -22,9 +21,7 @@ import StopWatchButton from "./StopWatchButton";
   |    timerEvent(event: string): void                             |
   |                                                                |
   |________________________________________________________________|
-
 */
-
 
 export default function StopWatch() {
   const [timeMs, setTimeMs] = useState(0); // Used to keep track of total time in milliseconds
@@ -99,7 +96,7 @@ export default function StopWatch() {
   // renders all laptimes
   const totLaps = laps.map((laptime, index, laps) => (
     <div id="laps-con" key={index}>
-      <h3>{laps.length - index}</h3>
+      <h3>Lap {laps.length - index}</h3>
       <h3>{laptime}</h3>
     </div>
   ));

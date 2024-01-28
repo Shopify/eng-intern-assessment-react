@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 
-interface ChildProps {
-  onTimerEvent: (comand: string) => void;
-}
-
 /* 
-  This component is responsible for rendering the buttons
-  and handling the user input. It takes a function as a prop, 
-  and depending on the button pressed, it will call that function.
+This component is responsible for rendering the buttons
+and handling the user input. It takes a function as a prop, 
+and depending on the button pressed, it will call that function.
   __________________________________________________________________
   |                                                                |
   |  Props:                                                        |
@@ -21,7 +17,11 @@ interface ChildProps {
   |    handleLapReset(): void                                      | 
   |                                                                |
   |________________________________________________________________|
-*/
+  */
+
+interface ChildProps {
+  onTimerEvent: (comand: string) => void;
+}
 
 export default function StopWatchButton({ onTimerEvent }: ChildProps) {
   const [hasStarted, setHasStarted] = useState(false); // Used to keep track of if the timer is running
@@ -51,8 +51,12 @@ export default function StopWatchButton({ onTimerEvent }: ChildProps) {
 
   return (
     <div id="sw-buttons">
-      <button id={hasStarted? "stop" : "start"} onClick={handleStartStop}>{hasStarted ? "Stop" : "Start"}</button>
-      <button id="reset" onClick={handleLapReset}>{hasStarted ? "Lap" : "Reset"}</button>
+      <button id={hasStarted ? "stop" : "start"} onClick={handleStartStop}>
+        {hasStarted ? "Stop" : "Start"}
+      </button>
+      <button id="reset" onClick={handleLapReset}>
+        {hasStarted ? "Lap" : "Reset"}
+      </button>
     </div>
   );
 }
