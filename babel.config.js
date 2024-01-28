@@ -4,4 +4,7 @@ module.exports = {
       '@babel/preset-react',
       '@babel/preset-typescript',
     ],
+    "paths": {
+      "react": [ "./node_modules/@types/react" ]
+      }
   };
