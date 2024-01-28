@@ -59,21 +59,32 @@ const Stopwatch: React.FC = () => {
         <div className="min-w-48">{`${timeBreakdown.centiseconds}`}</div>
       </div>
 
-      <div className="w-full">
-        <StopWatchButton
-          action={isRunning ? "Pause" : "Start"}
-          onClick={() => setIsRunning(!isRunning)}
-        />
+      <div className="flex justify-around w-full max-w-2xl">
         {isRunning ? (
-          <StopWatchButton action="Lap" onClick={createNewLap} />
+          <>
+            <StopWatchButton
+              action="Pause"
+              onClick={() => setIsRunning(!isRunning)}
+              className="bg-red-300"
+            />
+            <StopWatchButton action="Lap" onClick={createNewLap} />
+          </>
         ) : (
-          <StopWatchButton action="Reset" onClick={handleReset} />
+          <>
+            <StopWatchButton
+              action="Start"
+              onClick={() => setIsRunning(!isRunning)}
+              className="bg-green-300"
+            />
+            <StopWatchButton action="Reset" onClick={handleReset} />
+          </>
         )}
+        <StopWatchButton
+          onClick={toggleLapView}
+          action={lapView === "relative" ? "Absolute" : "Relative"}
+        />
       </div>
       <div className="w-full max-w-2xl">
-        <button onClick={toggleLapView}>
-          {lapView === "relative" ? "absolute" : "relative"}
-        </button>
         {lapView === "relative" && <LapTime lapTime={currentLapTime} />}
         <LapList lapTimes={lapTimes} viewType={lapView} />
       </div>

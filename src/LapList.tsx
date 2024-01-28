@@ -13,7 +13,7 @@ const AbsoluteLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
   <>
     {lapTimes.map((lapTime, index) => {
       return (
-        <li key={lapTime}>
+        <li key={`${lapTime}-${index}`}>
           <LapTime lapTime={lapTime} index={lapTimes.length - index} />
         </li>
       );
@@ -41,7 +41,7 @@ const RelativeLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => {
     <>
       {relativeLapTimes.map((lapTime, index) => (
         <li
-          key={lapTime}
+          key={`${lapTime}-${index}`}
           className={
             lapTime === bestTime
               ? " text-green-600"
