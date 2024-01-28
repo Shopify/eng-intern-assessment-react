@@ -1,20 +1,24 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 interface StopWatchButtonProps {
   labels: string[];
+  active: boolean;
   onClick: () => void;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, onClick }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, onClick }) => {
   const [label, setLabel] = useState(labels[0]);
 
-  const handleClick = () => {
-    onClick();
-    setLabel(labels[0] === label ? labels[1] : labels[0]);
-  }
+  useEffect(() => {
+    if (active) {
+      setLabel(labels[1]);
+    } else {
+      setLabel(labels[0]);
+    }
+  });
 
   return(
-    <button type="button" onClick={handleClick}>{label}</button>
+    <button type="button" onClick={onClick}>{label}</button>
   )
 }
 
