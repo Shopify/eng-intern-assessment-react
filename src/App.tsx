@@ -1,4 +1,6 @@
 import React from 'react'
+import StopWatch from './StopWatch'
+
 import { useState, useRef} from 'react'
 import '../styles.css'
 
@@ -6,7 +8,7 @@ export default function App() {
     const [time, setTime] = useState<number>(0)
     const [currentTime, setCurrentTime] = useState(null)
     const [isRunning, setIsRunning] = useState<boolean>(false);
-    const [lap, setLap] = useState([]);
+    const [lap, setLap] = useState<number[]>([]);
     const intervalRef = useRef(null)
 
 
@@ -49,6 +51,7 @@ export default function App() {
             setLap((previousLap: any) => [...previousLap, lapTime]);
         }
     }
+
     //making the time much more savoury to look at
     let elapsed = (time - currentTime) / 1000;
 
@@ -58,10 +61,10 @@ export default function App() {
             <h1>{elapsed.toFixed(2)}s</h1>
             <div className = 'buttons'>
             {/* where the magic happens */}
-            <button onClick={handleStart}>Start</button>
-            <button onClick={handleStop}>Stop</button>
-            <button onClick={handleLap}>Lap</button>
-            <button onClick={handleReset}>Reset</button>
+            <StopWatch          handleStart={handleStart}
+            handleStop={handleStop}
+            handleLap={handleLap}
+            handleReset={handleReset} />
             </div>
             </div>
             <ul>
