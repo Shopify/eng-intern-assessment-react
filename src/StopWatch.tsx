@@ -49,7 +49,7 @@ const Stopwatch: React.FC = () => {
     lapTimes.length === 0 ? totalTime : totalTime - lapTimes[0];
 
   return (
-    <div className="text-center">
+    <div className="flex flex-col items-center text-center">
       <h1 className="text-6xl font-bold underline py-10">Stopwatch</h1>
       <div className="flex justify-center text-9xl py-5 -space-x-3">
         <div className="min-w-48">{`${timeBreakdown.minutes}`}</div>
@@ -59,7 +59,7 @@ const Stopwatch: React.FC = () => {
         <div className="min-w-48">{`${timeBreakdown.centiseconds}`}</div>
       </div>
 
-      <div>
+      <div className="w-full">
         <StopWatchButton
           action={isRunning ? "Pause" : "Start"}
           onClick={() => setIsRunning(!isRunning)}
@@ -70,7 +70,7 @@ const Stopwatch: React.FC = () => {
           <StopWatchButton action="Reset" onClick={handleReset} />
         )}
       </div>
-      <div>
+      <div className="w-full max-w-2xl">
         <button onClick={toggleLapView}>
           {lapView === "relative" ? "absolute" : "relative"}
         </button>

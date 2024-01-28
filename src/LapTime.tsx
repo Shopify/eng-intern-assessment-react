@@ -10,7 +10,7 @@ interface LapTimeProps {
 const LapTime: React.FC<LapTimeProps> = ({ lapTime, index }) => {
   const timeBreakdown = getTimeBreakdown(lapTime);
   return (
-    <div className="flex justify-around text-4xl">
+    <div className="flex justify-between text-4xl items-center">
       <div>{index ? `Lap ${index}` : "Current Lap"}</div>
       {}
       <div className="flex justify-center text-4xl py-5 -space-x-1">
