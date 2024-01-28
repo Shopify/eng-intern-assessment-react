@@ -4,16 +4,14 @@ import "./styles.css";
 
 import StopWatchButton from "./StopWatchButton";
 
-import { formatTime } from "./utils";
-import LapList from "./LapList";
-
-type ViewType = "absolute" | "relative";
+import { getTimeBreakdown } from "./utils";
+import LapList, { LapViews } from "./LapList";
 
 const Stopwatch: React.FC = () => {
   const [totalTime, setTotalTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [laps, setLaps] = useState<number[]>([]);
-  const [lapView, setLapView] = useState<ViewType>("relative");
+  const [lapTimes, setLapTimes] = useState<number[]>([]);
+  const [lapView, setLapView] = useState<LapViews>("relative");
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -32,29 +30,29 @@ const Stopwatch: React.FC = () => {
   const handleReset = () => {
     setTotalTime(0);
     setIsRunning(false);
-    setLaps([]);
+    setLapTimes([]);
   };
 
   const createNewLap = () => {
     let newLap: number = totalTime;
-    setLaps((prevLaps) => [...prevLaps, newLap]);
+    setLapTimes((prevLaps) => [newLap, ...prevLaps]);
   };
 
   const toggleLapView = () => {
     setLapView(lapView === "relative" ? "absolute" : "relative");
   };
 
+  const timeBreakdown = getTimeBreakdown(totalTime);
+
   return (
     <div className="text-center">
       <h1 className="text-6xl font-bold underline py-10">Stopwatch</h1>
-      <div className="flex justify-center text-9xl py-5 -space-x-5">
-        <div className="min-w-48">{`${formatTime(totalTime).minutes}`}</div>
+      <div className="flex justify-center text-9xl py-5 -space-x-3">
+        <div className="min-w-48">{`${timeBreakdown.minutes}`}</div>
         <div>:</div>
-        <div className="min-w-48">{`${formatTime(totalTime).seconds}`}</div>
+        <div className="min-w-48">{`${timeBreakdown.seconds}`}</div>
         <div>.</div>
-        <div className=" min-w-48">{`${
-          formatTime(totalTime).centiseconds
-        }`}</div>
+        <div className="min-w-48">{`${timeBreakdown.centiseconds}`}</div>
       </div>
 
       <div>
@@ -72,7 +70,7 @@ const Stopwatch: React.FC = () => {
         <button onClick={toggleLapView}>
           {lapView === "relative" ? "absolute" : "relative"}
         </button>
-        <LapList lapList={laps} viewType={lapView} />
+        <LapList lapTimes={lapTimes} viewType={lapView} />
       </div>
     </div>
   );

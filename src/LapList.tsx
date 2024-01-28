@@ -1,53 +1,51 @@
 import React from "react";
 
-import { formatTime } from "./utils";
+import { getTimeBreakdown } from "./utils";
+import LapTime from "./LapTime";
 
-// define custom type ViewType to restrict the value of the viewType prop to only one of two options:
-type ViewType = "absolute" | "relative";
+export type LapViews = "absolute" | "relative";
 
-// define props
 interface LapListProps {
-  lapList: number[];
-  viewType: ViewType;
+  lapTimes: number[];
+  viewType: LapViews;
 }
 
-const AbsoluteLapList: React.FC<{ lapList: number[] }> = ({ lapList }) => (
+const AbsoluteLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
   <>
-    {lapList
-      .slice()
-      .reverse()
-      .map((lap) => (
-        <li key={`lap-at-${lap}-ms`}>{formatTime(lap)}</li>
-      ))}
+    {lapTimes.map((lapTime) => {
+      return (
+        <li key={lapTime}>
+          <LapTime lapTime={lapTime} />
+        </li>
+      );
+    })}
   </>
 );
 
-const RelativeLapList: React.FC<{ lapList: number[] }> = ({ lapList }) => (
+const RelativeLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
   <>
-    {lapList
-      .slice()
-      .reverse()
-      .map((lap, index, reversedLaps) => {
-        let timeElapsedSinceLastLap =
-          index === reversedLaps.length - 1
-            ? lap
-            : lap - reversedLaps[index + 1];
-        return (
-          <li key={`lap-at-${lap}-ms`}>
-            {formatTime(timeElapsedSinceLastLap)}
-          </li>
-        );
-      })}
+    {lapTimes.map((lapTime, index) => {
+      let prevLapTime = 0;
+      if (index < lapTimes.length - 1) {
+        prevLapTime = lapTimes[index + 1];
+      }
+      let timeElapsedSinceLastLap = lapTime - prevLapTime;
+      return (
+        <li key={lapTime}>
+          <LapTime lapTime={timeElapsedSinceLastLap} />
+        </li>
+      );
+    })}
   </>
 );
 
-const LapList: React.FC<LapListProps> = ({ lapList, viewType }) => {
+const LapList: React.FC<LapListProps> = ({ lapTimes, viewType }) => {
   return (
-    <ol reversed>
+    <ol>
       {viewType === "absolute" ? (
-        <AbsoluteLapList lapList={lapList} />
+        <AbsoluteLapList lapTimes={lapTimes} />
       ) : (
-        <RelativeLapList lapList={lapList} />
+        <RelativeLapList lapTimes={lapTimes} />
       )}
     </ol>
   );
