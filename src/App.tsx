@@ -1,27 +1,21 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 
 function App() {
-    const [time, setTime] = useState<number>(0);
-    const [isTiming, setIsTiming] = useState<boolean>(false);
+    const intervalRef = useRef<NodeJS.Timeout>(null);
+    const [timeElapsed, setTimeElapsed] = useState<number>(0);
 
-    useEffect(() => {
-        console.log(time)
-    }, [time]);
-
-    useEffect(() => {
-        console.log(isTiming)
-    }, [isTiming]);
-
-    const startTime = () => {
-        isTiming === false ? setIsTiming(!isTiming) : null;
-        setTime(time + 1);
+    const startStopwatch = () => {
+        intervalRef.current 
+            ? null
+            : intervalRef.current = setInterval(() => setTimeElapsed(t => t + 0.01), 10); 
     }
 
-    const stopTime = () => {
-        isTiming ? setIsTiming(!isTiming) : null;
+    const stopStopwatch = () => {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
     }
 
     const addLap = () => {
@@ -29,18 +23,19 @@ function App() {
     }
 
     const resetStopwatch = () => {
-        isTiming === true ? setIsTiming(!isTiming) : null;
-        setTime(0);
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+        setTimeElapsed(0);
     }
 
-    return(
+    return (
         <div>
-            <StopWatch time={time}/>
+            <StopWatch time={Number(timeElapsed.toFixed(2))} />
             <div>
-                <StopWatchButton label={"start"} handleButtonClick={() => startTime()}/>
-                <StopWatchButton label={"stop"} handleButtonClick={() => stopTime()}/>
-                <StopWatchButton label={"lap"} handleButtonClick={() => addLap()}/>
-                <StopWatchButton label={"reset"} handleButtonClick={() => resetStopwatch()}/>
+                <StopWatchButton label={"start"} handleButtonClick={() => startStopwatch()} />
+                <StopWatchButton label={"stop"} handleButtonClick={() => stopStopwatch()} />
+                <StopWatchButton label={"lap"} handleButtonClick={() => addLap()} />
+                <StopWatchButton label={"reset"} handleButtonClick={() => resetStopwatch()} />
             </div>
         </div>
     )
