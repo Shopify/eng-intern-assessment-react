@@ -1,11 +1,26 @@
 import React, { useState, useRef } from "react";
-import LapTable from "./LapTable";
 
-export default function StopWatchButton() {
+interface LapTableProps {
+  lap: string[][];
+  setLap: React.Dispatch<React.SetStateAction<string[][]>>;
+}
+
+export default function StopWatchButton({ lap, setLap }: LapTableProps) {
   const timer = useRef(null);
-  const [lap, setLap] = useState([]);
+  const [started, setStarted] = useState(false);
 
   function stopOrResetStopWatch(reset: boolean) {
+    /*
+      Stop the stopwatch by clearing the interval that is updating the stopwatch.
+      If reset is true, reset the stopwatch to 00:00:00:00.
+
+      Parameters:
+        reset (boolean): Whether to reset the stopwatch to 00:00:00:00.
+
+      Returns:
+        None
+    */
+
     // Get the elements representing the individual digits of the stopwatch.
     let hours = document.getElementById("hours");
     let minutes = document.getElementById("minutes");
@@ -27,6 +42,17 @@ export default function StopWatchButton() {
   }
 
   function startStopWatch() {
+    /*
+      Start the stopwatch by updating the current time and then displaying this.
+      If the stopwatch has already started, return.
+
+      Parameters:
+        None
+
+      Returns:
+        None
+    */
+
     // If the timer has already started, return.
     if (timer.current != null) {
       return;
@@ -72,7 +98,18 @@ export default function StopWatchButton() {
     }, 1);
   }
 
+
   function lapUpdate() {
+    /*
+      Update the lap table by adding a new row to the table.
+
+      Parameters:
+        None
+
+      Returns:
+        None
+    */
+
     // Get the elements representing the individual digits of the stopwatch.
     let hours = document.getElementById("hours").innerHTML;
     let minutes = document.getElementById("minutes").innerHTML;
@@ -86,52 +123,57 @@ export default function StopWatchButton() {
         lap.length + 1,
         hours + ":" + minutes + ":" + seconds + ":" + milliseconds,
         "",
-      ],
+      ].map(String),
     ]);
   }
 
   return (
     <>
-      <div className="row text-center mt-3">
-        <div className="col-3">
+      <div className="row justify-content-center text-center mt-3">
+        <div className="col-3 d-flex justify-content-center">
           <button
             type="button"
-            className="btn btn-dark"
-            onClick={startStopWatch}
-          >
-            Start
-          </button>
-        </div>
-        <div className="col-3">
-          <button
-            type="button"
-            className="btn btn-dark"
-            onClick={() => {
-              stopOrResetStopWatch(false);
-            }}
-          >
-            Stop
-          </button>
-        </div>
-        <div className="col-3">
-          <button
-            type="button"
-            className="btn btn-dark"
+            className="btn btn-dark reset"
             onClick={() => {
               stopOrResetStopWatch(true);
+              setStarted(false);
             }}
           >
-            Reset
+            <i className="bi bi-arrow-clockwise"></i>
           </button>
         </div>
-        <div className="col-3">
+        <div className="col-3 d-flex justify-content-center">
+          {!started && (
+            <button
+              type="button"
+              className="btn btn-dark start"
+              onClick={() => {
+                startStopWatch();
+                setStarted(true);
+              }}
+            >
+              Start
+            </button>
+          )}
+
+          {started && (
+            <button
+              type="button"
+              className="btn btn-dark stop"
+              onClick={() => {
+                stopOrResetStopWatch(false);
+                setStarted(false);
+              }}
+            >
+              Stop
+            </button>
+          )}
+        </div>
+        <div className="col-3 d-flex justify-content-center">
           <button type="button" className="btn btn-dark" onClick={lapUpdate}>
             Lap
           </button>
         </div>
-      </div>
-      <div className="row text-center mt-3">
-        <LapTable lap={lap} />
       </div>
     </>
   );

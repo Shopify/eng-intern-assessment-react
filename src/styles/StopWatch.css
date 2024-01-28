@@ -1,0 +1,116 @@
+body{
+    background-color: #150d34;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center; /* Center everthing horizontally */
+    align-items: center; /* Center everthing vertically */
+    height: 100%; /* Set the height to 100% of the viewport height */
+}
+
+
+.stopwatch-container {
+    display: flex;
+    justify-content: center; /* Center stopwatch container horizontally */ 
+    align-items: center; /* Center stopwatch container vertically */
+    margin-top: 15vh; /* Add some space above the stopwatch, stops laps pushing it up*/
+    overflow: hidden; /* Prevent content from spilling out */
+}
+
+.stopwatch-border {
+    background: #3b2e72;
+    border-radius: 5%; /* Rounded corners */
+    height: 30vw; /* Responsive based on viewport width */
+    width: 55vw;  /* Responsive based on viewport width */
+    display: flex; 
+    justify-content: center; /* Center stopwatch horizontally */
+    align-items: center; /* Center stopwatch vertically */
+    min-height: 220px; /* Set a min height to match inner clock */
+    min-width: 230px; /* Set a min width to match inner clock */
+}
+
+.timer-circle {
+    background: #150d34; /* Dark background */
+    min-height: 200px; /* Set a min height to avoid elements being squished on small screens */
+    min-width: 210px; /* Set a min width to avoid elements being squished on small screens */
+    border-radius: 5%;
+    color: whitesmoke; /* Light text */
+    height: 25vw; /* Responsive based on viewport width */
+    width: 50vw; /* Keep width and height the same for a circle */
+    display: flex;
+    justify-content: center; /* Center clock horizontally */
+    align-items: center; /* Center clock vertically */
+    font-size: 8vw; /* Font size based on viewport width */
+    text-shadow: 0px 0px 10px rgba(59, 186, 156, 0.7); /* Soft glow effect */
+}
+
+#milliseconds {
+    font-size: 4vw;
+}
+
+
+button {
+    background-color: #3b2e72 !important;
+    border-radius: 20px !important; /* Rounded corners */
+    border-width: 0px !important; /* Remove border */
+    width: 20vh; /* Keep buttons the same width */
+    display: "center";
+    font-size: 2vw;
+    margin: 0.5vw 0.5vw; /* Add some space between buttons */
+    margin-bottom: 15px; /* Add some space below the buttons */
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden; /* Prevent content from spilling out */
+    min-width: 55px; /* Set a min width to avoid text being squished on small screens */
+}
+
+button:hover {
+    background-color: #46339d !important;
+}
+
+.start {
+    background-color: #d3d0bc !important;
+    color: #150d34 !important;
+}
+
+.start:hover {
+    background-color: #a5a292 !important;
+}
+
+.stop {
+    background-color: #640907 !important;
+}
+
+.stop:hover {
+    background-color: #ab0b08 !important;
+}
+
+.lap-table {
+    font-size: 1em;
+    color: #d3d0bc;
+}
+
+.lap-table-container {
+    max-height: 20vh; /* Set a max height for the lap table */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 1vh; /* Add some space above the lap table */
+    overflow: flex;
+    max-width: 55vw; /* Set a max width for the lap table to match stopwatch*/
+}
+
+/* The scrollbar's track */
+.lap-table-container::-webkit-scrollbar-track {
+    background: #3b2e72; /* Match the track to the stopwatch border background */
+    border-radius: 10px; /* Round corners for the track */
+}
+
+/* The scrollbar's handle */
+.lap-table-container::-webkit-scrollbar-thumb {
+    background-color: #46339d; /* A color that stands out or matches the button hover */
+    border-radius: 10px; /* Rounded corners for the handle */
+    border: 3px solid #3b2e72; /* Match the scrollbar track */
+}
+
+/* The scrollbar itself (all of it) */
+.lap-table-container::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+

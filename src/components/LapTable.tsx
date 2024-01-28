@@ -4,8 +4,19 @@ interface LapTableProps {
   lap: string[][];
 }
 
-const LapTable: React.FC<LapTableProps> = ({ lap }: LapTableProps) => {
+export default function LapTable({ lap }: LapTableProps) {
+  
   function convertTimeToMilliseconds(timeString: string) {
+    /*
+      Convert a string of the form "hours:minutes:seconds:milliseconds" to milliseconds.
+
+      Parameters:
+        timeString (string): The string to convert to milliseconds.
+      
+      Returns: 
+        The number of milliseconds in the given time string.
+    */
+
     // Split the string into [hours, minutes, seconds, milliseconds]
     const parts = timeString.split(":").map(Number);
 
@@ -19,6 +30,17 @@ const LapTable: React.FC<LapTableProps> = ({ lap }: LapTableProps) => {
   }
 
   function convertMillisecondsToTime(milliseconds: number) {
+    /*
+      Convert a number of milliseconds to a string of the form "hours:minutes:seconds:milliseconds".
+
+      Parameters:
+        milliseconds (number): The number of milliseconds to convert to a string.
+      
+      Returns: 
+        The string representation of the given number of milliseconds.
+    */
+
+    // Calculate the number of hours, minutes, seconds, milliseconds
     let hours = Math.floor(milliseconds / 3600000);
     let minutes = Math.floor((milliseconds % 3600000) / 60000);
     let seconds = Math.floor(((milliseconds % 360000) % 60000) / 1000);
@@ -29,6 +51,7 @@ const LapTable: React.FC<LapTableProps> = ({ lap }: LapTableProps) => {
     let secondsString = seconds.toString();
     let millisecondsString = millisecondsLeft.toString();
 
+    // String formatting
     if (hours < 10) {
       hoursString = "0" + hoursString;
     }
@@ -57,6 +80,16 @@ const LapTable: React.FC<LapTableProps> = ({ lap }: LapTableProps) => {
   }
 
   function findDifference(currentLap: string, index: number) {
+    /*
+      Find the difference in time between the current lap and the previous lap.
+
+      Parameters:
+        currentLap (string): The current lap.
+        index (number): The index of the current lap.
+      
+      Returns: 
+        The difference between the current lap and the previous lap.
+    */
     if (index == 0) {
       return currentLap;
     }
@@ -67,6 +100,7 @@ const LapTable: React.FC<LapTableProps> = ({ lap }: LapTableProps) => {
     let difference = currentTimeInteger - previousTimeInteger;
     return convertMillisecondsToTime(difference);
   }
+
 
   return (
     <div className="row text-center mt-3" id="lap-container">
@@ -92,4 +126,4 @@ const LapTable: React.FC<LapTableProps> = ({ lap }: LapTableProps) => {
   );
 };
 
-export default LapTable;
+

@@ -1,15 +1,13 @@
-import React from "react";
-import StopWatchButton from "./components/StopWatchButton";
+import React, {useState} from "react";
 import StopWatch from "./components/StopWatch";
 
 export default function App() {
+  const [lap, setLap] = useState([]);
+
   return (
     <>
       <div>
-        <StopWatch />
-      </div>
-      <div>
-        <StopWatchButton></StopWatchButton>
+        <StopWatch lap={lap} setLap={setLap}/>
       </div>
     </>
   );
