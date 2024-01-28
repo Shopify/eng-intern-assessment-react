@@ -1,3 +1,13 @@
+/**
+ * @author Joshua Dierickse <jpcdieri@uwaterloo.ca>
+ */
+
+/**
+ * Takes in the time in seconds and formats it into a string to be displayed nicely in a HH:MM:SS.ss format
+ *
+ * @param time - the time in seconds
+ * @return formatted string
+ */
 export default function timeGenerator(time: number) {
     var timeString: String = "";
     if (time >= 3600) {

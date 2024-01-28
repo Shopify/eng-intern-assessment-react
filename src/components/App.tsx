@@ -19,29 +19,33 @@ import ListScroller from './ListScroller';
  */
 export default function App() {
 
-    // Integer variable that holds the time value that gets displayed to the screen
+    // Initialize state variables 
     const [time, setTime] = useState(0);
-
-    // Boolean variable that describes if the stop watch is running or not
     const [running, setRunning] = useState(false);
-
-    // List of laps with both the absolute time (time the stop watch has been running) and the 
     const [timeList, setTimeList] = useState<{ absTime: number, lapTime: number }[]>([]);
     const [timePress, setTimePress] = useState(Date.now());
     const [timePaused, setTimePaused] = useState(0);
     const [lastButton, setLastButton] = useState("Reset");
+
+    // Create a global clock interval variable
     var clockInterval: NodeJS.Timer;
 
+    // Updates the current time only if the clock is running
     function updateTime() {
         if (running === true) {
             setTime((Date.now() - timePress) / 1000);
         }
     }
 
+    // If the Start button gets clicked
     function startButton() {
+
+        // If previous button pressed was Reset, update timePress to the current time
         if (lastButton === "Reset") {
             setTimePress(Date.now());
         }
+
+        // If the previous button pressed was Stop, subtract off the extra paused time
         if (lastButton === "Stop") {
             setTimePress(timePress + Date.now() - timePaused);
         }
@@ -49,7 +53,10 @@ export default function App() {
         setLastButton("Start");
     }
 
+    // If the Stop button gets clicked
     function stopButton() {
+
+        // If the previous button pressed was Start, gather the current date and update lastButton and running variables
         if (lastButton === "Start") {
             setTimePaused(Date.now());
             setLastButton("Stop");
@@ -57,14 +64,16 @@ export default function App() {
         setRunning(false);
     }
 
+    // If the Reset button gets clicked, reset time, running, timeList, lastButton and clear the interval
     function resetButton() {
         setTime(0);
         setRunning(false);
         setTimeList([]);
-        clearInterval(clockInterval);
         setLastButton("Reset");
+        clearInterval(clockInterval);
     }
 
+    // If the Lab button gets clicked, extend the lap list with a lap of the current time
     function lapButton() {
         if (running) {
             if (timeList.length === 0) {
@@ -75,6 +84,7 @@ export default function App() {
         }
     }
     
+    // If running is true, updates the time variable by calling updateTime() every 10ms
     useEffect(() => {
         if (running) {
           clockInterval = setInterval(updateTime, 10);
@@ -85,12 +95,19 @@ export default function App() {
     return (
         <div>
             <div className="center-div">
+
+                {/* Centers the card */}
                 <Card className="card-style" sx={{backgroundColor: "#f1dddf"}}>
                     <CardContent>
                         <h1 className="header-text">Shopify Stopwatch</h1>
+
+                        {/* Creates a 2 by 1 grid with the time and the laps */}
                         <Grid container spacing={2}>
+
                             <Grid item>
                                 <StopWatch time={time} />
+
+                                {/* Displays the buttons in a row */}
                                 <div className="button-div">
                                     <StopWatchButton buttonFunc={startButton} buttonName="Start" />
                                     <StopWatchButton buttonFunc={stopButton} buttonName="Stop" />
@@ -98,6 +115,7 @@ export default function App() {
                                     <StopWatchButton buttonFunc={lapButton} buttonName="Lap" />
                                 </div>
                             </Grid>
+                            
                             <Grid item>
                                 <ListScroller timeList={timeList} />
                             </Grid>
