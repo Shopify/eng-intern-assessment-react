@@ -1,7 +1,17 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+interface Props{
+    label: string;
+    onPress?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export default function StopWatchButton(props: Props) {
+
     return(
-        <div></div>
+        <div>
+            <button  onClick={props.onPress}>
+                {props.label}
+            </button>
+        </div>
     )
 }
