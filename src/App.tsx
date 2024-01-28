@@ -20,7 +20,7 @@ export default function App() {
         }
         setIsRunning(true);
         setTime(Date.now())
-        //note to self this is where the 'actual' timer is
+        //note to self: this is where the 'actual' timer is
         intervalRef.current = setInterval(() => {
             setTime(Date.now())
         }, 10)
@@ -36,7 +36,6 @@ export default function App() {
         if (isRunning) {
             clearInterval(intervalRef.current)
         }
-
         setTime(0);
         setCurrentTime(0);
         setLap([])
@@ -53,27 +52,28 @@ export default function App() {
     }
 
     //making the time much more savoury to look at
-    let elapsed = (time - currentTime) / 1000;
+    let elapsedTime = (time - currentTime) / 1000;
 
     return(
-        <div className = 'stopwatch'>
-            <div className = 'border'>
-            <h1>{elapsed.toFixed(2)}s</h1>
+        <main className = 'stopwatch'>
+            
+            <h1>{elapsedTime.toFixed(2)}s</h1>
             <div className = 'buttons'>
             {/* where the magic happens */}
-            <StopWatch          handleStart={handleStart}
+            <StopWatch          
+            handleStart={handleStart}
             handleStop={handleStop}
             handleLap={handleLap}
             handleReset={handleReset} />
             </div>
-            </div>
+            
             <ul>
                 {/* after laps are pushed to array by handleLap, array is mapped over and rendered to page */}
                 {lap.map((lapTime, index) => (
           <li key={index}>{`Lap ${index + 1}: ${ (lapTime / 1000).toFixed(2)}s`}</li>
         ))}
             </ul>
-        </div>
+        </main>
     )
 }
 

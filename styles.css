@@ -11,7 +11,8 @@ body {
 h1 {
     font-size: 50px;
     text-align: center;
-    color: rgb(220, 207, 207)
+    color: rgb(220, 207, 207);
+    letter-spacing: 5px;
 }
 
 button {
@@ -23,6 +24,9 @@ font-size: 20px;
 
 button:hover {
     background-color: rgb(170, 56, 56);
+}
+button:focus {
+    outline: 2px solid rgb(170, 56, 56);
 }
 
 ul {

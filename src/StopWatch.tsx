@@ -2,9 +2,9 @@
 import React from 'react';
 import StopWatchButton from './StopWatchButton';
 
-//defining functions, I think?
+//defining functions, I think? pretty green with TS
 interface StopWatchProps {
-  handleStart: () => void;
+  handleStart: () => void; //i.e. nothing is returned(?)
   handleStop: () => void;
   handleLap: () => void;
   handleReset: () => void;
