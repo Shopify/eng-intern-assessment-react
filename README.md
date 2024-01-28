@@ -10,7 +10,7 @@ A stopwatch app created for the Shopify Frontend Engineering Technical challenge
 
 ## Preview of Stopwatch Tests
 
-![Screenshot of Stopwatch Tests](https://ibb.co/mJZXyb0)
+![Screenshot of Stopwatch Tests](https://i.ibb.co/hsQZdLc/Screenshot-2024-01-28-142939.png)
 
 ---
 
