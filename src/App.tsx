@@ -11,7 +11,7 @@ const App: React.FC = () => {
     const [laps, setLaps] = useState<number[]>([]);
 
     useEffect(() => {
-        let interval: any;
+        let interval: NodeJS.Timeout | null = null;
 
         if (isRunning) {
             interval = setInterval(() => setTime((time) => time + 10), 10);
@@ -25,9 +25,9 @@ const App: React.FC = () => {
     useEffect(() => {
         if (time) {
             const prevLaps = laps.slice(0, laps.length - 1);
-            const currentLaps: number =
+            const currentLap: number =
                 time - prevLaps.reduce((acc, val) => acc + val, 0);
-            setLaps([...prevLaps, currentLaps]);
+            setLaps([...prevLaps, currentLap]);
         } else {
             setLaps([]);
         }
