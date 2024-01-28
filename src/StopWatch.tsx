@@ -1,5 +1,6 @@
 import React from 'react'
 import { Lap } from './App'
+import './StopWatch.css'
 
 interface StopWatchProps {
     laps: Lap[],
@@ -23,7 +24,7 @@ export const breakdownTime = (time: number) => {
 
 export const formatTime = (time: number) => {
     const { ms, seconds, minutes, hours } = breakdownTime(time);
-    
+
     const msString = ms.toString().padStart(3, '0');
     const secondsString = seconds.toString().padStart(2, '0');
     const minutesString = minutes.toString().padStart(2, '0');
@@ -35,7 +36,14 @@ export const formatTime = (time: number) => {
 
 export default function StopWatch(props: StopWatchProps) {
     return(
-        <div>
+        <div className="stopwatch">
+            <ul>
+                {props.laps.map((lap, index) => (
+                    <li key={index}>
+                        {formatTime(lap.duration)}
+                    </li>
+                ))}
+            </ul>
             <h1>
                 {formatTime(props.time)}
             </h1>
