@@ -36,6 +36,8 @@ export default function StopWatch() {
   const [laps, setLaps] = useState<LapType>([]);
 
   function start() {
+    if (stopwatchIntervalId) return;
+
     const intervalId = setInterval(() => {
       setTimeElapsed((state) => state + 1);
     }, 10);
@@ -48,6 +50,8 @@ export default function StopWatch() {
   }
 
   function lap() {
+    if (!stopwatchIntervalId) return;
+
     const lastLap = laps[0];
     const id = lastLap ? lastLap.id + 1 : 1;
     const lapTime = timeElapsed - (lastLap?.timeElapsed ?? 0);
@@ -69,7 +73,9 @@ export default function StopWatch() {
 
   return (
     <div>
-      <div className="time">{formatTime(timeElapsed)}</div>
+      <div className="watch" data-testid="watch">
+        {formatTime(timeElapsed)}
+      </div>
       <StopWatchButton start={start} stop={stop} reset={reset} lap={lap} />
       {laps.length > 0 && (
         <div className="laps">
