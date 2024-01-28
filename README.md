@@ -1,86 +1,97 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
 
-# Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
 
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+Welcome to my React Stopwatch project! This project is designed to provide a simple yet visually appealing stopwatch experience. 
 
-## Project Setup
-To get started with the project, follow these steps:
+Let's start exploring the project together! 🚀
 
-1. Clone the project repository to your local development environment.
+## File Structure
 
-2. Install the required dependencies by running npm install in the project directory.
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
+I aimed for a well-organized file structure to ensure clarity and modularity in the project.
 
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+1. **src/components:** This directory houses UI components essential to the stopwatch functionality.
+   - `StopWatch.tsx`: Main stopwatch component.
+   - `StopWatchButton.tsx`: Component for stopwatch control buttons.
 
-## Project Goals
-Your specific goals for this project are as follows:
+2. **src/assets:**
+   - `Style.css`: This file contains the CSS styles for the project.
+   - `Digital.ttf`: Font asset used for the stopwatch.
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+3. **src/tests:** Unit tests for ensuring the reliability and functionality of the code.
+   - `App.test.tsx`: Test file for the `useStopwatch` hook.
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
+4. **src/App.tsx:**
 
-3. Test your code:
-    - Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
+    - This file houses all the project logic.
 
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
 
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
 
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
+## Functionality/Interface Design
 
-## Getting Started
-To start working on the project, follow these steps:
 
-1. Clone the repository to your local development environment.
+In crafting the stopwatch interface, my focus was on achieving a perfect blend of simplicity, aesthetics, and functionality. Here's a breakdown of the key design choices:
 
-2. Install the required dependencies by running npm install in the project directory.
 
-3. Open the project in your preferred code editor.
+### Time Display Format:
 
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
+The time display follows a concise and simplistic format of Minutes : Seconds : Milliseconds (e.g., 00 : 00 : 00) for effortless readability.
 
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
 
-6. Run the application using npm start and test the stopwatch functionality.
+### Button Layout:
 
-7. Commit your changes regularly and push them to a branch in your forked repository.
 
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
+The interface features three main buttons, ensuring an easy-to-understand and user-friendly layout:
 
-## Resources
-Here are some resources that may be helpful during your work on this project:
+1. **Start/Stop Button:**
+   - Initiates the stopwatch, transforming into a stop button when activated. This dual-functionality optimizes space and maintains simplicity.
 
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
+2. **Lap Button:**
+   - Designed for lap recording, this button remains visible for easy access during stopwatch operation.
 
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
+3. **Reset Button:**
+   - Clears the stopwatch to 00:00:00, providing a quick and intuitive way to reset the timer.
 
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+I aimed to create a stopwatch that is not only visually appealing but also effortlessly functional for users of all abilities!
+
+
+## Edge Cases
+
+
+Lap History: When laps are recorded multiple times, the stopwatch displays them in a scrollable box, ensuring easy access while keeping essential controls visible.
+
+Adaptive Design: The layout seamlessly adjusts to different screen sizes, providing a consistent and user-friendly experience across various devices.
+
+Persistent Operation: The stopwatch runs continuously, even when the tab or window is not in focus, ensuring uninterrupted functionality and accuracy.
+
+
+## Challenges Encountered:
+
+
+1. **Cross-Browser Compatibility:**
+   - Achieving consistent visual appeal and functionality across various web browsers presented a noteworthy challenge. Ensuring compatibility and a smooth user experience on different browsers required careful consideration of browser-specific behaviors and adjustments to the codebase.
+
+2. **CSS Test Cases:**
+   - Constantly monitoring and refining test cases for CSS posed a significant challenge. Ensuring the seamless interaction of different elements while maintaining a polished visual appearance required thorough testing and debugging.
+
+3. **CSS 'Before' Function for Background Circle:**
+   - The utilization of the CSS 'before' function to create the circular background element introduced unexpected challenges. Due to this, my test cases stoped passing. I had to work around this to resolve the issues. 
+  
+## Future Improvements
+
+1. **Dark/Light Mode:**
+   - Introduce a dark/light mode toggle to enhance user experience, catering to different preferences and reducing eye strain in varying lighting conditions.
+
+2. **Customizable Alerts:**
+   - Implement personalized alert settings, allowing users to choose audio or visual notifications at specific time intervals or when reaching predefined milestones.
+
+3. **Interval Training Mode:**
+   - Introduce a specialized mode for interval training, enabling users to set customizable work and rest periods, enhancing the stopwatch's versatility for fitness enthusiasts.
+
+4. **Sync Across Devices:**
+   - Explore options for syncing stopwatch data across multiple devices, providing users with seamless access to their timers from various platforms.
+
+5. **Collaborative Stopwatch:**
+   - Enable users to share and collaborate on a stopwatch session in real-time, ideal for team activities, group workouts, or collaborative projects.
+
+## Tests

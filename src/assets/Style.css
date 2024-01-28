@@ -1,0 +1,260 @@
+/* Create a circular overlay in the center of the page */
+body::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vmin;
+  padding-bottom: 80vmin;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px solid #69c2e3;
+}
+
+@font-face {
+  font-family: 'Digital';
+  src: url('./Digital.ttf') format('truetype');
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(to left top, #3a7f80, #212a6c);
+  font-family: 'Digital';
+  overflow: hidden;
+}
+
+/* main stopwatch container */
+.stopwatch-container {
+  margin: 5vmin auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* container for buttons */
+.buttons-container {
+  position: fixed;
+  display: inline-block;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* general buttons */
+button {
+  font-size: 3vmin;
+  margin: 1vmin;
+  font-family: fantasy;
+  padding: 0.8vmin 0.8vmin;
+  cursor: pointer;
+  border: 2px solid #33ff00;
+  border-radius: 2vmin;
+  background-color: #16be2c;
+  color: #ffffff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #ffcc00;
+}
+
+/* main timer box */
+.timer-box {
+  font-family: 'Digital';
+  display: inline-block;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid #69c2e3;
+  padding: 1vmin;
+  padding-left: 3vmin;
+  padding-right: 3vmin;
+  border-radius: 2vmin;
+  color: #ffffff;
+  font-size: 15vmin;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2vmin;
+}
+
+/* heading above lap times */
+.lap-times-heading {
+  font-family: fantasy;
+  color: #ffffff;
+  font-size: 3vmin;
+  margin-top: 6.5vmin;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2vmin;
+}
+
+/* container of lap times */
+.lap-times-container {
+  display: inline-block;
+  max-width: 30vmin;
+  width: 22%;
+  height: 14vmin;
+  overflow-y: auto;
+  border: 1px solid #69c2e3;
+  margin-top: 5vmin;
+  padding: 1vmin;
+  border-radius: 2vmin;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2vmin;
+}
+
+/* Pseudo-element for a background gradient effect in lap times container */
+.lap-times-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 2vmin;
+  z-index: -1;
+}
+
+/* list of lap times */
+.lap-times-list {
+  color: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-size: 3.5vmin;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Remove default scrollbar for lap times container */
+.lap-times-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Style for the stop button */
+button.stop {
+  background-color: #ff3333;
+  border-color: #ff3333;
+}
+
+/* Media query for screens with diff max widths */
+@media screen and (max-width: 1284px) {
+  .timer-box {
+    top: 45%;
+    font-size: 15vmin;
+  }
+
+  .lap-times-heading {
+    font-size: 4vmin;
+    top: 53%;
+  }
+
+  .lap-times-container {
+    width: 25%;
+    height: 6%;
+    margin-top: -13vmin;
+  }
+
+  .buttons-container {
+    bottom: 1vmin;
+    top: 51%;
+  }
+}
+
+@media (max-width: 820px) {
+  .timer-box {
+    top: 45%;
+    font-size: 15vmin;
+  }
+
+  .lap-times-heading {
+    font-size: 4vmin;
+    top: 56%;
+  }
+
+  .lap-times-container {
+    width: 25%;
+    height: 6%;
+    margin-top: -1vmin;
+  }
+
+  .buttons-container {
+    bottom: 1vmin;
+    top: 55%;
+  }
+}
+
+@media (max-width: 1284px) {
+  .timer-box {
+    top: 38%;
+    font-size: 15vmin;
+  }
+
+  .lap-times-heading {
+    font-size: 4vmin;
+    top: 56%;
+  }
+
+  .lap-times-container {
+    width: 25%;
+    height: 12%;
+    margin-top: 5vmin;
+  }
+
+  .buttons-container {
+    bottom: 1vmin;
+    top: 52%;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .timer-box {
+    top: 44%;
+    left: 50%;
+  }
+
+  .lap-times-heading {
+    font-size: 4vmin;
+    top: 51.6%;
+  }
+
+  .lap-times-container {
+    width: 23%;
+    height: 8%;
+    margin-top: -16vmin;
+  }
+
+  .buttons-container {
+    bottom: 1vmin;
+    top: 51%;
+  }
+
+  .lap-times-list {
+    font-size: 3vmin;
+  }
+}
+
