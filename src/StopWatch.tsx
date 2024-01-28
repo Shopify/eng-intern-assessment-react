@@ -1,3 +1,4 @@
+// The Stopwatch Display Component - Displays the time and lap #
 import React from 'react'
 
 export interface StopwatchInterface {

@@ -1,19 +1,23 @@
+// The Application Component - Contains all core state and logic for the stopwatch app
 import React, { useState, useEffect } from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import Laps from './Laps'
 
+// Bonus Interface to display lap history with lap # and time in seconds
 export interface LapHistoryInterface {
     lap: number
     time: number
 }
 
 export default function App() {
+    // The Application State
     const [isRunning, setIsRunning] = useState(false as boolean)
     const [stopwatchTime, setStopwatchTime] = useState(0 as number)
     const [laps, setLaps] = useState(0 as number)
     const [lapHistory, setLapHistory] = useState([] as LapHistoryInterface[])
 
+    // The useEffect hook to update lap # and lap history
     useEffect(() => {
         if (isRunning) {
             setStopwatchTime(0)
@@ -28,6 +32,7 @@ export default function App() {
         }
     }, [isRunning])
 
+    // The useEffect hook to update stopwatch time
     useEffect(() => {
         if (isRunning) {
             const timeout = setTimeout(() => setStopwatchTime(stopwatchTime + 1), 1000)

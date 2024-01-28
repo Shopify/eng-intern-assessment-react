@@ -1,3 +1,4 @@
+// The Stopwatch Button Component - Toggles the stopwatch on and off
 import React from 'react'
 
 export interface StopWatchButtonInterface {

@@ -1,3 +1,4 @@
+// The Lap History Component - Displays the Lap History with Lap # and Time in seconds
 import React from 'react'
 import { LapHistoryInterface } from './App'
 
