@@ -1,6 +1,7 @@
 import React from "react";
 import { formatTime } from "./helperFunctions";
 
+// Define props interface for component
 interface RunningProps {
     isRunning: boolean;
     setIsRunning: Function;
@@ -20,6 +21,8 @@ const StopWatchButton: React.FC<RunningProps> = ({
 }) => {
     return (
         <section>
+
+            // Conditionally render buttons based on status of stopwatch and time value
             {!isRunning && !time && (
                 <button onClick={() => setIsRunning(true)}>Start</button>
             )}
@@ -35,8 +38,10 @@ const StopWatchButton: React.FC<RunningProps> = ({
             {!isRunning && time > 0 && (
                 <button onClick={() => setTime(0)}>Reset</button>
             )}
+
+            // Conditionally render laps values based on laps array props
             {laps.length > 0 && (
-                <ul className="laps">
+                <ul>
                     {laps.map((lap, index) => (
                         <li key={index}>
                             Lap {index + 1}: {formatTime(lap)}

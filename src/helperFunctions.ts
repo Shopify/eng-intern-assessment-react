@@ -1,3 +1,4 @@
+// Functions to calculate time values
 const getMilliseconds = (timeInMilliseconds: number) =>
     timeInMilliseconds % 1000;
 
@@ -7,6 +8,8 @@ const getSeconds = (timeInMilliseconds: number) =>
 const getMinutes = (timeInMilliseconds: number) =>
     Math.floor((timeInMilliseconds / (1000 * 60)) % 60);
 
+
+// Function to display time in human-readable format
 const formatTime = (timeInMilliseconds: number) => {
     const minutes = getMinutes(timeInMilliseconds);
     const seconds = getSeconds(timeInMilliseconds);
