@@ -1,3 +1,3 @@
-*** to run the test, you must have Jest.js installed and
+\*\*\* to run the test, you must have Jest.js installed and
 
-** you can run the test by doing "npm test"
+\*\* you can run the test by doing "npm test"

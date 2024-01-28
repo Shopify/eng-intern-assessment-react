@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
+import React, { useState } from "react";
+import StopWatch from "./StopWatch";
+import StopWatchButton from "./StopWatchButton";
 
 // renders the stopwatch and has all the functionality
 export default function App() {
@@ -29,9 +29,9 @@ export default function App() {
   const handleStop = () => {
     // set the state to False to ensure that we stop the timer
     if (running) {
-        setRunning(false);
-      
-        // clear interval to make sure that time stop updating
+      setRunning(false);
+
+      // clear interval to make sure that time stop updating
       if (intervalId !== null) {
         clearInterval(intervalId);
       }
@@ -42,12 +42,12 @@ export default function App() {
     setRunning(false);
 
     // set to 0 since we are reseting
-    setTime(0); 
+    setTime(0);
 
     // set to empty array since we are not tracking laps anymore
     setLaps([]);
 
-        // clear interval to make sure that time stop updating
+    // clear interval to make sure that time stop updating
     if (intervalId !== null) {
       clearInterval(intervalId);
     }
