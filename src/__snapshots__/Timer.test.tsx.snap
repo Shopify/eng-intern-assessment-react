@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer tests render should match snapshot file 1`] = `
+<div>
+  00:00:02.50
+</div>
+`;
