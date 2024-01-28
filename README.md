@@ -1,86 +1,46 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
+# Stopify | Shopify Stopwatch
 
-# Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
+## Demo
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
+https://github.com/clairep94/eng-intern-assessment-react/assets/128436909/49437b5e-d841-46de-a45f-dfdf6f05c4bc
 
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+## About
+This is the Shopify Summer Intern 2024 (Frontend) React Assessment by Claire Peng
 
-## Project Setup
-To get started with the project, follow these steps:
+## Features
+Adds test-driven Stopwatch that can:
+- Start counting when the user clicks the start button.
+- Stop counting when the user clicks the stop button.
+- Record and display laps when the user clicks the lap button.
+  - Each lap shows the Lap Number and the time elapsed from the previous lap
+- Reset to zero and clear laps when the user clicks the reset button.
 
-1. Clone the project repository to your local development environment.
+All changes were made in alignment to the project structure as described in the original brief:
+- `src/App.tsx`: The main component that renders the stopwatch and handles its functionality.
+- `src/Stopwatch.tsx`: A separate component that represents the stopwatch display.
+- `src/StopwatchButton.tsx`: A separate component that represents the start, stop, and reset buttons.
 
-2. Install the required dependencies by running npm install in the project directory.
+All styling decisions were chosen to align with Shopify's current UI:
+- Background colours are Shopify Green (#96BF48) and an lighter version of Polaris Purple (#5b5b85)
+- Buttons are pill-shaped. Primary buttons have black fill with white text. Secondary buttons have white or black borders with matching text.
+- Lap List has a matching border style to the black secondary button.
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
+  
+## Testing
+<img width="308" alt="Screenshot 2024-01-27 at 21 34 25" src="https://github.com/clairep94/eng-intern-assessment-react/assets/128436909/9a93cf00-5935-4786-a051-feeedb30c1ff">
 
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+- Unit testing for `StopWatch.tsx` & `StopWatchButtons.tsx`
+- Integration testing for `App.tsx`
 
-## Project Goals
-Your specific goals for this project are as follows:
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+## Additional Dependencies Introduced
+- `@TailwindCSS` and `@postCSS` for styling UI components
+    - Adds corresponding config files (`tailwind.config.js` and `postcss.config.js`) 
+- `@testing-library/jest-dom` and `jest-environment-jsdom` for testing
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
 
-3. Test your code:
-    - Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
-
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
-
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
-
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
-
-## Getting Started
-To start working on the project, follow these steps:
-
-1. Clone the repository to your local development environment.
-
-2. Install the required dependencies by running npm install in the project directory.
-
-3. Open the project in your preferred code editor.
-
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
-
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
-
-6. Run the application using npm start and test the stopwatch functionality.
-
-7. Commit your changes regularly and push them to a branch in your forked repository.
-
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-
-## Resources
-Here are some resources that may be helpful during your work on this project:
-
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
-
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
-
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+## Installation, Running the App & Running Tests
+In the root folder:
+1. `npm install` to install dependencies
+2. `npm start` to run the app
+3. `npm test` to run tests

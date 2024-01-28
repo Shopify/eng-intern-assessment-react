@@ -29,8 +29,9 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react', '@babel/plugin-syntax-jsx', '@babel/preset-typescript'],
         }
     },{
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+      test: /\.css$/i,
+      include: path.resolve(__dirname, 'src'),
+      use: ['style-loader', 'css-loader', 'postcss-loader'],
     },{
       test: /\.(png|jpe?g|gif|jp2|webp)$/,
       loader: 'file-loader',
