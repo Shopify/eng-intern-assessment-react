@@ -1,3 +1,17 @@
+/**
+ * StopWatch.tsx
+ *
+ * This is a functional component that displays the current time on the stopwatch.
+ *
+ * @imports
+ * - StopWatch.css: The CSS styles for the StopWatch component.
+ *
+ * @props
+ * - time: The current time on the stopwatch, passed in from the parent component.
+ *
+ * @component
+ * - StopWatch: A functional component that takes in a 'time' prop. It calculates the minutes, seconds, and milliseconds from the time, and displays them in a formatted string.
+ */
 import React from "react";
 import "../styles/StopWatch.css";
 
