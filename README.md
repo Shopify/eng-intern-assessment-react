@@ -13,7 +13,7 @@ A React and TypeScript-based stopwatch application featuring:
 - **Styling**: Visual presentation and user interface design
 - **Documentation**: Code documentation and explanatory notes
 
-## Project Structure: 
+## Project Structure
 - **src/App.tsx**: Main entry point and container for the StopWatch component
 - **src/Stopwatch.tsx**: Manages core functionality and state for the timer and laps
 - **src/StopWatchButton.tsx**: Reusable button component for user interactions
