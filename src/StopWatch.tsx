@@ -56,7 +56,10 @@ const StopWatch: React.FC = () => {
             return (
               <div
                 id={lapTime.id.toString()}
-                className="flex justify-between text-lg text-primary-200 w-[700px]"
+                style={{
+                  borderStyle: "solid none solid none",
+                }}
+                className="flex justify-between text-lg text-primary-200 w-[700px] mt-2 p-2 border border-primary-200"
               >
                 <span>{`Lap ${lapTime.id + 1}`}</span>
                 <div>
