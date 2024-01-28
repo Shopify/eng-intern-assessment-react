@@ -4,8 +4,8 @@ import StopWatch from "./StopWatch";
 
 export default function App() {
   return (
-    <div className="container">
-      <div className="stopwatch-container">
+    <div className="h-screen m-auto max-w-[1100px] border">
+      <div className="flex justify-center">
         <StopWatch />
       </div>
     </div>
