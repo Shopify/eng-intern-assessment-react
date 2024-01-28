@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+/* ↓ CSS Reset ↓ */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Space Mono', monospace;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #3c3c3c;
+}
+
+button {
+  border: 3px solid;
+  border-radius: 999px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+/* ↑ CSS Reset ↑ */
+
+/* ↓ Stop Watch Styles ↓ */
+
+#title {
+  font-size: 7vw;
+  margin: 50px;
+  text-align: center;
+}
+
+#timer {
+  font-size: 5vw;
+  margin: 15px;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+
+}
+
+/* ↑ Stop Watch Styles ↑ */
+
+/* ↓ Stop Watch Button Styles ↓ */
+
+#sw-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#start {
+  background-color: rgb(61, 228, 0);
+  border-color: green;
+}
+
+#start:active {
+  background-color: rgb(0, 128, 0);
+  border-color: rgb(0, 64, 0);
+}
+
+#stop {
+  background-color: rgb(255, 0, 0);
+  border-color: rgb(128, 0, 0);
+}
+
+#stop:active {
+  background-color: rgb(128, 0, 0);
+  border-color: rgb(64, 0, 0);
+}
+
+#reset {
+  background-color: rgb(166, 166, 166);
+  border-color: rgb(48, 48, 48);
+  margin-left: 40px;
+}
+
+#reset:active {
+  background-color: rgb(96, 96, 96);
+  border-color: rgb(32, 32, 32);
+}
+
+/* ↑ Stop Watch Styles ↑ */

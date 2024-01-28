@@ -26,9 +26,9 @@ export default function StopWatchButton({ onTimerEvent }: ChildProps) {
   };
 
   return (
-    <div>
-      <button onClick={handleStartStop}>{hasStarted ? "Stop" : "Start"}</button>
-      <button onClick={handleLapReset}>{hasStarted ? "Lap" : "Reset"}</button>
+    <div id="sw-buttons">
+      <button id={hasStarted? "stop" : "start"} onClick={handleStartStop}>{hasStarted ? "Stop" : "Start"}</button>
+      <button id="reset" onClick={handleLapReset}>{hasStarted ? "Lap" : "Reset"}</button>
     </div>
   );
 }

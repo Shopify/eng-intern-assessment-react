@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
 
-
 export default function StopWatch() {
   const [timeMs, setTimeMs] = useState(0);
   const [lapTimeMs, setLapTimeMs] = useState(0);
@@ -75,13 +74,11 @@ export default function StopWatch() {
   };
 
   // renders all laptimes
-  const totLaps = laps.map((laptime, index) =>
-    <p key={index}>{laptime}</p>
-  );
+  const totLaps = laps.map((laptime, index) => <p key={index}>{laptime}</p>);
 
   return (
     <div>
-      {displayTime}
+      <div id="timer">{displayTime}</div>
       <StopWatchButton onTimerEvent={timerEvent} />
       {totLaps}
     </div>
