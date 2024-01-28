@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../styles/StopWatch.css';
+// import '../styles/StopWatch.css';
 import { useState } from 'react';
 import StopWatchButton from './StopWatchButton';
 
@@ -9,9 +9,9 @@ export type StopWatchProps = {
 }
 
 export default function StopWatch(props: StopWatchProps) {
-
+ 
   let isTimeRunning: boolean = props.isTimeRunning; 
-  
+
   // States which will be used to keep track of time, whether the stop watch is being ran and the laps selected by user.
   const [time, setTime] = useState<number>(0);
   const [timeList, setTimeList] = useState<(number|string)>(0);
@@ -30,10 +30,10 @@ export default function StopWatch(props: StopWatchProps) {
   const runLap = () => {
     isTimeRunning ? setLapsList(laps => [... laps, timeFormat(time)]) : null;
   }
-
+  const [label, setLabel] = useState<string>('Start');
+  
   return(
     <>
-    
       <div className='timer-container'>
         <div>{timeList}</div>
       </div>
@@ -43,7 +43,9 @@ export default function StopWatch(props: StopWatchProps) {
                                                props.setIsTimeRunning,
                                                setTime,
                                                intervalID,
-                                               setIntervalID)} label={isTimeRunning ? 'Stop' : 'Start'} />
+                                               setIntervalID,
+                                               label,
+                                               setLabel)} label={label} />
 
         <StopWatchButton onClick={() => runReset(props.setIsTimeRunning, 
                                            setTime, 
@@ -86,7 +88,9 @@ const runStartStop = (isTimeRunning: boolean,
                       setIsTimeRunning: Function,
                       setTime: Function,
                       intervalID: number,
-                      setIntervalID: Function) => {
+                      setIntervalID: Function,
+                      label: string,
+                      setLabel: Function) => {
 
   // Checks if the time is currently running, if it is NOT continuesly increments the time by 1 each second
   if (!isTimeRunning) {
@@ -101,6 +105,7 @@ const runStartStop = (isTimeRunning: boolean,
   }  
 
   setIsTimeRunning(!isTimeRunning);
+  label == 'Start' ? setLabel('Stop') : setLabel('Start');
 }
 
 // A function that resets the time dispalyed to 0 as well as the laps 

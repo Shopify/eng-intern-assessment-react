@@ -1,7 +1,7 @@
 import React from 'react';
 import StopWatch from './components/StopWatch';
-import runningMan from '../images/runningMan.gif';
-import './App.css';
+// import runningMan from '../images/runningMan.gif';
+// import './App.css';
 import { useState } from 'react';
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
 
   return(
     <>
-      <img className={`${isTimeRunning ? 'runningMan' : 'stillMan'}`} src={runningMan}/>
+      {/* <img className={`${isTimeRunning ? 'runningMan' : 'stillMan'}`} src={runningMan}/> */}
       <div className='wrapper-content'>
         <StopWatch isTimeRunning={isTimeRunning} setIsTimeRunning={setIsTimeRunning}/>
       </div>
