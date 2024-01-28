@@ -4,26 +4,34 @@ import StopWatchButton from './StopWatchButton'
 
 // renders the stopwatch and has all the functionality
 export default function App() {
-    const [isRunning, setIsRunning] = useState(false);
+  const [running, setRunning] = useState(false);
   const [time, setTime] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
 
   const handleStart = () => {
-    if (!isRunning) {
+    if (!running) {
+      // when starting (from paused state or fresh), take into account the old "time" value
       const startTime = Date.now() - time;
+
       const id = setInterval(() => {
         setTime(Date.now() - startTime);
       }, 100);
 
-      setIsRunning(true);
+      // make timer state to be on again
+      setRunning(true);
+
+      // set new interval to keep track of when stopwatch is running again
       setIntervalId(id);
     }
   };
 
   const handleStop = () => {
-    if (isRunning) {
-      setIsRunning(false);
+    // set the state to False to ensure that we stop the timer
+    if (running) {
+        setRunning(false);
+      
+        // clear interval to make sure that time stop updating
       if (intervalId !== null) {
         clearInterval(intervalId);
       }
@@ -31,9 +39,15 @@ export default function App() {
   };
 
   const handleReset = () => {
-    setIsRunning(false);
-    setTime(0);
+    setRunning(false);
+
+    // set to 0 since we are reseting
+    setTime(0); 
+
+    // set to empty array since we are not tracking laps anymore
     setLaps([]);
+
+        // clear interval to make sure that time stop updating
     if (intervalId !== null) {
       clearInterval(intervalId);
     }
@@ -47,7 +61,7 @@ export default function App() {
     <div>
       <StopWatch time={time} laps={laps} />
       <StopWatchButton
-        isRunning={isRunning}
+        isRunning={running}
         onStart={handleStart}
         onStop={handleStop}
         onReset={handleReset}

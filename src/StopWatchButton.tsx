@@ -1,5 +1,6 @@
 import React from 'react'
 
+// this component focuses on rendering the buttons, given the current state of whether stopwatch is running/not running.
 export default function StopWatchButton({
     isRunning,
     onStart,
