@@ -1,1 +1,43 @@
-@use "./StopWatch.scss" as *;
+@use "../../styles/partials/global" as *;
+
+.display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 70%vw;
+		font-size: 10rem;
+		color: #ebebd3;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+}
+
+.button {
+	background-color: #1982c4;
+	color: #ebebd3;
+	border-radius: 4px;
+	width: 7.5rem;
+	height: 3.5rem;
+	font-size: large;
+	font-weight: bold;
+
+	&__container {
+		display: flex;
+		justify-content: space-evenly;
+		width: 40vw;
+	}
+
+	&--start {
+		background-color: #00bdba;
+		color: #3c3c3b;
+	}
+
+	&--stop {
+		background-color: #ef476f;
+		color: #3c3c3b;
+	}
+}

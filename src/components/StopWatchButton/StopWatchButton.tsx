@@ -14,10 +14,7 @@ export default function StopWatchButton({
 }: ButtonProps) {
 	return (
 		<div>
-			<button
-				className={`button ${{ className }}`}
-				onClick={clickHandler}
-			>
+			<button className={`button ${className}`} onClick={clickHandler}>
 				{text}
 			</button>
 		</div>

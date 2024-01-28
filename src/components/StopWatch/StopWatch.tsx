@@ -20,8 +20,8 @@ export default function StopWatch() {
 		let intervalId: number | NodeJS.Timer;
 		if (isRunning) {
 			intervalId = setInterval(() => {
-				setTime(time + 1), 1;
-			});
+				setTime(time + 10);
+			}, 10);
 		}
 		return () => clearInterval(intervalId);
 	}, [isRunning, time]);
@@ -30,7 +30,7 @@ export default function StopWatch() {
 	const hours: number = Math.floor(time / 3600000);
 	const minutes: number = Math.floor((time % 3600000) / 60000);
 	const seconds: number = Math.floor((time % 60000) / 1000);
-	const milliseconds: number = Math.floor(time / 1000);
+	const milliseconds: number = Math.floor(time % 1000);
 
 	//Define a function Start
 	//that changes isRunning to true
@@ -52,39 +52,64 @@ export default function StopWatch() {
 		setIsRunning(false);
 		const stopTime: number | DateConstructor = Date.now();
 		console.log(stopTime);
-		const lapTime: number = stopTime - startTime;
+		const lapTime: number | DateConstructor = stopTime - startTime;
 		laps = [...laps, lapTime];
 	};
 
 	//define getLaps function
 	//that iterates over lap array to display minutes, seconds, and ms of each item
+	const showLaps = () => {
+		laps.map((lap) => {
+			return (
+				<>
+					<div>LAPS</div>
+				</>
+			);
+		});
+	};
 
 	//define reset function
 	//that updates setTime to 0
+	const resetTime = () => setTime(0);
 
 	return (
-		<div>
+		<div className="display">
 			<div className="display__container">
-				<div className="display__hours">{hours}</div>
-				<div className="display__minutes">{minutes}</div>
-				<div className="display__seconds">{seconds}</div>
-				<div className="display__milliseconds">{milliseconds}</div>
+				<p className="display__time">
+					{hours}:{minutes.toString().padStart(2, "0")}:
+					{seconds.toString().padStart(2, "0")}:
+					{milliseconds.toString().slice(0, 2).padStart(2, "0")}
+				</p>
+
+				{/* <div className="display__time">{hours}</div>
+				<span>:</span>
+				<div className="display__time">{minutes}</div>
+				<span>:</span>
+				<div className="display__time">{seconds}</div>
+				<span>:</span>
+				<div className="display__time">{milliseconds}</div> */}
 			</div>
 			<div className="button__container">
 				{/* Start/Stop button - possibly make this an if stmt */}
 				<StopWatchButton
-					text={`${isRunning ? "Stop" : "Start"}`}
-					className={`${
+					text={isRunning ? "Stop" : "Start"}
+					className={
 						isRunning ? "button--stop" : "button--start"
-					}`}
-					clickHandler={`${
-						isRunning ? stopRunning : startRunning
-					}`}
+					}
+					clickHandler={isRunning ? stopRunning : startRunning}
 				/>
 				{/* Reset button */}
-				<StopWatchButton text={} className={} clickHandler={} />
+				<StopWatchButton
+					text={"Reset"}
+					className={"button--reset"}
+					clickHandler={resetTime}
+				/>
 				{/* Lap button */}
-				<StopWatchButton text={} className={} clickHandler={} />
+				<StopWatchButton
+					text={"Lap"}
+					className={"button--lap"}
+					clickHandler={showLaps}
+				/>
 			</div>
 		</div>
 	);
