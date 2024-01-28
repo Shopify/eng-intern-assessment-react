@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StopWatchButton tests render should match snapshot file 1`] = `
+<button
+  disabled={false}
+  onClick={[MockFunction]}
+>
+  STOP
+</button>
+`;
