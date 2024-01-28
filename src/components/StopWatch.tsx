@@ -4,7 +4,7 @@ import "./styles.css";
 
 import StopWatchButton from "./StopWatchButton";
 
-import { getTimeBreakdown } from "./utils";
+import { getTimeBreakdown } from "../utils";
 import LapList, { LapViews } from "./LapList";
 import LapTime from "./LapTime";
 

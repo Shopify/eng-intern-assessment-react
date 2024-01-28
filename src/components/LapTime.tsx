@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getTimeBreakdown } from "./utils";
+import { getTimeBreakdown } from "../utils";
 
 interface LapTimeProps {
   lapTime: number;
