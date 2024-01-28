@@ -28,7 +28,7 @@ export default function StopWatch() {
     const oldTime = time;
     if (running) {
       const timer = setInterval(() => {
-        setTime(new Date().valueOf() - start + oldTime)
+        setTime(new Date().valueOf() - start + oldTime);
       }, 25);
       return () => clearInterval(timer);
     }
@@ -40,7 +40,7 @@ export default function StopWatch() {
 
   function reset() {
     setTime(0);
-    setStart(new Date().valueOf())
+    setStart(new Date().valueOf());
   }
 
   function lap() {
@@ -49,30 +49,38 @@ export default function StopWatch() {
   }
 
   return (
-    <div>
-      <p data-testid="timeDisplay">
-        {getDisplayTime(time)}
-      </p>
-      <StopWatchButton onclick={toggleTimer} name={running ? "Pause" : "Play"} />
-      <StopWatchButton onclick={lap} name="Lap" />
-      <StopWatchButton onclick={reset} name="Reset" />
-      {laps.length > 0 && (
-        <div>
-          <h2>Laps:</h2>
-          <ul>
-            {laps.map((lap: number, ind: number) => {
-              const timeString: string =  getDisplayTime(lap);
-              return (
-                <li key={`lap${ind + 1}`}>
-                  <p>
-                    {`Lap ${ind + 1}: ${timeString}`}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+    <div className="watch">
+      <h1>Stopwatch</h1>
+      <div>
+        <p data-testid="timeDisplay" className="time">
+          {getDisplayTime(time)}
+        </p>
+      </div>
+      <div className="buttons">
+        <StopWatchButton
+          onclick={toggleTimer}
+          name={running ? "Stop" : "Start"}
+        />
+        <StopWatchButton onclick={lap} name="Lap" />
+        <StopWatchButton onclick={reset} name="Reset" />
+      </div>
+      <div>
+        {laps.length > 0 && (
+          <div>
+            <h2>Laps:</h2>
+            <ul>
+              {laps.map((lap: number, ind: number) => {
+                const timeString: string = getDisplayTime(lap);
+                return (
+                  <li key={`lap${ind + 1}`}>
+                    <span>{`Lap ${ind + 1}: ${timeString}`}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
