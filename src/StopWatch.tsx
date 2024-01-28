@@ -61,6 +61,11 @@ export default function StopWatch() {
 
   // Function to handle lap button click
   const handleLapClick = () => {
+    if (isRunning) {
+      const lapTime = time - lastLapTime;
+      setLapTimes([...lapTimes, lapTime * 1000 + milliseconds]);
+      setLastLapTime(time);
+    }
   };
 
   // Function to handle reset button click
@@ -80,6 +85,12 @@ export default function StopWatch() {
       onLapClick={handleLapClick}
       onResetClick={handleResetClick}
     />
+    <h2>Lap Times</h2>
+    <ul className="lap-times" data-testid="lap-times">
+        {lapTimes.map((lapTime, index) => (
+          <li key={index}>{formatTime(Math.floor(lapTime / 1000), lapTime % 1000)}</li>
+        ))}
+    </ul>
   </div>
   )
 }
