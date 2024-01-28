@@ -1,14 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-.timeDisplay {
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.digital {
     font-family: "Press Start 2P", system-ui;
-    margin-bottom: 50px;
-    font-size: 70px;
+}
+
+.timeDisplay {
+    margin: 0 0 50px;
+    font-size: 6rem;
+    width: 500px;
+    text-align: center;
+}
+
+.buttonsContainer {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
 }
 
 button {
     padding: 20px;
-    margin-right: 30px;
     width: 100px;
     cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: red;
+}
+
+@media (max-width: 500px) {
+    html {
+        font-size: 40%;
+    }
+    .buttonsContainer {
+        flex-wrap: wrap;
+        width: 250px;
+    }
+    button {
+        margin-bottom: 30px;
+    }
 }

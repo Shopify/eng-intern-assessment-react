@@ -7,7 +7,7 @@ interface buttonProps {
 
 const StopWatchButton = ({label, handleButtonClick}:buttonProps) => {
     return(
-        <button onClick={handleButtonClick}>{label}</button>
+        <button className='digital' onClick={handleButtonClick}>{label}</button>
     )
 }
 

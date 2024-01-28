@@ -42,9 +42,9 @@ function App() {
     }
 
     return (
-        <div>
+        <div className='app'>
             <StopWatch time={formatTime(timeElapsed)} />
-            <div>
+            <div className='buttonsContainer'>
                 <StopWatchButton label={'start'} handleButtonClick={() => startStopwatch()} />
                 <StopWatchButton label={'stop'} handleButtonClick={() => stopStopwatch()} />
                 <StopWatchButton label={'lap'} handleButtonClick={() => addLap()} />

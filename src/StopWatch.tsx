@@ -6,7 +6,7 @@ interface stopWatchProps {
 
 const StopWatch = ({time} : stopWatchProps) => {
     return(
-        <div className='timeDisplay'>{time}</div>
+        <p className='timeDisplay digital'>{time}</p>
     )
 }
 
