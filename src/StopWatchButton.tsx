@@ -9,15 +9,28 @@ interface TimerState{
 
 export default function StopWatchButton({ timer, runTimer, pauseTimer, resetTimer}: TimerState) {
     return(
-        <div>
+        <div style={{
+            display: 'flex',
+            textAlign: 'center',
+            gap: "10px"
+        }}>
             <button style={{
-                background: 'none'
+                width: '100px',
+                height: '50px',
+                fontSize: '30px',
+                fontFamily: "Times New Roman"
             }} onClick={() => runTimer()}> Start </button>
             <button style={{
-                background: 'none'
+                width: '100px',
+                height: '50px',
+                fontSize: '30px',
+                fontFamily: "Times New Roman"
             }} onClick={() => pauseTimer()}> Pause </button>
             <button style={{
-                background: 'none'
+                width: '100px',
+                height: '50px',
+                fontSize: '30px',
+                fontFamily: "Times New Roman"
             }} onClick={() => resetTimer()}> Reset </button>
         </div>
     )
