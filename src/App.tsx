@@ -1,18 +1,26 @@
 import React, { useEffect } from 'react'
-import StopWatch, { formatTime } from './StopWatch'
+import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import './App.css'
 
+/*
+* A Lap is an object that stores the end time of the lap and the duration of the lap in milliseconds
+*/
 export interface Lap {
-    startTime: number
+    endTime: number
     duration: number
 }
 
+/**
+ * Main App component that handles the state and functionality of the stopwatch
+ * @returns the App component
+ */
 export default function App() {
     const [laps, setLaps] = React.useState<Lap[]>([]);
     const [isRunning, setIsRunning] = React.useState(false);
     const [timeCounter, setTimeCounter] = React.useState(0);
 
+    // useEffect hook for incrementing the time counter every millisecond only when the stopwatch is running
     useEffect(() => {
         const interval = setInterval(() => {
             if (isRunning) {
@@ -22,10 +30,6 @@ export default function App() {
     
         return () => clearInterval(interval);
     }, [isRunning]);
-    
-    useEffect(() => {
-        document.title = `Stopwatch: ${formatTime(timeCounter)}`;
-    }, [timeCounter]);
 
     return(
         <div data-testid="app-container" className="app-container">
@@ -33,11 +37,12 @@ export default function App() {
                 <div>
                     <StopWatch
                         laps={laps}
-                        isRunning={isRunning}
                         time={timeCounter}
                     />
                     <StopWatchButton
                         isRunning={isRunning}
+                        
+                        // The stopStart function toggles the running state
                         stopStart={() => {
                             if (isRunning) {
                                 setIsRunning(false);
@@ -45,20 +50,24 @@ export default function App() {
                                 setIsRunning(true);
                             }
                         }}
+
+                        // Use the current time as the end time of the lap we're recording and calculate its duration based on the previous lap's end time
                         lap={() => {
                             // Don't add a lap if the last lap was at the same time
-                            if(laps.length > 0 && laps[laps.length - 1].startTime === timeCounter) {
+                            if(laps.length > 0 && laps[laps.length - 1].endTime === timeCounter) {
                                 return;
                             }
 
                             setLaps([
                                 ...laps,
                                 {
-                                    startTime: timeCounter,
-                                    duration: timeCounter - (laps.length > 0 ? laps[laps.length - 1].startTime : 0),
+                                    endTime: timeCounter,
+                                    duration: timeCounter - (laps.length > 0 ? laps[laps.length - 1].endTime : 0),
                                 },
                             ]);
                         }}
+
+                        // Reset the state of the stopwatch
                         reset={() => {
                             setLaps([]);
                             setTimeCounter(0);
