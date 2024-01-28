@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Laps tests render should match snapshot file with empty recordedLapTimes array 1`] = `null`;
+
+exports[`Laps tests render should match snapshot file with non-empty recordedLapTimes array 1`] = `
+<div>
+  Lap : Time
+  <ol>
+    <li>
+      00:00:01.00
+    </li>
+    <li>
+      00:00:09.00
+    </li>
+    <li>
+      00:00:10.00
+    </li>
+    <li>
+      00:00:05.00
+    </li>
+    <li>
+      00:00:05.00
+    </li>
+  </ol>
+</div>
+`;
