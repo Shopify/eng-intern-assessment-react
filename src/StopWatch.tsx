@@ -6,6 +6,8 @@ export default function StopWatch() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [intervalID, setIntervalId] = useState<NodeJS.Timer | null>(null);
   const [laps, setLaps] = useState<string[]>([]);
+
+  //increment setInterval by 10ms
   const timeInterval = 10;
 
   const handleStartStop = () => {
@@ -13,6 +15,7 @@ export default function StopWatch() {
     const clickStartTime = Date.now();
     if (!isRunning) {
       const startIntervalID = setInterval(() => {
+        //Use Date Object for more accurate handling of
         const timeStamp = Date.now();
         const elapsedTime = timeStamp - clickStartTime;
         setTotalTime(totalTime + elapsedTime);
@@ -32,11 +35,9 @@ export default function StopWatch() {
   const seconds = Math.floor((totalTime / 1000) % 60);
   const minutes = Math.floor((totalTime / (1000 * 60)) % 60);
 
-  const displayTime = `
-  ${formatTime(minutes)}:
-  ${formatTime(seconds)}:
-  ${formatTime(milliSeconds)}
-  `;
+  const displayTime = `${formatTime(minutes)}:${formatTime(
+    seconds
+  )}:${formatTime(milliSeconds)}`;
 
   const handleReset = () => {
     setTotalTime(0);
@@ -55,20 +56,22 @@ export default function StopWatch() {
     <div className="stopwatch-app">
       <div className="stopwatch container">
         <StopWatchButton
-          title={isRunning ? "Pause" : "Start"}
+          title={isRunning ? "Stop" : "Start"}
           handleClick={handleStartStop}
         />
         <StopWatchButton title={"Reset"} handleClick={handleReset} />
         <StopWatchButton title={"Lap"} handleClick={handleLaps} />
         <div className="clock-container">
-          <div>{displayTime}</div>
+          <div data-testid="displayed-time">{displayTime}</div>
         </div>
       </div>
       <div className="lap container">
         <StopWatchButton title={"Clear Lap"} handleClick={handleClearLaps} />
         <ul>
           {laps.map((lap, index) => (
-            <li key={index}>{lap}</li>
+            <li data-testid={`list-item-${index}`} key={index}>
+              {lap}
+            </li>
           ))}
         </ul>
       </div>
