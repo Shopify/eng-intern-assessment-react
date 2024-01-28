@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
+import './App.css';
 
 export default function StopWatch() {
   // State to track the stopwatch status

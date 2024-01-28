@@ -1,0 +1,81 @@
+.app {
+  font-family: Arial, sans-serif;
+}
+
+/* Stopwatch container */
+.stopwatch {
+  text-align: center;
+  background-color: #fff;
+  border: 2px solid #2196f3;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Time display */
+.time-display {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #2196f3; 
+} 
+
+/* Buttons */
+.stopwatch-button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 20px 10px 0 0;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.stopwatch-button:last-child {
+  margin-right: 0;
+}
+
+.stopwatch-button:hover {
+  opacity: 0.8;
+}
+
+.stopwatch-button.start {
+  background-color: #4caf50; 
+  color: white;
+}
+
+/* Stop button */
+.stopwatch-button.stop {
+  background-color: #f44336; 
+  color: white;
+}
+
+/* Lap button */
+.stopwatch-button.lap {
+  background-color: #2196f3; 
+  color: white;
+}
+
+/* Reset button */
+.stopwatch-button.reset {
+  background-color: #ff9800; 
+  color: white;
+}
+
+/* Lap times container */
+.lap-times {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.lap-times h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333; 
+}
+
+.lap-times li {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
