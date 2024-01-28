@@ -1,5 +1,6 @@
 import React from "react";
 import { StopWatchButton } from "./StopWatchButton";
+import Time from "./Time";
 
 let lapTimeId = 0;
 
@@ -29,9 +30,7 @@ const StopWatch: React.FC = () => {
   return (
     <div className="w-[100%]">
       <div className="flex justify-center font-bold text-6xl text-primary-200 mt-14">
-        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+        <Time time={time} />
       </div>
       <div className="flex justify-center space-x-6 mt-6">
         <StopWatchButton onClick={() => setTimerRunning(true)}>
@@ -49,32 +48,25 @@ const StopWatch: React.FC = () => {
           Lap
         </StopWatchButton>
         <StopWatchButton onClick={() => setTime(0)}>Reset</StopWatchButton>
-        <StopWatchButton onClick={() => console.log(lapTimes)}>
-          Reset
-        </StopWatchButton>
       </div>
-      <div className="flex justify-center items-center flex-col mt-6">
-        <h2 className="text-2xl text-primary-100">Laps Recorded</h2>
-        {lapTimes.map((lapTime) => {
-          return (
-            <div
-              id={lapTime.id.toString()}
-              className="flex justify-between text-lg text-primary-200 border border-white w-[700px]"
-            >
-              <span>{`Lap ${lapTime.id + 1}`}</span>
-              <div>
-                <span>
-                  {("0" + Math.floor((lapTime.time / 60000) % 60)).slice(-2)}:
-                </span>
-                <span>
-                  {("0" + Math.floor((lapTime.time / 1000) % 60)).slice(-2)}:
-                </span>
-                <span>{("0" + ((lapTime.time / 10) % 100)).slice(-2)}</span>{" "}
+      {lapTimes.length === 0 ? null : (
+        <div className="flex justify-center items-center flex-col mt-6">
+          <h2 className="text-2xl text-primary-100">Laps Recorded</h2>
+          {lapTimes.map((lapTime) => {
+            return (
+              <div
+                id={lapTime.id.toString()}
+                className="flex justify-between text-lg text-primary-200 w-[700px]"
+              >
+                <span>{`Lap ${lapTime.id + 1}`}</span>
+                <div>
+                  <Time time={lapTime.time} />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
