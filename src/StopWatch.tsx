@@ -56,24 +56,51 @@ const StopWatch: React.FC = () => {
 
   // Handle the lap button
   const handleLap = () => {
-    if (isActive && !isPaused) {
-      setLaps((prevLaps) => [...prevLaps, time]);
+    if (isActive && !isPaused && laps.length < 100) {
+      setLaps([...laps, time]);
+    }
+    if (laps.length === 100) {
+      alert("You have reached the maximum number of laps!");
     }
   };
 
+  // Function to divide laps into groups of 10
+  const getLapGroups = (laps: number[]): number[][] => {
+    const groups: number[][] = [];
+    for (let i = 0; i < laps.length; i += 10) {
+      groups.push(laps.slice(i, i + 10));
+    }
+    return groups;
+  };
+
+  const lapGroups = getLapGroups(laps);
+
   return (
-    <div>
+    <div className="container">
       <h1>Stopwatch</h1>
       <h2>{formatTime(time)}</h2>
       <div>
-        <StopWatchButton onClick={handleReset} label="Reset" />
-        <StopWatchButton onClick={handleLap} label="Lap" disabled={!isActive || isPaused} />
-        <StopWatchButton onClick={handleStartStop} label={isActive && !isPaused ? "Pause" : "Start"} />
+        <StopWatchButton className="stopwatch-button reset-button" onClick={handleReset} label="Reset" />
+        <StopWatchButton
+          className="stopwatch-button lap-button"
+          onClick={handleLap}
+          label="Lap"
+          disabled={!isActive || isPaused}
+        />
+        <StopWatchButton
+          className="stopwatch-button stop-button"
+          onClick={handleStartStop}
+          label={isActive && !isPaused ? "Pause" : "Start"}
+        />
       </div>
-      <div>
-        {laps.map((lap, index) => (
-          <div key={index}>
-            Lap {index + 1}: {formatTime(lap)}
+      <div className="lap-groups">
+        {lapGroups.map((group, groupIndex) => (
+          <div key={groupIndex} className="lap-times">
+            {group.map((lap, index) => (
+              <div className="lap-time" key={groupIndex * 10 + index}>
+                Lap {groupIndex * 10 + index + 1}: {formatTime(lap)}
+              </div>
+            ))}
           </div>
         ))}
       </div>

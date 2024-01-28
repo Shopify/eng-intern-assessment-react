@@ -5,12 +5,13 @@ interface StopWatchButtonProps {
   onClick: () => void;
   label: string;
   disabled?: boolean;
+  className?: string;
 }
 
 // Reusable button component
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ onClick, label, disabled = false }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({ className, onClick, label, disabled = false }) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button className={className} onClick={onClick} disabled={disabled}>
       {label}
     </button>
   );
