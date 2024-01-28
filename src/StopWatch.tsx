@@ -5,7 +5,7 @@ export default function StopWatch() {
     const [seconds, setSeconds] = useState<number>(0)
     const [minutes, setMinutes] = useState<number>(0)
     const [hours, setHours] = useState<number>(0)
-    const [laps, setLaps] = useState<Array<number>>([])
+    const [laps, setLaps] = useState<Array<string>>([])
     const [run, setRun] = useState<boolean>(false)
 
     const formatZero = (num: number): string => {
@@ -15,6 +15,19 @@ export default function StopWatch() {
 
         else return num.toString()
     }
+
+    const recordLap = (reset: boolean) => {
+
+        if(reset){
+            setLaps([])
+        }
+
+        else{
+        let resultLap: string = formatZero(hours) + ":" + formatZero(minutes) + ":" + formatZero(seconds)
+        setLaps([...laps, resultLap])
+        }
+    }
+
 
     useEffect(() => {
         let interval: number;
@@ -58,8 +71,11 @@ export default function StopWatch() {
                     setSeconds={setSeconds}
                     setMinutes={setMinutes}
                     setHours={setHours}
+                    recordLap={recordLap}
                     />
+                    <ol> {laps} </ol>
             </div> 
         </div>
     )
 }
+

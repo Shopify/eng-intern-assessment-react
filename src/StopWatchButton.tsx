@@ -5,6 +5,8 @@ interface timerProps {
     setSeconds: Function;
     setMinutes: Function;
     setHours: Function;
+    recordLap: Function;
+        
 }
 
 export default function StopWatchButton(props:timerProps) {
@@ -12,6 +14,7 @@ export default function StopWatchButton(props:timerProps) {
     const setSeconds = props.setSeconds
     const setMinutes = props.setMinutes
    const setHours = props.setHours
+   const setLaps = props.recordLap
 
     const startButton = () => {
         setRun(true);
@@ -26,18 +29,19 @@ export default function StopWatchButton(props:timerProps) {
         setSeconds(0)
         setMinutes(0)
         setHours(0)
-        //reset laps to empty
+        setLaps(true)
         
     }
 
     const lapButton = () => {
-        //lap function
+        setLaps(false);
+        
     }
 
 
     return(
         <div>
-            <button onClick={startButton}> start </button> 
+              <button onClick={startButton}> start </button> 
                 <button onClick={stopButton}> stop </button> 
                 <button onClick={lapButton}> lap </button> 
                 <button onClick={resetButton}> reset </button> 
