@@ -22,6 +22,7 @@ h1 {
   text-shadow: 1px 4px 7px rgba(0, 0, 0, 0.2);
 }
 
+/* Stopwatch */
 h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -30,6 +31,15 @@ h2 {
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.timer-started {
+  transform: scale(1.1);
+}
+
+.timer-stopped {
+  transform: scale(1);
 }
 
 /* Buttons */
@@ -44,35 +54,51 @@ h2 {
   transition: background-color 0.3s;
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
-}
+  transition: transform 0.1s ease, background-color 0.3s;
 
-.reset-button {
-  background-color: #dc3545;
-}
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-.lap-button {
-  background-color: #9c9999;
-}
+  &:active {
+    transform: scale(0.95);
+  }
 
-.stop-button {
-  background-color: #007bff;
-}
+  &.reset-button {
+    background-color: #dc3545;
+    &:hover {
+      background-color: #b51323;
+    }
+    &:active {
+      background-color: #8d0d19;
+    }
+  }
 
-.reset-button:hover {
-  background-color: #b51323;
-}
+  &.lap-button {
+    background-color: #9c9999;
+    &:hover {
+      background-color: #7e7c7c;
+    }
+    &:active {
+      background-color: #5a5858;
+    }
+  }
 
-.lap-button:hover {
-  background-color: #7e7c7c;
-}
+  &.stop-button {
+    background-color: #007bff;
+    &:hover {
+      background-color: #0362c8;
+    }
+    &:active {
+      background-color: #004da8;
+    }
+  }
 
-.stop-button:hover {
-  background-color: #0362c8;
-}
-
-.stopwatch-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
 }
 
 /* Laps */

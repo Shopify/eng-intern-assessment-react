@@ -78,7 +78,7 @@ const StopWatch: React.FC = () => {
   return (
     <div className="container">
       <h1>Stopwatch</h1>
-      <h2>{formatTime(time)}</h2>
+      <h2 className={isActive && !isPaused ? "timer-started" : "timer-stopped"}>{formatTime(time)}</h2>
       <div>
         <StopWatchButton className="stopwatch-button reset-button" onClick={handleReset} label="Reset" />
         <StopWatchButton
