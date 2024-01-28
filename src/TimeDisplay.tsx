@@ -6,7 +6,7 @@ const formatNum = (n: number) => String(n).padStart(2, '0')
 function TimeDisplay(props: { time: Time }) {
     let h: React.ReactNode = '';
     if (props.time.h !== 0) {
-        h = <span>{formatNum(props.time.h)}</span>
+        h = <span>{formatNum(props.time.h % 100)}</span>
     }
 
     return (

@@ -18,10 +18,6 @@ const colorForVariant = (variant: ButtonVariant) => {
 
 }
 
-// <StopWatchButton variant={ButtonVariant.Green} onClick={start}>Start</StopWatchButton>
-// <StopWatchButton variant={ButtonVariant.Yellow} onClick={addLap}>Lap</StopWatchButton>
-// <StopWatchButton variant={ButtonVariant.Red} onClick={stop}>Stop</StopWatchButton>
-
 type StopWatchButtonProps = { variant: ButtonVariant, children: React.ReactNode, onClick: () => void }
 
 export default function StopWatchButton({ variant, children, onClick }: StopWatchButtonProps) {
