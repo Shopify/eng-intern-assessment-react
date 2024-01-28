@@ -3,12 +3,18 @@ import StopWatchButton from "./StopWatchButton";
 
 function getDisplayTime(count: number) {
   //Breaks down a simple count into milliseconds, seconds, and minutes.
-  const min = Math.floor(count / 60000)
+  const min = Math.floor(count / 60000);
   const sec = Math.floor(count / 1000) % 60;
   const msec = count % 1000;
   // % operators make sure the count rolls over when the cap is reached
-  // return prepends 0s to keep the string in format nn:nn:nnn
-  return min + ":" +(sec > 9 ? sec : "0" + sec) + ":" + (msec > 99 ? msec : msec > 9 ? "0" + msec : "00" + msec)
+  // return prepends 0s to keep the string in format n:nn:nnn
+  return (
+    min +
+    ":" +
+    (sec > 9 ? sec : "0" + sec) +
+    ":" +
+    (msec > 99 ? msec : msec > 9 ? "0" + msec : "00" + msec)
+  );
 }
 
 export default function StopWatch() {
@@ -41,10 +47,12 @@ export default function StopWatch() {
     reset();
   }
 
-    return (
-      <div>
+  return (
+    <div>
+      <p data-testid="timeDisplay">
         {getDisplayTime(counter)}
-        <StopWatchButton onclick={toggleTimer} name="Play/Pause" />
+      </p>
+      <StopWatchButton onclick={toggleTimer} name={running ? "Pause" : "Play"} />
       <StopWatchButton onclick={lap} name="Lap" />
       <StopWatchButton onclick={reset} name="Reset" />
       {laps.length > 0 && (
@@ -69,6 +77,6 @@ export default function StopWatch() {
           </ul>
         </div>
       )}
-      </div>
-    );
+    </div>
+  );
 }
