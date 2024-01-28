@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+li {
+  list-style-type: none;
+}
+
+.app {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+  border-radius: 6px;
+  padding: 10px;
+  max-width: 900px;
+  width: 90vw;
+  margin: 30px;
+}
+
+.laps {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 2px;
+  border-radius: 6px;
+  padding: 10px;
+  overflow: auto;
+  max-height: 400px;
+}

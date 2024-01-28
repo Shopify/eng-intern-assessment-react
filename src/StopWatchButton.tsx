@@ -1,5 +1,7 @@
 import React from "react";
 import { useRef } from "react";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 
 interface StopwatchButtonsProps {
   time: number;
@@ -18,9 +20,8 @@ export default function StopWatchButton({
   setIsPaused,
   addNewLap,
   setLaps,
-  setSavedTime
+  setSavedTime,
 }: StopwatchButtonsProps) {
-
   const handlePause = (): void => {
     setIsPaused(!isPaused);
   };
@@ -32,12 +33,80 @@ export default function StopWatchButton({
     setLaps([]);
   };
 
-  
   return (
     <div>
-      <button onClick={handlePause}>{isPaused ? "Start" : "Pause"}</button>
-      <button onClick={resetTime}>Reset</button>
-      <button onClick={addNewLap}>Lap</button>
+      <Grid container spacing={2} justifyContent="center" display="flex">
+        <Grid
+          item
+          xs={3}
+          alignItems="center"
+          display="flex"
+          justifyContent="center"
+          alignSelf="center"
+        >
+          {isPaused ? (
+            <Button
+              onClick={handlePause}
+              style={{
+                color: "green",
+                textAlign: "center",
+                alignSelf: "center",
+                margin: "10px",
+              }}
+            >
+              Start
+            </Button>
+          ) : (
+            <Button
+              onClick={handlePause}
+              style={{
+                color: "red",
+                textAlign: "center",
+                alignSelf: "center",
+                margin: "10px",
+              }}
+            >
+              Stop
+            </Button>
+          )}
+        </Grid>
+
+        <Grid
+          item
+          xs={3}
+          alignItems="center"
+          display="flex"
+          justifyContent="center"
+          alignSelf="center"
+        >
+          <Button
+            onClick={resetTime}
+            style={{
+              color: "gray",
+              textAlign: "center",
+              alignSelf: "center",
+              margin: "10px",
+            }}
+          >
+            Reset
+          </Button>
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          alignItems="center"
+          display="flex"
+          justifyContent="center"
+          alignSelf="center"
+        >
+          <Button
+            onClick={addNewLap}
+            style={{ textAlign: "center", alignSelf: "center", margin: "10px" }}
+          >
+            Lap
+          </Button>
+        </Grid>
+      </Grid>
     </div>
   );
 }

@@ -7,6 +7,9 @@
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+    "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+    }
   }
 }

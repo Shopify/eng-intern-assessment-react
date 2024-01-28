@@ -3,6 +3,7 @@ import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 import Laps from "./Laps";
 import { useState, useEffect } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function App() {
   const [time, setTime] = useState<number>(0);
@@ -12,6 +13,8 @@ export default function App() {
   const [maxLap, setMaxLap] = useState<number>(0);
   const [savedTime, setSavedTime] = useState<number>(Date.now());
   const [lastLappedTime, setLastLappedTime] = useState<number>(0);
+
+  const smallScreen = useMediaQuery("(max-width: 500px)");
 
   const updateTimer = (): void => {
     const newTime = time + Date.now() - savedTime;
@@ -31,8 +34,7 @@ export default function App() {
   const newLap = (): void => {
     const newLap = time - lastLappedTime;
     setLastLappedTime(time);
-    const newLaps = [...laps, newLap]
-    
+    const newLaps = [...laps, newLap];
 
     let minVal = laps[0];
     let minPos = 0;
@@ -54,9 +56,8 @@ export default function App() {
     setLaps(newLaps);
   };
 
-
   return (
-    <div>
+    <div className="app">
       <StopWatch
         time={time}
         isPaused={isPaused}
