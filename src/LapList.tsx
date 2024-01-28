@@ -12,10 +12,10 @@ interface LapListProps {
 
 const AbsoluteLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
   <>
-    {lapTimes.map((lapTime) => {
+    {lapTimes.map((lapTime, index) => {
       return (
         <li key={lapTime}>
-          <LapTime lapTime={lapTime} />
+          <LapTime lapTime={lapTime} index={lapTimes.length - index} />
         </li>
       );
     })}
@@ -32,7 +32,10 @@ const RelativeLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
       let timeElapsedSinceLastLap = lapTime - prevLapTime;
       return (
         <li key={lapTime}>
-          <LapTime lapTime={timeElapsedSinceLastLap} />
+          <LapTime
+            lapTime={timeElapsedSinceLastLap}
+            index={lapTimes.length - index}
+          />
         </li>
       );
     })}
