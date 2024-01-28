@@ -71,8 +71,18 @@ export default function StopWatch() {
         {formatTime(elapsedTime)}
       </Text>
       <InlineStack align='space-between'>
-        <StopWatchButton labels={["Reset", "Lap"]} active={active} onClick={handleLapResetClick}/>
-        <StopWatchButton labels={["Start", "Stop"]} active={active} onClick={handleStartStopClick}/>
+        <StopWatchButton
+          labels={["Reset", "Lap"]}
+          active={active}
+          tone={active ? 'success' : 'critical'}
+          onClick={handleLapResetClick}
+        />
+        <StopWatchButton
+          labels={["Start", "Stop"]}
+          active={active}
+          tone={active ? 'critical' : 'success'}
+          onClick={handleStartStopClick}
+        />
       </InlineStack>
       <Divider />
       {elapsedTime !== 0 && <Text as='p' variant='bodyLg'>Lap {laps.length + 1} {formatTime(currentLapTime)}</Text>}
