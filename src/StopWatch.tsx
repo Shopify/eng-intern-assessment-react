@@ -5,7 +5,7 @@ import { Timer } from './types/Timer';
 
 export default function StopWatch() {
 	const [timer, setTimer] = useState<Timer>({
-		time: null,
+		time: 0,
 		isRunning: false,
 		laps: [],
 	});
