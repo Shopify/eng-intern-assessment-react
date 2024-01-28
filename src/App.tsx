@@ -42,15 +42,18 @@ export default function App() {
                         }
                     }}
                     lap={() => {
-                        if (isRunning) {
-                            setLaps([
-                                ...laps,
-                                {
-                                    startTime: timeCounter,
-                                    duration: timeCounter - (laps.length > 0 ? laps[laps.length - 1].startTime : 0),
-                                },
-                            ]);
+                        // Don't add a lap if the last lap was at the same time
+                        if(laps.length > 0 && laps[laps.length - 1].startTime === timeCounter) {
+                            return;
                         }
+
+                        setLaps([
+                            ...laps,
+                            {
+                                startTime: timeCounter,
+                                duration: timeCounter - (laps.length > 0 ? laps[laps.length - 1].startTime : 0),
+                            },
+                        ]);
                     }}
                     reset={() => {
                         setLaps([]);

@@ -33,17 +33,49 @@ export const formatTime = (time: number) => {
     return `${hoursString}:${minutesString}:${secondsString}:${msString}`;
 }
 
+export interface LapListProps {
+    laps: Lap[],
+    time: number,
+}
+
+export interface LapDisplayProps {
+    faster?: boolean, // true for faster, false for slower, undefined for neither (first lap)
+    lap: Lap,
+    id: number,
+}
+
+export function LapDisplay (props: LapDisplayProps) {
+    return(
+        <li
+            className={props.faster ? 'faster' : props.faster === false ? 'slower' : ''}
+        >
+            Lap {props.id} {formatTime(props.lap.duration)}
+        </li>
+    )
+}
+
+export function LapList(props: LapListProps) {
+    return(
+        <ul>
+            {props.laps.map((lap, index) => (
+                <LapDisplay 
+                    key={index}
+                    lap={lap}
+                    id={index + 1}
+                    faster={index === 0 ? undefined : lap.duration < props.laps[index - 1].duration}
+                />
+            ))}
+        </ul>
+    )
+}
 
 export default function StopWatch(props: StopWatchProps) {
     return(
         <div className="stopwatch">
-            <ul>
-                {props.laps.map((lap, index) => (
-                    <li key={index}>
-                        {formatTime(lap.duration)}
-                    </li>
-                ))}
-            </ul>
+            <LapList
+                laps={props.laps}
+                time={props.time}
+            />
             <h1>
                 {formatTime(props.time)}
             </h1>
