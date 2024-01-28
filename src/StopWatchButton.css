@@ -1,0 +1,7 @@
+.buttons-container button{
+    margin:15px;
+    border:none;
+    background-color: #E5AD3D;
+    font-size:1.3rem;
+    cursor:pointer;
+}

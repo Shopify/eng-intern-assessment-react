@@ -1,0 +1,27 @@
+body{
+    margin:0;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.time-container{
+    color:azure;
+    display:flex;
+    letter-spacing: 2px;
+}
+
+.time-container span{
+    font-size: 4rem;
+    position: relative;
+    top:4px;
+}
+
+.timer-text{
+    font-size: 5rem; 
+    margin:0;  
+}
