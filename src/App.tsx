@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
+import LappedTimes from './LappedTimes';
 
 export default function App() {
 
@@ -10,7 +11,7 @@ export default function App() {
     const [clockStatus, setStatus] = useState(false);
     //for the lapped timings
     const [laps, setLaps] = useState([])
-
+    
     //used to change the running status whenver the user clicks start or stop buttons
     const handleStatusChange = (newStatus: boolean) => {
         setStatus(newStatus);
@@ -20,9 +21,8 @@ export default function App() {
         setTime(0);
     };
     //for when the user clicks the lap button
-    const lapTime = () => {
+    const handlelap = () => {
         setLaps([...laps, 0])
-        console.log(laps)
     }
 
     //logic for the displayed time
@@ -52,7 +52,6 @@ export default function App() {
     const getMili = (ms:number) => ('0' + Math.floor(ms / 1000 / 60) % 60).slice(-2)
     const getSec = (ms:number) => ('0' + Math.floor(ms / 1000) % 60).slice(-2)
     const getMin = (ms:number) => ('0' + (ms / 10) % 100).slice(-2);
-    
     const formatTime = (ms: number) => `${getMili(ms)}:${getSec(ms)}:${getMin(ms)}`
 
     return (
@@ -61,15 +60,18 @@ export default function App() {
                 time={time}
                 formatTime={formatTime}
             />
+
             <StopWatchButton
                 status={clockStatus}
                 onStatusChange={handleStatusChange}
                 onReset={handleReset}
-                onLap={lapTime}
+                onLap={handlelap}
              />
-            <div className='laps'>
-                {laps.map((lap, i) => <div key={i}>Lap {i + 1}: {formatTime(lap)}</div>)}
-            </div>
+
+             <LappedTimes
+             laps={laps}
+             formatTime={formatTime}
+             />
         </div>
     );
 }
