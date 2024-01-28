@@ -134,25 +134,7 @@ table {
 
 body {
 	font-family: Helvetica;
+	background-color: lightgray;
 }
 
-main {
-	background-color: aliceblue;
-	box-shadow: 5px 7px 12px rgba(0, 0, 0, 0.2);
-	height: 60vh;
-	max-height: 700px;
-	width: 50vw;
-	max-width: 500px;
 
-	/* Center */
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-.title {
-	font-weight: 800;
-	font-size: 2rem;
-	margin: auto;
-}

@@ -1,0 +1,24 @@
+main {
+	display: flex;
+	position: absolute;
+
+	background-color: aliceblue;
+	box-shadow: 5px 7px 12px rgba(0, 0, 0, 0.4);
+	height: 60vh;
+	max-height: 700px;
+	width: 50vw;
+	max-width: 500px;
+	border-radius: 10px;
+
+	/* Center */
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.title {
+	font-weight: 800;
+	font-size: 2rem;
+	margin: 0.5em auto;
+}
