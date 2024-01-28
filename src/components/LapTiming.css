@@ -1,5 +1,10 @@
 .timer-list {
   display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.1rem 0;
+  font-size: 1.3rem;
 }
 .timer-container {
   display: flex;

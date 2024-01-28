@@ -1,5 +1,6 @@
 import React from 'react';
 import LapTiming from './LapTiming';
+import './LapList.css';
 
 export default function LapList ({laps}: { laps: Array<number>}) {
     const showLapTime = laps.length > 0;

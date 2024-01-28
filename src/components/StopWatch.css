@@ -1,3 +1,21 @@
+.stopwatch {
+  text-align: center;
+  margin-top: 5%;
+  color: azure;
+}
+
 .stopwatch-container {
   display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.stopwatch-timer {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.stopwatch-header {
+  font-size: 4rem;
+  padding: 1rem;
 }

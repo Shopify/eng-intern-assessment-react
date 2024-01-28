@@ -38,6 +38,7 @@ export default function StopWatch() {
         }
     };
 
+    //Calculate hour,minute,seconds and milisecond
     const timer = (time: number) => {
         const hour = Math.floor(time / 360000);
         const minute = Math.floor((time % 360000) / 6000);
@@ -59,13 +60,15 @@ export default function StopWatch() {
 
         <section className='stopwatch'>
             <h1 className='stopwatch-header'>Stopwatch App</h1>
-            <h2 className='stopwatch-timer'>{timer(time)}</h2>
+            <div className='stopwatch-timer'>{timer(time)}</div>
             <div>
-                <StopWatchButton text="Laps" onClick={onLap}/>
+                <StopWatchButton text="Laps" onClick={onLap} className='btn'/>
                 <StopWatchButton 
                 text={isActive ? "Stop" : "Start" }
-                onClick={onStartStop}/>
-                <StopWatchButton text="Reset" onClick={onReset}/>
+                onClick={onStartStop}
+                className={`btn ${isActive ? 'btn-stop' : 'btn-start'}`}/>
+                <StopWatchButton text="Reset" onClick={onReset}
+                className='btn'/>
             </div>
             <LapList laps={laps} />
         </section>
