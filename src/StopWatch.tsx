@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import StopWatchButton from './StopWatchButton'
+import { time } from 'console'
 
 export default function StopWatch() {
     const [seconds, setSeconds] = useState<number>(0)
     const [minutes, setMinutes] = useState<number>(0)
     const [hours, setHours] = useState<number>(0)
-    const [laps, setLaps] = useState<Array<string>>([])
+    const [laps, setLaps] = useState<Array<string>>(["00:00:00"])
+    const [totalTime, setTotalTime] = useState<Array<string>>(["00:00:00"])
     const [run, setRun] = useState<boolean>(false)
 
     const formatZero = (num: number): string => {
@@ -23,8 +25,23 @@ export default function StopWatch() {
         }
 
         else{
-        let resultLap: string = formatZero(hours) + ":" + formatZero(minutes) + ":" + formatZero(seconds)
-        setLaps([...laps, resultLap])
+            let lastLap: string = totalTime.slice(-1).toString()
+            let newLap: string = formatZero(hours) + ":" + formatZero(minutes) + ":" + formatZero(seconds)
+
+            let time1 = new Date(`2011-10-10T${lastLap}`)
+            let time2 = new Date(`2011-10-10T${newLap}`)
+
+            let secDiff = Math.abs(time2.getSeconds() - time1.getSeconds());
+            let minDiff = Math.abs(time2.getMinutes() - time1.getMinutes());
+            let hrsDiff = Math.abs(time2.getHours() - time1.getHours());
+
+            console.log(time1)
+
+
+            let resultLap: string =  `${formatZero(hrsDiff)}:${formatZero(minDiff)}:${formatZero(secDiff)}`
+
+            setLaps([...laps, resultLap])
+            setTotalTime([...totalTime, newLap])
         }
     }
 
@@ -73,7 +90,8 @@ export default function StopWatch() {
                     setHours={setHours}
                     recordLap={recordLap}
                     />
-                    <ol> {laps} </ol>
+                    <ol> {laps.toString()} </ol>
+                    <ol> {totalTime.toString()} </ol>
             </div> 
         </div>
     )
