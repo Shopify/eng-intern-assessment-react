@@ -1,4 +1,5 @@
 import React from 'react';
+import './StopWatchButton.css';
 
 interface Props {
     label: string;
@@ -8,6 +9,6 @@ interface Props {
 
 export default function StopWatchButton({label, disabled, action}: Props) {
     return(
-        <button onClick = {action} disabled = {disabled}>{label}</button>
+        <button className = 'btn' onClick = {action} disabled = {disabled}>{label}</button>
     )
 }
