@@ -1,0 +1,49 @@
+body {
+    background-color: #0b0b0b;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+/* main body */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+/* lap item */
+.lap-container { 
+    display: flex;
+    align-items: center; 
+}
+
+/* millisecond span */
+.milli {
+    font-size: 36px;
+    display: inline-block;
+    min-width: 25px;
+}
+
+/* StopwatchButton */
+button {
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 18px;
+    padding: 5px 10px;
+    border: none;
+    background-image: linear-gradient(to bottom left, #a1f47a, #a7e5d6);
+    margin: 0 5px;
+    font-weight: 500;
+}
+
+/* Stopwatch font */
+h1 {
+    font-size: 60px;
+}
+
+/* lap time font */
+p {
+    padding-left: 5px;
+}
