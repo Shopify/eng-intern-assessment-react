@@ -22,23 +22,25 @@ export default function StopWatch() {
   }, [isTimerRunning]);
 
   return (
-    <div>
-      <div className="flex justify-center font-bold text-6xl text-primary-200">
+    <div className="w-[100%]">
+      <div className="flex justify-center font-bold text-6xl text-primary-200 mt-14">
         <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
         <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
         <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
       </div>
-      <StopWatchButton onClick={() => setTimerRunning(true)}>
-        Start
-      </StopWatchButton>
-      <StopWatchButton onClick={() => setTimerRunning(false)}>
-        Stop
-      </StopWatchButton>
-      <StopWatchButton onClick={() => setTimerRunning(true)}>
-        Resume
-      </StopWatchButton>
-      <StopWatchButton>Lap</StopWatchButton>
-      <StopWatchButton onClick={() => setTime(0)}>Reset</StopWatchButton>
+      <div className="flex justify-center space-x-6 mt-6">
+        <StopWatchButton onClick={() => setTimerRunning(true)}>
+          Start
+        </StopWatchButton>
+        <StopWatchButton onClick={() => setTimerRunning(false)}>
+          Stop
+        </StopWatchButton>
+        <StopWatchButton onClick={() => setTimerRunning(true)}>
+          Resume
+        </StopWatchButton>
+        <StopWatchButton>Lap</StopWatchButton>
+        <StopWatchButton onClick={() => setTime(0)}>Reset</StopWatchButton>
+      </div>
     </div>
   );
 }
