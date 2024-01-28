@@ -21,4 +21,4 @@ const formatTime = (timeInMilliseconds: number) => {
     return `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
 };
 
-export { formatTime };
+export { formatTime, getMilliseconds, getSeconds, getMinutes };
