@@ -18,6 +18,7 @@ const StopWatch: React.FC = () => {
   const [isActive, setIsActive] = useState<boolean>(false); // Determine if the stopwatch is running
   const [isPaused, setIsPaused] = useState<boolean>(true); // Determine if the stopwatch is paused
   const [time, setTime] = useState<number>(0); // Elapsed time in milliseconds
+  const [laps, setLaps] = useState<number[]>([]); // Lap times in milliseconds
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -50,14 +51,32 @@ const StopWatch: React.FC = () => {
     setIsActive(false);
     setIsPaused(true);
     setTime(0);
+    setLaps([]);
+  };
+
+  // Handle the lap button
+  const handleLap = () => {
+    if (isActive && !isPaused) {
+      setLaps((prevLaps) => [...prevLaps, time]);
+    }
   };
 
   return (
     <div>
       <h1>Stopwatch</h1>
       <h2>{formatTime(time)}</h2>
-      <StopWatchButton onClick={handleReset} label="Reset" />
-      <StopWatchButton onClick={handleStartStop} label={isActive && !isPaused ? "Pause" : "Start"} />
+      <div>
+        <StopWatchButton onClick={handleReset} label="Reset" />
+        <StopWatchButton onClick={handleLap} label="Lap" disabled={!isActive || isPaused} />
+        <StopWatchButton onClick={handleStartStop} label={isActive && !isPaused ? "Pause" : "Start"} />
+      </div>
+      <div>
+        {laps.map((lap, index) => (
+          <div key={index}>
+            Lap {index + 1}: {formatTime(lap)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
