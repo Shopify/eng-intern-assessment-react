@@ -1,7 +1,7 @@
 import React from "react";
 import { StopWatchButton } from "./StopWatchButton";
 
-export default function StopWatch() {
+const StopWatch: React.FC = () => {
   // not specifying the type here for useState since typescript can infer this from the initial state value
   const [time, setTime] = React.useState(0);
   const [isTimerRunning, setTimerRunning] = React.useState(false);
@@ -43,4 +43,6 @@ export default function StopWatch() {
       </div>
     </div>
   );
-}
+};
+
+export default StopWatch;
