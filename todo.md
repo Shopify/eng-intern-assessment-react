@@ -7,9 +7,9 @@
     - [✅] The stopwatch should reset to zero when the user clicks the reset button.
     - [✅] The stopwatch should record and display laps when user clicks the lap button.
 
-- [x] Ensure code quality:
-    - [x] Write clean, well-structured, and maintainable code.
-    - [x] Pay attention to code readability, modularity, and performance.
+- [✅] Ensure code quality:
+    - [✅] Write clean, well-structured, and maintainable code.
+    - [✅] Pay attention to code readability, modularity, and performance.
 
 - [x] Test your code using React Testing Library:
     - [x] Write unit tests for the stopwatch functionality to ensure it works correctly.
@@ -22,9 +22,9 @@
         - [x] Timer is accurate
 
         Start/Stop/Reset Buttons:
-        - [x] Start button starts the timer
-        - [x] Stop button stops the timer
-        - [x] Reset button resets the timer
+        - [✅] Start button starts the timer
+        - [✅] Stop button stops the timer
+        - [✅] Reset button resets the timer
 
         Lap Button:
         - [x] Lap button adds a lap
@@ -59,9 +59,9 @@
         - [x] Music button stops music when clicked again
         - [x] Music button plays music when clicked again
 
-- [x] Code documentation:
-    - [x] Document your code by adding comments and explanatory notes where necessary.
-    - [x] Provide clear explanations of the implemented functionality and any important details.
+- [✅] Code documentation:
+    - [✅] Document your code by adding comments and explanatory notes where necessary.
+    - [✅] Provide clear explanations of the implemented functionality and any important details.
 
 - [✅] Accessibility:
     - [✅] Ensure that the application is accessible and usable by people with disabilities.
@@ -104,7 +104,7 @@
         - [✅] Have animation speed up or slow down depending on "workout" stat
     - [x] When start, stop, reset, lap clicked, have text and sound effect pop up
     - [x] Multiple sprites to choose from?
-    - [x] 8-bit music?
+    - [✅] 8-bit music?
     - [x] Add current meters/sec in same style as current distance, lap, workout level box
     - [x] Shadow under sprite semi-transparent 
     - [x] Small NES top right box to show fastest m/s?

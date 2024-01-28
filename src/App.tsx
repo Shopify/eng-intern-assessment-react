@@ -8,7 +8,9 @@ import NESBackground from "./components/NESBackground";
 import RecordBoard from "./components/RecordBoard";
 import GameScene from "./components/GameScene";
 
+// component game scene and control panel (record board, can be used to add more functionality in the future: multiple sprite selection, etc)
 const Game: React.FC = () => {
+  // accessing running state and workout level from stopwatch context
   const { isRunning, workout } = useStopWatch();
 
   return (
@@ -22,6 +24,7 @@ const Game: React.FC = () => {
 };
 
 export default function App() {
+  // wrapping the game component with stopwatch context provider for the stopwatch functionality
   return (
     <StopWatchProvider>
       <NESBackground size="large">

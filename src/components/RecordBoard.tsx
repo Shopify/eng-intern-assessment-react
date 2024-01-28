@@ -1,14 +1,17 @@
 import React from "react";
 import { useStopWatch } from "./StopWatchContext";
 import NESBackground from "./NESBackground";
-import "./../css/Fonts.css"
+import "./../css/Fonts.css";
 
 const RecordBoard: React.FC = () => {
+  // stopwatch context hook to access laps and format functions
   const { laps, formatTime, formatDistance } = useStopWatch();
 
   return (
     <NESBackground size="medium">
       <h2 id="record-board-title">« Record Board »</h2>
+
+      {/* container for record board laps */}
       <div
         className="record-board-content"
         role="list"
@@ -20,6 +23,7 @@ const RecordBoard: React.FC = () => {
           .reverse() // reverse to display the most recent laps first
           .map((lap, index) => (
             <div key={index} role="listitem">
+              {/* display lap number, time and distance */}
               Lap {laps.length - index}: {formatTime(lap.time)},{" "}
               {formatDistance(lap.distance)}
             </div>

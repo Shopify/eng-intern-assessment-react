@@ -5,7 +5,9 @@ import "./../css/StatsDisplay.css";
 
 import NESBackground from "./NESBackground";
 
+// display current running/stopwatch stats on gamescene component
 const StatsDisplay: React.FC = () => {
+  // stopwatch context hook to access laps and format functions
   const { time, distance, currentLap, workout, formatTime, formatDistance } =
     useStopWatch();
 
@@ -15,6 +17,7 @@ const StatsDisplay: React.FC = () => {
       role="complementary"
       aria-label="Game statistics"
     >
+      {/* container for stats display for current run stats, with ARIA attributes for screenreaders */}
       <NESBackground size="small">
         <h2 id="stats-heading">« Stats »</h2>
         <div role="group" aria-labelledby="stats-heading">

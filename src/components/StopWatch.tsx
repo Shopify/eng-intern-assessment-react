@@ -6,6 +6,7 @@ import StopWatchButton from "./StopWatchButton";
 import NESBackground from "./NESBackground";
 import KeyBindings from "./KeyBindings";
 
+// accessing context hook to access stopwatch state and functions
 const StopWatch: React.FC = () => {
   const {
     time,
@@ -23,6 +24,7 @@ const StopWatch: React.FC = () => {
     formatDistance,
   } = useStopWatch();
 
+  // update time, distance and current lap every 10ms while running
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     if (isRunning) {
@@ -37,6 +39,7 @@ const StopWatch: React.FC = () => {
     return () => clearInterval(interval);
   }, [isRunning, workout, setTime, setCurrentLap, setDistance]);
 
+  // start, stop, reset and record lap functions
   const start = () => setIsRunning(true);
   const stop = () => setIsRunning(false);
   const reset = () => {
@@ -47,6 +50,7 @@ const StopWatch: React.FC = () => {
     setWorkout(1);
   };
 
+  // record lap while time lap and distance are not 0 to prevent lap spamming
   const recordLap = () => {
     if (time > 0 && currentLap > 0 && distance > 0) {
       addLap({ time: currentLap, distance });
@@ -55,10 +59,12 @@ const StopWatch: React.FC = () => {
     }
   };
 
+  // increase workout level to make sonic go faster and speed up scrolling background
   const increaseWorkout = () => {
     setWorkout((prevWorkout) => prevWorkout + 1);
   };
 
+  // helper function to calculate distance increment based on workout level
   const calculateDistanceIncrement = (workoutStat: number) => {
     return workoutStat / 100; // Increment per 10ms for workoutStat meters per second.
   };
@@ -69,6 +75,7 @@ const StopWatch: React.FC = () => {
       role="complementary"
       aria-labelledby="stopwatch-controls"
     >
+      {/* keybindings support for accessibility */}
       <KeyBindings
         isRunning={isRunning}
         toggleStartStop={isRunning ? stop : start}
@@ -76,6 +83,8 @@ const StopWatch: React.FC = () => {
         handleLap={recordLap}
         handleReset={reset}
       />
+
+      {/* stopwatch buttons rendered on game, with ARIA attributes including keybinds */}
       <NESBackground size="small">
         <h2>« Controls »</h2>
         <StopWatchButton

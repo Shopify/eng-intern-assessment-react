@@ -8,6 +8,7 @@ type KeyBindingsProps = {
   handleReset: () => void;
 };
 
+// KeyBindings component handles keyboard events for the stopwatch.
 const KeyBindings: React.FC<KeyBindingsProps> = ({
   isRunning,
   toggleStartStop,

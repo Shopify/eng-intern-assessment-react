@@ -1,3 +1,4 @@
+// declarations for media imports used in game
 declare module "*.jpg" {
   const path: string;
   export default path;

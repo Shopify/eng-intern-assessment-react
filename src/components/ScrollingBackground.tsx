@@ -20,7 +20,7 @@ const ScrollingBackground: React.FC<ScrollingBackgroundProps> = ({
   const backgroundStyle = {
     backgroundImage: `url(${MarioTrack})`,
     backgroundRepeat: "repeat-x",
-    animation: `scrollBackground ${animationDuration}s linear infinite`,
+    animation: `scrollBackground ${animationDuration}s linear infinite`, // provides the infinite scrolling magic
     animationPlayState: isRunning ? "running" : "paused", // control animation state based on isRunning
   };
 

@@ -4,6 +4,8 @@ import "./../css/MusicControl.css";
 import SoundFile from "./../../public/media/The Human Abstract - Crossing The Rubicon 8-Bit.mp3";
 
 const MusicControl: React.FC = () => {
+  // state for music control
+  // isPlaying is false by default
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio(SoundFile));
 
