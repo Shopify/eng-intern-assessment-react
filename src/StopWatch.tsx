@@ -56,7 +56,10 @@ const Stopwatch: React.FC = () => {
         <div>:</div>
         <div className="min-w-48">{`${timeBreakdown.seconds}`}</div>
         <div>.</div>
-        <div className="min-w-48">{`${timeBreakdown.centiseconds}`}</div>
+        <div className="min-w-48">{`${timeBreakdown.milliseconds.slice(
+          0,
+          2
+        )}`}</div>
       </div>
 
       <div className="flex justify-around w-full max-w-2xl">

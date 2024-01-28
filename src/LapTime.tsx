@@ -18,7 +18,10 @@ const LapTime: React.FC<LapTimeProps> = ({ lapTime, index }) => {
         <div>:</div>
         <div className=" min-w-14">{`${timeBreakdown.seconds}`}</div>
         <div>.</div>
-        <div className="min-w-14">{`${timeBreakdown.centiseconds}`}</div>
+        <div className="min-w-14">{`${timeBreakdown.milliseconds.slice(
+          0,
+          2
+        )}`}</div>
       </div>
     </div>
   );
