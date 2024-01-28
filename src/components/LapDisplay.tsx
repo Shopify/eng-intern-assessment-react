@@ -1,19 +1,41 @@
 import React from "react";
 import { getTimeComponentsFromMs } from "../utils/timeConversion";
 
-export default function LapDisplay({ laps }: { laps: number[] }) {
+export default function LapDisplay({
+  laps,
+  minLapIndex,
+  maxLapIndex,
+}: {
+  laps: number[];
+  minLapIndex: number | null;
+  maxLapIndex: number | null;
+}) {
   const formattedLaps = laps
     ? laps.map((lap: number) => getTimeComponentsFromMs(lap))
     : [];
+
+  const getLapStyle = (index: number) => {
+    if (minLapIndex == maxLapIndex || laps.length <= 2) {
+      return {};
+    }
+    if (index === minLapIndex) {
+      return { color: "green" };
+    } else if (index === maxLapIndex) {
+      return { color: "red" };
+    } else {
+      return {};
+    }
+  };
+
   return (
     <div>
-      <h1>Laps</h1>
       <div>
-        {formattedLaps.map((lap, i) => {
+        {formattedLaps.reverse().map((lap, i) => {
+          const reversedIndex = formattedLaps.length - i;
           return (
             <div>
-              <p>Lap {i + 1}</p>
-              <p>{lap.join(":")}</p>
+              <p style={getLapStyle(reversedIndex - 1)}>Lap {reversedIndex}</p>
+              <p style={getLapStyle(reversedIndex - 1)}>{lap.join(":")}</p>
             </div>
           );
         })}

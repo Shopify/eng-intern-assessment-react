@@ -5,7 +5,7 @@ export default function StopWatchButton(props: any) {
     <div>
       {props.status === 0 ? (
         <div>
-          <button className="stopwatch-btn " disabled>
+          <button className="stopwatch-btn-disabled " disabled>
             Lap
           </button>{" "}
           <button className="stopwatch-btn " onClick={props.start}>
@@ -29,10 +29,7 @@ export default function StopWatchButton(props: any) {
       )}
       {props.status === 2 ? (
         <div>
-          <button
-            className="stopwatch-btn onClick={props.resume}"
-            onClick={props.reset}
-          >
+          <button className="stopwatch-btn" onClick={props.reset}>
             Reset
           </button>{" "}
           <button className="stopwatch-btn " onClick={props.resume}>

@@ -9,23 +9,94 @@ body {
 }
 
 .clock-holder {
-  width: 100%;
-  /* temp color: */
+  width: 55%;
   background: #fff;
   margin: 30px auto;
   position: relative;
-  width: 65%;
-  height: 65%;
+  min-width: 20rem;
+  min-height: 20rem;
+  aspect-ratio: 1;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-section {
-  /* background: transparent; */
-  background: #b42121;
+  background: transparent;
+  /* background: #b42121; */
   max-width: 600px;
   width: 90%;
-  height: 500px;
-  margin: 30px auto;
+  height: 60rem;
+  margin: 0rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.main-section .title {
+  color: #000000;
+  font-family: monospace;
+  font-size: 22px;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+.button-holder {
+  background: transparent;
+  /* background-color: rgb(78, 23, 206); */
+  text-align: center;
+  /* display: flex; */
+  justify-content: center;
+}
+.button-holder .stopwatch-btn {
+  background: #000000;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 5px;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-family: monospace;
+  text-transform: uppercase;
+  width: 17%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transition: background 1s;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.button-holder .stopwatch-btn-disabled {
+  background: #6a6a6a;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 5px;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-family: monospace;
+  text-transform: uppercase;
+  width: 17%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transition: background 1s;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.laps-holder {
+  background: transparent;
+  /* background-color: #fafafa; */
+  text-align: center;
+  margin-top: 30px;
+  flex-wrap: nowrap;
+}
+
+.laps-holder p {
+  display: inline;
+  margin-right: 20px;
+  font-family: monospace;
+  font-size: 1.15rem;
 }
 
 .stopwatch {
@@ -33,25 +104,19 @@ body {
   text-align: center;
 }
 .stopwatch span {
-  background: #88d792;
+  background: #ffffff;
   color: #000000;
   display: inline-block;
   font-family: monospace;
   font-size: 22px;
-  padding: 20px;
-  border-radius: 5px;
-  width: 70px;
+  padding: 10px;
 }
 
-.stopwatch .stopwatch-btn {
-  background: #fff;
-  margin-top: 30px;
-  margin-left: 5px;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  text-transform: uppercase;
-  width: 150px;
-  transition: background 1s;
-  cursor: pointer;
+.stopwatch div {
+  background: #ffffff;
+  color: #000000;
+  font-family: monospace;
+  font-size: 22px;
+  display: inline-block;
+  padding: 10px;
 }
