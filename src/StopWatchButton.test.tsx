@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StopwatchButton from "./StopwatchButton";
+import StopwatchButton from "./StopWatchButton";
 
 describe("StopwatchButton", () => {
   it("renders correctly", () => {
