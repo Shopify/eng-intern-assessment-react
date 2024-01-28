@@ -1,12 +1,14 @@
-.stopwatch-display {
-  text-align: center;
-  margin-bottom: 1em;
-}
-
 .stopwatch-controls {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  z-index: 5;
+  aspect-ratio: 4 / 3; /* Maintain aspect ratio */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  gap: 0.5em;
+}
+
+.stopwatch-controls button {
+  margin-bottom: 0.2em;
 }

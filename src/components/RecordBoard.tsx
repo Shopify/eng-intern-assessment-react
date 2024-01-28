@@ -1,6 +1,7 @@
 import React from "react";
 import { useStopWatch } from "./StopWatchContext";
 import NESBackground from "./NESBackground";
+import "./../css/Fonts.css"
 
 const RecordBoard: React.FC = () => {
   const { laps, formatTime, formatDistance } = useStopWatch();

@@ -64,7 +64,11 @@ const StopWatch: React.FC = () => {
   };
 
   return (
-    <>
+    <div
+      className="stopwatch-controls"
+      role="complementary"
+      aria-labelledby="stopwatch-controls"
+    >
       <KeyBindings
         isRunning={isRunning}
         toggleStartStop={isRunning ? stop : start}
@@ -72,17 +76,35 @@ const StopWatch: React.FC = () => {
         handleLap={recordLap}
         handleReset={reset}
       />
-      <NESBackground size="medium">
+      <NESBackground size="small">
         <h2>« Controls »</h2>
-        <div className="stopwatch-controls">
-          <StopWatchButton action={start} label="Start" />
-          <StopWatchButton action={stop} label="Stop" />
-          <StopWatchButton action={reset} label="Reset" />
-          <StopWatchButton action={recordLap} label="Lap" />
-          <StopWatchButton action={increaseWorkout} label="+1 Workout" />
-        </div>
+        <StopWatchButton
+          aria-label="Press Spacebar to start running"
+          action={start}
+          label="Start (Space)"
+        />
+        <StopWatchButton
+          aria-label="Press Spacebar to stop running"
+          action={stop}
+          label="Stop (Space)"
+        />
+        <StopWatchButton
+          aria-label="Press R Key to reset stats and run"
+          action={reset}
+          label="Reset (R)"
+        />
+        <StopWatchButton
+          aria-label="Press Enter to record lap stats"
+          action={recordLap}
+          label="Lap (Enter)"
+        />
+        <StopWatchButton
+          aria-label="Press W Key to increase workout level to make Sonic go faster"
+          action={increaseWorkout}
+          label="Workout (W)"
+        />
       </NESBackground>
-    </>
+    </div>
   );
 };
 

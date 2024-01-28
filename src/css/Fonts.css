@@ -18,7 +18,7 @@ h1 {
 }
 
 h2 {
-  font-size: 24px; /* medium size for secondary titles */
+  font-size: 18px; /* medium size for secondary titles */
 }
 
 /* subtitles */
@@ -28,14 +28,13 @@ h3 {
 
 /* Body text */
 p, kbd {
-  font-size: 16px;
-}
-
-/* additional styles for other elements as needed */
-.button {
-  font-size: 18px; /* larger size for buttons */
+  font-size: 14px;
 }
 
 .small-text {
   font-size: 14px; /* smaller size for less important text */
+}
+
+.button {
+  font-size: 14px;
 }

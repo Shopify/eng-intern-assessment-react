@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/App.css";
-import "./css/fonts.css";
+import "./css/Fonts.css";
 
 import { StopWatchProvider, useStopWatch } from "./components/StopWatchContext";
 
@@ -16,7 +16,6 @@ const Game: React.FC = () => {
     <div className="game">
       <GameScene isRunning={isRunning} workout={workout} />
       <div className="control-panel">
-        <StopWatch />
         <RecordBoard />
       </div>
     </div>

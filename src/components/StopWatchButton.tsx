@@ -1,4 +1,5 @@
 import React from "react";
+import "./../css/Fonts.css";
 
 type StopwatchButtonProps = {
   action: () => void;
@@ -12,7 +13,7 @@ export default function StopwatchButton({
   ariaLabel,
 }: StopwatchButtonProps) {
   return (
-    <button onClick={action} aria-label={ariaLabel || label}>
+    <button className="button" onClick={action} aria-label={ariaLabel || label}>
       {label}
     </button>
   );

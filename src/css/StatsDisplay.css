@@ -11,12 +11,12 @@
   padding-left: 1em; /* align text to left edge of container */
 }
 
-.stats-header {
+.stats-header h3 {
   font-size: calc(10px + 0.9vw); /* scales with the viewport width */
   margin-bottom: 0.5rem;
 }
 
-.stats-text {
+.stats-text p {
   font-size: calc(10px + 0.5vw); /* slightly smaller text then header */
   margin-bottom: 0.25rem;
 }
