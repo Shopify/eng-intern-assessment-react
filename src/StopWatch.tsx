@@ -23,7 +23,7 @@ export default function StopWatch() {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-center font-bold text-6xl text-primary-200">
         <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
         <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
         <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
