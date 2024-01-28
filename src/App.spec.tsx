@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { formatTime } from './StopWatch';
+import { formatTime } from './util';
 
 /**
  * A helper function to check if the time counter is changing by checking the time counter every 100ms for 5 iterations
