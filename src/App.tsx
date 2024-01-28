@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import StopWatch from './StopWatch'
+import StopWatch, { formatTime } from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import './App.css'
 
@@ -20,6 +20,9 @@ export default function App() {
             }
         }
         , 1);
+
+        document.title = `Stopwatch: ${formatTime(timeCounter)}`;
+
         return () => clearInterval(interval);
     }, [isRunning, timeCounter]);
 

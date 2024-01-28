@@ -55,6 +55,13 @@ export function LapDisplay (props: LapDisplayProps) {
 }
 
 export function LapList(props: LapListProps) {
+
+    // This is the lap that is currently being timed
+    const previewLap: Lap = {
+        duration: props.time - (props.laps.length > 0 ? props.laps[props.laps.length - 1].startTime : 0),
+        startTime: props.time,
+    }
+
     return(
         <ul>
             {props.laps.map((lap, index) => (
@@ -65,6 +72,11 @@ export function LapList(props: LapListProps) {
                     faster={index === 0 ? undefined : lap.duration < props.laps[index - 1].duration}
                 />
             ))}
+            <LapDisplay
+                lap={previewLap}
+                id={props.laps.length + 1}
+                faster={props.laps.length === 0 ? undefined : props.time < props.laps[props.laps.length - 1].duration}
+            />
         </ul>
     )
 }
