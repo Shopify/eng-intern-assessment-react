@@ -1,4 +1,4 @@
-# React Stopwatch Project
+
 
 
 Welcome to my React Stopwatch project! This project is designed to provide a simple yet visually appealing stopwatch experience. 
@@ -24,6 +24,7 @@ I aimed for a well-organized file structure to ensure clarity and modularity in 
 4. **src/App.tsx:**
 
     - This file houses all the project logic.
+
 
 
 ## Functionality/Interface Design
