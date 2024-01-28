@@ -45,10 +45,22 @@ function App() {
         <div className='app'>
             <StopWatch time={formatTime(timeElapsed)} />
             <div className='buttonsContainer'>
-                <StopWatchButton label={'start'} handleButtonClick={() => startStopwatch()} />
-                <StopWatchButton label={'stop'} handleButtonClick={() => stopStopwatch()} />
-                <StopWatchButton label={'lap'} handleButtonClick={() => addLap()} />
-                <StopWatchButton label={'reset'} handleButtonClick={() => resetStopwatch()} />
+                <StopWatchButton 
+                    label='start' 
+                    handleButtonClick={() => startStopwatch()} 
+                />
+                <StopWatchButton 
+                    label='stop' 
+                    handleButtonClick={() => stopStopwatch()} 
+                />
+                <StopWatchButton 
+                    label='lap' 
+                    handleButtonClick={() => addLap()} 
+                />
+                <StopWatchButton 
+                    label='reset' 
+                    handleButtonClick={() => resetStopwatch()} 
+                />
             </div>
         </div>
     )
