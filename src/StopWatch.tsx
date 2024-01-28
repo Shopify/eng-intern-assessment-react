@@ -1,7 +1,13 @@
-import React from 'react'
+import React, {useMemo} from 'react'
+import {getFormattedTime} from "./timelib";
 
-export default function StopWatch() {
+interface IStopWatchProps{
+    time:number
+}
+export default function StopWatch(props:IStopWatchProps) {
+    const {time} = props;
+    const formattedTime = useMemo<string>(()=>getFormattedTime(time),[time]);
     return(
-        <div></div>
+        <div>{{formattedTime}}</div>
     )
 }
