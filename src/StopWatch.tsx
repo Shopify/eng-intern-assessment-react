@@ -23,7 +23,7 @@ export function formatTime(time: number): string {
 }
 
 export default function StopWatch() {
-    // State for the time, whether the timer is on/off, and the lap times
+    // State to track the time, whether the timer is on/off, and the lap times
     const [time, setTime] = useState(0);
     const [timerOn, setTimerOn] = useState(false);
     const [lapTimes, setLapTimes] = useState<number[]>([]);

@@ -39,6 +39,7 @@ body {
   text-align: left;
   border-radius: 0.5rem;
   padding: 7px 0px 7px 15px;
+  box-shadow: 0.5px 0.5px gray;
 }
 
 .stopwatch-time {
@@ -51,6 +52,7 @@ body {
   border-radius: 0.75rem;
   width: 50%;
   text-align: -webkit-center;
+  box-shadow: 0.5px 0.5px gray;
 }
 
 .stopwatch-time p {
