@@ -2,6 +2,7 @@ module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
     colors: {
+      white: "#fff",
       primary: {
         100: "var(--color-primary-100)",
         200: "var(--color-primary-200)",
