@@ -57,19 +57,30 @@ export default function StopWatch() {
     }, [timerOn])
 
     return(
-        <div>
-            <h1>StopWatch</h1>
-            <p>{formatTime(time)}</p>
-            <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-            <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-            <StopWatchButton type={'lap'} timerOn={timerOn} onClick={handleLap}></StopWatchButton>
-            <StopWatchButton type={'reset'} onClick={handleReset}></StopWatchButton>
-            {/* Display the lap times */}
-            <ul>
-                {lapTimes.map((lapTime, index) => {
-                    return <li key={index}>{formatTime(lapTime)}</li>
-                })}
-            </ul>
+        <div className='stopwatch'>
+            <h1 className='stopwatch-title'>StopWatch</h1>
+            <div className='stopwatch-content'>
+                <div className='stopwatch-buttons'>
+                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
+                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
+                    <StopWatchButton type={'lap'} onClick={handleLap} timerOn={timerOn}></StopWatchButton>
+                    <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
+                </div>
+                <div className='stopwatch-time'>
+                    <p>{formatTime(time)}</p>
+                    {/* Display the lap times */}
+                    {lapTimes.length > 0 && (
+                        <div className='stopwatch-laptimes'>
+                            <p>Lap times</p>
+                            <ul>
+                                {lapTimes.map((lapTime, index) => {
+                                    return <li key={index}>{formatTime(lapTime)}</li>
+                                })}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     )
 }
