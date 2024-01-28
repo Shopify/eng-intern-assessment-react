@@ -31,8 +31,10 @@
 }
 
 .lapsList {
+  height: 17rem;
   margin-left: 1rem;
   font-size: 1.3rem;
+  overflow-y: scroll;
 }
 
 @media all and (max-width: 900px) {

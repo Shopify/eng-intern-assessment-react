@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react';
 import '../styles/StopWatch.css';
 import { useState } from 'react';
 import StopWatchButton from './StopWatchButton';
@@ -54,7 +54,6 @@ export default function StopWatch(props: StopWatchProps) {
 
       <div className='laps-container'>
         <div className='lapsTitle'>Laps</div>
-
       {/* a ordered list, with each lap mapped to a list item */}
           <ol className='lapsList'>
             {lapsList.map((lap) => (
