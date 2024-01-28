@@ -9,20 +9,20 @@ This project involves the creation of a stopwatch application using React and Ty
 
 ### Features
 
-- **Start**: Start the stopwatch to begin counting time.
-- **Stop**: Stop the stopwatch to pause the timer.
-- **Lap**: For each lap, displays:
-  - Lap Number
-  - Time Elapsed from Previous Lap
-  - Total Time Elapsed
-- **Reset**: Reset the stopwatch to zero.
-- **Unit Testing**: Tests the individual components of the stopwatch.
-- **Integration Testing**: Testing application's behavior as a whole.
+- [x] **Start**: Start the stopwatch to begin counting time.
+- [x] **Stop**: Stop the stopwatch to pause the timer.
+- [x] **Lap**: For each lap, displays:
+  - [x] Lap Number
+  - [x] Time Elapsed from Previous Lap
+  - [x] Total Time Elapsed
+- [x] **Reset**: Reset the stopwatch to zero.
+- [x] **Unit Testing**: Tests the individual components of the stopwatch.
+- [x] **Integration Testing**: Testing application's behavior as a whole.
 
 #### Additional Features
 
-- **UI Enchancements**: Bootstrap and custom CSS utilized to create a modern look.
-- **Responsive Design through Bootstrap**
+- [x] **UI Enchancements**: Bootstrap and custom CSS utilized to create a modern look.
+- [x] **Responsive Design through Bootstrap**
 
 ## Running the Project
 
