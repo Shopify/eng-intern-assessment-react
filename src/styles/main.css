@@ -47,6 +47,7 @@ button {
 button:hover {
   background: #76787b;
   color: #cfd2d8;
+  cursor: pointer;
 }
 
 button:focus {

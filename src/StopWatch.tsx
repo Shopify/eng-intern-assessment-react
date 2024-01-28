@@ -7,19 +7,19 @@ export default function StopWatch() {
   const [intervalID, setIntervalId] = useState<NodeJS.Timer | null>(null);
   const [laps, setLaps] = useState<string[]>([]);
 
-  //increment setInterval by 10ms
-  const timeInterval = 10;
+  //increment setInterval by average monitor frame rate 60fps
+  const TIME_INTERVAL = 1000 / 60;
 
   const handleStartStop = () => {
     setIsRunning(!isRunning);
     const clickStartTime = Date.now();
     if (!isRunning) {
       const startIntervalID = setInterval(() => {
-        //Use Date Object for more accurate handling of
+        //Use Date Object for more accurate measurment of time intervals
         const timeStamp = Date.now();
         const elapsedTime = timeStamp - clickStartTime;
         setTotalTime(totalTime + elapsedTime);
-      }, timeInterval);
+      }, TIME_INTERVAL);
       setIntervalId(startIntervalID);
     } else {
       clearInterval(intervalID);
@@ -36,7 +36,7 @@ export default function StopWatch() {
   const minutes = Math.floor((totalTime / (1000 * 60)) % 60);
   const hours = Math.floor((totalTime / (1000 * 60 * 60)) % 60);
 
-  const displayTime = `${formatTime(minutes)}:${formatTime(
+  const displayTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(
     seconds
   )}:${formatTime(milliSeconds)}`;
 
@@ -68,7 +68,7 @@ export default function StopWatch() {
       </div>
       <div className="lap container">
         <StopWatchButton title={"Clear Lap"} handleClick={handleClearLaps} />
-        <ul>
+        <ul data-testid={`lap-list`}>
           {laps.map((lap, index) => (
             <li data-testid={`list-item-${index}`} key={index}>
               {lap}
