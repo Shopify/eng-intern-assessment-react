@@ -3,7 +3,7 @@ import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 import "./styles.css";
 
-export default function App() {
+const App: React.FC = () => {
     const [time, setTime] = useState(0);
 
     const [isRunning, setIsRunning] = useState(false);
@@ -46,4 +46,6 @@ export default function App() {
             />
         </>
     );
-}
+};
+
+export default App;
