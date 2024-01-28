@@ -1,86 +1,68 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
+#Demo
 
-# Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
 
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+https://github.com/madhavkapoor1/eng-intern-assessment-react/assets/38007810/b519f96b-1b6b-4ff1-ba68-e217855cbfa9
 
-## Project Setup
-To get started with the project, follow these steps:
 
-1. Clone the project repository to your local development environment.
+#Stopwatch Application - Project Documentation
 
-2. Install the required dependencies by running npm install in the project directory.
+#Project Overview
+This project aims to implement a stopwatch application using React and TypeScript. The stopwatch should have standard functionality such as starting, stopping, resetting, and recording laps. The project includes a basic structure with main components like App.tsx, Stopwatch.tsx, and StopwatchButton.tsx.
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
+##Process and Learnings
 
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+#Project Setup:
 
-## Project Goals
-Your specific goals for this project are as follows:
+Cloned the repository and created a new branch.
+Installed required dependencies using npm install.
+Familiarized myself with the project structure.
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+#Code Review:
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
+Reviewed existing code in src directory to understand the initial structure and component hierarchy.
+Identified key components: App.tsx, Stopwatch.tsx, and StopwatchButton.tsx.
 
-3. Test your code:
-    - Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
+#Implementation:
 
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
+Implemented stopwatch functionality in App.tsx, handling start, stop, reset, and lap features.
+Ensured clean and well-structured code following React and TypeScript conventions.
+Testing:
 
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
+Wrote unit tests using React Testing Library to verify stopwatch functionality.
+Ensured that the stopwatch starts, stops, resets, and records laps as expected.
 
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
+#Code Quality:
 
-## Getting Started
-To start working on the project, follow these steps:
+Focused on writing clean, maintainable code.
+Followed best practices, adhered to React and TypeScript conventions.
+Emphasized code readability, modularity, and performance.
 
-1. Clone the repository to your local development environment.
+#Documentation:
 
-2. Install the required dependencies by running npm install in the project directory.
+Documented code using comments and explanatory notes where necessary.
+Provided clear explanations of implemented functionality and important details.
 
-3. Open the project in your preferred code editor.
+#Version Control:
 
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
+Used Git for version control, committing changes regularly.
+Pushed changes to a branch in the forked repository.
 
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
+#Challenges and Solutions
+Challenge: Faced issues with unexpected tokens during testing.
+Solution: Installed and configured jest-environment-jsdom, resolving the token parsing issue.
 
-6. Run the application using npm start and test the stopwatch functionality.
+#Future Ideas
+Implement a feature to display lap times in a more visually appealing format.
+Add the ability to save and export recorded laps.
+Explore the possibility of adding sound effects or notifications for specific events.
 
-7. Commit your changes regularly and push them to a branch in your forked repository.
+#Suggestions and Improvements
+Consider enhancing the user interface for better user experience.
+Explore the use of animations or transitions to make the stopwatch interactions smoother.
+Increased testing to test any future UI additions
 
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
+#Conclusion
+Completing this project provided valuable experience in React, TypeScript, and testing. The process involved implementing core functionality, writing tests, and ensuring code quality. Addressing challenges enhanced problem-solving skills, and documenting the code facilitated understanding and collaboration.
 
-## Resources
-Here are some resources that may be helpful during your work on this project:
-
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
-
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
-
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+The project has the potential for further improvements and additional features. It was an enriching learning experience, contributing to skill development in frontend development with React and TypeScript.
