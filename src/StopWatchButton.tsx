@@ -4,16 +4,18 @@ import './styles/StopWatchButton.css';
 type PropType = {
 	children: ReactNode;
 	onClick: () => void;
-	timerIsRunning: boolean;
+	disabled?: boolean;
 };
 
 export default function StopWatchButton({
 	children,
 	onClick,
-	timerIsRunning,
+	disabled,
 }: PropType) {
-	
-
-	return <button onClick={() => onClick()} >{children}</button>;
+	return (
+		<button onClick={() => onClick()} disabled={disabled}>
+			{children}
+		</button>
+	);
 }
 

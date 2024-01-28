@@ -12,18 +12,18 @@ export default function StopWatch() {
 
 	useEffect(() => {
 		let interval: NodeJS.Timer;
-		if (timer.isRunning || true) {
+		if (timer.isRunning) {
 			interval = setInterval(
 				() => setTimer({ ...timer, time: timer.time + 1 }),
 				10
 			);
 		}
 		return () => clearInterval(interval);
-	}, []);
+	}, [timer.time]);
 
-	const startTimer = () => {};
-
-	const stopTimer = () => {};
+	const toggleTimer = () => {
+		setTimer({ ...timer, isRunning: !timer.isRunning });
+	};
 
 	const resetTimer = () => {};
 
@@ -33,10 +33,11 @@ export default function StopWatch() {
 		<main>
 			<h1 className='title'>Stopwatch</h1>
 			<h2 className='time'>{timer.time}</h2>
-			{/* <StopWatchButton onClick={startTimer}>Start</StopWatchButton>
-			<StopWatchButton>Stop</StopWatchButton>
-			<StopWatchButton>Lap</StopWatchButton>
-			<StopWatchButton>Reset</StopWatchButton> */}
+			<StopWatchButton onClick={toggleTimer}>
+				{!timer.isRunning ? 'Start' : 'Stop'}
+			</StopWatchButton>
+			<StopWatchButton onClick={lapTimer}>Lap</StopWatchButton>
+			<StopWatchButton onClick={resetTimer}>Reset</StopWatchButton>
 		</main>
 	);
 }
