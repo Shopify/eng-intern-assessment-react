@@ -4,11 +4,11 @@ import StopWatchButton from "./StopWatchButton";
 import "./styles.css";
 
 const App: React.FC = () => {
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState<number>(0);
 
-    const [isRunning, setIsRunning] = useState(false);
+    const [isRunning, setIsRunning] = useState<boolean>(false);
 
-    const [laps, setLaps] = useState([]);
+    const [laps, setLaps] = useState<number[]>([]);
 
     useEffect(() => {
         let interval: any;
