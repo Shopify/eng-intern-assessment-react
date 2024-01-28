@@ -46,7 +46,6 @@ const Stopwatch: React.FC = () => {
       className="flex flex-col items-center text-center"
       data-testid="stopwatch"
     >
-      <h1 className="text-6xl font-bold underline py-5">Stopwatch</h1>
       <div className="flex justify-center text-9xl pb-7 -space-x-3">
         <div className="min-w-48">{`${timeBreakdown.minutes}`}</div>
         <div>:</div>
