@@ -27,17 +27,13 @@ export default function StopWatch() {
                 clearInterval(timerInterval);
                 clearInterval(titleTimer);
                 if(timer == "RESET"){
-                    lapNum = 0;
-                    updateTime({
-                        minutes: 0,
-                        seconds: 0,
-                        milliseconds: 0
-                    })
+                    lapNum = 1;
                     setTime({
                         minutes: 0,
                         seconds: 0,
                         milliseconds: 0
                     })
+                    updateTime("00:00:00")
                     const lapElem = document.getElementById("lapList"); //Reset Lap list
                     while(lapElem.firstChild){
                         lapElem.removeChild(lapElem.firstChild);
@@ -62,46 +58,51 @@ export default function StopWatch() {
                 newTime.seconds = 0;
             }
             prevTime = Date.now()
-            newTime.milliseconds = Math.round(newTime.milliseconds)
-            updateTime(newTime)
+            newTime.milliseconds = Math.floor(newTime.milliseconds)
+            updateTime(timerFormat())
         }, 10)
 
         const titleTimer = setInterval(() => { //Dynamically update the page title
             document.title = "Stopwatch [" + time.minutes + ":" + time.seconds + "]"
-        }, 100)
+        }, 500)
 
-        function updateTime(newTime: Time){ //Update stopwatch text
+        function updateTime(timerMsg: string){ //Update stopwatch text
             const timerElem = document.getElementById('timer')
+            const timeText = document.createTextNode(timerMsg)
+            timerElem.replaceChild(timeText, timerElem.firstChild)
+        }
+
+        function timerFormat(){
             let minAdj;
             let secAdj;
             let milAdj;
-            if(newTime.minutes < 10) { minAdj = "0" + newTime.minutes}
-            else{ minAdj = newTime.minutes}
-            if(newTime.seconds < 10){ secAdj = "0" + newTime.seconds}
-            else{ secAdj = newTime.seconds}
-            if(newTime.milliseconds < 100){ milAdj = "0" + Math.round(newTime.milliseconds/10) }
-            else{ milAdj = Math.round(newTime.milliseconds/10) }
-            const timeText = document.createTextNode(minAdj + ":" + secAdj + ":" + milAdj)
-            timerElem.replaceChild(timeText, timerElem.firstChild)
+            if(time.minutes < 10) { minAdj = "0" + time.minutes}
+            else{ minAdj = time.minutes}
+            if(time.seconds < 10){ secAdj = "0" + time.seconds}
+            else{ secAdj = time.seconds}
+            if(time.milliseconds < 100){ milAdj = "0" + Math.floor(time.milliseconds/10) }
+            else{ milAdj = Math.floor(time.milliseconds/10) }
+            let timerMsg = minAdj + ":" + secAdj + ":" + milAdj
+            return timerMsg
         }
-        return () => { 
+
+        document.getElementById('lap')?.addEventListener('click', addLap)
+
+        function addLap(){ //Creates a new div element to store each lap
+            let newLap = document.createElement("div");
+            let lapText = document.createTextNode("Lap " + lapNum + " - " + timerFormat());
+            newLap.appendChild(lapText);
+            const lapList = document.getElementById('lapList');
+            lapList?.appendChild(newLap);
+            lapNum++;
+        }
+
+        return () => { //Cleanup Function
             clearInterval(timerInterval);
             clearInterval(titleTimer);
             document.getElementById('lap')?.removeEventListener('click', addLap);
         }
     },[timer])
-
-    document.getElementById('lap')?.addEventListener('click', addLap)
-
-    function addLap(){
-        let newLap = document.createElement("div");
-        console.log(newLap)
-        let lapText = document.createTextNode("Lap " + lapNum + ": " + time.minutes + ":" + time.seconds + ":" + Math.round(time.milliseconds/10));
-        newLap.appendChild(lapText);
-        const lapList = document.getElementById('lapList');
-        lapList?.appendChild(newLap);
-        lapNum++;
-    }
 
     return(
 
@@ -116,7 +117,8 @@ export default function StopWatch() {
                 gridRow:'1'
             }}>
                 <h1 style={{
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    fontSize: '55px'
                 }}>Stopwatch</h1>
             </div>
 
@@ -125,34 +127,35 @@ export default function StopWatch() {
                 gridRow: '2',
                 width: '100%',
                 paddingTop: '10%',
-                textAlign: 'center',
                 fontSize: '60px',
                 fontFamily: "Courier New"
             }}>
                 <div id='timer' style={{
-
+                    textAlign: 'center'
                 }}>
                     00:00:00
                 </div>
             </div>
 
-            <div style={{ //Lap Display
+            <div style={{ //Lap Frame
                 gridColumn: '3',
                 gridRow: '2 / span 2',
                 borderStyle: 'double',
                 borderRadius: '10px',
                 borderColor: '#989898',
-                height: '500px',
+                height: '600px',
                 fontSize: '25px'
             }}>
                 <p style={{
                     margin: '15px'
                 }}>Laps</p>
-                <div id="lapList" style={{
+                <div id="lapList" style={{ //Lap Container
                     overflow: 'auto',
                     margin: '20px',
-                    height: '430px',
-                    fontSize: '18px'
+                    height: '530px',
+                    fontSize: '18px',
+                    justifyContent: 'space-between',
+                    rowGap: '10px'
                 }}>
                 </div>
             </div>
