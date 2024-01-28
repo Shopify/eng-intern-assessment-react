@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    background-color: #282C34;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lato";
+}
+
+.container {
+    color: #ccc;
+    display: flex;
+    letter-spacing: 2px;
+}
+
+.container span {
+    position: relative;
+    top: 5px;
+    font-size: 4rem;
+}
+
+
+.timer-text {
+    margin: 0;
+    font-size: 5rem;
+}
+
+.button-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.button-container button {
+    margin: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #d12e2e;
+    padding: 5px 12px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.button-container button svg {
+    width: 80%;
+    height: 80%;
+}
+
+#lapTime {
+    display: none;
+    color: white;
+}
