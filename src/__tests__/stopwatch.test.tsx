@@ -1,11 +1,15 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 
 import { render, screen, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import StopWatch from "../StopWatch";
+import Stopwatch from "../components/StopWatch";
 
 test("should render stopwatch component", () => {
-  render(<StopWatch />);
+  render(<Stopwatch />);
   expect(screen.getByTestId("stopwatch")).toBeInTheDocument();
 });
