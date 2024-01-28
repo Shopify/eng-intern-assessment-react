@@ -44,6 +44,7 @@ export default function StopWatch() {
     // Reset the elapsed time if the stopwatch is inactive
     if (!active) {
       setElapsedTime(0);
+      setCurrentLapTime(0);
       setLaps([]);
       return;
     } else {
@@ -60,7 +61,7 @@ export default function StopWatch() {
       <StopWatchButton labels={["Start", "Stop"]} active={active} onClick={handleStartStopClick}/>
       <hr />
       <ul>
-        <li>Lap {laps.length + 1} {formatTime(currentLapTime)}</li>
+        {elapsedTime !== 0 && <li>Lap {laps.length + 1} {formatTime(currentLapTime)}</li>}
         {[...laps].reverse().map((lap, index) => (
           <li key={index}>Lap {laps.length - index} {formatTime(lap)}</li>
         ))}
