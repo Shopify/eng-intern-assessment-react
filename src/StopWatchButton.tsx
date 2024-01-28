@@ -20,8 +20,7 @@ const StopWatchButton: React.FC<RunningProps> = ({
     setLaps,
 }) => {
     return (
-        <section>
-
+        <>
             {/* Conditionally render buttons based on status of stopwatch and time value */}
             {!isRunning && !time && (
                 <button className="start" onClick={() => setIsRunning(true)}>Start</button>
@@ -49,7 +48,7 @@ const StopWatchButton: React.FC<RunningProps> = ({
                     ))}
                 </ul>
             )}
-        </section>
+        </>
     );
 };
 

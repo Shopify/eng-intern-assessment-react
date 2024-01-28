@@ -35,7 +35,7 @@ const App: React.FC = () => {
     }, [time]);
 
     return (
-        <>
+        <section>
             <StopWatch time={time} />
             <StopWatchButton
                 setIsRunning={setIsRunning}
@@ -45,7 +45,7 @@ const App: React.FC = () => {
                 laps={laps}
                 setLaps={setLaps}
             />
-        </>
+        </section>
     );
 };
 
