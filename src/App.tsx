@@ -20,6 +20,10 @@ function App() {
         setTime(time + 1);
     }
 
+    const stopTime = () => {
+        isTiming ? setIsTiming(!isTiming) : null;
+    }
+
     const addLap = () => {
         return
     }
@@ -33,7 +37,8 @@ function App() {
         <div>
             <StopWatch time={time}/>
             <div>
-                <StopWatchButton label={"start/stop"} handleButtonClick={() => startTime()}/>
+                <StopWatchButton label={"start"} handleButtonClick={() => startTime()}/>
+                <StopWatchButton label={"stop"} handleButtonClick={() => stopTime()}/>
                 <StopWatchButton label={"lap"} handleButtonClick={() => addLap()}/>
                 <StopWatchButton label={"reset"} handleButtonClick={() => resetStopwatch()}/>
             </div>
