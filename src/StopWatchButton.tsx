@@ -22,7 +22,7 @@ const StopWatchButton: React.FC<RunningProps> = ({
     return (
         <section>
 
-            // Conditionally render buttons based on status of stopwatch and time value
+            {/* Conditionally render buttons based on status of stopwatch and time value */}
             {!isRunning && !time && (
                 <button onClick={() => setIsRunning(true)}>Start</button>
             )}
@@ -39,7 +39,7 @@ const StopWatchButton: React.FC<RunningProps> = ({
                 <button onClick={() => setTime(0)}>Reset</button>
             )}
 
-            // Conditionally render laps values based on laps array props
+            {/* Conditionally render laps values based on laps array props */}
             {laps.length > 0 && (
                 <ul>
                     {laps.map((lap, index) => (

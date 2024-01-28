@@ -10,7 +10,7 @@ interface TimeProps {
 const StopWatch: React.FC<TimeProps> = ({ time }) => {
     return (
         <section>
-            // Display formatted time from helper function
+            {/* Display formatted time from helper function */}
             <p>{formatTime(time)}</p>
         </section>
     );
