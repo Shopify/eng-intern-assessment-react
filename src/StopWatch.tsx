@@ -27,9 +27,7 @@ export default function StopWatch() {
       const timer = setInterval(() => {
         setCounter((c) => c + 25);
       }, 25);
-      // 4 is chosen here because updating any faster results in incorrect timing
-      // 4 ended up also being incorrect upon multiple tests
-      // 25 chosen again as it's much higher than the previous minimum I encountered. (15)
+      // 25 chosen again as it's much higher than the previous minimum I encountered (15). i.e. any interval lower than 15 will end up diverging from real time
       return () => clearInterval(timer);
     }
   }, [running]);
@@ -60,14 +58,9 @@ export default function StopWatch() {
           <h2>Laps:</h2>
           <ul>
             {laps.map((lap: number, ind: number) => {
-              const timeString: string =
-                Math.floor(lap / 60000) +
-                ":" +
-                Math.floor(lap / 1000) +
-                ":" +
-                (lap % 1000);
+              const timeString: string =  getDisplayTime(lap);
               return (
-                <li>
+                <li key={`lap${ind + 1}`}>
                   <p>
                     Lap {ind + 1}: {timeString}
                   </p>
