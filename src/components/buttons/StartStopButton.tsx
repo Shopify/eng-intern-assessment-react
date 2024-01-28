@@ -7,10 +7,9 @@ interface StartStopButtonProps {
 
 export default function StartStopButton({ setLapResetButtonType }: StartStopButtonProps) {
     const buttonStyleStop = {
-        fontSize: '2vw',
         borderRadius: '50px',
         padding: '20px 20px',
-        width: '10vw',
+        width: '90px',
         backgroundColor: '#d9534f',
         color: '#fff',
         cursor: 'pointer',
@@ -19,10 +18,9 @@ export default function StartStopButton({ setLapResetButtonType }: StartStopButt
     };
 
     const buttonStyleStart = {
-        fontSize: '2vw',
         borderRadius: '50px',
         padding: '20px 20px',
-        width: '10vw',
+        width: '90px',
         backgroundColor: '#5cb85c',
         color: '#fff',
         cursor: 'pointer',

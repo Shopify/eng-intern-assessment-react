@@ -7,10 +7,9 @@ interface LapResetButtonProps {
 
 export default function LapResetButton({ lapReset }: LapResetButtonProps) {
     const buttonStyleReset = {
-        fontSize: '2vw',
         borderRadius: '50px',
         padding: '20px 20px',
-        width: '10vw',
+        width: '90px',
         backgroundColor: '#999999',
         color: '#fff',
         cursor: 'pointer',
@@ -19,10 +18,9 @@ export default function LapResetButton({ lapReset }: LapResetButtonProps) {
     };
 
     const buttonStyleLap = {
-        fontSize: '2vw',
         borderRadius: '50px',
         padding: '20px 20px',
-        width: '10vw',
+        width: '90px',
         backgroundColor: '#7F7F7F',
         color: '#fff',
         cursor: 'pointer',
