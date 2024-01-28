@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
+import './StopWatch.css';
 
 const App: React.FC = () => {
     //Hooks to track current time, laps, and if the stopwatch is running

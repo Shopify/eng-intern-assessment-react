@@ -9,7 +9,7 @@ interface StopWatchProps {
 const StopWatch: React.FC<StopWatchProps> = ({ time, laps, formatTime }) => {
     return (
         <div>
-            <div>{formatTime(time)}</div> {/* Renders time*/}
+            <div className='time-display'>{formatTime(time)}</div> {/* Renders time*/}
             {/* Renders laps if there are any */}
             {laps.length > 0 && (    
                 <div>

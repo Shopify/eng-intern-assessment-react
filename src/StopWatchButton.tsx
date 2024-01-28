@@ -18,10 +18,11 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({
 }) => {
     return (
         <div>
-            <button className='start-button' onClick={handleStart} disabled={isRunning}>Start</button>
-            <button className='stop-button' onClick={handleStop} disabled={!isRunning}>Stop</button>
-            <button className='reset-button' onClick={handleReset}>Reset</button>
-            <button className='lap-button' onClick={handleLap} disabled={!isRunning}>Lap</button>
+            
+            <button className='button start-button' onClick={handleStart} disabled={isRunning}>Start</button>
+            <button className='button stop-button' onClick={handleStop} disabled={!isRunning}>Stop</button>
+            <button className='button reset-button' onClick={handleReset}>Reset</button>
+            <button className='button lap-button' onClick={handleLap} disabled={!isRunning}>Lap</button>
         </div>
     );
 };
