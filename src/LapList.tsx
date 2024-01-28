@@ -1,6 +1,5 @@
 import React from "react";
 
-import { getTimeBreakdown } from "./utils";
 import LapTime from "./LapTime";
 
 export type LapViews = "absolute" | "relative";
@@ -22,25 +21,41 @@ const AbsoluteLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
   </>
 );
 
-const RelativeLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => (
-  <>
-    {lapTimes.map((lapTime, index) => {
-      let prevLapTime = 0;
-      if (index < lapTimes.length - 1) {
-        prevLapTime = lapTimes[index + 1];
-      }
-      let timeElapsedSinceLastLap = lapTime - prevLapTime;
-      return (
-        <li key={lapTime}>
-          <LapTime
-            lapTime={timeElapsedSinceLastLap}
-            index={lapTimes.length - index}
-          />
+const RelativeLapList: React.FC<{ lapTimes: number[] }> = ({ lapTimes }) => {
+  const relativeLapTimes = lapTimes.map((lapTime, index) => {
+    let prevLapTime = 0;
+    if (index < lapTimes.length - 1) {
+      prevLapTime = lapTimes[index + 1];
+    }
+    return lapTime - prevLapTime;
+  });
+  let bestTime: number = null;
+  let worstTime: number = null;
+
+  if (relativeLapTimes.length >= 2) {
+    bestTime = Math.min(...relativeLapTimes);
+    worstTime = Math.max(...relativeLapTimes);
+  }
+
+  return (
+    <>
+      {relativeLapTimes.map((lapTime, index) => (
+        <li
+          key={lapTime}
+          className={
+            lapTime === bestTime
+              ? " text-green-600"
+              : lapTime === worstTime
+              ? " text-red-500"
+              : ""
+          }
+        >
+          <LapTime lapTime={lapTime} index={relativeLapTimes.length - index} />
         </li>
-      );
-    })}
-  </>
-);
+      ))}
+    </>
+  );
+};
 
 const LapList: React.FC<LapListProps> = ({ lapTimes, viewType }) => {
   return (

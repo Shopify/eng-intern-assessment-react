@@ -6,6 +6,7 @@ import StopWatchButton from "./StopWatchButton";
 
 import { getTimeBreakdown } from "./utils";
 import LapList, { LapViews } from "./LapList";
+import LapTime from "./LapTime";
 
 const Stopwatch: React.FC = () => {
   const [totalTime, setTotalTime] = useState<number>(0);
@@ -44,6 +45,9 @@ const Stopwatch: React.FC = () => {
 
   const timeBreakdown = getTimeBreakdown(totalTime);
 
+  const currentLapTime =
+    lapTimes.length === 0 ? totalTime : totalTime - lapTimes[0];
+
   return (
     <div className="text-center">
       <h1 className="text-6xl font-bold underline py-10">Stopwatch</h1>
@@ -70,6 +74,7 @@ const Stopwatch: React.FC = () => {
         <button onClick={toggleLapView}>
           {lapView === "relative" ? "absolute" : "relative"}
         </button>
+        {lapView === "relative" && <LapTime lapTime={currentLapTime} />}
         <LapList lapTimes={lapTimes} viewType={lapView} />
       </div>
     </div>
