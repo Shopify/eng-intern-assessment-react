@@ -1,0 +1,87 @@
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: rgb(24, 24, 24);
+    color: rgb(240, 240, 240);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+div.stopwatch-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+button {
+    font-family: inherit;
+    background: #C1B653;
+    color: rgb(240, 240, 240);
+    width: 320px;
+    height: 60px;
+    font-size: 24px;
+    border: none;
+    border-radius: 6px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #d5ca61;
+}
+
+button:active {
+    background: #dfd57e;
+}
+
+div.stopwatch-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+}
+
+div.stopwatch-display-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 15px;
+}
+
+div.stopwatch-display-item p.label {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 0 0 15px 0;
+    margin: 0;
+}
+
+div.stopwatch-display-item p.value {
+    font-size: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+div.lap-history {
+    width: 100%;
+    max-width: 320px;
+}
+
+div.lap-history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 15px;
+    background: rgb(36, 36, 36);
+}
+
+div.lap-history-item:nth-child(odd) {
+    background: rgb(42, 42, 42);
+}

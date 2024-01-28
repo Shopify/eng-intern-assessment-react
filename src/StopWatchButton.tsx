@@ -1,7 +1,15 @@
+// The Stopwatch Button Component - Toggles the stopwatch on and off
 import React from 'react'
 
-export default function StopWatchButton() {
+export interface StopWatchButtonInterface {
+    isRunning: boolean
+    setIsRunning(value: boolean): void
+}
+
+export default function StopWatchButton({ isRunning, setIsRunning }: StopWatchButtonInterface) {
     return(
-        <div></div>
+        <button className="stopwatch-button" onClick={(e) => setIsRunning(!isRunning)}>
+            {isRunning ? 'Stop' : 'Start'}
+        </button>
     )
 }
