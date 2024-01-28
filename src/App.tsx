@@ -3,9 +3,11 @@ import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
 import './App.css'
 
-/*
-* A Lap is an object that stores the end time of the lap and the duration of the lap in milliseconds
-*/
+/**
+ * Used for representing and storing recorded Laps
+ * @param endTime the time used in the timer in milliseconds when the lap ended
+ * @param duration the duration of the lap in milliseconds - the time between the end of the previous lap and the end of this lap
+ */
 export interface Lap {
     endTime: number
     duration: number
