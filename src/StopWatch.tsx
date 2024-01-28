@@ -47,6 +47,7 @@ export interface LapDisplayProps {
 export function LapDisplay (props: LapDisplayProps) {
     return(
         <li
+            data-testid={`lap-${props.id}`}
             className={props.faster ? 'faster' : props.faster === false ? 'slower' : ''}
         >
             Lap {props.id} {formatTime(props.lap.duration)}
@@ -83,12 +84,13 @@ export function LapList(props: LapListProps) {
 
 export default function StopWatch(props: StopWatchProps) {
     return(
-        <div className="stopwatch">
+        <div data-testid="stopwatch" className="stopwatch">
             <LapList
+                data-testid="laplist"
                 laps={props.laps}
                 time={props.time}
             />
-            <h1>
+            <h1 data-testid="stopwatch-display">
                 {formatTime(props.time)}
             </h1>
         </div>

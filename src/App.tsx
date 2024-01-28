@@ -27,42 +27,42 @@ export default function App() {
     }, [isRunning, timeCounter]);
 
     return(
-        <div className="app-container">
+        <div data-testid="app-container" className="app-container">
             <div className="centre">
                 <div>
-                <StopWatch
-                    laps={laps}
-                    isRunning={isRunning}
-                    time={timeCounter}
-                />
-                <StopWatchButton
-                    isRunning={isRunning}
-                    stopStart={() => {
-                        if (isRunning) {
-                            setIsRunning(false);
-                        } else {
-                            setIsRunning(true);
-                        }
-                    }}
-                    lap={() => {
-                        // Don't add a lap if the last lap was at the same time
-                        if(laps.length > 0 && laps[laps.length - 1].startTime === timeCounter) {
-                            return;
-                        }
+                    <StopWatch
+                        laps={laps}
+                        isRunning={isRunning}
+                        time={timeCounter}
+                    />
+                    <StopWatchButton
+                        isRunning={isRunning}
+                        stopStart={() => {
+                            if (isRunning) {
+                                setIsRunning(false);
+                            } else {
+                                setIsRunning(true);
+                            }
+                        }}
+                        lap={() => {
+                            // Don't add a lap if the last lap was at the same time
+                            if(laps.length > 0 && laps[laps.length - 1].startTime === timeCounter) {
+                                return;
+                            }
 
-                        setLaps([
-                            ...laps,
-                            {
-                                startTime: timeCounter,
-                                duration: timeCounter - (laps.length > 0 ? laps[laps.length - 1].startTime : 0),
-                            },
-                        ]);
-                    }}
-                    reset={() => {
-                        setLaps([]);
-                        setTimeCounter(0);
-                    }}
-                />
+                            setLaps([
+                                ...laps,
+                                {
+                                    startTime: timeCounter,
+                                    duration: timeCounter - (laps.length > 0 ? laps[laps.length - 1].startTime : 0),
+                                },
+                            ]);
+                        }}
+                        reset={() => {
+                            setLaps([]);
+                            setTimeCounter(0);
+                        }}
+                    />`
                 </div>
             </div>
         </div>

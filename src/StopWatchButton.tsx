@@ -14,18 +14,21 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
             className="stopwatch-button-row"
         >
             <button
+                data-testid="stopwatch-startstop"
                 onClick={props.stopStart}
                 className="stopwatch-button"
             >
                 {props.isRunning ? 'Stop' : 'Start'}
             </button>
             <button
+                data-testid="stopwatch-lap"
                 onClick={props.lap}
                 className="stopwatch-button"
             >
                 Lap
             </button>
             <button
+                data-testid="stopwatch-reset"
                 onClick={props.reset}
                 className="stopwatch-button"
             >
