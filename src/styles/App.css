@@ -1,0 +1,33 @@
+
+body {
+  background-color: #f0f0f0;
+}
+
+.app {
+  text-align: center;
+}
+
+.app-title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #888;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.lap-container {
+  margin-top: 20px;
+}
+
+.lap-time {
+  padding: 5px;
+  font-size: 1.4rem;
+  color: #888; 
+  font-weight: bold;
+}

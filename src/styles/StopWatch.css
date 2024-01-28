@@ -1,0 +1,17 @@
+.stopwatch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  background-color: #333;
+  border-radius: 50%;
+  color: #aaa;
+  font-size: 2em;
+  border: 2px solid #aaa;
+}
+
+.stopwatch-time {
+  text-align: center;
+}
