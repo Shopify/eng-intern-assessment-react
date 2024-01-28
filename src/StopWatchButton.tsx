@@ -3,10 +3,10 @@ import { start } from 'repl'
 
 type StopWatchButtonProps = {
     isRunning: boolean,
-    reset: () => {},
-    lap: () => {},
-    start: () => {},
-    stop: () => {}
+    reset: () => void,
+    lap: () => void,
+    start: () => void,
+    stop: () => void
 }
 
 export default function StopWatchButton({
@@ -27,7 +27,7 @@ export default function StopWatchButton({
             start()
         }
     } 
-    
+
     /**
      * Handler for calling lap or reset depending on if stopwatch is running
      */
