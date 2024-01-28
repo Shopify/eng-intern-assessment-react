@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import StopWatchButton from './StopWatchButton'
 
 // Function to format the time. This is necessary since both the time and lap times need to be formatted
@@ -28,21 +28,12 @@ export default function StopWatch() {
     const [timerOn, setTimerOn] = useState(false);
     const [lapTimes, setLapTimes] = useState<number[]>([]);
 
-    // Stops the timer, resets the time, and clears the lap times
-    const handleReset: () => void = () => {
+    // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
+    const handleReset = useCallback(() => {
         setTimerOn(false); 
         setTime(0); 
         setLapTimes([]);
-    }
-
-    // Records the lap time and prevents more than 25 lap times from being recorded
-    const handleLap: () => void = () => {
-        if (lapTimes.length < 25) {
-            setLapTimes([...lapTimes, time]);
-        } else {
-            alert('You have reached the maximum number of lap times.');
-        }
-    }
+      }, []);
 
     // Every time timerOn changes, we start or stop the timer
     // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
@@ -63,18 +54,18 @@ export default function StopWatch() {
                 <div className='stopwatch-buttons'>
                     <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
                     <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={handleLap} timerOn={timerOn}></StopWatchButton>
+                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
                     <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
                 </div>
                 <div className='stopwatch-time'>
                     <p>{formatTime(time)}</p>
-                    {/* Display the lap times */}
+                    {/* Display the numbered lap times */}
                     {lapTimes.length > 0 && (
                         <div className='stopwatch-laptimes'>
                             <p>Lap times</p>
                             <ul>
                                 {lapTimes.map((lapTime, index) => {
-                                    return <li key={index}>{formatTime(lapTime)}</li>
+                                    return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>
                                 })}
                             </ul>
                         </div>

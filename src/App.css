@@ -12,6 +12,7 @@ body {
   margin: 0px;
   color: white;
   padding-left: 16px;
+  padding: 10px 0px 10px 16px;
 }
 
 .stopwatch-content {
