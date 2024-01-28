@@ -12,8 +12,8 @@ export default function Laps({ lapHistory }: LapsInterface) {
             {
                 lapHistory.map((lap, index) =>
                     <div className="lap-history-item" key={index}>
-                        <p className="lap-key">Lap #{lap.lap}</p>
-                        <p className="lap-key">Time {lap.time} seconds</p>
+                        <p className="lap-key lap-key-lap">Lap #{lap.lap}</p>
+                        <p className="lap-key lap-key-time">Time {lap.time} seconds</p>
                     </div>
                 )
             }

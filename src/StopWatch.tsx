@@ -9,11 +9,11 @@ export interface StopwatchInterface {
 export default function StopWatch({ stopwatchTime, laps }: StopwatchInterface) {
     return(
         <div className="stopwatch-display">
-            <div className="stopwatch-display-item">
+            <div className="stopwatch-display-item" id="stopwatch-display-time">
                 <p className="label">Time</p>
                 <p className="value">{stopwatchTime}</p>
             </div>
-            <div className="stopwatch-display-item">
+            <div className="stopwatch-display-item" id="stopwatch-display-laps">
                 <p className="label">Laps</p>
                 <p className="value">{laps}</p>
             </div>
