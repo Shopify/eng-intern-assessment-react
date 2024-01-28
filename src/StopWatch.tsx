@@ -1,6 +1,6 @@
-import React from 'react'
-import { Lap } from './App'
-import './StopWatch.css'
+import React from 'react';
+import { Lap } from './App';
+import './StopWatch.css';
 
 interface StopWatchProps {
     laps: Lap[],
