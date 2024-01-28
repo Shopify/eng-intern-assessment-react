@@ -1,0 +1,104 @@
+/* colors taken from tailwindcss documentation - khurram */
+
+/* Globals */
+
+body {
+  background-color: #0a0a0a;
+  color: white;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+/* StopWatch */
+.time {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* StopWatchButton */
+
+.buttons {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  color: white;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-start {
+  background-color: #3b82f6;
+}
+
+.btn-start:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-stop {
+  background-color: #ef4444;
+}
+
+.btn-stop:hover {
+  background-color: #b91c1c;
+}
+
+.btn-lap {
+  background-color: #22c55e;
+}
+
+.btn-lap:hover {
+  background-color: #15803d;
+}
+
+.btn-reset {
+  background-color: #ca8a04;
+}
+
+.btn-reset:hover {
+  background-color: #a16207;
+}
+
+/* Laps */
+.laps {
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
+.laps__title {
+  margin: 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid white;
+}
+
+.lap {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
