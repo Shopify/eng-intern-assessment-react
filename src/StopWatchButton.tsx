@@ -3,7 +3,7 @@ import React from 'react'
 // Define the props for the StopWatchButton component
 type StopWatchButtonProps = {
     type: 'start' | 'stop' | 'lap' | 'reset';
-    onClick: () => void;
+    onClick?: () => void;
     timerOn?: boolean;
 };
   
