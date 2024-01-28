@@ -129,6 +129,12 @@ export default function StopWatchButton({ lap, setLap }: LapTableProps) {
 
   return (
     <>
+      {started && (
+        <div className="align-items-center status">
+          <div className="spinner-grow" role="status">
+          </div>
+        </div>
+      )}
       <div className="row justify-content-center text-center mt-3">
         <div className="col-3 d-flex justify-content-center">
           <button

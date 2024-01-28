@@ -1,86 +1,102 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
-
 # Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
+This project involves the creation of a stopwatch application using React and TypeScript for Shopify's Frontend Technical Challenge. The goal is to implement a fully functional stopwatch with a clean, intuitive UI and robust functionality.
 
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+![Stopwatch](Stopwatch2.png)
 
-## Project Setup
-To get started with the project, follow these steps:
+![StopwatchVideo](Stopwatch.gif)
 
-1. Clone the project repository to your local development environment.
 
-2. Install the required dependencies by running npm install in the project directory.
+### Features
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
+- **Start**: Start the stopwatch to begin counting time.
+- **Stop**: Stop the stopwatch to pause the timer.
+- **Lap**: For each lap, displays:
+  - Lap Number
+  - Time Elapsed from Previous Lap
+  - Total Time Elapsed
+- **Reset**: Reset the stopwatch to zero.
+- **Unit Testing**: Tests the individual components of the stopwatch.
+- **Integration Testing**: Testing application's behavior as a whole.
 
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+#### Additional Features
 
-## Project Goals
-Your specific goals for this project are as follows:
+- **UI Enchancements**: Bootstrap and custom CSS utilized to create a modern look.
+- **Responsive Design through Bootstrap**
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+## Running the Project
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
+### Prerequisites
 
-3. Test your code:
-    - Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
+- Node.js
+- npm
 
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
+### Setup
 
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
+1. Clone the repository to your local machine.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+4. Open hostname in browser to see the stopwatch App.
 
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
+### Testing
+1. Run this command to test:
+    ```bash
+    npm test
+    ```
 
-## Getting Started
-To start working on the project, follow these steps:
+**Test Results**
 
-1. Clone the repository to your local development environment.
+![Test Results](Testing.png)
 
-2. Install the required dependencies by running npm install in the project directory.
 
-3. Open the project in your preferred code editor.
+## Project Structure
 
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
+- `src`
+  - `src/App.tsx`: The main component for the stopwatch App.
+  - `src/components/Stopwatch.tsx`: Component for the stopwatch display.
+  - `src/components/StopwatchButton.tsx`: Component for the start, stop, and reset buttons including their feature implementation.
+  - `src/components/LapTable.tsx`: Component for table that stores Laps, this includes its functionality implementation.
+- `styles`
+  - `styles/StopWatch.css`: Includes style definitions for custom styling in addition to Bootstrap.
+- `tests`
+  - `__tests__/App.test.tsx`: Includes unit and integration tests of application.
+  
+## Testing
 
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
+The application was tested to ensure reliability and functionality, while utilizing the React Testing Library.
 
-6. Run the application using npm start and test the stopwatch functionality.
+**Approach**
+- **Realistic Interaction**: Tests simulate real user behavior, including clicking buttons and observing subsequent changes in the application's state and UI.
+- **Component Integration**: Tests determine how successfully different components of the app interact with each other, ensuring that they work together seamlessly.
 
-7. Commit your changes regularly and push them to a branch in your forked repository.
+**Key Test Cases**
+1. **Initial Render**:
+   - Verifies that the app renders correctly and that all essential elements (start, lap, reset buttons) are present.
 
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
+2. **Starting and Updating Stopwatch**:
+   - Ensures that the stopwatch starts and updates time correctly upon clicking the start button.
 
-## Resources
-Here are some resources that may be helpful during your work on this project:
+3. **Stopping and Resuming**:
+   - Tests the ability to stop the stopwatch and then resume it, ensuring accurate timekeeping throughout.
 
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
+4. **Reset Functionality**:
+   - Confirms that the reset button sets the stopwatch back to zero.
 
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
+5. **Lap Recording**:
+   - Validates the lap functionality, ensuring each lap is recorded correctly.
 
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+6. **Multiple Laps**:
+   - Checks that multiple laps can be recorded and displayed correctly.
+
+### Testing Strategy
+
+- Each test case uses helper functions like `checkTime` and `checkLapTime` for consistency and readability.
+- Asynchronous behavior is handled using `async/await` to accurately test the stopwatch over a period of time.
+- The `act` function from React Testing Library wraps actions to ensure that all updates related to these actions are applied before assertions.
+
