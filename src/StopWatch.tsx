@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import './styles/StopWatch.css';
 
 export default function StopWatch() {
-	return (
-		<div></div>
-	)
+	useEffect(() => {}, []);
+
+	return <div></div>;
 }
+
+

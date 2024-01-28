@@ -1,0 +1,13 @@
+main {
+	background-color: aliceblue;
+	height: 60vh;
+	max-height: 700px;
+	width: 50vw;
+	max-width: 500px;
+	margin: auto;
+}
+
+h1 {
+	margin: auto;
+}
+
