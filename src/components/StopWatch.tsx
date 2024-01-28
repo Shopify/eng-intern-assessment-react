@@ -1,7 +1,11 @@
 import React from 'react'
-import './../styles/StopWatch.css'
 import StopWatchButton from './StopWatchButton'
 import LapTable from './LapTable'
+
+// Import CSS only if not in a test environment
+if (process.env.NODE_ENV !== 'test') {
+    require('./../styles/StopWatch.css');
+}
 
 interface LapTableProps { 
     lap: string[][]; 
