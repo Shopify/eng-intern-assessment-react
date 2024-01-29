@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
 import StopWatch from './components/StopWatch';
 import StopWatchButton from './components/StopWatchButton';
-import LapTimes from './components/LapTimes';
+import LapTimesList from './components/LapTimesList';
 
 function App() {
     const intervalRef = useRef<NodeJS.Timeout>(null);
@@ -68,7 +68,7 @@ function App() {
                     handleButtonClick={() => resetStopwatch()}
                 />
             </div>
-            <LapTimes lapTimes={lapTimes} />
+            <LapTimesList lapTimes={lapTimes} />
         </div>
     )
 }
