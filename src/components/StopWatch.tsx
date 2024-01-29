@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import '../styles/StopWatch.css';
+import '../styles/StopWatch.css';
 import { useState } from 'react';
 import StopWatchButton from './StopWatchButton';
 
@@ -15,7 +15,6 @@ export default function StopWatch(props: StopWatchProps) {
   // States which will be used to keep track of time, whether the stop watch is being ran and the laps selected by user.
   const [time, setTime] = useState<number>(0);
   const [timeList, setTimeList] = useState<(number|string)>(0);
-  // const [isTimeRunning, setIsTimeRunning] = useState<boolean>(false);
   const [lapsList, setLapsList] = useState<(number|string)[]>([]);
 
   // Tells the page to re render when the time is changed, which is every second
@@ -57,11 +56,13 @@ export default function StopWatch(props: StopWatchProps) {
       <div className='laps-container'>
         <div className='lapsTitle'>Laps</div>
       {/* a ordered list, with each lap mapped to a list item */}
-          <ol className='lapsList'>
-            {lapsList.map((lap) => (
-              <li>{lap}</li>
-            ))}
-          </ol>
+        {/* <ul className='lapsList'> */}
+        <div className='lapsList'>
+          {lapsList.map((lap, index) => (
+              <div key={index} role="listitem">{`Lap ${index+1}. ${lap}`}</div>
+          ))}
+          </div>
+        {/* </ul> */}
       </div>
     </>
   );

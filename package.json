@@ -45,6 +45,9 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(gif|css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
