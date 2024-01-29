@@ -66,18 +66,22 @@ body {
   margin-top: 1rem;
 }
 
-.start-button,
-.stop-button,
-.reset-button,
-.lap-button {
+button {
   padding: 0.75rem 1rem;
   border: solid 1px rgb(86, 28, 113);
   border-radius: 0.5rem;
-  background-color: rgb(86, 28, 113);
+  background-color: rgb(86, 28, 113, 0.5);
   color: #ccc;
+
   &:hover {
-    background-color: rgba(86, 28, 113, 0.5);
+    cursor: pointer;
+    background-color: rgba(86, 28, 113, 0.35);
   }
+}
+
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .lap-times {

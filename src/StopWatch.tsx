@@ -109,27 +109,27 @@ const StopWatch = () => {
             <StopWatchButton
               onClick={startTimer}
               disabled={isActive}
-              className="start-button"
+              className={"button"}
             >
               Start
             </StopWatchButton>
             <StopWatchButton
+              onClick={recordLap}
+              disabled={!isActive}
+              className="button"
+            >
+              Lap
+            </StopWatchButton>
+            <StopWatchButton
               onClick={stopTimer}
               disabled={!isActive}
-              className="stop-button"
+              className="button"
             >
               Stop
             </StopWatchButton>
             {/* reset is only active when the stopwatch is stopped */}
-            <StopWatchButton onClick={resetTimer} className="reset-button">
+            <StopWatchButton onClick={resetTimer} className="button">
               Reset
-            </StopWatchButton>
-            <StopWatchButton
-              onClick={recordLap}
-              disabled={!isActive}
-              className="lap-button"
-            >
-              Lap
             </StopWatchButton>
           </div>
         </div>
