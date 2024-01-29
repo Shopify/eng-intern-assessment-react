@@ -93,7 +93,7 @@ body {
   color: var(--alt);
   padding: 8px 6px;
   margin: 2px;
-  width: var(--width);
+  flex-grow: 1;
 }
 
 .stopwatch-controls button:hover {
