@@ -6,10 +6,19 @@ interface StopWatchButtonProps {
     label:string,
     onClickHandler : ()=> void
     className: string
+    isDisabled: boolean
 }
 
-export default function StopWatchButton({label, onClickHandler, className}:StopWatchButtonProps) {
+export default function StopWatchButton({label, onClickHandler, className, isDisabled}:StopWatchButtonProps) {
+    
+    if (isDisabled){
     return(
-        <button className={className} onClick={onClickHandler}>{label}</button>
-    )
+        <button disabled className={className} onClick={onClickHandler}>{label}</button>
+    )}
+
+    else{
+        return(
+            <button className={className} onClick={onClickHandler}>{label}</button>
+        )       
+    }
 }

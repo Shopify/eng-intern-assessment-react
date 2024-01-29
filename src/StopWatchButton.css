@@ -1,5 +1,5 @@
 .start{
-    background-color: #04AA6D; /* Green */
+    background-color: #04AA6D; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -11,12 +11,12 @@
 }
 
 .start:hover {
-    background-color: rgb(26, 148, 49); /* Green */
+    background-color: rgb(26, 148, 49); 
     color: white;
   }
 
 .stop{
-    background-color: red; /* Green */
+    background-color: red; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -28,12 +28,12 @@
 }
 
 .stop:hover {
-    background-color: rgb(214, 46, 52); /* Green */
+    background-color: rgb(214, 46, 52); 
     color: white;
   }
 
 .lap{
-    background-color: grey; /* Green */
+    background-color: black; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -45,12 +45,12 @@
 }
 
 .lap:hover {
-    background-color: rgb(109, 109, 109); /* Green */
+    background-color: rgb(109, 109, 109); 
     color: white;
   }
 
 .reset{
-    background-color: grey; /* Green */
+    background-color: black;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -65,3 +65,7 @@
     background-color: rgb(109, 109, 109); /* Green */
     color: white;
   }
+
+.disabled {
+    background-color: rgb(174, 173, 173);
+}

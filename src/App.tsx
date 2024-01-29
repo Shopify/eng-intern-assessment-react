@@ -58,12 +58,14 @@ export default function App() {
 
     return(
     <StopWatch 
-    startHandler={onClickStart}
-    stopHandler={onClickStop} 
-    lapHandler={onClickLap} 
-    resetHandler={onClickReset} 
-    lapsArray={laps} 
-    timeToStringFormatter={secondsMinutesHours} 
-    currentTime={currentTime}/>
+            startHandler={onClickStart}
+            stopHandler={onClickStop}
+            lapHandler={onClickLap}
+            resetHandler={onClickReset}
+            lapsArray={laps}
+            timeToStringFormatter={secondsMinutesHours}
+            currentTime={currentTime} 
+            isDisabled={false} 
+            isStartPressed={isStartPressed}/>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import StopWatchButton from './StopWatchButton'
+import './StopWatch.css'
 
 interface StopWatchProps {
     // any props that come into the component
@@ -10,6 +11,8 @@ interface StopWatchProps {
     lapsArray : any[]
     timeToStringFormatter : (value : number)=> string
     currentTime : number
+    isDisabled : boolean
+    isStartPressed : boolean
 }
 
 export default function StopWatch({
@@ -19,23 +22,33 @@ export default function StopWatch({
     resetHandler,
     timeToStringFormatter,
     lapsArray,
-    currentTime
+    currentTime,
+    isDisabled,
+    isStartPressed
 }:StopWatchProps) {
 
     return(
-        <div>
-            <StopWatchButton className='start' label={'Start'} onClickHandler={startHandler}></StopWatchButton>
-            <StopWatchButton className='stop' label={'Stop'} onClickHandler={stopHandler}></StopWatchButton>
+        <div className='flex-container'>
+            <div className='flex-item'>
+            <StopWatchButton isDisabled={isStartPressed?true:false} className={isStartPressed?'start disabled':'start'} label={'Start'} onClickHandler={startHandler}></StopWatchButton>
+            <StopWatchButton className={isStartPressed?'stop' : 'stop disabled'} label={'Stop'} onClickHandler={stopHandler} isDisabled={isStartPressed?false:true}></StopWatchButton>
+            </div>
 
-            <div>{timeToStringFormatter(currentTime)}</div>
-            <StopWatchButton className='lap' label={'Lap'} onClickHandler={lapHandler}></StopWatchButton>
+            <div className='flex-item'>
+                <p className='time-display'>{timeToStringFormatter(currentTime)}</p>
+            </div>
 
-            <div>
+            <div className='flex-item'>
+                <StopWatchButton className={isStartPressed?'lap' :'lap disabled'} label={'Lap'} onClickHandler={lapHandler} isDisabled={isStartPressed?false:true}></StopWatchButton>
+                <StopWatchButton className='reset' label={'Reset'} onClickHandler={resetHandler} isDisabled={false}></StopWatchButton>
+            </div>
+
+            <div className='flex-container'>
                 {lapsArray.map((lap, index) => (
-                     <div key={index}>Lap {index + 1} : {timeToStringFormatter(lap)}</div>
+                     <div className='flex-item' key={index}><p className='laps-display'>Lap {index + 1} : {timeToStringFormatter(lap)}</p></div>
                      ))} 
             </div>
-            <StopWatchButton className='reset' label={'Reset'} onClickHandler={resetHandler}></StopWatchButton>
+
         </div>
     )
 }
