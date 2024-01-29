@@ -10,26 +10,14 @@ interface DisplayComponentProps {
 }
 
 const DisplayComponent: React.FC<DisplayComponentProps> = (props) => {
-  const h = () => {
-    if (props.time.h === 0) {
-      return "";
-    } else {
-      return (
-        <span>{props.time.h >= 10 ? props.time.h : "0" + props.time.h}</span>
-      );
-    }
-  };
+  const formatTimeUnit = (unit: number): string =>
+    unit >= 10 ? unit.toString() : "0" + unit;
 
-  return (
-    <div>
-      {h()}&nbsp;&nbsp;
-      <span>{props.time.m >= 10 ? props.time.m : "0" + props.time.m}</span>
-      &nbsp;:&nbsp;
-      <span>{props.time.s >= 10 ? props.time.s : "0" + props.time.s}</span>
-      &nbsp;:&nbsp;
-      <span>{props.time.ms >= 10 ? props.time.ms : "0" + props.time.ms}</span>
-    </div>
-  );
+  const formattedTime = `${formatTimeUnit(props.time.m)}:${formatTimeUnit(
+    props.time.s
+  )}:${formatTimeUnit(props.time.ms)}`;
+
+  return <div>{formattedTime}</div>;
 };
 
 export default DisplayComponent;

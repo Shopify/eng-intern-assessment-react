@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import DisplayComponent from "./Components/DisplayComponent";
-import BtnComponent from "./Components/BtnComponent";
-import "./StopWatch.css";
+import StopWatchButton from "./StopWatchButton";
+import "./Stopwatch.css";
 
 interface Time {
   ms: number;
@@ -10,10 +10,12 @@ interface Time {
   h: number;
 }
 
-function StopWatch() {
+function Stopwatch() {
   const [time, setTime] = useState<Time>({ ms: 0, s: 0, m: 0, h: 0 });
   const [interv, setInterv] = useState<NodeJS.Timeout | undefined>();
   const [status, setStatus] = useState<number>(0);
+  const [lapTimes, setLapTimes] = useState<string[]>([]);
+
   // Not started = 0
   // started = 1
   // stopped = 2
@@ -63,9 +65,24 @@ function StopWatch() {
     }
     setStatus(0);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
+    setLapTimes([]);
   };
 
   const resume = () => start();
+
+  const recordLap = () => {
+    setLapTimes((prevLapTimes) => [...prevLapTimes, getFormattedTime()]);
+  };
+
+  const getFormattedTime = (): string => {
+    const formatTimeUnit = (unit: number): string =>
+      unit >= 10 ? unit.toString() : "0" + unit;
+
+    const formattedTime = `${formatTimeUnit(time.m)}:${formatTimeUnit(
+      time.s
+    )}:${formatTimeUnit(time.ms)}`;
+    return formattedTime;
+  };
 
   useEffect(() => {
     return () => {
@@ -81,17 +98,30 @@ function StopWatch() {
       <div className="clock-holder">
         <div className="stopwatch">
           <DisplayComponent time={time} />
-          <BtnComponent
+          <StopWatchButton
             status={status}
             resume={resume}
             reset={reset}
             stop={stop}
             start={start}
+            recordLap={recordLap}
           />
         </div>
+        {lapTimes.length > 0 && (
+          <div className="lap-times">
+            <p>Lap Times</p>
+            <ul>
+              {lapTimes.map((lapTime, index) => (
+                <li key={index}>
+                  Lap {index + 1}: {lapTime}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default StopWatch;
+export default Stopwatch;
