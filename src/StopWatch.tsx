@@ -60,10 +60,14 @@ export default function StopWatch() {
   return (
     <div className="stopwatch">
       <div className="stopwatch-content">
-        <div id="hour">
-          {padTimeFormat(time).slice(0, 2)}
-          <div className="stopwatch-unit">h</div>
-        </div>
+        {padTimeFormat(time).slice(0, 2) !== "00" ? (
+          <div id="hour">
+            {padTimeFormat(time).slice(0, 2)}
+            <div className="stopwatch-unit">h</div>
+          </div>
+        ) : (
+          <></>
+        )}
         <div id="minute">
           {padTimeFormat(time).slice(3, 5)}
           <div className="stopwatch-unit">m</div>
@@ -72,10 +76,30 @@ export default function StopWatch() {
           {padTimeFormat(time).slice(6, 8)}
           <div className="stopwatch-unit">s</div>
         </div>
-        <div id="milli">
-          {padTimeFormat(time).slice(9, 11)}
-          <div className="stopwatch-unit">ms</div>
-        </div>
+        {padTimeFormat(time).slice(0, 2) === "00" ? (
+          <div id="milli">
+            {padTimeFormat(time).slice(9, 11)}
+            <div className="stopwatch-unit">ms</div>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className="laps">
+        {lapTimes.length > 0 && (
+          <div className="stopwatch-laptimes">
+            <p>Lap times</p>
+            <ul>
+              {lapTimes.map((lapTime, index) => {
+                return (
+                  <li key={index}>
+                    {index + 1 + "."} {formatTime(lapTime)}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
       <div className="stopwatch-controls">
         {timerOn ? (

@@ -93,6 +93,13 @@ body {
 .stopwatch-button-alt {
 }
 
+.laps {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-start;
+}
+
 /* .stopwatch-title {
   background-color: #303030;
   margin: 0px;
