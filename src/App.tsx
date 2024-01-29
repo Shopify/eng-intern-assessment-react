@@ -2,10 +2,12 @@ import './App.css';
 import React, { useState, useRef } from 'react';
 import StopWatch from './components/StopWatch';
 import StopWatchButton from './components/StopWatchButton';
+import formatTime from './utils/formatTime';
 
 function App() {
     const intervalRef = useRef<NodeJS.Timeout>(null);
     const [timeElapsed, setTimeElapsed] = useState<number>(0);
+    const [lapTimes, setLapTimes] = useState<number[]>([]);
 
     const startStopwatch = () => {
         intervalRef.current 
@@ -18,14 +20,15 @@ function App() {
         intervalRef.current = null;
     }
 
-    const addLap = () => {
-        return
+    const recordLap = () => {
+        setLapTimes(prevLaps => [...prevLaps, timeElapsed]);
     }
 
     const resetStopwatch = () => {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
         setTimeElapsed(0);
+        setLapTimes([]);
     }
 
     return (
@@ -42,12 +45,21 @@ function App() {
                 />
                 <StopWatchButton 
                     label='lap' 
-                    handleButtonClick={() => addLap()} 
+                    handleButtonClick={() => recordLap()} 
                 />
                 <StopWatchButton 
                     label='reset' 
                     handleButtonClick={() => resetStopwatch()} 
                 />
+            </div>
+            <div className="lapTimesContainer">
+                <ol>
+                    {lapTimes.map((lap, i) => {
+                        return (
+                            <li key={i + 1} className='lap'>Lap {i + 1}: {formatTime(lap)}</li>
+                        )
+                    })}
+                </ol>
             </div>
         </div>
     )
