@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StopWatchButton from "./StopWatchButton";
+import "./StopWatch.css"
 //import { time } from "console";
 
 export default function StopWatch() {
@@ -22,7 +23,8 @@ export default function StopWatch() {
     //function to record laps, takes a boolean as a parameter to track whether or not the array should be empty on reset
     const recordLap = (reset: boolean) => {
         if (reset) {
-            setLaps([]);
+            setLaps(["00:00:00"]);
+            setTotalTime(["00:00:00"]);
         } else {
             let lastLap: string = totalTime.slice(-1).toString(); //take the time for the last lap
             let newLap: string = formatZero(hours) + ":" + formatZero(minutes) + ":" + formatZero(seconds); //take the current time
@@ -77,8 +79,8 @@ export default function StopWatch() {
     }, [run]);
 
     return (
-        <div>
-            <div className="timeDisplay">
+        <div className="timerContainer">
+            <div>
                 {formatZero(hours)} : {formatZero(minutes)} : {formatZero(seconds)}
                 <StopWatchButton
                     setRun={setRun}
@@ -87,8 +89,40 @@ export default function StopWatch() {
                     setHours={setHours}
                     recordLap={recordLap}
                 />
-                <ol> {laps.toString()} </ol>
-                <ol> {totalTime.toString()} </ol>
+        
+        {/* displaying the lap times as a table */}
+        <div className="tableContainer">
+                <table>
+                    <tr>
+                        <th> Lap Time </th>
+                    </tr>
+
+                    {laps.map((lap, index) => (
+                        <tr>
+                            <td key={index}>
+                                {lap}           
+                            </td>
+                           
+                        </tr>   
+                    ))}
+                
+                </table>
+
+                <table>
+                <tr>
+                    <th> Total Time</th>
+                </tr>
+
+                    {totalTime.map((time, index) => (
+                        <tr>
+                            <td key={index}>
+                                {time}
+                             </td>
+                        </tr>
+                    ))}
+                            
+                </table>
+                </div>
             </div>
         </div>
     );

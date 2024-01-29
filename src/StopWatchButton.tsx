@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./StopWatch.css"
 
 
 //Using props to 'link' or help componenets communicate with each other
@@ -47,11 +48,11 @@ export default function StopWatchButton(props: timerProps) {
 
   //return the buttons
   return (
-    <div>
-      <button onClick={startButton}> start </button>
-      <button onClick={stopButton}> stop </button>
-      <button onClick={lapButton}> lap </button>
-      <button onClick={resetButton}> reset </button>
+    <div className="buttons">
+      <button className="btn" onClick={startButton} > start </button>
+      <button className="btn" onClick={stopButton}> stop </button>
+      <button className="btn" onClick={lapButton}> lap </button>
+      <button className="btn" onClick={resetButton}> reset </button>
     </div>
   );
 }
