@@ -31,7 +31,7 @@ export default function StopWatchButton({
       tabIndex = 2;
       break;
     case "lap":
-      buttonText = "Record Lap";
+      buttonText = "Lap";
       tabIndex = 3;
       break;
     case "reset":
@@ -58,7 +58,7 @@ export default function StopWatchButton({
     >
       {/* Display the button text, otherwise display the max laps reached message when max number is reached */}
       {lapTimes && lapTimes.length === maxLaps && timerOn && type === "lap"
-        ? "Maximum laps reached"
+        ? "Max"
         : buttonText}
     </button>
   );
