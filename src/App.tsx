@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
 import StopWatch from './components/StopWatch';
 import StopWatchButton from './components/StopWatchButton';
-import formatTime from './utils/formatTime';
+import LapTimes from './components/LapTimes';
 
 function App() {
     const intervalRef = useRef<NodeJS.Timeout>(null);
@@ -68,17 +68,7 @@ function App() {
                     handleButtonClick={() => resetStopwatch()}
                 />
             </div>
-            <div className='lapTimesContainer digital'>
-                <ol>
-                    {lapTimes.map((lap, i) => {
-                        return (
-                            <li key={i + 1} className='lap'>
-                                Lap {i < 9 ? `0${i + 1}` : i + 1}: {formatTime(lap)}
-                            </li>
-                        )
-                    })}
-                </ol>
-            </div>
+            <LapTimes lapTimes={lapTimes} />
         </div>
     )
 }
