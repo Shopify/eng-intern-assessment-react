@@ -1,5 +1,4 @@
-.start{
-    background-color: #04AA6D; 
+.stop-watch-button{
     border: none;
     color: white;
     padding: 15px 32px;
@@ -7,7 +6,12 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px;
+    border-radius: 12px;    
+    margin: 5px;
+}
+
+.start{
+    background-color: #04AA6D; 
 }
 
 .start:hover {
@@ -17,14 +21,6 @@
 
 .stop{
     background-color: red; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
 }
 
 .stop:hover {
@@ -34,14 +30,6 @@
 
 .lap{
     background-color: black; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
 }
 
 .lap:hover {
@@ -51,14 +39,6 @@
 
 .reset{
     background-color: black;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
 }
 
 .reset:hover {

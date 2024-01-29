@@ -30,8 +30,8 @@ export default function StopWatch({
     return(
         <div className='flex-container'>
             <div className='flex-item'>
-            <StopWatchButton isDisabled={isStartPressed?true:false} className={isStartPressed?'start disabled':'start'} label={'Start'} onClickHandler={startHandler}></StopWatchButton>
-            <StopWatchButton className={isStartPressed?'stop' : 'stop disabled'} label={'Stop'} onClickHandler={stopHandler} isDisabled={isStartPressed?false:true}></StopWatchButton>
+            <StopWatchButton isDisabled={isStartPressed?true:false} className={isStartPressed?'stop-watch-button start disabled':'stop-watch-button start'} label={'Start'} onClickHandler={startHandler}></StopWatchButton>
+            <StopWatchButton className={isStartPressed?'stop-watch-button stop' : 'stop-watch-button stop disabled'} label={'Stop'} onClickHandler={stopHandler} isDisabled={isStartPressed?false:true}></StopWatchButton>
             </div>
 
             <div className='flex-item'>
@@ -39,8 +39,8 @@ export default function StopWatch({
             </div>
 
             <div className='flex-item'>
-                <StopWatchButton className={isStartPressed?'lap' :'lap disabled'} label={'Lap'} onClickHandler={lapHandler} isDisabled={isStartPressed?false:true}></StopWatchButton>
-                <StopWatchButton className='reset' label={'Reset'} onClickHandler={resetHandler} isDisabled={false}></StopWatchButton>
+                <StopWatchButton className={isStartPressed?'stop-watch-button lap' :'stop-watch-button lap disabled'} label={'Lap'} onClickHandler={lapHandler} isDisabled={isStartPressed?false:true}></StopWatchButton>
+                <StopWatchButton className='stop-watch-button reset' label={'Reset'} onClickHandler={resetHandler} isDisabled={false}></StopWatchButton>
             </div>
 
             <div className='flex-container'>
