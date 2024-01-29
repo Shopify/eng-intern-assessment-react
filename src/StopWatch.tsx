@@ -1,16 +1,19 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import { useStopwatch } from "./useStopWatch";
+import { useStopWatchContext } from "./Context";
 
 export default function StopWatch() {
-  const { isRunning, start, pause, reset, formattedTime } = useStopwatch();
-  // console.log(formattedTime);
+  const { laps, addLap, start, pause, reset, formatTime } =
+    useStopWatchContext();
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      {formattedTime()}
-      <button onClick={() => start()}>start</button>
-      <button onClick={() => pause()}>stop</button>
-      <button onClick={() => reset()}>reset</button>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      fontSize="90px"
+      color="white"
+    >
+      {formatTime()}
     </Box>
   );
 }

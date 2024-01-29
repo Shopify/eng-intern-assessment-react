@@ -1,8 +1,11 @@
+import "@fontsource/jetbrains-mono/600.css"; // Specify weight
 import React from "react";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import { Global, css } from "@emotion/react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import { StopwatchProvider } from "./Context";
+import Laps from "./Laps";
 
 const GlobalStyle = () => {
   return (
@@ -11,8 +14,7 @@ const GlobalStyle = () => {
         body {
           margin: 0;
           padding: 0;
-          min-height: 100vh;
-          background-color: #96bf48;
+          font-family: JetBrains Mono;
         }
       `}
     />
@@ -22,18 +24,28 @@ const GlobalStyle = () => {
 export default function App() {
   return (
     <ChakraProvider>
-      <GlobalStyle />
-      <Box
-        border="3px solid red"
-        height="100vh"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        display="flex"
-      >
-        <StopWatch />
-        <StopWatchButton />
-      </Box>
+      <StopwatchProvider>
+        <GlobalStyle />
+        <Box
+          height="100vh"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          display="flex"
+          backgroundColor="#424769"
+        >
+          <Box
+            p="40px"
+            borderRadius="24px"
+            backgroundColor="#7077A1"
+            width="700px"
+          >
+            <StopWatch />
+            <StopWatchButton />
+          </Box>
+          <Laps />
+        </Box>
+      </StopwatchProvider>
     </ChakraProvider>
   );
 }
