@@ -33,23 +33,35 @@ const StopWatch: React.FC = () => {
         <Time time={time} />
       </div>
       <div className="flex justify-center space-x-6 mt-6">
-        <StopWatchButton onClick={() => setTimerRunning(true)}>
-          Start
-        </StopWatchButton>
-        <StopWatchButton onClick={() => setTimerRunning(false)}>
-          Stop
-        </StopWatchButton>
-        <StopWatchButton onClick={() => setTimerRunning(true)}>
-          Resume
-        </StopWatchButton>
-        <StopWatchButton
-          onClick={() => {
-            setLapTimes([...lapTimes, { id: lapTimeId++, time }]);
-          }}
-        >
-          Lap
-        </StopWatchButton>
-        <StopWatchButton onClick={() => setTime(0)}>Reset</StopWatchButton>
+        {!isTimerRunning && time === 0 && (
+          <StopWatchButton onClick={() => setTimerRunning(true)}>
+            Start
+          </StopWatchButton>
+        )}
+        {isTimerRunning && (
+          <StopWatchButton onClick={() => setTimerRunning(false)}>
+            Stop
+          </StopWatchButton>
+        )}
+
+        {!isTimerRunning && time !== 0 && (
+          <StopWatchButton onClick={() => setTimerRunning(true)}>
+            Resume
+          </StopWatchButton>
+        )}
+
+        {time > 0 && (
+          <StopWatchButton
+            onClick={() => {
+              setLapTimes([...lapTimes, { id: lapTimeId++, time }]);
+            }}
+          >
+            Lap
+          </StopWatchButton>
+        )}
+        {time > 0 && (
+          <StopWatchButton onClick={() => setTime(0)}>Reset</StopWatchButton>
+        )}
       </div>
       {lapTimes.length === 0 ? null : (
         <div className="flex justify-center items-center flex-col mt-6">
