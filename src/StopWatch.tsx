@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { initialState, stopWatchReducer } from "./lib/stopwatch";
 import StopWatchButton from "./StopWatchButton";
 
@@ -48,7 +48,7 @@ export default function StopWatch() {
     animRef.current = requestAnimationFrame(showLiveTime);
   }, [state]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     animRef.current = requestAnimationFrame(showLiveTime);
 
     // cleanup the animation frame based on the ref
@@ -98,7 +98,7 @@ export default function StopWatch() {
 
       {/* a scrollable table to show laps */}
       <div className="overflow-scroll row-span-8">
-        <table className="w-full overflow-scroll table-fixed ">
+        <table className="w-full overflow-y-scroll table-fixed ">
           <thead>
             <tr className="w-full border-b text-neutral-600 border-neutral-600 ">
               <th className="font-normal text-left">Lap #</th>
