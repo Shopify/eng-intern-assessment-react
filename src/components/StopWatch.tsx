@@ -44,8 +44,8 @@ export default function StopWatch() {
         }
     }
     return (
-        <div style={{width: '300px', height: '500px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <div style={{margin:'auto',fontSize: '80px', marginBottom: '55px' }} className='stopwatch-time'>
+        <div style={{width: '305px', height: '500px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{fontFamily:'Arial', margin:'auto', fontSize: '80px', marginBottom: '55px' }} className='stopwatch-time'>
                 {formatTime(time)}
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', paddingBottom: '20px' }} className='stopwatch-button-container'>
