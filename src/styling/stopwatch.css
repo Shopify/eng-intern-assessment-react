@@ -1,0 +1,9 @@
+p {
+    font-size: 30px;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: -2.5%;
+} 
+
+div[role] {
+    font-family: 'Quicksand', sans-serif;
+}

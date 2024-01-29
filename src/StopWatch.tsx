@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import "./styling/stopwatch.css";
 
 type Props = {
     isRunning: boolean;
@@ -32,7 +33,7 @@ export default function StopWatch(props: Props) {
   
     return (
       <div>
-        <span role='time-display'>{formatTime(props.time)}</span>
+        <p role='time-display'>{formatTime(props.time)}</p>
         {props.laps.length > 0 && (
         <div role='laps'>
           <h2>Laps</h2>

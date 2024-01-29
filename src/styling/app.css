@@ -1,0 +1,23 @@
+.container {
+    border: 2.5px solid rgb(210, 210, 210);
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: -2.5%;
+}
+
+div[stopwatch-buttons] button {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-right: 10px;
+}

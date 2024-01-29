@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import "./styling/stopwatchButtons.css";
 
 type Props = {
     text: string;
