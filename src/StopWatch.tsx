@@ -88,11 +88,9 @@ export default function StopWatch() {
                 key={index}
                 className="transition duration-75 ease-in hover:-translate-y-0.5 hover:scale-105 border-2 w-[80%] rounded-md py-2 px-4"
               >
-                {/* Display the lap number */}
                 <p className="text-xs text-slate-600">
                   Lap {reversedLaps.length - index}
                 </p>
-                {/* Display the lap time */}
                 <p className="text-2xl">{`${hours}:${minutes}:${seconds}:${milliseconds}`}</p>
               </li>
             );
