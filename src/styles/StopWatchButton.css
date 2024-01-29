@@ -1,0 +1,28 @@
+button {
+	background-color: aliceblue;
+	font-weight: 800;
+	margin: 1em auto;
+	height: 30px;
+	width: 50%;
+	max-width: 300px;
+	border-radius: 10px;
+	box-shadow: 5px 7px 12px rgba(0, 0, 0, 0.3);
+	border: none;
+	transition: box-shadow 200ms;
+	transition: scale 50ms ease-in-out;
+}
+
+button:hover {
+	/* scale: 1.1; */
+	box-shadow: 5px 7px 12px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+	scale: 0.9;
+}
+
+button:disabled {
+	box-shadow: 5px 7px 12px rgba(0, 0, 0, 0.3);
+	scale: 1;
+	opacity: 0.4;
+}

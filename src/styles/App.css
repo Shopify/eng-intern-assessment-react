@@ -133,8 +133,6 @@ table {
 /* End of Reset */
 
 body {
-	font-family: Helvetica;
+	font-family: monospace;
 	background-color: lightgray;
 }
-
-
