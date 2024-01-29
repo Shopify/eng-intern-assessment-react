@@ -4,7 +4,7 @@ import StopWatchButton from './StopWatchButton';
 export default function StopWatch() {
     const [currentTime, setCurrentTime] = useState(0) // state to store time
     const [isActive, setIsActive] = useState(false) // boolean state if timer is active
-const [laps, setLaps] = useState(0)
+const [laps, setLaps] = useState([]) // state to store laps
 
     // useEffect hook & setInterval method to calculate time
     useEffect(() => {
@@ -19,17 +19,23 @@ const [laps, setLaps] = useState(0)
         return () => clearInterval(interval);
     }, [isActive]);
 
-    // split currentTime into hours, minutes, seconds, and milliseconds to display for human eyes
-    let currentHours: number = Math.floor((currentTime / 3600000) % 60)
-    let currentMinutes: number = Math.floor((currentTime / 60000) % 60)
-    let currentSeconds: number = Math.floor((currentTime / 1000) % 60)
-    let currentMilliseconds: number = (currentTime / 10) % 100
+    // helper functions to split time into hours, minutes, seconds, and milliseconds
+    function hoursInTime(time: number) {
+        return Math.floor((time / 3600000) % 60)
+    } 
+    function minutesInTime(time: number) {
+        return Math.floor((time / 60000) % 60)
+    }
+    function secondsInTime(time: number) {
+        return Math.floor((time / 1000) % 60)
+    }
+    function millisecondsInTime(time: number) {
+        return (time / 10) % 100
+    }
 
     // event handlers for start, pause, reset, and lap buttons
     const handleStart = () => {
-        if (!isActive) {
             setIsActive(true)
-        }
     }
 
     const handlePause = () => {
@@ -38,26 +44,39 @@ const [laps, setLaps] = useState(0)
 
     const handleReset = () => {
         setCurrentTime(0)
+        setIsActive(false)
+        setLaps([])
     }
 
     const handleLap = () => {
-        console.log("handle lap")
+        if (currentTime) { // only lap if currentTime is not zero, to protect against accidental double-clicks
+            setLaps([...laps, currentTime])
+            setCurrentTime(0)
+        }
+
     }
 
+    // helper function to display time in hh:mm:ss:mm format for human readability
+    function readableTime(hours : number, minutes : number, seconds : number, milliseconds : number) {
+        return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" +  ("0" + seconds).slice(-2) + ":" + ("0" + milliseconds).slice(-2)
+    }
+    
     // render stopwatch interface
     return (
         <div>
-            <span>{("0" + currentHours).slice(-2)}:</span>
-            <span>{("0" + currentMinutes).slice(-2)}:</span>
-            <span>{("0" + currentSeconds).slice(-2)}:</span>
-            <span>{("0" + currentMilliseconds).slice(-2)}</span>
-            <p>{currentTime}</p>
+            <p>{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</p>
 
             <StopWatchButton onClick={handleStart} buttonName="Start"/> 
             <StopWatchButton onClick={handlePause} buttonName="Pause"/> 
             <StopWatchButton onClick={handleReset} buttonName="Reset"/> 
             <StopWatchButton onClick={handleLap} buttonName="Lap"/> 
 
+                <ol>
+                    {laps.map((t, i) => {
+                        return <li key={i}>{readableTime(hoursInTime(laps[i]), minutesInTime(laps[i]), secondsInTime(laps[i]), millisecondsInTime(laps[i]))}</li>
+                    })}
+                </ol>
+        
             </div>
     )
 }
