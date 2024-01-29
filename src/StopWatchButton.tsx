@@ -25,13 +25,13 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
           props.setLaps([]);
         }}
         disabled={props.time <= 0}
-        className="rounded-md px-4 py-2 bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="transition duration-75 ease-in hover:enabled:-translate-y-0.5 hover:enabled:scale-110 shadow-slate-400 shadow-md hover:enabled:shadow-indigo-950 rounded-md px-4 py-2 bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <IconRestore className="text-white" />
       </button>
       <button
         onClick={() => props.setIsRunning(!props.isRunning)}
-        className={`rounded-md py-2 px-8 bg-slate-900`}
+        className={`transition duration-75 ease-in hover:enabled:-translate-y-0.5 hover:enabled:scale-110 shadow-slate-400 shadow-md hover:enabled:shadow-indigo-950 rounded-md py-2 px-8 bg-slate-900`}
       >
         {props.isRunning ? (
           <IconPlayerPauseFilled className="text-white" />
@@ -44,7 +44,7 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
           props.setLaps((laps) => [...laps, props.time]);
         }}
         disabled={!props.isRunning}
-        className={`rounded-md px-4 py-2 bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`transition duration-75 ease-in hover:enabled:-translate-y-0.5 hover:enabled:scale-110 shadow-slate-400 shadow-md hover:enabled:shadow-indigo-950 rounded-md px-4 py-2 bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed`}
       >
         <IconClockExclamation className="text-white" />
       </button>

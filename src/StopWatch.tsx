@@ -35,15 +35,15 @@ export default function StopWatch() {
       <div className="flex gap-2 items-end">
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
           <div>{hours.toString().padStart(2, "0")}</div>
-          <p className="text-sm">hr</p>
+          <p className="text-sm font-semibold">hr</p>
         </div>
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
           <div>{minutes.toString().padStart(2, "0")}</div>
-          <p className="text-sm">min</p>
+          <p className="text-sm font-semibold">min</p>
         </div>
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
           <div>{seconds.toString().padStart(2, "0")}</div>
-          <p className="text-sm">sec</p>
+          <p className="text-sm font-semibold">sec</p>
         </div>
         <div className="border-2 text-xl w-20 h-20 flex flex-col justify-center items-center rounded-md">
           <div>{milliseconds.toString().padStart(2, "0")}</div>
@@ -57,7 +57,7 @@ export default function StopWatch() {
         setLaps={setLaps}
         time={time}
       />
-      <div className="w-[40%] h-72 overflow-y-auto py-6 px-2">
+      <div className="w-[60%] h-72 overflow-y-auto py-6 px-2 mt-4">
         <ul className="flex flex-col items-center gap-2">
           {reversedLaps.map((lap, index) => {
             const hours = Math.floor(lap / 360000)
@@ -71,7 +71,10 @@ export default function StopWatch() {
               .padStart(2, "0");
             const milliseconds = (lap % 100).toString().padStart(2, "0");
             return (
-              <li key={index} className="border-2 w-full rounded-md py-2 px-4">
+              <li
+                key={index}
+                className="transition duration-75 ease-in hover:-translate-y-0.5 hover:scale-105 border-2 w-[80%] rounded-md py-2 px-4"
+              >
                 <p className="text-xs text-slate-600">
                   Lap {reversedLaps.length - index}
                 </p>
