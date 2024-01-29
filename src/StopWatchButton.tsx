@@ -1,7 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-export default function StopWatchButton() {
+type Props = {
+    text: string;
+} 
+
+export default function StopWatchButton(props: Props) {
+    let onClick = function() {
+    };
+
     return(
-        <div></div>
-    )
+        <button onClick={onClick}>{props.text}</button>
+    );
 }

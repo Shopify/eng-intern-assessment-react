@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
+type Props = {
+};
+
+export default function StopWatch(props: Props) {
+    return (
+      <div>
+        <span>Placeholder</span>
+      </div>
+    );
 }
