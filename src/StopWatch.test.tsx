@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+	act,
+	fireEvent,
+	queryByRole,
+	render,
+	screen,
+} from '@testing-library/react';
 
 import StopWatch, { formatTime } from './StopWatch';
 
@@ -19,6 +25,57 @@ describe('time formatting', () => {
 	});
 });
 
-jest.useFakeTimers();
+describe('testing timer', () => {
+	beforeEach(() => {
+		jest.useFakeTimers();
+	});
 
-describe('timer tests', () => {});
+	test('timer start on start click', () => {
+		const intervalSpy = jest.spyOn(global, 'setInterval');
+		render(<StopWatch />);
+
+		const startBtn = screen.getByRole('button', { name: 'Start' });
+		act(() => {
+			fireEvent.click(startBtn);
+			jest.advanceTimersByTime(1000);
+		});
+		expect(intervalSpy).toHaveBeenCalledTimes(1);
+	});
+
+	test('stops timer on stop click', () => {
+		const intervalSpy = jest.spyOn(global, 'setInterval');
+
+		render(<StopWatch />);
+
+		const startBtn = screen.getByRole('button', { name: 'Start' });
+		act(() => {
+			fireEvent.click(startBtn);
+			jest.advanceTimersByTime(1000);
+		});
+		expect(intervalSpy).toHaveBeenCalledTimes(1);
+		const stopBtn = screen.getByRole('button', { name: 'Stop' });
+		act(() => {
+			fireEvent.click(stopBtn);
+			jest.advanceTimersByTime(3000);
+		});
+		expect(intervalSpy).toHaveBeenCalledTimes(1);
+	});
+
+	test('reset timer on reset click', () => {
+		const intervalSpy = jest.spyOn(global, 'setInterval');
+
+		const { getByRole } = render(<StopWatch />);
+
+		const startBtn = screen.getByRole('button', { name: 'Start' });
+		act(() => {
+			fireEvent.click(startBtn);
+			jest.advanceTimersByTime(1000);
+		});
+		expect(intervalSpy).toHaveBeenCalledTimes(1);
+		const resetBtn = screen.getByRole('button', { name: 'Reset' });
+		act(() => {
+			fireEvent.click(resetBtn);
+		});
+		expect(getByRole('heading', { level: 2 }).textContent).toBe('--:--:--');
+	});
+});

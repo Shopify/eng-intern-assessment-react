@@ -9,13 +9,12 @@ test('render', () => {
 	expect(getByRole('button')).not.toBeNull();
 });
 
-// test('handle Click', () => {
-// 	const onClick = jest.fn();
-// 	const { getByRole } = render(
-// 		<StopWatchButton onClick={() => onClick}>text</StopWatchButton>
-// 	);
+test('calls onClick', () => {
+	const onClick = jest.fn();
+	const { getByRole } = render(
+		<StopWatchButton onClick={onClick} children='text' />
+	);
 
-// 	fireEvent.click(getByRole('button', { name: /start/i }));
-
-// 	expect(onClick).toHaveBeenCalled();
-// });
+	fireEvent.click(getByRole('button', { name: 'text' }));
+	expect(onClick).toHaveBeenCalled();
+});

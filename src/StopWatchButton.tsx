@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import './styles/StopWatchButton.css';
 
 type PropType = {
-	children: ReactNode;
+	children: string;
 	onClick: () => void;
 	disabled?: boolean;
 };
@@ -13,7 +13,11 @@ export default function StopWatchButton({
 	disabled,
 }: PropType) {
 	return (
-		<button onClick={() => onClick()} disabled={disabled}>
+		<button
+			onClick={() => onClick()}
+			disabled={disabled}
+			aria-label={children}
+		>
 			{children}
 		</button>
 	);
