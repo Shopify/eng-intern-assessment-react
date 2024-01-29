@@ -6,7 +6,41 @@
     --color-accent: #EBF5EE;
 }
 
-html {
-    font-family: 'Oswald', 'sans-serif';
-    background-color: var(--color-primary);
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif, monospace;
+    background: linear-gradient(145deg, #2e2d33, #484746, #615c62); 
+    background-attachment: fixed;
+    background-size: cover; 
+    position: relative;
+    animation: shiftGradient 5ms linear infinite alternate; 
+}
+
+body::after {
+    content: "";
+    background-image: url('https://images.hdqwalls.com/wallpapers/blur-background-6z.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    opacity: 0.5; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 0; 
+}
+
+@keyframes shiftGradient {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 100% center;
+    }
 }
