@@ -4,19 +4,54 @@ import "../StopWatchButton/StopWatchButton";
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
 
 export default function StopWatch() {
-	// The time to be displayed
+	// Store time in milliseconds
 	const [time, setTime] = useState<number>(0);
+	// Store time in readable format
+	type timeStruct = {
+		hours: string;
+		minutes: string;
+		seconds: string;
+		milliseconds: string;
+	};
+	const [displayTime, setDisplayTime] = useState<timeStruct>({
+		hours: "00",
+		minutes: "00",
+		seconds: "00",
+		milliseconds: "00",
+	});
 	// The condition that starts & stop the timer
 	const [isRunning, setIsRunning] = useState<boolean>(false);
-	// Sets lap start time
+	// Store lap start time
 	const [startTime, setStartTime] = useState<number | undefined>(undefined);
 	// The condition for Laps component to be displayed
 	const [isShowing, setIsShowing] = useState<boolean>(false);
-
 	//Initialize lap array
 	const [laps, setLaps] = useState<number[]>([]);
 
-	// Changes the time displayed every 10ms when isRunning is true
+	//Calculate time from DateConstructor and convert to a string with with 2 padding
+	type calculateFunction = (a: number) => timeStruct;
+	const calculateTime: calculateFunction = (time: number) => {
+		const hours: string = Math.floor(time / 3600000)
+			.toString()
+			.padStart(2, "0");
+		const minutes: string = Math.floor((time % 3600000) / 60000)
+			.toString()
+			.padStart(2, "0");
+		const seconds: string = Math.floor((time % 60000) / 1000)
+			.toString()
+			.padStart(2, "0");
+		const milliseconds: string = Math.floor(time % 1000)
+			.toString()
+			.slice(0, 2)
+			.padStart(2, "0");
+
+		const newTime = { hours, minutes, seconds, milliseconds };
+		console.log(newTime);
+
+		return newTime;
+	};
+
+	//Change the time displayed every 10ms when isRunning is true
 	useEffect(() => {
 		let intervalId: number | NodeJS.Timer;
 		if (isRunning) {
@@ -24,55 +59,44 @@ export default function StopWatch() {
 				setTime(time + 10);
 			}, 10);
 		}
+		const newDisplayTime: timeStruct = calculateTime(time);
+		setDisplayTime(newDisplayTime);
 		return () => clearInterval(intervalId);
 	}, [isRunning, time]);
 
-	//calculate hours, minutes, seconds, and milliseconds with Math.floor
-	const hours: number = Math.floor(time / 3600000);
-	const minutes: number = Math.floor((time % 3600000) / 60000);
-	const seconds: number = Math.floor((time % 60000) / 1000);
-	const milliseconds: number = Math.floor(time % 1000);
-
 	// Starts the timer and retrieves start time in ms
-	const startRunning = () => {
+	function startRunning() {
 		setIsRunning(true);
 		const getStartTime: number | DateConstructor = Date.now();
-		console.log("START TIME: ", getStartTime);
 		setStartTime(getStartTime);
-	};
+	}
 
 	// Stops timer, records stop time, and adds the duration of interval to laps array
-	const stopRunning = () => {
+	function stopRunning() {
 		setIsRunning(false);
 		const stopTime: number | DateConstructor = Date.now();
-		console.log("STOP TIME: ", stopTime);
 		const lapTime: number | DateConstructor = stopTime - startTime;
-		console.log("LAP TIME: ", lapTime);
 		setLaps([...laps, lapTime]);
-	};
+	}
 
 	//Toggles display for laps component
-	const showLaps = () => {
+	function showLaps() {
 		setIsShowing(!isShowing);
-	};
+	}
 
 	// Resets timer
-	const resetTime = () => setTime(0);
+	function resetTime() {
+		setTime(0);
+	}
 
 	return (
 		<div className="display">
 			<div className="display__container">
+				<div className="display__time">{displayTime.hours}:</div>
+				<div className="display__time">{displayTime.minutes}:</div>
+				<div className="display__time">{displayTime.seconds}:</div>
 				<div className="display__time">
-					{hours.toString().padStart(2, "0")}:
-				</div>
-				<div className="display__time">
-					{minutes.toString().padStart(2, "0")}:
-				</div>
-				<div className="display__time">
-					{seconds.toString().padStart(2, "0")}:
-				</div>
-				<div className="display__time">
-					{milliseconds.toString().slice(0, 2).padStart(2, "0")}
+					{displayTime.milliseconds}
 				</div>
 			</div>
 			<div className="button__container">
@@ -103,16 +127,7 @@ export default function StopWatch() {
 					<h3 className="laps__title">LAPS</h3>
 					{laps.map((lap, index) => {
 						//calculate minutes, seconds, and milliseconds with Math.floor
-						const milliseconds: number = Math.floor(
-							lap % 1000
-						);
-						const seconds: number = Math.floor(
-							(lap % 60000) / 1000
-						);
-						const minutes: number = Math.floor(
-							(lap % 3600000) / 60000
-						);
-						const hours: number = Math.floor(lap / 3600000);
+						const lapTime: timeStruct = calculateTime(lap);
 
 						return (
 							<div key={index} className="laps__item">
@@ -120,36 +135,16 @@ export default function StopWatch() {
 									LAP {index + 1}
 								</p>
 								<p className="laps__time">
-									{hours === 0
+									{lapTime.hours === "00"
 										? ""
-										: `${hours
-												.toString()
-												.padStart(
-													2,
-													"0"
-												)}hrs `}
-									{""}
-									{minutes === 0
+										: `${lapTime.hours} hrs `}
+									{lapTime.minutes === "00"
 										? ""
-										: `${minutes
-												.toString()
-												.padStart(
-													2,
-													"0"
-												)} min `}{" "}
-									{seconds === 0
+										: `${lapTime.minutes} min `}{" "}
+									{lapTime.seconds === "00"
 										? ""
-										: `${seconds
-												.toString()
-												.padStart(
-													2,
-													"0"
-												)} sec `}{" "}
-									{milliseconds
-										.toString()
-										.slice(0, 2)
-										.padStart(2, "0")}{" "}
-									ms
+										: `${lapTime.seconds} sec `}{" "}
+									{lapTime.milliseconds} ms
 								</p>
 							</div>
 						);
