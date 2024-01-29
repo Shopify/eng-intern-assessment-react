@@ -1,27 +1,95 @@
 .watch-container {
-    align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh; 
+    color: white;
+}
+
+.upper-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; 
+    backdrop-filter: blur(50px); 
+    padding: 20px;
+    border-radius: 15px; 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.upper-container, .laps-container {
+    position: relative;
+    z-index: 2;
 }
 
 .watch-title {
-    font-size: 3rem;
-    color: var(--color-accent);
+    font-size: 3em;
+    font-weight: 900; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
 }
 
 .watch-timer {
-    color: var(--color-accent);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 6em;
+    letter-spacing: 2px;
+    color: #FFF;
 }
 
 .watch-buttons {
-    display: flex; 
+    display: flex;
+    justify-content: center;
     gap: 10px; 
+    margin-top: 15px;
 }
 
 .laps-container {
-    max-height: 40vh;
-    overflow-y: auto; 
-    width: 50vw; 
+    width: 20%; 
+    max-height: 300px; 
+    overflow-y: auto;
+    flex-grow: 1; 
+    margin-top: 50px;
+    margin-bottom: 20px; 
+}
+
+.laps-item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.laps-item {
+    font-size: 1.2rem;
+    background-color: rgba(51, 51, 51, 0.6);
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-align: center; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 500px) {
+    .watch-title {
+        font-size: 1.5em;
+    }
+
+    .upper-container {
+        padding: 10px; 
+    }
+
+    .watch-timer {
+        font-size: 4em; 
+    }
+
+    .laps-container {
+        width: 70%; 
+    }
+
+    .laps-item {
+        padding: 8px; 
+    }
 }
