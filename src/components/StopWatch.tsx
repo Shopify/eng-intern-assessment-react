@@ -37,7 +37,7 @@ export default function StopWatch() {
             return (
                 <>
                     <StopWatchButton variant='start' setTimerRunning={setTimerRunning} />
-                    <StopWatchButton variant='lap' setTimerRunning={setTimerRunning}
+                    <StopWatchButton variant='lap' disabled={true} setTimerRunning={setTimerRunning}
                         timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps} />
                 </>
             )
