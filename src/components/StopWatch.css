@@ -38,3 +38,7 @@ body {
 .btn:hover {
   background-color: #DA70D6;
 }
+
+.btn.selected {
+  background-color: #DA70D6;
+}
