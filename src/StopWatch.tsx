@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
@@ -8,27 +8,42 @@ export default function StopWatch() {
   // state to track if the time has started or stopped
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
-  // function for starting the stopwatch
-  const startTime = () => {
-    setIsRunning(true);
-    // time to increase by an interval of one second
-    const interval = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
-    }, 1000);
-    // clear interval
+  //useEffect to manage the interval (start/stop) as the condition for isRunning state changes
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (isRunning) {
+      // start interval if isRunning state true
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else {
+      // stop & clear interval if isRunning state false
+      clearInterval(interval);
+    }
+    // run function when component unmounts or dependency changes
     return () => {
       clearInterval(interval);
-      setIsRunning(false);
     };
+  }, [isRunning]);
+
+  // start stopwatch
+  const startTime = () => {
+    setIsRunning(true);
   };
+
+  // stop stopwatch
+  const stopTime = () => setIsRunning(false);
 
   return (
     <div>
       <div>{`${time} seconds`}</div>
-      <StopWatchButton title="Start" onClick={startTime} />
-      {/* <StopWatchButton title="Stop" />
-      <StopWatchButton title="Reset" />
-      <StopWatchButton title="Lap" /> */}
+      <StopWatchButton
+        onClick={isRunning ? stopTime : startTime}
+        title={isRunning ? "Stop" : "Start"}
+      />
+      {/* <StopWatchButton title="Reset" /> */}
+      {/* <StopWatchButton title="Lap" />  */}
     </div>
   );
 }
