@@ -82,70 +82,76 @@ const StopWatch = () => {
 
   return (
     <main className="main-container">
-      <div className="timer-container">
-        <div className="time-display">
-          <div>
-            <p className="label">Hours</p>
-            <p className="value">{`${hours.toString().padStart(2, "0")}`}</p>
+      <section className="section-container">
+        <div className="timer-container">
+          <div className="time-display">
+            <div>
+              <p className="label">Hours</p>
+              <p className="value">{`${hours.toString().padStart(2, "0")}`}</p>
+            </div>
+            <div>
+              <p className="label">Min</p>
+              <p className="value">{`${minutes
+                .toString()
+                .padStart(2, "0")}`}</p>
+            </div>
+            <div>
+              <p className="label">Sec</p>
+              <p className="value">{`${seconds
+                .toString()
+                .padStart(2, "0")}`}</p>
+            </div>
+            <div>
+              <p className="label">MilliSec</p>
+              <p className="value">{`${milliseconds
+                .toString()
+                .padStart(3, "0")}`}</p>
+            </div>
           </div>
-          <div>
-            <p className="label">Min</p>
-            <p className="value">{`${minutes.toString().padStart(2, "0")}`}</p>
-          </div>
-          <div>
-            <p className="label">Sec</p>
-            <p className="value">{`${seconds.toString().padStart(2, "0")}`}</p>
-          </div>
-          <div>
-            <p className="label">MilliSec</p>
-            <p className="value">{`${milliseconds
-              .toString()
-              .padStart(3, "0")}`}</p>
+          <div className="control-buttons">
+            {/* Render the StopWatchButton component for each button */}
+            <StopWatchButton
+              onClick={startTimer}
+              disabled={isActive}
+              className="start-button"
+            >
+              Start
+            </StopWatchButton>
+            <StopWatchButton
+              onClick={stopTimer}
+              disabled={!isActive}
+              className="stop-button"
+            >
+              Stop
+            </StopWatchButton>
+            <StopWatchButton
+              onClick={resetTimer}
+              disabled={isActive}
+              className="reset-button"
+            >
+              Reset
+            </StopWatchButton>
+            <StopWatchButton
+              onClick={recordLap}
+              disabled={!isActive}
+              className="lap-button"
+            >
+              Lap
+            </StopWatchButton>
           </div>
         </div>
-        <div className="control-buttons">
-          {/* Render the StopWatchButton component for each button */}
-          <StopWatchButton
-            onClick={startTimer}
-            disabled={isActive}
-            className="start-button"
-          >
-            Start
-          </StopWatchButton>
-          <StopWatchButton
-            onClick={stopTimer}
-            disabled={!isActive}
-            className="stop-button"
-          >
-            Stop
-          </StopWatchButton>
-          <StopWatchButton
-            onClick={resetTimer}
-            disabled={isActive}
-            className="reset-button"
-          >
-            Reset
-          </StopWatchButton>
-          <StopWatchButton
-            onClick={recordLap}
-            disabled={!isActive}
-            className="lap-button"
-          >
-            Lap
-          </StopWatchButton>
+        <div className="lap-times">
+          <h2 className="lap-times-heading">Lap Times</h2>
+          <ul>
+            {/* Display lap times */}
+            {lapTimes.map((lapTime, index) => (
+              <li className="lap-list" key={index}>{`Lap ${
+                index + 1
+              }: ${lapTime}`}</li>
+            ))}
+          </ul>
         </div>
-      </div>
-      <div className="lap-times">
-        <h2 className="lap-times-heading">Lap Times</h2>
-        <ul>
-          {/* Display lap times */}
-          {lapTimes.map((lapTime, index) => (
-            <li className="lap-list" key={index}>{`Lap ${
-              index + 1
-            }: ${lapTime}`}</li>
-          ))}
-        </ul>
-      </div>
+      </section>
     </main>
   );
 };
