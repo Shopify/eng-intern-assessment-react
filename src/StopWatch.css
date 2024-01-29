@@ -35,7 +35,7 @@ body {
   font-size: 22px;
   padding: 20px;
   border-radius: 5px;
-  width: 70px;
+  width: 50px;
 }
 
 .stopwatch .stopwatch-btn {
@@ -64,6 +64,11 @@ body {
   color: #005eff;
 }
 
+.stopwatch .stopwatch-btn-pur {
+  border: 2px solid #a13593;
+  color: #a13593;
+}
+
 .stopwatch .stopwatch-btn-gre {
   border: 2px solid #00aba9;
   color: #00aba9;
@@ -88,11 +93,12 @@ body {
   padding: 0;
 }
 .lap-times li {
-  font-family: "Your-Desired-Font", sans-serif;
+  font-family: sans-serif;
   font-size: 16px;
   margin-bottom: 10px;
 }
 
 .lap-times {
   text-align: center;
+  margin-top: 5%;
 }
