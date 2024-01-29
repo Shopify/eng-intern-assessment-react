@@ -8,6 +8,13 @@ export default function StopWatch() {
     //checks if timer is active 
     const [isActive, setIsActive] = useState(false);
 
+    const [laps, setLaps] = useState([])
+
+    const [seconds, setSeconds] = useState(0); 
+    const [minutes, setMinutes] = useState(0); 
+    const [hours, setHours] = useState(0); 
+    const [miliSeconds, setMiliSeconds] = useState(0); 
+
     //this entire section is used to increment the time 
     useEffect(() => {
         let intervalId: NodeJS.Timeout;
@@ -22,6 +29,8 @@ export default function StopWatch() {
           clearInterval(intervalId);
         };
       }, [isActive]);
+
+
     
     //handles start/stop  when clicked 
     const handleStartStop = () => { 
@@ -31,10 +40,12 @@ export default function StopWatch() {
     const handleReset = () => {
         setTime(0);
         setIsActive(false); 
+        setLaps([]);
     };
 
-    const handleLap = () => {
-
+    const handleLaps = () => {
+        const lapTime = isTime;
+        setLaps((prevLaps) => [...prevLaps, lapTime]);
     }
 
     //formats the current time display 
@@ -64,11 +75,20 @@ export default function StopWatch() {
 <div>
     <div> 
         <p>{formatTime(isTime)}</p>
+        <ul>
+            {laps.map((lap, index) => (
+                <li key={index}>
+                Lap {index + 1}: {formatTime(lap)}
+                </li>
+            ))}
+        </ul>
+    
     </div>
         <StopWatchButton
         active ={isActive}
         startStop={handleStartStop}
         reset={handleReset}   
+        laps={handleLaps}
       />
 </div>
     )

@@ -9,12 +9,14 @@ import React from 'react'
         //is reset
         reset: ()  => void;
         //is lap functionality 
+        laps: () => void;
     }
     //components for button to work as needed 
     const StopWatchButton = ({
         active,
         startStop,
         reset,
+        laps
     }:StopWatchButtonProps) => {
         ////if active then stop button if not then start button
         //reset button
@@ -22,6 +24,7 @@ import React from 'react'
     <div>
         <button onClick={startStop}>{active ? "Stop" : "Start"}</button>
         <button onClick={reset}>Reset</button>
+        <button onClick={laps}>Laps</button>
     </div>
     )
     }
