@@ -4,7 +4,6 @@ import './styles.css';
 import StopWatch from './stopwatch/StopWatch';
 import StopWatchButton from './stopwatch-button/StopWatchButton';
 import formatTime from "./formatTime";
-import Lap from "./lap/Lap";
 import LapsBox from "./laps-box/LapsBox";
 
 export default function App() {

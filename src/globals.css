@@ -5,10 +5,30 @@
     /* Variables */
     --black: #121212;
     --border: #00000033;
+    --border-darker: #00000055;
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     color: var(--black)
+}
+
+/* Create a sleeker scrollbar for most of the browsers that don't already have one */
+::-webkit-scrollbar {
+    width: 0.25rem;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--border-darker);
 }
