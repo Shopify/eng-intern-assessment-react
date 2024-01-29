@@ -72,10 +72,10 @@ export default function StopWatch() {
             const milliseconds = (lap % 100).toString().padStart(2, "0");
             return (
               <li key={index} className="border-2 w-full rounded-md py-2 px-4">
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-600">
                   Lap {reversedLaps.length - index}
                 </p>
-                <p>{`${hours}:${minutes}:${seconds}:${milliseconds}`}</p>
+                <p className="text-2xl">{`${hours}:${minutes}:${seconds}:${milliseconds}`}</p>
               </li>
             );
           })}
