@@ -48,6 +48,7 @@ export default function App() {
       const interval = setInterval(() => {
         setTime((prevTime) => Math.round((prevTime + 0.01) * 100) / 100);
       }, 10);
+      // Cleanup function: clears the interval when the component unmounts or before the next time the useEffect hook runs
       return () => clearInterval(interval);
     }
   }, [isRunning]);

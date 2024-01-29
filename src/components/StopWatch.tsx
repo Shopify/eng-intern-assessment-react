@@ -20,8 +20,13 @@ interface StopWatchProps {
 }
 
 const StopWatch: React.FC<StopWatchProps> = ({ time }) => {
+  // Calculate the number of whole minutes in the given time
   const minutes = Math.floor(time / 60);
+
+  // Calculate the remaining seconds after the minutes have been subtracted
   const seconds = Math.floor(time % 60); // Round down to the nearest whole number
+
+  // Calculate the milliseconds from the remaining fractional part of the last second
   const milliseconds = Math.floor((time % 1) * 100);
 
   return (
