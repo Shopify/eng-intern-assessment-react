@@ -15,6 +15,7 @@ function Stopwatch() {
   const [interv, setInterv] = useState<NodeJS.Timeout | undefined>();
   const [status, setStatus] = useState<number>(0);
   const [lapTimes, setLapTimes] = useState<string[]>([]);
+  const [isRunning, setIsRunning] = useState<boolean>(true); // New state for isRunning
 
   // Not started = 0
   // started = 1
@@ -23,6 +24,7 @@ function Stopwatch() {
   const start = () => {
     run();
     setStatus(1);
+    setIsRunning(true);
     if (!interv) {
       setInterv(setInterval(run, 10));
     }
@@ -49,12 +51,21 @@ function Stopwatch() {
     updatedMs++;
     return setTime({ ms: updatedMs, s: updatedS, m: updatedM, h: updatedH });
   };
+  const pause = () => {
+    if (interv) {
+      clearInterval(interv);
+      setInterv(undefined);
+    }
+    setIsRunning(true);
+    setStatus(2);
+  };
 
   const stop = () => {
     if (interv) {
       clearInterval(interv);
       setInterv(undefined);
     }
+    setIsRunning(false);
     setStatus(2);
   };
 
@@ -81,6 +92,7 @@ function Stopwatch() {
     const formattedTime = `${formatTimeUnit(time.m)}:${formatTimeUnit(
       time.s
     )}:${formatTimeUnit(time.ms)}`;
+
     return formattedTime;
   };
 
@@ -97,28 +109,31 @@ function Stopwatch() {
     <div className="main-section">
       <div className="clock-holder">
         <div className="stopwatch">
-          <DisplayComponent time={time} />
+          <DisplayComponent
+            getFormattedTime={getFormattedTime}
+            isRunning={isRunning}
+          />
           <StopWatchButton
             status={status}
             resume={resume}
             reset={reset}
+            pause={pause}
             stop={stop}
             start={start}
             recordLap={recordLap}
           />
-        </div>
-        {lapTimes.length > 0 && (
-          <div className="lap-times">
-            <p>Lap Times</p>
-            <ul>
-              {lapTimes.map((lapTime, index) => (
-                <li key={index}>
-                  Lap {index + 1}: {lapTime}
-                </li>
-              ))}
+
+          <div className="lap-times"></div>
+          <p>Lap Times</p>
+          <div>
+            <ul data-testid="lap-list">
+              {lapTimes.length > 0 &&
+                lapTimes.map((lapTime, index) => (
+                  <li key={index}>{lapTime}</li>
+                ))}
             </ul>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
