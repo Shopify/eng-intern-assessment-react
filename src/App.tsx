@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 /**
  * Format milliseconds elapsed into a human-readable string
@@ -54,8 +53,6 @@ export default function App() {
 
   // list of lap times
   const [laps, setLaps] = useState<Array<Lap>>([]);
-
-  const [lapsParent] = useAutoAnimate();
 
   // timer loop
   useEffect(() => {
@@ -122,7 +119,7 @@ export default function App() {
             <th className="w-2/5 text-center">Lap Time</th>
           </tr>
         </thead>
-        <tbody ref={lapsParent}>
+        <tbody>
           {laps.map((lap, idx) => {
             const lapNumber = laps.length - idx;
             return (
