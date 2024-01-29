@@ -22,12 +22,24 @@ body {
     border-radius: 15%;
 }
 
+
+.btn:disabled {
+    background-color: gray;
+    color: darkgray;
+}
+
+.btn:hover:disabled {
+    cursor: default;
+    transform: none;
+    background-color: gray;
+}
+
 .btn:hover{
     background-color: red;
     cursor: pointer;
     transform: scale(1.1);
-
 }
+
 
 .clock {
     font-family: 'alarm clock', sans-serif;
