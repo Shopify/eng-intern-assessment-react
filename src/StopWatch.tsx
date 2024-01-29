@@ -27,7 +27,7 @@ export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [timerOn, setTimerOn] = useState(false);
     const [lapTimes, setLapTimes] = useState<number[]>([]);
-
+    
     // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
     const handleReset = useCallback(() => {
         setTimerOn(false); 
@@ -41,7 +41,9 @@ export default function StopWatch() {
         let interval: ReturnType<typeof setInterval> | null = null;
 
         if (timerOn) {
-            interval = setInterval(() => setTime(time => time + 1), 10)
+            interval = setInterval(() => {
+            setTime(time => time + 1);
+        }, 10)
         }
 
         return () => {clearInterval(interval)} // Clears the interval when the component unmounts or timerOn changes
