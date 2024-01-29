@@ -1,0 +1,26 @@
+body {
+  background-color: lavenderblush;
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  color: #DA70D6;
+  display: flex;
+  letter-spacing: 2px;
+}
+
+.container span {
+  position: relative;
+  font-size: 5rem;
+  bottom: 3px;
+}
+
+.text {
+  margin: 0;
+  font-size: 5rem;
+}
+
