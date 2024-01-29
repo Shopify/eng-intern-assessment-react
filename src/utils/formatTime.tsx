@@ -4,7 +4,7 @@ const formatTime = (timeInMilliseconds: number): string => {
     const milliseconds = Math.floor((timeInMilliseconds % 1000) / 10);
 
     const doubleDigits = (input: number) => {
-        const output = input < 10 ? `0${input}` : input;
+        const output: string|number = input < 10 ? `0${input}` : input;
         return output;
     };
 
