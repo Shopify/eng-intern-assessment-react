@@ -1,44 +1,53 @@
 import React, { useState } from "react";
+import { displayTime } from "./utils";
 
 interface StopWatchButtonProps {
-  time: number;
   isCounting: boolean;
+  currentLap: number;
   setIsCounting: (isCounting: any) => void;
   setTime: (milliseconds: any) => void;
+  setLaps: (lapTime: any) => void;
+  setHasStartedStopwatch: (hasStartedStopwatch: any) => void;
+  setCurrentLap: (oldLap: any) => void;
 }
 
 export default function StopWatchButton({
-  time,
   isCounting,
+  currentLap,
   setIsCounting,
   setTime,
+  setLaps,
+  setHasStartedStopwatch,
+  setCurrentLap,
 }: StopWatchButtonProps) {
   const [timer, setTimer] = useState(null);
   const resetTimer = () => {
     setTime(0);
+    setLaps((oldLaps: any): any[] => []);
+    setHasStartedStopwatch(false);
   };
 
   const stopTimer = () => {
-    console.log("Stop Timer");
     clearInterval(timer);
     setTimer(null);
     setIsCounting(false);
   };
 
   const addLap = () => {
-    console.log("Add Lap");
-    console.log(time);
+    setLaps((oldLaps: any) => [...oldLaps, displayTime(currentLap)]);
+    setCurrentLap(0);
   };
 
   const startTimer = () => {
-    console.log("Start Timer");
     setIsCounting(true);
+    setHasStartedStopwatch(true);
     const timer = setInterval(updateTime, 10);
     setTimer(timer);
   };
 
   const updateTime = () => {
     setTime((oldTime: number) => oldTime + 10);
+    setCurrentLap((oldLap: number) => oldLap + 10);
   };
   return (
     <div>
