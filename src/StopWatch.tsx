@@ -73,9 +73,9 @@ export default function StopWatch() {
 			<h3 className='lap-title'>Lap List</h3>
 			<ol className='lap-list'>
 				{laps ? (
-					laps.reverse().map((lap, i) => (
+					laps.map((lap, i) => (
 						<li>
-							<p>{laps.length - i}</p>
+							<p>{i}</p>
 							<p>{lap}</p>
 						</li>
 					))

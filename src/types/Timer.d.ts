@@ -3,5 +3,3 @@ export type Timer = {
 	isRunning: boolean;
 	laps: string[];
 };
-
-
