@@ -24,6 +24,7 @@
 	height: 3.5rem;
 	font-size: large;
 	font-weight: bold;
+	margin: 2rem auto;
 
 	&__container {
 		display: flex;
@@ -39,5 +40,28 @@
 	&--stop {
 		background-color: #ef476f;
 		color: #3c3c3b;
+	}
+}
+
+.laps {
+	color: #00bdba;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: cente;
+	}
+
+	&__title {
+		margin-bottom: 1rem;
+	}
+
+	&__label {
+		margin-right: 1rem;
+		font-weight: bold;
+	}
+
+	&__item {
+		display: flex;
 	}
 }

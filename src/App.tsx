@@ -9,7 +9,6 @@ export default function App() {
 				<h1>STOPWATCH</h1>
 			</header>
 			<StopWatch />
-			<footer className="main__footer">Danielle Leung 2024</footer>
 		</div>
 	);
 }

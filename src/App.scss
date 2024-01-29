@@ -7,4 +7,16 @@
 	align-items: center;
 	height: 100vh;
 	padding: 10rem auto;
+	position: relative;
+
+	&__header {
+		color: #00bdba;
+		margin-top: 5rem;
+	}
+
+	&__footer {
+		position: absolute;
+		bottom: 5rem;
+		color: #ebebd3;
+	}
 }
