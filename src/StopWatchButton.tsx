@@ -5,7 +5,7 @@ import './App';
 // Define props type for the component
 type Props = {
     setTimeInSeconds: Function;
-    handleLap: React.MouseEventHandler<HTMLButtonElement>; // Correct type for onClick handler
+    handleLap: React.MouseEventHandler<HTMLButtonElement>; // onClick handler
 };
 
 // Stopwatch button component with handlers for start, stop, reset, and lap functionality
