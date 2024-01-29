@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import StopWatch from './StopWatch'
 
 export default function App() {
-    const [startTime, setStartTime] = useState(new Date())
     const [currentTime, setCurrentTime] = useState(0)
     const [isStartPressed, setIsStartPressed] = useState(false)
     const [laps, setLaps] = useState([])
     const [prevLap, setPrevLap] = useState(0)
-    const [isLapPressed, setIsLapPressed] = useState(false)
     var intervalId: NodeJS.Timer
 
     useEffect(()=>{
@@ -14,13 +13,12 @@ export default function App() {
         //every 1000 miliseconds (i.e every second), calculate the elapsed time until interval is cleared
         intervalId = setInterval(()=>{
             setCurrentTime(currentTime + 1)
-            console.log(currentTime)
         }, 1000)}
         return()=>{
             clearInterval(intervalId)
         }
         }
-    ,[isStartPressed, currentTime, prevLap])
+    ,[isStartPressed, currentTime])
     
 
     function onClickStart(){
@@ -39,10 +37,9 @@ export default function App() {
     }
 
     function onClickLap(){
-        setLaps([laps.push(currentTime)])
-        var lapTime = currentTime - prevLap
-        setPrevLap(lapTime)
-
+       var lapTime = currentTime - prevLap
+       setLaps([lapTime, ...laps])
+       setPrevLap(lapTime)
     }
 
     function secondsMinutesHours(value: number){
@@ -59,15 +56,13 @@ export default function App() {
     }
 
     return(
-        <div>
-            <button onClick={() => onClickStart()}>Start</button>
-            <button onClick={() => onClickStop()}>Stop</button>
-            <div>{secondsMinutesHours(currentTime)}</div>
-            <button onClick={() => onClickLap()}>Lap</button>
-            <div>{secondsMinutesHours(prevLap)}</div>
-            <div>
-                {laps.map(item => <span>{secondsMinutesHours(item)} </span>)}
-            </div>
-        </div>
+    <StopWatch 
+    startHandler={onClickStart}
+    stopHandler={onClickStop} 
+    lapHandler={onClickLap} 
+    resetHandler={onClickReset} 
+    lapsArray={laps} 
+    timeToStringFormatter={secondsMinutesHours} 
+    currentTime={currentTime}/>
     )
 }
