@@ -40,14 +40,14 @@ ol {
 button {
     padding: 20px;
     width: 100px;
-    cursor: pointer;
     border: none;
     border-radius: 2px;
     text-transform: uppercase;
 }
 
-button:hover {
+button:hover:enabled {
     background-color: red;
+    cursor: pointer;
 }
 
 .lapTimesContainer {
