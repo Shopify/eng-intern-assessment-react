@@ -6,6 +6,7 @@ import React from "react";
 import { StopWatchButton } from "./components";
 import { Time } from "./components";
 
+// global variable to store the number of laps recorded
 let lapTimeId = 0;
 
 const StopWatch: React.FC = () => {
