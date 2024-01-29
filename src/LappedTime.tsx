@@ -22,7 +22,7 @@ export default function LappedTime (props:LappedTimeProps) {
                     let secondsFormat = seconds < 10 ? `0${seconds}` : seconds;
 
                 return (
-                    <div key={lap}>
+                    <div key={lap} data-testid="lap_test">
                     <span className="laps_time">{hoursFormat}</span>
                     <span>:</span>
                     <span className="laps_time">{minutesFormat}</span>

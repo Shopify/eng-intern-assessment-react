@@ -6,7 +6,13 @@ import StopWatchButton from '../src/StopWatchButton'
 describe('StopWatchButton', () => {
 	// simple unit test to ensure tests are working
     test("this section contains a button", () => {
-		render(<StopWatchButton timeInSeconds={0} handleStartButton={Function} handleStopButton={Function} handleResetButton={Function} />);
+		render(<StopWatchButton
+      timeInSeconds={0} 
+      lappedTime={[]}
+      handleStartButton={Function}
+      handleStopButton={Function}
+      handleResetButton={Function}
+      handleLapButton={Function}/>);
         const element = screen.getByRole('button', { name: 'Start' });
         expect(element).toBeInTheDocument();
 	});
@@ -15,7 +21,13 @@ describe('StopWatchButton', () => {
     test("stopwatch starts counting when start button is clicked", () => {
 		const mockHandleStart = jest.fn();
 
-        const {getByText} = render(<StopWatchButton timeInSeconds={0} handleStartButton={mockHandleStart} handleStopButton={Function}  handleResetButton={Function} />);
+        const {getByText} = render(<StopWatchButton 
+          timeInSeconds={0}
+          lappedTime={[]}
+          handleStartButton={mockHandleStart}
+          handleStopButton={Function}
+          handleResetButton={Function}
+          handleLapButton={Function} />);
          
         const button = getByText("Start");
 
@@ -28,8 +40,11 @@ describe('StopWatchButton', () => {
       test("stopwatch stops counting when stop button is clicked", () => {
         const mockHandleStop = jest.fn();
     
-            const {getByText} = render(<StopWatchButton timeInSeconds={0} handleStartButton={Function} handleResetButton={Function} 
-            handleStopButton={mockHandleStop} />);
+            const {getByText} = render(<StopWatchButton
+              timeInSeconds={0}
+              lappedTime={[]}
+              handleStartButton={Function}handleResetButton={Function} 
+              handleStopButton={mockHandleStop} handleLapButton={Function} />);
              
             const button = getByText("Stop");
     
@@ -39,17 +54,42 @@ describe('StopWatchButton', () => {
       });
 
       // reset button unit test
-      test("stopwatch stops counting and resets when reset button is clicked", () => {
+      test("when reset button is clicked, stopwatch stops counting and resets timer & lap array", () => {
         const mockHandleReset = jest.fn();
     
-            const {getByText} = render(<StopWatchButton timeInSeconds={9} handleStartButton={Function} handleResetButton={mockHandleReset} 
-            handleStopButton={Function} />);
+            const {getByText} = render(<StopWatchButton
+              timeInSeconds={9} 
+              lappedTime={[10]}
+              handleStartButton={Function} handleResetButton={mockHandleReset} 
+              handleStopButton={Function} handleLapButton={Function} />);
              
             const button = getByText("Reset");
+            const currentLaps = screen.queryByTestId("lap_test");
     
             fireEvent.click(button);
             
             expect(mockHandleReset).toHaveBeenCalled();
+            expect(currentLaps).toBe(null);
+      });
+
+      // lap button unit test
+      test("lap is recorded when lap button is pressed & list of laps shows up on screen", () => {
+        const mockHandleLap = jest.fn();
+    
+            const {getByText} = render(<StopWatchButton
+              timeInSeconds={23}
+              lappedTime={[9, 10]}
+              handleStartButton={Function} handleResetButton={Function} 
+              handleStopButton={Function} handleLapButton={mockHandleLap} />);
+             
+            const button = getByText("Lap");
+            const laps = screen.queryByTestId("lap_test");
+    
+            fireEvent.click(button);
+            
+            expect(mockHandleLap).toHaveBeenCalled();
+            expect(laps).toBeInTheDocument;
+
       });
 
 });
