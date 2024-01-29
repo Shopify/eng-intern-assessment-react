@@ -18,58 +18,74 @@ function getDisplayTime(count: number) {
 }
 
 export default function StopWatch() {
-  const [counter, setCounter] = useState(0);
+  const [start, setStart] = useState(new Date().valueOf());
+  const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [laps, setLaps] = useState([]);
 
   useEffect(() => {
+    //Anchors a start time, then periodically checks a new date objects value against the anchored time to get time elapsed
+    setStart(new Date().valueOf());
+    const oldTime = time;
+    //Previous time chunks must be added to elapsed time for start/stop functionality
+    //must be outside the loop or it will compound increasing time elapsed exponentially
     if (running) {
       const timer = setInterval(() => {
-        setCounter((c) => c + 25);
+        setTime(new Date().valueOf() - start + oldTime);
       }, 25);
-      // 25 chosen again as it's much higher than the previous minimum I encountered (15). i.e. any interval lower than 15 will end up diverging from real time
       return () => clearInterval(timer);
     }
-  }, [running]);
+  }, [running, start]);
 
   function toggleTimer() {
     setRunning((r) => !r);
   }
 
   function reset() {
-    setCounter(0);
+    setTime(0);
+    setStart(new Date().valueOf());
   }
 
   function lap() {
-    setLaps((l) => [...l, counter]);
+    setLaps((l) => [...l, time]);
     reset();
   }
 
   return (
-    <div>
-      <p data-testid="timeDisplay">
-        {getDisplayTime(counter)}
-      </p>
-      <StopWatchButton onclick={toggleTimer} name={running ? "Pause" : "Play"} />
-      <StopWatchButton onclick={lap} name="Lap" />
-      <StopWatchButton onclick={reset} name="Reset" />
-      {laps.length > 0 && (
-        <div>
-          <h2>Laps:</h2>
-          <ul>
-            {laps.map((lap: number, ind: number) => {
-              const timeString: string =  getDisplayTime(lap);
-              return (
-                <li key={`lap${ind + 1}`}>
-                  <p>
-                    Lap {ind + 1}: {timeString}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+    <div className="watch">
+      <h1>Stopwatch</h1>
+      <div>
+        <p data-testid="timeDisplay" className="time">
+          {getDisplayTime(time)}
+        </p>
+      </div>
+      <div className="buttons">
+        <StopWatchButton
+          onclick={toggleTimer}
+          name={running ? "Stop" : "Start"}
+        />
+        <StopWatchButton onclick={lap} name="Lap" />
+        <StopWatchButton onclick={reset} name="Reset" />
+      </div>
+      <div>
+        {/* && operator only evals true (returning the righthand statement) when there are recored laps in the array, hiding laps header when no laps are present*/}
+        {laps.length > 0 && (
+          <div>
+            <h2>Laps:</h2>
+            <ul>
+              {/*Iterate over laps array and render jsx for each lap in the array*/}
+              {laps.map((lap: number, ind: number) => {
+                const timeString: string = getDisplayTime(lap);
+                return (
+                  <li key={`lap${ind + 1}`}>
+                    <span>{`Lap ${ind + 1}: ${timeString}`}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
