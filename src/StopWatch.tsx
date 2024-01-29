@@ -43,7 +43,7 @@ export default function StopWatch({
                 />
             </div>
             <div className='flex-item'>
-                <p className='time-display'>{timeToStringFormatter(currentTime)}</p>
+                <p data-testid="time-display" className='time-display'>{timeToStringFormatter(currentTime)}</p>
             </div>
             <div className='flex-item'>
                 <StopWatchButton 
