@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './CSS Files/Button.css';
+import './App';
 
 // Define props type for the component
 type Props = {
     setTimeInSeconds: Function;
+    handleLap: React.MouseEventHandler<HTMLButtonElement>; // Correct type for onClick handler
 };
 
 // Stopwatch button component with handlers for start, stop, reset, and lap functionality
 export default function StopWatchButton(props: Props) {
-    const { setTimeInSeconds } = props;
+    const { setTimeInSeconds, handleLap } = props;
+
 
     // State to hold the interval ID for clearing the interval on stop/reset
     const [intervalId, setIntervalId] = useState<number>(0);
@@ -31,20 +34,13 @@ export default function StopWatchButton(props: Props) {
         clearInterval(intervalId);
         setTimeInSeconds(0);
     };
-
-    // Placeholder for lap button functionality
-    // TODO: Implement lap functionality
-    const handleLapButton = () => {
-        // Functionality to be implemented
-    };
-
     // Render stopwatch control buttons
     return (
         <section className='ButtonContainer'>
             <button onClick={handleStartButton}>Start</button>
             <button onClick={handleStopButton}>Stop</button>
             <button onClick={handleResetButton}>Reset</button>
-            <button onClick={handleLapButton}>Lap</button>
+            <button onClick={handleLap}>Lap</button>
         </section>
     );
 }

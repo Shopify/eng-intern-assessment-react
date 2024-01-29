@@ -17,6 +17,11 @@ export default function App() {
     //Stores laptime times for lap button
     const [laps, setLaps] = useState<Array<string>>([]);
 
+    const handleLap = () => {
+        const lapTime = timerArray.join(":");
+        setLaps(oldLaps => [...oldLaps, lapTime]);
+    };
+
     
    useEffect(()=>{
        let timeArray: Array<number|string> = calculateTimer(timeInSeconds);
@@ -32,8 +37,13 @@ export default function App() {
            <span>:</span>
            <p className='timer-text'>{timerArray[2]}</p>
        </section>
-       <StopWatchButton setTimeInSeconds = {setTimeInSeconds}/>
-    </main>    
-       
+       <StopWatchButton setTimeInSeconds={setTimeInSeconds} handleLap={handleLap} />
+         {/* Display recorded laps */}
+         <div className="lap-times">
+            {laps.map((lap, index) => (
+                <div key={index}>Lap {index + 1}: {lap}</div>
+            ))}
+        </div>
+    </main>           
    )
 }
