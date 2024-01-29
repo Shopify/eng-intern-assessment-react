@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import StopWatchButton from './StopWatchButton';
+import { maxLaps } from './StopWatchButton';
 
 test('calls onClick prop when clicked', () => {
   const handleClick = jest.fn();
@@ -63,4 +64,25 @@ test('lap button is disabled when timer is not running', () => {
   const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={false} />);
   const buttonElement = getByRole('button') as HTMLButtonElement;
   expect(buttonElement.disabled).toBe(true);
+});
+
+test('lap button is disabled when maxLaps is reached', () => {
+  const lapTimes = new Array(maxLaps).fill(0); // Mock array with maxLaps entries
+  const { getByRole } = render(<StopWatchButton type='lap' timerOn={true} lapTimes={lapTimes} />);
+  const buttonElement = getByRole('button') as HTMLButtonElement;
+  expect(buttonElement.disabled).toBe(true);
+});
+
+test('lap button is enabled when timer is running', () => {
+  const { getByRole } = render(<StopWatchButton type='lap' timerOn={true} />);
+  const buttonElement = getByRole('button') as HTMLButtonElement;
+  expect(buttonElement.disabled).toBe(false);
+});
+
+test('button retains focus after being clicked', () => {
+  const { getByRole } = render(<StopWatchButton type='start' />);
+  const button = getByRole('button');
+  button.focus();
+  fireEvent.click(button);
+  expect(document.activeElement).toBe(button);
 });
