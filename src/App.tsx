@@ -10,8 +10,10 @@ export default function App() {
     return(
         <div>
             <h1>Stopwatch</h1>
-            <StopWatch isRunning={isRunning} time={time} setTime={setTime} laps={laps}/>
-            <div>
+            <div role='stopwatch'>
+                <StopWatch isRunning={isRunning} time={time} setTime={setTime} laps={laps}/>
+            </div>
+            <div role='stopwatch-buttons'>
                 <StopWatchButton text='Start' setValue={setRunning}/>
                 <StopWatchButton text='Stop'setValue={setRunning}/>
                 <StopWatchButton text='Reset'setValue={setTime}/>
