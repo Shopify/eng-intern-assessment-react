@@ -10,6 +10,7 @@ export const formatTime = (time: number): string => {
 
     let result = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${ms.toString().padStart(2, '0')}`
 
+    // only append hour to the time displayed if reached
     if (hours > 0) {
         result = `${hours.toString().padStart(2, '0')}:${result}`
     }

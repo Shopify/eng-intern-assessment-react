@@ -29,8 +29,7 @@ export default function StopWatch() {
                 <>
                     <StopWatchButton variant='stop' setTimerRunning={setTimerRunning} />
                     <StopWatchButton variant='lap' setTimerRunning={setTimerRunning}
-                        timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps}
-                    />
+                        timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps}/>
                 </>
             )
         }
@@ -39,21 +38,20 @@ export default function StopWatch() {
                 <>
                     <StopWatchButton variant='start' setTimerRunning={setTimerRunning} />
                     <StopWatchButton variant='lap' setTimerRunning={setTimerRunning}
-                        timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps}
-                    />
+                        timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps} />
                 </>
             )
         }
     }
     return (
-        <div style={{width: '300px',
-            height: '500px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'}}>
-            <p style={{fontSize: '80px', marginBottom:'55px'}}className='stopwatch-time'>{formatTime(time)}</p>
-            <div style={{display:'flex', justifyContent:'space-between', width:'100%', paddingBottom:'20px'}}className='stopwatch-button-container'> {getStopWatchButtons()}</div>
-            <hr style={{color:'black', width:'100%', opacity:0.2}}></hr>
+        <div style={{width: '300px', height: '500px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <p style={{ fontSize: '80px', marginBottom: '55px' }} className='stopwatch-time'>
+                {formatTime(time)}
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', paddingBottom: '20px' }} className='stopwatch-button-container'>
+                {getStopWatchButtons()}
+            </div>
+            <hr style={{ color: 'black', width: '100%', opacity: 0.2 }} />
             {laps && <StopWatchLapList laps={laps} />}
         </div>
     )

@@ -1,8 +1,6 @@
 import React, { SetStateAction } from 'react'
 
-
 type StopWatchButtonVariant = 'start' | 'stop' | 'reset' | 'lap'
-
 interface StopWatchButtonProps {
     variant: StopWatchButtonVariant
     setTimerRunning?: React.Dispatch<SetStateAction<boolean>>
@@ -25,39 +23,46 @@ export default function StopWatchButton({ variant, setTimerRunning, setTime, tim
         cursor: 'pointer'
     }
 
-    const handleLap = () => {
-        if (timerRunning) {
-            setLaps([time, ...laps])
-        }
-    }
-
-    const getStopWatchButtonByVariant = (variant: StopWatchButtonVariant) => { 
-        let button
+    const getStopWatchButtonByVariant = (variant: StopWatchButtonVariant)  => { 
+        let buttonText: string
+        let buttonColor: string
+        let onClick: () => void
 
         switch (variant) { 
             case 'start':
-                button = <button style={{...buttonStyle, backgroundColor:'#0da84e'}} onClick={() => {
+                buttonText = 'Start'
+                buttonColor = '#0da84e'
+                onClick = () => { 
                     setTimerRunning(true)
                 }
-                }>Start</button>
                 break;
-            case 'stop': 
-                button = <button style={{...buttonStyle, backgroundColor:'#b04343'}}onClick={() => {
+            case 'stop':
+                buttonText = 'Stop'
+                buttonColor = '#b04343'
+                onClick = () => { 
                     setTimerRunning(false)
-                }}>Stop</button>
+
+                }
                 break;
             case 'reset':
-                button = <button style={{...buttonStyle, backgroundColor:'#d1c0c0'}} onClick={() => {
+                buttonText = 'Reset'
+                buttonColor = '#d1c0c0'
+                onClick = () => { 
                     setTime(0)
                     setLaps([])
-                }}>Reset</button>
+                }
                 break;
             case 'lap':
-                button = <button style={{...buttonStyle, backgroundColor:'#d1c0c0'}} onClick={handleLap}>Lap</button>
-                break
+                buttonText = 'Lap'
+                buttonColor = '#d1c0c0'
+                onClick = () => { 
+                    if (timerRunning) {
+                        setLaps([time, ...laps])
+                    }
+                }
+                break;
         }
-        return button
+        return <button style={{...buttonStyle, backgroundColor: buttonColor}} onClick={onClick}>{buttonText}</button>
     }
-
     return getStopWatchButtonByVariant(variant)
 }
