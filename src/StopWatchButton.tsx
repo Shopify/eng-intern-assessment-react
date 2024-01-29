@@ -16,13 +16,20 @@ export default function StopwatchButton({
 }: StopwatchButtonProps) {
   return (
     <div>
-      {!isRunning ? (
-        <button onClick={onStart}>Start</button>
-      ) : (
-        <button onClick={onStop}>Stop</button>
-      )}
-      <button onClick={onReset}>Reset</button>
-      {isRunning && <button onClick={onLap}>Lap</button>}
+      <button onClick={onStart} disabled={isRunning}>
+        Start
+      </button>
+      <button onClick={onStop} disabled={!isRunning}>
+        Stop
+      </button>
+
+      <button onClick={onReset} disabled={!isRunning}>
+        Reset
+      </button>
+
+      <button onClick={onLap} disabled={!isRunning}>
+        Lap
+      </button>
     </div>
   );
 }
