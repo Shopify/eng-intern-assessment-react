@@ -1,3 +1,49 @@
+## Deniz Jasarbasic's Stopwatch Implementation
+
+### 🌊 Introduction
+Hey, my name is [Deniz Jasarbasic](https://denizjasarbasic.com) and welcome to my stopwatch implementation! The `feature/stopwatch` branch introduces a stopwatch with start, stop, reset, and lap functionality. Below, I'll walk you through my process of building the stopwatch from start to finish, including a quick demo, design details, features, and my testing process. Enjoy :)
+
+
+### 📹 Demo
+https://github.com/Shopify/eng-intern-assessment-react/assets/46465622/9f4f8825-882b-4889-a644-e35865d52940
+
+
+### 🎨 Design
+I started by curating a collection of stopwatch designs for inspiration from popular design resources like Dribbble and Pinterest. With a chosen theme in mind, I quickly mocked-up all aspects, including views, states, buttons, typography, and color palettes. Finally, I created a checklist of technical requirements, then jumped into the coding phase.
+
+
+### ⚡ Key Resources
+
+- Design Board: https://www.figma.com/file/RcI4KVHIoJaZ2lQ9OOVdZI/Shopify-Front-End-Online-Assessment---Deniz-Jasarbasic?type=design&node-id=0%3A1&mode=design&t=jsMEJCbTzY7wEjXn-1
+- Documentation: https://quilled-sky-f24.notion.site/Stopwatch-bb0f233592094fba8e473fa0eaed37bf?pvs=25
+
+
+### 🚀 Changes
+
+Changes to `app.tsx`:
+- Added state variables to track time, running state, and laps.
+
+Changes to `StopWatch.tsx`:
+- Displays the `time` prop in HH:MM:SS:mm format.
+- Displays the `laps[]` list in a table along with key lap info (Lap No. and time).
+
+Changes to `StopWatchButton.tsx`:
+- Dynamic buttons based on the stopwatch's state (running or not). Users can Start, Stop, Reset, and Lap.
+
+Added:
+- `Styles.css` - global stylesheet with color theme, font, and button styles.
+- `__test__/` - durable test cases that cover the stopwatch counting functionality and key UI features.
+
+
+### 🧪 Tests
+
+Passes all test cases that cover the stopwatch counting functionality, including edge cases (00:00:00:00 at the initial and reset states), ensuring that lap times match when the 'Lap' button is pressed, and successfully checks key UI features, namely the 'Start,' 'Stop,' 'Reset,' and 'Lap' buttons.
+
+<img width="532" alt="stopwatch_tests" src="https://github.com/Shopify/eng-intern-assessment-react/assets/46465622/de0d34aa-8bb4-41ed-aa82-7a9b00d73908">
+
+---
+Original ReadMe:
+
 # Technical Instructions
 1. Fork this repo to your local Github account.
 2. Create a new branch to complete all your work in.
