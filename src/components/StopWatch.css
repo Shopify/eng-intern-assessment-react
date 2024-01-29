@@ -15,12 +15,26 @@ body {
 
 .container span {
   position: relative;
-  font-size: 5rem;
+  font-size: 10rem;
   bottom: 3px;
 }
 
 .text {
   margin: 0;
-  font-size: 5rem;
+  font-size: 10rem;
 }
 
+.btn {
+  background-color: #D8BFD8;
+  color: black;
+  padding: 10px 30px;
+  font-size: 2rem;
+  margin: 30px; 
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #DA70D6;
+}
