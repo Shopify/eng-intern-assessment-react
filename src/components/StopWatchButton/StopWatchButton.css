@@ -2,7 +2,7 @@
    font-size: 1.5rem;
    padding: 0.5rem 1rem;
    cursor: pointer;
-   transition: 0.2s ease-in-out;
+   transition: opacity 0.2s ease-in-out, transform 0.09s;
    background: none;
    border-width: 0.2rem;
    border-style: solid;
@@ -10,8 +10,21 @@
    text-transform: capitalize;
 }
 
+.stopwatch-btn.disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+}
+
+.stopwatch-btn.disabled:hover {
+   opacity: 0.5;
+}
+
 .stopwatch-btn:hover {
    opacity: 0.8;
+}
+
+.stopwatch-btn:active {
+   transform: scale(0.95);
 }
 
 .start {
