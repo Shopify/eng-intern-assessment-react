@@ -33,7 +33,7 @@ export default function LapDisplay({
         <h2>Lap No.</h2>
         <h2>Split Time</h2>
       </div>
-      <div className="body">
+      <div className="body" data-testid="laps-holder-body">
         {formattedLaps.reverse().map((lap, i) => {
           const reversedIndex = formattedLaps.length - i;
           return (

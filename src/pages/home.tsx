@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import StopWatch from "../components/StopWatch";
 import StopWatchButton from "../components/StopWatchButton";
 import LapDisplay from "../components/LapDisplay";
-
 import "../styles/home.css";
 
 export default function Home() {

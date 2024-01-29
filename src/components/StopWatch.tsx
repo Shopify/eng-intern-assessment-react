@@ -3,7 +3,7 @@ import { getTimeComponentsFromMs } from "../utils/timeConversion";
 
 export default function StopWatch({ time }: { time: number }) {
   return (
-    <div>
+    <div data-testid="stopwatch-time">
       {getTimeComponentsFromMs(time).map((comp, index, array) => (
         <React.Fragment key={index}>
           <span>{comp}</span>
