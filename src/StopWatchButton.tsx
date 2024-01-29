@@ -21,7 +21,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ startTimer, stopTimer
                 Reset
             </button>
             <button className='button' onClick={lap}>
-                Lap
+                Laps
             </button>
         </div>
     )

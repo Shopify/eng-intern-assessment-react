@@ -12,12 +12,13 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
     // the state to store time
     const [time, setTime] = useState(0);
 
-    // the state to store lap times
+    // the state to store laps time
     const [laps, setLaps] = useState<number[]>([]);
 
     // the state to display laps table
     const [showLapsTable, setShowLapsTable] = useState(false)
-    
+
+    // the state to store whether the timer is stopped.
     const [wasStopped, setWasStopped] = useState(false)
 
     const lastLapTimeRef = useRef<number | null>(null)
@@ -49,7 +50,7 @@ const StopWatch: React.FC<StopWatchProps> = ({isRunning, onStart, onStop}) => {
     }
 
 
-    // start timer with 'Start' button
+    // start timer with 'Start' button or restart timer after 'Stop'
     const startTimer = () => {
         onStart();
 
