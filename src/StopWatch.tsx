@@ -35,6 +35,11 @@ export default function StopWatch() {
   // stop stopwatch
   const stopTime = () => setIsRunning(false);
 
+  // reset stopwatch
+  const resetTime = () => {
+    setTime(0);
+  };
+
   return (
     <div>
       <div>{`${time} seconds`}</div>
@@ -42,7 +47,7 @@ export default function StopWatch() {
         onClick={isRunning ? stopTime : startTime}
         title={isRunning ? "Stop" : "Start"}
       />
-      {/* <StopWatchButton title="Reset" /> */}
+      <StopWatchButton onClick={resetTime} title="Reset" />
       {/* <StopWatchButton title="Lap" />  */}
     </div>
   );
