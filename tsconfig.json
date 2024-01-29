@@ -8,5 +8,9 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "include": [
+    "src/**/*",
+    "src/images.d.ts"
+  ]
 }
