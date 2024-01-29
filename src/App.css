@@ -1,0 +1,68 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: lightgray;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    color: white;
+    background-color: black;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.title {
+    font-style: italic;
+}
+
+.stopwatch__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    /* padding: 25px; */
+    border-radius: 10px;
+    background-color: #95BF47;
+    margin: 2rem;
+    border: #64943E 7px solid;
+}
+
+.time__text {
+    font-size: 4rem;
+}
+
+.button {
+    margin: 10px 5px;
+    padding: 10px 20px 10px 20px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: black;
+    color: rgb(226, 225, 225);
+}
+
+button:hover {
+    background-color: rgb(68, 68, 68);
+    /* color: whitesmoke; */
+}
+
+footer {
+    font-size: 0.75rem;
+}

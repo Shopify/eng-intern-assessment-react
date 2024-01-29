@@ -65,7 +65,7 @@ export default function StopWatch() {
     return (
         <section className='stopwatch__container'>
             <article className="time__container">
-                <h2>{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</h2>
+                <h2 className='time__text'>{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</h2>
             </article>
 
             <article className="button__container">
@@ -78,7 +78,7 @@ export default function StopWatch() {
             <article className="lap__container">
                 <ol id='lap-list'>
                     {laps.map((t, i) => {
-                        return <li key={i}>{readableTime(hoursInTime(laps[i]), minutesInTime(laps[i]), secondsInTime(laps[i]), millisecondsInTime(laps[i]))}</li>
+                        return <li key={i} className='lap__item'>{readableTime(hoursInTime(laps[i]), minutesInTime(laps[i]), secondsInTime(laps[i]), millisecondsInTime(laps[i]))}</li>
                     })}
                 </ol>
             </article>
