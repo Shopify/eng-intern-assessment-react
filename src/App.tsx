@@ -54,6 +54,17 @@ export default function App() {
         return `${hour}h : ${minute % 60}m : ${second % 60}s.${hundrethSecondFormat}`;
     }
 
+    function displayLapTable() {
+        return lapList.map((lap, i) => {
+          return ( 
+            <tr>
+              <td>{i+1}</td>
+              <td>{lap}</td>
+            </tr>)
+        })
+    }
+    
+
     function handleReset() {
         setElapsedMilliSecond(0);
         setIsTimeRunning(false);
@@ -73,6 +84,20 @@ export default function App() {
                     {isTimeRunning && <StopWatchButton onClick={() => isTimeRunning && setIsLapClicked(true)} label="Lap"/>}
                 </div>
             </div>
+
+            <div className="lapTableContainer">
+                {lapList.length > 0 && <table className="lapTable">
+                <thead>
+                    <tr>
+                    <th>Lap No.</th>
+                    <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {displayLapTable()}
+                </tbody>
+                </table>}
+            </div>                   
         </div>
     )
 }
