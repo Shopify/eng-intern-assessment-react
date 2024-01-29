@@ -1,0 +1,93 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  body {
+    background-color: rgba(0, 0, 0, 0.979);
+    font-family: monospace;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+  
+  .stopwatchContainer {
+    width: 950px;
+    height: 250px;
+    /* border: 2px solid rgba(255, 255, 255, 0.402); */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 30px;
+  }
+  
+  .displayContainer {
+    font-size: 42px;
+    color: rgb(252, 252, 252);
+  }
+  
+  .button {
+    border: none;
+    background-color: rgba(0, 63, 251, 0.538);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-right: 15px;
+    padding: 10px 45px;
+    cursor: pointer;
+  }
+  
+  .lapTableContainer {
+    height: 370px;
+    overflow: auto;
+  }
+  
+  .lapTable {
+    color: rgb(251, 251, 251);
+    background-color: rgba(104, 104, 104, 0.528);
+    /* border: 1px solid white; */
+    border-radius: 5px;
+    width: 400px;
+    margin-top: 20px;
+    border-spacing: 0;
+    font-size: 18px;
+  
+  }
+  
+  .lapTable th, .lapTable td {
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .lapTable th {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .startButton {
+    background-color: #85ae2b;
+  }
+  
+  .stopButton {
+    background-color: rgba(246, 32, 32, 0.893);
+  }
+  
+  .lapDisplay {
+    color: white;
+    margin: 0 auto;
+    font-size: 16px;
+    background-color: rgba(104, 104, 104, 0.528);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+  }
+  

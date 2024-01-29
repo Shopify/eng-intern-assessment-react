@@ -1,12 +1,13 @@
 import React from 'react'
 
 interface ButtonProps {
+    className?: string
     onClick: () => void
     label: string
 }
 
-export default function StopWatchButton({onClick, label} : ButtonProps) {
+export default function StopWatchButton({className, onClick, label} : ButtonProps) {
     return(
-        <button onClick={onClick}>{label}</button>
+        <button className={`button ${className}`} onClick={onClick}>{label}</button>
     )
 }

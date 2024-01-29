@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import StopWatch from './StopWatch'
 import StopWatchButton from './StopWatchButton'
+import './App.css'
 
 export default function App() {
     const [isTimeRunning, setIsTimeRunning] = useState(false);
@@ -64,7 +65,6 @@ export default function App() {
         })
     }
     
-
     function handleReset() {
         setElapsedMilliSecond(0);
         setIsTimeRunning(false);
@@ -74,14 +74,13 @@ export default function App() {
 
     return(
         <div>
-            <div className="stopWatchContainer">
+            <div className="stopwatchContainer">
                 <StopWatch formattedElapsedMilliSecond={formatMilliSeconds(elapsedMilliSecond)}/>
-                
                 <div className="buttonContainer">
-                    {!isTimeRunning && <StopWatchButton onClick={() => setIsTimeRunning(true)} label="Start"/>}
-                    {<StopWatchButton onClick={() => handleReset()} label="Reset"/>}
-                    {isTimeRunning && <StopWatchButton onClick={() => setIsTimeRunning(false)} label="Stop"/>}
-                    {isTimeRunning && <StopWatchButton onClick={() => isTimeRunning && setIsLapClicked(true)} label="Lap"/>}
+                    {!isTimeRunning && <StopWatchButton className="startButton" onClick={() => setIsTimeRunning(true)} label="Start"/>}
+                    {<StopWatchButton className="resetButton" onClick={() => handleReset()} label="Reset"/>}
+                    {isTimeRunning && <StopWatchButton className="stopButton" onClick={() => setIsTimeRunning(false)} label="Stop"/>}
+                    {isTimeRunning && <StopWatchButton className="lapButton" onClick={() => isTimeRunning && setIsLapClicked(true)} label="Lap"/>}
                 </div>
             </div>
 
