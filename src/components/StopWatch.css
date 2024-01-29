@@ -1,35 +1,37 @@
 body {
-  background-color: lavenderblush;
-  margin: 0;
+  background: rgb(218,112,214);
+  background: radial-gradient(circle, rgba(218,112,214,1) 0%, rgba(148,187,233,1) 100%);  margin: 0;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
 }
 
 .container {
-  color: #DA70D6;
+  color: #f0a7ee;
   display: flex;
   letter-spacing: 2px;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .container span {
   position: relative;
-  font-size: 10rem;
+  font-size: 6rem;
   bottom: 3px;
 }
 
 .text {
   margin: 0;
-  font-size: 10rem;
+  font-size: 6rem;
 }
 
 .btn {
   background-color: #D8BFD8;
   color: black;
-  padding: 10px 30px;
-  font-size: 2rem;
-  margin: 30px; 
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  margin: 10px;
   cursor: pointer;
   border: none;
   border-radius: 4px;
@@ -41,4 +43,20 @@ body {
 
 .btn.selected {
   background-color: #DA70D6;
+}
+
+@media only screen and (max-width: 600px) {
+  .container span {
+    font-size: 4rem;
+  }
+
+  .text {
+    font-size: 4rem;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+    margin: 5px;
+  }
 }
