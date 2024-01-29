@@ -32,7 +32,7 @@ export default function Stopwatch({ time, laps }: StopwatchProps) {
           <span className="lap-time-title">Time</span>
         </div>
         <div className="header-line"></div>
-        <div className="laps-list">
+        <div className="laps-list" data-testid="laps-list">
           {/* Render the list of laps with lap number and lap time */}
           {laps.map((lap, index) => (
             <div key={index} className="lap-item">
