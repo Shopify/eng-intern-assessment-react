@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import StopWatch from './StopWatch';
 
+import './styles/index.css';
+
 export default function App() {
     // State to store the current time elapsed on the stopwatch in miliseconds
 	const [timeElapsed, setTimeElapsed] = useState(0);
@@ -15,9 +17,9 @@ export default function App() {
 	useEffect(() => {
 		let interval: NodeJS.Timer;
         
-        // We use an interval to increment the elapsed time every 10 miliseconds
+        // We use an interval to increment the elapsed time by 1 ms every 10 miliseconds
 		if (isActive) {
-			interval = setInterval(() => setTimeElapsed((prevTimeElapsed) => prevTimeElapsed + 10), 10);
+			interval = setInterval(() => setTimeElapsed((prevTimeElapsed) => prevTimeElapsed + 1), 10);
 		} else {
             // If the stopwatch is inactive, clear the interval
             clearInterval(interval);
