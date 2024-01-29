@@ -53,7 +53,7 @@ test("stopwatch time resets with the reset button onClick", () => {
   // mock reset the timer
   fireEvent.click(resetButtonElement);
 
-  expect(timeDisplayDivElement).toHaveTextContent("00:00:00");
+  expect(timeDisplayDivElement).toHaveTextContent("00:00:00:00");
 });
 
 test("lap button records the current time", async () => {
