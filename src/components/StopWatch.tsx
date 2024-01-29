@@ -90,9 +90,9 @@ const Stopwatch: React.FC = () => {
       {displayLaps ? (
         <div className="flex flex-col w-full max-w-2xl my-9">
           <div className="flex justify-between text-3xl">
-            <div className="min-w-36 ">Laps</div>
-            <div className="min-w-36 ">Relative Time</div>
-            <div className="min-w-36 ">Absolute Time</div>
+            <div className="min-w-48 ">Laps</div>
+            <div className="min-w-48 ">Relative Time</div>
+            <div className="min-w-48 ">Absolute Time</div>
           </div>
           <Lap relativeLapTime={currentLapTime} totalLapTime={totalTime} />
           <LapList lapTimes={lapTimes} />
