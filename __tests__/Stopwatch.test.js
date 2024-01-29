@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import Stopwatch from "../src/Stopwatch";
 
 describe("Stopwatch", () => {
@@ -39,10 +39,21 @@ describe("Stopwatch", () => {
 
     fireEvent.click(screen.getByText("Start"));
     fireEvent.click(screen.getByText("Lap"));
-    expect(screen.getByTestId("lap-list")).toContainElement(
-      screen.getByText(/(\d{2}:){2}\d{2}/)
+    expect(screen.getByTestId("lap-list").children.length).toBe(1);
+    expect(screen.getByTestId("lap-list")).toHaveTextContent(
+      /(\d{2}:){2}\d{2}/
     );
 
+    const timeDisplay = screen.getByTestId("time-display");
+    const lapList = screen.getByTestId("lap-list");
+    const lastLapListItem = lapList.querySelector("li:last-child");
+
+    // Assert that the last lap-list item contains the exact text from time-display
+    expect(lastLapListItem.textContent).toBe(timeDisplay.textContent);
+
+    // expect(screen.getByTestId("lap-list")).toContainElement(
+    //   screen.getByTestId("time-display").getByText(/(\d{2}:){2}\d{2}/)
+    // );
     fireEvent.click(screen.getByText("Lap"));
     expect(screen.getByTestId("lap-list").children.length).toBe(2);
   });
