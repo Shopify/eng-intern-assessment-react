@@ -111,7 +111,7 @@ export default function App() {
         <StopWatchButton onClick={addLap}>Lap</StopWatchButton>
         <StopWatchButton onClick={resetTimer}>Reset</StopWatchButton>
       </div>
-      <table className="w-full table-fixed text-2xl">
+      <table className="m-4 w-full table-fixed text-2xl">
         <thead>
           <tr>
             <th className="w-1/5 text-left">Lap Number</th>
