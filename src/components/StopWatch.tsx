@@ -17,7 +17,7 @@ export default function StopWatch() {
         let timer: NodeJS.Timeout;
         if (isRunning) {
             // while the time is running, the screen will display each millisecond passing
-            timer = setInterval(() => setTimeElapsed(Date.now() - startingTime), 1);
+            timer = setInterval(() => setTimeElapsed(Date.now() - startingTime), 10);
         }
 
         return () => clearInterval(timer);
@@ -30,8 +30,7 @@ export default function StopWatch() {
 
     // deteremines the new best and worst times, and adds another lap 
     const lapsHandler = () => {
-        laps.unshift(timeElapsed - prevTimeElapsed);
-        setLaps(laps);
+        setLaps([timeElapsed - prevTimeElapsed, ...laps]);
         setMaxLapTime(Math.max(maxLapTime, timeElapsed - prevTimeElapsed));
         setMinLapTime(Math.min(minLapTime, timeElapsed - prevTimeElapsed));
         setPrevTimeElapsed(timeElapsed);

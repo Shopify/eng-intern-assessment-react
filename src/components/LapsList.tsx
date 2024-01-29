@@ -16,7 +16,7 @@ export default function LapsList({ getTimeFormatHelper, laps, minLapTime, maxLap
 
     return (
         <div className="lap-container">{laps.map((lapTime, i) =>
-            <div data-testid='lap' className={`lap-details ${getClassNameLapDetailsHelper(lapTime)}`}>
+            <div data-testid='lap' key={i + lapTime} className={`lap-details ${getClassNameLapDetailsHelper(lapTime)}`}>
                 <div>{`Lap ${laps.length - i}`}</div>
                 <div>{getTimeFormatHelper(lapTime)}</div>
             </div>)}
