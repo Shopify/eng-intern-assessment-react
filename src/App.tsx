@@ -9,26 +9,25 @@ function App() {
     const [timeElapsed, setTimeElapsed] = useState<number>(0);
     const [lapTimes, setLapTimes] = useState<number[]>([]);
     const [lapTimesSum, setLapTimesSum] = useState<number>(0);
-    const [isTiming, setIsTiming] = useState<boolean>(false);
+
+    type StopwatchState = 'reset' | 'started' | 'stopped';
+    const [stopwatchState, setStopwatchState] = useState<StopwatchState>('reset');
 
     useEffect(() => {
         setLapTimesSum(lapTimes.reduce((a, b) => a + b, 0));
     }, [lapTimes])
 
-    // for debugging
-    useEffect(() => {
-        console.log(formatTime(lapTimesSum));
-    }, [lapTimesSum])
-
     const startStopwatch = () => {
         intervalRef.current 
             ? null
-            : intervalRef.current = setInterval(() => setTimeElapsed(t => t + 10), 10); 
+            : intervalRef.current = setInterval(() => setTimeElapsed(t => t + 10), 10);
+        setStopwatchState('started');
     }
 
     const stopStopwatch = () => {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
+        setStopwatchState('stopped');
     }
 
     const recordLap = () => {
@@ -41,6 +40,7 @@ function App() {
         setTimeElapsed(0);
         setLapTimes([]);
         setLapTimesSum(0);
+        setStopwatchState('reset');
     }
 
     return (
@@ -48,20 +48,24 @@ function App() {
             <StopWatch time={timeElapsed} />
             <div className='buttonsContainer'>
                 <StopWatchButton 
-                    label='start' 
-                    handleButtonClick={() => startStopwatch()} 
+                    name='start' 
+                    stopwatchState={stopwatchState}
+                    handleButtonClick={() => startStopwatch()}
                 />
                 <StopWatchButton 
-                    label='stop' 
-                    handleButtonClick={() => stopStopwatch()} 
+                    name='stop' 
+                    stopwatchState={stopwatchState} 
+                    handleButtonClick={() => stopStopwatch()}
                 />
                 <StopWatchButton 
-                    label='lap' 
-                    handleButtonClick={() => recordLap()} 
+                    name='lap' 
+                    stopwatchState={stopwatchState} 
+                    handleButtonClick={() => recordLap()}
                 />
                 <StopWatchButton 
-                    label='reset' 
-                    handleButtonClick={() => resetStopwatch()} 
+                    name='reset' 
+                    stopwatchState={stopwatchState} 
+                    handleButtonClick={() => resetStopwatch()}
                 />
             </div>
             <div className='lapTimesContainer digital'>
