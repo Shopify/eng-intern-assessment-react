@@ -9,7 +9,8 @@ export function Laps(props:ILapsProps){
 
     const lapsItems = laps.map((lap,i,lapsArr)=> {
             return (
-                <div key={lap}>
+                <div key={lap} className={`flex flex-row place-content-between`}>
+                    <div>Lap {i+1}</div>
                     <div>{getFormattedTime(lap)}</div>
                 </div>
             )
@@ -17,6 +18,6 @@ export function Laps(props:ILapsProps){
     )
 
     return(
-        <div>{lapsItems}</div>
+        <div className={`flex flex-col-reverse w-[300px]`}>{lapsItems}</div>
     )
 }

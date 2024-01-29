@@ -6,9 +6,10 @@ import {Laps} from "./Laps";
 const ONE_SECOND = 10;
 const MILLISECOND = 1;
 export default function App() {
+    const startTimeRef = useRef(0);
     const [time, setTime] = useState<number>(0);
     const [laps, setLaps] = useState<number[]>([]);
-    const startTimeRef = useRef(0);
+    const lapsEmpty = laps.length === 0;
     const addLaps = useCallback((newTime) => setLaps([...laps, newTime]), [laps]);
 
     let intervalRef = useRef<NodeJS.Timer>(null);
@@ -52,16 +53,17 @@ export default function App() {
     }
 
     return (
-<div>
-    <div className={`h-screen p-2 flex flex-col items-center justify-center align-middle`}>
-        <StopWatch time={time}/>
-        <StopWatchButton useTimer={timerState}
-                         useTimerHandler={handleTimerState}
-                         resetHandler={handleReset}
-                         lapHandler={handleLap}
-        />
-        <Laps laps={laps}/>
+    <div className={`p-2 h-screen flex flex-col  items-center align-middle `}>
+        <div className={`mt-52 flex flex-col justify-start items-center flex-grow gap-2`}>
+            <StopWatch time={time}/>
+            <StopWatchButton useTimer={timerState}
+                             useTimerHandler={handleTimerState}
+                             resetHandler={handleReset}
+                             lapHandler={handleLap}
+                             lapsEmpty={lapsEmpty}
+            />
+            <Laps laps={laps}/>
+        </div>
     </div>
-</div>
     )
 }

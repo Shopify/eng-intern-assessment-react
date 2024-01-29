@@ -5,4 +5,4 @@ import './index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render(<div><App /></div>);
+root.render(<div className={`w-screen h-screen`}><App /></div>);
