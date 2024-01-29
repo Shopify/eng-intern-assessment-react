@@ -11,7 +11,6 @@ interface StopWatchProps {
     lapsArray : any[]
     timeToStringFormatter : (value : number)=> string
     currentTime : number
-    isDisabled : boolean
     isStartPressed : boolean
 }
 
@@ -23,7 +22,6 @@ export default function StopWatch({
     timeToStringFormatter,
     lapsArray,
     currentTime,
-    isDisabled,
     isStartPressed
 }:StopWatchProps) {
 

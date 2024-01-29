@@ -65,7 +65,6 @@ export default function App() {
             lapsArray={laps}
             timeToStringFormatter={secondsMinutesHours}
             currentTime={currentTime} 
-            isDisabled={false} 
             isStartPressed={isStartPressed}/>
     )
 }
