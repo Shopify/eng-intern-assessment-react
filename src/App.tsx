@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Stopwatch from './Stopwatch';
 import StopwatchButton from './StopwatchButton';
 import LapTimeList from './LapTimeList';
-import './assets/app.css'; // Add this line
+import './assets/app.css';
 
 
 const App: React.FC = () => {

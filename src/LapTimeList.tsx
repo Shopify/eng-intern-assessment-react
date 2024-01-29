@@ -2,7 +2,6 @@ import React from 'react';
 import { formatTime } from './utils';
 import './assets/lapTimeList.css';
 
-
 interface LapTimeListProps {
     laps: number[];
 }

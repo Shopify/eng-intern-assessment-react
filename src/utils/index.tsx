@@ -1,3 +1,3 @@
 import formatTime from "./TimeFormatter";
 
-export {formatTime}
+export {formatTime};

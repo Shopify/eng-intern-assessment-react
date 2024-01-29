@@ -10,6 +10,7 @@
                 0 0 0 14px #fff;
     font-family: 'Digital Dream';
 }
+
 @media screen and (max-width: 1000px) {
     .stopwatch{
         font-size: 4rem;

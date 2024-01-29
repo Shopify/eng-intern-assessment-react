@@ -7,8 +7,6 @@ type StopwatchProps = {
 };
 
 const Stopwatch: React.FC<StopwatchProps> = ({ time }) => {
-    
-
     return <div className='stopwatch'>{formatTime(time)}</div>;
 };
 

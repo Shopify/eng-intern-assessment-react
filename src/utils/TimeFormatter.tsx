@@ -1,3 +1,4 @@
+// Format time from secods to proper string formatting
 const formatTime = (time: number): string => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
@@ -7,7 +8,7 @@ const formatTime = (time: number): string => {
 };
 
 const formatTimeString = (time: number): string => {
-    return String(time).padStart(2, '0')
+    return String(time).padStart(2, '0');
 }
 
 export default formatTime;
