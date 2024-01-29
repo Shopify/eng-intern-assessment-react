@@ -6,7 +6,7 @@ type StopWatchProps ={
     timerArray: number[];
     setTimerArray: Dispatch<SetStateAction<number[]>>;
 }
-//Displays the time.Seperated into hours mintues and secodns 
+//Displays the time.Seperated into hours mintues and seconds
 const StopWatch: React.FC<StopWatchProps> = ({ timerArray, setTimerArray }) => {
     return (
         <div className='timestring'>
