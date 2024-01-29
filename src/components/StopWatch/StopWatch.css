@@ -4,6 +4,10 @@
    border: 1px solid red;
    position: relative;
    z-index: 1;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
 }
 
 .time {
@@ -14,10 +18,61 @@
    gap: 0.5rem;
 }
 
+.time .number {
+   width: 9rem;
+   text-align: center;
+}
+
 .buttons {
    display: flex;
    align-items: center;
    justify-content: center;
    gap: 1.6rem;
+}
+
+.columns {
+   display: grid;
+   grid-template-columns: 0.4fr 1fr 1fr;
+   border-bottom: 1px solid #fff;
+   padding: 0.35rem 0.5rem;
+   justify-items: center;
+}
+
+.laps-container {
+   width: 60%;
+   min-width: 500px;
+   min-height: 250px;
+   max-height: 250px;
+   border: 1px solid blue;
    margin-top: 1rem;
+   overflow: hidden;
+}
+
+.laps {
+   list-style: none;
+   overflow-y: auto;
+   max-height: 212px;
+}
+
+.laps::-webkit-scrollbar {
+    width: 10px;
+}
+
+.laps::-webkit-scrollbar-track {
+    background: #888;
+}
+
+.laps::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+}
+
+.laps::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
+
+.lap-item {
+   display: grid;
+   grid-template-columns: 0.4fr 1fr 1fr;
+   padding: 0.35rem 0.5rem;
+   justify-items: center;
 }
