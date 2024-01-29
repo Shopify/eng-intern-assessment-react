@@ -1,7 +1,6 @@
 .stopwatch {
    flex-grow: 0.4;
    min-width: 600px;
-   border: 1px solid red;
    position: relative;
    z-index: 1;
    display: flex;
@@ -43,7 +42,6 @@
    min-width: 500px;
    min-height: 250px;
    max-height: 250px;
-   border: 1px solid blue;
    margin-top: 1rem;
    overflow: hidden;
 }
