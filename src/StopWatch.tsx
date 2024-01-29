@@ -3,8 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { useStopWatchContext } from "./Context";
 
 export default function StopWatch() {
-  const { laps, addLap, start, pause, reset, formatTime } =
-    useStopWatchContext();
+  const { formatTime } = useStopWatchContext();
   return (
     <Box
       display="flex"

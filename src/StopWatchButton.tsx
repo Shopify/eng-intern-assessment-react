@@ -1,25 +1,13 @@
 import React from "react";
 import { Box, Button } from "@chakra-ui/react";
 import { useStopWatchContext } from "./Context";
-import {
-  BsFillPlayCircleFill,
-  BsFillPauseCircleFill,
-  BsFillSkipEndFill,
-} from "react-icons/bs";
+import { BsFillPlayCircleFill, BsFillPauseCircleFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 
 export default function StopWatch() {
-  const {
-    laps,
-    addLap,
-    start,
-    pause,
-    reset,
-    formatTime,
-    hasStarted,
-    isRunning,
-  } = useStopWatchContext();
-  console.log({ isRunning });
+  const { addLap, start, pause, reset, hasStarted, isRunning } =
+    useStopWatchContext();
+
   return (
     <Box display="flex" alignItems="center" justifyContent="center">
       {hasStarted ? (

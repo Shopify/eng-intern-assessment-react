@@ -5,18 +5,22 @@ export const useStopWatch = () => {
     const savedIsRunning = localStorage.getItem("isRunning");
     return savedIsRunning === "true";
   });
+
   const [startTime, setStartTime] = useState(() => {
     const savedStartTime = localStorage.getItem("startTime");
     return savedStartTime ? parseInt(savedStartTime, 10) : null;
   });
+
   const [elapsedTime, setElapsedTime] = useState(() => {
     const savedElapsedTime = localStorage.getItem("elapsedTime");
     return savedElapsedTime ? parseInt(savedElapsedTime, 10) : 0;
   });
+
   const [laps, setLaps] = useState(() => {
     const savedLaps = localStorage.getItem("laps");
     return savedLaps ? JSON.parse(savedLaps) : [];
   });
+
   const [lastLapTime, setLastLapTime] = useState(() => {
     const savedLastLapTime = localStorage.getItem("lastLapTime");
     return savedLastLapTime ? parseInt(savedLastLapTime, 10) : 0;
@@ -81,11 +85,8 @@ export const useStopWatch = () => {
     const totalMinutes = Math.floor(totalSeconds / 60);
     const minutes = totalMinutes % 60;
     const hours = Math.floor(totalMinutes / 60);
-
-    // Divide by 10 to get the two most significant digits of the milliseconds
     const milliseconds = Math.floor(totalMilliseconds / 10);
 
-    // Pad with zeroes for consistent formatting
     const paddedHours = String(hours).padStart(2, "0");
     const paddedMinutes = String(minutes).padStart(2, "0");
     const paddedSeconds = String(seconds).padStart(2, "0");
