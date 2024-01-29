@@ -4,14 +4,15 @@
 
 import React from "react";
 
-import { render, screen, act, cleanup } from "@testing-library/react";
+import { render, screen, act, cleanup, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import Stopwatch from "../components/StopWatch";
 
 beforeEach(() => {
-  jest.useFakeTimers({ advanceTimers: true });
+  // Needed to prevent jest tests from timing out : https://github.com/nock/nock/issues/2200#issuecomment-1699838032
+  jest.useFakeTimers({ advanceTimers: 1 });
 });
 
 afterEach(() => {
@@ -96,17 +97,93 @@ test("check that laps are rendered on lap button click", async () => {
   expect(screen.getByTestId("laps")).toBeInTheDocument();
 });
 
-test("check that laps are rendered correctly", async () => {
+test("check that current, relative and absolute laps are rendered correctly", async () => {
   const user = userEvent;
   render(<Stopwatch />);
   await user.click(screen.getByText("Start"));
 
   act(() => {
-    jest.advanceTimersByTime(10);
+    jest.advanceTimersByTime(1550);
   });
   await user.click(screen.getByText("Lap"));
 
-  expect(screen.getByTestId("abs-lap-1-minutes")).toHaveTextContent("00");
-  expect(screen.getByTestId("abs-lap-1-seconds")).toHaveTextContent("00");
-  expect(screen.getByTestId("abs-lap-1-ms")).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-1")).getByTestId("lap-minutes")
+  ).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-1")).getByTestId("lap-seconds")
+  ).toHaveTextContent("01");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-1")).getByTestId("lap-ms")
+  ).toHaveTextContent("55");
+  expect(
+    within(screen.getByTestId("relative-lap-time-1")).getByTestId("lap-minutes")
+  ).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("relative-lap-time-1")).getByTestId("lap-seconds")
+  ).toHaveTextContent("01");
+  expect(
+    within(screen.getByTestId("relative-lap-time-1")).getByTestId("lap-ms")
+  ).toHaveTextContent("55");
+
+  act(() => {
+    jest.advanceTimersByTime(2450);
+  });
+
+  await user.click(screen.getByText("Lap"));
+  expect(
+    within(screen.getByTestId("absolute-lap-time-2")).getByTestId("lap-minutes")
+  ).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-2")).getByTestId("lap-seconds")
+  ).toHaveTextContent("04");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-2")).getByTestId("lap-ms")
+  ).toHaveTextContent("00");
+
+  expect(
+    within(screen.getByTestId("relative-lap-time-2")).getByTestId("lap-minutes")
+  ).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("relative-lap-time-2")).getByTestId("lap-seconds")
+  ).toHaveTextContent("02");
+  expect(
+    within(screen.getByTestId("relative-lap-time-2")).getByTestId("lap-ms")
+  ).toHaveTextContent("45");
+
+  act(() => {
+    jest.advanceTimersByTime(3000);
+  });
+
+  expect(
+    within(screen.getByTestId("absolute-lap-time-current")).getByTestId(
+      "lap-minutes"
+    )
+  ).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-current")).getByTestId(
+      "lap-seconds"
+    )
+  ).toHaveTextContent("07");
+  expect(
+    within(screen.getByTestId("absolute-lap-time-current")).getByTestId(
+      "lap-ms"
+    )
+  ).toHaveTextContent("00");
+
+  expect(
+    within(screen.getByTestId("relative-lap-time-current")).getByTestId(
+      "lap-minutes"
+    )
+  ).toHaveTextContent("00");
+  expect(
+    within(screen.getByTestId("relative-lap-time-current")).getByTestId(
+      "lap-seconds"
+    )
+  ).toHaveTextContent("03");
+  expect(
+    within(screen.getByTestId("relative-lap-time-current")).getByTestId(
+      "lap-ms"
+    )
+  ).toHaveTextContent("00");
 });

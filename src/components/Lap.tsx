@@ -43,10 +43,20 @@ const Lap: React.FC<LapProps> = ({
   return (
     <div className="flex justify-between text-xl items-center">
       <div className=" min-w-48 ">{index ? `${index}` : "Current"}</div>
-      <div className="flex justify-center text-xl py-5 -space-x-1 min-w-48">
+      <div
+        data-testid={
+          index ? `relative-lap-time-${index}` : "relative-lap-time-current"
+        }
+        className="flex justify-center text-xl py-5 -space-x-1 min-w-48"
+      >
         <LapTime time={relativeLapTimeBreakdown} />
       </div>
-      <div className="flex justify-center text-xl py-5 -space-x-1 min-w-48">
+      <div
+        data-testid={
+          index ? `absolute-lap-time-${index}` : "absolute-lap-time-current"
+        }
+        className="flex justify-center text-xl py-5 -space-x-1 min-w-48"
+      >
         <LapTime time={totalLapTimeBreakdown} />
       </div>
     </div>
