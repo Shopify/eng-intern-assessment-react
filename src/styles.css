@@ -1,0 +1,126 @@
+.main-container {
+    text-align: center;
+    max-width: 500px; /* Set a maximum width for displaying on screen */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px;
+    font-family: Courier;
+} 
+/* Style for the stopwatch display */
+div {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* Style for the lap list */
+.main-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style for lap list items */
+.main-container li {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /*spacing between stopwatch display and buttons */
+}
+
+/* Style for lap list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.start-button,
+.stop-button,
+.reset-button,
+.lap-button {
+    padding: 10px 15px;
+    width: 100px; /* Set button width */
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+/*Style for button*/
+.start-button {
+    background-color:#3b9240 ; 
+    color: white;
+    transition: background-color 0.3s;
+    border-color: #3b9240;
+}
+
+.start-button:hover {
+    background-color:#066b0a ;
+}
+
+.stop-button {
+    background-color:  #b10000; 
+    color: white;
+    transition: background-color 0.3s;
+    border-color:#b10000;
+}
+
+.stop-button:hover {
+    background-color:  #8d0000;
+}
+
+.lap-button:hover, .reset-button:hover{
+    background-color: #b6b5b5;
+}
+
+/* Reference: https://www.freecodecamp.org/news/css-scrollbar-tutorial/
+*/
+.lap-container {
+    list-style-type: none;
+    padding: 0;
+    max-height: 505px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #868686 white;   
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #c9c9c9;
+    border-radius: 6px;
+    border: 3px transparent white;
+  }
+
+::-webkit-scrollbar-track {
+    background-color: white;
+  }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+.lap-item {
+    background-color: rgb(214, 212, 212);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lap-number {
+    font-size: 18px;
+    color: #888;
+    font-weight: bolder;
+}
+
+.lap-time {
+    font-size: 16px;
+    font-weight: bold;
+}
+  
+  
+  
+  

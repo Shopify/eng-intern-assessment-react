@@ -1,7 +1,11 @@
 import React from 'react'
+import Stopwatch from './StopWatch'
+import './styles.css'
 
 export default function App() {
     return(
-        <div></div>
+        <div>
+            <Stopwatch/>
+        </div>
     )
 }
