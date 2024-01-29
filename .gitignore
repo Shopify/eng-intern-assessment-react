@@ -1,3 +1,12 @@
-node_modules
-dist
 .vscode
+node_modules/
+.env
+firebase.json
+.firebaserc
+dist/
+build/
+.firebase/
+functions/node_modules/
+functions/lib/
+*.log
+.DS_Store
