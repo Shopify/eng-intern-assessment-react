@@ -1,8 +1,8 @@
-import React from 'react'
-import formatTime from '../utils/formatTime'
+import React from 'react';
+import formatTime from '../utils/formatTime';
 
 interface stopWatchProps {
-    time: number
+    time: number;
 }
 
 const StopWatch = ({time} : stopWatchProps) => {
