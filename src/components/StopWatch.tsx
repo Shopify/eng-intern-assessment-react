@@ -91,7 +91,7 @@ const Stopwatch: React.FC = () => {
           </>
         )}
       </div>
-      {displayLaps ? (
+      {displayLaps && (
         <div className="flex flex-col w-full max-w-2xl my-9" data-testid="laps">
           <div className="flex justify-between text-3xl">
             <div className="min-w-48">Laps</div>
@@ -101,8 +101,6 @@ const Stopwatch: React.FC = () => {
           <Lap relativeLapTime={currentLapTime} totalLapTime={totalTime} />
           <LapList lapTimes={lapTimes} />
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );
