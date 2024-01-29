@@ -21,13 +21,6 @@ export default function App() {
 
     const handleStopButton = (): void => {
         clearInterval(secondCount);
-
-        const currentLap: number = timeInSeconds - pastLaps;
-
-        console.log(`Lap Time: ${currentLap}`);
-        console.log(`Total Time: ${timeInSeconds}`);
-        console.log(`Total Past Time: ${pastLaps}`);
-        console.log(`Lapped Time Array: ${lappedTime}`);
     }
 
     const handleResetButton = (): void => {
@@ -51,6 +44,7 @@ export default function App() {
                 />
             <StopWatchButton 
                 timeInSeconds={timeInSeconds}
+                lappedTime={lappedTime}
                 handleStartButton={handleStartButton}
                 handleStopButton={handleStopButton}
                 handleResetButton={handleResetButton}

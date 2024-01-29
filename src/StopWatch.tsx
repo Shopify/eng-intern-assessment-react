@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import StopWatchButton from './StopWatchButton'
 
 interface timeInSecondsProps {
     timeInSeconds: number;
