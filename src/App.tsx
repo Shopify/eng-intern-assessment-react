@@ -51,8 +51,6 @@ export default function App() {
 
   // ms elapsed, displayed on timer
   const [timerMs, setTimerMs] = useState(0);
-  // memoize formatted timer string to reduce rerenders
-  const runningTimeString = useMemo(() => formatMs(timerMs), [timerMs]);
 
   // list of lap times
   const [laps, setLaps] = useState<Array<Lap>>([]);
@@ -109,7 +107,7 @@ export default function App() {
   return (
     <main className="mx-auto max-w-4xl p-5">
       <h1 className="text-4xl">Stopwatch</h1>
-      <StopWatch>{runningTimeString}</StopWatch>
+      <StopWatch>{formatMs(timerMs)}</StopWatch>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         <StopWatchButton onClick={startTimer}>Start</StopWatchButton>
         <StopWatchButton onClick={stopTimer}>Stop</StopWatchButton>
