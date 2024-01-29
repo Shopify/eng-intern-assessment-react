@@ -10,8 +10,13 @@ type StopWatchButtonProps = {
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
   return (
-    <>
-      <button onClick={() => props.setIsRunning(!props.isRunning)}>
+    <div className="flex gap-1">
+      <button
+        onClick={() => props.setIsRunning(!props.isRunning)}
+        className={`rounded-md px-4 py-2 ${
+          props.isRunning ? "bg-red-400" : "bg-green-400"
+        }`}
+      >
         {props.isRunning ? "Stop" : "Start"}
       </button>
       <button
@@ -20,6 +25,7 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
           props.setIsRunning(false);
           props.setLaps([]);
         }}
+        className="rounded-md px-4 py-2 bg-yellow-400"
       >
         Reset
       </button>
@@ -28,10 +34,11 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
           onClick={() => {
             props.setLaps((laps) => [...laps, props.time]);
           }}
+          className="rounded-md px-4 py-2 bg-sky-400"
         >
           Lap
         </button>
       )}
-    </>
+    </div>
   );
 }

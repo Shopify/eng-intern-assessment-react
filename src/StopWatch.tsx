@@ -28,16 +28,27 @@ export default function StopWatch() {
   const seconds = Math.floor((time % 6000) / 100);
   const milliseconds = time % 100;
 
+  const reversedLaps = laps.slice().reverse();
+
   return (
-    <>
-      <div className="flex">
-        {/* <p>
-          {hours}:{minutes}:{seconds}:{milliseconds}
-        </p> */}
-        <div className="border-2 text-3xl p-8">{hours}</div>
-        <div className="border-2 text-3xl p-8">{minutes}</div>
-        <div className="border-2 text-3xl p-8">{seconds}</div>
-        <div className="border-2 text-3xl p-8">{milliseconds}</div>
+    <div className="flex flex-col items-center gap-3">
+      <div className="flex gap-2 items-end">
+        <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
+          <div>{hours.toString().padStart(2, "0")}</div>
+          <p className="text-sm">hr</p>
+        </div>
+        <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
+          <div>{minutes.toString().padStart(2, "0")}</div>
+          <p className="text-sm">min</p>
+        </div>
+        <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
+          <div>{seconds.toString().padStart(2, "0")}</div>
+          <p className="text-sm">sec</p>
+        </div>
+        <div className="border-2 text-xl w-20 h-20 flex flex-col justify-center items-center rounded-md">
+          <div>{milliseconds.toString().padStart(2, "0")}</div>
+          <p className="text-sm">ms</p>
+        </div>
       </div>
       <StopWatchButton
         isRunning={isRunning}
@@ -46,24 +57,30 @@ export default function StopWatch() {
         setLaps={setLaps}
         time={time}
       />
-      <div>
-        <ul>
-          {laps.map((lap, index) => {
-            const hours = Math.floor(lap / 360000);
-            const minutes = Math.floor((lap % 360000) / 6000);
-            const seconds = Math.floor((lap % 6000) / 100);
-            const milliseconds = lap % 100;
+      <div className="w-full h-72 overflow-y-auto py-6">
+        <ul className="flex flex-col items-center gap-2">
+          {reversedLaps.map((lap, index) => {
+            const hours = Math.floor(lap / 360000)
+              .toString()
+              .padStart(2, "0");
+            const minutes = Math.floor((lap % 360000) / 6000)
+              .toString()
+              .padStart(2, "0");
+            const seconds = Math.floor((lap % 6000) / 100)
+              .toString()
+              .padStart(2, "0");
+            const milliseconds = (lap % 100).toString().padStart(2, "0");
             return (
-              <li key={index}>
-                <p>Lap {index + 1}</p>
-                <p>
-                  {hours}:{minutes}:{seconds}:{milliseconds}
+              <li key={index} className="border-2 w-[50%] rounded-md py-2 px-4">
+                <p className="text-xs text-slate-500">
+                  Lap {reversedLaps.length - index}
                 </p>
+                <p>{`${hours}:${minutes}:${seconds}:${milliseconds}`}</p>
               </li>
             );
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
