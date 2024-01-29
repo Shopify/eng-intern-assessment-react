@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import StopWatchButton from "./StopWatchButton";
 
 function formatTime(time: number): string {
   const hours = Math.floor(time / 360000);
@@ -67,11 +67,18 @@ export default function StopWatch() {
         {seconds.toString().padStart(2, "0")}:
         {milliseconds.toString().padStart(2, "0")}
       </div>
-      <div>
-        <button onClick={startAndStop}>{isRunning ? "Stop" : "Start"}</button>
-        <button onClick={reset}>Reset</button>
-        <button onClick={recordLap}>Lap</button>
-      </div>
+      {/* pass props to StopWatchButton */}
+      <StopWatchButton
+        start={"Start"}
+        stop={"Stop"}
+        reset={"Reset"}
+        lap={"Lap"}
+        isRunning={isRunning}
+        onStartStop={startAndStop}
+        onReset={reset}
+        onLap={recordLap}
+      />
+      {/* display laps */}
       {laps.length > 0 && (
         <div>
           <p>Laps:</p>
