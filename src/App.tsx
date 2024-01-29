@@ -11,12 +11,12 @@ export default function App() {
     useEffect(()=>{
         if(isStartPressed){
         //every 1000 miliseconds (i.e every second), calculate the elapsed time until interval is cleared
-        intervalId = setInterval(()=>{
-            setCurrentTime(currentTime + 1)
-        }, 1000)}
-        return()=>{
-            clearInterval(intervalId)
-        }
+            intervalId = setInterval(()=>{
+                setCurrentTime(currentTime + 1)
+            }, 1000)}
+            return()=>{
+                clearInterval(intervalId)
+            }
         }
     ,[isStartPressed, currentTime])
     
@@ -53,7 +53,9 @@ export default function App() {
         //calculate seconds
         const seconds = Math.trunc(value - hours*60*60 - minutes*60)
 
-        return hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")
+        return (
+            hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")
+            )
     }
 
     return(

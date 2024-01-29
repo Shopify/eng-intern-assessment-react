@@ -13,9 +13,9 @@ export default function StopWatchButton({label, onClickHandler, className, isDis
     
     if (isDisabled){
     return(
-        <button disabled className={className} onClick={onClickHandler}>{label}</button>
-    )}
-
+            <button disabled className={className} onClick={onClickHandler}>{label}</button>
+        )
+    }
     else{
         return(
             <button className={className} onClick={onClickHandler}>{label}</button>
