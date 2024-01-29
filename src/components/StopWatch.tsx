@@ -87,19 +87,19 @@ const Stopwatch: React.FC = () => {
           </>
         )}
       </div>
-      <div
-        className={`flex flex-col w-full max-w-2xl my-9 ${
-          displayLaps ? "visible" : "invisible"
-        }`}
-      >
-        <div className="flex justify-between gap-4 text-3xl">
-          <div className="min-w-36 ">Laps</div>
-          <div className="min-w-36 ">Relative Time</div>
-          <div className="min-w-36 ">Absolute Time</div>
+      {displayLaps ? (
+        <div className="flex flex-col w-full max-w-2xl my-9">
+          <div className="flex justify-between text-3xl">
+            <div className="min-w-36 ">Laps</div>
+            <div className="min-w-36 ">Relative Time</div>
+            <div className="min-w-36 ">Absolute Time</div>
+          </div>
+          <Lap relativeLapTime={currentLapTime} totalLapTime={totalTime} />
+          <LapList lapTimes={lapTimes} />
         </div>
-        <Lap relativeLapTime={currentLapTime} totalLapTime={totalTime} />
-        <LapList lapTimes={lapTimes} />
-      </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
