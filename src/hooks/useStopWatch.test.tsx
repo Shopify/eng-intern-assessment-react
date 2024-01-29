@@ -1,11 +1,11 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { useStopwatch } from './useStopwatch';
+import { useStopWatch } from './useStopWatch';
 
 describe('useStopwatch', () => {
     jest.useFakeTimers();
 
     it('should start with initial state', () => {
-        const { result } = renderHook(() => useStopwatch());
+        const { result } = renderHook(() => useStopWatch());
 
         expect(result.current.time).toBe(0);
         expect(result.current.running).toBe(false);
@@ -13,7 +13,7 @@ describe('useStopwatch', () => {
     });
 
     it('should start timer', () => {
-        const { result } = renderHook(() => useStopwatch());
+        const { result } = renderHook(() => useStopWatch());
         act(() => {
             result.current.start();
         });
@@ -23,7 +23,7 @@ describe('useStopwatch', () => {
 
     it('should increment time after 5 seconds', () => {
         jest.useFakeTimers();
-        const { result } = renderHook(() => useStopwatch());
+        const { result } = renderHook(() => useStopWatch());
         act(() => {
             result.current.start();
         });
@@ -36,7 +36,7 @@ describe('useStopwatch', () => {
     });
 
     it('should stop timer', () => {
-        const { result } = renderHook(() => useStopwatch());
+        const { result } = renderHook(() => useStopWatch());
         act(() => {
             result.current.start();
             result.current.stop();
@@ -46,7 +46,7 @@ describe('useStopwatch', () => {
     });
 
     it('should reset timer', () => {
-        const { result } = renderHook(() => useStopwatch());
+        const { result } = renderHook(() => useStopWatch());
         act(() => {
             result.current.start();
             jest.advanceTimersByTime(3000);
@@ -59,7 +59,7 @@ describe('useStopwatch', () => {
 
     it('should record laps correctly', () => {
         jest.useFakeTimers();
-        const { result } = renderHook(() => useStopwatch());
+        const { result } = renderHook(() => useStopWatch());
 
         act(() => {
             result.current.start();

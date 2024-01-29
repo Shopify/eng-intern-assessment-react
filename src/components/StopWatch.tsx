@@ -1,13 +1,12 @@
 import React from 'react';
-import {formatTime} from '../utils/stopwatchUtils';
-
+import {formatTime} from '../utils/stopWatchUtils';
 
 type StopwatchProps = {
     time: number;
     laps: number[];
 };
 
-const Stopwatch: React.FC<StopwatchProps> = ({ time, laps }) => {
+const StopWatch: React.FC<StopwatchProps> = ({ time, laps }) => {
 
     return (
         <div>
@@ -21,4 +20,4 @@ const Stopwatch: React.FC<StopwatchProps> = ({ time, laps }) => {
     );
 };
 
-export default Stopwatch;
+export default StopWatch;

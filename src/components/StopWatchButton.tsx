@@ -7,7 +7,7 @@ type StopwatchButtonProps = {
     onLap: () => void;
 };
 
-const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onReset, onLap }) => {
+const StopWatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onReset, onLap }) => {
     return (
         <div>
             <button onClick={onStart}>Start</button>
@@ -18,4 +18,4 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({ onStart, onStop, onRe
     );
 };
 
-export default StopwatchButton;
+export default StopWatchButton;

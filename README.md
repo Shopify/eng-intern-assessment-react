@@ -23,7 +23,7 @@ To get started with the project, follow these steps:
 
 3. Familiarize yourself with the project structure. The main files you will be working with are:
     - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
+    - src/StopWatch.tsx: A separate component that represents the stopwatch display.
     - src/StopWatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
 
 4. Review the existing code in the above files to understand the initial structure and component hierarchy.
@@ -68,7 +68,7 @@ To start working on the project, follow these steps:
 
 4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
 
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopWatchButton.tsx).
+5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, StopWatch.tsx, StopWatchButton.tsx).
 
 6. Run the application using npm start and test the stopwatch functionality.
 
