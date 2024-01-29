@@ -7,7 +7,6 @@ import "@testing-library/jest-dom";
 import StopWatchButton from "./../StopWatchButton";
 import React from "react";
 
-
 test("Start calls start handle function", async () => {
   const startFn = jest.fn();
   // ARRANGE
@@ -27,7 +26,6 @@ test("Start calls start handle function", async () => {
   // ASSERT
   expect(startFn).toHaveBeenCalled();
 });
-
 
 test("Reset calls reset handle function", async () => {
   const resetFn = jest.fn();
@@ -50,7 +48,6 @@ test("Reset calls reset handle function", async () => {
   expect(resetFn).toHaveBeenCalled();
 });
 
-
 test("Lap button appears and calls lap function when stopwatch is running", async () => {
   const lapFn = jest.fn();
   render(
@@ -69,7 +66,6 @@ test("Lap button appears and calls lap function when stopwatch is running", asyn
   // ASSERT
   expect(lapFn).toHaveBeenCalled();
 });
-
 
 test("Stop button appears and calls stop function when stopwatch is running", async () => {
   const stopFn = jest.fn();
