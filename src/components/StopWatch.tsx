@@ -49,20 +49,19 @@ export default function StopWatch(props: StopWatchProps) {
         <StopWatchButton onClick={() => runReset(props.setIsTimeRunning, 
                                            setTime, 
                                            intervalID, 
-                                           setLapsList)} label={'Reset'}/>
+                                           setLapsList,
+                                           setLabel)} label={'Reset'}/>
         <StopWatchButton onClick={runLap} label={'Lap'}/>
       </div>
 
       <div className='laps-container'>
         <div className='lapsTitle'>Laps</div>
-      {/* a ordered list, with each lap mapped to a list item */}
-        {/* <ul className='lapsList'> */}
+      {/* a list, with each lap mapped to a list item */}
         <div className='lapsList'>
           {lapsList.map((lap, index) => (
               <div key={index} role="listitem">{`Lap ${index+1}. ${lap}`}</div>
           ))}
           </div>
-        {/* </ul> */}
       </div>
     </>
   );
@@ -113,10 +112,12 @@ const runStartStop = (isTimeRunning: boolean,
 const runReset = (setIsTimeRunning: Function,
                   setTime: Function,
                   intervalID: number,
-                  setLapsList: Function) => {
+                  setLapsList: Function,
+                  setLabel: Function) => {
 
   clearInterval(intervalID);
   setTime(0);
   setIsTimeRunning(false);
+  setLabel('Start');
   setLapsList([]);
 }
