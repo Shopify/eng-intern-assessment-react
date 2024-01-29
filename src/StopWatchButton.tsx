@@ -1,7 +1,25 @@
-import React from 'react'
+import React from 'react';
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+interface StopWatchButtonProps {
+  stopCount: () => void;
+  startCount: () => void;
+  resetCount: () => void;
 }
+
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+  stopCount,
+  startCount,
+  resetCount,
+}) => {
+  return (
+    <>
+      <h1>Stop Watch Button</h1>
+      {/* Buttons display */}
+      <button onClick={startCount}>Start</button>
+      <button onClick={stopCount}>Stop</button>
+      <button onClick={resetCount}>Reset</button>
+    </>
+  );
+};
+
+export default StopWatchButton;
