@@ -26,7 +26,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  font-size: 128px;
+  font-size: 96px;
 }
 
 #hour {
@@ -69,6 +69,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 16px 0px 16px 0px; 
+  
 }
 
 .stopwatch-controls button {
@@ -101,7 +103,7 @@ body {
 
 .laps-element {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--alt-dark);
   color: var(--alt);
