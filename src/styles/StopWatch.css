@@ -26,7 +26,6 @@ main {
 .time {
 	font-weight: 700;
 	font-size: 3rem;
-
 	margin: 0 auto 0.3em;
 }
 
@@ -42,6 +41,10 @@ main {
 	border: 1px solid;
 	flex: 1;
 	overflow: scroll;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
 }
 
 .lap-list li {
@@ -49,4 +52,9 @@ main {
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 0 1em;
+	gap: 1em;
+}
+
+.lap-list li p:first-child {
+	font-weight: 600;
 }

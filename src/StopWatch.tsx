@@ -75,7 +75,7 @@ export default function StopWatch() {
 				{laps ? (
 					laps.map((lap, i) => (
 						<li>
-							<p>{i}</p>
+							<p>{i + 1}</p>
 							<p>{lap}</p>
 						</li>
 					))
