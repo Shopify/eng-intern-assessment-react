@@ -22,7 +22,7 @@ export default function App() {
         if(isLapClicked == true) {
             console.log(formatMilliSeconds(lapElaspedMilliSecond));
             setLapList(currLapList => {
-            return [...currLapList, formatMilliSeconds(lapElaspedMilliSecond)]
+            return [formatMilliSeconds(lapElaspedMilliSecond), ...currLapList]
             })
             setLapElapsedMilliSecond(0);
             setIsLapClicked(false);
@@ -59,7 +59,7 @@ export default function App() {
         return lapList.map((lap, i) => {
           return ( 
             <tr>
-              <td>{i+1}</td>
+              <td>{lapList.length-i}</td>
               <td>{lap}</td>
             </tr>)
         })
