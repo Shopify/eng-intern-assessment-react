@@ -88,16 +88,13 @@ export default function StopWatch() {
       <div className="laps">
         {lapTimes.length > 0 && (
           <div className="stopwatch-laptimes">
-            <p>Lap times</p>
-            <ul>
               {lapTimes.map((lapTime, index) => {
                 return (
-                  <li key={index}>
-                    {index + 1 + "."} {formatTime(lapTime)}
-                  </li>
+                  <div className="laps-element" key={index}>
+                    {formatTime(lapTime)}
+                  </div>
                 );
               })}
-            </ul>
           </div>
         )}
       </div>

@@ -67,7 +67,6 @@ body {
 
 .stopwatch-controls {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
@@ -82,7 +81,8 @@ body {
   align-items: center;
   background-color: var(--alt-dark);
   color: var(--alt);
-  padding: 16px 12px;
+  padding: 8px 6px;
+  margin: 2px; 
   width: var(--width);
 }
 
@@ -90,14 +90,23 @@ body {
   color: var(--offwhite);
 }
 
-.stopwatch-button-alt {
-}
-
 .laps {
   display: flex;
-
   align-items: center;
   justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.laps-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--alt-dark);
+  color: var(--alt);
+  font-family: monospace;
+  padding: 8px;
+  margin: 4px;
+  width: var(--width);
 }
 
 /* .stopwatch-title {
