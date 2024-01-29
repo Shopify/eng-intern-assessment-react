@@ -1,7 +1,16 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+interface Props {
+    color: string;
+    children?: React.ReactNode;
+    onClick: () => void;
+  }
+
+export default function StopWatchButton({color, children, onClick}: Props) {
     return(
-        <div></div>
-    )
+        <div>
+            <button onClick={onClick} style={{backgroundColor: color}}>{children}</button>
+        </div>
+    );
 }
+
