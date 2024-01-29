@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
 
 #root {
   --main: #272a32;
@@ -7,7 +7,7 @@
   --accent: #82fbb4;
   --width: 320px;
   --offwhite: #e8f6ef;
-  --default-font: 'Space Mono', monospace;
+  --default-font: "Space Mono", monospace;
 }
 body {
   margin: 0px;
@@ -76,7 +76,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px 0px 16px 0px; 
+  margin: 16px 0px 16px 0px;
   width: var(--width);
 }
 
@@ -92,7 +92,7 @@ body {
   background-color: var(--alt-dark);
   color: var(--alt);
   padding: 8px 6px;
-  margin: 2px; 
+  margin: 2px;
   width: var(--width);
 }
 

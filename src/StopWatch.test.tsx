@@ -16,7 +16,6 @@ describe("formatTime", () => {
   });
 });
 
-
 // to fix
 // test("renders correctly", () => {
 //   const { getByText } = render(<StopWatch />);
