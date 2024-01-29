@@ -21,7 +21,7 @@ function App() {
     }
 
     const recordLap = () => {
-        setLapTimes(prevLaps => [...prevLaps, timeElapsed]);
+        timeElapsed ? setLapTimes(prevLaps => [...prevLaps, timeElapsed]) : null;
     }
 
     const resetStopwatch = () => {
