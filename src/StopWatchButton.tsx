@@ -3,6 +3,7 @@ import React from "react";
 interface BtnComponentProps {
   status: number;
   start: () => void;
+  pause: () => void;
   stop: () => void;
   reset: () => void;
   resume: () => void;
@@ -25,6 +26,12 @@ const StopWatchButton: React.FC<BtnComponentProps> = (props) => {
 
       {props.status === 1 ? (
         <div>
+          <button
+            className="stopwatch-btn stopwatch-btn-pur"
+            onClick={props.pause}
+          >
+            Pause
+          </button>
           <button
             className="stopwatch-btn stopwatch-btn-red"
             onClick={props.stop}
