@@ -1,0 +1,35 @@
+
+
+.stopwatch {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .timeDisplay {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .buttons {
+    margin-top: 10px;
+  }
+  
+  .button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .button:disabled {
+    background-color: #cccccc;
+  }
+  
+  .lapTime {
+    margin-top: 15px;
+  }
+  
