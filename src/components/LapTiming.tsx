@@ -10,6 +10,8 @@ export default function LapTiming ({
     index:number;
     lapTime:number;
 }) {
+
+// Calculate timing
     const timer = (lapTime: number) => {
         const hour = Math.floor(lapTime / 360000);
         const minute = Math.floor((lapTime % 360000) / 6000);

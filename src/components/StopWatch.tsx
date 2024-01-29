@@ -8,7 +8,9 @@ export default function StopWatch() {
     const [time, setTime] = useState(0);
     const [isActive, setIsActive] = useState(false);
     const [laps, setLaps] = useState([]);
-    
+
+
+// Refresh the page every 1 milisecond
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if(isActive) {
@@ -20,16 +22,19 @@ export default function StopWatch() {
         }
     }, [isActive, time]);
 
+// function for Start-Stop Button Click
     const onStartStop =() => {
         setIsActive((prevIsActive) => !prevIsActive);
     };
 
+//function for reset button click
     const onReset = () => {
         setTime(0);
         setIsActive(false);
         setLaps([]);
     };
 
+// function for lap button click
     const onLap = () => {
         if (laps.length === 0) {
             setLaps([time]);
