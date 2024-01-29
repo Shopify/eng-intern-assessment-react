@@ -1,7 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
-export default function StopWatch() {
-    return(
-        <div></div>
-    )
+type Props = {
+    isRunning: boolean;
+    time: number;
+    setTime: React.Dispatch<React.SetStateAction<number>>;
+    laps: number[];
+};
+
+export default function StopWatch(props: Props) {
+    const formatTime = (timeInMilliseconds: number): string => {
+        const minutes = Math.floor(timeInMilliseconds / (60 * 1000));
+        const seconds = Math.floor((timeInMilliseconds % (60 * 1000)) / 1000);
+        const milliseconds = timeInMilliseconds % 1000;
+      
+        const formattedMilliseconds = `${milliseconds}`.slice(0, 2);
+      
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${formattedMilliseconds.padStart(2, '0')}`;
+    };
+  
+    useEffect(() => {
+      let interval: NodeJS.Timeout;
+  
+      if (props.isRunning) {
+        interval = setInterval(() => {
+          props.setTime((prevTime) => prevTime + 10);
+        }, 10);
+      }
+  
+      return () => clearInterval(interval);
+    }, [props.isRunning]);
+  
+    return (
+      <div>
+        <span>{formatTime(props.time)}</span>
+        {props.laps.length > 0 && (
+        <div>
+          <h2>Laps</h2>
+          <ul>
+            {props.laps.map((lap, index) => (
+              <li key={index}>{formatTime(lap)}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      </div>
+    );
 }
