@@ -76,7 +76,7 @@ describe("StopWatch tests", () => {
         expect(clearInterval).toHaveBeenCalled();
     });
 
-    it("should display the expected laps and times", () => {
+    it("should display the expected laps and times after pressing lap 1 at 5 seconds, lap 2 at 1 second later, lap 3 at 500 ms later", () => {
         jest.useFakeTimers();
         render(<StopWatch/>);
         fireEvent.click(screen.getByText("Start"));
