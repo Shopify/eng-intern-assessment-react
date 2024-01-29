@@ -7,18 +7,12 @@ interface Props {
 
 export default function Laps({recordedLapTimes} : Props) {
     if (recordedLapTimes.length > 0) {
-        let previousLapTime : number = 0;
-        const displayData : string[] = recordedLapTimes.map((recordedLapTime: number) : string => {
-            const lapTimeDisplay : string = getTimeDisplayValue(recordedLapTime - previousLapTime);
-            previousLapTime = recordedLapTime;
-            return lapTimeDisplay;
-        });
         return (
             <div>
                 Lap :
                 <ol>
                     {
-                        displayData.map((lapTimeDisplay, index) => <li key = {index}>{lapTimeDisplay}</li>)
+                        recordedLapTimes.map((recordedLapTime, index) => <li key = {index}>{getTimeDisplayValue(index === 0 ? recordedLapTime : recordedLapTimes[index] - recordedLapTimes[index - 1])}</li>)
                     }
                 </ol>
             </div>
