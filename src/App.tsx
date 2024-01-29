@@ -8,7 +8,8 @@ export default function App() {
 
     const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
     const [secondCount, setSecondCount] = useState<number>(0);
-    const [lappedTime, setLappedTime] = useState<number[]>([0, 0])
+    const [lappedTime, setLappedTime] = useState<number[]>([0]);
+    const [pastLaps, setPastLaps] = useState<number>(0);
 
     const handleStartButton = (): void => {
         let second:any = setInterval(():void => {
@@ -24,18 +25,24 @@ export default function App() {
 
     const handleResetButton = (): void => {
         clearInterval(secondCount);
-        setTimeInSeconds(0)
+        setTimeInSeconds(0);
+        setLappedTime([0]);
+        setPastLaps(0);
     }
 
     const handleLapButton = (): void => {
         
-        let pastLaps = lappedTime[lappedTime.length -1];
 
         const currentLap: number = timeInSeconds - pastLaps;
 
-        setLappedTime([currentLap]);
-        console.log(currentLap)
 
+        setLappedTime([...lappedTime, currentLap]);
+        setPastLaps(timeInSeconds);
+        
+        console.log(`Lap Time: ${currentLap}`);
+        console.log(`Total Time: ${timeInSeconds}`);
+        console.log(`Total Past Time: ${pastLaps}`);
+        console.log(`Lapped Time Array: ${lappedTime}`);
     }
 
     return(
