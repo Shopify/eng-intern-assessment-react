@@ -15,6 +15,7 @@ interface StopWatchProps {
 }
 
 export default function StopWatch({
+
     startHandler,
     stopHandler,
     lapHandler,
@@ -60,7 +61,9 @@ export default function StopWatch({
             </div>
             <div className='flex-container'>
                 {lapsArray.map((lap, index) => (
-                     <div className='flex-item' key={index}><p className='laps-display'>Lap {index + 1} : {timeToStringFormatter(lap)}</p></div>
+                     <div className='flex-item' key={index}>
+                        <p className='laps-display'>Lap {index + 1} : {timeToStringFormatter(lap)}</p>
+                    </div>
                      ))} 
             </div>
         </div>
