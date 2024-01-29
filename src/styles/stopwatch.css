@@ -1,0 +1,45 @@
+body {
+  background-color: #000;
+}
+
+.stopwatch-time {
+  text-align: center;
+  color: #000;
+}
+
+.stopwatch-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.stopwatch-buttons button {
+  margin: 20px;
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+  color: #fff;
+  text-transform: none;
+}
+
+.stopwatch-paper {
+  width: 500px;
+  padding: 30px;
+}
+
+.stopwatch-container {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+
+.img {
+  width: 300px;
+  height: auto;
+}
+
+.stopwatch-laps {
+  padding: 0px 100px 0px 100px;
+  max-height: 150px;
+  overflow-y: scroll;
+}
