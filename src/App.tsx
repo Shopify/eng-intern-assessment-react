@@ -52,11 +52,11 @@ function App() {
                     handleButtonClick={() => resetStopwatch()} 
                 />
             </div>
-            <div className="lapTimesContainer">
+            <div className="lapTimesContainer digital">
                 <ol>
                     {lapTimes.map((lap, i) => {
                         return (
-                            <li key={i + 1} className='lap'>Lap {i + 1}: {formatTime(lap)}</li>
+                            <li key={i + 1} className='lap'>Lap {i < 9 ? `0${i + 1}` : i + 1}: {formatTime(lap)}</li>
                         )
                     })}
                 </ol>

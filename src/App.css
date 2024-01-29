@@ -4,7 +4,8 @@ html {
     font-size: 62.5%;
 }
 
-body {
+body,
+ol {
     margin: 0;
     padding: 0;
 }
@@ -23,7 +24,7 @@ body {
 }
 
 .timeDisplay {
-    margin: 0 0 50px;
+    margin: 0;
     font-size: 6rem;
     width: 500px;
     text-align: center;
@@ -33,6 +34,7 @@ body {
     width: 500px;
     display: flex;
     justify-content: space-between;
+    margin: 10vh 0;
 }
 
 button {
@@ -48,6 +50,26 @@ button:hover {
     background-color: red;
 }
 
+.lapTimesContainer {
+    text-transform: uppercase;
+    width: 500px;
+    height: 35vh;
+    font-size: 2.6rem;
+    text-align: center;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.lapTimesContainer ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.lapTimesContainer li {
+    margin-bottom: 8px;
+}
+
 @media (max-width: 500px) {
     html {
         font-size: 40%;
@@ -58,5 +80,8 @@ button:hover {
     }
     button {
         margin-bottom: 30px;
+    }
+    .lapTimesContainer {
+        width: 300px;
     }
 }
