@@ -1,7 +1,14 @@
-import React from 'react'
+import React from "react";
 
-export default function StopWatchButton() {
-    return(
-        <div></div>
-    )
+interface StopWatchButtonProp {
+  // text for button
+  title: string;
+}
+
+export default function StopWatchButton({ title }: StopWatchButtonProp) {
+  return (
+    <div>
+      <button>{title}</button>
+    </div>
+  );
 }
