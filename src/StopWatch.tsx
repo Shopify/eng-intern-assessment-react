@@ -7,17 +7,17 @@ type Props = {
     laps: number[];
 };
 
+export const formatTime = (timeInMilliseconds: number): string => {
+  const minutes = Math.floor(timeInMilliseconds / (60 * 1000));
+  const seconds = Math.floor((timeInMilliseconds % (60 * 1000)) / 1000);
+  const milliseconds = timeInMilliseconds % 1000;
+
+  const formattedMilliseconds = `${milliseconds}`.slice(0, 2);
+
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${formattedMilliseconds.padStart(2, '0')}`;
+};
+
 export default function StopWatch(props: Props) {
-    const formatTime = (timeInMilliseconds: number): string => {
-        const minutes = Math.floor(timeInMilliseconds / (60 * 1000));
-        const seconds = Math.floor((timeInMilliseconds % (60 * 1000)) / 1000);
-        const milliseconds = timeInMilliseconds % 1000;
-      
-        const formattedMilliseconds = `${milliseconds}`.slice(0, 2);
-      
-        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${formattedMilliseconds.padStart(2, '0')}`;
-    };
-  
     useEffect(() => {
       let interval: NodeJS.Timeout;
   
@@ -32,7 +32,7 @@ export default function StopWatch(props: Props) {
   
     return (
       <div>
-        <span>{formatTime(props.time)}</span>
+        <span role='time-display'>{formatTime(props.time)}</span>
         {props.laps.length > 0 && (
         <div>
           <h2>Laps</h2>
