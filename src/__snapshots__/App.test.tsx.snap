@@ -11,28 +11,28 @@ exports[`App tests render should match snapshot file 1`] = `
     className="buttons"
   >
     <button
-      className=".btn"
+      className="btn"
       disabled={false}
       onClick={[Function]}
     >
       Start
     </button>
     <button
-      className=".btn"
+      className="btn"
       disabled={true}
       onClick={[Function]}
     >
       Stop
     </button>
     <button
-      className=".btn"
+      className="btn"
       disabled={true}
       onClick={[Function]}
     >
       Lap
     </button>
     <button
-      className=".btn"
+      className="btn"
       disabled={false}
       onClick={[Function]}
     >

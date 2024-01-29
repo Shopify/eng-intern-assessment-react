@@ -28,11 +28,9 @@ export default function StopWatch() {
 
     const startTimer = () => {
         setIsRunning(true);
-        console.log('Start Timer');
     };
     const stopTimer = () => {
         setIsRunning(false);
-        console.log('Stop Timer');
     };
     const lapTimer =() => {
         setRecordedLapTimes([... recordedLapTimes, time]);

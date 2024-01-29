@@ -2,7 +2,7 @@
 
 exports[`StopWatchButton tests render should match snapshot file 1`] = `
 <button
-  className=".btn"
+  className="btn"
   disabled={false}
   onClick={[MockFunction]}
 >
