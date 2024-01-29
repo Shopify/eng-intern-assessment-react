@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
-import { initialState, reducer } from "./lib/stopwatchState";
+import { initialState, stopWatchReducer } from "./lib/stopwatch";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
   // stopwatch state machine
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [state, dispatch] = React.useReducer(stopWatchReducer, initialState);
 
-  // refs for DOM elements, these are useful to live update the UI
-  // without having to re-render the component. This is a performance
-  // optimization.
   const timerRef = React.useRef<HTMLDivElement>(null);
   const activeLapRef = React.useRef<HTMLTableCellElement>(null);
 
@@ -20,15 +17,15 @@ export default function StopWatch() {
 
   // memoized values, these are useful to live update the UI
   const prevLapTimes = React.useMemo(
-    () => state.lapTimes.reduce((a, b) => a + b, 0),
-    [state.lapTimes]
+    () => state.lapDurations.reduce((a, b) => a + b, 0),
+    [state.lapDurations]
   );
 
   const showLiveTime = React.useCallback(() => {
     // the current lap time, in milliseconds
     const lapTime =
-      state.currentLapTime +
-      (state.active ? performance.now() - state.lapStartTime : 0);
+      state.currentLapElapsedTime +
+      (state.active ? performance.now() - state.currentLapStartTime : 0);
 
     // the total time since last reset (or initial state), in milliseconds
     const totalTime = prevLapTimes + lapTime;
@@ -63,8 +60,11 @@ export default function StopWatch() {
       <div
         className="flex items-center justify-center row-span-2 text-6xl font-bold"
         ref={timerRef}
-      ></div>
+      >
+        {formatTime(prevLapTimes + state.currentLapElapsedTime)}
+      </div>
 
+      {/* buttons */}
       <div className="flex row-span-2 gap-4">
         {state.active ? (
           <>
@@ -87,7 +87,7 @@ export default function StopWatch() {
               Start
             </StopWatchButton>
             <StopWatchButton
-              className="flex-1"
+              className="flex-1 bg-red-500 border-red-600 hover:bg-red-600 hover:border-red-700"
               onClick={() => dispatch("reset")}
             >
               Reset
@@ -96,6 +96,7 @@ export default function StopWatch() {
         )}
       </div>
 
+      {/* a scrollable table to show laps */}
       <div className="overflow-scroll row-span-8">
         <table className="w-full overflow-scroll table-fixed ">
           <thead>
@@ -105,13 +106,17 @@ export default function StopWatch() {
             </tr>
           </thead>
           <tbody className="flex-1 min-h-0 overflow-scroll leading-10">
-            {(state.active || state.currentLapTime > 0) && (
+            {(state.active || state.currentLapElapsedTime > 0) && (
               <tr className="">
-                <td className="text-left">Lap {state.lapTimes.length + 1}</td>
-                <td className="text-right" ref={activeLapRef}></td>
+                <td className="text-left">
+                  Lap {state.lapDurations.length + 1}
+                </td>
+                <td className="text-right" ref={activeLapRef}>
+                  {formatTime(state.currentLapElapsedTime)}
+                </td>
               </tr>
             )}
-            {state.lapTimes
+            {state.lapDurations
               .map((lapTime, index) => (
                 <tr className="w-full border-t border-neutral-700" key={index}>
                   <td className="text-left">Lap {index + 1}</td>

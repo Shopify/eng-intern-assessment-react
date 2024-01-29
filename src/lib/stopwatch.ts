@@ -1,20 +1,20 @@
 export interface StopWatchState {
   active: boolean;
-  lapStartTime: number | null; // when the current lap started
-  currentLapTime: number;
-  lapTimes: number[];
+  currentLapStartTime: number | null; // when the current lap started
+  currentLapElapsedTime: number; // time elapsed in the current lap until the last stop
+  lapDurations: number[];
 }
 
 export const initialState: StopWatchState = {
   active: false,
-  lapStartTime: null,
-  currentLapTime: 0,
-  lapTimes: [],
+  currentLapStartTime: null,
+  currentLapElapsedTime: 0,
+  lapDurations: [],
 };
 
 export type StopWatchAction = "start" | "stop" | "reset" | "lap";
 
-export function reducer(
+export function stopWatchReducer(
   s: StopWatchState,
   action: StopWatchAction
 ): StopWatchState {
@@ -25,37 +25,37 @@ export function reducer(
         return s;
       }
 
-      return { ...s, active: true, lapStartTime: performance.now() };
+      return { ...s, active: true, currentLapStartTime: performance.now() };
     case "stop":
       // if we are not active or dont have a start time,
       // do nothing
-      if (!s.active || !s.lapStartTime) {
+      if (!s.active || !s.currentLapStartTime) {
         return s;
       }
 
       // accumulate the time from start until now into accumulatedTimeMs
-      const timeToAdd = performance.now() - s.lapStartTime;
+      const timeToAdd = performance.now() - s.currentLapStartTime;
 
       return {
         ...s,
         active: false,
-        currentLapTime: s.currentLapTime + timeToAdd,
+        currentLapElapsedTime: s.currentLapElapsedTime + timeToAdd,
       };
     case "reset":
       return structuredClone(initialState);
     case "lap":
-      if (!s.active || !s.lapStartTime) {
+      if (!s.active || !s.currentLapStartTime) {
         return s;
       }
 
       const now = performance.now();
-      const lapTime = now - s.lapStartTime;
+      const lapTime = now - s.currentLapStartTime;
 
       return {
         ...s,
-        lapStartTime: now,
-        currentLapTime: 0,
-        lapTimes: [...s.lapTimes, s.currentLapTime + lapTime],
+        currentLapStartTime: now,
+        currentLapElapsedTime: 0,
+        lapDurations: [...s.lapDurations, s.currentLapElapsedTime + lapTime],
       };
   }
 }
