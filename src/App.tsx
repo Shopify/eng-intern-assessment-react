@@ -23,7 +23,7 @@ export default function App() {
         clearInterval(secondCount);
 
         const currentLap: number = timeInSeconds - pastLaps;
-        
+
         console.log(`Lap Time: ${currentLap}`);
         console.log(`Total Time: ${timeInSeconds}`);
         console.log(`Total Past Time: ${pastLaps}`);
@@ -33,7 +33,7 @@ export default function App() {
     const handleResetButton = (): void => {
         clearInterval(secondCount);
         setTimeInSeconds(0);
-        setLappedTime([0]);
+        setLappedTime([]);
         setPastLaps(0);
     }
 
