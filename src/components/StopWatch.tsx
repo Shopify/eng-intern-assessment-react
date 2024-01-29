@@ -43,7 +43,7 @@ const Stopwatch: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col items-center text-center"
+      className="flex flex-col items-center text-center justify-center h-screen bg-red-200"
       data-testid="stopwatch"
     >
       <div className="flex justify-center text-9xl pb-7 -space-x-3">
