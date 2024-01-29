@@ -7,7 +7,7 @@ describe(App, () => {
 
   it("App renders the Stop Watch component",() => {
     render(<App/>);
-    expect(<StopWatch isTimeRunning={false} setIsTimeRunning={()=>{}}/>); //Other option, set the data-testId of the actual component and expect screen.getByTestId(the id)
+    expect(<StopWatch isTimeRunning={false} setIsTimeRunning={()=>{}}/>); 
   });
 
 });

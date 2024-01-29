@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, render, within, getAllByTestId } from "@testing-library/react";
+import { fireEvent, screen, render } from "@testing-library/react";
 import StopWatch from '../components/StopWatch';
 
 describe(StopWatch, () => {
