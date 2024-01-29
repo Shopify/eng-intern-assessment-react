@@ -19,7 +19,8 @@ export default function App() {
         return () => clearInterval(intervalId);
     }, [isRunning]);
 
-    const Time = (time: number): string => {
+    // function to display the stopwatch time in the required format
+    const displayTime = (time: number): string => {
         const hours = Math.floor(time / 360000);
         const minutes = Math.floor((time % 360000) / 6000);
         const seconds = Math.floor((time % 6000) / 100);
@@ -28,6 +29,7 @@ export default function App() {
         return `${String(hours).padStart(2, '0')}: ${String(minutes).padStart(2, '0')}: ${String(seconds).padStart(2, '0')}: ${String(milliseconds).padStart(2, '0')}`
     };
 
+    // handlers to deal with button clicks
     const handleStartStopClick = () => {
         setIsRunning((prevIsRunning) => !prevIsRunning);
     };
@@ -42,6 +44,7 @@ export default function App() {
         setLapTimes((prevLapTimes) => [...prevLapTimes, time]);
     };
 
+    // handler to toggle laps info modal
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -54,10 +57,11 @@ export default function App() {
                     <div className='time-container'>
                         <StopWatch
                             time={time}
-                            Time={Time}
+                            displayTime={displayTime}
                         />
-                        <div className='Laps'>LAPS - {lapTimes.length}</div>
-                        <button className="LapTimesButton" onClick={toggleModal}> Show Laps</button>
+                        <div className='Laps'>{lapTimes.length} LAPS
+                            <button className="LapTimesButton" onClick={toggleModal}> Show Lap Times</button>
+                            </div>
                     </div>
                     <StopWatchButton
                         isRunning={isRunning}
@@ -71,10 +75,10 @@ export default function App() {
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={toggleModal}>&times;</span>
-                        <h2>Lap Times</h2>
+                        <h4>Lap Times</h4>
                         <ul>
                             {lapTimes.map((lapTime, index) => (
-                                <li key={index}>{Time(lapTime)}</li>
+                                <li key={index}>  {index+1} - {displayTime(lapTime)}</li>
                             ))}
                         </ul>
                     </div>
