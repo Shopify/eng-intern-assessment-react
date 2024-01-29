@@ -1,3 +1,6 @@
+const MILLISECONDS_TO_SECONDS_CONVERSION_UNIT = 1000;
+const SECONDS_MINUTES_HOURS_CONVERSION_UNIT = 60;
+
 export function formatTime(
   hours: number,
   minutes: number,
@@ -12,11 +15,19 @@ export function formatTime(
 }
 
 export function displayTime(time: number): string {
-  const milliseconds = Math.round((time % 1000) / 10);
-  const totalSeconds = Math.floor(time / 1000);
-  const seconds = totalSeconds % 60;
-  const totalMinutes = Math.floor(totalSeconds / 60);
-  const minutes = totalMinutes % 60;
-  const hours = Math.floor(totalMinutes / 60);
+  const milliseconds = Math.round(
+    (time % MILLISECONDS_TO_SECONDS_CONVERSION_UNIT) / 10
+  );
+  const totalSeconds = Math.floor(
+    time / MILLISECONDS_TO_SECONDS_CONVERSION_UNIT
+  );
+  const seconds = totalSeconds % SECONDS_MINUTES_HOURS_CONVERSION_UNIT;
+  const totalMinutes = Math.floor(
+    totalSeconds / SECONDS_MINUTES_HOURS_CONVERSION_UNIT
+  );
+  const minutes = totalMinutes % SECONDS_MINUTES_HOURS_CONVERSION_UNIT;
+  const hours = Math.floor(
+    totalMinutes / SECONDS_MINUTES_HOURS_CONVERSION_UNIT
+  );
   return formatTime(hours, minutes, seconds, milliseconds);
 }
