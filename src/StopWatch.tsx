@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react'
 import StopWatchButton from './StopWatchButton'
 import Lap from './Lap';
 
+interface LapData {
+    lapNumber: number;
+    time: string;
+}
+
 export default function StopWatch() {
     
     const [isRunning, setIsRunning] = useState<boolean>(false); // tracks if the stopwatch is running 
     const [timeSinceStart, setTimeSinceStart] = useState<number>(0);  // stores the time in milliseconds after starting the stopwatch
     const [laps, setLaps] = useState<LapData[]>([]);  
-
-    interface LapData {
-        number: number;
-        time: string;
-    }  
 
     useEffect(() => {
         let interval : NodeJS.Timeout;
@@ -41,7 +41,7 @@ export default function StopWatch() {
     const lapsHandler = () => {
         const lapNumber = laps.length + 1
         const formattedTime = formatTime(timeSinceStart)
-        setLaps([...laps, {number: lapNumber, time: formattedTime}])
+        setLaps([...laps, {lapNumber: lapNumber, time: formattedTime}])
     }
 
 
@@ -54,7 +54,7 @@ export default function StopWatch() {
 
     return (
         <div>
-            <div className="time-text">
+            <div className="time-text" data-testid="time-text">
                 {formatTime(timeSinceStart)}
             </div>
             <div className="button-container">
@@ -66,8 +66,8 @@ export default function StopWatch() {
             <div className="lap-list-container">
                 <ul>
                     {laps.slice().reverse().map((lap) => (
-                        <li key={lap.number}>
-                            <Lap lapNumber={lap.number} time={lap.time}/>
+                        <li key={lap.lapNumber}>
+                            <Lap lapNumber={lap.lapNumber} time={lap.time}/>
                         </li>
                     ))}
                 </ul>
