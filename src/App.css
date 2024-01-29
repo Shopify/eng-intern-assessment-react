@@ -1,53 +1,70 @@
+/* Set heights for specific elements */
 html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
   height: -webkit-fill-available;
 }
 
+/* Body styling */
 body {
-  background-color: #f1f1f1;
-  margin: 0px;
+  background-color: #65451F;
+  margin: 0;
 }
 
+/* Styling for the stopwatch title */
 .stopwatch-title {
-  background-color: #303030;
-  margin: 0px;
-  color: white;
+  background-color: #65451F;
+  margin: 0;
+  color: #FFF2D8;
   padding-left: 16px;
-  padding: 10px 0px 10px 16px;
+  padding: 50px 50px 50px 50px;
+  text-align: center;
 }
 
+/* Display stopwatch content in a flex layout */
 .stopwatch-content {
   display: flex;
 }
 
+/* Styling for the stopwatch control buttons */
 .stopwatch-buttons {
   display: flex;
   flex-direction: column;
-  background-color: #ebebeb;
+  background-color: #65451F;
   padding: 16px 12px;
   width: 200px;
 }
 
+/* Styling for button focus state */
 .stopwatch-buttons button:focus {
   outline: none;
-  border: 2px solid #000000;
+  border: 2px solid #FFF2D8;
 }
 
+/* Styling for general buttons */
 .stopwatch-buttons button {
-  margin: 7px 0px;
-  background-color: #fafafa;
-  border: 0px solid #fafafa;
-  text-align: left;
-  border-radius: 0.5rem;
-  padding: 7px 0px 7px 15px;
+  margin: 7px 0;
+  background-color: #FFF2D8;
+  border: 0;
+  border-radius: 0.7rem;
+  padding: 10px 0;
   box-shadow: 0.5px 0.5px gray;
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
+/* Styling for button hover state */
+.stopwatch-buttons button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  background-color: #b28426;
+}
+
+/* Styling for the stopwatch time display */
 .stopwatch-time {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
   padding: 50px;
-  background-color: #ffffff;
+  background-color: #FFF2D8;
   height: fit-content;
   border-radius: 0.75rem;
   width: 50%;
@@ -55,17 +72,20 @@ body {
   box-shadow: 0.5px 0.5px gray;
 }
 
+/* Styling for the time display text */
 .stopwatch-time p {
   font-size: xxx-large;
 }
 
+/* Styling for lap times list */
 .stopwatch-laptimes ul {
   list-style: none;
-  padding: 0px;
+  padding: 0;
 }
 
+/* Styling for individual lap time entries */
 .stopwatch-laptimes li {
-  padding: 10px 0px;
+  padding: 10px 0;
   border-bottom: 1px solid #ebebeb;
   font-size: x-large;
 }
