@@ -3,19 +3,11 @@
  */
 
 import React, { useState } from "react";
-import {
-  ThemeProvider,
-  CssBaseline,
-  Switch,
-  FormGroup,
-  FormControlLabel,
-  SwitchProps,
-  styled,
-} from "@mui/material";
+import { ThemeProvider, CssBaseline, Switch, styled, Grid } from "@mui/material";
 import { lightTheme, darkTheme } from "./theme";
 import Stopwatch from "./components/StopWatch";
-import logoLight from './assets/shopify-light.png'; // Light logo
-import logoDark from './assets/shopify-dark.png';   // Dark logo
+import logoLight from "./assets/shopify-light.png"; 
+import logoDark from "./assets/shopify-dark.png"; 
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -75,10 +67,14 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <CssBaseline />
-      <div style={{ position: 'absolute', top: 0, left: 0 }}>
-            <img src={theme === 'light' ? logoLight : logoDark} alt="Company Logo" style={{ width: '100px' }} />
-        </div>
-      <MaterialUISwitch sx={{ m: 1 }} checked={theme === 'dark'} onChange={toggleTheme} />
+      <Grid container alignItems="center" justifyContent="space-between" style={{ padding: "10px" }}>
+        <Grid item>
+          <img src={theme === "light" ? logoLight : logoDark} alt="Company Logo" style={{ width: "100px", objectFit: "contain"}} />
+        </Grid>
+        <Grid item>
+          <MaterialUISwitch sx={{ m: 1 }} checked={theme === "dark"} onChange={toggleTheme}/>
+        </Grid>
+      </Grid>
       <Stopwatch />
     </ThemeProvider>
   );
