@@ -1,11 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StopWatchButton from "./StopWatchButton"; // Adjust the import path based on your project structure
+import StopWatchButton from "./StopWatchButton";
 import React from "react";
-import exp from "constants";
 
 describe("StopWatchButton Component", () => {
-  // Reset Button Test
+  // Reset Button Tests
   test("Reset button should set the time to 0 and clear laps", () => {
     const mockSetIsRunning = jest.fn();
     const mockSetTime = jest.fn();
@@ -56,6 +55,7 @@ describe("StopWatchButton Component", () => {
     expect(screen.getByTestId("reset-button")).toBeEnabled();
   });
 
+  // Start/Stop Button Tests
   test("Start/Stop button should call start timer when timer is not running", () => {
     const mockSetIsRunning = jest.fn();
     const mockSetTime = jest.fn();
@@ -126,6 +126,7 @@ describe("StopWatchButton Component", () => {
     );
   });
 
+  // Lap Button Tests
   test("Lap button should add the current time to the laps array", () => {
     const mockSetIsRunning = jest.fn();
     const mockSetTime = jest.fn();

@@ -34,19 +34,27 @@ export default function StopWatch() {
     <div className="flex flex-col items-center gap-3">
       <div className="flex gap-2 items-end">
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
-          <div>{hours.toString().padStart(2, "0")}</div>
+          <div data-testid="hours-display">
+            {hours.toString().padStart(2, "0")}
+          </div>
           <p className="text-sm font-semibold">hr</p>
         </div>
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
-          <div>{minutes.toString().padStart(2, "0")}</div>
+          <div data-testid="minutes-display">
+            {minutes.toString().padStart(2, "0")}
+          </div>
           <p className="text-sm font-semibold">min</p>
         </div>
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
-          <div>{seconds.toString().padStart(2, "0")}</div>
+          <div data-testid="seconds-display">
+            {seconds.toString().padStart(2, "0")}
+          </div>
           <p className="text-sm font-semibold">sec</p>
         </div>
         <div className="border-2 text-xl w-20 h-20 flex flex-col justify-center items-center rounded-md">
-          <div>{milliseconds.toString().padStart(2, "0")}</div>
+          <div data-testid="milliseconds-display">
+            {milliseconds.toString().padStart(2, "0")}
+          </div>
           <p className="text-sm">ms</p>
         </div>
       </div>
@@ -58,7 +66,7 @@ export default function StopWatch() {
         time={time}
       />
       <div className="w-[60%] h-72 overflow-y-auto py-6 px-2 mt-4">
-        <ul className="flex flex-col items-center gap-2">
+        <ul className="flex flex-col items-center gap-2" data-testid="lap-list">
           {reversedLaps.map((lap, index) => {
             const hours = Math.floor(lap / 360000)
               .toString()
