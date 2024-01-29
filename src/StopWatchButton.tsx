@@ -1,17 +1,21 @@
-import React, {useEffect, useState} from 'react'
-import {
-  Button,
-} from '@shopify/polaris';
+import React, { useEffect, useState } from "react";
+import { Button } from "@shopify/polaris";
 
 interface StopWatchButtonProps {
   labels: string[];
   active: boolean;
-  tone: 'success' | 'critical';
+  tone: "success" | "critical";
   disabled?: boolean;
   onClick: () => void;
 }
 
-const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, tone, disabled=false, onClick }) => {
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+  labels,
+  active,
+  tone,
+  disabled = false,
+  onClick,
+}) => {
   const [label, setLabel] = useState(labels[0]);
 
   useEffect(() => {
@@ -20,19 +24,19 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({ labels, active, tone,
     } else {
       setLabel(labels[0]);
     }
-  });
+  }, [active, labels]);
 
-  return(
+  return (
     <Button
-      size='large'
+      size="large"
       tone={tone}
-      variant='primary'
+      variant="primary"
       disabled={disabled}
       onClick={onClick}
     >
       {label}
     </Button>
-  )
-}
+  );
+};
 
 export default StopWatchButton;

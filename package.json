@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "lint": "eslint src/*.tsx"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@shopify/eslint-plugin": "^44.0.0",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^16.18.30",
@@ -29,6 +31,7 @@
     "babel-jest": "^29.7.0",
     "babel-loader": "^8.3.0",
     "css-loader": "^6.7.3",
+    "eslint": "^8.56.0",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
