@@ -14,8 +14,9 @@ export const formatTime = (time: number): string => {
 	const mins = Math.floor((time % 360000) / 6000)
 		.toString()
 		.padStart(2, '0');
+	const hours = Math.floor(time / 360000);
 
-	return `${mins}:${s}:${ms}`;
+	return `${hours ? hours + 'h ' : ''}${mins}:${s}:${ms}`;
 };
 
 export default function StopWatch() {
