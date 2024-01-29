@@ -28,12 +28,16 @@ export default function LapDisplay({
   };
 
   return (
-    <div>
-      <div>
+    <div className="laps-holder">
+      <div className="header">
+        <h2>Lap No.</h2>
+        <h2>Split Time</h2>
+      </div>
+      <div className="body">
         {formattedLaps.reverse().map((lap, i) => {
           const reversedIndex = formattedLaps.length - i;
           return (
-            <div>
+            <div className="row">
               <p style={getLapStyle(reversedIndex - 1)}>Lap {reversedIndex}</p>
               <p style={getLapStyle(reversedIndex - 1)}>{lap.join(":")}</p>
             </div>

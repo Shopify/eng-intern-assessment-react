@@ -13,9 +13,9 @@ export default function Home() {
   const [minLapIndex, setMinLapIndex] = useState(null);
   const [maxLapIndex, setMaxLapIndex] = useState(null);
 
-  //   status0:start enabled; lap disabled
-  //   status1: stop enabled; lap enabled
-  //   status2: start enabled; reset enabled
+  //   status 0: start enabled; lap disabled
+  //   status 1: stop enabled; lap enabled
+  //   status 2: start enabled; reset enabled
   const [status, setStatus] = useState(0);
 
   const startTimer = () => {
@@ -62,6 +62,7 @@ export default function Home() {
   return (
     <div className="main-section">
       <div className="title">STOPWATCH</div>
+      <div className="clock-bg"></div>
       <div className="clock-holder">
         <div className="stopwatch">
           <StopWatch time={time} />
@@ -77,13 +78,11 @@ export default function Home() {
           status={status}
         />
       </div>
-      <div className="laps-holder">
-        <LapDisplay
-          laps={laps}
-          minLapIndex={minLapIndex}
-          maxLapIndex={maxLapIndex}
-        />
-      </div>
+      <LapDisplay
+        laps={laps}
+        minLapIndex={minLapIndex}
+        maxLapIndex={maxLapIndex}
+      />
     </div>
   );
 }

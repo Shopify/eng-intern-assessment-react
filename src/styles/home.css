@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 body {
   background: #fafafa;
+  font-family: "Poppins", sans-serif;
 }
 
 * {
@@ -9,25 +12,26 @@ body {
 }
 
 .clock-holder {
-  width: 55%;
   background: #fff;
-  margin: 30px auto;
+  margin: 20px auto;
   position: relative;
-  min-width: 20rem;
-  min-height: 20rem;
+  width: 14rem;
+  height: 14rem;
   aspect-ratio: 1;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.02);
 }
 
 .main-section {
   background: transparent;
   /* background: #b42121; */
+  height: 100vh;
   max-width: 600px;
-  width: 90%;
-  height: 60rem;
+  display: flex;
+  flex-direction: column;
   margin: 0rem auto;
   padding: 1rem;
   text-align: center;
@@ -35,88 +39,117 @@ body {
 
 .main-section .title {
   color: #000000;
-  font-family: monospace;
-  font-size: 22px;
-  padding: 10px;
-  margin-top: 30px;
+  font-size: 1.2rem;
+  padding: 12px;
 }
 
 .button-holder {
   background: transparent;
   /* background-color: rgb(78, 23, 206); */
   text-align: center;
-  /* display: flex; */
+  display: flex;
   justify-content: center;
-}
-.button-holder .stopwatch-btn {
-  background: #000000;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 5px;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-family: monospace;
-  text-transform: uppercase;
-  width: 17%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transition: background 1s;
-  cursor: pointer;
-  color: #ffffff;
+  gap: 4em;
+  align-items: center;
+  margin-top: 12px;
 }
 
-.button-holder .stopwatch-btn-disabled {
-  background: #6a6a6a;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 5px;
+.button-holder .stopwatch-btn {
+  background: #000000;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-family: monospace;
-  text-transform: uppercase;
-  width: 17%;
+  font-size: 14px;
+  width: 5em;
   aspect-ratio: 1;
   border-radius: 50%;
-  transition: background 1s;
+  transition: all ease 300ms;
   cursor: pointer;
   color: #ffffff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.button-holder .stopwatch-btn:hover {
+  background: #484848;
+  transform: scale(1.01);
+}
+
+.button-holder .stopwatch-btn[disabled] {
+  opacity: 0.15;
+  cursor: not-allowed;
 }
 
 .laps-holder {
-  background: transparent;
-  /* background-color: #fafafa; */
   text-align: center;
-  margin-top: 30px;
-  flex-wrap: nowrap;
+  margin-top: 20px;
+  max-width: 18em;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-inline: auto;
 }
 
-.laps-holder p {
-  display: inline;
-  margin-right: 20px;
-  font-family: monospace;
-  font-size: 1.15rem;
+.laps-holder .header {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #b5b5b5a6;
+}
+
+.laps-holder .header > h2 {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.laps-holder .body {
+  overflow-y: scroll;
+}
+
+.laps-holder .body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.laps-holder .body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.laps-holder .body::-webkit-scrollbar-thumb {
+  background: #8888889a;
+  border-radius: 5px;
+}
+
+.laps-holder .body .row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #b5b5b5a6;
+}
+
+.laps-holder .body .row > p {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .stopwatch {
   padding: 60px 0px;
   text-align: center;
 }
+
 .stopwatch span {
-  background: #ffffff;
+  /* background: #ffffff; */
   color: #000000;
   display: inline-block;
-  font-family: monospace;
-  font-size: 22px;
   padding: 10px;
+  width: 1.8em;
 }
 
 .stopwatch div {
-  background: #ffffff;
+  /* background: #ffffff; */
   color: #000000;
-  font-family: monospace;
-  font-size: 22px;
+  font-size: 1.8rem;
   display: inline-block;
   padding: 10px;
 }

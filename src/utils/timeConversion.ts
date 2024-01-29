@@ -3,7 +3,8 @@ export const getTimeComponentsFromMs = (ms: number) => {
   let minutes = Math.floor(ms / 1000 / 60) % 60;
   let hours = Math.floor(ms / 1000 / 60 / 60);
   ms = (ms % 1000) / 10;
-  return [hours, minutes, seconds, ms].map(padNumber);
+  if (hours) return [hours, minutes, seconds, ms].map(padNumber);
+  else return [minutes, seconds, ms].map(padNumber);
 };
 export const padNumber = (num: Number) => {
   if (num.toString().length === 1) {
