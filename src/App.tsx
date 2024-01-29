@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useRef } from 'react'
-import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
+import StopWatch from './components/StopWatch'
+import StopWatchButton from './components/StopWatchButton'
 
 function App() {
     const intervalRef = useRef<NodeJS.Timeout>(null);
