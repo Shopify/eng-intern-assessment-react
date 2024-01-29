@@ -16,7 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.8",
+  "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
@@ -46,6 +46,7 @@
   "jest": {
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    }
+    },
+    "testEnvironment": "jsdom"
   }
 }
