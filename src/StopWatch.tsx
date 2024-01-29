@@ -3,7 +3,7 @@ import StopWatchButton from './StopWatchButton';
 import './styles/StopWatch.css';
 import { Timer } from './types/Timer';
 
-const formatTime = (time: number): string => {
+export const formatTime = (time: number): string => {
 	if (time === 0) {
 		return '--:--:--';
 	}
