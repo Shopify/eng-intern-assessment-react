@@ -34,6 +34,7 @@ body, html {
     font-family: 'Inter', sans-serif; /* Global font set to Inter */
 }
 
+
 /************** Layout Containers **************/
 .container {
     display: flex;
@@ -41,20 +42,11 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    text-align: center;
 }
 
 .laps-container {
-    width: 100%;
     margin-bottom: 100px;
 }
-
-.stopwatch-controls {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
 
 
 /************** Button Styles **************/
@@ -143,4 +135,16 @@ body, html {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+}
+
+.footer {
+    font-weight: 200;
+    color: var(--text-color-secondary);
+    text-align: center;
+    padding: 20px;
+}
+
+.footer a {
+    font-weight: 200;
+    color: var(--primary-color);
 }
