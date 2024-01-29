@@ -1,0 +1,37 @@
+.lap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0 1rem;
+    animation-name: lapEnter;
+    animation-duration: 80ms;
+}
+
+.lapName, .lapTime {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.lapChaser {
+    flex-grow: 1;
+    height: 0.1rem;
+    background: linear-gradient(90deg, transparent 0%, var(--border) 10%, var(--border) 90%, transparent 100%);
+    margin: 0 1rem;
+    opacity: 0.25;
+    transition: opacity 0.1s;
+}
+
+.lap:hover .lapChaser {
+    opacity: 1;
+}
+
+@keyframes lapEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

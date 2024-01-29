@@ -4,6 +4,8 @@ import './styles.css';
 import StopWatch from './stopwatch/StopWatch';
 import StopWatchButton from './stopwatch-button/StopWatchButton';
 import formatTime from "./formatTime";
+import Lap from "./lap/Lap";
+import LapsBox from "./laps-box/LapsBox";
 
 export default function App() {
     // Stopwatch state
@@ -44,25 +46,27 @@ export default function App() {
     return (
         <div className="page">
 
-            <StopWatch elapsedTime={elapsedTime} laps={0} />
+            <div className="section" />
 
-            <div className="buttons">
-                <StopWatchButton onClick={toggleRunning} color="#b8edb4">
-                    {isRunning ? 'Stop' : 'Start'}
-                </StopWatchButton>
-                <StopWatchButton onClick={resetStopwatch} color="#ebb4b0">
-                    Reset
-                </StopWatchButton>
-                <StopWatchButton onClick={addLap} color="#ebb4b0">
-                    Lap
-                </StopWatchButton>
+            <div className="section">
+                <div className="stopwatchContent">
+                    <StopWatch elapsedTime={elapsedTime} laps={0}/>
+                    <div className="buttons">
+                        <StopWatchButton onClick={toggleRunning} color="#b8edb4">
+                            {isRunning ? 'Stop' : 'Start'}
+                        </StopWatchButton>
+                        <StopWatchButton onClick={resetStopwatch} color="#ebb4b0">
+                            Reset
+                        </StopWatchButton>
+                        <StopWatchButton onClick={addLap} color="#ebb4b0">
+                            Lap
+                        </StopWatchButton>
+                    </div>
+                </div>
             </div>
 
-            <div className="laps">
-                {laps.map((lap, i) => [
-                    <div>Lap {i}</div>,
-                    <div>{lap}</div>,
-                ])}
+            <div className="section">
+                {laps.length > 0 && <LapsBox laps={laps} />}
             </div>
 
         </div>
