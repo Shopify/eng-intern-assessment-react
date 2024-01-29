@@ -56,7 +56,9 @@ function App() {
                 <ol>
                     {lapTimes.map((lap, i) => {
                         return (
-                            <li key={i + 1} className='lap'>Lap {i < 9 ? `0${i + 1}` : i + 1}: {formatTime(lap)}</li>
+                            <li key={i + 1} className='lap'>
+                                Lap {i < 9 ? `0${i + 1}` : i + 1}: {formatTime(lap)}
+                            </li>
                         )
                     })}
                 </ol>
