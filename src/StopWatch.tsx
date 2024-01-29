@@ -34,7 +34,7 @@ export default function StopWatch(props: Props) {
       <div>
         <span role='time-display'>{formatTime(props.time)}</span>
         {props.laps.length > 0 && (
-        <div>
+        <div role='laps'>
           <h2>Laps</h2>
           <ul>
             {props.laps.map((lap, index) => (
