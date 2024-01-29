@@ -4,6 +4,9 @@ export default function App() {
     const [startTime, setStartTime] = useState(new Date())
     const [currentTime, setCurrentTime] = useState(0)
     const [isStartPressed, setIsStartPressed] = useState(false)
+    const [laps, setLaps] = useState([])
+    const [prevLap, setPrevLap] = useState(0)
+    const [isLapPressed, setIsLapPressed] = useState(false)
     var intervalId: NodeJS.Timer
 
     useEffect(()=>{
@@ -17,7 +20,7 @@ export default function App() {
             clearInterval(intervalId)
         }
         }
-    ,[isStartPressed, currentTime])
+    ,[isStartPressed, currentTime, prevLap])
     
 
     function onClickStart(){
@@ -26,6 +29,20 @@ export default function App() {
 
     function onClickStop(){
         setIsStartPressed(false)
+    }
+
+    function onClickReset(){
+        setCurrentTime(0)
+        setIsStartPressed(false)
+        setPrevLap(0)
+        setLaps([])
+    }
+
+    function onClickLap(){
+        setLaps([laps.push(currentTime)])
+        var lapTime = currentTime - prevLap
+        setPrevLap(lapTime)
+
     }
 
     function secondsMinutesHours(value: number){
@@ -46,6 +63,11 @@ export default function App() {
             <button onClick={() => onClickStart()}>Start</button>
             <button onClick={() => onClickStop()}>Stop</button>
             <div>{secondsMinutesHours(currentTime)}</div>
+            <button onClick={() => onClickLap()}>Lap</button>
+            <div>{secondsMinutesHours(prevLap)}</div>
+            <div>
+                {laps.map(item => <span>{secondsMinutesHours(item)} </span>)}
+            </div>
         </div>
     )
 }
