@@ -66,3 +66,16 @@ test('resets timer when reset button is clicked', () => {
   fireEvent.click(resetButton);
   expect(getByText('00:00:00')).not.toBeNull();
 });
+
+
+test('records lap time when lap button is clicked', () => {
+  const { getByRole, getByText } = render(<StopWatch />);
+  const startButton = getByRole('button', { name: /start/i });
+  fireEvent.click(startButton);
+  jest.advanceTimersByTime(1000);
+  const lapButton = getByRole('button', { name: /lap/i });
+  fireEvent.click(lapButton);
+  expect(getByText(/Lap times/)).not.toBeNull();
+});
+
+
