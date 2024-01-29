@@ -2,36 +2,39 @@ import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
 
 export default function StopWatch() {
-  // state to keep track of the time
+  // State variable for tracking time in milliseconds
   const [time, setTime] = useState(0);
 
-  // state to keep track of whether the stopwatch is running or not
+  // State variable for tracking if the stopwatch is currently running
   const [isRunning, setIsRunning] = useState(false);
 
-  // state to keep track of the laps
+  // State variable for tracking laps, each lap is stored as the time in milliseconds
   const [laps, setLaps] = useState<number[]>([]);
 
-  // useEffect runs every time isRunning or time changes
+  // useEffect hook that runs every time isRunning or time changes
   useEffect(() => {
     if (isRunning) {
-      // increments time by 1 every 10 milliseconds
+      // If the stopwatch is running, increment time by 1 every 10 milliseconds
       const interval = setInterval(() => {
         setTime((time) => time + 1);
       }, 10);
+      // Cleanup function to clear the interval when the stopwatch stops
       return () => clearInterval(interval);
     }
   }, [isRunning, time]);
 
-  // converts time to hours, minutes, seconds, and milliseconds
+  // Convert time to hours, minutes, seconds, and milliseconds
   const hours = Math.floor(time / 360000);
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
   const milliseconds = time % 100;
 
+  // Reverse the laps array to display the most recent lap first
   const reversedLaps = laps.slice().reverse();
 
   return (
     <div className="flex flex-col items-center gap-3">
+      {/* Display the time in hours, minutes, seconds, and milliseconds */}
       <div className="flex gap-2 items-end">
         <div className="border-2 text-3xl w-28 h-28 flex flex-col justify-center items-center rounded-md">
           <div data-testid="hours-display">
@@ -58,6 +61,7 @@ export default function StopWatch() {
           <p className="text-sm">ms</p>
         </div>
       </div>
+      {/* Stopwatch control buttons */}
       <StopWatchButton
         isRunning={isRunning}
         setIsRunning={setIsRunning}
@@ -65,6 +69,7 @@ export default function StopWatch() {
         setLaps={setLaps}
         time={time}
       />
+      {/* Display the list of laps */}
       <div className="w-[60%] h-72 overflow-y-auto py-6 px-2 mt-4">
         <ul className="flex flex-col items-center gap-2" data-testid="lap-list">
           {reversedLaps.map((lap, index) => {
@@ -83,9 +88,11 @@ export default function StopWatch() {
                 key={index}
                 className="transition duration-75 ease-in hover:-translate-y-0.5 hover:scale-105 border-2 w-[80%] rounded-md py-2 px-4"
               >
+                {/* Display the lap number */}
                 <p className="text-xs text-slate-600">
                   Lap {reversedLaps.length - index}
                 </p>
+                {/* Display the lap time */}
                 <p className="text-2xl">{`${hours}:${minutes}:${seconds}:${milliseconds}`}</p>
               </li>
             );
