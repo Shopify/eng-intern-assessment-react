@@ -1,16 +1,50 @@
-import React from 'react';
-import './Button.css';
-type props = {
-    setTimeInSeconds: Function
+import React, { useState } from 'react';
+import './CSS Files/Button.css';
+
+// Define props type for the component
+type Props = {
+    setTimeInSeconds: Function;
 };
 
-export default function StopWatchButton(props:any) {
-    return(
+// Stopwatch button component with handlers for start, stop, reset, and lap functionality
+export default function StopWatchButton(props: Props) {
+    const { setTimeInSeconds } = props;
+
+    // State to hold the interval ID for clearing the interval on stop/reset
+    const [intervalId, setIntervalId] = useState<number>(0);
+
+    // Starts the stopwatch by incrementing the timeInSeconds every 1000ms (1 second)
+    const handleStartButton = () => {
+        let interval: any = setInterval(() => {
+            setTimeInSeconds((previousState: number) => previousState + 1);
+        }, 1000);
+        setIntervalId(interval);
+    };
+
+    // Stops the stopwatch by clearing the interval using the stored interval ID
+    const handleStopButton = () => {
+        clearInterval(intervalId);
+    };
+
+    // Resets the stopwatch to 0 and clears the interval
+    const handleResetButton = () => {
+        clearInterval(intervalId);
+        setTimeInSeconds(0);
+    };
+
+    // Placeholder for lap button functionality
+    // TODO: Implement lap functionality
+    const handleLapButton = () => {
+        // Functionality to be implemented
+    };
+
+    // Render stopwatch control buttons
+    return (
         <section className='ButtonContainer'>
-            <button>Start</button>
-            <button>Stop</button>
-            <button>Reset</button>
-            <button>Lap</button>
+            <button onClick={handleStartButton}>Start</button>
+            <button onClick={handleStopButton}>Stop</button>
+            <button onClick={handleResetButton}>Reset</button>
+            <button onClick={handleLapButton}>Lap</button>
         </section>
-    )
+    );
 }

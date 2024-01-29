@@ -1,0 +1,12 @@
+/* Styles for the container that holds all stopwatch buttons */
+.ButtonContainer button {
+    position: relative; /* Position relative allows for fine adjustments using top, right, bottom, left */
+    margin: 15px; /* Spacing between buttons */
+    border: none; 
+    background-color: #e5ad3d; 
+    padding: 5px 8px; 
+    font-size: 1.3rem; 
+}
+
+
+   
