@@ -43,7 +43,9 @@ const StopWatch: React.FC = () => {
           Resume
         </StopWatchButton>
         <StopWatchButton
-          onClick={() => setLapTimes([...lapTimes, { id: lapTimeId++, time }])}
+          onClick={() => {
+            setLapTimes([...lapTimes, { id: lapTimeId++, time }]);
+          }}
         >
           Lap
         </StopWatchButton>
@@ -55,7 +57,8 @@ const StopWatch: React.FC = () => {
           {lapTimes.map((lapTime) => {
             return (
               <div
-                id={lapTime.id.toString()}
+                data-testid="recorded-lap-item"
+                key={lapTime.id}
                 style={{
                   borderStyle: "solid none solid none",
                 }}
