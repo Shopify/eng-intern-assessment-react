@@ -1,0 +1,35 @@
+.stopwatch-btn {
+   font-size: 1.5rem;
+   padding: 0.5rem 1rem;
+   cursor: pointer;
+   transition: 0.2s ease-in-out;
+   background: none;
+   border-width: 0.2rem;
+   border-style: solid;
+   border-radius: 0.5rem;
+   text-transform: capitalize;
+}
+
+.stopwatch-btn:hover {
+   opacity: 0.8;
+}
+
+.start {
+   background-color: #35CE8D;
+   border-color: #35CE8D;
+}
+
+.stop {
+   background-color: #D85049;
+   border-color: #D85049;
+}
+
+.lap {
+   background-color: #4082fc;
+   border-color: #4082fc;
+}
+
+.reset {
+   background-color: #FF0054;
+   border-color: #FF0054;
+}

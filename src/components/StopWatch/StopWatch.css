@@ -1,0 +1,23 @@
+.stopwatch {
+   flex-grow: 0.4;
+   min-width: 600px;
+   border: 1px solid red;
+   position: relative;
+   z-index: 1;
+}
+
+.time {
+   font-size: 5.6rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.5rem;
+}
+
+.buttons {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 1.6rem;
+   margin-top: 1rem;
+}

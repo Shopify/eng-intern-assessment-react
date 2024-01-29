@@ -1,0 +1,19 @@
+.loader {
+   position: absolute;
+   height: 135%;
+   width: auto;
+   aspect-ratio: 1/1;
+   border-width: 0.4rem;
+   border-style: dotted;
+   border-radius: 50%;
+   opacity: 0.6;
+   animation: load linear;
+}
+
+@keyframes load {
+   0% {
+      transform: rotate(0deg);
+   } 100% {
+      transform: rotate(360deg);
+   }
+}
