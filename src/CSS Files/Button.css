@@ -1,12 +1,53 @@
 /* Styles for the container that holds all stopwatch buttons */
 .ButtonContainer button {
     position: relative; /* Position relative allows for fine adjustments using top, right, bottom, left */
-    margin: 15px; /* Spacing between buttons */
+    margin: 0 10px; /* Spacing between buttons */
     border: none; 
     background-color: #e5ad3d; 
-    padding: 5px 8px; 
+    padding: 10px 20px; 
     font-size: 1.3rem; 
+    cursor: pointer;
+    transition: all 0.2 ease;
+    background: linear-gradient(to bottom, #f0ad4e, #e5ad3d);
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 
+.ButtonContainer button:hover{
+    background-color: #d2a635;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ButtonContainer button:active{
+    transform: scale(0.98);
+
+}
+
+.lap-times{
+    margin: 20px;
+}
+
+.lap-times div{
+    background-color: #404854;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+
+}
+
+
+@media(max-width: 600px){
+    .time-container{
+        font-size: 2rem;
+    }
+
+    .ButtonContainer{
+        padding: 5px 10px;
+        font-size: 1rem;
+    }
+}
 
    
