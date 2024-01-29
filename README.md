@@ -1,86 +1,93 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
+# Shopify Frontend Engineering Intern Challenge - Summer 2024
 
-# Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
+<h1 align="center">
+  <a href=""><img src="public/images/sonic/sonic-stand.gif" width="250"/></a>
+  <br>
+  <i>Sonicify</i>
+</h1>
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
+<blockquote align="center">
+  Hey!👋 This is my submission for Shopify's Frontend Engineering Challenge - Summer 2024!
+</blockquote><br>
 
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+## Project Overview
+
+Sonicify is a stopwatch app with a spin by integrating elements from the Sonic the Hedgehog series/old retro games. This interactive timer not only functions as a precise time-tracking tool but also provides a nostalgic pixel-art animation of Sonic running as the timer progresses.
+
+The game tracks lap times, distance, and workout level (used for sonic speed, animation, and background scrolling speed). When lap is clicked, the lap number, time, and distance are added to the record board.
+
+The app has keyboard support and ARIA attributes to ensure that it is accessible and usable by people with disabilities. The app is also responsive and can be used on mobile devices.
+
+## Usage
+
+You can view my submission at [sonicify.daner.dev](https://sonicify.daner.dev/)
 
 ## Project Setup
-To get started with the project, follow these steps:
 
-1. Clone the project repository to your local development environment.
+To get started, follow these steps:
 
-2. Install the required dependencies by running npm install in the project directory.
+```bash
+git clone https://github.com/danerkestey/eng-intern-assessment-react.git
+cd eng-intern-assessment-react
+npm install
+npm start
+```
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
-
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+This will clone the repo, install the dependencies, and start the app on your local port.
 
 ## Project Goals
-Your specific goals for this project are as follows:
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+The goals of this project were to:
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
+- Provide a precise and easy to use stopwatch that can start, stop, display laps, and reset.
+- Provide a fun and interacive twist on the challenge by using these elements in an side-scrolling track and field minigame thats inspired by retro games.
+- Have clean, well-structured and maintainable code that is easy to understand and build upon.
+- Provide accessibility features, keyboard support, and a responsive design.
+- Use testing to ensure stopwatch functionality.
 
-3. Test your code:
-    - Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
+## Future Improvements
 
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
+There was a lot of room for improvements in this project that would have fell out of scope of the challenge. Some of these improvements include:
 
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
+- Having a more robust testing suite.
+- When stopwatch buttons are clicked, a text and sound effect pop up that is reminiscent of retro Sonic and Mario games.
+- Having multiple sprites to choose from.
+- Add current m/s displayed as well as a high score displaying the fastest m/s ran.
+- Shadow under sprite
 
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
+## Technologies
 
-## Getting Started
-To start working on the project, follow these steps:
+- HTML & CSS
+- React (TypeScript)
+- Google Fonts API
+- Google Firebase
+- React Testing Library w/ Jest
+- Webpack
+- Babel
 
-1. Clone the repository to your local development environment.
+### Tools
 
-2. Install the required dependencies by running npm install in the project directory.
+- Figma
+- Spotify (of course)
 
-3. Open the project in your preferred code editor.
+## Links
 
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
+- [LinkedIn](https://www.linkedin.com/in/daneryasin/)<br>
+- [GitHub](https://github.com/danerkestey)<br>
+- [Figma Design Doc](https://www.figma.com/file/PsojNo5TVfEL6g26fn6YGH/Shopify-Frontend-Challenge-2024?type=design&node-id=0%3A1&mode=design&t=QM8DU9IEd6vWTkx3-1)<br>
 
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
+## Credits & Inspirations
 
-6. Run the application using npm start and test the stopwatch functionality.
+There were a lot of great places I used and was inspired by when designing the UI to be reminiscent of retro games, here were some of my favorites:
 
-7. Commit your changes regularly and push them to a branch in your forked repository.
+- [Press Start 2P Google Font](https://fonts.google.com/specimen/Press+Start+2P)
+- [Retro Nintendo Option Selectors](https://gamefaqs.gamespot.com/a/review/96/173196-5.jpg)
+- [Sonic and Mario at the Olympics (Scrolling background design) that was used to create a custom 2048-wide background](https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/software/switch/70010000019616/56af2256a5a590c5407036d134e37e97ae73796221f580d514534a2d87ba93f7)
+- [The Human Abstract - Crossing the Rubicon 8-bit version (Music used in game)](https://www.youtube.com/watch?v=0ezmcPkdxPU)
 
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
+Sonic Sprites:
 
-## Resources
-Here are some resources that may be helpful during your work on this project:
-
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
-
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
-
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+- [Standing Gif](https://www.andersonkenya1.net/files/file/709-16-bit-sonic/)
+- [Slow Run Gif](https://wifflegif.com/gifs/706468-pixel-art-hedgehog-gif)
+- [Med Run Gif](https://tenor.com/9LAN.gif)
+- [Fast Run Gif](https://tenor.com/bcncp.gif)
