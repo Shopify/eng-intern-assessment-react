@@ -8,11 +8,12 @@ body {
 }
 
 .stopwatch-title {
-  background-color: #303030;
+  background-color: #96bf48; /* Shopify green */
   margin: 0px;
   color: white;
   padding-left: 16px;
   padding: 10px 0px 10px 16px;
+  text-align: center;
 }
 
 .stopwatch-content {
