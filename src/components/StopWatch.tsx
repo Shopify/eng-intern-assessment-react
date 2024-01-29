@@ -26,6 +26,7 @@ const Stopwatch: React.FC = () => {
     };
   }, [isRunning]);
 
+  // click handlers
   const handleReset = () => {
     setTotalTime(0);
     setIsRunning(false);
@@ -36,13 +37,16 @@ const Stopwatch: React.FC = () => {
   const createNewLap = () => {
     if (!displayLaps) setDisplayLaps(true);
     let newLap: number = totalTime;
-    setLapTimes((prevLaps) => [newLap, ...prevLaps]);
+    setLapTimes((prevLaps) => {
+      return [newLap, ...prevLaps];
+    });
   };
 
-  const timeBreakdown = getTimeBreakdown(totalTime);
-
+  // utility variables
   const currentLapTime =
     lapTimes.length === 0 ? totalTime : totalTime - lapTimes[0];
+
+  const timeBreakdown = getTimeBreakdown(totalTime);
 
   return (
     <div
@@ -88,11 +92,11 @@ const Stopwatch: React.FC = () => {
         )}
       </div>
       {displayLaps ? (
-        <div className="flex flex-col w-full max-w-2xl my-9">
+        <div className="flex flex-col w-full max-w-2xl my-9" data-testid="laps">
           <div className="flex justify-between text-3xl">
-            <div className="min-w-48 ">Laps</div>
-            <div className="min-w-48 ">Relative Time</div>
-            <div className="min-w-48 ">Absolute Time</div>
+            <div className="min-w-48">Laps</div>
+            <div className="min-w-48">Relative Time</div>
+            <div className="min-w-48">Absolute Time</div>
           </div>
           <Lap relativeLapTime={currentLapTime} totalLapTime={totalTime} />
           <LapList lapTimes={lapTimes} />
