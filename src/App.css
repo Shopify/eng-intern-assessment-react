@@ -1,71 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
   height: -webkit-fill-available;
 }
 
 body {
-  background-color: #f1f1f1;
-  margin: 0px;
+  background-color: #000;
+  font-family: "Roboto", sans-serif;
 }
 
-.stopwatch-title {
-  background-color: #303030;
-  margin: 0px;
-  color: white;
-  padding-left: 16px;
-  padding: 10px 0px 10px 16px;
-}
-
-.stopwatch-content {
+.app {
+  height:100vh;
+  width:100vw;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-wrapper {
+  background: linear-gradient(46.87deg, rgb(150, 228, 233) 0%, rgb(130, 249, 83) 96.94%);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-wrapper i {
+  color:fff;
+}
+
+.heading {
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  font-size:48px;
+}
+
+.heading-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.stopwatch {
+  width:30rem;
+  height:20rem;
+  background: #1b1c1c;
+  border: 1px solid #3d3f3f;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.stopwatch-time {
+  color:#fff;
+  font-size:40px;
+  text-align:center;
+}
+
+.stopwatch-button {
+  background-color: #3d3f3f;
+  padding: .75rem 1rem;
+  color: #fff;
+  border-radius: 70px;
+  border: none;
+  font-size: 24px;
+}
+
+.stopwatch-button:hover {
+  cursor: pointer;
 }
 
 .stopwatch-buttons {
   display: flex;
-  flex-direction: column;
-  background-color: #ebebeb;
-  padding: 16px 12px;
-  width: 200px;
-}
-
-.stopwatch-buttons button:focus {
-  outline: none;
-  border: 2px solid #000000;
-}
-
-.stopwatch-buttons button {
-  margin: 7px 0px;
-  background-color: #fafafa;
-  border: 0px solid #fafafa;
-  text-align: left;
-  border-radius: 0.5rem;
-  padding: 7px 0px 7px 15px;
-  box-shadow: 0.5px 0.5px gray;
-}
-
-.stopwatch-time {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  padding: 50px;
-  background-color: #ffffff;
-  height: fit-content;
-  border-radius: 0.75rem;
-  width: 50%;
-  text-align: -webkit-center;
-  box-shadow: 0.5px 0.5px gray;
-}
-
-.stopwatch-time p {
-  font-size: xxx-large;
-}
-
-.stopwatch-laptimes ul {
-  list-style: none;
-  padding: 0px;
-}
-
-.stopwatch-laptimes li {
-  padding: 10px 0px;
-  border-bottom: 1px solid #ebebeb;
-  font-size: x-large;
+  gap: 1rem;
 }
