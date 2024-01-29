@@ -20,6 +20,7 @@
 .time .number {
    width: 9rem;
    text-align: center;
+   font-variant-numeric: tabular-nums
 }
 
 .buttons {
@@ -73,4 +74,8 @@
    grid-template-columns: 0.4fr 1fr 1fr;
    padding: 0.35rem 0.5rem;
    justify-items: center;
+}
+
+.lap-item div {
+   font-variant-numeric: tabular-nums
 }
