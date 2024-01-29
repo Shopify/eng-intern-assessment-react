@@ -37,9 +37,10 @@ export default function App() {
     }
 
     function onClickLap(){
+       setPrevLap(currentTime)
        var lapTime = currentTime - prevLap
-       setLaps([lapTime, ...laps])
-       setPrevLap(lapTime)
+       setLaps([...laps, ...[lapTime]])
+       
     }
 
     function secondsMinutesHours(value: number){
