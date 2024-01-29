@@ -41,15 +41,32 @@ export default function StopWatch() {
     stopTime();
   };
 
+  // convert time to display hours, minutes and seconds
+  const timeConversion = () => {
+    const hrs = Math.floor(time / 3600);
+    const mins = Math.floor((time % 3600) / 60);
+    const secs = time % 60;
+
+    return { hrs, mins, secs };
+  };
+
   return (
-    <div>
-      <div>{`${time} seconds`}</div>
+    <>
+      <div>
+        {/* using template literals to render the time; covert nums to string & use padStart method to ensure 2 numbers display for each unit of time */}
+        {`${String(timeConversion().hrs).padStart(2, "0")} : ${String(
+          timeConversion().mins
+        ).padStart(2, "0")} : ${String(timeConversion().secs).padStart(
+          2,
+          "0"
+        )}`}
+      </div>
       <StopWatchButton
         onClick={isRunning ? stopTime : startTime}
         title={isRunning ? "Stop" : "Start"}
       />
       <StopWatchButton onClick={resetTime} title="Reset" />
       {/* <StopWatchButton title="Lap" /> */}
-    </div>
+    </>
   );
 }
