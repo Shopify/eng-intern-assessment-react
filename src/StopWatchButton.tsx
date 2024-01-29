@@ -4,10 +4,16 @@ import React from 'react'
 const maxLaps = 25;
 
 
+
   
   export default function StopWatchButton() {
     return (
-        <div>stop watch buttons</div>
+        <div>
+            <button>Start</button>
+            <button>Stop</button>
+            <button>Laps</button>
+            <button>Reset</button>
+        </div>
     )
   }
     
