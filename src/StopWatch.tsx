@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import StopWatchButton from './StopWatchButton';
+import Lap from './Lap';
 import {
   BlockStack,
-  Divider,
   InlineStack,
   Text,
 } from '@shopify/polaris';
@@ -12,6 +12,8 @@ export default function StopWatch() {
   const [active, setActive] = useState<boolean>(false);
   const [laps, setLaps] = useState<number[]>([]);
   const [currentLapTime, setCurrentLapTime] = useState<number>(0);
+  const [fastestLap, setFastestLap] = useState<number>(0);
+  const [slowestLap, setSlowestLap] = useState<number>(0);
 
   useEffect(() => {
     if (!active) return;
@@ -51,9 +53,20 @@ export default function StopWatch() {
     if (!active) {
       setElapsedTime(0);
       setCurrentLapTime(0);
+      setFastestLap(0);
+      setSlowestLap(0);
       setLaps([]);
       return;
     } else {
+      // Compute fastest and slowest laps
+      if (laps.length > 0) {
+        const fastestLap = [...laps, currentLapTime].reduce((fastestIndex, current, index, arr) => 
+          current < arr[fastestIndex] ? index : fastestIndex, 0);
+        const slowestLap = [...laps, currentLapTime].reduce((slowestIndex, current, index, arr) => 
+          current > arr[slowestIndex] ? index : slowestIndex, 0);
+        setFastestLap(fastestLap + 1);
+        setSlowestLap(slowestLap + 1);
+      }
       // Otherwise, add the current lap time to the laps
       setLaps(prevLaps => [...prevLaps, currentLapTime]);
       setCurrentLapTime(0);
@@ -85,13 +98,19 @@ export default function StopWatch() {
           onClick={handleStartStopClick}
         />
       </InlineStack>
-      <Divider />
-      {elapsedTime !== 0 && <><Text as='p' variant='bodyLg'>Lap {laps.length + 1} {formatTime(currentLapTime)}</Text><Divider /></>}
+
+      {/* current lap */}
+      {elapsedTime !== 0 && <Lap lapNumber={laps.length + 1} lapTime={formatTime(currentLapTime)} />}
+
+      {/* completed laps */}
       {[...laps].reverse().map((lap, index) => (
-        <>
-          <Text as='p' variant='bodyLg' key={index}>Lap {laps.length - index} {formatTime(lap)}</Text>
-          <Divider />
-        </>
+          <Lap
+            key={laps.length - index}
+            lapNumber={laps.length - index}
+            lapTime={formatTime(lap)}
+            fastestLap={fastestLap === (laps.length - index)}
+            slowestLap={slowestLap === (laps.length - index)}
+          />
       ))}
     </BlockStack>
   )
