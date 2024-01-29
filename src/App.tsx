@@ -2,11 +2,13 @@ import React from 'react';
 import { useState } from "react";
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
+import LappedTime from './LappedTime';
 
 export default function App() {
 
     const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
     const [secondCount, setSecondCount] = useState<number>(0);
+    const [lappedTime, setLappedTime] = useState<number[]>([0, 0])
 
     const handleStartButton = (): void => {
         let second:any = setInterval(():void => {
@@ -25,6 +27,17 @@ export default function App() {
         setTimeInSeconds(0)
     }
 
+    const handleLapButton = (): void => {
+        
+        let pastLaps = lappedTime[lappedTime.length -1];
+
+        const currentLap: number = timeInSeconds - pastLaps;
+
+        setLappedTime([currentLap]);
+        console.log(currentLap)
+
+    }
+
     return(
         <div className='main_container'>
             <StopWatch 
@@ -35,6 +48,10 @@ export default function App() {
                 handleStartButton={handleStartButton}
                 handleStopButton={handleStopButton}
                 handleResetButton={handleResetButton}
+                handleLapButton={handleLapButton}
+                />
+            <LappedTime
+                lappedTime={lappedTime}
                 />
         </div>
     )
