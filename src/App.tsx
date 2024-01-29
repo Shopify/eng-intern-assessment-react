@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import StopWatch from './components/StopWatch';
 import StopWatchButton from './components/StopWatchButton';
 import formatTime from './utils/formatTime';
@@ -8,6 +8,17 @@ function App() {
     const intervalRef = useRef<NodeJS.Timeout>(null);
     const [timeElapsed, setTimeElapsed] = useState<number>(0);
     const [lapTimes, setLapTimes] = useState<number[]>([]);
+    const [lapTimesSum, setLapTimesSum] = useState<number>(0);
+    const [isTiming, setIsTiming] = useState<boolean>(false);
+
+    useEffect(() => {
+        setLapTimesSum(lapTimes.reduce((a, b) => a + b, 0));
+    }, [lapTimes])
+
+    // for debugging
+    useEffect(() => {
+        console.log(formatTime(lapTimesSum));
+    }, [lapTimesSum])
 
     const startStopwatch = () => {
         intervalRef.current 
@@ -21,7 +32,7 @@ function App() {
     }
 
     const recordLap = () => {
-        timeElapsed ? setLapTimes(prevLaps => [...prevLaps, timeElapsed]) : null;
+        timeElapsed ? setLapTimes(prevLaps => [...prevLaps, (timeElapsed - lapTimesSum)]) : null;    
     }
 
     const resetStopwatch = () => {
@@ -29,6 +40,7 @@ function App() {
         intervalRef.current = null;
         setTimeElapsed(0);
         setLapTimes([]);
+        setLapTimesSum(0);
     }
 
     return (
