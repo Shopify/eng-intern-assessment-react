@@ -10,7 +10,6 @@ const Stopwatch: React.FC = () => {
   const [totalTime, setTotalTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [lapTimes, setLapTimes] = useState<number[]>([]);
-  const [displayLaps, setDisplayLaps] = useState<boolean>(false);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -31,11 +30,9 @@ const Stopwatch: React.FC = () => {
     setTotalTime(0);
     setIsRunning(false);
     setLapTimes([]);
-    setDisplayLaps(false);
   };
 
   const createNewLap = () => {
-    if (!displayLaps) setDisplayLaps(true);
     let newLap: number = totalTime;
     setLapTimes((prevLaps) => {
       return [newLap, ...prevLaps];
@@ -91,7 +88,7 @@ const Stopwatch: React.FC = () => {
           </>
         )}
       </div>
-      {displayLaps && (
+      {lapTimes.length > 0 && (
         <div className="flex flex-col w-full max-w-2xl my-9" data-testid="laps">
           <div className="flex justify-between text-3xl">
             <div className="min-w-48">Laps</div>
