@@ -47,9 +47,10 @@ export default function StopWatch() {
         <div className = 'clock'>
             <Timer timeInMs={time}/>
             <div className = 'buttons'>      
-                <StopWatchButton disabled = {isRunning} action = {startTimer} label = 'Start' buttonClassName = "btn" />
-                <StopWatchButton disabled = {!isRunning} action = {stopTimer} label ='Stop' buttonClassName = "btn" />                <StopWatchButton disabled = {!isRunning} action = {lapTimer} label = 'Lap' buttonClassName = "btn" />
-                <StopWatchButton disabled = {false} action = {resetTimer} label='Reset' buttonClassName = "btn" />
+                <StopWatchButton disabled = {isRunning} action = {startTimer} label = 'Start'  />
+                <StopWatchButton disabled = {!isRunning} action = {stopTimer} label ='Stop' />                
+                <StopWatchButton disabled = {!isRunning} action = {lapTimer} label = 'Lap'  />
+                <StopWatchButton disabled = {false} action = {resetTimer} label='Reset' />
             </div>
             <div className = 'lap'>
                 <Laps recordedLapTimes={recordedLapTimes}/>

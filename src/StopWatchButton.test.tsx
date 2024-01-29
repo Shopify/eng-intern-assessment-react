@@ -6,13 +6,13 @@ import StopWatchButton from './StopWatchButton';
 
 describe('StopWatchButton tests', () => {
     it('render should match snapshot file', () => {
-        const tree = renderer.create(<StopWatchButton label = 'STOP' disabled={false} action={jest.fn()} buttonClassName='btn'/>).toJSON();
+        const tree = renderer.create(<StopWatchButton label = 'STOP' disabled={false} action={jest.fn()} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should invoke the action function when the button is clicked', () => {
         const action = jest.fn();
-        render(<StopWatchButton label = 'GO' disabled = {false} action={action} buttonClassName='btn'/>);
+        render(<StopWatchButton label = 'GO' disabled = {false} action={action} />);
         expect(screen.getByText('GO')).toBeInTheDocument();
         fireEvent.click(screen.getByText('GO'));
         expect(action).toHaveBeenCalledTimes(1);

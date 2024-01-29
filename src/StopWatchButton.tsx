@@ -1,14 +1,14 @@
 import React from 'react';
+import './StopWatchButton.css';
 
 interface Props {
     label: string;
     disabled: boolean;
     action: React.MouseEventHandler<HTMLButtonElement>;
-    buttonClassName: string;
 }
 
-export default function StopWatchButton({label, disabled, action, buttonClassName}: Props) {
+export default function StopWatchButton({label, disabled, action}: Props) {
     return(
-            <button onClick = {action} disabled = {disabled} className = {buttonClassName}>{label}</button>
+            <button onClick = {action} disabled = {disabled} className = "btn">{label}</button>
     )
 }
