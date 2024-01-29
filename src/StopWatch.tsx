@@ -104,39 +104,41 @@ const StopWatch = () => {
           </div>
         </div>
         <div className="control-buttons">
-          <button
+          {/* Render the StopWatchButton component for each button */}
+          <StopWatchButton
             onClick={startTimer}
             disabled={isActive}
             className="start-button"
           >
             Start
-          </button>
-          <button
+          </StopWatchButton>
+          <StopWatchButton
             onClick={stopTimer}
             disabled={!isActive}
             className="stop-button"
           >
             Stop
-          </button>
-          <button
+          </StopWatchButton>
+          <StopWatchButton
             onClick={resetTimer}
             disabled={isActive}
             className="reset-button"
           >
             Reset
-          </button>
-          <button
+          </StopWatchButton>
+          <StopWatchButton
             onClick={recordLap}
             disabled={!isActive}
             className="lap-button"
           >
             Lap
-          </button>
+          </StopWatchButton>
         </div>
       </div>
       <div className="lap-times">
         <h2 className="lap-times-heading">Lap Times</h2>
         <ul>
+          {/* Display lap times */}
           {lapTimes.map((lapTime, index) => (
             <li key={index}>{`Lap ${index + 1}: ${lapTime}`}</li>
           ))}

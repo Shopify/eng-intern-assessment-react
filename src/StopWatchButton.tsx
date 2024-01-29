@@ -1,11 +1,22 @@
 import React from "react";
 
-// Maximum number of laps that can be recorded
-const maxLaps = 25;
+interface StopWatchButtonProps {
+  onClick: () => void;
+  disabled?: boolean;
+  className?: string;
+}
 
-// Define the props for the StopWatchButton component
-
-const StopWatchButton = () => {
-  <></>;
+const StopWatchButton: React.FC<StopWatchButtonProps> = ({
+  onClick,
+  disabled = false,
+  className = "",
+  children,
+}) => {
+  return (
+    <button onClick={onClick} disabled={disabled} className={className}>
+      {children}
+    </button>
+  );
 };
+
 export default StopWatchButton;
