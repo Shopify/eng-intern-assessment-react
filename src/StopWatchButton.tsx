@@ -6,6 +6,7 @@ interface ButtonProps {
     label: string
 }
 
+// Component representing a Stopwatch button
 export default function StopWatchButton({className, onClick, label} : ButtonProps) {
     return(
         <button className={`button ${className}`} onClick={onClick}>{label}</button>

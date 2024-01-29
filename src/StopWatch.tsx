@@ -13,35 +13,29 @@ export default function StopWatch() {
     // useEffect to handle the intervals for updating elapsed time and lap time
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
-        let lapInterval: NodeJS.Timeout | null = null;
 
         // Check if the stopwatch is running.
         if (isTimeRunning) {
             // Set interval to update elapsed time every 10 milliseconds
             interval = setInterval(() => {
                 setElapsedMilliSecond(prevElapsedMilliSec => prevElapsedMilliSec + 10);
+                setLapElapsedMilliSecond(prevLapElapsedMilliSec => prevLapElapsedMilliSec + 10);
             }, 10);
 
             // Check if lap button is clicked
             if (isLapClicked) {
-                // Log and update lap list with formatted lap time
-                console.log(formatMilliSeconds(lapElaspedMilliSecond));
+                // Update lap list with formatted lap time
                 setLapList(currLapList => [formatMilliSeconds(lapElaspedMilliSecond), ...currLapList]);
+                // Set current elapsed lap time to 0
                 setLapElapsedMilliSecond(0);
                 setIsLapClicked(false);
             }
-
-            // Set interval to update lap time every 10 milliseconds
-            lapInterval = setInterval(() => {
-                setLapElapsedMilliSecond(prevElapsedMilliSec => prevElapsedMilliSec + 10);
-            }, 10);
         }
 
         // Cleanup function to clear intervals when component is unmounted or dependencies change
         return () => {
             clearInterval(interval);
-            clearInterval(lapInterval);
-        };
+        }
     }, [isTimeRunning, isLapClicked]);
 
     // Function to format milliseconds into a readable time format
