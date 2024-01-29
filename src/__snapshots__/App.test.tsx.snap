@@ -1,33 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App tests render should match snapshot file 1`] = `
-[
+<div
+  className="clock"
+>
   <div>
     00:00:00.00
-  </div>,
-  <button
-    disabled={false}
-    onClick={[Function]}
+  </div>
+  <div
+    className="buttons"
   >
-    Start
-  </button>,
-  <button
-    disabled={true}
-    onClick={[Function]}
-  >
-    Stop
-  </button>,
-  <button
-    disabled={true}
-    onClick={[Function]}
-  >
-    Lap
-  </button>,
-  <button
-    disabled={false}
-    onClick={[Function]}
-  >
-    Reset
-  </button>,
-]
+    <button
+      className="btn"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Start
+    </button>
+    <button
+      className="btn"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Stop
+    </button>
+                    
+    <button
+      className="btn"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Lap
+    </button>
+    <button
+      className="btn"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Reset
+    </button>
+  </div>
+  <div
+    className="lap"
+  />
+</div>
 `;

@@ -4,7 +4,7 @@ exports[`Laps tests render should match snapshot file with empty recordedLapTime
 
 exports[`Laps tests render should match snapshot file with non-empty recordedLapTimes array 1`] = `
 <div>
-  Lap : Time
+  Lap :
   <ol>
     <li>
       00:00:01.00

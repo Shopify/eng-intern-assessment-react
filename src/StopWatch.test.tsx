@@ -31,7 +31,7 @@ describe("StopWatch tests", () => {
         render(<StopWatch />);
         fireEvent.click(screen.getByText("Start"));
         fireEvent.click(screen.getByText("Lap"));
-        expect(screen.getByText("Lap : Time")).toBeInTheDocument();
+        expect(screen.getByText("Lap :")).toBeInTheDocument();
     });
     it("Start should re-enable after Stop is clicked. Stop should then disable along with Lap. Reset should remain enabled", () => {
         render(<StopWatch />);
@@ -93,7 +93,7 @@ describe("StopWatch tests", () => {
         });
         fireEvent.click(screen.getByText("Lap"));
         fireEvent.click(screen.getByText("Stop"));
-        expect(screen.getByText("Lap : Time")).toBeInTheDocument();
+        expect(screen.getByText("Lap :")).toBeInTheDocument();
 
         const lapList = screen.getByRole("list");
         const { getAllByRole } = within(lapList);

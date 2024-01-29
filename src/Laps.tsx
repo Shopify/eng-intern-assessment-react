@@ -15,7 +15,7 @@ export default function Laps({recordedLapTimes} : Props) {
         });
         return (
             <div>
-                Lap : Time  
+                Lap :
                 <ol>
                     {
                         displayData.map((lapTimeDisplay, index) => <li key = {index}>{lapTimeDisplay}</li>)

@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 13%;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.btn {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 30px;
+    background-color: black;
+    border: solid white;
+    transition: transform 0.5s;
+    padding: 25px;
+    border-radius: 15%;
+}
+
+.btn:hover{
+    background-color: red;
+    cursor: pointer;
+    transform: scale(1.1);
+
+}
+
+.clock {
+    font-family: 'alarm clock', sans-serif;
+    height: 100vh;
+    display: grid;
+    color: #21FE22;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 200px;
+}
+
+.lap {
+    color: #21FE22;
+    font-family: 'alarm clock', sans-serif;
+    margin: auto;
+    width: 25%;
+    font-size: 30px;
+    margin-top: 10px;
+}

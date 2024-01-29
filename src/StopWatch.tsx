@@ -4,6 +4,7 @@ import StopWatchButton from './StopWatchButton';
 import Timer from './Timer';
 import Laps from './Laps'
 import {incrementTime} from './util';
+import './StopWatch.css';
 
 export default function StopWatch() {
     const [time, setTime] = useState<number>(0);
@@ -43,13 +44,16 @@ export default function StopWatch() {
     };
 
     return(
-        <>
+        <div className = 'clock'>
             <Timer timeInMs={time}/>
-            <Laps recordedLapTimes={recordedLapTimes}/>
-            <StopWatchButton disabled = {isRunning} action = {startTimer} label = 'Start'/>
-            <StopWatchButton disabled = {!isRunning} action = {stopTimer} label ='Stop'/>
-            <StopWatchButton disabled = {!isRunning} action = {lapTimer} label = 'Lap'/>
-            <StopWatchButton disabled = {false} action = {resetTimer} label='Reset'/>
-        </>
+            <div className = 'buttons'>      
+                <StopWatchButton disabled = {isRunning} action = {startTimer} label = 'Start' buttonClassName = "btn" />
+                <StopWatchButton disabled = {!isRunning} action = {stopTimer} label ='Stop' buttonClassName = "btn" />                <StopWatchButton disabled = {!isRunning} action = {lapTimer} label = 'Lap' buttonClassName = "btn" />
+                <StopWatchButton disabled = {false} action = {resetTimer} label='Reset' buttonClassName = "btn" />
+            </div>
+            <div className = 'lap'>
+                <Laps recordedLapTimes={recordedLapTimes}/>
+            </div>      
+        </div>
     )
 }
