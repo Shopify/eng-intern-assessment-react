@@ -1,5 +1,5 @@
 import React from "react";
-import {getFormattedTime} from "./timelib";
+import {getFormattedTime, getMilliseconds} from "./timelib";
 
 interface ILapsProps{
     laps: number[]
@@ -11,7 +11,7 @@ export function Laps(props:ILapsProps){
             return (
                 <div key={lap} className={`flex flex-row place-content-between`}>
                     <div>Lap {i+1}</div>
-                    <div>{getFormattedTime(lap)}</div>
+                    <div>{getFormattedTime(lap)}.{getMilliseconds(lap)}</div>
                 </div>
             )
         }

@@ -21,31 +21,21 @@ export default function App() {
             intervalRef.current = setInterval(() => {
                 setTime(Date.now() - startTimeRef.current);
             }, ONE_SECOND);
-
-            if (intervalRef.current) {
-                console.info('intervalRef initialized');
-            }
         } else {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
-            console.info('intervalRef cleared');
         }
         return () => clearInterval(intervalRef.current);
     }, [timerState]);
 
 
-
-
     const handleTimerState = (newState: boolean) => {
         setTimerState(newState);
-
-        console.info(`Stopwatch state toggled to ${timerState}`);
     }
     const handleReset = () => {
         handleTimerState(false);
         setTime(0);
         setLaps([]);
-        console.info(`Stopwatch state reset to ${timerState}. Timestamp is ${time}. Laps is ${laps}`);
     }
 
     const handleLap = () => {
@@ -53,17 +43,17 @@ export default function App() {
     }
 
     return (
-    <div className={`p-2 h-screen flex flex-col  items-center align-middle `}>
-        <div className={`mt-52 flex flex-col justify-start items-center flex-grow gap-2`}>
-            <StopWatch time={time}/>
-            <StopWatchButton useTimer={timerState}
-                             useTimerHandler={handleTimerState}
-                             resetHandler={handleReset}
-                             lapHandler={handleLap}
-                             lapsEmpty={lapsEmpty}
-            />
-            <Laps laps={laps}/>
+        <div className={`p-2 h-screen flex flex-col  items-center align-middle `}>
+            <div className={`mt-52 flex flex-col justify-start items-center flex-grow gap-2`}>
+                <StopWatch time={time}/>
+                <StopWatchButton useTimer={timerState}
+                                 useTimerHandler={handleTimerState}
+                                 resetHandler={handleReset}
+                                 lapHandler={handleLap}
+                                 lapsEmpty={lapsEmpty}
+                />
+                <Laps laps={laps}/>
+            </div>
         </div>
-    </div>
     )
 }
