@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function StopWatchButton() {
+interface ButtonProps {
+    onClick: () => void
+    label: string
+}
+
+export default function StopWatchButton({onClick, label} : ButtonProps) {
     return(
-        <div></div>
+        <button onClick={onClick}>{label}</button>
     )
 }
