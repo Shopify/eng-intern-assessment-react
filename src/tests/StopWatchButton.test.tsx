@@ -1,5 +1,5 @@
 import React from "react";
-import { StopWatchButton } from "../StopWatchButton";
+import { StopWatchButton } from "../components";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 test("renders a stop watch button", () => {

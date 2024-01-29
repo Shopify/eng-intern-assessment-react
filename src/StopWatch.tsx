@@ -1,6 +1,6 @@
 import React from "react";
-import { StopWatchButton } from "./StopWatchButton";
-import Time from "./Time";
+import { StopWatchButton } from "./components";
+import { Time } from "./components";
 
 let lapTimeId = 0;
 
@@ -38,30 +38,37 @@ const StopWatch: React.FC = () => {
             Start
           </StopWatchButton>
         )}
-        {isTimerRunning && (
-          <StopWatchButton onClick={() => setTimerRunning(false)}>
-            Stop
-          </StopWatchButton>
-        )}
+        <StopWatchButton
+          onClick={() => setTimerRunning(false)}
+          disabled={!isTimerRunning}
+        >
+          Stop
+        </StopWatchButton>
 
-        {!isTimerRunning && time !== 0 && (
-          <StopWatchButton onClick={() => setTimerRunning(true)}>
-            Resume
-          </StopWatchButton>
-        )}
-
-        {time > 0 && (
-          <StopWatchButton
-            onClick={() => {
-              setLapTimes([...lapTimes, { id: lapTimeId++, time }]);
-            }}
-          >
-            Lap
-          </StopWatchButton>
-        )}
-        {time > 0 && (
-          <StopWatchButton onClick={() => setTime(0)}>Reset</StopWatchButton>
-        )}
+        <StopWatchButton
+          onClick={() => setTimerRunning(true)}
+          disabled={time === 0 || isTimerRunning}
+        >
+          Resume
+        </StopWatchButton>
+        <StopWatchButton
+          onClick={() => {
+            setLapTimes([...lapTimes, { id: lapTimeId++, time }]);
+          }}
+          disabled={!isTimerRunning}
+        >
+          Lap
+        </StopWatchButton>
+        <StopWatchButton
+          onClick={() => {
+            setTime(0);
+            setLapTimes([]);
+            lapTimeId = 0;
+          }}
+          disabled={time === 0}
+        >
+          Reset
+        </StopWatchButton>
       </div>
       {lapTimes.length === 0 ? null : (
         <div className="flex justify-center items-center flex-col mt-6">

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Time: React.FC<{ time: number }> = ({ time }) => {
+export const Time: React.FC<{ time: number }> = ({ time }) => {
   return (
     <div role="display-time">
       <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
@@ -9,5 +9,3 @@ const Time: React.FC<{ time: number }> = ({ time }) => {
     </div>
   );
 };
-
-export default Time;

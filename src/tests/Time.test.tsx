@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Time from "../Time";
+import { Time } from "../components";
 import "@testing-library/jest-dom";
 
 test("renders a stop watch time display", () => {

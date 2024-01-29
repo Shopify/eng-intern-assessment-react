@@ -64,10 +64,10 @@ test("lap button records the current time", async () => {
 
   act(() => {
     fireEvent.click(startButtonElement);
-    jest.advanceTimersByTime(3432);
-    fireEvent.click(lapButtonElement);
+    jest.advanceTimersByTime(6000);
   });
 
+  fireEvent.click(lapButtonElement);
   await waitFor(() => {
     expect(screen.getByTestId("recorded-lap-item")).toBeTruthy();
   });
