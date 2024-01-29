@@ -8,21 +8,23 @@ export enum Buttons {
     Reset = 'Reset'
 }
 
+export function formatTime(ms: number): string {
+    // Calculations to turn ms to desired time unit, 
+    // while ensuring that the at most 2 digits are displayed for each time value
+    const getHours = () => ('0' + Math.floor((ms / 60 / 60 / 1000) % 60)).slice(-2)
+    const getMinutes = () => ('0' + Math.floor((ms / 60 / 1000) % 60)).slice(-2);
+    const getSeconds = () => ('0' + Math.floor((ms / 1000) % 60)).slice(-2);
+    const getMilliSeconds = () => ('0' + (ms / 10) % 100).slice(-2);
+
+
+    return `${getHours()}:${getMinutes()}:${getSeconds()}.${getMilliSeconds()}`;
+}
+
 export default function StopWatch() {
     const [time, setTime] = useState<number>(0);
     const [running, setRunning] = useState<boolean>(false);
     const [laps, setLaps] = useState<number[]>([]);
     const timerRef = useRef<ReturnType<typeof setInterval>>();
-
-    const formatTime = (ms: number) => {
-        // Calculations to turn ms to desired time unit, 
-        // while ensuring that the at most 2 digits are displayed for each time value
-        const getMinutes = () => ("0" + Math.floor((ms / 60 / 1000) % 60)).slice(-2);
-        const getSeconds = () => ("0" + Math.floor((ms / 1000) % 60)).slice(-2);
-        const getMilliSeconds = () => ("0" + (ms / 10) % 100).slice(-2);
-
-        return `${getMinutes()}:${getSeconds()}.${getMilliSeconds()}`;
-    }
 
     // Timer starts/stops depending on the our running state.
     useEffect(() => {
@@ -44,7 +46,7 @@ export default function StopWatch() {
     }, [time]);
 
     return (
-        <div className='stopwatch'>
+        <div data-testid='stopwatch' className='stopwatch'>
             <div className='time-display'>{formatTime(time)}</div>
             <div className='buttons'>
                 <StopWatchButton onClick={() => setRunning(true)} type={Buttons.Start} />
