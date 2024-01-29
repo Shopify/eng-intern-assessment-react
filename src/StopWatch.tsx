@@ -18,10 +18,10 @@ const StopWatch = () => {
       // If timer is active, create an interval to update time
       interval = setInterval(() => {
         // Update milliseconds every millisecond
-        if (milliseconds < 999) {
+        if (milliseconds < 99) {
           setMilliseconds((prev) => prev + 1);
         }
-        // Update seconds when milliseconds reach 999
+        // Update seconds when milliseconds reach 99
         else if (seconds < 59) {
           setMilliseconds(0);
           setSeconds((prev) => prev + 1);
@@ -39,7 +39,7 @@ const StopWatch = () => {
           setMinutes(0);
           setHours((prev) => prev + 1);
         }
-      }, 1); // Run every millisecond
+      }, 10);
     }
 
     // Clear interval on component unmount or when isActive becomes false
@@ -73,7 +73,7 @@ const StopWatch = () => {
       .toString()
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}:${milliseconds
       .toString()
-      .padStart(3, "0")}`;
+      .padStart(2, "0")}`;
     // Add the formatted lap time to the lap times array
     setLapTimes((prevLapTimes) => [...prevLapTimes, formattedTime]);
   };
@@ -86,26 +86,22 @@ const StopWatch = () => {
         <div className="timer-container">
           <div className="time-display">
             <div>
-              <p className="label">Hours</p>
-              <p className="value">{`${hours.toString().padStart(2, "0")}`}</p>
+              <p className="value">{`${hours
+                .toString()
+                .padStart(2, "0")} :`}</p>
             </div>
             <div>
-              <p className="label">Min</p>
               <p className="value">{`${minutes
                 .toString()
-                .padStart(2, "0")}`}</p>
+                .padStart(2, "0")} :`}</p>
             </div>
-            <div>
-              <p className="label">Sec</p>
-              <p className="value">{`${seconds
-                .toString()
-                .padStart(2, "0")}`}</p>
-            </div>
-            <div>
-              <p className="label">MilliSec</p>
-              <p className="value">{`${milliseconds
-                .toString()
-                .padStart(3, "0")}`}</p>
+            <div className="seconds-tab">
+              <p className="value">
+                {`${seconds.toString().padStart(2, "0")}.`}{" "}
+                <span className=" milisecond">{`${milliseconds
+                  .toString()
+                  .padStart(2, "0")}`}</span>
+              </p>
             </div>
           </div>
           <div className="control-buttons">
@@ -124,11 +120,8 @@ const StopWatch = () => {
             >
               Stop
             </StopWatchButton>
-            <StopWatchButton
-              onClick={resetTimer}
-              disabled={isActive}
-              className="reset-button"
-            >
+            {/* reset is only active when the stopwatch is stopped */}
+            <StopWatchButton onClick={resetTimer} className="reset-button">
               Reset
             </StopWatchButton>
             <StopWatchButton

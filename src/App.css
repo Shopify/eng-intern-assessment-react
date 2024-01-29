@@ -39,16 +39,24 @@ body {
 
 .time-display {
   display: flex;
-  justify-content: space-between;
-  width: 25rem; /* Adjust width as needed */
+  justify-content: center;
+  gap: 0.5rem;
+  width: 25rem;
   background-color: #ccc;
-  padding: 0.5rem;
+  padding: 0.1rem 0.5rem;
   border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.label,
 .value {
   text-align: center;
+  color: #ccc;
+  font-weight: 600;
+  font-size: 2.5rem;
+}
+
+.milisecond {
+  font-size: 1rem;
 }
 
 .control-buttons {
