@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/StopWatch.css';
 
 import StopWatchButton from './StopWatchButton';
@@ -8,34 +8,46 @@ const StopWatch: React.FC = () => {
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const [isRunning, setRunning] = useState<boolean>(false);
     const [laps, setLaps] = useState<number[]>([]);
+    const lapsEndRef = useRef(null);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout | null = null;
-
-        if (isRunning) {
-            interval = setInterval(() => {
-                setElapsedTime(prevTime => {
-                    return new Date().getTime() - (startTime ?? new Date().getTime());
-                });
-            }, 10);
-        } else if (interval) {
-            clearInterval(interval);
-        }
-
-        return () => {
-            if (interval) {
-                clearInterval(interval);
+        let frameRequest: number;
+    
+        const updateElapsedTime = () => {
+            if (isRunning) {
+                const currentTime = new Date().getTime();
+                const elapsedTime = currentTime - (startTime ?? currentTime);
+                setElapsedTime(elapsedTime);
+                frameRequest = requestAnimationFrame(updateElapsedTime);
             }
         };
+    
+        if (isRunning) {
+            frameRequest = requestAnimationFrame(updateElapsedTime);
+        }
+    
+        return () => {
+            cancelAnimationFrame(frameRequest);
+        };
     }, [isRunning, startTime]);
+
+    const scrollToBottom = () => {
+        lapsEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        if (laps.length > 0) {
+            scrollToBottom();
+        }
+    }, [laps]); 
 
     const clickStartStop = () => {
         if (isRunning) {
             setRunning(false);
         } else {
             setRunning(true);
-            const currTime = new Date().getTime();
-            setStartTime(currTime - elapsedTime);
+            const currentTime = new Date().getTime();
+            setStartTime(currentTime - elapsedTime);
         }
     };
 
@@ -53,12 +65,11 @@ const StopWatch: React.FC = () => {
     };
 
     const formatTime = (time: number) => {
-        const millis = (time % 1000);
+        const centisecs = Math.floor((time % 1000) / 10); 
         const secs = (Math.floor(time / 1000) % 60);
         const mins = (Math.floor(time / (1000 * 60)) % 60);
-        const hours = (Math.floor(time / (1000 * 60 * 60)));
 
-        return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}.${millis.toString().padStart(3, '0')}`;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}:${centisecs.toString().padStart(2, '0')}`;
     }
 
     return (
@@ -79,14 +90,15 @@ const StopWatch: React.FC = () => {
 
             <div className='laps-container'>
                 {laps.length > 0 && (
-                    <ul>
+                    <ul className='laps-item-list'>
                         {laps.map((lap, count) => (
-                            <li key={count}>
-                                {formatTime(lap)}
+                            <li key={count} className='laps-item'>
+                                {"Lap " + (count + 1) + " - " + formatTime(lap)}
                             </li>
                         ))}
                     </ul>
                 )}
+                <div ref={lapsEndRef} />
             </div>
         </div>
     );
