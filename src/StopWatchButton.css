@@ -1,0 +1,67 @@
+.start{
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+.start:hover {
+    background-color: rgb(26, 148, 49); /* Green */
+    color: white;
+  }
+
+.stop{
+    background-color: red; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+.stop:hover {
+    background-color: rgb(214, 46, 52); /* Green */
+    color: white;
+  }
+
+.lap{
+    background-color: grey; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+.lap:hover {
+    background-color: rgb(109, 109, 109); /* Green */
+    color: white;
+  }
+
+.reset{
+    background-color: grey; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+.reset:hover {
+    background-color: rgb(109, 109, 109); /* Green */
+    color: white;
+  }

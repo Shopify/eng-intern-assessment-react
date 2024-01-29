@@ -24,18 +24,18 @@ export default function StopWatch({
 
     return(
         <div>
-            <StopWatchButton label={'Start'} onClickHandler={startHandler}></StopWatchButton>
-            <StopWatchButton label={'Stop'} onClickHandler={stopHandler}></StopWatchButton>
+            <StopWatchButton className='start' label={'Start'} onClickHandler={startHandler}></StopWatchButton>
+            <StopWatchButton className='stop' label={'Stop'} onClickHandler={stopHandler}></StopWatchButton>
 
             <div>{timeToStringFormatter(currentTime)}</div>
-            <StopWatchButton label={'Lap'} onClickHandler={lapHandler}></StopWatchButton>
+            <StopWatchButton className='lap' label={'Lap'} onClickHandler={lapHandler}></StopWatchButton>
 
             <div>
                 {lapsArray.map((lap, index) => (
                      <div key={index}>Lap {index + 1} : {timeToStringFormatter(lap)}</div>
                      ))} 
             </div>
-            <StopWatchButton label={'Reset'} onClickHandler={resetHandler}></StopWatchButton>
+            <StopWatchButton className='reset' label={'Reset'} onClickHandler={resetHandler}></StopWatchButton>
         </div>
     )
 }
