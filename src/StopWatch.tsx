@@ -24,8 +24,11 @@ export default function StopWatch() {
   const [laps, setLaps] = useState([]);
 
   useEffect(() => {
+    //Anchors a start time, then periodically checks a new date objects value against the anchored time to get time elapsed
     setStart(new Date().valueOf());
     const oldTime = time;
+    //Previous time chunks must be added to elapsed time for start/stop functionality
+    //must be outside the loop or it will compound increasing time elapsed exponentially
     if (running) {
       const timer = setInterval(() => {
         setTime(new Date().valueOf() - start + oldTime);
@@ -65,10 +68,12 @@ export default function StopWatch() {
         <StopWatchButton onclick={reset} name="Reset" />
       </div>
       <div>
+        {/* && operator only evals true (returning the righthand statement) when there are recored laps in the array, hiding laps header when no laps are present*/}
         {laps.length > 0 && (
           <div>
             <h2>Laps:</h2>
             <ul>
+              {/*Iterate over laps array and render jsx for each lap in the array*/}
               {laps.map((lap: number, ind: number) => {
                 const timeString: string = getDisplayTime(lap);
                 return (
