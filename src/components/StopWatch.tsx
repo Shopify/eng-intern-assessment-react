@@ -10,6 +10,7 @@ const Stopwatch: React.FC = () => {
   const [totalTime, setTotalTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [lapTimes, setLapTimes] = useState<number[]>([]);
+  const [displayLaps, setDisplayLaps] = useState<boolean>(false);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -29,9 +30,11 @@ const Stopwatch: React.FC = () => {
     setTotalTime(0);
     setIsRunning(false);
     setLapTimes([]);
+    setDisplayLaps(false);
   };
 
   const createNewLap = () => {
+    if (!displayLaps) setDisplayLaps(true);
     let newLap: number = totalTime;
     setLapTimes((prevLaps) => [newLap, ...prevLaps]);
   };
@@ -47,14 +50,20 @@ const Stopwatch: React.FC = () => {
       data-testid="stopwatch"
     >
       <div className="flex justify-center text-9xl pb-7 -space-x-3">
-        <div className="min-w-48">{`${timeBreakdown.minutes}`}</div>
+        <div
+          className="min-w-48"
+          data-testid="minutes"
+        >{`${timeBreakdown.minutes}`}</div>
         <div>:</div>
-        <div className="min-w-48">{`${timeBreakdown.seconds}`}</div>
+        <div
+          className="min-w-48"
+          data-testid="seconds"
+        >{`${timeBreakdown.seconds}`}</div>
         <div>.</div>
-        <div className="min-w-48">{`${timeBreakdown.milliseconds.slice(
-          0,
-          2
-        )}`}</div>
+        <div
+          className="min-w-48"
+          data-testid="ms"
+        >{`${timeBreakdown.milliseconds.slice(0, 2)}`}</div>
       </div>
 
       <div className="flex justify-around w-full max-w-2xl">
@@ -78,7 +87,11 @@ const Stopwatch: React.FC = () => {
           </>
         )}
       </div>
-      <div className="flex flex-col w-full max-w-2xl my-9">
+      <div
+        className={`flex flex-col w-full max-w-2xl my-9 ${
+          displayLaps ? "visible" : "invisible"
+        }`}
+      >
         <div className="flex justify-between gap-4 text-3xl">
           <div className="min-w-36 ">Laps</div>
           <div className="min-w-36 ">Relative Time</div>
