@@ -1,3 +1,7 @@
+/**
+ * @fileoverview module component that hosts the main stop watch functionality
+ */
+
 import React from "react";
 import { StopWatchButton } from "./components";
 import { Time } from "./components";
@@ -8,6 +12,7 @@ const StopWatch: React.FC = () => {
   // not specifying the type here for useState since typescript can infer this from the initial state value
   const [time, setTime] = React.useState(0);
   const [isTimerRunning, setTimerRunning] = React.useState(false);
+  // state array to store the recorded lap times
   const [lapTimes, setLapTimes] = React.useState<
     { id: number; time: number }[]
   >([]);

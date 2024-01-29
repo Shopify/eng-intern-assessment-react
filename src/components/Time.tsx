@@ -1,3 +1,7 @@
+/**
+ * @fileoverview standalone component to display formatted time in format 00:00:00
+ */
+
 import React from "react";
 
 export const Time: React.FC<{ time: number }> = ({ time }) => {
