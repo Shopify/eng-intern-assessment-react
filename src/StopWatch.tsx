@@ -140,7 +140,9 @@ const StopWatch = () => {
         <ul>
           {/* Display lap times */}
           {lapTimes.map((lapTime, index) => (
-            <li key={index}>{`Lap ${index + 1}: ${lapTime}`}</li>
+            <li className="lap-list" key={index}>{`Lap ${
+              index + 1
+            }: ${lapTime}`}</li>
           ))}
         </ul>
       </div>
