@@ -82,3 +82,31 @@ test("should reset time to 00:00.00 on reset button click", async () => {
 
   expect(screen.getByTestId("seconds")).toHaveTextContent("00");
 });
+
+test("check that laps are rendered on lap button click", async () => {
+  const user = userEvent;
+  render(<Stopwatch />);
+  await user.click(screen.getByText("Start"));
+
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
+  await user.click(screen.getByText("Lap"));
+
+  expect(screen.getByTestId("laps")).toBeInTheDocument();
+});
+
+test("check that laps are rendered correctly", async () => {
+  const user = userEvent;
+  render(<Stopwatch />);
+  await user.click(screen.getByText("Start"));
+
+  act(() => {
+    jest.advanceTimersByTime(10);
+  });
+  await user.click(screen.getByText("Lap"));
+
+  expect(screen.getByTestId("abs-lap-1-minutes")).toHaveTextContent("00");
+  expect(screen.getByTestId("abs-lap-1-seconds")).toHaveTextContent("00");
+  expect(screen.getByTestId("abs-lap-1-ms")).toHaveTextContent("00");
+});
