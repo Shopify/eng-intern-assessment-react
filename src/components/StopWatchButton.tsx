@@ -7,12 +7,11 @@ interface StopWatchButtonProps {
     setTime?: React.Dispatch<SetStateAction<number>>
     time?: number
     setLaps?: React.Dispatch<SetStateAction<number[]>>
-    laps?: number[]
     timerRunning?: boolean
     disabled?: boolean
 }
 
-export default function StopWatchButton({ variant, setTimerRunning, setTime, time, setLaps, laps, timerRunning, disabled = false }: StopWatchButtonProps) {
+export default function StopWatchButton({ variant, setTimerRunning, setTime, time, setLaps, timerRunning, disabled = false }: StopWatchButtonProps) {
     const buttonStyle = { 
         display: 'inline-block',
         padding: '20px 20px',
@@ -58,7 +57,9 @@ export default function StopWatchButton({ variant, setTimerRunning, setTime, tim
                 buttonColor = '#d1c0c0'
                 onClick = () => { 
                     if (timerRunning) {
-                        setLaps([time, ...laps])
+                        setLaps((prevLaps) => { 
+                            return  [...prevLaps, time]
+                        })
                     }
                 }
                 break;

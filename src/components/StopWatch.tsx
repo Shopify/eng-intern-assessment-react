@@ -29,7 +29,7 @@ export default function StopWatch() {
                 <>
                     <StopWatchButton variant='stop' setTimerRunning={setTimerRunning} />
                     <StopWatchButton variant='lap' setTimerRunning={setTimerRunning}
-                        timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps}/>
+                        timerRunning={timerRunning} setLaps={setLaps} time={time}/>
                 </>
             )
         }
@@ -38,16 +38,16 @@ export default function StopWatch() {
                 <>
                     <StopWatchButton variant='start' setTimerRunning={setTimerRunning} />
                     <StopWatchButton variant='lap' disabled={true} setTimerRunning={setTimerRunning}
-                        timerRunning={timerRunning} setLaps={setLaps} time={time} laps={laps} />
+                        timerRunning={timerRunning} setLaps={setLaps} time={time} />
                 </>
             )
         }
     }
     return (
         <div style={{width: '300px', height: '500px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <p style={{ fontSize: '80px', marginBottom: '55px' }} className='stopwatch-time'>
+            <div style={{margin:'auto',fontSize: '80px', marginBottom: '55px' }} className='stopwatch-time'>
                 {formatTime(time)}
-            </p>
+            </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', paddingBottom: '20px' }} className='stopwatch-button-container'>
                 {getStopWatchButtons()}
             </div>

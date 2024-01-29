@@ -64,9 +64,26 @@ describe('StopWatch', () => {
         const stopButton = screen.getByRole('button', { name: 'Stop'})
         fireEvent.click(stopButton)
 
-        expect(screen.queryByText('00:00.00')).not.toBeInTheDocument()
+        expect(screen.getAllByText(/00:00.01/i)[0]).toBeInTheDocument()
         expect(screen.getByText(/lap 1/i)).toBeInTheDocument()
         expect(screen.getAllByText(/00:00.01/i)[1]).toBeInTheDocument()
+
+        fireEvent.click(startButton)
+        act(() => {
+            jest.advanceTimersByTime(10);
+        });
+        expect(screen.queryByText('00:00.01')).toBeInTheDocument()
+        fireEvent.click(lapButton)
+        fireEvent.click(stopButton)
+
+        expect(screen.getAllByText(/00:00.02/i)[0]).toBeInTheDocument()
+        expect(screen.getByText(/lap 2/i)).toBeInTheDocument()
+        expect(screen.getAllByText(/00:00.01/i)[1]).toBeInTheDocument()
+
+
+
+
+
 
       });
 })
