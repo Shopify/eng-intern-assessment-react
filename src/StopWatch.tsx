@@ -57,7 +57,7 @@ export default function StopWatch() {
         setLaps={setLaps}
         time={time}
       />
-      <div className="w-full h-72 overflow-y-auto py-6">
+      <div className="w-[40%] h-72 overflow-y-auto py-6 px-2">
         <ul className="flex flex-col items-center gap-2">
           {reversedLaps.map((lap, index) => {
             const hours = Math.floor(lap / 360000)
@@ -71,7 +71,7 @@ export default function StopWatch() {
               .padStart(2, "0");
             const milliseconds = (lap % 100).toString().padStart(2, "0");
             return (
-              <li key={index} className="border-2 w-[50%] rounded-md py-2 px-4">
+              <li key={index} className="border-2 w-full rounded-md py-2 px-4">
                 <p className="text-xs text-slate-500">
                   Lap {reversedLaps.length - index}
                 </p>

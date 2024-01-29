@@ -1,5 +1,12 @@
 import React from "react";
 
+import {
+  IconPlayerPlayFilled,
+  IconPlayerPauseFilled,
+  IconRestore,
+  IconClockExclamation,
+} from "@tabler/icons-react";
+
 type StopWatchButtonProps = {
   isRunning: boolean;
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,35 +17,38 @@ type StopWatchButtonProps = {
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
   return (
-    <div className="flex gap-1">
-      <button
-        onClick={() => props.setIsRunning(!props.isRunning)}
-        className={`rounded-md px-4 py-2 ${
-          props.isRunning ? "bg-red-400" : "bg-green-400"
-        }`}
-      >
-        {props.isRunning ? "Stop" : "Start"}
-      </button>
+    <div className="flex gap-1 justify-between w-64">
       <button
         onClick={() => {
           props.setTime(0);
           props.setIsRunning(false);
           props.setLaps([]);
         }}
-        className="rounded-md px-4 py-2 bg-yellow-400"
+        className="rounded-md px-4 py-2 bg-slate-800"
       >
-        Reset
+        <IconRestore className="text-white" />
       </button>
-      {props.isRunning && (
-        <button
-          onClick={() => {
-            props.setLaps((laps) => [...laps, props.time]);
-          }}
-          className="rounded-md px-4 py-2 bg-sky-400"
-        >
-          Lap
-        </button>
-      )}
+      <button
+        onClick={() => props.setIsRunning(!props.isRunning)}
+        className={`rounded-md py-2 ${
+          props.isRunning ? "px-8" : "px-4"
+        } bg-slate-900`}
+      >
+        {props.isRunning ? (
+          <IconPlayerPauseFilled className="text-white" />
+        ) : (
+          <IconPlayerPlayFilled className=" text-white" />
+        )}
+      </button>
+      <button
+        onClick={() => {
+          props.setLaps((laps) => [...laps, props.time]);
+        }}
+        disabled={!props.isRunning}
+        className={`rounded-md px-4 py-2 bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed`}
+      >
+        <IconClockExclamation className="text-white" />
+      </button>
     </div>
   );
 }
