@@ -10,11 +10,8 @@ type StopWatchButtonProps = {
 
 export default function StopWatchButton(props: StopWatchButtonProps) {
   return (
-    <div className="stopwatch-btns">
-      <button
-        onClick={() => props.setIsRunning(!props.isRunning)}
-        className={props.isRunning ? "stop-btn" : "start-btn"}
-      >
+    <>
+      <button onClick={() => props.setIsRunning(!props.isRunning)}>
         {props.isRunning ? "Stop" : "Start"}
       </button>
       <button
@@ -23,7 +20,6 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
           props.setIsRunning(false);
           props.setLaps([]);
         }}
-        className="reset-btn"
       >
         Reset
       </button>
@@ -36,6 +32,6 @@ export default function StopWatchButton(props: StopWatchButtonProps) {
           Lap
         </button>
       )}
-    </div>
+    </>
   );
 }

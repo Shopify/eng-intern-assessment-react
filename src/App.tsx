@@ -4,8 +4,8 @@ import "./app.css";
 
 export default function App() {
   return (
-    <div className="main-wrapper">
-      <h1 className="title">Stopwatch</h1>
+    <div className="flex flex-col items-center">
+      <h1>Stopwatch</h1>
       <StopWatch />
     </div>
   );
