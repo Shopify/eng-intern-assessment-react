@@ -1,6 +1,11 @@
+
 body{
     margin:0;
-    background-color: grey;
+    /* background-image: url("https://static.independent.co.uk/2021/09/07/11/sea-and-sky.jpg")
+        ;
+    background-size: contain;
+    background-repeat: no-repeat; */
+    
     display: flex;
     flex-direction: column;
     height:100vh;
@@ -9,19 +14,31 @@ body{
 
 }
 
+.video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit:cover;
+    z-index: -1;
+}
+
 .time-container{
-    color:azure;
+   
     display:flex;
     letter-spacing: 2px;
 }
 
 .time-container span{
+    color: white ;
     font-size: 4rem;
     position: relative;
     top:4px;
 }
 
 .timer-text{
+    color:white;
     font-size: 5rem; 
     margin:0;  
 }
