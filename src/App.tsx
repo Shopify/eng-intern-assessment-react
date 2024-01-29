@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react';
+import './App.css';
+import StopWatch from './StopWatch';
 
-export default function App() {
-    return(
-        <div></div>
-    )
-}
+const App: React.FC = () => {
+    return (
+        <div className="App">
+            <h1>Stopwatch</h1>
+            <div className="stopwatch-container"></div>
+            <StopWatch/>
+        </div>
+    );
+};
+
+    export default App;

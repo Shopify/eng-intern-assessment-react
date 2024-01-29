@@ -1,0 +1,39 @@
+body {
+    margin:0;
+    background: #282c34;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    font-family: 'Tahoma', sans-serif;
+    align-items: center;
+}
+
+.stopwatch-container {
+    margin-top: 20px;
+    color:#ccc;
+    display: flex;
+    letter-spacing: 2px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-container span {
+    position: relative;
+    top: 5px;
+    font-size: 4rem;
+}
+
+.timer-text {
+    margin: 0;
+    font-size: 5rem;
+}
+
+.controls-container button {
+    margin: 15px;
+    border: none;
+    background-color: #E5AD3D;
+    padding: 3px 12px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
