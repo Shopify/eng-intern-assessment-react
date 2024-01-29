@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import StopWatchButton from './StopWatchButton';
+import StopWatchButton from '../StopWatchButton/StopWatchButton';
 
 export default function StopWatch() {
     const [currentTime, setCurrentTime] = useState(0) // state to store time
     const [isActive, setIsActive] = useState(false) // boolean state if timer is active
-const [laps, setLaps] = useState([]) // state to store laps
+    const [laps, setLaps] = useState([]) // state to store laps
 
     // useEffect hook & setInterval method to calculate time
     useEffect(() => {
@@ -22,7 +22,7 @@ const [laps, setLaps] = useState([]) // state to store laps
     // helper functions to split time into hours, minutes, seconds, and milliseconds
     function hoursInTime(time: number) {
         return Math.floor((time / 3600000) % 60)
-    } 
+    }
     function minutesInTime(time: number) {
         return Math.floor((time / 60000) % 60)
     }
@@ -35,7 +35,7 @@ const [laps, setLaps] = useState([]) // state to store laps
 
     // event handlers for start, pause, reset, and lap buttons
     const handleStart = () => {
-            setIsActive(true)
+        setIsActive(true)
     }
 
     const handlePause = () => {
@@ -57,26 +57,31 @@ const [laps, setLaps] = useState([]) // state to store laps
     }
 
     // helper function to display time in hh:mm:ss:mm format for human readability
-    function readableTime(hours : number, minutes : number, seconds : number, milliseconds : number) {
-        return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" +  ("0" + seconds).slice(-2) + ":" + ("0" + milliseconds).slice(-2)
+    function readableTime(hours: number, minutes: number, seconds: number, milliseconds: number) {
+        return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2) + ":" + ("0" + milliseconds).slice(-2)
     }
-    
-    // render stopwatch interface
+
+    // render stopwatch interface, including time, buttons, and laps
     return (
-        <div>
-            <p>{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</p>
+        <section className='stopwatch__container'>
+            <article className="time__container">
+                <h2>{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</h2>
+            </article>
 
-            <StopWatchButton onClick={handleStart} buttonName="Start"/> 
-            <StopWatchButton onClick={handlePause} buttonName="Pause"/> 
-            <StopWatchButton onClick={handleReset} buttonName="Reset"/> 
-            <StopWatchButton onClick={handleLap} buttonName="Lap"/> 
+            <article className="button__container">
+                {!currentTime ? <StopWatchButton onClick={handleStart} buttonName="Start" /> : <StopWatchButton onClick={handleStart} buttonName="Resume" />}
+                <StopWatchButton onClick={handlePause} buttonName="Pause" />
+                <StopWatchButton onClick={handleReset} buttonName="Reset" />
+                <StopWatchButton onClick={handleLap} buttonName="Lap" />
+            </article>
 
-                <ol>
+            <article className="lap__container">
+                <ol id='lap-list'>
                     {laps.map((t, i) => {
                         return <li key={i}>{readableTime(hoursInTime(laps[i]), minutesInTime(laps[i]), secondsInTime(laps[i]), millisecondsInTime(laps[i]))}</li>
                     })}
                 </ol>
-        
-            </div>
+            </article>
+        </section>
     )
 }

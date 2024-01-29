@@ -9,7 +9,7 @@ interface StopWatchButtonProps {
 // render the stopwatch button component
 export default function StopWatchButton({ buttonName, onClick } : StopWatchButtonProps) {
     return(
-        <button className="button__container" onClick={onClick}>
+        <button className="button" onClick={onClick}>
             {buttonName}
         </button>
     )
