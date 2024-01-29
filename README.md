@@ -9,3 +9,4 @@ This repo has been forked from Shopify for 2024 Shopify Internship Techinal Asse
 - Added some testings
 
 ## DEMO VIDEO
+https://github.com/ismetcetin/eng-intern-assessment-react/assets/45929757/47677e5c-778d-42f6-b3cc-bb61c90d349f
