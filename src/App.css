@@ -1,31 +1,105 @@
-html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
-  height: -webkit-fill-available;
+#root {
+  --main: #272a32;
+  --alt: #566675;
+  --alt-dark: #20232b;
+  --accent: #82fbb4;
+  --width: 200px;
+  --offwhite: #e8f6ef;
 }
-
 body {
-  background-color: #f1f1f1;
   margin: 0px;
 }
 
-.stopwatch-title {
+.stopwatch {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--main);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stopwatch-content {
+  font-family: ui-monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  font-size: 128px;
+}
+
+#hour {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--width);
+  color: var(--alt);
+}
+
+#minute {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--accent);
+  width: var(--width);
+}
+
+#second {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--width);
+  color: var(--offwhite);
+}
+
+#milli {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--width);
+  color: var(--alt);
+}
+
+.stopwatch-unit {
+  font-size: 12px;
+}
+
+.stopwatch-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stopwatch-controls button {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--alt-dark);
+  color: var(--alt);
+  padding: 16px 12px;
+  width: var(--width);
+}
+
+.stopwatch-controls button:hover {
+  color: var(--offwhite);
+}
+
+.stopwatch-button-alt {
+}
+
+/* .stopwatch-title {
   background-color: #303030;
   margin: 0px;
   color: white;
   padding-left: 16px;
   padding: 10px 0px 10px 16px;
-}
-
-.stopwatch-content {
-  display: flex;
-}
-
-.stopwatch-buttons {
-  display: flex;
-  flex-direction: column;
-  background-color: #ebebeb;
-  padding: 16px 12px;
-  width: 200px;
-}
+} */
 
 .stopwatch-buttons button:focus {
   outline: none;
