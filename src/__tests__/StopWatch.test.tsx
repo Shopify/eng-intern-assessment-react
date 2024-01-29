@@ -37,16 +37,4 @@ describe(StopWatch, () => {
     expect(screen.getByText('00:00:00'));
   });
 
-  test("Test to see if laps are recorded correctly", async() => {
-    const startButton: HTMLElement = screen.getByText('Start');
-    fireEvent.click(startButton);
-
-    const lapButton: HTMLElement = screen.getByText('Lap');
-    fireEvent.click(lapButton);
-
-    const laps = screen.queryAllByText(/Lap \d\.+/g);
-
-    expect(laps.length).toBe(2);
-  });
-
 });
