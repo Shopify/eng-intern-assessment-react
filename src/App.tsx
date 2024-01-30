@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import StopWatch from './StopWatch'
 
 export default function App() {
+
     return(
-        <div></div>
+        <div>
+            <StopWatch />
+        </div>
     )
 }
