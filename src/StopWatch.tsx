@@ -17,7 +17,8 @@ export default function StopWatch() {
         seconds: 0,
         milliseconds: 0
     })
-    const [timer, setTimer] = React.useState("PAUSED")
+
+    const [timer, setTimer] = React.useState("PAUSED") //Track stopwatch state
 
     React.useEffect(() => {        
         let prevTime = Date.now() //Save the time after each interval, as setInterval is inaccurate
@@ -40,14 +41,10 @@ export default function StopWatch() {
                     }
                     document.title = "Stopwatch [0:0]"
                 }
-                return () => {
-                    clearInterval(timerInterval);
-                    document.getElementById('lap')?.removeEventListener('click', addLap);
-                }
+                return;
             }
             let newTime = time;
             const timeElapsed = Date.now() - prevTime;
-            console.log(timeElapsed)
             newTime.milliseconds += timeElapsed
             if (newTime.milliseconds >= 1000){ //100 milliseconds = 1 second
                 newTime.seconds++;
@@ -80,7 +77,7 @@ export default function StopWatch() {
             else{ minAdj = time.minutes}
             if(time.seconds < 10){ secAdj = "0" + time.seconds}
             else{ secAdj = time.seconds}
-            if(time.milliseconds < 100){ milAdj = "0" + Math.floor(time.milliseconds/10) }
+            if(time.milliseconds < 100){ milAdj = "0" + Math.floor(time.milliseconds/10) } //Milliseconds are typically represented from 0-99
             else{ milAdj = Math.floor(time.milliseconds/10) }
             let timerMsg = minAdj + ":" + secAdj + ":" + milAdj
             return timerMsg
@@ -89,6 +86,7 @@ export default function StopWatch() {
         document.getElementById('lap')?.addEventListener('click', addLap)
 
         function addLap(){ //Creates a new div element to store each lap
+            if( timer=="PAUSED" || timer == "RESET") return;
             let newLap = document.createElement("div");
             let lapText = document.createTextNode("Lap " + lapNum + " - " + timerFormat());
             newLap.appendChild(lapText);
@@ -116,7 +114,7 @@ export default function StopWatch() {
                 gridColumn: '1 / span 3',
                 gridRow:'1'
             }}>
-                <h1 style={{
+                <h1 data-testid='heading' style={{
                     textAlign: 'center',
                     fontSize: '55px'
                 }}>Stopwatch</h1>
@@ -149,7 +147,7 @@ export default function StopWatch() {
                 <p style={{
                     margin: '15px'
                 }}>Laps</p>
-                <div id="lapList" style={{ //Lap Container
+                <div data-testid='laplist' id='lapList' style={{ //Lap Container, scrolls as more laps are added
                     overflow: 'auto',
                     margin: '20px',
                     height: '530px',
