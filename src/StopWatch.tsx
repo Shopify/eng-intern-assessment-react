@@ -66,7 +66,7 @@ export default function StopWatch({
 	return (
 		<div className="stopwatch-container">
 			<div className="stopwatch-display">
-				<p className="stopwatch-time">
+				<p className="stopwatch-time" data-testid="stopwatch-time">
 					{formatTimeElapsed(timeElapsed)}
 				</p>
 			</div>
@@ -76,7 +76,7 @@ export default function StopWatch({
 				handleLap={handleLap}
 				handleReset={handleReset}
 			/>
-			<div className="stopwatch-laps">
+			<div className="stopwatch-laps" data-testid="stopwatch-laps">
 				<ul>
 					{laps
 						.map((lapTime, index) => {
@@ -88,7 +88,7 @@ export default function StopWatch({
 									: lapTime - laps[index - 1];
 
 							return (
-								<li key={index}>
+								<li key={index} className="lap-entry">
 									<span>{`Lap ${index + 1} `}</span>
 									<span>
 										{formatTimeElapsed(lapTimeDifference)}
