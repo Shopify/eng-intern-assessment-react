@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import StopWatchButton from './StopWatchButton'
 
+/**
+ * @param {number} time - time in milliseconds to format
+ * @returns {string} formatted time string
+ */
+
 // Function to format time in mm:ss:ms format, includes hours if reached
 export function formatTime(time: number): string {
     // Calculate hours, minutes, seconds, and milliseconds
@@ -9,7 +14,7 @@ export function formatTime(time: number): string {
     const seconds = Math.floor((time % 6000) / 100);
     const milliseconds = time % 100;
 
-    // Return formatted time. Hours are included only if they are greater than 0.
+    // Return formatted time, with hours only if > 0.
     return `${hours > 0 ? `${hours.toString().padStart(2, '0')}:` : ''}${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
 }
 export default function StopWatch() {
@@ -18,22 +23,25 @@ export default function StopWatch() {
     const [lapTimes, setLapTimes] = useState([]);
     const intervalRef = useRef<NodeJS.Timer | null>(null);
 
-
+    // Resets stopwatch to its initial state
     const handleReset = () => {
         setTimerOn(false);
         setTime(0);
         setLapTimes([]);
     };
 
+ // Effect for managing stopwatch timer
     useEffect(() => {
         if (timerOn) {
+             // Start the timer by setting an interval to increment time
             intervalRef.current = setInterval(() => {
                 setTime(time => time + 1);
             }, 10);
         } else {
+            // Stop the timer by clearing the interval
             clearInterval(intervalRef.current);
         }
-
+         // Cleanup function - clear interval when component unmounts or timerOn changes
         return () => clearInterval(intervalRef.current);
     }, [timerOn]);
 
