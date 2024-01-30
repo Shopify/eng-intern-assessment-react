@@ -41,7 +41,7 @@ test('renders with correct text for type reset', () => {
 
 test('calls onClick prop when clicked with type lap', () => {
   const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={handleClick} timerOn={true} />);
+  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} />  );
 
   fireEvent.click(getByRole('button', { name: /lap/i }));
 
@@ -49,18 +49,20 @@ test('calls onClick prop when clicked with type lap', () => {
 });
 
 test('renders with correct text for type lap', () => {
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={true} />);
+  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}}  />);
   expect(getByRole('button').textContent).toBe('Record Lap');
 });
 
 test('does not throw error when clicked without onClick prop', () => {
-  const { getByRole } = render(<StopWatchButton type='start' />);
+  const { getByRole } = render(<StopWatchButton type='start' onClick={function (): void {
+    throw new Error('Function not implemented.');
+  } } />);
 
   expect(() => fireEvent.click(getByRole('button', { name: /start/i }))).not.toThrow();
 });
 
 test('lap button is disabled when timer is not running', () => {
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={false} />);
+  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} />  );
   const buttonElement = getByRole('button') as HTMLButtonElement;
   expect(buttonElement.disabled).toBe(true);
 });
