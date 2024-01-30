@@ -50,16 +50,24 @@ export default function StopWatchButton({
     setCurrentLap((oldLap: number) => oldLap + 10);
   };
   return (
-    <div>
+    <div className="button-container">
       {isCounting ? (
-        <button onClick={stopTimer}>Stop</button>
+        <button className="stopwatch-button" onClick={stopTimer}>
+          Stop
+        </button>
       ) : (
-        <button onClick={startTimer}>Start</button>
+        <button className="stopwatch-button" onClick={startTimer}>
+          Start
+        </button>
       )}
       {isCounting ? (
-        <button onClick={addLap}>Lap</button>
+        <button className="stopwatch-button" onClick={addLap}>
+          Lap
+        </button>
       ) : (
-        <button onClick={resetTimer}>Reset</button>
+        <button className="stopwatch-button" onClick={resetTimer}>
+          Reset
+        </button>
       )}
     </div>
   );

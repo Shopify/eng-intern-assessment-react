@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import App from "./App";
-import StopWatchButton from "./StopWatchButton";
-import StopWatch from "./StopWatch";
+import App from "../App";
+import StopWatchButton from "../components/StopWatchButton";
+import StopWatch from "../components/StopWatch";
 
 describe("Rendering Stopwatch App", () => {
   test("renders stopwatch and initial state correctly", () => {

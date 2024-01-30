@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import StopWatch from "./StopWatch";
-import StopWatchButton from "./StopWatchButton";
-import Laps from "./Laps";
+import StopWatch from "./components/StopWatch";
+import StopWatchButton from "./components/StopWatchButton";
+import Laps from "./components/Laps";
+import "./App.css";
 
 export default function App() {
   const [time, setTime] = useState(0); // time in milliseconds
@@ -11,24 +12,28 @@ export default function App() {
   const [hasStartedStopwatch, setHasStartedStopwatch] = useState(false);
 
   return (
-    <div>
-      <h1>Stopwatch</h1>
+    <div className="app">
       <div>
-        <StopWatch time={time} />
-        <StopWatchButton
-          currentLap={currentLap}
-          setTime={setTime}
-          isCounting={isCounting}
-          setIsCounting={setIsCounting}
-          setLaps={setLaps}
-          setHasStartedStopwatch={setHasStartedStopwatch}
-          setCurrentLap={setCurrentLap}
-        />
-        <Laps
-          laps={laps}
-          currentLap={currentLap}
-          hasStartedStopwatch={hasStartedStopwatch}
-        ></Laps>
+        <div className="stopwatch-display">
+          <h1 className="title">Stopwatch</h1>
+          <StopWatch time={time} />
+          <StopWatchButton
+            currentLap={currentLap}
+            setTime={setTime}
+            isCounting={isCounting}
+            setIsCounting={setIsCounting}
+            setLaps={setLaps}
+            setHasStartedStopwatch={setHasStartedStopwatch}
+            setCurrentLap={setCurrentLap}
+          />
+        </div>
+        <div>
+          <Laps
+            laps={laps}
+            currentLap={currentLap}
+            hasStartedStopwatch={hasStartedStopwatch}
+          ></Laps>
+        </div>
       </div>
     </div>
   );
