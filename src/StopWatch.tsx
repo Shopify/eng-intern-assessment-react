@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import StopWatchButton from './StopWatchButton'
 
-// Function to format time in mm:ss:ms format. Includes hours if they are reached.
+// Function to format time in mm:ss:ms format, includes hours if reached
 export function formatTime(time: number): string {
     // Calculate hours, minutes, seconds, and milliseconds
     const hours = Math.floor(time / 360000);
@@ -13,29 +13,29 @@ export function formatTime(time: number): string {
     return `${hours > 0 ? `${hours.toString().padStart(2, '0')}:` : ''}${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
 }
 export default function StopWatch() {
-    // State to track the time, whether the timer is on/off, and the lap times
     const [time, setTime] = useState(0);
     const [timerOn, setTimerOn] = useState(false);
-    const [lapTimes, setLapTimes] = useState<number[]>([]);
+    const [lapTimes, setLapTimes] = useState([]);
+    const intervalRef = useRef<NodeJS.Timer | null>(null);
 
-    // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
-    const handleReset = useCallback(() => {
+
+    const handleReset = () => {
         setTimerOn(false);
         setTime(0);
         setLapTimes([]);
-    }, []);
+    };
 
-    // Every time timerOn changes, we start or stop the timer
-    // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
     useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
-
         if (timerOn) {
-            interval = setInterval(() => setTime(time => time + 1), 10)
+            intervalRef.current = setInterval(() => {
+                setTime(time => time + 1);
+            }, 10);
+        } else {
+            clearInterval(intervalRef.current);
         }
 
-        return () => { clearInterval(interval) } // Clears the interval when the component unmounts or timerOn changes
-    }, [timerOn])
+        return () => clearInterval(intervalRef.current);
+    }, [timerOn]);
 
     return (
         <div className='stopwatch'>
