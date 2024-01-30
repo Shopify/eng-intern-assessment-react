@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import StopWatchButton from './StopWatchButton';
+import './App.css';
 
 type Lap = {
     lap: number;
     time: number;
 };
 
+// function to format time
 export const formatTime = (time: number) => {
     const hours = Math.floor(time / 360000);
     const minutes = Math.floor((time % 360000) / 6000);
@@ -22,6 +24,7 @@ export default function StopWatch() {
     const [laps, setLaps] = useState<Lap[]>([]);
 
 
+    // useEffect hook to set interval for stopwatch
     useEffect(() => {
         let intervalId: NodeJS.Timeout;
         if (isRunning) {
@@ -31,22 +34,24 @@ export default function StopWatch() {
         return () => clearInterval(intervalId);
     }, [isRunning, elapsedTime]);
 
-
-
+    // function to handle start and stop button
     const handleStartStop = () => {
         setIsRunning(!isRunning);
     };
 
+    // function to handle lap button
     const handleLap = () => {
         setLaps([...laps, { lap: laps.length + 1, time: elapsedTime }]);
     };
 
+    // function to handle reset button
     const handleReset = () => {
         setIsRunning(false);
         setElapsedTime(0);
         setLaps([]);
     };
 
+    // returning stopwatch component
     return (
         <div className="stopwatch">
             <h1 className="stopwatch-time">
@@ -67,7 +72,7 @@ export default function StopWatch() {
                 disabled={isRunning}
             />
             {laps.map((lap, index) => (
-                <div key={index}>
+                <div key={index} className="lap">
                     <span>Lap {lap.lap}: {formatTime(lap.time)}</span>
                 </div>
             ))}

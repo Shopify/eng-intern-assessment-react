@@ -6,6 +6,7 @@ type StopWatchButtonProps = {
     disabled?: boolean;
 };
 
+// StopWatchButton component
 const StopWatchButton: React.FC<StopWatchButtonProps> = ({ label, onClick, disabled = false }) => {
     return (
         <button onClick={onClick} disabled={disabled}>

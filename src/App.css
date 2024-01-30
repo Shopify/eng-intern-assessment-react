@@ -1,71 +1,46 @@
-html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
-  height: -webkit-fill-available;
-}
-
-body {
-  background-color: #f1f1f1;
-  margin: 0px;
-}
-
-.stopwatch-title {
-  background-color: #303030;
-  margin: 0px;
-  color: white;
-  padding-left: 16px;
-  padding: 10px 0px 10px 16px;
-}
-
-.stopwatch-content {
-  display: flex;
-}
-
-.stopwatch-buttons {
-  display: flex;
-  flex-direction: column;
-  background-color: #ebebeb;
-  padding: 16px 12px;
-  width: 200px;
-}
-
-.stopwatch-buttons button:focus {
-  outline: none;
-  border: 2px solid #000000;
-}
-
-.stopwatch-buttons button {
-  margin: 7px 0px;
-  background-color: #fafafa;
-  border: 0px solid #fafafa;
-  text-align: left;
-  border-radius: 0.5rem;
-  padding: 7px 0px 7px 15px;
-  box-shadow: 0.5px 0.5px gray;
+/* StopWatch.css */
+.stopwatch {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .stopwatch-time {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  padding: 50px;
-  background-color: #ffffff;
-  height: fit-content;
-  border-radius: 0.75rem;
-  width: 50%;
-  text-align: -webkit-center;
-  box-shadow: 0.5px 0.5px gray;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.stopwatch-time p {
-  font-size: xxx-large;
+.stopwatch button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.stopwatch-laptimes ul {
-  list-style: none;
-  padding: 0px;
+.stopwatch button:hover {
+  background-color: #0056b3;
 }
 
-.stopwatch-laptimes li {
-  padding: 10px 0px;
-  border-bottom: 1px solid #ebebeb;
-  font-size: x-large;
+.stopwatch button:disabled {
+  background-color: #cccccc;
+  cursor: default;
+}
+
+.lap {
+  background-color: #e9e9e9;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
 }
