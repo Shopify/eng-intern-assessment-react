@@ -1,0 +1,29 @@
+body{
+  font-family: 'roboto', sans-serif;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stopwatch-display{
+  font-size: 100px;
+  font-family: 'roboto mono', monospace;
+}
+
+.button{
+  margin: 0.5em;
+  font-size: 25px;
+  width: 7rem;
+  padding: 0.5em;
+}
+
+.lap-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
