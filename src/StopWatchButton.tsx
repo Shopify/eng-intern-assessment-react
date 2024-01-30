@@ -18,7 +18,7 @@ export default function StopWatchButton({
 		<div className="stopwatch-buttons">
 			<button
 				className="stopwatch-button"
-				id="startButton"
+				id={isActive ? "stopButton" : "startButton"}
 				onClick={handleStartAndStop}
 			>
 				{isActive ? 'Stop' : 'Start'}
