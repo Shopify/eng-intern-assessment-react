@@ -1,9 +1,39 @@
-p {
+div {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: -2.5%;
+}
+
+div h1 {
+    font-size: 30px;
+}
+
+li {
+    margin: 7.5%;
+    white-space: nowrap;
+    border-bottom: 0.5px solid rgb(210, 210, 210);
+    width: fit-content;
+}
+
+ul li:last-child {
+    border: none;
+}
+
+.laps-list {
+    list-style-type: none;
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid rgb(210, 210, 210);
+    width: 50%;
+    margin-top: -5%;
+    margin-bottom: 10%;
+    padding-top: 1%;
+    padding-right: 5%;
+    padding-left: 2.5%;
+}
+
+.time-display {
     font-size: 30px;
     font-family: 'Quicksand', sans-serif;
     margin-top: -2.5%;
 } 
-
-div[role] {
-    font-family: 'Quicksand', sans-serif;
-}
