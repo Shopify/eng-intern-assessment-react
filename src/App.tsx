@@ -17,7 +17,7 @@ export default function App() {
                 </span>
                 <h1>Shopify Stopwatch</h1>
             </span>
-            <StopWatch />
+            <StopWatch/>
         </div>
     )
 }

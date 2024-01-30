@@ -56,14 +56,14 @@ export default function StopWatch() {
 
     return (
         <div className='stopwatch'>
-            <h2>{formatTime(time)}</h2>
+            <h2 data-testid="time">{formatTime(time)}</h2>
             <div className='stopwatch-buttons'>
                 <StopWatchButton label='Start' onClick={startStopwatch} />
                 <StopWatchButton label='Stop' onClick={stopStopwatch} />
                 <StopWatchButton label='Reset' onClick={resetStopwatch} />
                 <StopWatchButton label='Lap' onClick={addLap} />
             </div>
-            <span v-if='laps.length > 0' className='stopwatch-laps'>
+            <span v-if='laps.length > 0' className='stopwatch-laps' data-testid="laps">
                 {laps.map((lap, index) => (
                     <span className='stopwatch-lap' key={index}>Lap {index + 1}
                         <span>{lap}</span>
