@@ -1,6 +1,7 @@
 import React from "react";
 import { initialState, stopWatchReducer } from "./lib/stopwatch";
 import StopWatchButton from "./StopWatchButton";
+import { formatTime } from "./lib/util";
 
 export default function StopWatch() {
   // stopwatch state machine
@@ -131,15 +132,3 @@ export default function StopWatch() {
   );
 }
 // put this in a seperate file
-function formatTime(timeElapsed: number) {
-  const milis: string = Math.floor((timeElapsed / 10) % 100)
-    .toString()
-    .padStart(2, "0");
-  const seconds: string = (Math.floor(timeElapsed / 1000) % 60)
-    .toString()
-    .padStart(2, "0");
-  const mins: string = Math.floor(timeElapsed / (60 * 1000))
-    .toString()
-    .padStart(2, "0");
-  return `${mins}:${seconds}.${milis}`;
-}
