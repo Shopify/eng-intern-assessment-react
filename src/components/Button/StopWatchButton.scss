@@ -1,0 +1,17 @@
+// Removing Whitespace
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #323232;
+    background-color:#0095FF;
+    border-color:#0095FF;
+    &:hover {
+        background-color:#0065AD;
+        border-color:#0065AD;
+    }
+}
