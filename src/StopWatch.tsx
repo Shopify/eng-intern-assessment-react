@@ -52,10 +52,10 @@ export default function StopWatch() {
             <h1 className='stopwatch-title'>stopwatchify</h1>
             <div className='stopwatch-content'>
                 <div className='stopwatch-buttons'>
-                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
-                    <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
+                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)} className={'clickable-button'}></StopWatchButton>
+                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)} className={'clickable-button'}></StopWatchButton>
+                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes} className={'clickable-button'}></StopWatchButton>
+                    <StopWatchButton type={'reset'} onClick={handleReset} time={time} className={'clickable-button'}></StopWatchButton>
                 </div>
                 <div className='stopwatch-time'>
                     <p>{formatTime(time)}</p>
