@@ -91,11 +91,6 @@ export default function StopWatch() {
           label="Lap"
           condition={isRunning}
         />
-        {/* {isRunning && (
-          <button className="btn" onClick={handleLap}>
-            Lap
-          </button>
-        )} */}
       </div>
       <div>
         <h2>Lap Times</h2>
