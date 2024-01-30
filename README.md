@@ -15,7 +15,3 @@ My submission for the Shopify Frontend Engineering Internship Assessment! ⏱️
 - [x] Code is thoroughly tested
 - [x] Documented code with clear comments and explanations where necessary
 - [x] Regularly committed changes to the branch
-      
-## Testing
-
-<img width="450" height="200" src="https://github.com/jaza-k/eng-intern-assessment-react/blob/feature/stopwatch/src/assets/stopwatch-test.png"/>
