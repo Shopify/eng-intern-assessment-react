@@ -6,6 +6,8 @@ In the project directory run, ```npm install``` to install the project's depende
 
 To run the stopwatch, enter: ```npm run start```
 
+To run the project tests, enter: ```npm run test```
+
 ## Implementation Notes
 - The project makes use of Shopify's Polaris design system for components and styling.
 - The two buttons (Start/Stop, Reset/Lap) toggle between states with much of the state being handled in the parent component StopWatch.
