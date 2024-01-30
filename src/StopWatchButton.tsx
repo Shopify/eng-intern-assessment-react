@@ -1,54 +1,66 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-// Maximum number of laps that can be recorded
-const maxLaps = 25;
-
-// Define the props for the StopWatchButton component
-type StopWatchButtonProps = {
-    type: 'start' | 'stop' | 'lap' | 'reset';
-    onClick?: () => void;
-    timerOn?: boolean;
-    time?: number;
-    lapTimes?: number[];
+// Defines the prop types
+type Props = {
+    //Function for setting time in milliseconds
+    setTimeInMilliseconds : Function;
+    //Function for lap times
+    setLapTimes: React.Dispatch<React.SetStateAction<number[]>>;
+    timeInMilliseconds: number;
 };
-  
-  export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes }: StopWatchButtonProps) {
-    // Determine the button text based on the type and add corresponding tabIndex
-    let buttonText, tabIndex;
-    switch(type) {
-        case 'start':
-            buttonText = 'Start';
-            tabIndex = 1;
-            break;
-        case 'stop':
-            buttonText = 'Stop';
-            tabIndex = 2;
-            break;
-        case 'lap':
-            buttonText = 'Record Lap';
-            tabIndex = 3;
-            break;
-        case 'reset':
-            buttonText = 'Reset';
-            tabIndex = 4;
-            break;
-        default: 
-        buttonText = '';
-        tabIndex = 0;
+
+export default function StopWatchButton(props:Props) {
+    
+    //Destructure the props
+    const {setTimeInMilliseconds, timeInMilliseconds} = props;
+    //Defining variable, ID of the interval
+    const [intervalId, setIntervalId] = useState<number>(0);
+    //Defining if the watch is running or not
+    const [isRunning, setIsRunning] = useState<boolean>(false);
+
+    //Play button function
+    const playButton = () => {
+        //if stopwatch is running, button will not work
+        if (isRunning) return;
+
+        setIsRunning(true);
+
+        //Creates an interval to update the clock every 10 milliseconds
+        const interval:any = setInterval(() => {
+            setTimeInMilliseconds((previousState:number) => previousState + 10);
+        }, 10);
+
+        setIntervalId(interval);
     }
-    // Determine whether the reset or lap buttons should be disabled
-    const isLapDisabled = !timerOn || (lapTimes && lapTimes.length === 25);
-    const isResetDisabled = time === 0;
+
+    //Defines the stop button
+    const stopButton = () => {
+        // Clear interval and set running to false 
+        clearInterval(intervalId);
+        setIsRunning(false);
+    }
+
+    //Defines the lap button
+    const lapButton = () => {
+        //Add current time at lap to lap time list 
+        props.setLapTimes(prevLapTimes => [...prevLapTimes, timeInMilliseconds]);
+    }
+
+    //Defines the reset button
+    const resetButton = () => {
+        clearInterval(intervalId); //clears interval
+        setTimeInMilliseconds(0); //resets clock to 0
+        props.setLapTimes([]); //clears the lap times
+        setIsRunning(false); // set watch running to false
+    }
+
     return(
-        <button 
-            onClick={onClick} 
-            aria-label={type}
-            tabIndex={tabIndex}
-            // Disable the lap button when the timer is stopped or when the max number of lap times is reached. Disable reset button when the timer is already reset
-            disabled={(type === 'lap' && isLapDisabled) || (type === 'reset' && isResetDisabled)}
-            >
-            {/* Display the button text, otherwise display the max laps reached message when max number is reached */}
-            {lapTimes && lapTimes.length === maxLaps && timerOn && type === 'lap' ? "Maximum laps reached" : buttonText}
-        </button>
+        //renders each button on the screen
+        <div className = "button-container">
+            <button onClick={playButton}>Play</button>
+            <button onClick={stopButton}>Stop</button>
+            <button onClick={lapButton}>Lap</button>
+            <button onClick={resetButton}>Reset</button>
+        </div>
     )
 }

@@ -1,77 +1,65 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import StopWatchButton from './StopWatchButton'
+import React, { useState, useEffect } from 'react'
+import StopWatchButton from './StopWatchButton';
 
-// Function to format the time. This is necessary since both the time and lap times need to be formatted
-export function formatTime(time: number): string {
-    // Format the time in mm:ss:ms. Display hours only if reached
-    const hours = Math.floor(time / 360000);
-    const minutes = Math.floor((time % 360000) / 6000);
-    const seconds = Math.floor((time % 6000) / 100);
-    const milliseconds = time % 100;
-    // Format the minutes, seconds, and milliseconds to be two digits
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = seconds.toString().padStart(2, '0');
-    const formattedMilliseconds = milliseconds.toString().padStart(2, '0');
-    // If stopwatch reaches at least an hour, display the hours
-    if (hours > 0) {
-        const formattedHours = hours.toString().padStart(2, '0');
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    }
-    // Combine the values into a string
-    const formattedTime = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    return formattedTime;
+ //formats the unit of times into proper double digits 
+export function formatTimeUnit(unit: number): number | string {
+    return unit < 10 ? `0${unit}` : unit;
 }
 
+// Function to calculate the time in hours, minutes, seconds and milliseconds
+export function timeCalculation(timeInMilliseconds: number): Array<number|string> {
+    let hours: number = Math.floor(timeInMilliseconds / (1000 * 60 * 60));
+    timeInMilliseconds -= hours * 1000 * 60 * 60;
+
+    let minutes: number = Math.floor(timeInMilliseconds / (1000 * 60));
+    timeInMilliseconds -= minutes * 1000 * 60;
+
+    let seconds: number = Math.floor(timeInMilliseconds / 1000);
+    timeInMilliseconds -= seconds * 1000;
+
+    let milliseconds: number = Math.floor(timeInMilliseconds / 10);
+
+    //returns the calculated time in an array
+    return [formatTimeUnit(hours), formatTimeUnit(minutes), formatTimeUnit(seconds), formatTimeUnit(milliseconds)];
+}
+
+//Function to define the stopwatch components and Renders them
 export default function StopWatch() {
-    // State to track the time, whether the timer is on/off, and the lap times
-    const [time, setTime] = useState(0);
-    const [timerOn, setTimerOn] = useState(false);
-    const [lapTimes, setLapTimes] = useState<number[]>([]);
+    //Defining the variables 
+    const [timeInMilliseconds, setTimeInMilliseconds] = useState<number>(0);
+    const [timerArray, setTimerArray] = useState<Array<number|string>>([]);
+    const [lapTimes, setLapTimes] = useState<number[]>([]); 
+    
+    // The use effect hook to update the timer array as the milliseconds are updated
+    useEffect(() =>{
+        let timerArray: Array<number|string> = timeCalculation(timeInMilliseconds);
+        setTimerArray(timerArray);
+    }, [timeInMilliseconds]);
 
-    // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
-    const handleReset = useCallback(() => {
-        setTimerOn(false); 
-        setTime(0); 
-        setLapTimes([]);
-      }, []);
-
-    // Every time timerOn changes, we start or stop the timer
-    // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
-    useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
-
-        if (timerOn) {
-            interval = setInterval(() => setTime(time => time + 1), 10)
-        }
-
-        return () => {clearInterval(interval)} // Clears the interval when the component unmounts or timerOn changes
-    }, [timerOn])
-
+    //Renders the stop watch and buttons for the functionality
+    //Renders the lap feature 
     return(
-        <div className='stopwatch'>
-            <h1 className='stopwatch-title'>StopWatch</h1>
-            <div className='stopwatch-content'>
-                <div className='stopwatch-buttons'>
-                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
-                    <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
-                </div>
-                <div className='stopwatch-time'>
-                    <p>{formatTime(time)}</p>
-                    {/* Display the numbered lap times */}
-                    {lapTimes.length > 0 && (
-                        <div className='stopwatch-laptimes'>
-                            <p>Lap times</p>
-                            <ul>
-                                {lapTimes.map((lapTime, index) => {
-                                    return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>
-                                })}
-                            </ul>
-                        </div>
-                    )}
-                </div>
+        <main>
+            <h1 className="title">Stopwatch</h1>
+            <div className="watch-container">
+                {timerArray.map((time, index) => (
+                    <React.Fragment key={index}>
+                        <p className="timer">{time}</p>
+                        {index < timerArray.length - 1 && <span>:</span>}
+                    </React.Fragment>
+                ))}
             </div>
-        </div>
+            <StopWatchButton setTimeInMilliseconds={setTimeInMilliseconds} setLapTimes={setLapTimes} timeInMilliseconds={timeInMilliseconds}/>
+
+            <div className="laptimes-container"> 
+                {lapTimes.map((lapTime, index) => (
+                    <div key={index} className="laptime">
+                        <span>Lap {index + 1}:</span>
+                        <span>{timeCalculation(lapTime).join(":")}</span>
+                    </div> 
+                ))}
+            </div>
+        </main>
     )
 }
+
