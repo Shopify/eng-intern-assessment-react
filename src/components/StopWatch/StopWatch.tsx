@@ -67,15 +67,15 @@ export default function StopWatch() {
 	// Starts the timer and retrieves start time in ms
 	function startRunning() {
 		setIsRunning(true);
-		const getStartTime: number | DateConstructor = Date.now();
-		setStartTime(getStartTime);
+		// const getStartTime: number | DateConstructor = Date.now();
+		setStartTime(Date.now());
 	}
 
 	// Stops timer, records stop time, and adds the duration of interval to laps array
 	function stopRunning() {
 		setIsRunning(false);
-		const stopTime: number | DateConstructor = Date.now();
-		const lapTime: number | DateConstructor = stopTime - startTime;
+		// const stopTime: number | DateConstructor = Date.now();
+		const lapTime = Date.now() - startTime;
 		setLaps([...laps, lapTime]);
 	}
 
@@ -87,6 +87,7 @@ export default function StopWatch() {
 	// Resets timer
 	function resetTime() {
 		setTime(0);
+		setLaps([]);
 	}
 
 	return (
@@ -95,7 +96,7 @@ export default function StopWatch() {
 				<div className="display__time">{displayTime.hours}:</div>
 				<div className="display__time">{displayTime.minutes}:</div>
 				<div className="display__time">{displayTime.seconds}:</div>
-				<div className="display__time">
+				<div className="display__time ms">
 					{displayTime.milliseconds}
 				</div>
 			</div>

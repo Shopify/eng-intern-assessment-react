@@ -16,33 +16,6 @@
 	}
 }
 
-.button {
-	background-color: #1982c4;
-	color: #ebebd3;
-	border-radius: 4px;
-	width: 7.5rem;
-	height: 3.5rem;
-	font-size: large;
-	font-weight: bold;
-	margin: 2rem auto;
-
-	&__container {
-		display: flex;
-		justify-content: space-evenly;
-		width: 40vw;
-	}
-
-	&--start {
-		background-color: #00bdba;
-		color: #3c3c3b;
-	}
-
-	&--stop {
-		background-color: #ef476f;
-		color: #3c3c3b;
-	}
-}
-
 .laps {
 	color: #00bdba;
 
