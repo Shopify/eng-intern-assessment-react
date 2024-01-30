@@ -2,6 +2,7 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import StopWatchButton from "./StopWatchButton";
 import React from "react";
 
+
 //tests the StopWatchButton functions
 describe("testing StopWatchButton functionality", () => {
   test("renders Start button initially", () => {
@@ -92,4 +93,22 @@ describe("testing StopWatchButton functionality", () => {
     expect(setTimeMock).toHaveBeenCalledWith(0);
     expect(setLapsMock).toHaveBeenCalledWith([]);
   });
+
+  test('Stopwatch starts  correctly', () => {
+    const { getByText } = render(<StopWatchButton time={0} setTime={() => {}}  laps={[]} setLaps={() => {}} />);
+    const startButton = getByText('Start');
+      fireEvent.click(startButton);
+    expect(startButton).toBeDefined();
+  
+  });
+  
+  test('Stopwatch resets correctly', () => {
+    const { getByText } = render(<StopWatchButton time={10} setTime={() => {}}  laps={[]} setLaps={() => {}} />);
+    const resetButton = getByText('Reset');
+
+    fireEvent.click(resetButton);
+    expect(getByText('Start')).toBeDefined();
+  });
+  
+ 
 });
