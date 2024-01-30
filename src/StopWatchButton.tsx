@@ -20,7 +20,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({
     setLaps([]);
   };
   return (
-    <div>
+    <div className="buttonStyling">
       <button onClick={() => setToggle(true)}>Start</button>
       <button onClick={() => setToggle(false)}>Stop</button>
       <button onClick={handleReset}>Reset</button>

@@ -17,8 +17,7 @@ const displayTime = (timer: number): string =>
 const StopWatch: React.FC<StopWatchProps> = ({ timer, laps }) => {
   return (
     <div>
-      <div>{displayTime(timer)}</div>
-
+      <div className="timer">{displayTime(timer)}</div>
       <ul>
         {laps?.map((lap, index) => (
           <li key={`lap-${lap}-${index}`}>

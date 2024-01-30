@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { useState, useEffect } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
@@ -27,17 +28,15 @@ export default function App() {
     };
   }, [toggle]);
 
-  console.log(toggle);
   return (
-    <div>
-      <h1>Stopwatch</h1>
-      <StopWatch timer={timer} laps={laps} />
+    <div className="app">
       <StopWatchButton
         setToggle={setToggle}
         setTimer={setTimer}
         setLaps={setLaps}
         timer={timer}
       />
+      <StopWatch timer={timer} laps={laps} />
     </div>
   );
 }
