@@ -26,7 +26,7 @@ describe('StopWatch', () => {
     });
   });
   describe('Timer Functionality', () => {
-    it('works to time 3 seconds', async () => {
+    it('works to time 30 milliseconds', async () => {
       const { getByText, getByTestId } = render(<StopWatch />);
       act(async () => {
         const startStopButton = getByText('Start');
