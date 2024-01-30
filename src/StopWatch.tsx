@@ -8,8 +8,7 @@ import StopWatchButton from './StopWatchButton';
 
 
 export default function StopWatch() {
-    // Time is in seconds
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState(0); // Time is in 0.1 * seconds
     const [active, setActive] = useState(false);
     const [laps, setLaps] = useState([]);
     const [showLaps, setShowLaps] = useState(false);
@@ -18,7 +17,7 @@ export default function StopWatch() {
     useEffect(()=>{
         if (active) {         
             let intervalChange = setInterval(() =>{
-            setTime((previousTime) => previousTime+1)
+            setTime((previousTime) => previousTime+1);
         }, 100);
             return () => clearInterval(intervalChange);
         } 
@@ -40,13 +39,13 @@ export default function StopWatch() {
         const milliseconds = (time%10);
         const seconds = Math.floor((time/10) % 60);
         const minutes = Math.floor((time/600));
-        return {minutes, seconds, milliseconds}
+        return {minutes, seconds, milliseconds};
     }
 
-    
+    // Adds current time to all previous laps
     function addLap(){
-        setLaps([...laps, currentTime])
-        setShowLaps(true)
+        setLaps([...laps, currentTime]);
+        setShowLaps(true);
     }
 
     // Reset all states
@@ -59,17 +58,20 @@ export default function StopWatch() {
 
     // Gets time in minutes, seconds, milliseconds (first digit)
     const currentTime = parseTime(time)  
+
     return(
         <div>
-            <h1 style={{textAlign:"center",}}>
-               {padLeft(currentTime.minutes)}:{padLeft(currentTime.seconds)}
-               <span>.{currentTime.milliseconds} ms</span>
-            </h1>
+            <h1>Stopwatch</h1>
 
-            <div style={{textAlign:"center"}}>
+            <h2 className='timeDisplay'>
+               {padLeft(currentTime.minutes)}:{padLeft(currentTime.seconds)}.{currentTime.milliseconds}
+               <span className='smallText'>ms</span>
+            </h2>
+
+            <div className='buttonContainer'>
                 <StopWatchButton label="Start" onPress={() => setActive(true)}/>      
                 <StopWatchButton label="Stop" onPress={() => setActive(false)}/>            
-                <StopWatchButton label="Laps" onPress={()=> addLap()}/>
+                <StopWatchButton label="Lap" onPress={()=> addLap()}/>
                 <StopWatchButton  label="Reset" onPress={() => resetStopWatch()}/> 
             </div>
 
@@ -77,17 +79,14 @@ export default function StopWatch() {
 
             {showLaps? 
             <div>
-                <h2 style={{textAlign:"center",}}>Laps:</h2>
-                <h3 style={{textAlign:"center",}}>
-
+                <h3>Laps</h3>
                     {laps.map(function(data) {
                     return (
-                        <div>
+                        <div className='lapsDisplay'>
                             {padLeft(data.minutes)}:{padLeft(data.seconds)}
-                            <span>.{data.milliseconds} ms</span>
+                            <span>.{data.milliseconds}</span>
                         </div>
                     )})}
-                </h3>
             </div>
             :null}
 

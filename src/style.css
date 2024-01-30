@@ -1,0 +1,36 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+button{
+    font-weight: bold;
+    padding: 10px;
+    margin: 5px;
+    background-color: #9cbb5c;
+    border-radius: 10px;
+    border: 0;
+    color: white;
+}
+
+button:hover{
+    background-color: #809a4b;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.smallText{
+    font-size: small;
+}
+
+.timeDisplay{
+    font-size: 72px;
+}
+
+.lapsDisplay{
+    font-size: 18px;
+    padding: 5px;
+}
