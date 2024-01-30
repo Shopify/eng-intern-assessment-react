@@ -1,5 +1,6 @@
 import React from 'react'
 
+// this function returns the corresponding stop watch button and function
 export default function StopWatchButton({type, onClick, disable, isDark}: Readonly<StopWatchButtonProps>) {
     switch(type){
         case 'start':
