@@ -50,15 +50,23 @@ export default function StopWatch() {
     setLaps((laps) => [lap, ...laps]);
   };
 
+  // Add a lap based on current time
+  const clearLap = () => {
+    setLaps([]);
+  };
+
   return (
     <div>
-      <p>{formatTime(hours, minutes, seconds, milliseconds)}</p>
+      <p data-testid='timer'>
+        {formatTime(hours, minutes, seconds, milliseconds)}
+      </p>
       <StopWatchButton
         label={isRunning ? 'Stop' : 'Start'}
         handleClick={startAndStop}
       />
       <StopWatchButton label='Reset' handleClick={reset} />
       <StopWatchButton label='Lap' handleClick={lap} />
+      <StopWatchButton label='Clear Laps' handleClick={clearLap} />
       <LapList laps={laps} />
     </div>
   );
