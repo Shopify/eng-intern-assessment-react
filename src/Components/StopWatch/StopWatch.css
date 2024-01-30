@@ -29,15 +29,6 @@
     }
 }
 
-@keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
 
 .stopwatch-container{
     display: flex;
@@ -45,28 +36,58 @@
     align-items: center;
     justify-content: center;
 
-    h1{
-        font-size: 5rem;
-        font-weight: 600;
-        text-align: center;
-        margin: 0;
-        padding: 0;
+    .card{
+        /* light box shadow */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        padding: 10px;
+        border-radius: 10px;
     }
 
-    .buttons-container{
-        margin: 10px;
+    .time-button-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        width: 96%;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        
+        .buttons-container{
+            margin: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        h1{
+            font-size: 5rem;
+            font-weight: 600;
+            text-align: center;
+        }
     }
     
-    .time-container, .lap-container tr{
+    .time-container{
         animation: flipInX 0.5s ease-in-out, fadeIn 0.5s ease-in-out;
     }
     
     .buttons-container Button{
+        animation: flipInY 0.5s ease-in-out;
+    }
+
+    .lap-container {
+        width: 96%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        animation: fadeIn 0.5s ease-in-out;
+        overflow-y: scroll;
+        max-height: 60vh;
+    }
+
+    .lap-container th,td{
         animation: flipInY 0.5s ease-in-out;
     }
 }

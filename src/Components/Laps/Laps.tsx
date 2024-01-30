@@ -1,16 +1,27 @@
 import React from 'react'
-import { Time } from '../../Models/timeModel'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import './Laps.css'
+
+/*
+  Define the props for the Laps component
+  lapTimes: an array of strings representing the lap times
+  onDelete: a function that takes an index and deletes the lap time at that index
+*/
 
 interface LapsProps {
     lapTimes: string[];
     onDelete: (index: number) => void;
   }
-  
+
+
+/*
+  Lap component that displays the lap times in a table
+*/
+
 export default function Laps({lapTimes, onDelete}: LapsProps) {
     return(
-        <div data-testid="lap-list">
+        <div className="table-container" data-testid="lap-list">
           <Table bordered hover>
           <thead>
             <tr>

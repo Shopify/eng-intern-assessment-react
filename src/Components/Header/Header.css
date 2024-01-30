@@ -1,3 +1,17 @@
-img{
-    margin-right: 1vw;
+.bar{
+    display: flex;
+    flex-direction: row;
+    img{
+        margin-right: 8px;
+        padding-bottom: 2px;
+    }
+    
+    .header-text{
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        margin: 0;
+        padding: 0;
+    }
 }

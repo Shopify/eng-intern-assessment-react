@@ -1,8 +1,13 @@
-import React, { useState, useRef, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import StopWatchButton from '../StopWatchButton/StopWatchButton'
 import Laps from '../Laps/Laps'
 import { Time } from '../../Models/timeModel'
 import './StopWatch.css'
+
+/*
+    StopWatch component that displays the stopwatch
+    This component uses the StopWatchButton and Laps components
+*/
 
 export default function StopWatch() {
     const [time, setTime] = useState<Time>({
@@ -73,27 +78,28 @@ export default function StopWatch() {
 
     return(
         <div className="stopwatch-container">
-            <div className="time-container">
-                <h1 data-testid="stopwatch-time">
-                    {(time.m >= 10) ? time.m : "0" + time.m}: 
-                    {(time.s >= 10) ? time.s : "0" + time.s}: 
-                    {(time.ms >= 10) ? time.ms : "0" + time.ms}
-                </h1>
-            </div>
-
-            <div className="buttons-container">
-                <StopWatchButton variant="primary" onClick={start} label="Start" />
-                <StopWatchButton variant="danger" onClick={stop} label="Stop" />
-                <StopWatchButton variant="secondary" onClick={reset} label="Reset" />
-                <StopWatchButton variant="secondary" onClick={lap} label="Lap" />
-            </div>
-
-            {lapTimes.length > 0 && (
-                <div className="lap-container">
-                    <Laps lapTimes={lapTimes} onDelete={deleteLap} />
+            <div className='time-button-container card'>
+                <div className="time-container">
+                    <h1 data-testid="stopwatch-time">
+                        {(time.m >= 10) ? time.m : "0" + time.m}: 
+                        {(time.s >= 10) ? time.s : "0" + time.s}: 
+                        {(time.ms >= 10) ? time.ms : "0" + time.ms}
+                    </h1>
                 </div>
-            )}
 
+                <div className="buttons-container">
+                    <StopWatchButton variant="primary" onClick={start} label="Start" />
+                    <StopWatchButton variant="danger" onClick={stop} label="Stop" />
+                    <StopWatchButton variant="secondary" onClick={reset} label="Reset" />
+                    <StopWatchButton variant="secondary" onClick={lap} label="Lap" />
+                </div>
+            </div>
+
+                {lapTimes.length > 0 && (
+                    <div className="lap-container card">
+                        <Laps lapTimes={lapTimes} onDelete={deleteLap} />
+                    </div>
+                )}
         </div>
     )
 }

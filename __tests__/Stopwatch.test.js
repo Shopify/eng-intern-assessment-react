@@ -3,8 +3,11 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import StopWatch from '../src/Components/StopWatch/StopWatch';
 
-// It is important to remember the StopWatchButton and Laps components are rendered within the StopWatch component
-// Thus file tests the functionality of everything within the StopWatch component, including the buttons and lap list
+/*
+    This file tests the essential functionality of the StopWatch component
+    It is important to remember the StopWatchButton and Laps components are rendered within the StopWatch component
+    Thus file tests the functionality of everything within the StopWatch component, including the buttons and lap list
+*/
 
 describe('Stopwatch', () => {
     test("renders initial state with 00:00:00", () => {

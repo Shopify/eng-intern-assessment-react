@@ -1,0 +1,19 @@
+.table-container{
+    margin: 0 auto;
+    width: 98%;
+
+    th,td{
+        text-align: center;
+        color: #333;
+    }
+
+    th{
+        font-size: 1.4rem;
+    }
+
+    td{
+        font-size: 1.2rem;
+    }
+
+    
+}

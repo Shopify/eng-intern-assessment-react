@@ -1,25 +1,25 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
 import './Header.css'
+
+/*
+    Header component that displays the header
+*/
 
 export default function Header() {
     return(
         <>
             <Navbar bg="dark" data-bs-theme="dark">
-                <Container>
-                <Navbar.Brand>
+                <Navbar.Brand className="m-2 bar">
                     <img
-                    src="https://www.svgrepo.com/show/303503/shopify-logo.svg"
-                    width="30"
-                    height="30"
-                    className="align-top"
+                        src="https://www.svgrepo.com/show/303503/shopify-logo.svg"
+                        width="33"
+                        height="33"
                     />
-                    <h4 className="d-inline-block">
+                    <h4 className="header-text">
                         Taseen's StopWatch
                     </h4>
                 </Navbar.Brand>
-                </Container>
             </Navbar>
         </>
     )
