@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Badge,
-  BlockStack,
-  Divider,
-  InlineStack,
-  Text,
-} from "@shopify/polaris";
+import { Badge, Divider, InlineStack, Text } from "@shopify/polaris";
 
 interface LapProps {
   lapNumber: number;
