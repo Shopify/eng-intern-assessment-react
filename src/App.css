@@ -1,71 +1,137 @@
-html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
-  height: -webkit-fill-available;
-}
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
 
+#root {
+  --main: #272a32;
+  --alt: #566675;
+  --alt-dark: #20232b;
+  --accent: #82fbb4;
+  --width: 320px;
+  --offwhite: #e8f6ef;
+  --default-font: "Space Mono", monospace;
+}
 body {
-  background-color: #f1f1f1;
   margin: 0px;
 }
 
-.stopwatch-title {
-  background-color: #303030;
-  margin: 0px;
-  color: white;
-  padding-left: 16px;
-  padding: 10px 0px 10px 16px;
+.stopwatch {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--main);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .stopwatch-content {
-  display: flex;
-}
-
-.stopwatch-buttons {
+  font-family: var(--default-font);
   display: flex;
   flex-direction: column;
-  background-color: #ebebeb;
-  padding: 16px 12px;
-  width: 200px;
+  align-items: center;
+  width: 100vw;
+  font-size: 12vh;
 }
 
-.stopwatch-buttons button:focus {
-  outline: none;
-  border: 2px solid #000000;
+#hour {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: var(--width);
+  color: var(--alt);
 }
 
-.stopwatch-buttons button {
-  margin: 7px 0px;
-  background-color: #fafafa;
-  border: 0px solid #fafafa;
-  text-align: left;
-  border-radius: 0.5rem;
-  padding: 7px 0px 7px 15px;
-  box-shadow: 0.5px 0.5px gray;
+#minute {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--accent);
+  width: var(--width);
 }
 
-.stopwatch-time {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  padding: 50px;
-  background-color: #ffffff;
-  height: fit-content;
-  border-radius: 0.75rem;
-  width: 50%;
-  text-align: -webkit-center;
-  box-shadow: 0.5px 0.5px gray;
+#second {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: var(--width);
+  color: var(--offwhite);
 }
 
-.stopwatch-time p {
-  font-size: xxx-large;
+#milli {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: var(--width);
+  color: var(--alt);
 }
 
-.stopwatch-laptimes ul {
-  list-style: none;
-  padding: 0px;
+.stopwatch-unit {
+  font-size: 2vh;
 }
 
-.stopwatch-laptimes li {
-  padding: 10px 0px;
-  border-bottom: 1px solid #ebebeb;
-  font-size: x-large;
+.stopwatch-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0px 16px 0px;
+  width: var(--width);
+}
+
+.stopwatch-controls button {
+  font-size: 1.5vh;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--default-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--alt-dark);
+  color: var(--alt);
+  padding: 8px 6px;
+  width: 100px;
+}
+
+.stopwatch-controls button:hover {
+  color: var(--offwhite);
+}
+
+.laps {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.laps::-webkit-scrollbar {
+  background: var(--alt-dark);
+  width: 6px;
+}
+
+.laps::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: var(--alt);
+}
+
+.laps::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: var(--accent);
+}
+
+.laps-element {
+  font-size: 1.5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--alt-dark);
+  color: var(--alt);
+  font-family: var(--default-font);
+  padding: 8px;
+  margin: 4px;
+  width: var(--width);
 }
