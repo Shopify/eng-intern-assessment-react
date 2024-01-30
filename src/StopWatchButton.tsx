@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Maximum number of laps that can be recorded
+const maxLaps = 25;
+
 // Define the props for the StopWatchButton component
 type StopWatchButtonProps = {
     type: 'start' | 'stop' | 'lap' | 'reset';
@@ -34,7 +37,7 @@ type StopWatchButtonProps = {
         tabIndex = 0;
     }
     // Determine whether the reset or lap buttons should be disabled
-    const isLapDisabled = !timerOn;
+    const isLapDisabled = !timerOn || (lapTimes && lapTimes.length === 25);
     const isResetDisabled = time === 0;
     return(
         <button 
@@ -42,7 +45,7 @@ type StopWatchButtonProps = {
             aria-label={type}
             tabIndex={tabIndex}
             // Disable the lap button when the timer is stopped or when the max number of lap times is reached. Disable reset button when the timer is already reset
-            disabled={(type === 'lap' && isLapDisabled)}
+            disabled={(type === 'lap' && isLapDisabled) || (type === 'reset' && isResetDisabled)}
             >
             {/* Display the button text, otherwise display the max laps reached message when max number is reached */}
             {lapTimes && lapTimes.length === maxLaps && timerOn && type === 'lap' ? "Maximum laps reached" : buttonText}
