@@ -4,12 +4,28 @@ import '../styles/StopWatch.css';
 import StopWatchButton from './StopWatchButton';
 
 const StopWatch: React.FC = () => {
+    /*
+     *
+     * @description States for the StopWatch component
+     * 
+     * @state startTime: number | null
+     * @state elapsedTime: number
+     * @state isRunning: boolean
+     * @state laps: number[]
+     * @state lapsEndRef: React.RefObject<HTMLDivElement>
+     *
+     */
     const [startTime, setStartTime] = useState<number | null>(null);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const [isRunning, setRunning] = useState<boolean>(false);
     const [laps, setLaps] = useState<number[]>([]);
     const lapsEndRef = useRef(null);
 
+    /*
+     *
+     * @description Effect to update the elapsed time of the StopWatch component
+     *
+     */
     useEffect(() => {
         let frameRequest: number;
     
@@ -31,16 +47,32 @@ const StopWatch: React.FC = () => {
         };
     }, [isRunning, startTime]);
 
+    /*
+     *
+     * @description Effect to scroll to the bottom of the laps list
+     *
+     */
     const scrollToBottom = () => {
         lapsEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    /*
+     *
+     * @description Effect to scroll to the bottom of the laps list when a new lap is added
+     *
+     */
     useEffect(() => {
         if (laps.length > 0) {
             scrollToBottom();
         }
     }, [laps]); 
 
+    
+    /*
+     *
+     * @description Handler for the Start/Stop button
+     *
+     */
     const clickStartStop = () => {
         if (isRunning) {
             setRunning(false);
@@ -51,12 +83,22 @@ const StopWatch: React.FC = () => {
         }
     };
 
+    /*
+     *
+     * @description Handler for the Lap button
+     *
+     */
     const clickLap = () => {
         if (isRunning) {
             setLaps(prevLaps => [...prevLaps, elapsedTime]);
         }
     };
 
+    /*
+     *
+     * @description Handler for the Reset button
+     *
+     */
     const clickReset = () => {
         setRunning(false);
         setElapsedTime(0);
@@ -64,6 +106,11 @@ const StopWatch: React.FC = () => {
         setStartTime(null);
     };
 
+    /*
+     *
+     * @description Helper to format the time
+     *
+     */
     const formatTime = (time: number) => {
         const centisecs = Math.floor((time % 1000) / 10); 
         const secs = (Math.floor(time / 1000) % 60);
