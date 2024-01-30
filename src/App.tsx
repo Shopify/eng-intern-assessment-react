@@ -51,13 +51,13 @@ export default function App() {
                 <div className="stopwatchContent">
                     <StopWatch elapsedTime={elapsedTime} laps={0}/>
                     <div className="buttons">
-                        <StopWatchButton onClick={toggleRunning} color="#b8edb4">
+                        <StopWatchButton onClick={toggleRunning}>
                             {isRunning ? 'Stop' : 'Start'}
                         </StopWatchButton>
-                        <StopWatchButton onClick={resetStopwatch} color="#ebb4b0">
+                        <StopWatchButton onClick={resetStopwatch}>
                             Reset
                         </StopWatchButton>
-                        <StopWatchButton onClick={addLap} color="#ebb4b0">
+                        <StopWatchButton onClick={addLap}>
                             Lap
                         </StopWatchButton>
                     </div>

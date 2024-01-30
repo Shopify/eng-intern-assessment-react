@@ -9,17 +9,17 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: #000000bb;
-    border: solid 0.1rem #00000033;
+    border: solid 0.1rem var(--border);
     transition: background-color 0.1s;
 }
 
 .stopwatchButton:hover {
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: #0000000c;
 }
 
 .stopwatchButton:active {
-    background-color: #e6e6e6;
+    background-color: #00000018;
 }
 
 .stopwatchButton:focus-visible {

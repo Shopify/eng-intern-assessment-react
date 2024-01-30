@@ -3,18 +3,12 @@ import './styles.css'
 
 type StopWatchButtonProps = {
     onClick: () => void;
-    color?: string;
     children?: ReactNode;
 };
 
-export default function StopWatchButton({ onClick, color, children }: StopWatchButtonProps) {
-    const colorStyles = useMemo((): CSSProperties => {
-        return {
-            // backgroundColor: color,
-        }
-    }, [color])
+export default function StopWatchButton({ onClick, children }: StopWatchButtonProps) {
     return (
-        <button className="stopwatchButton" onClick={onClick} style={colorStyles}>
+        <button className="stopwatchButton" onClick={onClick}>
             {children}
         </button>
     );
@@ -22,5 +16,4 @@ export default function StopWatchButton({ onClick, color, children }: StopWatchB
 
 StopWatchButton.defaultProps = {
     children: [],
-    color: '#999999',
 };
