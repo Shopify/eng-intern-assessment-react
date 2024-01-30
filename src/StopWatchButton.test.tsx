@@ -88,4 +88,15 @@ describe('StopWatchButton', () => {
     render(<StopWatchButton type='lap' timerOn={true} lapTimes={lapTimes} />);
     expect(screen.getByText('Maximum laps reached')).toBeInTheDocument();
   });
+
+  // Test for flashing effect
+  test('lap button shows flashing effect when clicked', async () => {
+    const handleClick = jest.fn();
+    render(<StopWatchButton type="lap" onClick={handleClick} timerOn={true} lapTimes={[1, 2]} />);
+    fireEvent.click(screen.getByText('Record Lap'));
+    
+    expect(screen.getByText('Record Lap')).toHaveStyle({ borderColor: 'blue' });
+
+});
+
 });
