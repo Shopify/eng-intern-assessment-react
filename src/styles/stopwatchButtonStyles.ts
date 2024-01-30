@@ -1,14 +1,14 @@
 const stopwatchButtonStyles = {
     startStopButtonStyle: (theme: any) => ({ 
         width: {
-            xs: '40px',
+            xs: '50px',
             sm: '50px', 
             md: '50px', 
             lg: '60px', 
             xl: '70px' 
         },
         height: {
-            xs: '40px', 
+            xs: '50px', 
             sm: '50px', 
             md: '50px', 
             lg: '60px', 
@@ -23,14 +23,14 @@ const stopwatchButtonStyles = {
     }),
     resetLapButtonStyle: {
         width: {
-            xs: '40px', 
+            xs: '50px', 
             sm: '50px',
             md: '50px', 
             lg: '60px', 
             xl: '70px' 
         },
         height: {
-            xs: '40px', 
+            xs: '50px', 
             sm: '50px', 
             md: '50px', 
             lg: '60px', 

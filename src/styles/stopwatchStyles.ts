@@ -22,10 +22,13 @@ const stopwatchStyles = {
     alignItems: "center",
     justifyContent: "space-evenly",
     margin: "20px auto",
+    [theme.breakpoints.down("md")]: {
+      width: "80%",
+    },
   }),
   timeDisplay: {
     fontSize: {
-        xs: "3rem", 
+        xs: "4rem", 
         sm: "4.5rem", 
         md: "5.5rem", 
         lg: "6.5rem", 
@@ -45,6 +48,7 @@ const stopwatchStyles = {
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
+    paddingTop: "10px",
     borderTop: theme.palette.mode === "light" ? "2px solid #308023" : "2px solid #53D93D",
     width: "35%",
     [theme.breakpoints.down("md")]: {
