@@ -36,7 +36,7 @@ export default function StopWatch() {
 
       <div className="lap-times-container">
         <ul>
-        <h3>Lap Times</h3>
+          <h3>Lap Times</h3>
           {laps.map((lap, index) => (
             <li key={index}>
               {`Lap ${index + 1}:` + " " + timeFormatter(lap)}
