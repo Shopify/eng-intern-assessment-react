@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import StopWatch from './StopWatch';
 
-import './styles/index.css';
+import './styles/App.css';
 
 export default function App() {
     // State to store the current time elapsed on the stopwatch in miliseconds
