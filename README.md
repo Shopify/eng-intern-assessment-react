@@ -1,86 +1,65 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
+# Shopify Frontend Technical Challenge
 
-# Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
+This project is a take-home assignment for Shopify, focusing on building a functional stopwatch application using React and TypeScript. The application allows users to start, stop, pause, record laps, and reset the stopwatch, showcasing fundamental React and TypeScript usage.
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
-
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+https://github.com/bill-li1/Bill-Li-Shopify-Timer/assets/38056522/7013cb9e-bf59-4420-b354-815a2dd1fbfd
 
 ## Project Setup
-To get started with the project, follow these steps:
 
-1. Clone the project repository to your local development environment.
+1. Clone the repository
 
-2. Install the required dependencies by running npm install in the project directory.
+```bash
+git clone git@github.com:bill-li1/Bill-Li-Shopify-Timer.git
+```
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
+2. Install NPM Packages
 
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+```bash
+cd Bill-Li-Shopify-Timer
+npm install
+```
 
-## Project Goals
-Your specific goals for this project are as follows:
+3. Start the development server
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+```bash
+git clone git@github.com:bill-li1/spotify-player.git
+```
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
+## Features
 
-3. Test your code:
-    - Write unit tests for the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
+This stopwatch application isn't just about functionality; it's also about user experience and design elegance. Here are some of the extras that make this application stand out:
 
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
+### Persistent Timer with Local Storage
 
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
+One of the key features of this application is the use of local storage to persist the timer state:
 
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
+- Session Continuity: The stopwatch time and laps are all saved in local storage, so you can close your browser or tab, and when you return, the timer picks up right where you left off.
+- Lap Memory: All recorded laps are also stored, ensuring that your progress is saved through different sessions.
 
-## Getting Started
-To start working on the project, follow these steps:
+### Stunning Design
 
-1. Clone the repository to your local development environment.
+The application features a visually appealing design, with a keen eye for detail:
 
-2. Install the required dependencies by running npm install in the project directory.
+- Intuitive Interface: The stopwatch is designed to be user-friendly, allowing for easy interaction with start, stop, lap, and reset functionalities.
+- Responsive Layout: Crafted to look great on devices of all sizes, ensuring a seamless experience whether you're on desktop or mobile.
+- Custom Button Styles: Each button is styled with attention to detail, providing not only a pleasant aesthetic but also clear visual feedback to user interactions.
 
-3. Open the project in your preferred code editor.
+## Functionality
 
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
+The stopwatch application includes the following features:
 
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
+- Start/Stop: Users can start and stop the stopwatch, which counts time in hours, minutes, seconds, and milliseconds.
 
-6. Run the application using npm start and test the stopwatch functionality.
+- Lap Recording: Users can record the current time as a lap, which is displayed below the stopwatch.
 
-7. Commit your changes regularly and push them to a branch in your forked repository.
+- Reset: Resets the stopwatch and lap times to zero.
 
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
+## Testing
 
-## Resources
-Here are some resources that may be helpful during your work on this project:
+The project includes unit tests to ensure the functionality of the stopwatch. Run the tests using:
 
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
+```bash
+npm test
+```
 
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
-
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+![Screenshot 2024-01-29 at 10 56 25 PM](https://github.com/bill-li1/Bill-Li-Shopify-Timer/assets/38056522/b6b5c80c-812f-49db-b079-83fe77f14f34)
