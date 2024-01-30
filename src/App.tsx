@@ -113,13 +113,12 @@ export default function App() {
                                 <StopWatch time={currentTime} />
                             </Title>
                         </Card>
-                        <Flex wrap="wrap" justify='space-evenly' align='center'>
+                        <Flex wrap="wrap" justify='space-evenly' align='center' style={{ marginBottom: "2em" }}>
                             <Button type="primary" size="large"><StopWatchButton title={"Start"} onClick={start} /></Button>
                             <Button type="primary" size="large"><StopWatchButton title={"Stop"} onClick={stop} /></Button>
                             <Button danger size="large"><StopWatchButton title={"Reset"} onClick={reset} /></Button>
                             <Button size="large"> <StopWatchButton title="Lap" onClick={handleLapClick} /></Button>
                         </Flex>
-                        <br />
                         {isLapClicked && <DisplayLap />}
                     </div>
                 </Flex>
