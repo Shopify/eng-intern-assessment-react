@@ -5,26 +5,51 @@ import '@testing-library/jest-dom';
 import StopWatch from '../src/components/StopWatch';
 
 describe('StopWatch', () => {
+    /*
+     *
+     * @description Mocks the scrollIntoView function
+     *
+     */
     beforeEach(() => {
         window.HTMLElement.prototype.scrollIntoView = jest.fn();
         jest.useFakeTimers();
     });
 
+    /*
+     *
+     * @description Clears all timers
+     *
+     */
     afterEach(() => {
         jest.clearAllTimers();
     });
 
+    /*
+     *
+     * @description Restores all mocks
+     *
+     */
     afterAll(() => {
         jest.restoreAllMocks();
         jest.useRealTimers();
     });
 
+    /*
+     *
+     * @description Tests if the StopWatch component renders correctly
+     *
+     */
     test('Renders the StopWatch component', () => {
         render(<StopWatch />);
         expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');
         expect(screen.getByText('Start')).toBeInTheDocument();
     });
 
+    /*
+     *
+     * @description Tests if the StopWatch component starts and stops correctly
+     *
+     */
     test('Starts the StopWatch component', () => {
         render(<StopWatch />);
 
@@ -38,6 +63,11 @@ describe('StopWatch', () => {
         expect(screen.getByText('Start')).toBeInTheDocument();
     });
 
+    /*
+     *
+     * @description Tests if the StopWatch component laps correctly
+     *
+     */
     test('Laps the StopWatch component', () => {
         render(<StopWatch />);
 
@@ -52,6 +82,11 @@ describe('StopWatch', () => {
         expect(lapItems.length).toBeGreaterThan(0);
     });
 
+    /*
+     *
+     * @description Tests if the StopWatch component resets correctly
+     *
+     */
     test('Resets the StopWatch component', () => {
         render(<StopWatch />);
 
