@@ -12,13 +12,18 @@
     &_heading {
         font-weight: 700;
         color: $primary-dark;
-        font-size: 3rem;
+        font-size: 2rem;
         text-transform: lowercase;
         text-decoration: underline;
 
         @include tablet {
             font-size: 4rem;
         }
+    }
+
+    &_recorded {
+        display: flex;
+        flex-direction: column-reverse;
     }
 
     &_time {

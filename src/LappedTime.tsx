@@ -9,11 +9,14 @@ export default function LappedTime (props:LappedTimeProps) {
 
     const {lappedTime} = props;
 
+    let lapCount: number = 0;
+
     return (
         <div className="laps">
             <p className="laps_heading">Lapped Time</p>
-            {lappedTime.map((lap: number) => {
-                
+            <div className="laps_recorded">
+                {lappedTime.map((lap: number, index) => {
+
                     let hours: number= Math.floor(lap/ 3600);
                     let minutes: number= Math.floor((lap - (hours * 3600)) / 60);
                     let seconds: number= lap - (hours * 3600) - (minutes * 60);
@@ -22,14 +25,17 @@ export default function LappedTime (props:LappedTimeProps) {
                     let minutesFormat = minutes < 10 ? `0${minutes}` : minutes;
                     let secondsFormat = seconds < 10 ? `0${seconds}` : seconds;
 
-                    let lapFormat: string = `${hoursFormat}:${minutesFormat}:${secondsFormat}`
+                    lapCount= index +1;
+
+                    let lapFormat: string = `Lap ${lapCount}: ${hoursFormat}:${minutesFormat}:${secondsFormat}`
 
                 return (
                     <div key={lap} data-testid="lap_test">
                         <p className="laps_time">{lapFormat}</p>
                     </div>
                 )
-            } )}
+                } )}
+            </div>
         </div>
     )
 }

@@ -14,13 +14,14 @@
         @include tablet {
             flex-direction: row;
             justify-content: center;
+            align-items: flex-end;
         }
     }
 
     &_time {
         font-weight: 700;
-        font-size: 8rem;
-        line-height: 7rem;
+        font-size: 6rem;
+        line-height: 5rem;
         color: $primary-dark;
 
         &_seperator {
