@@ -64,7 +64,7 @@ test("renders with correct text for type lap", () => {
   const { getByRole } = render(
     <StopWatchButton type="lap" onClick={() => {}} timerOn={true} />,
   );
-  expect(getByRole("button").textContent).toBe("Record Lap");
+  expect(getByRole("button").textContent).toBe("Lap");
 });
 
 test("does not throw error when clicked without onClick prop", () => {

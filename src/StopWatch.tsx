@@ -22,6 +22,7 @@ export function formatTime(time: number): string {
   return formattedTime;
 }
 
+// Always Display Hours (Matches UI Design Style)
 function padTimeFormat(time: number): string {
   const formattedTime = formatTime(time);
   if (formattedTime.length === 8) {
