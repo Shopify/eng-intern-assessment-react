@@ -20,7 +20,9 @@ export default function App() {
     }
     return () => clearInterval(interval);
   }, [counting]);
+
   const formatTime = (time: number) => {
+    //otherwise formats to milliseconds
     const minutes = Math.floor(time / 60000);
     const seconds = Math.floor((time % 60000) / 1000);
     const milliseconds = Math.floor((time % 1000) / 10);

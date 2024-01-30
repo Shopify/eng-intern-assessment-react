@@ -9,8 +9,10 @@ button {
   margin-bottom: 2.5rem;
   transition: 0.3s ease;
 }
+/* format reset button to avoid being pressed accidentally */
 .reset {
-  background: #756e6b;
+  background: #c4c2c0;
+  color: #42322a;
 }
 
 button:hover {
