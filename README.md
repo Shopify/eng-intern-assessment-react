@@ -1,6 +1,10 @@
 # Shopify Stopwatch
 
-An app created by Nicole Cevey as part of the submission to the 2024 Frontend Engineering Internship.
+An app created by Nicole Cevey as part of the submission to the 2024 Summer Frontend Engineering Internship.
+
+# Demo
+
+https://github.com/nicolecevey/eng-intern-assessment-react/assets/100004459/baa6527c-61fe-4580-a9c4-06ca98c8d3bf
 
 # Acceptance Criteria
 
@@ -13,4 +17,7 @@ An app created by Nicole Cevey as part of the submission to the 2024 Frontend En
 
 Tests were created using React Testing Library.
 
+<img width="623" alt="Testing" src="https://github.com/nicolecevey/eng-intern-assessment-react/assets/100004459/07c39ea3-a53f-4aa5-ab68-83708a702272">
 
+
+Thank you for your consideration!
