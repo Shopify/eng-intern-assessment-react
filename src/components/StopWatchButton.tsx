@@ -1,6 +1,14 @@
 import React from "react";
 import { TimerStatus } from "../constants/constants";
 
+type StopWatchButtonProps = {
+  start: () => void;
+  stop: () => void;
+  resume: () => void;
+  reset: () => void;
+  recordLap: () => void;
+  status: String;
+};
 export default function StopWatchButton({
   start,
   stop,
@@ -8,18 +16,11 @@ export default function StopWatchButton({
   reset,
   recordLap,
   status,
-}: {
-  start: () => void;
-  stop: () => void;
-  resume: () => void;
-  reset: () => void;
-  recordLap: () => void;
-  status: String;
-}) {
+}: StopWatchButtonProps) {
   return (
     <>
-      {/* Status timerNotStarted : only Lap(disabled) and Start buttons are rendered */}
-      {status === TimerStatus.NOT_STARTED ? (
+      {/* Status NOT_STARTED : only Lap(disabled) and Start buttons are rendered */}
+      {status === TimerStatus.NOT_STARTED && (
         <>
           {" "}
           <button className="stopwatch-btn " disabled>
@@ -29,12 +30,10 @@ export default function StopWatchButton({
             Start
           </button>
         </>
-      ) : (
-        ""
       )}
 
-      {/* Status timerRunning : only Lap and Stop buttons are rendered */}
-      {status === TimerStatus.RUNNING ? (
+      {/* Status RUNNING : only Lap and Stop buttons are rendered */}
+      {status === TimerStatus.RUNNING && (
         <>
           <button className="stopwatch-btn alt" onClick={recordLap}>
             Lap
@@ -43,12 +42,10 @@ export default function StopWatchButton({
             Stop
           </button>
         </>
-      ) : (
-        ""
       )}
 
-      {/* Status timerPaused : only Reset and Start buttons are rendered */}
-      {status === TimerStatus.PAUSED ? (
+      {/* Status PAUSED : only Reset and Start buttons are rendered */}
+      {status === TimerStatus.PAUSED && (
         <>
           <button className="stopwatch-btn" onClick={reset}>
             Reset
@@ -57,8 +54,6 @@ export default function StopWatchButton({
             Start
           </button>
         </>
-      ) : (
-        ""
       )}
     </>
   );

@@ -13,9 +13,9 @@ export default function Home() {
   const [minLapIndex, setMinLapIndex] = useState<number | null>(null);
   const [maxLapIndex, setMaxLapIndex] = useState<number | null>(null);
 
-  //   status timerNotStarted: start enabled; lap disabled
-  //   status timerRunning: stop enabled; lap enabled
-  //   status timerPaused: start enabled; reset enabled
+  //   status NOT_STARTED: start enabled; lap disabled
+  //   status RUNNING: stop enabled; lap enabled
+  //   status PAUSED: start enabled; reset enabled
   const [status, setStatus] = useState<String>(TimerStatus.NOT_STARTED);
 
   const startTimer = () => {
@@ -61,7 +61,7 @@ export default function Home() {
 
   //Increments the stopwatch by 10ms
   const updateTime = () => {
-    setTime((cur) => cur + 10);
+    setTime((currrentTime) => currrentTime + 10);
   };
 
   //Main rendering

@@ -25,7 +25,6 @@ body {
 
 .main-section {
   background: transparent;
-  /* background: #b42121; */
   height: 100vh;
   max-width: 600px;
   display: flex;
@@ -43,7 +42,6 @@ body {
 
 .button-holder {
   background: transparent;
-  /* background-color: rgb(78, 23, 206); */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -137,7 +135,6 @@ body {
 }
 
 .stopwatch span {
-  /* background: #ffffff; */
   color: #000000;
   display: inline-block;
   padding: 10px;
@@ -145,7 +142,6 @@ body {
 }
 
 .stopwatch div {
-  /* background: #ffffff; */
   color: #000000;
   font-size: 1.8rem;
   display: inline-block;
