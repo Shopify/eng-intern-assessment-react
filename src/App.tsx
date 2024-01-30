@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import StopWatchButton from "./StopWatchButton";
+import StopWatchButton, {KeystrokeButton} from "./StopWatchButton";
 import StopWatch from "./StopWatch";
 import {Laps} from "./Laps";
+import { IoIosCloseCircle } from "react-icons/io";
 
-const ONE_SECOND = 10;
-const MILLISECOND = 1;
+const TEN_MS = 10;
 export default function App() {
     const startTimeRef = useRef(0);
     const [time, setTime] = useState<number>(0);
@@ -20,7 +20,7 @@ export default function App() {
             startTimeRef.current = Date.now() - time;
             intervalRef.current = setInterval(() => {
                 setTime(Date.now() - startTimeRef.current);
-            }, ONE_SECOND);
+            }, TEN_MS);
         } else {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
@@ -43,7 +43,7 @@ export default function App() {
     }
 
     return (
-        <div className={`p-2 h-screen flex flex-col  items-center align-middle `}>
+        <div className={`h-screen flex flex-col  items-center align-middle bg-light-grey`}>
             <div className={`mt-52 flex flex-col justify-start items-center flex-grow gap-2`}>
                 <StopWatch time={time}/>
                 <StopWatchButton useTimer={timerState}
@@ -53,7 +53,28 @@ export default function App() {
                                  lapsEmpty={lapsEmpty}
                 />
                 <Laps laps={laps}/>
+
             </div>
+            <ShorcutsExplain/>
         </div>
+    )
+}
+
+
+export function ShorcutsExplain(){
+    const [hideExplanation,setHideExplanation] = useState(false);
+    return(
+    <div className={`${hideExplanation ? `hidden` : `md:block`} sm:hidden absolute w-30 h-30 p-4 bottom-4 left-4 shadow-md rounded-md bg-gray-200`}>
+        <div className={`flex flex-row-reverse w-full`}>
+            <button onClick={()=> {
+                setHideExplanation(true);
+            }}><IoIosCloseCircle/></button>
+        </div>
+        <ul>
+            <li className={`flex flex-row justify-between`}>{<KeystrokeButton keyCode={"Spacebar"}/>}Start/Pause Timer</li>
+            <li className={`flex flex-row justify-between`}>{<KeystrokeButton keyCode={"L"}/>} Add Laps</li>
+            <li className={`flex flex-row justify-between`}>{<KeystrokeButton keyCode={"R"}/>} Reset</li>
+        </ul>
+    </div>
     )
 }

@@ -4,20 +4,19 @@ import {getFormattedTime, getMilliseconds} from "./timelib";
 interface ILapsProps{
     laps: number[]
 }
-export function Laps(props:ILapsProps){
-    const {laps} = props;
+export function Laps(props: ILapsProps) {
+    const { laps } = props;
 
-    const lapsItems = laps.map((lap,i,lapsArr)=> {
-            return (
-                <div key={lap} className={`flex flex-row place-content-between`}>
-                    <div>Lap {i+1}</div>
-                    <div>{getFormattedTime(lap)}.{getMilliseconds(lap)}</div>
-                </div>
-            )
-        }
-    )
-
-    return(
-        <div className={`flex flex-col-reverse w-[300px]`}>{lapsItems}</div>
-    )
+    return (
+        <ol className={`flex flex-col-reverse w-[300px]`}>
+            {laps.map((lap, i) => (
+                <li key={`lap-${i}`} className={`flex flex-row justify-between`}>
+                    <span>Lap {i + 1}</span>
+                    <span aria-label={`Time for Lap ${i + 1}: `}>
+                        {getFormattedTime(lap)}.{getMilliseconds(lap)}
+                    </span>
+                </li>
+            ))}
+        </ol>
+    );
 }
