@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+// import './StopWatchButtonsStyling.css';
 
 interface IStopWatchButtonsProps {
     isRunning: boolean
@@ -14,15 +15,18 @@ export default function StopWatchButtons(props: IStopWatchButtonsProps) {
 
     return(
         <div className='stopWatchButton__container'>
-            <button className='stopWatchButton__start' onClick={handleTimerRunning}>
+            <button className='stopWatchButton__start' onClick={handleTimerRunning} style={{background: `${isRunning ? '#fa8072' : 'rgb(70, 246, 187)'}`}}>
                 {isRunning ? "Pause" : "Start"}
             </button>
-            <button className='stopWatchButton__reset' onClick={handleTimerReset}>
-                Reset
-            </button>
-            <button className='stopWatchButton__lap' onClick={handleLapAdd}>
-                Lap
-            </button>
+            {isRunning ? 
+                <button className='stopWatchButton__lap' onClick={handleLapAdd}>
+                    Lap
+                </button>
+            :
+                <button className='stopWatchButton__reset' onClick={handleTimerReset}>
+                    Reset
+                </button>
+            }
 
         </div>
     )
