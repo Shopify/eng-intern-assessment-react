@@ -4,24 +4,29 @@ import React, { useState, useEffect } from "react";
 
 
 export default function StopWatch() {
+    // init arrat to use for state of laps
     const initLaps: Array<[number, string]> = [];
 
+    // define states for variables used
     const [laps, setLaps] = useState(initLaps);
     const [numLaps, setNumLaps] = useState(0);
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
+    // addsthe current time value and lap number as a member of the laps array, to be dynamically rendered
     const addLap = () => {
         let temp = hours + ':' + minutes + ':' + seconds + ':' + milliseconds
         setLaps((prevLaps) => [...prevLaps, [numLaps, temp]]);
         setNumLaps(numLaps => numLaps + 1);
     };
 
+    // translate time into its derivatives to be displayed separately
     const hours = Math.floor(time/360000).toString().padStart(2, "0");
     const minutes = Math.floor((time%360000) / 6000).toString().padStart(2, "0");
     const seconds = Math.floor((time%6000) / 100).toString().padStart(2, "0");
     const milliseconds = (time%100).toString().padStart(3, "0");
   
+    // set interval updates every 10ms so the stopwatch is continuous
     useEffect(() => {
         let interval: ReturnType<typeof setInterval>;
         if (isRunning){
@@ -34,19 +39,21 @@ export default function StopWatch() {
         return () => clearInterval(interval);
     }, [isRunning]);
   
-    const start = () => {
+    // functions to alter the clock functions by handling button presses
+    const handleStart = () => {
         if (!isRunning){
             setIsRunning(isRunning => !isRunning);
         }
       };
 
-    const stop = () => {
+    const handleStop = () => {
         if (isRunning){
             setIsRunning(isRunning => !isRunning);
         }
     };
   
-    const reset = () => {
+    // sets all values back to their initial states
+    const handleReset = () => {
       setTime(0);
       setIsRunning(false);
       setLaps([]);
@@ -65,11 +72,11 @@ export default function StopWatch() {
                         <span>{ hours } : { minutes } : { seconds } : { milliseconds }</span>
                     </Heading>
                 </VStack>
-                <StopWatchButton w="90%" mx="5%" label='start' back='#36ED7D' disableCondition={isRunning} onClick={start}></StopWatchButton>
+                <StopWatchButton label='start' back='#1BE4F4' disableCondition={isRunning} onClick={handleStart}></StopWatchButton>
                 <HStack mt="3%">
-                    <StopWatchButton w="full" mx="0" label='reset' back='#30F99E' disableCondition={false} onClick={reset} ></StopWatchButton>
-                    <StopWatchButton w="full" mx="0" label='stop' back='#30F99E' disableCondition={false} onClick={stop} ></StopWatchButton>
-                    <StopWatchButton w="full" mx="0" label='lap' back='#30F99E' disableCondition={false} onClick={addLap} ></StopWatchButton>
+                    <StopWatchButton label='reset' back='#30F99E' disableCondition={false} onClick={handleReset} ></StopWatchButton>
+                    <StopWatchButton label='stop' back='#30F99E' disableCondition={false} onClick={handleStop} ></StopWatchButton>
+                    <StopWatchButton label='lap' back='#30F99E' disableCondition={false} onClick={addLap} ></StopWatchButton>
                 </HStack>
                 <VStack minH="10%" alignItems="center">
                     <Text>{numLaps>0 ? "laps:" : "laps will be displayed below here"}</Text>
@@ -77,7 +84,7 @@ export default function StopWatch() {
                         return <HStack justifyContent="space-between" w='90%' mx='10%'><Text textAlign="left" w='40%'>{item[0]}</Text><Text textAlign="right" w='40%'>{item[1]}</Text></HStack>;
                     }) }
                 </VStack>
-                <VStack padding="0" my="2px" h="5%" fontSize="2xs">
+                <VStack padding="0" my="5px" h="5%" fontSize="2xs">
                     <br />
                     <Text my="0">&copy; Jaren Worme 2024</Text>
                     <HStack color="#4DEEF5" my="0" >

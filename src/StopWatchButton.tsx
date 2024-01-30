@@ -1,16 +1,16 @@
 import React from 'react'
 import { Button } from "@chakra-ui/react"
 
+// button props to change styles between buttons as inputs in the render
 interface PrimaryButtonProps{
     label: string,
-    w: string,
-    mx: string,
     back: string,
     disableCondition: boolean,
     onClick: ()=>void
 }
 
-export default function StopWatchButton({label, back, w, mx, disableCondition, onClick}:PrimaryButtonProps) {
+
+export default function StopWatchButton({label, back, disableCondition, onClick}:PrimaryButtonProps) {
     return(
         <>
             <Button
