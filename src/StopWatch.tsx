@@ -8,6 +8,9 @@ export default function StopWatch() {
   // state to track if the time has started or stopped
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
+  // state for laps with array to store lap times
+  const [laps, setLaps] = useState<number[]>([]);
+
   //useEffect to manage the interval (start/stop) as the condition for isRunning state changes
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -50,6 +53,9 @@ export default function StopWatch() {
     return { hrs, mins, secs };
   };
 
+  // function to handle the laps & add the time to the laps array
+  const handleLaps = () => setLaps([...laps, time]);
+
   return (
     <>
       <div>
@@ -66,7 +72,18 @@ export default function StopWatch() {
         title={isRunning ? "Stop" : "Start"}
       />
       <StopWatchButton onClick={resetTime} title="Reset" />
-      {/* <StopWatchButton title="Lap" /> */}
+      <StopWatchButton onClick={handleLaps} title="Lap" />
+      {/* iterate over the array & render laps if any  */}
+      {laps.length > 0 && (
+        <div>
+          <h2>Lap</h2>
+          <ul>
+            {laps.map((lap, index) => (
+              <li key={index}>{`Lap ${index + 1} : ${lap}`}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </>
   );
 }
