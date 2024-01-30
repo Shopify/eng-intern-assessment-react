@@ -25,13 +25,15 @@ export default function StopWatch() {
     };
 
     useEffect(() => {
-        if (timerOn) {
-            intervalRef.current = setInterval(() => {
-                setTime(time => time + 10);
-            }, 10);
-        } else {
+        if (!timerOn) {
             clearInterval(intervalRef.current);
+            return;
         }
+
+        intervalRef.current = setInterval(() => {
+            setTime(time => time + 10);
+        }, 10);
+
         return () => clearInterval(intervalRef.current);
     }, [timerOn]);
 

@@ -18,24 +18,22 @@ describe('StopWatch', () => {
   /**
    * @description Test case to check if the stopwatch component renders correctly.
    */
-  test('renders stopwatch component', () => {
+  test('renders stopwatch component with initial state', () => {
     render(<StopWatch />);
     expect(screen.getByText('StopWatch')).toBeInTheDocument();
-  });
+    expect(screen.getByText('00:00:00')).toBeInTheDocument();
+});
+/**
+ * @description Test case to check if the timer starts and updates the display.
+ */
 
-  /**
-   * @description Test case to check if the timer starts and stops correctly.
-   */
-  test('timer starts and stops correctly', async () => {
+test('timer starts and updates display', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
-
-    await waitFor(() => {
-      expect(screen.queryByText('00:00:00')).not.toBeInTheDocument();
-    }, { timeout: 100 });
-
+    await waitFor(() => expect(screen.queryByText('00:00:00')).not.toBeInTheDocument(), { timeout: 100 });
     fireEvent.click(screen.getByText('Stop'));
-  });
+});
+
 
   /**
    * @description Test case to check if the reset button resets the timer.
