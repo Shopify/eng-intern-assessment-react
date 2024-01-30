@@ -5,15 +5,15 @@ import './StopWatch.css';
 const StopWatch: React.FC = () => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [laps, setLaps] = useState<number[]>([]); 
+  const [laps, setLaps] = useState<number[]>([]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
     if (isRunning) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
+        setTime((prevTime) => prevTime + 10); 
+      }, 10);
     }
 
     return () => clearInterval(interval);
@@ -30,27 +30,29 @@ const StopWatch: React.FC = () => {
   const resetTimer = () => {
     setTime(0);
     setIsRunning(false);
-    setLaps([]); 
+    setLaps([]);
   };
 
   const recordLap = () => {
-    setLaps((prevLaps) => [...prevLaps, time]); 
+    setLaps((prevLaps) => [...prevLaps, time]);
   };
-  
+
   return (
     <div className="stopwatch">
       <section className='container'>
-        <h1 className='text'>{Math.floor(time / 3600).toString().padStart(2, '0')}</h1>
+        <h1 className='text'>{Math.floor(time / 3600000).toString().padStart(2, '0')}</h1>
         <span>:</span>
-        <h1 className='text'>{Math.floor((time % 3600) / 60).toString().padStart(2, '0')}</h1>
+        <h1 className='text'>{Math.floor((time % 3600000) / 60000).toString().padStart(2, '0')}</h1>
         <span>:</span>
-        <h1 className='text'>{(time % 60).toString().padStart(2, '0')}</h1>
+        <h1 className='text'>{Math.floor((time % 60000) / 1000).toString().padStart(2, '0')}</h1>
+        <span>.</span>
+        <h1 className='text'>{((time % 1000) / 10).toFixed(0).toString().padStart(2, '0')}</h1>
       </section>
       <StopWatchButton
         onStart={startTimer}
         onStop={stopTimer}
         onReset={resetTimer}
-        onLap={recordLap} 
+        onLap={recordLap}
         isRunning={isRunning}
       />
      
@@ -58,9 +60,11 @@ const StopWatch: React.FC = () => {
         {laps.map((lap, index) => (
           <div key={index} className="lap">
             <span>Lap {index + 1}:</span>
-            <span>{Math.floor(lap / 3600).toString().padStart(2, '0')}:</span>
-            <span>{Math.floor((lap % 3600) / 60).toString().padStart(2, '0')}:</span>
-            <span>{(lap % 60).toString().padStart(2, '0')}</span>
+            <span>{Math.floor(lap / 3600000).toString().padStart(2, '0')}:</span>
+            <span>{Math.floor((lap % 3600000) / 60000).toString().padStart(2, '0')}:</span>
+            <span>{Math.floor((lap % 60000) / 1000).toString().padStart(2, '0')}</span>
+            <span>.</span>
+            <span>{((lap % 1000) / 10).toFixed(0).toString().padStart(2, '0')}</span>
           </div>
         ))}
       </div>

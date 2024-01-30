@@ -1,6 +1,11 @@
 body {
-  background: rgb(218,112,214);
-  background: radial-gradient(circle, rgba(218,112,214,1) 0%, rgba(148,187,233,1) 100%);  margin: 0;
+  background: rgb(218, 112, 214);
+  background: radial-gradient(
+    circle,
+    rgba(218, 112, 214, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  margin: 0;
   display: flex;
   min-height: 100vh;
   justify-content: center;
@@ -27,22 +32,22 @@ body {
 }
 
 .btn {
-  background-color: #D8BFD8;
+  background-color: #d8bfd8;
   color: black;
   padding: 10px 20px;
   font-size: 1.5rem;
-  margin: 10px;
+  margin: 2px 13px 10px;
   cursor: pointer;
   border: 1px solid purple;
   border-radius: 4px;
 }
 
 .btn:hover {
-  background-color: #DA70D6;
+  background-color: #da70d6;
 }
 
 .btn.selected {
-  background-color: #DA70D6;
+  background-color: #da70d6;
 }
 
 .lap-list {
@@ -66,5 +71,3 @@ body {
     margin: 5px;
   }
 }
-
-
