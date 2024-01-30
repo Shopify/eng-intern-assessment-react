@@ -1,15 +1,14 @@
 .app {
    height: 100vh;
    width: 100vw;
-   background-color: #322E3C;
-   /* background-color: #ddd; */
+   background-color: #ddd;
    position: relative;
    display: flex;
    align-items: center;
    justify-content: center;
 }
 
-/* .app::after {
+.app::after {
    content: '';
    position: absolute;
    display: block;
@@ -36,7 +35,7 @@
       width: 100vw;
       border-radius: 0;
    }
-} */
+}
 
 .clock-loader {
    width: 4.5rem;

@@ -7,6 +7,22 @@
    flex-direction: column;
    align-items: center;
    gap: 1rem;
+   opacity: 0;
+   pointer-events: none;
+   animation: fade-in 0.3s ease-in-out forwards;
+   animation-delay: 1.5s;
+}
+
+@keyframes fade-in {
+   0% {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-5rem);
+   } 100% {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+   }
 }
 
 .time {
