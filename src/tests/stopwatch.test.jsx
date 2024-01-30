@@ -25,14 +25,14 @@ describe("Tests for stopwatch", () => {
     test("Stopwatch component is rendered", () => {
       expect(<StopWatch time={randomTime()} />);
     });
-    test("Only start and lap buttons are being rendered during status 0", () => {
+    test("Only start and lap buttons are being rendered during status: NOT_RUNNING", () => {
       expect(screen.getByText("Start")).toBeInTheDocument();
       expect(screen.getByText("Lap")).toBeInTheDocument();
       expect(screen.queryByText("Reset")).not.toBeInTheDocument();
       expect(screen.queryByText("Stop")).not.toBeInTheDocument();
     });
-    test("Only stop and lap buttons are being rendered during status 1", async () => {
-      //status 1 : stopwatch has been started
+    test("Only stop and lap buttons are being rendered during status: RUNNING", async () => {
+      //status RUNNING : stopwatch has been started
       const startButton = screen.getByText("Start");
       fireEvent.click(startButton);
 
@@ -45,11 +45,11 @@ describe("Tests for stopwatch", () => {
       expect(screen.queryByText("Reset")).not.toBeInTheDocument();
       expect(screen.queryByText("Start")).not.toBeInTheDocument();
     });
-    test("Only reset and start buttons are being rendered during status 2", async () => {
+    test("Only reset and start buttons are being rendered during status: PAUSED", async () => {
       const startButton = screen.getByText("Start");
       fireEvent.click(startButton);
 
-      //status 2 : stopwatch has been paused
+      //status PAUSED : stopwatch has been paused
       const stopButton = screen.getByText("Stop");
       fireEvent.click(stopButton);
 

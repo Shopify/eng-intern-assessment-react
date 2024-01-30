@@ -1,4 +1,5 @@
 import React from "react";
+import { TimerStatus } from "../constants/constants";
 
 export default function StopWatchButton({
   start,
@@ -13,12 +14,12 @@ export default function StopWatchButton({
   resume: () => void;
   reset: () => void;
   recordLap: () => void;
-  status: number;
+  status: String;
 }) {
   return (
     <>
-      {/* Status 0 : only Lap(disabled) and Start buttons are rendered */}
-      {status === 0 ? (
+      {/* Status timerNotStarted : only Lap(disabled) and Start buttons are rendered */}
+      {status === TimerStatus.NOT_STARTED ? (
         <>
           {" "}
           <button className="stopwatch-btn " disabled>
@@ -32,8 +33,8 @@ export default function StopWatchButton({
         ""
       )}
 
-      {/* Status 1 : only Lap and Stop buttons are rendered */}
-      {status === 1 ? (
+      {/* Status timerRunning : only Lap and Stop buttons are rendered */}
+      {status === TimerStatus.RUNNING ? (
         <>
           <button className="stopwatch-btn alt" onClick={recordLap}>
             Lap
@@ -46,8 +47,8 @@ export default function StopWatchButton({
         ""
       )}
 
-      {/* Status 2 : only Reset and Start buttons are rendered */}
-      {status === 2 ? (
+      {/* Status timerPaused : only Reset and Start buttons are rendered */}
+      {status === TimerStatus.PAUSED ? (
         <>
           <button className="stopwatch-btn" onClick={reset}>
             Reset

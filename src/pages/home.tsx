@@ -2,30 +2,31 @@ import React, { useEffect, useState } from "react";
 import StopWatch from "../components/StopWatch";
 import StopWatchButton from "../components/StopWatchButton";
 import LapDisplay from "../components/LapDisplay";
+import { TimerStatus } from "../constants/constants";
 import "../styles/home.css";
 
 export default function Home() {
-  const [time, setTime] = useState(0);
-  const [laps, setLaps] = useState([]);
-  const [lapStartTime, setLapStartTime] = useState(0);
-  const [interv, setInterv] = useState(null);
-  const [minLapIndex, setMinLapIndex] = useState(null);
-  const [maxLapIndex, setMaxLapIndex] = useState(null);
+  const [time, setTime] = useState<number>(0);
+  const [laps, setLaps] = useState<number[]>([]);
+  const [lapStartTime, setLapStartTime] = useState<number>(0);
+  const [interv, setInterv] = useState<NodeJS.Timeout | null>(null);
+  const [minLapIndex, setMinLapIndex] = useState<number | null>(null);
+  const [maxLapIndex, setMaxLapIndex] = useState<number | null>(null);
 
-  //   status 0: start enabled; lap disabled
-  //   status 1: stop enabled; lap enabled
-  //   status 2: start enabled; reset enabled
-  const [status, setStatus] = useState(0);
+  //   status timerNotStarted: start enabled; lap disabled
+  //   status timerRunning: stop enabled; lap enabled
+  //   status timerPaused: start enabled; reset enabled
+  const [status, setStatus] = useState<String>(TimerStatus.NOT_STARTED);
 
   const startTimer = () => {
     updateTime();
-    setStatus(1);
+    setStatus(TimerStatus.RUNNING);
     setInterv(setInterval(updateTime, 10));
   };
 
   const stopTimer = () => {
     clearInterval(interv);
-    setStatus(2);
+    setStatus(TimerStatus.PAUSED);
   };
 
   const resumeTimer = () => startTimer();
@@ -33,7 +34,7 @@ export default function Home() {
   //This function resets the timer and also clears the laps array
   const resetTimer = () => {
     clearInterval(interv);
-    setStatus(0);
+    setStatus(TimerStatus.NOT_STARTED);
     setTime(0);
     setLaps([]);
     setLapStartTime(0);
