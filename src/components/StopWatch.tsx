@@ -3,16 +3,10 @@
  */
 
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  Button,
-  List,
-  ListItem,
-  Paper,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Grid, Button, List, ListItem, Paper, Typography, Box, useTheme } from "@mui/material";
 import stopwatchStyles from "../styles/stopwatchStyles";
+import StopwatchButton from "./StopWatchButton";
+
 
 const Stopwatch: React.FC = () => {
   const [time, setTime] = useState(0);
@@ -58,7 +52,7 @@ const Stopwatch: React.FC = () => {
     let milliseconds = time % 1000;
     let seconds = Math.floor(time / 1000) % 60;
     let minutes = Math.floor(time / 60000);
-    return `${minutes.toString().padStart(2, "0")}:${seconds
+    return `${minutes.toString().padStart(1, "0")}:${seconds
       .toString()
       .padStart(2, "0")}.${milliseconds.toString().padStart(3, "0")}`;
   };
@@ -70,26 +64,25 @@ const Stopwatch: React.FC = () => {
         <Box sx={stopwatchStyles.timeDisplay}>{formatTime(time)}</Box>
 
         <Grid container spacing={2} justifyContent="center">
-          <Grid item>
-            <Button variant="contained" onClick={handleStartStop}>{running ? "Stop" : "Start"}</Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={handleReset}>Reset</Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={handleLap} disabled={!running}>Lap</Button>
-          </Grid>
+            <StopwatchButton 
+                isRunning={running}
+                onToggleStartStop={handleStartStop}
+                onReset={handleReset}
+                onLap={handleLap}
+            />
         </Grid>
-        
+
         <Box sx={stopwatchStyles.lapList}>
           <List>
             {laps.map((lapTime, index) => (
-              <ListItem key={index}>
-                Lap {index + 1}: {formatTime(lapTime)}
-              </ListItem>
+              <Box sx={stopwatchStyles.listItem}>
+              <ListItem key={index}>Lap {index + 1}</ListItem>
+              <ListItem key={index}>{formatTime(lapTime)}</ListItem>
+              </Box>
             ))}
           </List>
         </Box>
+
       </Paper>
     </Box>
   );
