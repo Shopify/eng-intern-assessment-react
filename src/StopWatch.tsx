@@ -1,4 +1,7 @@
-// This class represents the stopwatch
+/***
+ * This file represents the stopwatch
+ * @author Anny Zheng
+ */
 import React,{useState, useEffect} from 'react'
 import './StopWatch.css'
 import StopWatchButton from './StopWatchButton';
@@ -7,7 +10,7 @@ import video from './cloud.mp4'
 export default function StopWatch() {
     const[timeInSec, setTimeInSec] = useState<number>(0);
 
-    //calculating the hour, minutes, seconds from seconds
+    //calculating hour, minutes, seconds from seconds
     const hours:number = Math.floor(timeInSec/3600);
     const minutes:number = Math.floor((timeInSec%3600)/60);
     const seconds:number = Math.floor((timeInSec%60));
