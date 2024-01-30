@@ -26,6 +26,17 @@ body {
 
 }
 
+.stopwatchbutton-container button {
+  margin: 10px;
+  padding: 2px 12px;
+  border: none;
+  background-color: antiquewhite;
+  font-size: 1.5rem;
+
+
+  
+}
+
 /* .stopwatch-title {
   background-color: #303030;
   margin: 0px;
