@@ -3,7 +3,7 @@ html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
 }
 
 body {
-  background-color: #b29be6;
+  background-color: #c8bbe8;
   margin: 50px;
   display: flex;
   flex-direction: column;
@@ -15,27 +15,77 @@ body {
 
 .stopwatch-container {
   display: flex;
-  color: rgb(44, 4, 99);
+  color: white;
+  width: 500px;
+  height: 250px;
+  background-color: rgb(75, 13, 108);
+  border-radius: 25px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
   letter-spacing: 2px;
   font-size: 5rem;
+  flex-direction: column;
 }
 
 .timer-text {
   font-size: 5rem;
   margin: 0;
-
 }
 
 .stopwatchbutton-container button {
-  margin: 10px;
+  margin: 20px;
   padding: 2px 12px;
-  border: none;
-  background-color: antiquewhite;
+  background-color: rgb(182, 105, 217);
   font-size: 1.5rem;
+  justify-content: center;
+  color: white;
+  border-radius: 50px;
 
-
-  
+  border-color: blueviolet;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+ 
 }
+.button-34 button {
+  background: #5E5DF0;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+
+.lap-times-container ul{
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  color: #5E5DF0;
+  list-style-type: none;
+  padding: 0; /* Remove default padding */
+}
+
+.lap-item {
+  display: inline-block;
+  list-style-type: none;
+  padding: 10px;
+  border: 1px solid #5E5DF0;
+  margin: 5px;
+}
+
+
+/* CSS */
 
 /* .stopwatch-title {
   background-color: #303030;
