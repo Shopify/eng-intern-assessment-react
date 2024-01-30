@@ -1,5 +1,5 @@
 # Shopify Engineering Intern - Front End
-Jacqueline Ho
+Created by Jacqueline Ho
 
 # Demo
 
