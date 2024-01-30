@@ -6,12 +6,17 @@ const maxLaps = 25;
 
 
 type Props = { 
-    setTime: Function 
+    time: number;
+    setTime: Function;
+    setNumberOfLaps: Function;
+    setLaps: Function;
+    laps: Array<number>;
 }
   export default function StopWatchButton(props:Props) {
 
-    const {setTime} = props;
+    const { time, setTime, setNumberOfLaps, setLaps } = props;
     const [intervalId, setIntervalId]=useState<number>(0);
+
 
     const handleStartButton = (e: object) => {
         let interval:any = setInterval(() => {
@@ -29,13 +34,14 @@ type Props = {
     }
 
     const handleLapsButton = () => {
-
-
+        setLaps((prevLaps: any) => [...prevLaps, time]);
+        setNumberOfLaps((prevLaps: number) => prevLaps + 1);
     }
 
     const handleResetButton = () => {
         clearInterval(intervalId);
         setTime(0);
+        setNumberOfLaps(0);
         }
 
 
@@ -44,7 +50,7 @@ type Props = {
         <div className='stopwatchbutton-container'>
             <button onClick={handleStartButton}>Start</button>
             <button onClick={handleStopButton}>Stop</button>
-            <button>Laps</button>
+            <button onClick={handleLapsButton}>Laps</button>
             <button onClick={handleResetButton}>Reset</button>
         </div>
     )

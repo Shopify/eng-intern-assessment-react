@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import StopWatchButton from "./StopWatchButton";
 
-export function timeCalulator(time: number): Array<number | string> {
+export function timeFormatter(time: number): string {
     const hours = Math.floor(time / 360000);
     const minutes = Math.floor((time % 360000) / 6000);
     const seconds = Math.floor((time % 6000) / 100);
@@ -14,36 +14,42 @@ export function timeCalulator(time: number): Array<number | string> {
     milliseconds < 10
       ? `0${milliseconds}`
       : `${milliseconds}`
+
+const formattedTime = `${hoursFormatted}:${minutesFormatted}:${secondsFormatted}:${millisecondsFormatted}`;
   
-  return [
-    hoursFormatted,
-    minutesFormatted,
-    secondsFormatted,
-    millisecondsFormatted,
-  ];
+return formattedTime;
 }
 
 export default function StopWatch() {
   const [time, setTime] = useState(0);
   const [timerArray, setTimerArray] = useState<Array<number | string>>([]);
+  const [numberOfLaps, setNumberOfLaps] = useState<Array<number>>([]);
+  const [laps, setLaps] = useState<Array<number>>([]);
 
-  useEffect(() => {
-    setTimerArray(timeCalulator(time));
-  }, [time]);
+ 
+//   useEffect(() => {
+//     setTimerArray(timeCalulator(time));
+//   }, [time]);
 
   return (
     <div>
       <div className="stopwatch-container">
-        <p className="timer-text">{timerArray[0]}</p>
-        <span>:</span>
-        <p className="timer-text">{timerArray[1]}</p>
-        <span>:</span>
-        <p className="timer-text">{timerArray[2]}</p>
-        <span>:</span>
-        <p className="timer-text">{timerArray[3]}</p>
+      {timeFormatter(time)}
       </div>
       <div>
-        <StopWatchButton setTime={setTime}></StopWatchButton>
+        <StopWatchButton  time={time}
+          setTime={setTime}
+          setNumberOfLaps={setNumberOfLaps}
+          setLaps={setLaps}
+          laps={laps}></StopWatchButton>
+      </div>
+      <div className="lap-times-container">
+      <h3>Lap Times:</h3>
+        <ul>
+          {laps.map((lap, index) => (
+            <li key={index}>{`Lap ${index + 1}:` + " " + timeFormatter(lap)}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
