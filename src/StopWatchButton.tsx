@@ -13,6 +13,7 @@ export default function StopWatchButton(props: Props) {
   const { time, setTime, setLaps } = props;
   const [intervalId, setIntervalId] = useState<number>(0);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [numberOfLaps, setNumberOfLaps] = useState(0);
 
   const handleStartButton = (e: object) => {
     let interval: any = setInterval(() => {
@@ -29,8 +30,9 @@ export default function StopWatchButton(props: Props) {
   };
 
   const handleLapsButton = () => {
-    if (isTimerActive) {
+    if (isTimerActive && numberOfLaps < 25) {
       setLaps((prevLaps: any) => [...prevLaps, time]);
+      setNumberOfLaps(numberOfLaps + 1);
     }
   };
 
