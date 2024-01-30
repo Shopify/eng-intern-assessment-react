@@ -26,7 +26,7 @@ export default function StopWatchButton({
   return (
     // button group for start, stop, reset, and lap buttons
     // button group from polaris
-    <div>
+    <div className="my-4 mx-2"> 
       <ButtonGroup variant="segmented">
         {/* start stop button */}
         <Button

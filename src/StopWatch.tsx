@@ -60,37 +60,55 @@ export default function StopWatch() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="flex flex-col items-center justify-center bg-cover bg-center">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Shopify_Logo.png/640px-Shopify_Logo.png"
+        style={{
+          width: "20%",
+          height: "30%",
+          padding: "30px",
+          marginTop: "30px",
+        }}
+        alt="Shopify"
+      />{" "}
+      <h1 className="text-center text-3xl font-bold text-gray-800 mt-8">
+        Shopify Stopwatch
+      </h1>
+      <div className="text-4xl font-semibold text-gray-700 mt-8">
         {hours.toString().padStart(2, "0")}:
         {minutes.toString().padStart(2, "0")}:
         {seconds.toString().padStart(2, "0")}:
         {milliseconds.toString().padStart(2, "0")}
       </div>
       {/* pass props to StopWatchButton */}
-      <StopWatchButton
-        start={"Start"}
-        stop={"Stop"}
-        reset={"Reset"}
-        lap={"Lap"}
-        isRunning={isRunning}
-        onStartStop={startAndStop}
-        onReset={reset}
-        onLap={recordLap}
-      />
-      {/* display laps */}
-      {laps.length > 0 && (
-        <div>
-          <p>Laps:</p>
-          <ul>
-            {laps.map((lapTime, index) => (
-              <li key={index}>
-                Lap {index + 1}: {formatTime(lapTime)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div className=" space-x-4 mt-4">
+        <StopWatchButton
+          start={"Start"}
+          stop={"Stop"}
+          reset={"Reset"}
+          lap={"Lap"}
+          isRunning={isRunning}
+          onStartStop={startAndStop}
+          onReset={reset}
+          onLap={recordLap}
+        />
+      </div>
+      <div>
+        {/* display laps */}
+        {laps.length > 0 && (
+          <div className="mt-8 max-h-64 overflow-auto">
+            {" "}
+            <p className="text-xl font-medium">Laps:</p>
+            <ul className="list-decimal list-inside">
+              {laps.map((lapTime, index) => (
+                <li key={index} className="text-gray-600">
+                  Lap {index + 1}: {formatTime(lapTime)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
