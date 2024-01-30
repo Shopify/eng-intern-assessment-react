@@ -27,6 +27,7 @@ export default function StopWatchButton({
   const resetTimer = (): void => {
     setTime(0);
     setLaps([]);
+    setCurrentLap(0);
     setHasStartedStopwatch(false); // will remove any laps displayed
   };
 
@@ -50,8 +51,8 @@ export default function StopWatchButton({
   };
 
   const updateTime = (): void => {
-    setTime((oldTime: number) => oldTime + 10); // increase the time on the stopwatch by 10 milliseconds
-    setCurrentLap((oldLap: number) => oldLap + 10); // increase the time of the current lap by 10 milliseconds
+    setTime((oldTime) => oldTime + 10); // increase the time on the stopwatch by 10 milliseconds
+    setCurrentLap((oldLap) => oldLap + 10); // increase the time of the current lap by 10 milliseconds
   };
   return (
     <div className="button-container">
