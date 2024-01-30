@@ -6,12 +6,15 @@ import StopWatch from './StopWatch';
 // Use fake timers for timer-related tests
 jest.useFakeTimers();
 
+// Test for the StopWatch component
 describe('StopWatch component', () => {
+  // Test case to check if the component renders without errors
   test('renders without errors', () => {
     render(<StopWatch />);
     expect(screen.getByText('StopWatch')).toBeVisible();
   });
 
+  // Test case to check if the stopwatch starts and updates the time
   test('starts the stopwatch', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
@@ -19,6 +22,7 @@ describe('StopWatch component', () => {
     expect(screen.getByText('00:00:00.100')).toBeVisible();
   });
 
+  // Test case to check if the stopwatch stops and updates the time
   test('stops the stopwatch', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
@@ -26,6 +30,7 @@ describe('StopWatch component', () => {
     await waitFor(() => expect(screen.getByText('00:00:00.100')).toBeVisible());
   });
 
+  // Test case to check if the stopwatch resets to zero
   test('resets the stopwatch', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
@@ -33,6 +38,7 @@ describe('StopWatch component', () => {
     await waitFor(() => expect(screen.getByText('00:00:00.000')).toBeVisible());
   });
 
+  // Test case to check if the stopwatch records a lap time
   test('records a lap', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
@@ -40,6 +46,7 @@ describe('StopWatch component', () => {
     await waitFor(() => expect(screen.getByText('Lap 1: 00:00:00.100')).toBeVisible());
   });
 
+  // Test case to check if the stopwatch records multiple lap times
   test('records multiple laps', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
@@ -49,6 +56,7 @@ describe('StopWatch component', () => {
     await waitFor(() => expect(screen.getByText('Lap 2: 00:00:00.200')).toBeVisible());
   });
 
+  // Test case to check if the stopwatch stops, resets, and updates after recording laps
   test('stops and resets after recording laps', async () => {
     render(<StopWatch />);
     fireEvent.click(screen.getByText('Start'));
@@ -63,6 +71,7 @@ describe('StopWatch component', () => {
 
 });
 
+// Cleanup after each test by restoring real timers
 afterEach(() => {
   jest.useRealTimers();
 });
