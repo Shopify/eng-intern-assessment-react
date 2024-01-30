@@ -4,17 +4,20 @@ export enum ButtonVariant {
     Green,
     Yellow,
     Red,
+    Purple
 }
 
 // Determines the button color based on the button variant
 const colorForVariant = (variant: ButtonVariant) => {
     switch(variant) {
         case ButtonVariant.Green:
-            return '#CDEAC0'; // Green color
+            return '#5BB450'; // Green color
         case ButtonVariant.Yellow:
-            return '#EFE9AE'; //Yellow color
+            return '#FCA510'; //Yellow color
         case ButtonVariant.Red:
-            return '#FF928B'; // Red color
+            return '#D1001F'; // Red color
+        case ButtonVariant.Purple:
+            return '#8A00C2'; // Purple color
     }
 }
 

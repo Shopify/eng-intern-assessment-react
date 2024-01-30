@@ -32,7 +32,7 @@ export default function StopWatch() {
     // Add a Lap button if the timer is running or paused
     if (status === TimerStatus.Running || status === TimerStatus.Paused) {
         buttons.push(
-            <StopWatchButton variant={ButtonVariant.Green} onClick={controls.addLap}><IoMdStopwatch /> Lap</StopWatchButton>)
+            <StopWatchButton variant={ButtonVariant.Purple} onClick={controls.addLap}><IoMdStopwatch /> Lap</StopWatchButton>)
     }
 
 
