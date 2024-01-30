@@ -1,6 +1,22 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import StopWatch, { formatTime } from './StopWatch';
+import '@testing-library/jest-dom';
+
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+  jest.useRealTimers();
+});
+
+test('renders with initial state correctly', () => {
+  const { getByText } = render(<StopWatch />);
+  expect(getByText('00:00:00')).toBeInTheDocument();
+});
 
 // Test the formatTime function
 describe('formatTime', () => {
@@ -22,9 +38,6 @@ test('renders correctly', () => {
   expect(stopwatchElement).not.toBeNull();
 });
 
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
-
 test('starts timer when start button is clicked', () => {
   const setIntervalSpy = jest.spyOn(global, 'setInterval');
   render(<StopWatch />);
@@ -39,10 +52,10 @@ test('records and displays lap times correctly', () => {
   render(<StopWatch />);
   const startButton = screen.getByRole('button', { name: /start/i });
   fireEvent.click(startButton);
-  jest.advanceTimersByTime(100); // Simulate 1 second
+  jest.advanceTimersByTime(1000); // Simulate 1 second
   const lapButton = screen.getByRole('button', { name: /lap/i });
   fireEvent.click(lapButton);
-  jest.advanceTimersByTime(100); // Simulate another second
+  jest.advanceTimersByTime(1000); // Simulate another second
   fireEvent.click(lapButton);
   const lapTimes = screen.getAllByText(/Lap/);
   expect(lapTimes.length).toBe(2);
