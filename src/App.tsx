@@ -121,13 +121,14 @@ export default function App() {
     // Display each component: The Stopwatch display, the buttons, the running state message, and the laps.
     return(
         <div style={stopwatch_display}>
+            <link rel="icon" type="image" href="stopclock.png"/>
             <StopWatch {...time}/>
             <StopWatchButton name={'Start'} bgcolor={'#bbe866'} onClick={start}/>
             <StopWatchButton name={'Stop'} bgcolor={'#fa6969'} onClick={stop}/>
             <StopWatchButton name={'Lap'} bgcolor={'#7e8ded'} onClick={lap}/>
             <StopWatchButton name={'Reset'} bgcolor={'#d6ebe6'} onClick={reset}/>
             <div id='message' style={message}>
-                First ever stopwatch!
+                STOPwatch or STARTwatch?
             </div>
             <div id='laps' style={laps_style}>
 
