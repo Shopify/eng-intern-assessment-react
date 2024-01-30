@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest-environment-jsdom": "^29.7.0",
     "pino": "^8.17.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,6 +23,7 @@
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@testing-library/jest-dom": "^6.4.0",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^16.18.30",
@@ -50,6 +52,7 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     }

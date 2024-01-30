@@ -30,7 +30,7 @@ export function Laps(props: ILapsProps) {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         Lap {lapArr.length - i}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td data-testid={`split-time`} className=" px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {getFormattedTime(lap.splitTime, true)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
