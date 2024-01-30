@@ -22,14 +22,7 @@ return formattedTime;
 
 export default function StopWatch() {
   const [time, setTime] = useState(0);
-  const [timerArray, setTimerArray] = useState<Array<number | string>>([]);
-  const [numberOfLaps, setNumberOfLaps] = useState<Array<number>>([]);
   const [laps, setLaps] = useState<Array<number>>([]);
-
- 
-//   useEffect(() => {
-//     setTimerArray(timeCalulator(time));
-//   }, [time]);
 
   return (
     <div>
@@ -39,7 +32,6 @@ export default function StopWatch() {
       <div>
         <StopWatchButton  time={time}
           setTime={setTime}
-          setNumberOfLaps={setNumberOfLaps}
           setLaps={setLaps}
           laps={laps}></StopWatchButton>
       </div>
