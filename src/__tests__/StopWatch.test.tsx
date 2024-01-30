@@ -7,6 +7,7 @@ import StopWatch from "../components/StopWatch";
 
 describe("Rendering Stopwatch App", () => {
   test("renders stopwatch and initial state correctly", () => {
+    // on initial render, page should have the title "Stopwatch", "00:00:00.00", the start and reset buttons and the "Laps" title
     render(<App />);
     expect(screen.getByText(/stopwatch/i)).toBeInTheDocument();
     expect(screen.getByText(/00:00:00.00/i)).toBeInTheDocument();
@@ -18,6 +19,7 @@ describe("Rendering Stopwatch App", () => {
 
 describe("Rendering StopWatch", () => {
   test("renders StopWatch component correctly for 1000ms", () => {
+    // if the current time on the stopwatch is 1000ms, then it should be displayed as 00:00:01.00
     render(<StopWatch time={1000} />);
     expect(screen.getByText(/00:00:01.00/i)).toBeInTheDocument();
   });
@@ -29,6 +31,7 @@ describe("Rendering StopWatch", () => {
 
 describe("Rendering StopWatchButton", () => {
   test("renders start button", () => {
+    // if stopwatch is not currently counting up, then we should see the start button
     render(
       <StopWatchButton
         isCounting={false}
@@ -45,6 +48,7 @@ describe("Rendering StopWatchButton", () => {
   });
 
   test("renders reset button", () => {
+    // if stopwatch is not currently counting up, then we should see the reset button
     render(
       <StopWatchButton
         isCounting={false}
@@ -61,6 +65,7 @@ describe("Rendering StopWatchButton", () => {
   });
 
   test("renders stop button", () => {
+    // if stopwatch is currently counting up, then we should see the stop button
     render(
       <StopWatchButton
         isCounting={true}
@@ -77,6 +82,7 @@ describe("Rendering StopWatchButton", () => {
   });
 
   test("renders lap button", () => {
+    // if stopwatch is currently counting up, then we should see the lap button
     render(
       <StopWatchButton
         isCounting={true}
@@ -121,10 +127,10 @@ describe("Stopwatch App - Start, Stop, Reset Functionalities", () => {
     fireEvent.click(screen.getByRole("button", { name: /start/i }));
     // Simulate some time passing
     act(() => {
-      jest.advanceTimersByTime(3000); // Advance fake timers by 1 second
+      jest.advanceTimersByTime(3000); // Advance fake timers by 3 seconds
     });
-    fireEvent.click(screen.getByRole("button", { name: /stop/i }));
-    let timeDisplays = screen.getAllByText(/00:00:03.00/i);
+    fireEvent.click(screen.getByRole("button", { name: /stop/i })); // stop timer
+    let timeDisplays = screen.getAllByText(/00:00:03.00/i); // should display 00:00:03.00
     expect(timeDisplays.length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByRole("button", { name: /reset/i }));
