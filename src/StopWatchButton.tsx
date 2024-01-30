@@ -21,7 +21,7 @@ export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes
     const [isFlashing, setIsFlashing] = useState(false);
 
     useEffect(() => {
-        let timeout;
+        let timeout: string | number | NodeJS.Timeout;
         if (isFlashing) {
             timeout = setTimeout(() => setIsFlashing(false), 200);
         }
