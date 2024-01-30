@@ -72,24 +72,27 @@ export default function StopWatch() {
     return(
     //all of this shows up on the actual application 
     //the stopWatchButton connects the handling of the buttons while format time displays the time
-<div>
-    <div> 
-        <p>{formatTime(isTime)}</p>
-        <ul>
-            {laps.map((lap, index) => (
-                <li key={index}>
-                Lap {index + 1}: {formatTime(lap)}
-                </li>
-            ))}
-        </ul>
-    
-    </div>
-        <StopWatchButton
-        active ={isActive}
-        startStop={handleStartStop}
-        reset={handleReset}   
-        laps={handleLaps}
-      />
-</div>
-    )
+    <div>
+        <div className="stopwatch-container">
+            <div className="lapMap"> 
+                <p>{formatTime(isTime)}</p>
+                <div>
+                    {laps.map((lap, index) => (
+                        <div key={index}>
+                            Lap {index + 1}: {formatTime(lap)}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <div className="button-container">
+                <StopWatchButton
+                    active={isActive}
+                    startStop={handleStartStop}
+                    reset={handleReset}   
+                    laps={handleLaps}
+                />
+            </div>
+        </div>
+    );
     }

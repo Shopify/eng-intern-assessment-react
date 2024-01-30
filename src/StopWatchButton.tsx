@@ -22,9 +22,9 @@ import React from 'react'
         //reset button
     return(
     <div>
-        <button onClick={startStop}>{active ? "Stop" : "Start"}</button>
-        <button onClick={reset}>Reset</button>
-        <button onClick={laps}>Laps</button>
+        <button className={active ? 'stopButton' : 'startButton'} onClick={startStop}>{active ? "Stop" : "Start"}</button>
+        <button className="resetButton" onClick={reset}>Reset</button>
+        <button className="lapsButton" onClick={laps}>Laps</button>
     </div>
     )
     }

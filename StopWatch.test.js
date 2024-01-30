@@ -51,7 +51,7 @@ describe('StopWatchButton', () => {
   const lapButton = getByText('Laps');
   fireEvent.click(startStopButton);
   act(() => {
-    jest.advanceTimersByTime(1000); // Advance time by 1 second
+    jest.advanceTimersByTime(1000); 
   });
   fireEvent.click(lapButton);
   //expects 1 laptime 

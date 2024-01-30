@@ -1,0 +1,27 @@
+.startButton {
+    background-color: green;
+    color: white;
+}
+
+.stopButton {
+    background-color: green;
+    color: white;
+}
+
+.resetButton {
+    background-color: red;
+    color: white;
+}
+
+.lapsButton {
+    background-color: lightgray;
+    color: black;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
