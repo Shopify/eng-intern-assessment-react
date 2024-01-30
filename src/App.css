@@ -92,8 +92,7 @@ body {
   background-color: var(--alt-dark);
   color: var(--alt);
   padding: 8px 6px;
-  margin: 2px;
-  flex-grow: 1;
+  width: 100px;
 }
 
 .stopwatch-controls button:hover {
@@ -106,7 +105,22 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.laps::-webkit-scrollbar {
+  background: var(--alt-dark);
+  width: 6px;
+}
+
+.laps::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: var(--alt);
+}
+
+.laps::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: var(--accent);
 }
 
 .laps-element {
