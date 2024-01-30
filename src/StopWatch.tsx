@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function StopWatch() {
+interface StopWatchProps {
+    time: number;
+    displayTime: (seconds: number) => string;
+  }
+
+export default function StopWatch({ time, displayTime }: StopWatchProps) {
     return(
-        <div></div>
+        <div className="TimeDisplay">{displayTime(time)}</div>
     )
 }
