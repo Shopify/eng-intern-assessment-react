@@ -35,6 +35,19 @@ test('starts timer when start button is clicked', () => {
   expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
 });
 
+test('records and displays lap times correctly', () => {
+  render(<StopWatch />);
+  const startButton = screen.getByRole('button', { name: /start/i });
+  fireEvent.click(startButton);
+  jest.advanceTimersByTime(100); // Simulate 1 second
+  const lapButton = screen.getByRole('button', { name: /lap/i });
+  fireEvent.click(lapButton);
+  jest.advanceTimersByTime(100); // Simulate another second
+  fireEvent.click(lapButton);
+  const lapTimes = screen.getAllByText(/Lap/);
+  expect(lapTimes.length).toBe(2);
+});
+
 test('stops timer when stop button is clicked', () => {
   const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
   const setIntervalSpy = jest.spyOn(global, 'setInterval');
