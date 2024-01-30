@@ -8,7 +8,7 @@ export default function App() {
     return (
         <>
             <header>
-                <h1 className="title">time stopiFLYs</h1>
+                <h1 className="title">time shopiFLYs</h1>
                 <section className="icon__container">
                     <a href="https://github.com/heckyeakelly/eng-intern-assessment-react/tree/develop"> 💻 </a>
                     <a href="https://www.linkedin.com/in/kelly-kou/"> 💼 </a>
