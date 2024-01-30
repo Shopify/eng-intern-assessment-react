@@ -1,66 +1,41 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import StopWatchButton from './StopWatchButton';
+import { render, fireEvent, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import StopwatchButton from './StopWatchButton';
 
-test('calls onClick prop when clicked', () => {
-  const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='start' onClick={handleClick} />);
+describe('StopwatchButton component', () => {
+  test('renders button with custom class', () => {
+    render(<StopwatchButton onClick={() => {}} label="Start" className="custom-button" />);
+    const buttonElement = screen.getByRole('button', { name: /start/i });
+    expect(buttonElement).toHaveClass('custom-button');
+  });
 
-  fireEvent.click(getByRole('button', { name: /start/i }));
+  test('disables button when disabled prop is true', () => {
+    render(<StopwatchButton onClick={() => {}} label="Start" disabled={true} />);
+    const buttonElement = screen.getByRole('button', { name: /start/i });
+    expect(buttonElement).toBeDisabled();
+  });
 
-  expect(handleClick).toHaveBeenCalled();
-});
+  test('renders button without disabled attribute when disabled prop is false', () => {
+    render(<StopwatchButton onClick={() => {}} label="Start" disabled={false} />);
+    const buttonElement = screen.getByRole('button', { name: /start/i });
+    expect(buttonElement).not.toBeDisabled();
+  });
 
-test('renders with correct text', () => {
-  const { getByRole } = render(<StopWatchButton type='start' onClick={() => {}} />);
-  expect(getByRole('button').textContent).toBe('Start');
-});
+  test('renders button with aria-label attribute', () => {
+    render(<StopwatchButton onClick={() => {}} label="Start" ariaLabel="Start the stopwatch" />);
+    const buttonElement = screen.getByRole('button', { name: /start/i });
+    expect(buttonElement).toHaveAttribute('aria-label', 'Start the stopwatch');
+  });
 
-test('calls onClick prop when clicked with type stop', () => {
-  const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='stop' onClick={handleClick} />);
+  test('calls onClick handler with custom data attribute', () => {
+    const onClickMock = jest.fn();
+    render(<StopwatchButton onClick={onClickMock} label="Start" data-testid="custom-button" />);
+    const buttonElement = screen.getByTestId('custom-button');
 
-  fireEvent.click(getByRole('button', { name: /stop/i }));
+    fireEvent.click(buttonElement);
 
-  expect(handleClick).toHaveBeenCalled();
-});
+    expect(onClickMock).toHaveBeenCalledTimes(1);
+  });
 
-test('calls onClick prop when clicked with type reset', () => {
-  const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='reset' onClick={handleClick} />);
-
-  fireEvent.click(getByRole('button', { name: /reset/i }));
-
-  expect(handleClick).toHaveBeenCalled();
-});
-
-test('renders with correct text for type reset', () => {
-  const { getByRole } = render(<StopWatchButton type='reset' onClick={() => {}} />);
-  expect(getByRole('button').textContent).toBe('Reset');
-});
-
-test('calls onClick prop when clicked with type lap', () => {
-  const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={handleClick} timerOn={true} />);
-
-  fireEvent.click(getByRole('button', { name: /lap/i }));
-
-  expect(handleClick).toHaveBeenCalled();
-});
-
-test('renders with correct text for type lap', () => {
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={true} />);
-  expect(getByRole('button').textContent).toBe('Record Lap');
-});
-
-test('does not throw error when clicked without onClick prop', () => {
-  const { getByRole } = render(<StopWatchButton type='start' />);
-
-  expect(() => fireEvent.click(getByRole('button', { name: /start/i }))).not.toThrow();
-});
-
-test('lap button is disabled when timer is not running', () => {
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={false} />);
-  const buttonElement = getByRole('button') as HTMLButtonElement;
-  expect(buttonElement.disabled).toBe(true);
 });
