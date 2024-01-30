@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.css";
 
 interface StopWatchButtonProps {
   // text for button
@@ -13,7 +14,9 @@ export default function StopWatchButton({
 }: StopWatchButtonProps) {
   return (
     <div>
-      <button onClick={onClick}>{title}</button>
+      <button className="stopWatchBtn" onClick={onClick}>
+        {title}
+      </button>
     </div>
   );
 }

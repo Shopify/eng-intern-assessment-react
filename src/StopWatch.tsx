@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StopWatchButton from "./StopWatchButton";
+import "./styles.css";
 
 export default function StopWatch() {
   // state to keep track of time
@@ -57,7 +58,7 @@ export default function StopWatch() {
   const handleLaps = () => setLaps([...laps, time]);
 
   return (
-    <>
+    <div className="mainContainer">
       <div>
         {/* using template literals to render the time; covert nums to string & use padStart method to ensure 2 numbers display for each unit of time */}
         {`${String(timeConversion().hrs).padStart(2, "0")} : ${String(
@@ -67,23 +68,25 @@ export default function StopWatch() {
           "0"
         )}`}
       </div>
-      <StopWatchButton
-        onClick={isRunning ? stopTime : startTime}
-        title={isRunning ? "Stop" : "Start"}
-      />
-      <StopWatchButton onClick={resetTime} title="Reset" />
-      <StopWatchButton onClick={handleLaps} title="Lap" />
-      {/* iterate over the array & render laps if any  */}
-      {laps.length > 0 && (
-        <div>
-          <h2>Lap</h2>
-          <ul>
-            {laps.map((lap, index) => (
-              <li key={index}>{`Lap ${index + 1} : ${lap}`}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </>
+      <div className="btnComponent">
+        <StopWatchButton
+          onClick={isRunning ? stopTime : startTime}
+          title={isRunning ? "Stop" : "Start"}
+        />
+        <StopWatchButton onClick={resetTime} title="Reset" />
+        <StopWatchButton onClick={handleLaps} title="Lap" />
+        {/* iterate over the array & render laps if any  */}
+        {laps.length > 0 && (
+          <div>
+            <h2>Lap</h2>
+            <ul>
+              {laps.map((lap, index) => (
+                <li key={index}>{`Lap ${index + 1} : ${lap}`}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
