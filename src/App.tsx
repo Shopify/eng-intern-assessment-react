@@ -10,16 +10,27 @@ export default function App() {
     // Stopwatch state
     const [isRunning, setIsRunning] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0.0);
+    const lastTime = useRef(0);
     const intervalId = useRef<NodeJS.Timer>();
 
     // Laps
     const [laps, setLaps] = useState<string[]>([]);
 
+    // Button handlers
     const toggleRunning = useCallback(() => {
         if (!isRunning) {
             // Start stopwatch
             setIsRunning(true);
-            intervalId.current = setInterval(() => setElapsedTime((previous) => previous + 0.01), 10); // Stopwatch logic
+            lastTime.current = Date.now();
+            intervalId.current = setInterval(() => {
+                // We need a system that works based off the last recorded time & current time because
+                // browsers will not allow setInterval to run in the background, effectively pausing stopwatches
+                // if they simply used a 'elapsedTime += 0.01' approach (like I did originally)
+                const currentTime = Date.now();
+                const elapsedTime = (currentTime - lastTime.current) / 1000;
+                setElapsedTime((prevState) => prevState + elapsedTime)
+                lastTime.current = currentTime;
+            }, 10); // Stopwatch logic
         }
         else {
             // Pause stopwatch
@@ -45,11 +56,15 @@ export default function App() {
     return (
         <div className="page">
 
+            {/* Top, empty section */}
             <div className="section" />
 
+            {/* Main content section */}
             <div className="section">
                 <div className="stopwatchContent">
+                    {/* Stopwatch timer */}
                     <StopWatch elapsedTime={elapsedTime} laps={0}/>
+                    {/* Stopwatch buttons */}
                     <div className="buttons">
                         <StopWatchButton onClick={toggleRunning}>
                             {isRunning ? 'Stop' : 'Start'}
@@ -64,6 +79,7 @@ export default function App() {
                 </div>
             </div>
 
+            {/* Bottom section, contains laps box */}
             <div className="section">
                 {laps.length > 0 && <LapsBox laps={laps} />}
             </div>

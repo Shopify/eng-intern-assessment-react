@@ -11,7 +11,7 @@ export default function LapsBox({ laps }: LapsBoxProps) {
         <div className="lapsContainer">
             <h2>Laps</h2>
             <div className="lapTimes">
-                {laps.map((lap, i) => <Lap lapNumber={i} time={lap}/>)}
+                {laps.map((lap, i) => <Lap key={i} lapNumber={i} time={lap}/>)}
             </div>
         </div>
     )
