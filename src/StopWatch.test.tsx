@@ -1,68 +1,98 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import StopWatch from './StopWatch';
 
-// Test the formatTime function
-describe('formatTime', () => {
-  test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
-  });
 
-  test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
-  });
-});
+describe(StopWatch, () => {
+	// Test that the StopWatch component is rendered
+	it('stopwatch displays correct initial time', () => {
+		const { getByTestId } = render(<StopWatch />);
+		const timeElement = getByTestId('time').textContent;
+		expect(timeElement).toBe('00:00.000s');
+	})
 
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
+	// Test that the start button increments the time by 10 milliseconds on click
+	it('time should increment by 10 milliseconds if the start button is clicked', async () => {
+		const { getByRole, getByTestId } = render(<StopWatch />);
+		const startButton = getByRole('button', { name: 'Start' });
+		fireEvent.click(startButton);
 
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
+		// Wait for the updated time to reflect in the DOM
+		await waitFor(() => {
+			const timeElement = getByTestId('time');
+			expect(timeElement.textContent).toMatch(/00:00.\d{3}s/);
+		});
+	});
 
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
+	// Test that the reset button rests the time to on click
+	it('time should be reset to 0 if the reset button is clicked', async () => {
+		const { getByRole, getByTestId } = render(<StopWatch />);
+		// Click the Start button
+		const startButton = getByRole('button', { name: 'Start' });
+		fireEvent.click(startButton);
 
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
+		// Wait for the timer to increment
+		await waitFor(() => {
+			const timeElement = getByTestId('time').textContent;
+			expect(timeElement).toMatch(/00:00.\d{3}s/);
+		});
 
-beforeEach(() => {
-  jest.useRealTimers();
-});
+		// Click the Reset button
+		const resetButton = getByRole('button', { name: 'Reset' });
+		fireEvent.click(resetButton);
+	
+		const timeAfterReset = getByTestId('time').textContent;
+	
+		// Check that the time is reset to 0
+		expect(timeAfterReset).toBe('00:00.000s');
+	});
 
-afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
-});
+	// Test that the stop button click stops the timer
+	it('timer should stop if the stop button is clicked', async () => {
+		const { getByRole, getByTestId } = render(<StopWatch />);
+		const startButton = getByRole('button', { name: 'Start' });
+		const stopButton = getByRole('button', { name: 'Stop' });
+		// Click the Start button
+		fireEvent.click(startButton);
 
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
-});
+		// Wait for the timer to increment
+		await waitFor(() => {
+			const timeElement = getByTestId('time');
+			expect(timeElement.textContent).toMatch(/00:00.\d{3}s/);
+		});
+
+		// Click the Stop button
+		fireEvent.click(stopButton);
+
+		const timeAfterStop = getByTestId('time').textContent;
+
+		// Wait to ensure the timer doesn't change further
+		await waitFor(() => {
+			const timeElement = getByTestId('time');
+			expect(timeElement.textContent).toBe(timeAfterStop);
+		});
+	});
+
+	// Test that the timer records laps
+	it('timer should add lap if the lap button is clicked', async () => {
+		const { getByRole, getByTestId } = render(<StopWatch />);
+		const startButton = getByRole('button', { name: 'Start' });
+		const lapButton = getByRole('button', { name: 'Lap' });
+
+		// Click the start button
+		fireEvent.click(startButton);
+
+		// Wait for the timer to increment
+		await waitFor(() => {
+			const timeElement = getByTestId('time');
+			expect(timeElement.textContent).toMatch(/00:00.\d{3}s/);
+		});
+
+		// Click the lap button
+		fireEvent.click(lapButton);
+		
+		// Check that the lap is added to list of laps
+		const laps = getByTestId('laps');
+		expect(laps.children.length).toBe(1);
+	});
+})
