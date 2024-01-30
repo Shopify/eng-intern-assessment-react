@@ -8,94 +8,108 @@ describe('stopwatch', () => {
 	test('renders with initial state', () => {
 		render(<App />);
 
-		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent('00:00:00.00');
+		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
+			'00:00:00.00'
+		);
 		expect(screen.getByText('Start')).toBeInTheDocument();
 		expect(screen.getByText('Reset')).toBeInTheDocument();
 
-		expect(screen.queryByTestId('stopwatch-laps')).not.toContainElement(document.querySelector('.lap-entry'));
+		expect(screen.queryByTestId('stopwatch-laps')).not.toContainElement(
+			document.querySelector('.lap-entry')
+		);
 	});
 
 	test('starts on button click and updates buttons accordingly', async () => {
-        jest.useFakeTimers();
+		jest.useFakeTimers();
 
 		render(<App />);
 
 		fireEvent.click(screen.getByText('Start'));
 
-        await act(async () => {
-            jest.advanceTimersByTime(1000);
-        });
+		await act(async () => {
+			jest.advanceTimersByTime(1000);
+		});
 
-		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent('00:00:01.00');
+		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
+			'00:00:01.00'
+		);
 
 		expect(screen.getByText('Stop')).toBeInTheDocument();
 		expect(screen.getByText('Lap')).toBeInTheDocument();
 
-        jest.useRealTimers();
+		jest.useRealTimers();
 	});
 
-    test('stops on button click and updates buttons accordingly', async () => {
-        jest.useFakeTimers();
+	test('stops on button click and updates buttons accordingly', async () => {
+		jest.useFakeTimers();
 
 		render(<App />);
 
 		fireEvent.click(screen.getByText('Start'));
 
-        await act(async () => {
-            jest.advanceTimersByTime(1000);
-        });
+		await act(async () => {
+			jest.advanceTimersByTime(1000);
+		});
 
-        jest.useRealTimers();
+		jest.useRealTimers();
 
-        fireEvent.click(screen.getByText('Stop'));
+		fireEvent.click(screen.getByText('Stop'));
 
-		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent('00:00:01.00');
+		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
+			'00:00:01.00'
+		);
 
-        jest.useFakeTimers();
+		jest.useFakeTimers();
 
-        await act(async () => {
-            jest.advanceTimersByTime(1000);
-        });
-        
-        // Since the stopwatch is stopped, the displayed time should remain the same.
-        expect(screen.getByTestId('stopwatch-time')).toHaveTextContent('00:00:01.00');
+		await act(async () => {
+			jest.advanceTimersByTime(1000);
+		});
+
+		// Since the stopwatch is stopped, the displayed time should remain the same.
+		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
+			'00:00:01.00'
+		);
 
 		expect(screen.getByText('Start')).toBeInTheDocument();
 		expect(screen.getByText('Reset')).toBeInTheDocument();
 
-        jest.useRealTimers();
+		jest.useRealTimers();
 	});
 
-    test('resets state on button click', async () => {
-        jest.useFakeTimers();
-
-        render(<App />);
-
-        fireEvent.click(screen.getByText('Start'));
-
-        await act(async () => {
-            jest.advanceTimersByTime(1000);
-        });
-
-        jest.useRealTimers();
-
-        fireEvent.click(screen.getByText('Stop'));
-        fireEvent.click(screen.getByText('Reset'));
-
-        expect(screen.getByTestId('stopwatch-time')).toHaveTextContent('00:00:00.00');
-		expect(screen.queryByTestId('stopwatch-laps')).not.toContainElement(document.querySelector('.lap-entry'));
-    });
-
-	test('records and updates laps on button click', async () => {
-        jest.useFakeTimers();
+	test('resets state on button click', async () => {
+		jest.useFakeTimers();
 
 		render(<App />);
 
 		fireEvent.click(screen.getByText('Start'));
 
-        await act(async () => {
-            jest.advanceTimersByTime(1000);
-        });
+		await act(async () => {
+			jest.advanceTimersByTime(1000);
+		});
+
+		jest.useRealTimers();
+
+		fireEvent.click(screen.getByText('Stop'));
+		fireEvent.click(screen.getByText('Reset'));
+
+		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
+			'00:00:00.00'
+		);
+		expect(screen.queryByTestId('stopwatch-laps')).not.toContainElement(
+			document.querySelector('.lap-entry')
+		);
+	});
+
+	test('records and updates laps on button click', async () => {
+		jest.useFakeTimers();
+
+		render(<App />);
+
+		fireEvent.click(screen.getByText('Start'));
+
+		await act(async () => {
+			jest.advanceTimersByTime(1000);
+		});
 
 		fireEvent.click(screen.getByText('Lap'));
 
@@ -103,8 +117,8 @@ describe('stopwatch', () => {
 			screen.getAllByText('00:00:01.00')[1]
 		);
 
-        fireEvent.click(screen.getByText('Lap'));
+		fireEvent.click(screen.getByText('Lap'));
 
-        jest.useRealTimers();
+		jest.useRealTimers();
 	});
 });
