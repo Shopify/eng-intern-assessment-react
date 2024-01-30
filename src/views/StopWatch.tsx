@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import StopWatchButton from "./StopWatchButton";
-import Lap from "./Lap";
-import LapList from "./LapList";
+import StopWatchButton from "../components/StopWatchButton";
+import Lap from "../components/Lap";
+import LapList from "../components/LapList";
 
 import { getTimeBreakdown } from "../utils";
 

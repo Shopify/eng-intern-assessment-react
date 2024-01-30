@@ -8,7 +8,7 @@ import { render, screen, act, cleanup, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
-import Stopwatch from "../components/StopWatch";
+import Stopwatch from "../views/StopWatch";
 
 beforeEach(() => {
   // Needed to prevent jest tests from timing out : https://github.com/nock/nock/issues/2200#issuecomment-1699838032
