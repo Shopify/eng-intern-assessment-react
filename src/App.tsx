@@ -4,14 +4,19 @@ import StopWatch from './StopWatch';
 
 export default function App() {
        return(
-        <ChakraProvider>
-            <Container
-            maxW={['container.sm', 'container.md', 'container.lg']}
-            p="0"
-            mx="auto"
-            minHeight={"100vh"}>
-                <StopWatch />
-            </Container>
-        </ChakraProvider>
+        <div>
+            <ChakraProvider>
+                <Container
+                maxW={['container.sm', 'container.md', 'container.lg']}
+                p="0"
+                m="0"
+                minW={"100vw"}
+                minHeight={"100vh"}
+                fontFamily="Verdana"
+                bg="black">
+                    <StopWatch />
+                </Container>
+            </ChakraProvider>
+        </div>
     )
 }

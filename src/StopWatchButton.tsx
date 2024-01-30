@@ -3,25 +3,26 @@ import { Button } from "@chakra-ui/react"
 
 interface PrimaryButtonProps{
     label: string,
+    w: string,
+    mx: string,
     back: string,
     disableCondition: boolean,
-    onClick: ()=>void,
-    testId: string
+    onClick: ()=>void
 }
 
-export default function StopWatchButton({label, back, disableCondition, onClick, testId}:PrimaryButtonProps) {
+export default function StopWatchButton({label, back, w, mx, disableCondition, onClick}:PrimaryButtonProps) {
     return(
         <>
             <Button
-                w="full" 
-                variant="solid"
+                mx="5%"
+                w="90%"
                 bg={back} 
-                color="white" 
+                color="black" 
                 minH="3.5rem"
                 onClick={onClick}
-                _hover={{ bg: "yellow", border: "none" }}
+                _hover={{ bg: "#E3FCEF", border: "none" }}
                 isDisabled={(disableCondition)} 
-                _disabled={{ opacity: '0.4', cursor: 'not-allowed', bgColor: 'red', color: 'black'}}
+                _disabled={{ opacity: '0.4', cursor: 'not-allowed'}}
             >
                 {label}
             </Button>
