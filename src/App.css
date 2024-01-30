@@ -1,0 +1,15 @@
+.stopwatch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.laps {
+  font: serif;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+body {
+  background: #f7f3ed;
+  color: #42322a;
+}

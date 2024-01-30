@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
+import "./App.css";
 
 export default function App() {
   const [time, setTime] = useState(0);
@@ -28,7 +29,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="stopwatch">
       <StopWatch time={time} />
       <StopWatchButton
         start={() => setCounting(true)}
@@ -41,7 +42,7 @@ export default function App() {
         counting={counting}
       />
       {laps.map((lap, index) => (
-        <div key={index}>
+        <div key={index} className="laps">
           Lap {index + 1}: {formatTime(lap)}
         </div>
       ))}

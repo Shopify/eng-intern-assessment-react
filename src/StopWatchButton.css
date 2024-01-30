@@ -1,0 +1,18 @@
+button {
+  background: #42322a;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  font: 1.5rem serif;
+  color: linen;
+  margin: 1rem;
+  margin-bottom: 2.5rem;
+  transition: 0.3s ease;
+}
+.reset {
+  background: #756e6b;
+}
+
+button:hover {
+  filter: brightness(80%);
+}
