@@ -113,13 +113,13 @@ export default function StopWatch() {
          */
         const formatTimeDetails = (digits:  number) : string => digits.toString().padStart(2, '0');
 
-        return `${formatTimeDetails(hours)}:${formatTimeDetails(minutes)}:${formatTimeDetails(seconds)}:${formatTimeDetails(milliseconds)}`
+        return `${formatTimeDetails(hours)}:${formatTimeDetails(minutes)}:${formatTimeDetails(seconds)}.${formatTimeDetails(milliseconds)}`
     };
 
   return (
     <div className='main-container'>
         <h1>Stop Watch</h1>
-        <div>{stopWatchTime}</div>
+        <div data-testid='total-time'>{stopWatchTime}</div>
         <StopWatchButton 
             onStart={handleStartButton} 
             onStop={handleStopButton} 
@@ -134,8 +134,9 @@ export default function StopWatch() {
             {laps.slice().reverse().map((lap, index) => (
                 <li key={index} className='lap-item'>
                       {/* Display lap number (from latest to oldest) */}
-                    <span className="lap-number">{`Lap ${laps.length - index}`}</span>
-                    <span className="lap-time">{formatTime(lap)}</span>
+                    <span className="lap-number"
+                    data-testid='lap-number' >{`Lap ${laps.length - index}`}</span>
+                    <span className="lap-time" data-testid={`lap-time-${index + 1}`}>{formatTime(lap)}</span>
                 </li>
             ))}
         </ul>
