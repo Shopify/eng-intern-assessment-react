@@ -13,7 +13,7 @@ export default function StopWatch() {
     setLastLapTime(time);
   }, []);
 
-  //Format the Time displayed on the screen
+  //Format the Time displayed on the screen '00:00:00:00'
   function formatTime(timeValue: number = 0): string {
     const hours = Math.floor(time / (1000 * 60 * 60));
     const minutes = Math.floor((time / (1000 * 60)) % 60);
@@ -25,12 +25,12 @@ export default function StopWatch() {
     )}`;
   }
 
-  //Start times of '00'
+  //Start times of each value to '00'
   function padZero(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
   }
 
-  //Start the stopwatch hanling
+  //Start handle
   const startStopwatch = () => {
     if (!isRunning) {
       timerRef.current = window.setInterval(() => {
@@ -82,17 +82,19 @@ export default function StopWatch() {
         <h1>{formatTime()}</h1>
       </div>
       <div>
+        <StopWatchButton onClick={startStopwatch} label="Start" />
+        <StopWatchButton onClick={stopStopwatch} label="Stop" />
+        <StopWatchButton onClick={resetStopwatch} label="Reset" />
         <StopWatchButton
-          isRunning={isRunning}
-          start={startStopwatch}
-          stop={stopStopwatch}
-          reset={resetStopwatch}
+          onClick={handleLap}
+          label="Lap"
+          condition={isRunning}
         />
-        {isRunning && (
+        {/* {isRunning && (
           <button className="btn" onClick={handleLap}>
             Lap
           </button>
-        )}
+        )} */}
       </div>
       <div>
         <h2>Lap Times</h2>
