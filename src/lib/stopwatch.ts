@@ -26,10 +26,11 @@ export function stopWatchReducer(
       }
 
       return { ...s, active: true, currentLapStartTime: performance.now() };
+
     case "stop":
       // if we are not active or dont have a start time,
       // do nothing
-      if (!s.active || !s.currentLapStartTime) {
+      if (!s.active || s.currentLapStartTime === null) {
         return s;
       }
 
@@ -41,10 +42,12 @@ export function stopWatchReducer(
         active: false,
         currentLapElapsedTime: s.currentLapElapsedTime + timeToAdd,
       };
+
     case "reset":
-      return structuredClone(initialState);
+      return initialState;
+
     case "lap":
-      if (!s.active || !s.currentLapStartTime) {
+      if (!s.active || s.currentLapStartTime === null) {
         return s;
       }
 
