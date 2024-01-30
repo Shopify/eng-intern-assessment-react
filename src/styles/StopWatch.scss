@@ -1,0 +1,29 @@
+@use './breakpoints' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+@use './colours' as *;
+
+.stopwatch {
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+    }
+
+    &_time {
+        font-weight: 700;
+        font-size: 8rem;
+        line-height: 7rem;
+        color: $primary-dark;
+
+        &_seperator {
+            display: none;
+
+            @include tablet {
+                display: flex;
+            }
+        }
+    }
+}

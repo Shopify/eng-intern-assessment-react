@@ -1,0 +1,25 @@
+@use './breakpoints' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+@use './colours' as *;
+
+.laps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0 0 0;
+
+    &_heading {
+        font-weight: 700;
+        color: $primary-dark;
+        font-size: 3rem;
+        text-transform: lowercase;
+        text-decoration: underline;
+    }
+
+    &_time {
+        font-size: 2rem;
+        font-family: 600;
+        color: $primary-dark;
+    }
+}

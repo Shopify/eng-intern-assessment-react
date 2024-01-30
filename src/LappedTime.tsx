@@ -1,4 +1,5 @@
 import React from "react";
+import './styles/LappedTime.scss';
 
 type LappedTimeProps = {
     lappedTime: number[];
@@ -21,13 +22,11 @@ export default function LappedTime (props:LappedTimeProps) {
                     let minutesFormat = minutes < 10 ? `0${minutes}` : minutes;
                     let secondsFormat = seconds < 10 ? `0${seconds}` : seconds;
 
+                    let lapFormat: string = `${hoursFormat}:${minutesFormat}:${secondsFormat}`
+
                 return (
                     <div key={lap} data-testid="lap_test">
-                    <span className="laps_time">{hoursFormat}</span>
-                    <span>:</span>
-                    <span className="laps_time">{minutesFormat}</span>
-                    <span>:</span>
-                    <span className="laps_time">{secondsFormat}</span>
+                        <p className="laps_time">{lapFormat}</p>
                     </div>
                 )
             } )}

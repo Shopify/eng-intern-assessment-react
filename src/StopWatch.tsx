@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import './styles/StopWatch.scss';
 
 interface timeInSecondsProps {
     timeInSeconds: number;
@@ -34,11 +35,11 @@ interface timeInSecondsProps {
     return(
        <main>
         <section className='stopwatch_container'>
-                <span className='stopwatch_text'>{stopWatchTime[0]}</span>
-                <span>:</span>
-                <span className='stopwatch_text'>{stopWatchTime[1]}</span>
-                <span>:</span>
-                <span className='stopwatch_text'>{stopWatchTime[2]}</span>
+                <span className='stopwatch_time'>{stopWatchTime[0]}</span>
+                <span className='stopwatch_time_seperator'>:</span>
+                <span className='stopwatch_time'>{stopWatchTime[1]}</span>
+                <span className='stopwatch_time_seperator'>:</span>
+                <span className='stopwatch_time'>{stopWatchTime[2]}</span>
             </section>
         </main>
     )

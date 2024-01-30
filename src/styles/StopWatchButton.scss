@@ -1,0 +1,30 @@
+@use './breakpoints' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+@use './colours' as *;
+
+.control {
+    &_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &_button {
+        background-color: $primary-dark;
+        color: $dark-contrast;
+        border: none;
+        font-weight: 600;
+        text-align: center;
+        min-width: 4rem;
+        width: 30%;
+        padding: 1rem;
+        margin: 0.5rem 0.25rem;
+        border-radius: 1rem;    
+    }
+}
+
+.button_container {
+    width: 25%;
+    text-align: center;
+}

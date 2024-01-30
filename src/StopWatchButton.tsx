@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { useState } from 'react';
+import React from 'react';
+import './styles/StopWatchButton.scss';
 
 type StopWatchButtonProps = {
     timeInSeconds: number;
@@ -16,10 +16,14 @@ export default function StopWatchButton(props:StopWatchButtonProps) {
 
     return(
         <div className='control_container'>
-            <button onClick={handleStartButton} className='control_button'>Start</button>
-            <button onClick={handleStopButton} className='control_button'>Stop</button>
-            <button onClick={handleResetButton} className='control_button'>Reset</button>
-            <button onClick={handleLapButton} className='control_button'>Lap</button>
+            <div className='button_container'>
+                <button onClick={handleStartButton} className='control_button'>Start</button>
+                <button onClick={handleStopButton} className='control_button'>Stop</button>
+            </div>
+            <div className='button_container'>
+                <button onClick={handleResetButton} className='control_button'>Reset</button>
+                <button onClick={handleLapButton} className='control_button'>Lap</button>
+            </div>
         </div>
     )
 }

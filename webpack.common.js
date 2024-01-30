@@ -8,7 +8,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Production',
-      template: './public/index.html'
+      template: './public/index.html',
+      icon: './public/logo.png'
     }),
   ],
   output: {
@@ -29,8 +30,12 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react', '@babel/plugin-syntax-jsx', '@babel/preset-typescript'],
         }
     },{
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+      test: /\.scss$/,
+      use: [
+        'style-loader', // Injects styles into DOM
+        'css-loader',   // Translates CSS into CommonJS
+        'sass-loader'  // Compiles Sass to CSS
+      ]
     },{
       test: /\.(png|jpe?g|gif|jp2|webp)$/,
       loader: 'file-loader',

@@ -1,0 +1,25 @@
+@use './breakpoints' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+@use './colours' as *;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Spectral';
+  }
+
+  .main {
+    
+    &_container {
+    background-color: $primary-light;
+    min-height: 100vh;
+    }
+
+    &_heading {
+      text-align: center;
+      color: $primary-dark;
+      font-size: 3.5rem;
+      padding: 22rem 0 2rem 0;
+    }
+  }

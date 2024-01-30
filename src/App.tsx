@@ -3,6 +3,7 @@ import { useState } from "react";
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 import LappedTime from './LappedTime';
+import './styles/App.scss';
 
 export default function App() {
 
@@ -39,6 +40,7 @@ export default function App() {
 
     return(
         <div className='main_container'>
+            <h1 className='main_heading'>⏰ Meredith's Stopwatch ⏰</h1>
             <StopWatch 
                 timeInSeconds={timeInSeconds}
                 />
