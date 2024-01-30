@@ -40,6 +40,7 @@ export default function StopWatchButton(props: Props) {
     clearInterval(intervalId);
     setTime(0);
     setLaps([]);
+    setIsTimerActive(false);
   };
 
   return (
