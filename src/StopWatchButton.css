@@ -28,16 +28,23 @@ button.stop-button {
 }
 
 button.stop-button:hover {
-  background-color: rgb(169, 22, 22);
+  background-color: rgb(240, 139, 139);
 }
 
 button.lap-button {
   background-color: rgb(109, 193, 245);
 }
 
+button.lap-button:hover {
+  background-color: rgb(136, 199, 238);
+}
+
 button.reset-button {
   background-color: rgb(181, 149, 246);
 }
 
+button.reset-button:hover {
+  background-color: rgb(200, 177, 246);
+}
 
 
