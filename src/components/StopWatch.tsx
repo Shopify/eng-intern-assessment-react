@@ -77,7 +77,7 @@ const StopWatch: React.FC = () => {
             <div className='upper-container'>
                 <h2 className='watch-title'> Stopwatch </h2>
 
-                <div className='watch-timer'>
+                <div className='watch-timer' role='timer'>
                     { formatTime(elapsedTime) }
                 </div>
 
