@@ -6,7 +6,7 @@ import StopWatchButton from "../components/StopWatchButton";
 import StopWatch from "../components/StopWatch";
 
 describe("Rendering Stopwatch App", () => {
-  test("renders stopwatch and initial state correctly", () => {
+  test("Test 1: renders stopwatch and initial state correctly", () => {
     // on initial render, page should have the title "Stopwatch", "00:00:00.00", the start and reset buttons and the "Laps" title
     render(<App />);
     expect(screen.getByText(/stopwatch/i)).toBeInTheDocument();
@@ -18,19 +18,19 @@ describe("Rendering Stopwatch App", () => {
 });
 
 describe("Rendering StopWatch", () => {
-  test("renders StopWatch component correctly for 1000ms", () => {
+  test("Test 2: renders StopWatch component correctly for 1000ms", () => {
     // if the current time on the stopwatch is 1000ms, then it should be displayed as 00:00:01.00
     render(<StopWatch time={1000} />);
     expect(screen.getByText(/00:00:01.00/i)).toBeInTheDocument();
   });
-  test("renders StopWatch component correctly for 1234567ms", () => {
+  test("Test 3: renders StopWatch component correctly for 1234567ms", () => {
     render(<StopWatch time={1234567} />);
     expect(screen.getByText(/00:20:34.57/i)).toBeInTheDocument();
   });
 });
 
 describe("Rendering StopWatchButton", () => {
-  test("renders start button", () => {
+  test("Test 4: renders start button", () => {
     // if stopwatch is not currently counting up, then we should see the start button
     render(
       <StopWatchButton
@@ -47,7 +47,7 @@ describe("Rendering StopWatchButton", () => {
     expect(startButtonElement).toBeInTheDocument();
   });
 
-  test("renders reset button", () => {
+  test("Test 5: renders reset button", () => {
     // if stopwatch is not currently counting up, then we should see the reset button
     render(
       <StopWatchButton
@@ -64,7 +64,7 @@ describe("Rendering StopWatchButton", () => {
     expect(resetButtonElement).toBeInTheDocument();
   });
 
-  test("renders stop button", () => {
+  test("Test 6: renders stop button", () => {
     // if stopwatch is currently counting up, then we should see the stop button
     render(
       <StopWatchButton
@@ -81,7 +81,7 @@ describe("Rendering StopWatchButton", () => {
     expect(stopButtonElement).toBeInTheDocument();
   });
 
-  test("renders lap button", () => {
+  test("Test 7: renders lap button", () => {
     // if stopwatch is currently counting up, then we should see the lap button
     render(
       <StopWatchButton
@@ -112,7 +112,7 @@ afterAll(() => {
 
 // Test cases for functionality
 describe("Stopwatch App - Start, Stop, Reset Functionalities", () => {
-  test("starts timer when start button is clicked", () => {
+  test("Test 8: starts timer when start button is clicked", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /start/i }));
     act(() => {
@@ -122,7 +122,7 @@ describe("Stopwatch App - Start, Stop, Reset Functionalities", () => {
     expect(timeDisplays.length).toBeGreaterThan(0); // Check that there is at least one element (same time could be displayed as overall time and the first lap)
   });
 
-  test("stops and resets the timer", () => {
+  test("Test 9: stops and resets the timer", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /start/i }));
     // Simulate some time passing
@@ -139,7 +139,7 @@ describe("Stopwatch App - Start, Stop, Reset Functionalities", () => {
 });
 
 describe("Stopwatch App - Lap Functionality", () => {
-  test("records and resets lap correctly", () => {
+  test("Test 10: records and resets lap correctly", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /start/i })); // start stopwatch
     act(() => {
@@ -156,7 +156,7 @@ describe("Stopwatch App - Lap Functionality", () => {
     expect(screen.getByText(/00:00:06.00/i)).toBeInTheDocument(); // Check second lap time
   });
 
-  test("stops and resumes timer with correct lap time", () => {
+  test("Test 11: stops and resumes timer with correct lap time", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /start/i })); // start stopwatch
     act(() => {
