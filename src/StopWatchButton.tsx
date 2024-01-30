@@ -9,7 +9,8 @@ import React from 'react'
 type StopWatchButtonProps = {
     name: string;
     onClick?: () => void;
-    isDisabled?: boolean;  
+    isDisabled?: boolean; 
+    className?:string; 
 };
   
 /**
@@ -17,13 +18,13 @@ type StopWatchButtonProps = {
  * @param {StopWatchButtonProps} props - The props for this component.
  * @returns A React element representing a button.
  */
-  export default function StopWatchButton({ name, onClick, isDisabled }: StopWatchButtonProps) {
+  export default function StopWatchButton({ name, onClick, isDisabled, className }: StopWatchButtonProps) {
     // Rendering the button element
     // - The 'onClick' prop is used to handle click events on the button.
     // - 'aria-label' is set for accessibility, making the button more accessible to screen readers.
     // - The 'disabled' prop determines whether the button is disabled.
     // - The button text is set to the value of the 'name' prop.
     return(
-        <button onClick={onClick} aria-label={name} disabled={isDisabled}>{name}</button>
+        <button className={className} onClick={onClick} aria-label={name} disabled={isDisabled}>{name}</button>
     )
 }

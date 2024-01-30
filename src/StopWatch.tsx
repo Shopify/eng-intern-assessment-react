@@ -14,7 +14,7 @@ export function formatTime(time:number):string{
     remainingMs = remainingMs % 6000;
     let seconds = Math.floor(remainingMs / 100);
     let milliseconds = remainingMs % 100; 
-    console.log(seconds);
+    
     
     // Format time components to ensure two-digit representation
     let result =minutes.toString().padStart(2,'0')+':'+seconds.toString().padStart(2,'0')+':'+milliseconds.toString().padStart(2,'0');
@@ -75,20 +75,20 @@ export default function StopWatch() {
     
     // Component rendering
     return(
-        <div className='stopwatch'>
+        <div className='stopwatch container-fluid d-flex flex-column'>
             <h1 className='stopwatch-title'>StopWatch</h1>
-            <div className='stopwatch-content'>
-                <div className='stopwatch-buttons'>
-                <StopWatchButton onClick={startTimer} name='Start' isDisabled={timerStatus} ></StopWatchButton>
-                <StopWatchButton onClick={stopTimer} name='Stop' isDisabled={!timerStatus}></StopWatchButton>
-                <StopWatchButton onClick={resetTimer} name='Reset' isDisabled={false}></StopWatchButton>
-                <StopWatchButton onClick={addLap} name='Lap' isDisabled={isLapDisabled}></StopWatchButton>
+            <div className='stopwatch-content d-flex flex-column '>
+                <div className='stopwatch-buttons row'>
+                <StopWatchButton className='col'  onClick={startTimer} name='Start' isDisabled={timerStatus} ></StopWatchButton>
+                <StopWatchButton className='col' onClick={stopTimer} name='Stop' isDisabled={!timerStatus}></StopWatchButton>
+                <StopWatchButton className='col' onClick={resetTimer} name='Reset' isDisabled={false}></StopWatchButton>
+                <StopWatchButton className='col' onClick={addLap} name='Lap' isDisabled={isLapDisabled}></StopWatchButton>
                 </div>
-                <div className='stopwatch-time'>
-                    <p>{formatTime(time)}</p>
+                <div className='stopwatch-time row flex-grow-1'>
+                    <h2 className='col-md-6'>{formatTime(time)}</h2>
                     {/* Display the numbered lap times */}
                     {lapTime.length > 0 && (
-                        <div className='stopwatch-laptimes'>
+                        <div className='stopwatch-laptimes col-md-6'>
                             <p>Lap times</p>
                             <ul>
                                 {lapTime.map((lapTime, index) => {
