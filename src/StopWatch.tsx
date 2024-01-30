@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton';
+import './StopWatch.css';
 
 // Function to format the time in minutes, seconds, and milliseconds
 export function formattedTime(time: number): string {
@@ -44,28 +45,28 @@ export default function StopWatch() {
         return () => clearInterval(intervalId);
     }, [isRunning]);
 
-    return(
-<div>
-      <h1>Stopwatch</h1>
-      <div>
-        <p>{formattedTime(time)}</p>
-      </div>
-      <div>
-        <StopWatchButton type="start" onClick={() => setIsRunning(true)} disabled={isRunning} />
-        <StopWatchButton type="stop" onClick={() => setIsRunning(false)} disabled={!isRunning} />
-        <StopWatchButton type="lap" onClick={() => setLaps([...laps, time])} disabled={!isRunning} />
-        <StopWatchButton type="reset" onClick={handleReset} />
-      </div>
-      {laps.length > 0 && (
-        <div>
-          <h2>Lap Times</h2>
-          <ul>
-            {laps.map((lap, index) => (
-              <li key={index}>{formattedTime(lap)}</li>
-            ))}
-          </ul>
+    return (
+      <div className="stopwatch-container">
+        <h1>StopWatch</h1>
+        <div className="stopwatch-display">
+          <p>{formattedTime(time)}</p>
         </div>
-      )}
-    </div>
-    )
-}
+        <div className="button-container">
+          <StopWatchButton type="start" onClick={() => setIsRunning(true)} disabled={isRunning} />
+          <StopWatchButton type="stop" onClick={() => setIsRunning(false)} disabled={!isRunning} />
+          <StopWatchButton type="lap" onClick={() => setLaps([...laps, time])} disabled={!isRunning} />
+          <StopWatchButton type="reset" onClick={handleReset} />
+        </div>
+        {laps.length > 0 && (
+          <div className="lap-times">
+            <h2>Lap Times</h2>
+            <ul>
+              {laps.map((lap, index) => (
+                <li key={index}>{formattedTime(lap)}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    );
+  }
