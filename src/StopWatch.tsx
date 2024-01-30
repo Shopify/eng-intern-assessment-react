@@ -40,15 +40,14 @@ export default function StopWatch() {
     //Renders the lap feature 
     return(
         <main>
-            <h1 className = "title">Stopwatch</h1>
-            <div className = "watch-container">
-                <p className="timer">{timerArray[0]}</p>
-                <span>:</span>
-                <p className="timer">{timerArray[1]}</p>
-                <span>:</span>
-                <p className="timer">{timerArray[2]}</p>
-                <span>:</span>
-                <p className="timer">{timerArray[3]}</p>
+            <h1 className="title">Stopwatch</h1>
+            <div className="watch-container">
+                {timerArray.map((time, index) => (
+                    <React.Fragment key={index}>
+                        <p className="timer">{time}</p>
+                        {index < timerArray.length - 1 && <span>:</span>}
+                    </React.Fragment>
+                ))}
             </div>
             <StopWatchButton setTimeInMilliseconds={setTimeInMilliseconds} setLapTimes={setLapTimes} timeInMilliseconds={timeInMilliseconds}/>
 
