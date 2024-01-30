@@ -23,7 +23,7 @@ export default function StopWatchButton(props: Props) {
     },[isRunning])
 
     const handleStartButton = () => {
-        setIsRunning(true);
+        if(isRunning==false)setIsRunning(true);
     }
 
     const handleStopButton = () => {
@@ -55,21 +55,17 @@ export default function StopWatchButton(props: Props) {
             <button onClick={handleStopButton}>Stop</button>
             <button onClick={handleResetButton}>Reset</button>
             <button onClick={handleLapButton}>Lap</button>
-            
-            <div>
-                <ul>
+        
+
+            <div className='laps'>
                 {laps.map((lap, index) => (
-                    <div>
-                       <p key={index}> Lap {index + 1}:
-                       {timeFormat(lap).hours.toString().padStart(2,"0")}:
+
+                       <p key={index}> Lap {index + 1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{timeFormat(lap).hours.toString().padStart(2,"0")}:
                        {timeFormat(lap).minutes.toString().padStart(2,"0")}:
                        {timeFormat(lap).seconds.toString().padStart(2,"0")}
                        </p>
-                    </div>
                     
                 ))}
-                </ul>
-        
             </div>
         </div>
         
