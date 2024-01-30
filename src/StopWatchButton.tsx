@@ -6,29 +6,31 @@ export enum ButtonVariant {
     Red,
 }
 
+// Determines the button color based on the button variant
 const colorForVariant = (variant: ButtonVariant) => {
     switch(variant) {
         case ButtonVariant.Green:
-            return '#a0d468';
+            return '#CDEAC0'; // Green color
         case ButtonVariant.Yellow:
-            return '#FFce54';
+            return '#EFE9AE'; //Yellow color
         case ButtonVariant.Red:
-                return '#e9573f';
+            return '#FF928B'; // Red color
     }
-
 }
 
 type StopWatchButtonProps = { variant: ButtonVariant, children: React.ReactNode, onClick: () => void }
 
+// StopWatchButton renders a styled button based on the provided variant
 export default function StopWatchButton({ variant, children, onClick }: StopWatchButtonProps) {
-    // decide on the color based on props.variant
+    // Determinate the color based on the provide props.variant
     const color = colorForVariant(variant);
+    
     return(
-        <div className="stopwatch-btn" style={{
+        <button className="stopwatch-btn" style={{
             border: `2px solid ${color}`,
             color,
         }} onClick={onClick}>
             {children}
-        </div>
+        </button>
     )
 }

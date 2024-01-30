@@ -1,5 +1,5 @@
 body {
-    background: #fff;
+    background: #CDEAC0;
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -20,11 +20,14 @@ body {
   }
   
   .clock-holder {
-    width: 100%;
-    background: #fff;
+    height: 350px;
+    width: 350px;
+    background: #FFAC81;
     margin: 30px auto;
     position: relative;
-    border-radius: 5px;
+    border-radius: 50%;
+    place-items: center;
+    border: 2px solid #FFAC81;
   }
   
   
@@ -34,24 +37,26 @@ body {
   }
 
   .stopwatch span{
-    background:#a0d468;
+    background:#FFAC81;
     color: #fff;
     display: inline-block;
     font-family: monospace;
     font-size: 22px;
     padding: 20px;
-    border-radius: 5px;
-    width: 70px;
+    border-radius: 50%;
+    width: 65px;
+    margin-top: 50px;
   }
   
   .stopwatch .stopwatch-btn {
     background: #fff;
     margin-top: 30px;
-    margin-left: 40%;
-    border-radius: 5px;
+    margin-left: 5px;
+    justify-content: space-between;
+    border-radius: 8px;
     border: none;
     padding: 12px 20px;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
     width: 150px;
     transition: background 1s;
@@ -72,8 +77,10 @@ body {
   .lap-list li {
     margin: 10px 0;
     font-size: 18px;
-    background: #3498db;
+    background: #FFAC81;
     color: #fff;
     padding: 8px;
     border-radius: 5px;
+    width: 350px;
+    margin-left: 31%;  
   }
