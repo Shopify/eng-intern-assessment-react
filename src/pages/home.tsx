@@ -30,6 +30,7 @@ export default function Home() {
 
   const resumeTimer = () => startTimer();
 
+  //This function resets the timer and also clears the laps array
   const resetTimer = () => {
     clearInterval(interv);
     setStatus(0);
@@ -39,6 +40,9 @@ export default function Home() {
     setMinLapIndex(null);
     setMaxLapIndex(null);
   };
+
+  /*Lap timings are calculted by subtrating the start time of previous lap from the 
+    current time */
 
   const recordLap = () => {
     const lapTime = time - lapStartTime;
@@ -54,10 +58,12 @@ export default function Home() {
     });
   };
 
+  //Increments the stopwatch by 10ms
   const updateTime = () => {
     setTime((cur) => cur + 10);
   };
 
+  //Main rendering
   return (
     <div className="main-section">
       <div className="title">STOPWATCH</div>

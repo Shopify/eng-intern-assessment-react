@@ -1,6 +1,7 @@
 import React from "react";
 import { getTimeComponentsFromMs } from "../utils/timeConversion";
 
+//Component to display the timer
 export default function StopWatch({ time }: { time: number }) {
   return (
     <div data-testid="stopwatch-time">

@@ -14,6 +14,7 @@ export default function LapDisplay({
     ? laps.map((lap: number) => getTimeComponentsFromMs(lap))
     : [];
 
+  //This function returns color green for minLap and red for maxLap
   const getLapStyle = (index: number) => {
     if (minLapIndex == maxLapIndex || laps.length <= 2) {
       return {};
@@ -34,6 +35,7 @@ export default function LapDisplay({
         <h2>Split Time</h2>
       </div>
       <div className="body" data-testid="laps-holder-body">
+        {/* Reversing the array to display the most recent lap on top*/}
         {formattedLaps.reverse().map((lap, i) => {
           const reversedIndex = formattedLaps.length - i;
           return (
