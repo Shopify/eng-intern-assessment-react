@@ -1,6 +1,15 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import StopWatchButton from './StopWatchButton';
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+  jest.clearAllMocks();
+});
+
 
 test('calls onClick prop when clicked', () => {
   const handleClick = jest.fn();
@@ -64,3 +73,4 @@ test('lap button is disabled when timer is not running', () => {
   const buttonElement = getByRole('button') as HTMLButtonElement;
   expect(buttonElement.disabled).toBe(true);
 });
+
