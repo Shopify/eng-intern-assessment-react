@@ -3,47 +3,40 @@ import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
 import StopwatchLaps from './StopwatchLaps';
 import "./styles.css";
+import { act } from 'react-dom/test-utils';
+
+// Converts the number type time representing milliseconds into strings representing units of time
+// Strings less than 2 chars long get a leading 0, millisecond checks for 3
+export function convertToTimeUnits(time: number): string[]{
+    let milliseconds: string, seconds: string, minutes: string;
+
+    milliseconds = (time%1000).toString().padStart(3, "0");
+    seconds = Math.floor((time/1000)%60).toString().padStart(2, "0");
+    minutes = Math.floor(time/60000).toString().padStart(2, "0");
+    return[minutes, seconds, milliseconds];
+}
 
 // The main component of the stopwatch, renders all subcomponents
 // Responsible for state setup, variable declarations and function definitions
 export default function App() {
-    const [timeElapsed, setTimeElapsed] = useState<number>(0); // Time value of stopwatch in 10 milliseconds
-    const [status, setStatus] = useState<boolean>(false); // Status of stopwatch, true/false meaning on/off
-    const [laps, setLaps] = useState<number[]>([]); // Laps that store the time between when the button to record it was pressed vs last pressed
-    const [prevLap, setPrevLap] = useState<number>(0); // Previous total time elapsed of when the last lap was recorded
+    const [timeElapsed, setTimeElapsed] = useState<number>(0);
+    const [status, setStatus] = useState<boolean>(false);
+    const [laps, setLaps] = useState<number[]>([]);
+    const [prevLap, setPrevLap] = useState<number>(0);
 
-    // Stores the minutes, seconds and milliseconds as an array of strings
-    let timeUnits: string[];
-    let lapTimeUnits: string[];
-
-    // Variables to manage updating the time
     let timeInterval: ReturnType<typeof setInterval>;
     let curTime: number;
 
-    // Keeping track of time
-    // Use of the setInterval method allows for the time to continuously update every 10 milliseconds
-    // When status is true, updates time by checking the difference in time between that instant and the last time Date.now() was called
-    // When status is false, stops updating time by using clearInterval to stop the execution of setInterval
-    // useEffect is dependent on changes to status and timeElapsed
+    // Keeping track of time, dependent on changes to status and timeElapsed
+    // useEffect ensures setInterval does not run infinitely
     useEffect(() => {
         curTime = Date.now();
 
         // Only updates time if the status is set to true
         if(status) timeInterval = setInterval(() => 
-            setTimeElapsed(timeElapsed+(Date.now()-curTime)) , 10);
+            act(() => setTimeElapsed(timeElapsed+(Date.now()-curTime))) , 10);
         return () => clearInterval(timeInterval);
     }, [status, timeElapsed]);
-
-    // Converts the number type time representing milliseconds into strings representing units of time
-    // Strings less than 2 chars long get a leading 0, millisecond checks for 3
-    function convertToTimeUnits(time: number): string[]{
-        let milliseconds: string, seconds: string, minutes: string;
-
-        milliseconds = (time%1000).toString().padStart(3, "0");
-        seconds = Math.floor((time/1000)%60).toString().padStart(2, "0");
-        minutes = Math.floor(time/60000).toString().padStart(2, "0");
-        return[minutes, seconds, milliseconds];
-    }
     
     // Stops or starts the stopwatch depending on the current status
     // Updates the button and status as such
@@ -59,11 +52,11 @@ export default function App() {
         setTimeElapsed(0);
         setLaps([]);
         setPrevLap(0);
+        document.getElementById("toggle-stopwatch").innerHTML = "Start";
+        setStatus(false);
     }
 
-    // Adds a new lap to the laps array by returning a new array containing the current laps and the new one
-    // The new lap is the difference between the current time and the time of the previous lap
-    // Updates the previous lap to the current time
+    // Adds new lap to laps array by returning a new array containing the current laps and the new one
     function addLap(time: number): void{
         setLaps(curLaps =>
             {return [...curLaps, time-prevLap]})
@@ -71,17 +64,16 @@ export default function App() {
         setPrevLap(time)
     }
 
-    // Renders each of the components and passes them the props they need
     return(
         <div>
-            <StopWatch timeElapsed={timeElapsed} timeUnits={timeUnits} convertToTimeUnits={convertToTimeUnits} />
+            <StopWatch timeElapsed={timeElapsed} />
             {/* Renders 3 buttons that resets and toggles the stopwatch as well as adding laps */}
             <div className="btn-wrapper">
                 <StopWatchButton id="reset-stopwatch" text="Reset" handleClick={resetStopwatch} />
                 <StopWatchButton id="toggle-stopwatch" text="Start" handleClick={toggleStopwatch} />
                 <StopWatchButton id="lap-stopwatch" text="Lap" handleClick={() => addLap(timeElapsed)} />
             </div>
-            <StopwatchLaps convertToTimeUnits={convertToTimeUnits} laps={laps} lapTimeUnits={lapTimeUnits}/>
+            <StopwatchLaps laps={laps} />
         </div>
     )
 }
