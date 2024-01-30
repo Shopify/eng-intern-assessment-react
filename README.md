@@ -13,6 +13,11 @@ https://github.com/nicolecevey/eng-intern-assessment-react/assets/100004459/baa6
 - [x] Displays Laps when a button is pressed.
 - [x] Reset the stopwatch to zero.
 
+# Additonal Information
+
+I created a stopwatch with UI and functionality inspired by the iPhone stopwatch app and Shopify branding. I used vanilla CSS for styling in a central stylesheet and Font Awesome for the icon.
+
+
 # Testing
 
 Tests were created using React Testing Library.
