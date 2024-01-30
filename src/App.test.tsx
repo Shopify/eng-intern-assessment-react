@@ -11,9 +11,12 @@ describe('stopwatch', () => {
 		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
 			'00:00:00.00'
 		);
+        
+        // Only the Start and Reset buttons should be visible when stopwatch is inactive.
 		expect(screen.getByText('Start')).toBeInTheDocument();
 		expect(screen.getByText('Reset')).toBeInTheDocument();
 
+        // Initially, the list of laps should not have any child elements.
 		expect(screen.queryByTestId('stopwatch-laps')).not.toContainElement(
 			document.querySelector('.lap-entry')
 		);
@@ -26,14 +29,17 @@ describe('stopwatch', () => {
 
 		fireEvent.click(screen.getByText('Start'));
 
+        // Advance the time by 1 second.
 		await act(async () => {
 			jest.advanceTimersByTime(1000);
 		});
-
+        
+        // Check if stopwatch has advanced by 1 second.
 		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
 			'00:00:01.00'
 		);
-
+        
+        // Only the Stop and Lap buttons should be visible when stopwatch is active.
 		expect(screen.getByText('Stop')).toBeInTheDocument();
 		expect(screen.getByText('Lap')).toBeInTheDocument();
 
@@ -92,9 +98,12 @@ describe('stopwatch', () => {
 		fireEvent.click(screen.getByText('Stop'));
 		fireEvent.click(screen.getByText('Reset'));
 
+        // The stopwatch time should be 0 on reset.
 		expect(screen.getByTestId('stopwatch-time')).toHaveTextContent(
 			'00:00:00.00'
 		);
+
+        // The list of laps should have no child elements on reset
 		expect(screen.queryByTestId('stopwatch-laps')).not.toContainElement(
 			document.querySelector('.lap-entry')
 		);
@@ -112,7 +121,9 @@ describe('stopwatch', () => {
 		});
 
 		fireEvent.click(screen.getByText('Lap'));
-
+        
+        // There should be two instances of the time displayed at this moment.
+        // Once in the stopwatch and once in the lap entries.
 		expect(screen.queryByTestId('stopwatch-laps')).toContainElement(
 			screen.getAllByText('00:00:01.00')[1]
 		);
