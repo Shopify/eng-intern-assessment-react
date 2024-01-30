@@ -8,7 +8,7 @@ interface lapTimesProps {
 const LapTimes = ({ lapTimes }: lapTimesProps) => {
     return (
         <div className='lapTimesContainer digital'>
-            <ol>
+            <ol data-testid='lapTimes'>
                 {lapTimes.map((lap, i) => {
                     return (
                         <li key={i + 1} className='lap'>
