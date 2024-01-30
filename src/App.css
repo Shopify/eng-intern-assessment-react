@@ -18,14 +18,8 @@ body {
     align-items: center;
 }
 
-.time-container span {
-    position: relative;
-    top: 5px;
-    font-size: 4rem;
-}
-
 .timer-text {
-    margin: 0;
+    margin: 5px;
     font-size: 5rem;
 }
 
