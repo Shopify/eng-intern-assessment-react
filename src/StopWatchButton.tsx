@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { FaPlay, FaRegStopCircle, FaStopwatch } from "react-icons/fa";
 import {GrPowerReset } from "react-icons/gr";
 import './App.css';
@@ -8,19 +8,17 @@ import './App.css';
 type Props = {
     setTimeInSeconds: Function
     currentTime: any;
-    previousTime: any;
-    setpreviousTime: any;
 }
-
 
 const StopWatchButton = (props: Props) => {
     const { setTimeInSeconds } = props;
     const { currentTime } = props;
-    const { previousTime, setpreviousTime } = props;
 
     const [ intervalId, setIntervalId ] = useState<number>(0);    //handles the interval id
     const [ active, setActive] = useState(true); //controls which button is active
-    const [ lapsedTime, setLapsedTime ] = useState<Array<number|string>>([]);
+    const [ lapTime, setLapTime ] = useState<Array<number|string>>([]);
+    const [ previousTime, setPreviousTime] = useState<Array<number|string>>([]);
+
 
     //controls the play button while animates the timer
     const handlePlayButton = () => {
@@ -45,18 +43,21 @@ const StopWatchButton = (props: Props) => {
     const handleResetButton = () => {
         clearInterval(intervalId);
         setTimeInSeconds(0);
+        setLapTime([]);
+        const clearList = document.getElementById('lapTimes');
+        clearList.innerHTML = " ";
     }
 
     const handleLapButton = () => {
         let lapsed;
-        setpreviousTime(currentTime);
-        let text = document.getElementById("lapTime");
+        setPreviousTime(currentTime);
+        let text = document.getElementById("lapTimes");
         text.style.display = 'block';
         let demo = document.createElement('li');
+        demo.classList.add('lapTime-list')
         let time : Array<number | string> = calculateLapTime(previousTime, currentTime);
-        setLapsedTime(time);
-        console.log(lapsedTime);
-        if((previousTime == null || previousTime.length == 0) || (lapsedTime == null || lapsedTime.length == 0))
+        setLapTime(time);
+        if((previousTime == null || previousTime.length == 0) || (lapTime == null || lapTime.length == 0))
         {
             //a condition check for the first lapsed time that occurs as lapsed time would most likely be the same as current time
             lapsed = document.createTextNode(`${currentTime[0]}:${currentTime[1]}:${currentTime[2]}` + " " + `${currentTime[0]}:${currentTime[1]}:${currentTime[2]}`);
@@ -107,13 +108,13 @@ const StopWatchButton = (props: Props) => {
     return (  
         <>
         <div className="button-container">
-            { active ? <button onClick = {handlePlayButton}><FaPlay /></button> : <button onClick = {handleStopButton}><FaRegStopCircle /></button> }
-            <button onClick = {handleResetButton}><GrPowerReset /></button>
-            <button onClick = {handleLapButton}><FaStopwatch /></button>
+            { active ? <button data-testid = "startButton" onClick = {handlePlayButton}><FaPlay /></button> : <button data-testid = "stopButton" className = "Stop" onClick = {handleStopButton}><FaRegStopCircle /></button> }
+            <button data-testid = "resetButton" onClick = {handleResetButton}><GrPowerReset /></button>
+            <button data-testid = "lapButton" onClick = {handleLapButton}><FaStopwatch /></button>
         </div>  
-        <div className="laps" style={{display: (lapsedTime.length) ? 'block' : 'none'}}>
-        <ol id = "lapTime">
-            <h3><span>Lap</span><span>Time</span><span>Total Time</span></h3> 
+        <div>
+        <ol data-testid = "lapTimes" id = "lapTimes">
+            <h3><span>Lap</span><span>Time</span><span>Lapsed Time</span></h3> 
         </ol>
         </div>
         </>

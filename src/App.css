@@ -51,24 +51,23 @@ body {
     height: 80%;
 }
 
-#lapTime {
-    display: none flex;
+#lapTimes {
+    display: none;
     color: white;
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-#lapTime h3 span {
+#lapTimes h3 span {
     justify-content: space-between;
     align-items: center;
     margin: 0px 5px 10px 5px;
     padding: 55px;
 }
 
-#laptime li::marker {
+.lapTimes-list {
     justify-content: space-between;
     align-items: center;
     margin: 0px 5px 10px 5px;
-    padding: 55px;
 }

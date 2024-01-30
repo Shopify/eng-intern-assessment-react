@@ -9,7 +9,6 @@ export default function App() {
     
     const [timeInSeconds, setTimeInSeconds] = useState<number>(0);
     const [currentTime, setcurrentTime] = useState<Array<number|string>>([]);
-    const [previousTime, setpreviousTime] = useState<Array<number|string>>([]);
 
     let hours: number = Math.floor(timeInSeconds / 3600);   //convert seconds to hours
     let minutes: number = Math.floor((timeInSeconds - (hours * 3600)) / 60);  //convert seconds to minutes
@@ -34,7 +33,7 @@ export default function App() {
                 <span>:</span>
                 <p className="timer-text">{currentTime[2]}</p>
             </div> 
-            <StopWatchButton setTimeInSeconds={setTimeInSeconds} currentTime={currentTime} previousTime={previousTime} setpreviousTime={setpreviousTime} />
+            <StopWatchButton setTimeInSeconds={setTimeInSeconds} currentTime={currentTime} />
             
         </>
     )
