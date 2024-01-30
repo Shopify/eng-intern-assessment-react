@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
-import StopWatch from './StopWatch'
-import StopWatchButton from './StopWatchButton'
+import React, {useState} from 'react';
+import StopWatch from './StopWatch';
+import StopWatchButton from './StopWatchButton';
+import "./styling/app.css";
 
 export default function App() {
     const [isRunning, setRunning] = useState(false);
@@ -8,7 +9,7 @@ export default function App() {
     const [laps, setLaps] = useState<number[]>([]);
 
     return(
-        <div>
+        <div className='container'>
             <h1>Stopwatch</h1>
             <div role='stopwatch'>
                 <StopWatch isRunning={isRunning} time={time} setTime={setTime} laps={laps}/>
