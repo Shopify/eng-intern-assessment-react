@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import StopWatchButton from '../StopWatchButton/StopWatchButton';
+import React, { useState, useEffect } from "react"
+import StopWatchButton from "../StopWatchButton/StopWatchButton";
 
 export default function StopWatch() {
     const [currentTime, setCurrentTime] = useState(0); // state to store time
@@ -63,9 +63,9 @@ export default function StopWatch() {
 
     // render stopwatch interface, including time, buttons, and laps
     return (
-        <section className='stopwatch__container'>
+        <section className="stopwatch__container">
             <article className="time__container">
-                <h2 className='time__text'>{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</h2>
+                <h2 className="time__text">{readableTime(hoursInTime(currentTime), minutesInTime(currentTime), secondsInTime(currentTime), millisecondsInTime(currentTime))}</h2>
             </article>
 
             <article className="button__container">
@@ -76,9 +76,9 @@ export default function StopWatch() {
             </article>
 
             <article className="lap__container">
-                <ol id='lap-list' type="i">
+                <ol className="laps__list" data-testid="laps-list" type="i">
                     {laps.map((t, i) => {
-                        return <li key={i} className='lap__item'>{readableTime(hoursInTime(laps[i]), minutesInTime(laps[i]), secondsInTime(laps[i]), millisecondsInTime(laps[i]))}</li>
+                        return <li key={i} className="lap__item">{readableTime(hoursInTime(laps[i]), minutesInTime(laps[i]), secondsInTime(laps[i]), millisecondsInTime(laps[i]))}</li>
                     })}
                 </ol>
             </article>

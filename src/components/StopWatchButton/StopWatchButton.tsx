@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 // add types to passed button props
 interface StopWatchButtonProps {
