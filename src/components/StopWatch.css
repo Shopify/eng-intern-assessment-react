@@ -33,7 +33,7 @@ body {
   font-size: 1.5rem;
   margin: 10px;
   cursor: pointer;
-  border: none;
+  border: 1px solid purple;
   border-radius: 4px;
 }
 
@@ -43,6 +43,12 @@ body {
 
 .btn.selected {
   background-color: #DA70D6;
+}
+
+.lap-list {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -60,3 +66,5 @@ body {
     margin: 5px;
   }
 }
+
+

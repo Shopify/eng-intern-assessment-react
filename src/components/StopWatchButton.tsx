@@ -4,6 +4,7 @@ interface StopWatchButtonProps {
   onStart: () => void;
   onStop: () => void;
   onReset: () => void;
+  onLap: () => void;
   isRunning: boolean;
 }
 
@@ -11,6 +12,7 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({
   onStart,
   onStop,
   onReset,
+  onLap,
   isRunning,
 }) => {
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
@@ -41,6 +43,13 @@ const StopWatchButton: React.FC<StopWatchButtonProps> = ({
         onClick={() => handleButtonClick('reset', onReset)}
       >
         Reset
+      </button>
+      <button
+        className={`btn ${selectedButton === 'lap' ? 'selected' : ''}`}
+        onClick={() => handleButtonClick('lap', onLap)} 
+        disabled={!isRunning}
+      >
+        Lap
       </button>
     </div>
   );
