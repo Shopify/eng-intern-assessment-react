@@ -7,6 +7,6 @@ interface StopWatchProps {
 
 export default function StopWatch({ time, displayTime }: StopWatchProps) {
     return(
-        <div>{displayTime(time)}</div>
+        <div className="TimeDisplay">{displayTime(time)}</div>
     )
 }
