@@ -7,7 +7,7 @@ type StopWatchButtonProps = {
   resume: () => void;
   reset: () => void;
   recordLap: () => void;
-  status: String;
+  status: TimerStatus;
 };
 export default function StopWatchButton({
   start,

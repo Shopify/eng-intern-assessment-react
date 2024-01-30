@@ -16,7 +16,7 @@ export default function Home() {
   //   status NOT_STARTED: start enabled; lap disabled
   //   status RUNNING: stop enabled; lap enabled
   //   status PAUSED: start enabled; reset enabled
-  const [status, setStatus] = useState<String>(TimerStatus.NOT_STARTED);
+  const [status, setStatus] = useState<TimerStatus>(TimerStatus.NOT_STARTED);
 
   const startTimer = () => {
     updateTime();
