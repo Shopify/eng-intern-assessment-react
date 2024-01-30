@@ -1,0 +1,42 @@
+@use "../../styles/partials/global" as *;
+
+.display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 70%vw;
+		font-size: 10rem;
+		color: #ebebd3;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+}
+
+.laps {
+	color: #00bdba;
+	width: 40vw;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__title {
+		margin-bottom: 1rem;
+		border-bottom: 0.063rem solid #ef476f;
+	}
+
+	&__label {
+		margin-right: 1rem;
+		font-weight: bold;
+	}
+
+	&__item {
+		display: flex;
+	}
+}
