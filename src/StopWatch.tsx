@@ -27,7 +27,7 @@ export function StopWatch({ time }: TimerProps) {
 
     // 在组件中显示格式化后的时间
     return (
-        <div>
+        <div data-testid="stopwatch-display">
             {formattedTime}
         </div>
     );
