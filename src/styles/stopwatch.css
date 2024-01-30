@@ -1,0 +1,61 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F1F0F0;
+}
+.stopwatch {
+    padding: 4rem;
+    display: flex;
+    flex-flow:column;
+    position: relative;
+}
+.stopwatch__head {
+    display: flex;
+}
+.stopwatch__timer {
+    width: 250px;
+    height: 250px;
+    color: #060606;
+    line-height: 11rem;
+    margin-right: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-variant-numeric: tabular-nums;
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: "Fjalla One", sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+.stopwatch__button {
+    margin-top: 5rem;
+    color: #3a3a3a;
+    margin-right: 1rem;
+    width: 5rem;
+    border-radius: 50%;
+    height: 5rem;
+    font-size: 0.75rem;
+    font-family: "Fjalla One", sans-serif;
+    border: rgb(118, 118, 118) solid 1px;
+    cursor: pointer;
+}
+.stopwatch__button:active {
+    border: rgb(118, 118, 118) dashed 1px;
+}
+.stopwatch__laps {
+    font-family: "Fjalla One", sans-serif;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    line-height: 1.25;
+    position: absolute;
+    bottom: -2rem;
+    left: 0;
+    right: 0;
+}
