@@ -134,7 +134,7 @@ describe("Stopwatch App - Start, Stop, Reset Functionalities", () => {
     expect(timeDisplays.length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByRole("button", { name: /reset/i }));
-    expect(screen.getByText(/00:00:00/i)).toBeInTheDocument();
+    expect(screen.getByText(/00:00:00.00/i)).toBeInTheDocument();
   });
 });
 
