@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StopWatchButtons from './StopWatchButtons';
 import LapsContainer from './LapsContainer';
-// import './StopWatchStyling.css'
 
 export default function StopWatch() {
 
@@ -65,13 +64,6 @@ export default function StopWatch() {
                 handleLapAdd={handleLapAdd}
             />
             <LapsContainer laps={laps}/>
-            <button className="flex justify-center items-center maa">
-            <svg width="220" height="200" viewBox="0 0 26 30">
-              <g fill="none" fillRule="evenodd">
-                <circle cx="10" cy="10" r="4" fill="rgba(0,0,0,0)"/>
-              </g>
-            </svg>
-          </button>   
         </div>
     )
 }

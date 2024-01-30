@@ -1,5 +1,4 @@
 import React from 'react';
-// import './StopWatchButtonsStyling.css';
 
 interface IStopWatchButtonsProps {
     isRunning: boolean
@@ -21,8 +20,7 @@ export default function StopWatchButtons(props: IStopWatchButtonsProps) {
             {isRunning ? 
                 <button className='stopWatchButton__lap' onClick={handleLapAdd}>
                     Lap
-                </button>
-            :
+                </button>:
                 <button className='stopWatchButton__reset' onClick={handleTimerReset}>
                     Reset
                 </button>
