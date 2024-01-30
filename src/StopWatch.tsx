@@ -62,23 +62,23 @@ export default function StopWatch() {
     <div className="stopwatch">
       <div className="stopwatch-content">
         {padTimeFormat(time).slice(0, 2) !== "00" ? (
-          <div className="hour">
+          <div id="hour">
             {padTimeFormat(time).slice(0, 2)}
             <div className="stopwatch-unit">h</div>
           </div>
         ) : (
           <></>
         )}
-        <div className="minute">
+        <div id="minute">
           {padTimeFormat(time).slice(3, 5)}
           <div className="stopwatch-unit">m</div>
         </div>
-        <div className="second">
+        <div id="second">
           {padTimeFormat(time).slice(6, 8)}
           <div className="stopwatch-unit">s</div>
         </div>
         {padTimeFormat(time).slice(0, 2) === "00" ? (
-          <div className="milli">
+          <div id="milli">
             {padTimeFormat(time).slice(9, 11)}
             <div className="stopwatch-unit">ms</div>
           </div>

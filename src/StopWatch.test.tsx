@@ -1,7 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import StopWatch, { formatTime } from "./StopWatch";
-jest.useFakeTimers();
 
 // Test the formatTime function
 describe("formatTime", () => {
@@ -58,12 +57,20 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-// test("resets timer when reset button is clicked", () => {
-//   const { getByRole, getByText } = render(<StopWatch />);
-//   const startButton = getByRole("button", { name: /start/i });
-//   fireEvent.click(startButton);
-//   jest.advanceTimersByTime(1000);
-//   const resetButton = getByRole("button", { name: /reset/i });
-//   fireEvent.click(resetButton);
-//   expect(getByText("00:00:00")).not.toBeNull();
-// });
+test("resets timer when reset button is clicked", () => {
+  const { getByRole } = render(<StopWatch />);
+  const startButton = getByRole("button", { name: /start/i });
+  fireEvent.click(startButton);
+  jest.advanceTimersByTime(1000);
+  const resetButton = getByRole("button", { name: /reset/i });
+  fireEvent.click(resetButton);
+  const minute = document.getElementById('minute')
+  const second = document.getElementById('second')
+  const milli = document.getElementById('milli')
+  const hour = document.getElementById('hour')
+  expect(minute).not.toBeNull();
+  expect(second).not.toBeNull();
+  expect(milli).not.toBeNull();
+  expect(hour).toBeNull();
+});
+
