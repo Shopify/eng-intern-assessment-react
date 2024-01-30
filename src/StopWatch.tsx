@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import StopWatchButton from './StopWatchButton';
-import './StopWatch.css';
 
 // Function to format the time in minutes, seconds, and milliseconds
 export function formattedTime(time: number): string {
