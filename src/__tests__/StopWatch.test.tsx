@@ -26,7 +26,7 @@ describe('StopWatch', () => {
     });
   });
   describe('Timer Functionality', () => {
-    it('works to time 30 milliseconds', async () => {
+    it('start/stop works to time 30 milliseconds', async () => {
       const { getByText, getByTestId } = render(<StopWatch />);
       act(async () => {
         const startStopButton = getByText('Start');
@@ -38,9 +38,20 @@ describe('StopWatch', () => {
         expect(time.textContent).toContain('0:00:00:30');
       });
     }, 100000);
+    it('reset button works', async () => {
+      const { getByText, getByTestId } = render(<StopWatch />);
+      act(async () => {
+        const startStopButton = getByText('Start');
+        fireEvent.click(startStopButton); // Start stopwatch
+        await timeout(3000);
+        fireEvent.click(startStopButton); // Stop stopwatch
+        const resetButton = getByText('Reset');
+        fireEvent.click(resetButton);
+        const time = getByTestId('timer');
+        expect(time.textContent).toContain('0:00:00:00');
+      });
+    }, 100000);
+    it('displays a lap at 1:00 seconds', () => {});
+    it('displays 3 properly indexed and timed laps', () => {});
   });
-  // describe('Lap Functionality', () => {
-  //   it('has a lap at 1:00 seconds', () => {});
-  //   it('has 3 laps at 1.00 second, 5.55 seconds, and 1:20:00 minutes with properly numbered laps', () => {});
-  // });
 });
