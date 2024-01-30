@@ -15,4 +15,5 @@ To run the application, clone the repository and run "npm install" to ensure all
 After cloning the repository and installing all dependencies, you can run the tests by runnning "npm test". There are two test files: StopWatch.test.tsx StopWatchButton.test.tsx
 
 You should see similar results to the one below:
+<br/>
 ![](./screenshots/test-results.png)
