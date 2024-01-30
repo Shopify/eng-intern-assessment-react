@@ -100,7 +100,13 @@ export default function StopWatch() {
 
   return (
     <BlockStack align="space-between" gap="500">
-      <Text alignment="center" as="p" variant="heading2xl" numeric>
+      <Text
+        alignment="center"
+        as="h1"
+        variant="heading2xl"
+        numeric
+        id="elapsed-time"
+      >
         {formatTime(elapsedTime)}
       </Text>
       <InlineStack align="space-between">

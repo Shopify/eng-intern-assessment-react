@@ -1,5 +1,11 @@
 import React from "react";
-import { Badge, Divider, InlineStack, Text } from "@shopify/polaris";
+import {
+  Badge,
+  BlockStack,
+  Divider,
+  InlineStack,
+  Text,
+} from "@shopify/polaris";
 
 interface LapProps {
   lapNumber: number;
@@ -20,12 +26,13 @@ const Lap: React.FC<LapProps> = ({
   fastestLapLabel = "Fastest",
   slowestLapLabel = "Slowest",
 }) => {
+  const lapElId = `lap-${lapNumber}`;
   return (
     <>
       <Divider />
       <InlineStack align="space-between">
         <InlineStack align="start" gap="300">
-          <Text as="span" variant="headingLg">
+          <Text id={lapElId} as="span" variant="headingLg">
             {lapLabel} {lapNumber}
           </Text>
           {fastestLap && <Badge tone="success">{fastestLapLabel}</Badge>}

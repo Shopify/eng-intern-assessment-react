@@ -9,5 +9,8 @@
     "plugin:@shopify/react",
     "plugin:@shopify/prettier",
     "plugin:@shopify/polaris"
-  ]
+  ],
+  "env": {
+    "jest": true
+  }
 }
