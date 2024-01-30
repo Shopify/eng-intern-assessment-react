@@ -11,14 +11,12 @@ const StopWatch: React.FC = () => {
     if (!isOn) return; // if isOn is false the setInterval will not be executed
 
     //setInterval timeCounter
-    const timerCount = setInterval(() => {
-      setCount((prevCount) => prevCount + 1);
-      console.log(isOn);
-    }, 1000);
+    const timerCount = setInterval(
+      () => setCount((prevCount) => prevCount + 1), // increment count by 1
+      1000
+    );
 
-    return () => {
-      clearInterval(timerCount); // clear interval
-    };
+    return () => clearInterval(timerCount); // clear interval
   }, [isOn]);
 
   const stopTimer = () => setIsOn(false); // stop timer function
