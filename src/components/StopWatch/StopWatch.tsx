@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import "./StopWatch.css";
 import StopWatchButton from "../StopWatchButton/StopWatchButton";
-import { getFormattedTime, getFormattedTimeObject } from "../../utils/time-formatter";
+import { getFormattedTime } from "../../utils/time-formatter";
 
 // StopWatch Component: Implements a stopwatch with start, stop, lap, and reset functionalities.
 export default function StopWatch() {
@@ -9,9 +9,6 @@ export default function StopWatch() {
    const [time, setTime] = React.useState(0);
    const [isRunning, setIsRunning] = React.useState(false);
    const [laps, setLaps] = React.useState([]);
-
-   // Destructuring formatted time parts from the utility function
-   const { hours, minutes, seconds, milliseconds } = getFormattedTimeObject(time);
 
    // Ref for the laps list element to enable automatic scrolling to the newest lap
    const lapsRef = useRef(null);
@@ -64,17 +61,7 @@ export default function StopWatch() {
    return (
       <div className="stopwatch">
          <div className="time">
-            {hours !== "00" && (
-               <>
-                  <p className="numbers hours">{hours}</p>
-                  <p>:</p>
-               </>
-            )}
-            <p className="number minutes">{minutes}</p>
-            <p>:</p>
-            <p className="number seconds">{seconds}</p>
-            <p>.</p>
-            <p className="number milliseconds">{milliseconds}</p>
+            <p>{getFormattedTime(time)}</p>
          </div>
          {/* Control buttons for the stopwatch */}
          <div className="buttons">
@@ -85,7 +72,7 @@ export default function StopWatch() {
          </div>
          {/* Display laps if any */}
          {laps.length > 0 && (
-            <div className="laps-container">
+            <div data-testid="laps-container" className="laps-container">
                <div className="columns">
                   <div>Lap</div>
                   <div>Lap Times</div>

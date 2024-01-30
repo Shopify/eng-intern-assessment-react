@@ -19,36 +19,9 @@ const getFormattedTime = (time: number) => {
 
    // Return formatted time string, including hours if present
    if (hours > 0) {
-      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
    }
-   return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
+   return `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
 };
 
-/**
- * Converts time in milliseconds to an object with formatted time components.
- * @param {number} time - The time in milliseconds.
- * @returns {object} An object containing formatted hours, minutes, seconds, and milliseconds.
- */
-const getFormattedTimeObject = (time: number) => {
-   // Convert milliseconds into hours, minutes, seconds, and milliseconds
-   const hours = Math.floor(time / 360000);
-   const minutes = Math.floor((time % 360000) / 6000);
-   const seconds = Math.floor((time % 6000) / 100);
-   const milliseconds = time % 100;
-
-   // Format each time component to ensure two digits
-   const formattedHours = hours.toString().padStart(2, "0");
-   const formattedMinutes = minutes.toString().padStart(2, "0");
-   const formattedSeconds = seconds.toString().padStart(2, "0");
-   const formattedMilliseconds = milliseconds.toString().padStart(2, "0");
-
-   // Return an object containing formatted time components
-   return {
-      hours: formattedHours,
-      minutes: formattedMinutes,
-      seconds: formattedSeconds,
-      milliseconds: formattedMilliseconds,
-   };
-};
-
-export { getFormattedTime, getFormattedTimeObject };
+export { getFormattedTime };

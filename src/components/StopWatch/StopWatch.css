@@ -17,9 +17,7 @@
    gap: 0.5rem;
 }
 
-.time .number {
-   width: 9rem;
-   text-align: center;
+.time p {
    font-variant-numeric: tabular-nums
 }
 
