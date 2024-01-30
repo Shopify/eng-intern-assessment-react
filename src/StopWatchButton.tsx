@@ -1,15 +1,15 @@
 import React from 'react'
 
 interface Props {
-    color: string;
     children?: React.ReactNode;
+    className?: string;
     onClick: () => void;
-  }
-
-export default function StopWatchButton({color, children, onClick}: Props) {
-    return(
+}
+// this is a custom button component with an Props interface
+export default function StopWatchButton({ className, children, onClick }: Props) {
+    return (
         <div>
-            <button onClick={onClick} style={{backgroundColor: color}}>{children}</button>
+            <button onClick={onClick} className={`${className}`}>{children}</button>
         </div>
     );
 }

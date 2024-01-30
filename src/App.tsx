@@ -13,13 +13,15 @@ import StopWatch from "./StopWatch";
 import "./stopwatch.css";
 
 
+
 // The main component that renders the stopwatch and handles its functionality.
 export default function App() {
 
-  
+
     return (
-      <div className="App">
-        <StopWatch/>
-      </div>
+        <div className="App">
+            <h1 className="title">StopWatch</h1>
+            <StopWatch />
+        </div>
     );
 }
