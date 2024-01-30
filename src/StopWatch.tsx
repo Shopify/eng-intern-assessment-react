@@ -6,5 +6,9 @@ type StopWatchProps = {
 };
 
 export default function StopWatch({ timeInTenMillis }: StopWatchProps) {
-  return <p className="stopwatch-display">{formattedTime(timeInTenMillis)}</p>;
+  return (
+    <div>
+      <p className="stopwatch-display">{formattedTime(timeInTenMillis)}</p>
+    </div>
+  );
 }

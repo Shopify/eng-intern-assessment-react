@@ -1,3 +1,7 @@
+body {
+  background-color: #6fabe5;
+  color: white;
+}
 .stopwatch-container {
   display: flex;
   flex-direction: column;
@@ -19,17 +23,16 @@
   width: 5rem;
   margin: 0 0.5rem;
   cursor: pointer;
-  color: white;
 }
 
 .button-container .start-button {
-  background-color: #1936ea;
-  border-color: #1936ea;
+  background-color: #abe56f;
+  border-color: #abe56f;
 }
 
 .button-container .reset-button {
-  background-color: #ea6b19;
-  border-color: #ea6b19;
+  background-color: #e56fab;
+  border-color: #e56fab;
 }
 
 .stopwatch-display {

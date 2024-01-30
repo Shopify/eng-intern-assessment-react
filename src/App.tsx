@@ -56,6 +56,7 @@ export default function App() {
 
   return (
     <div className="stopwatch-container">
+      <h1>Stopwatch:</h1>
       <StopWatch timeInTenMillis={time} />
       <StopWatchButton
         isRunning={isRunning}
