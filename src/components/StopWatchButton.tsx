@@ -1,16 +1,30 @@
 import React from "react";
 
-export default function StopWatchButton(props: any) {
+export default function StopWatchButton({
+  start,
+  stop,
+  resume,
+  reset,
+  recordLap,
+  status,
+}: {
+  start: () => void;
+  stop: () => void;
+  resume: () => void;
+  reset: () => void;
+  recordLap: () => void;
+  status: number;
+}) {
   return (
     <>
       {/* Status 0 : only Lap(disabled) and Start buttons are rendered */}
-      {props.status === 0 ? (
+      {status === 0 ? (
         <>
           {" "}
           <button className="stopwatch-btn " disabled>
             Lap
           </button>{" "}
-          <button className="stopwatch-btn " onClick={props.start}>
+          <button className="stopwatch-btn " onClick={start}>
             Start
           </button>
         </>
@@ -19,12 +33,12 @@ export default function StopWatchButton(props: any) {
       )}
 
       {/* Status 1 : only Lap and Stop buttons are rendered */}
-      {props.status === 1 ? (
+      {status === 1 ? (
         <>
-          <button className="stopwatch-btn alt" onClick={props.recordLap}>
+          <button className="stopwatch-btn alt" onClick={recordLap}>
             Lap
           </button>{" "}
-          <button className="stopwatch-btn " onClick={props.stop}>
+          <button className="stopwatch-btn " onClick={stop}>
             Stop
           </button>
         </>
@@ -33,12 +47,12 @@ export default function StopWatchButton(props: any) {
       )}
 
       {/* Status 2 : only Reset and Start buttons are rendered */}
-      {props.status === 2 ? (
+      {status === 2 ? (
         <>
-          <button className="stopwatch-btn" onClick={props.reset}>
+          <button className="stopwatch-btn" onClick={reset}>
             Reset
           </button>{" "}
-          <button className="stopwatch-btn " onClick={props.resume}>
+          <button className="stopwatch-btn " onClick={resume}>
             Start
           </button>
         </>

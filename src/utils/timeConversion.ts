@@ -1,4 +1,4 @@
-export const getTimeComponentsFromMs = (ms: number) => {
+export const getTimeComponentsFromMs = (ms: number): string[] => {
   let seconds = Math.floor(ms / 1000) % 60;
   let minutes = Math.floor(ms / 1000 / 60) % 60;
   let hours = Math.floor(ms / 1000 / 60 / 60);
@@ -6,7 +6,7 @@ export const getTimeComponentsFromMs = (ms: number) => {
   if (hours) return [hours, minutes, seconds, ms].map(padNumber);
   else return [minutes, seconds, ms].map(padNumber);
 };
-export const padNumber = (num: Number) => {
+export const padNumber = (num: Number): string => {
   if (num.toString().length === 1) {
     return "0" + num;
   } else return num.toString();
