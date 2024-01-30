@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import StopWatch from './StopWatch';
 import StopWatchButton from './StopWatchButton';
@@ -97,4 +98,14 @@ export default function App() {
           </div>
         </div>
       );
+}
+
+import React from 'react'
+import './App.css'
+import StopWatch from './StopWatch'
+
+export default function App() {
+    return(
+        <StopWatch />
+    )
 }
