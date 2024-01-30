@@ -68,7 +68,7 @@ export default function StopWatch() {
           "0"
         )}`}
       </div>
-      <div className="btnComponent">
+      <div className="btnContainer">
         <StopWatchButton
           onClick={isRunning ? stopTime : startTime}
           title={isRunning ? "Stop" : "Start"}

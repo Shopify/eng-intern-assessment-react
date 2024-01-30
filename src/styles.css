@@ -18,7 +18,7 @@ body {
   font-size: 35px;
 }
 
-.btnComponent {
+.btnContainer {
   display: flex;
   gap: 15px;
   justify-content: center;
@@ -27,25 +27,25 @@ body {
 
 .stopWatchBtn {
   cursor: pointer;
-  background-color: gray;
+  background-color: #808080;
   padding: 8px 15px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .stopWatchBtn:hover {
-  background-color: lightgray;
+  background-color: #d3d3d3;
 }
 
-.btnComponent h2 {
+.btnContainer h2 {
   font-size: 32px;
   margin-top: 100px;
   margin-left: -250px;
 }
 
-.btnComponent ul {
+.btnContainer ul {
   list-style: none;
   font-size: 20px;
   margin-left: -300px;
