@@ -6,8 +6,7 @@ My submission for the Shopify Frontend Engineering Internship Assessment! ⏱️
 
 ## Preview
 
-
-
+<img width="650" height="400" src="https://github.com/jaza-k/eng-intern-assessment-react/blob/feature/stopwatch/src/assets/stopwatch-dark.png"/>
 
 ## Tasks completed
 - [x] Added functionality to stopwatch application (start, stop, reset, lap)
@@ -18,3 +17,5 @@ My submission for the Shopify Frontend Engineering Internship Assessment! ⏱️
 - [x] Regularly committed changes to the branch
       
 ## Testing
+
+<img width="450" height="200" src="https://github.com/jaza-k/eng-intern-assessment-react/blob/feature/stopwatch/src/assets/stopwatch-test.png"/>
