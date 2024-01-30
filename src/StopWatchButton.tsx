@@ -20,4 +20,3 @@ export default function StopWatchButton({ title, children, onClick }: ButtonProp
 
 
 
-
