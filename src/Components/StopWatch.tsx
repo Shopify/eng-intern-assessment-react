@@ -1,6 +1,6 @@
 import React from 'react'
 import StopWatchButton from './StopWatchButton'
-import './StopWatch.css'
+import '../Styles/StopWatch.css'
 
 interface StopWatchProps {
     // any props that come into the component
@@ -28,7 +28,7 @@ export default function StopWatch({
 
     return(
         <div className='flex-container'>
-            <div className='flex-item'>
+            <div data-testid='start-stop-buttons' className='flex-item'>
                 <StopWatchButton 
                     isDisabled={isStartPressed?true:false} 
                     className={isStartPressed?'stop-watch-button start disabled':'stop-watch-button start'} 
@@ -42,10 +42,10 @@ export default function StopWatch({
                     isDisabled={isStartPressed?false:true}
                 />
             </div>
-            <div className='flex-item'>
-                <p data-testid="time-display" className='time-display'>{timeToStringFormatter(currentTime)}</p>
+            <div data-testid="time-display" className='flex-item'>
+                <p className='time-display'>{timeToStringFormatter(currentTime)}</p>
             </div>
-            <div className='flex-item'>
+            <div data-testid='lap-reset-buttons' className='flex-item'>
                 <StopWatchButton 
                     className={isStartPressed?'stop-watch-button lap' :'stop-watch-button lap disabled'} 
                     label={'Lap'} 
@@ -61,7 +61,7 @@ export default function StopWatch({
             </div>
             <div className='flex-container'>
                 {lapsArray.map((lap, index) => (
-                     <div className='flex-item' key={index}>
+                     <div data-testid='lap-display' className='flex-item' key={index}>
                         <p className='laps-display'>Lap {index + 1} : {timeToStringFormatter(lap)}</p>
                     </div>
                      ))} 

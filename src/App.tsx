@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import StopWatch from './StopWatch'
+import StopWatch from './Components/StopWatch'
 
 export default function App() {
     const [currentTime, setCurrentTime] = useState(0)
@@ -30,6 +30,7 @@ export default function App() {
     }
 
     function onClickReset(){
+        //reset all values
         setCurrentTime(0)
         setIsStartPressed(false)
         setPrevLap(0)
@@ -37,9 +38,12 @@ export default function App() {
     }
 
     function onClickLap(){
+       //calculate the elapsed time between now and the last time lap was pressed
        setPrevLap(currentTime)
        var lapTime = currentTime - prevLap
+       //add to list of laps
        setLaps([...laps, ...[lapTime]])
+       console.log(laps)
        
     }
 
@@ -54,6 +58,7 @@ export default function App() {
         const seconds = Math.trunc(value - hours*60*60 - minutes*60)
 
         return (
+            //format string to reflect time
             hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")
             )
     }
