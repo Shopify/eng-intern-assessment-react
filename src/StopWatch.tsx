@@ -37,6 +37,7 @@ export default function StopWatch() {
         setTime((prevTime) => prevTime + 10); // increment by 10 milliseconds
       }, 10);
     } else {
+      alert("The StopWatch has already started");
       window.clearInterval(timerRef.current!);
     }
 
@@ -99,9 +100,17 @@ export default function StopWatch() {
       <div>
         <h2>Lap Times</h2>
         <ul>
-          {lapTimes.map((lap, index) => (
-            <li key={index}>{lap}</li>
+          {lapTimes.map((laps, index) => (
+            <li key={index}>{laps}</li>
           ))}
+
+          {/* {lapTimes.map((lapTime, index) => (
+            <li key={index} data-testid={`lap-time-${index + 1}`}>
+              {`Lap ${index + 1}: ${new Date(lapTime)
+                .toISOString()
+                .substr(11, 8)}`}
+            </li>
+          ))} */}
         </ul>
       </div>
     </>
