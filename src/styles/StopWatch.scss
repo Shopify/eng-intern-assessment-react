@@ -10,6 +10,11 @@
         flex-direction: column;
         align-content: center;
         align-items: center;
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: center;
+        }
     }
 
     &_time {
@@ -23,6 +28,10 @@
 
             @include tablet {
                 display: flex;
+                font-weight: 700;
+                font-size: 8rem;
+                line-height: 7rem;
+                color: $primary-dark;
             }
         }
     }

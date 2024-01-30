@@ -20,11 +20,22 @@
         width: 30%;
         padding: 1rem;
         margin: 0.5rem 0.25rem;
-        border-radius: 1rem;    
+        border-radius: 1rem;
+        
+        @include tablet {
+            min-width: 7rem;
+            font-size: 2rem;
+            width: 40%;
+            margin: 1rem 0.5rem;
+        }
     }
 }
 
 .button_container {
     width: 25%;
     text-align: center;
+
+    @include tablet {
+        width: auto;
+    }
 }

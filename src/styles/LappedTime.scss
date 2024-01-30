@@ -15,11 +15,19 @@
         font-size: 3rem;
         text-transform: lowercase;
         text-decoration: underline;
+
+        @include tablet {
+            font-size: 4rem;
+        }
     }
 
     &_time {
         font-size: 2rem;
         font-family: 600;
         color: $primary-dark;
+
+        @include tablet {
+            font-size: 3rem;
+        }
     }
 }
