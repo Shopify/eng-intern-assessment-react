@@ -4,7 +4,7 @@
 }
 
 html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
-  height: -webkit-fill-available;
+  height: 100%;
 }
 
 body {
@@ -57,12 +57,12 @@ body {
   height: fit-content;
   border-radius: 0.75rem;
   width: 50%;
-  text-align: -webkit-center;
+  text-align: center;
   box-shadow: 0.5px 0.5px gray;
 }
 
 .stopwatch-time p {
-  font-size: xxx-large;
+  font-size: 4rem;
 }
 
 .stopwatch-laptimes ul {
