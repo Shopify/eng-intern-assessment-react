@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import './App.css'; // Ensure you have the corresponding CSS file
 import StopWatchButton from './StopWatchButton'
 
 // Function to format the time. This is necessary since both the time and lap times need to be formatted
@@ -30,8 +31,8 @@ export default function StopWatch() {
 
     // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
     const handleReset = useCallback(() => {
-        setTimerOn(false); 
-        setTime(0); 
+        setTimerOn(false);
+        setTime(0);
         setLapTimes([]);
       }, []);
 
