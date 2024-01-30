@@ -3,36 +3,24 @@ import { useRef } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
-interface StopwatchButtonsProps {
-  time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
+export interface StopWatchButtonsProps {
   isPaused: boolean;
   setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
   addNewLap: () => void;
-  setLaps: React.Dispatch<React.SetStateAction<number[]>>;
-  setSavedTime: React.Dispatch<React.SetStateAction<number>>;
+  resetStopWatch: () => void;
 }
 
 export default function StopWatchButton({
-  time,
-  setTime,
   isPaused,
   setIsPaused,
   addNewLap,
-  setLaps,
-  setSavedTime,
-}: StopwatchButtonsProps) {
+  resetStopWatch,
+}: StopWatchButtonsProps) {
   const handlePause = (): void => {
     setIsPaused(!isPaused);
   };
 
-  const resetTime = (): void => {
-    setTime(0);
-    setSavedTime(0);
-    setIsPaused(true);
-    setLaps([]);
-  };
-
+  // Use a grid layout from MUI to format the buttons.
   return (
     <div>
       <Grid container spacing={2} justifyContent="center" display="flex">
@@ -80,7 +68,7 @@ export default function StopWatchButton({
           alignSelf="center"
         >
           <Button
-            onClick={resetTime}
+            onClick={resetStopWatch}
             style={{
               color: "gray",
               textAlign: "center",

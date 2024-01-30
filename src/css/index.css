@@ -7,6 +7,12 @@ body {
 
 li {
   list-style-type: none;
+  border-width: 1px;
+}
+
+button {
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+  border-radius: 6px;
 }
 
 .app {
@@ -14,7 +20,7 @@ li {
   box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
   border-radius: 6px;
   padding: 10px;
-  max-width: 900px;
+  max-width: 600px;
   width: 90vw;
   margin: 30px;
 }
@@ -25,5 +31,14 @@ li {
   border-radius: 6px;
   padding: 10px;
   overflow: auto;
-  max-height: 400px;
+  max-height: 360px;
+  min-height: 100px;
+}
+
+.timer {
+  font-size: 4em;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

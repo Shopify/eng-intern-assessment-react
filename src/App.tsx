@@ -3,7 +3,6 @@ import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
 import Laps from "./Laps";
 import { useState, useEffect } from "react";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function App() {
   const [time, setTime] = useState<number>(0);
@@ -11,10 +10,13 @@ export default function App() {
   const [laps, setLaps] = useState<number[]>([]);
   const [minLap, setMinLap] = useState<number>(0);
   const [maxLap, setMaxLap] = useState<number>(0);
-  const [savedTime, setSavedTime] = useState<number>(Date.now());
-  const [lastLappedTime, setLastLappedTime] = useState<number>(0);
 
-  const smallScreen = useMediaQuery("(max-width: 500px)");
+  // Save the time when the page is hidden to calculate the correct time
+  // when the page is active again.
+  const [savedTime, setSavedTime] = useState<number>(Date.now());
+
+  // Save the last lapped time to calculate new laps
+  const [lastLappedTime, setLastLappedTime] = useState<number>(0);
 
   const updateTimer = (): void => {
     const newTime = time + Date.now() - savedTime;
@@ -23,6 +25,9 @@ export default function App() {
     }
   };
 
+  // Whenever the document is hidden, save the current time.
+  // When the page return, immdiate request a new frame with a newly calculated
+  //time to account for the time when the page is hidden.
   useEffect(() => {
     if (document.hidden) {
       setSavedTime(Date.now());
@@ -31,47 +36,40 @@ export default function App() {
     }
   }, [document.hidden]);
 
+  // Calculate new lap time and update new min and max laps
   const newLap = (): void => {
     const newLap = time - lastLappedTime;
     setLastLappedTime(time);
     const newLaps = [...laps, newLap];
 
-    let minVal = laps[0];
-    let minPos = 0;
-    let maxPos = 0;
-    let maxVal = laps[0];
-
-    newLaps.forEach((lap, index) => {
-      if (lap < minVal) {
-        minVal = lap;
-        minPos = index;
-      }
-      if (lap > maxVal) {
-        maxVal = lap;
-        maxPos = index;
-      }
-    });
-    setMinLap(minPos);
-    setMaxLap(maxPos);
+    if (newLap < laps[minLap]) {
+      setMinLap(newLaps.length - 1);
+    }
+    if (newLap > laps[maxLap]) {
+      setMaxLap(newLaps.length - 1);
+    }
     setLaps(newLaps);
+  };
+
+  // Reset all properties when clicking reset
+  const resetStopWatch = (): void => {
+    setTime(0);
+    setSavedTime(0);
+    setIsPaused(true);
+    setLaps([]);
+    setLastLappedTime(0);
+    setMaxLap(0);
+    setMinLap(0);
   };
 
   return (
     <div className="app">
-      <StopWatch
-        time={time}
-        isPaused={isPaused}
-        setTime={setTime}
-        setIsPaused={setIsPaused}
-      />
+      <StopWatch time={time} isPaused={isPaused} setTime={setTime} />
       <StopWatchButton
-        time={time}
-        setTime={setTime}
         isPaused={isPaused}
-        setIsPaused={setIsPaused}
-        setLaps={setLaps}
         addNewLap={newLap}
-        setSavedTime={setSavedTime}
+        setIsPaused={setIsPaused}
+        resetStopWatch={resetStopWatch}
       />
       <Laps laps={laps} min={minLap} max={maxLap} />
     </div>
