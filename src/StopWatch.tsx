@@ -3,6 +3,7 @@ import StopWatchButton from './StopWatchButton'
 
 export default function StopWatch() {
 
+    const [laps, setLaps] = useState<string[]>([]);
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
@@ -29,8 +30,14 @@ export default function StopWatch() {
     // Reset the stopwatch
     const resetStopwatch = useCallback(() => {
         setTime(0);
+        setLaps([]);
         setIsRunning(false);
     }, []);
+
+    // Add a lap to the list of laps
+    const addLap = useCallback(() => {
+        setLaps((prevLaps) => [...prevLaps, formatTime(time)]);
+    }, [time]);
 
     // Watch for changes on isRunning and update the stopwatch time
     useEffect(() => {
@@ -47,14 +54,22 @@ export default function StopWatch() {
         return () => clearInterval(timer);
     }, [isRunning]);
 
-    return(
+    return (
         <div className='stopwatch'>
-            <h2 className='stopwatch-time'>{formatTime(time)}</h2>
-            <div className="stopwatch-buttons">
-                <StopWatchButton label='Start' onClick={startStopwatch}/>
-                <StopWatchButton label='Stop' onClick={stopStopwatch}/>
-                <StopWatchButton label='Reset' onClick={resetStopwatch}/>
+            <h2>{formatTime(time)}</h2>
+            <div className='stopwatch-buttons'>
+                <StopWatchButton label='Start' onClick={startStopwatch} />
+                <StopWatchButton label='Stop' onClick={stopStopwatch} />
+                <StopWatchButton label='Reset' onClick={resetStopwatch} />
+                <StopWatchButton label='Lap' onClick={addLap} />
             </div>
+            <span v-if='laps.length > 0' className='stopwatch-laps'>
+                {laps.map((lap, index) => (
+                    <span className='stopwatch-lap' key={index}>Lap {index + 1}
+                        <span>{lap}</span>
+                    </span>
+                ))}
+            </span>
         </div>
     )
 }

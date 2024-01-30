@@ -1,17 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
-  height: -webkit-fill-available;
-}
-
 body {
   background-color: #000;
   font-family: "Roboto", sans-serif;
 }
 
+h1 {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+h2 {
+  color: #fff;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
 .app {
-  height:100vh;
-  width:100vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,14 +38,7 @@ body {
 }
 
 .icon-wrapper i {
-  color:fff;
-}
-
-.heading {
-  color:#fff;
-  display: flex;
-  justify-content: center;
-  font-size:48px;
+  color: fff;
 }
 
 .heading-wrapper {
@@ -46,21 +48,14 @@ body {
 }
 
 .stopwatch {
-  width:30rem;
-  height:20rem;
+  min-height: 20rem;
+  width: 30rem;
   background: #1b1c1c;
   border: 1px solid #3d3f3f;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-}
-
-.stopwatch-time {
-  color:#fff;
-  font-size:40px;
-  text-align:center;
 }
 
 .stopwatch-button {
@@ -69,7 +64,7 @@ body {
   color: #fff;
   border-radius: 70px;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .stopwatch-button:hover {
@@ -79,4 +74,62 @@ body {
 .stopwatch-buttons {
   display: flex;
   gap: 1rem;
+}
+
+.stopwatch-laps {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  gap: 1rem;
+  width: 100%;
+}
+
+.stopwatch-lap {
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin: 0 1rem;
+  border-bottom: 1px solid #3d3f3f;
+}
+
+@media only screen and (max-width: 768px) {
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .heading-wrapper {
+    gap:1rem;
+  }
+
+  .app {
+    justify-content: flex-start;
+  }
+
+  .stopwatch {
+    width: 90%;
+  }
+
+  .stopwatch-lap {
+    font-size:1rem;
+  }
+
+  .icon-wrapper {
+    width:2.5rem;
+    height:2.5rem;
+  }
+
+  .stopwatch-button {
+    padding: .5rem .75rem;
+    color: #fff;
+    border-radius: 70px;
+    border: none;
+    font-size: 1rem
+  }
 }
