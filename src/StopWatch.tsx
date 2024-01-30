@@ -103,14 +103,6 @@ export default function StopWatch() {
           {lapTimes.map((laps, index) => (
             <li key={index}>{laps}</li>
           ))}
-
-          {/* {lapTimes.map((lapTime, index) => (
-            <li key={index} data-testid={`lap-time-${index + 1}`}>
-              {`Lap ${index + 1}: ${new Date(lapTime)
-                .toISOString()
-                .substr(11, 8)}`}
-            </li>
-          ))} */}
         </ul>
       </div>
     </>
