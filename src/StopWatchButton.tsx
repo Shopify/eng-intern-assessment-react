@@ -42,10 +42,7 @@ export default function StopWatch() {
         _focus={{
           outline: "none",
         }}
-        onClick={() => {
-          if (isRunning) pause();
-          else start();
-        }}
+        onClick={isRunning ? pause : start}
         borderRadius="xl"
       >
         {isRunning ? "Pause" : "Start"}

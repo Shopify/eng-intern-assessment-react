@@ -1,12 +1,10 @@
-// import "@fontsource/jetbrains-mono/600.css"; // Specify weight
+import React from "react";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import { Global, css } from "@emotion/react";
-
+import { StopwatchProvider } from "./Context";
 import Laps from "./Laps";
-import React from "react";
 import StopWatch from "./StopWatch";
 import StopWatchButton from "./StopWatchButton";
-import { StopwatchProvider } from "./Context";
 
 const GlobalStyle = () => {
   return (

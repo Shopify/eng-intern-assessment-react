@@ -1,36 +1,38 @@
 import { useState, useEffect } from "react";
 
 export const useStopWatch = () => {
+  // all variables are synced in local storage so that the stopwatch is able to persist through different sessions
+  // stores whether timer is running or paused
   const [isRunning, setIsRunning] = useState(() => {
     const savedIsRunning = localStorage.getItem("isRunning");
     return savedIsRunning === "true";
   });
 
+  // stores the time at which the timer started
   const [startTime, setStartTime] = useState(() => {
     const savedStartTime = localStorage.getItem("startTime");
     return savedStartTime ? parseInt(savedStartTime, 10) : null;
   });
 
+  // stores how long the timer has been running for
   const [elapsedTime, setElapsedTime] = useState(() => {
     const savedElapsedTime = localStorage.getItem("elapsedTime");
     return savedElapsedTime ? parseInt(savedElapsedTime, 10) : 0;
   });
 
+  // stores the timestamp of each lap
   const [laps, setLaps] = useState(() => {
     const savedLaps = localStorage.getItem("laps");
     return savedLaps ? JSON.parse(savedLaps) : [];
   });
 
-  const [lastLapTime, setLastLapTime] = useState(() => {
-    const savedLastLapTime = localStorage.getItem("lastLapTime");
-    return savedLastLapTime ? parseInt(savedLastLapTime, 10) : 0;
-  });
   const hasStarted = isRunning || startTime;
 
   useEffect(() => {
     let intervalId: any;
 
     if (isRunning && startTime) {
+      // increments by 1ms
       intervalId = setInterval(() => {
         setElapsedTime(new Date().getTime() - startTime);
       }, 10);
@@ -40,14 +42,15 @@ export const useStopWatch = () => {
     return () => clearInterval(intervalId);
   }, [isRunning, startTime]);
 
+  // sync with local storage
   useEffect(() => {
     localStorage.setItem("elapsedTime", elapsedTime.toString());
   }, [elapsedTime]);
 
+  // sync with local storage
   useEffect(() => {
     localStorage.setItem("laps", JSON.stringify(laps));
-    localStorage.setItem("lastLapTime", lastLapTime.toString());
-  }, [laps, lastLapTime]);
+  }, [laps]);
 
   const start = () => {
     const now = new Date().getTime();
@@ -66,7 +69,6 @@ export const useStopWatch = () => {
     setIsRunning(false);
     setElapsedTime(0);
     setLaps([]);
-    setLastLapTime(0);
     localStorage.removeItem("laps");
     localStorage.removeItem("startTime");
     localStorage.removeItem("lastLapTime");
@@ -74,7 +76,6 @@ export const useStopWatch = () => {
 
   const addLap = () => {
     setLaps((prevLaps: number[]) => [...prevLaps, elapsedTime]);
-    setLastLapTime(elapsedTime);
   };
 
   const formatTime = (lapTime?: number) => {

@@ -3,6 +3,8 @@ import { useStopWatch } from "./useStopWatch";
 
 const StopwatchContext = createContext(null);
 
+// global context so that the timer functions can be used in all components
+
 export const StopwatchProvider = ({ children }: any) => {
   const stopwatch = useStopWatch();
   return (
