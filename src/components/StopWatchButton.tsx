@@ -18,11 +18,20 @@ const StopWatchButton = ({ name, stopwatchState, handleButtonClick }: buttonProp
         || (stopwatchState === 'stopped' && name === 'stop')
     ) {
         return (
-            <button className='digital' onClick={handleButtonClick} disabled>{name}</button>
+            <button
+                data-testid={`${name}Button`} 
+                className='digital' 
+                onClick={handleButtonClick} 
+                disabled>{name}
+            </button>
         )
     // if the none of the above conditions are met, render a normal/non-disabled button
     } else return (
-        <button className='digital' onClick={handleButtonClick}>{name}</button>
+        <button 
+            data-testid={`${name}Button`} 
+            className='digital' 
+            onClick={handleButtonClick}>{name}
+        </button>
     )
 }
 
