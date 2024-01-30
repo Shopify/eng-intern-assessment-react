@@ -16,13 +16,13 @@ To get started with the project, follow these steps:
 
 2. Install the required dependencies by running npm install in the project directory.
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
+3. Familiarize yourself with the project structure. The main files are:
     - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
     - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
     - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
 
-4. Run the project using npm start
-5. Test it yourself
+4. Run the project using npm start.
+5. Test it yourself.
 
 To run the test cases, follow the steps:
 1. Run npx cypress open in one terminal.
