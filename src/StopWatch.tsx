@@ -9,6 +9,7 @@ interface timeInSecondsProps {
   const StopWatch: React.FC<timeInSecondsProps> = (props) => {
     const { timeInSeconds } = props;
 
+    // holds the total time (formatted in "hours:seconds:minutes") that the stopwatch has been running for
     const [stopWatchTime, setStopWatchTime] = useState<Array<number | string>>([])
 
     // formats numbers on stopwatch properly (everything has two digits, has the right amount of seconds/minutes/hours)
@@ -25,7 +26,7 @@ interface timeInSecondsProps {
         return [hoursFormat, minutesFormat, secondsFormat]
     }
 
-    // function that updates time on stopwatch with the right formatting
+    // updates time on stopwatch with the right formatting
     useEffect (() => {
         let stopWatchArray: Array<number|string> = calculateTime(timeInSeconds);
         setStopWatchTime(stopWatchArray)

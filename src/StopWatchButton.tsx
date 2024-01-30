@@ -4,6 +4,7 @@ import './styles/StopWatchButton.scss';
 type StopWatchButtonProps = {
     timeInSeconds: number;
     lappedTime: number[];
+    stopWatchCounting: boolean;
     handleStartButton: () => void;
     handleStopButton: () => void;
     handleResetButton: () => void;
@@ -12,7 +13,7 @@ type StopWatchButtonProps = {
 
 export default function StopWatchButton(props:StopWatchButtonProps) {
 
-    const {timeInSeconds, lappedTime, handleStartButton, handleStopButton, handleResetButton, handleLapButton} = props;
+    const {timeInSeconds, lappedTime, stopWatchCounting, handleStartButton, handleStopButton, handleResetButton, handleLapButton} = props;
 
     return(
         <div className='control_container'>

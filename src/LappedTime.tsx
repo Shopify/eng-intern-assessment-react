@@ -9,6 +9,7 @@ export default function LappedTime (props:LappedTimeProps) {
 
     const {lappedTime} = props;
 
+    // keeps track of how many laps have been recorded
     let lapCount: number = 0;
 
     return (
@@ -27,10 +28,10 @@ export default function LappedTime (props:LappedTimeProps) {
 
                     lapCount= index +1;
 
-                    let lapFormat: string = `Lap ${lapCount}: ${hoursFormat}:${minutesFormat}:${secondsFormat}`
+                    let lapFormat: string = `Lap ${lapCount}: ${hoursFormat}:${minutesFormat}:${secondsFormat}`;
 
                 return (
-                    <div key={lap} data-testid="lap_test">
+                    <div key={index} data-testid="lap_test">
                         <p className="laps_time">{lapFormat}</p>
                     </div>
                 )
