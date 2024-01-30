@@ -56,6 +56,8 @@ body {
   margin-top: 2rem;
 }
 
+/* smaller screens */
+
 @media only screen and (max-width: 600px) {
   .container span {
     font-size: 4rem;
