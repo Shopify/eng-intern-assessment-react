@@ -62,10 +62,10 @@ export default function StopWatch() {
                     {/* Display the numbered lap times */}
                     {lapTimes.length > 0 && (
                         <div className='stopwatch-laptimes'>
-                            <p>Lap times</p>
+                            <p>Lap Times</p>
                             <ul>
-                                {lapTimes.map((lapTime, index) => {
-                                    return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>
+                                {lapTimes.slice().reverse().map((lapTime, index) => {
+                                    return <li key={index}>{(lapTimes.length - index)+'.'} {formatTime(lapTime)}</li>
                                 })}
                             </ul>
                         </div>
