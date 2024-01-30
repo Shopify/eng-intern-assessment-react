@@ -3,7 +3,7 @@ import StopWatch from './StopWatch';
 
 export default function App() {
   return (
-    <div>
+    <div className='h-screen w-screen bg-slate-100'>
       <StopWatch />
     </div>
   );

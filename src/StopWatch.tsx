@@ -25,7 +25,8 @@ export default function StopWatch() {
   const seconds = Math.floor((time % 6000) / 100);
   const milliseconds = time % 100;
 
-  // Start and stop timer
+  // Start and stop timer & label
+  const startStopLabel = isRunning ? 'Stop' : 'Start';
   const startAndStop = () => {
     setIsRunning(!isRunning);
   };
@@ -51,17 +52,21 @@ export default function StopWatch() {
   };
 
   return (
-    <div>
-      <p data-testid='timer'>
+    <div className='grid w-full mx-auto p-16 gap-6'>
+      <p
+        className='text-4xl flex justify-center text-slate-950'
+        data-testid='timer'
+      >
         {formatTime(hours, minutes, seconds, milliseconds)}
       </p>
-      <StopWatchButton
-        label={isRunning ? 'Stop' : 'Start'}
-        handleClick={startAndStop}
-      />
-      <StopWatchButton label='Reset' handleClick={reset} />
-      <StopWatchButton label='Lap' handleClick={lap} />
-      <LapList laps={laps} />
+      <div className='flex gap-8 justify-center'>
+        <StopWatchButton label={startStopLabel} handleClick={startAndStop} />
+        <StopWatchButton label='Reset' handleClick={reset} />
+        <StopWatchButton label='Lap' handleClick={lap} />
+      </div>
+      <div className='flex justify-center'>
+        <LapList laps={laps} />
+      </div>
     </div>
   );
 }

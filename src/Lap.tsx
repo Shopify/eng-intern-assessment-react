@@ -10,7 +10,7 @@ export default function Lap({ lap }: Props) {
   const { time, lapNumber } = lap;
   const { hours, minutes, seconds, milliseconds } = time;
   return (
-    <div>
+    <div className='text-slate-950'>
       Lap {lapNumber} - {formatTime(hours, minutes, seconds, milliseconds)}
     </div>
   );
