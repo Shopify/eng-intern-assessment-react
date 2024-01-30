@@ -1,0 +1,13 @@
+/* Stopwatch.css */
+
+@import 'common.css';
+
+.stopwatch-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #fff1e6;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}

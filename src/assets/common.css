@@ -1,0 +1,71 @@
+.timer {
+    font-size: 3em;
+    margin: 20px 0;
+    color: #3b3b3b;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    position: relative;
+    /* Position relative to make it a reference point for pseudo-element */
+}
+
+/* Button Styles */
+.start-button,
+.stop-button,
+.reset-button,
+.lap-button {
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    margin: 40px;
+}
+
+.button-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Adjust the height for the thickness of the line */
+    background-color: rgba(59, 59, 59, 0.3);
+}
+
+.start-button {
+    background-color: #6A9C89;
+    color: white;
+}
+
+.stop-button {
+    background-color: #9D2503;
+    color: white;
+}
+
+.reset-button {
+    background-color: #CD5C08;
+    color: white;
+}
+
+.lap-button {
+    background-color: #3b3b3b;
+    color: white;
+}
+
+.lap-list {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.lap-item {
+    margin: 20px;
+    color: #808080;
+}
