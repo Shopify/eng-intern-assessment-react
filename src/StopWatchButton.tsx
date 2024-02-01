@@ -1,54 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-// Maximum number of laps that can be recorded
-const maxLaps = 25;
+// Props interface for the StopwatchButton component
+interface StopwatchButtonProps {
+  onClick: () => void;    // Function to be called on button click
+  label: string;          // Label text for the button
+  disabled?: boolean;     // Optional prop to disable the button
+  className?: string;     // Optional prop for custom styling
+  ariaLabel?: string;     // Optional prop for setting the ARIA label
+}
 
-// Define the props for the StopWatchButton component
-type StopWatchButtonProps = {
-    type: 'start' | 'stop' | 'lap' | 'reset';
-    onClick?: () => void;
-    timerOn?: boolean;
-    time?: number;
-    lapTimes?: number[];
-};
+// Functional component representing a customizable button for a stopwatch
+export default function StopwatchButton({ onClick, label, disabled, className, ariaLabel }: StopwatchButtonProps) {
+  return (
+    <div>
   
-  export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes }: StopWatchButtonProps) {
-    // Determine the button text based on the type and add corresponding tabIndex
-    let buttonText, tabIndex;
-    switch(type) {
-        case 'start':
-            buttonText = 'Start';
-            tabIndex = 1;
-            break;
-        case 'stop':
-            buttonText = 'Stop';
-            tabIndex = 2;
-            break;
-        case 'lap':
-            buttonText = 'Record Lap';
-            tabIndex = 3;
-            break;
-        case 'reset':
-            buttonText = 'Reset';
-            tabIndex = 4;
-            break;
-        default: 
-        buttonText = '';
-        tabIndex = 0;
-    }
-    // Determine whether the reset or lap buttons should be disabled
-    const isLapDisabled = !timerOn || (lapTimes && lapTimes.length === 25);
-    const isResetDisabled = time === 0;
-    return(
-        <button 
-            onClick={onClick} 
-            aria-label={type}
-            tabIndex={tabIndex}
-            // Disable the lap button when the timer is stopped or when the max number of lap times is reached. Disable reset button when the timer is already reset
-            disabled={(type === 'lap' && isLapDisabled) || (type === 'reset' && isResetDisabled)}
-            >
-            {/* Display the button text, otherwise display the max laps reached message when max number is reached */}
-            {lapTimes && lapTimes.length === maxLaps && timerOn && type === 'lap' ? "Maximum laps reached" : buttonText}
-        </button>
-    )
+      <button onClick={onClick} disabled={disabled} className={className} aria-label={ariaLabel}>
+        {label}
+      </button>
+    </div>
+  );
 }
