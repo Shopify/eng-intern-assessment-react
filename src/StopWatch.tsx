@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import StopwatchButton from "./StopWatchButton";
+import StopWatchArc from "./StopWatchArc";
+import StopWatchButton from "./StopWatchButton";
 import "./styles/stopwatch.css";
 
 const Stopwatch = () => {
@@ -14,9 +15,12 @@ const Stopwatch = () => {
       intervalRef.current = setInterval(() => {
         setElapsedTime(Date.now() - startTime);
       }, 1);
+    } else {
+      clearInterval(intervalRef.current);
     }
+
     return () => clearInterval(intervalRef.current);
-  }, [isRunning, elapsedTime]);
+  }, [isRunning]);
 
   const startStopWatch = () => {
     setIsRunning(true);
@@ -38,41 +42,66 @@ const Stopwatch = () => {
   };
 
   const formatTime = (time: number) => {
-    const milliseconds = `00${time % 100}`.slice(-2);
     let seconds: any = Math.floor(time / 1000);
     let minutes: any = Math.floor(seconds / 60);
     seconds = `0${seconds % 60}`.slice(-2);
     minutes = `0${minutes % 60}`.slice(-2);
 
-    return `${minutes}:${seconds}.${milliseconds}`;
+    return `${minutes}:${seconds}`;
+  };
+
+  const formatMS = (time: number) => {
+    const milliseconds = `00${time % 100}`.slice(-2);
+
+    return `${milliseconds}`;
   };
 
   return (
     <div className="stopwatch">
-      <div className="stopwatch__head">
-        <div className="stopwatch__timer">{formatTime(elapsedTime)}</div>
-        <StopwatchButton onClick={startStopWatch} hidden={isRunning}>
-          Start
-        </StopwatchButton>
-        <StopwatchButton onClick={pauseStopwatch} hidden={!isRunning}>
-          Pause
-        </StopwatchButton>
-        <StopwatchButton onClick={resetStopWatch} hidden={isRunning}>
-          Reset
-        </StopwatchButton>
-        <StopwatchButton onClick={stopWatchLap} hidden={!isRunning}>
-          Lap
-        </StopwatchButton>
+      <h1 className="stopwatch__heading">Shopify Internship S'24 — Challenge<span className="float-right">✶✶✶</span></h1>
+      <div className={`stopwatch__timer 
+                      ${elapsedTime === 0 ? "stopwatch__timer--initialize " : ""}
+                      ${isRunning ? "stopwatch__timer--active " : ""}
+                      ${laps.length > 0 ? "stopwatch__timer--laps" : ""}`}>
+        <StopWatchArc />
+        <span className="stopwatch__time">
+            {formatTime(elapsedTime)}
+          <span className="stopwatch__milliseconds">{formatMS(elapsedTime)}</span>
+          </span>
+        {laps.length > 0 && (
+          <div className="stopwatch__laps">
+            <ul className="stopwatch__list">
+              {laps.map((lap, index) => (
+                <li key={index}>
+                  Lap {index + 1}: {formatTime(lap)}.{formatMS(lap)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-      {laps.length > 0 && (
-        <ul className="stopwatch__laps">
-          {laps.map((lap, index) => (
-            <li key={index}>
-              Lap {index + 1}: {formatTime(lap)}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="stopwatch__actions">
+        <StopWatchButton onClick={startStopWatch}
+                         label="Play"
+                         hidden={isRunning}>
+          <span className="shape__play">Play</span>
+        </StopWatchButton>
+        <StopWatchButton onClick={pauseStopwatch}
+                         label="Pause"
+                         hidden={!isRunning}>
+          <span className="shape__pause">Pause</span>
+        </StopWatchButton>
+        <StopWatchButton onClick={resetStopWatch}
+                         label="Reset"
+                         hidden={isRunning}>
+          Reset
+        </StopWatchButton>
+        <StopWatchButton onClick={stopWatchLap}
+                         label="Lap"
+                         hidden={!isRunning}>
+          Lap
+        </StopWatchButton>
+      </div>
     </div>
   );
 };

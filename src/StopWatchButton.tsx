@@ -3,6 +3,7 @@ import React from "react";
 interface StopwatchButtonProps {
   onClick: () => void;
   children: React.ReactNode;
+  label: string;
   hidden?: boolean;
   className?: string;
 }
@@ -10,6 +11,7 @@ interface StopwatchButtonProps {
 const StopwatchButton: React.FC<StopwatchButtonProps> = ({
   onClick,
   children,
+  label,
   hidden,
   className,
 }) => {
@@ -17,7 +19,7 @@ const StopwatchButton: React.FC<StopwatchButtonProps> = ({
   const classNames = className ? `${baseClass} ${className}` : baseClass;
 
   return hidden ? null : (
-    <button className={classNames} onClick={onClick} disabled={hidden}>
+    <button className={classNames} onClick={onClick} aria-label={label}>
       {children}
     </button>
   );
