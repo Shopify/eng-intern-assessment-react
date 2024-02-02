@@ -1,77 +1,104 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import StopWatchButton from './StopWatchButton'
+import React, { useState, useEffect } from 'react';
+import StopWatchButton from './StopWatchButton';
 
-// Function to format the time. This is necessary since both the time and lap times need to be formatted
-export function formatTime(time: number): string {
-    // Format the time in mm:ss:ms. Display hours only if reached
-    const hours = Math.floor(time / 360000);
-    const minutes = Math.floor((time % 360000) / 6000);
-    const seconds = Math.floor((time % 6000) / 100);
-    const milliseconds = time % 100;
-    // Format the minutes, seconds, and milliseconds to be two digits
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = seconds.toString().padStart(2, '0');
-    const formattedMilliseconds = milliseconds.toString().padStart(2, '0');
-    // If stopwatch reaches at least an hour, display the hours
-    if (hours > 0) {
-        const formattedHours = hours.toString().padStart(2, '0');
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    }
-    // Combine the values into a string
-    const formattedTime = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    return formattedTime;
-}
-
+// StopWatch functional component to handle the stopwatch logic
 export default function StopWatch() {
-    // State to track the time, whether the timer is on/off, and the lap times
-    const [time, setTime] = useState(0);
-    const [timerOn, setTimerOn] = useState(false);
-    const [lapTimes, setLapTimes] = useState<number[]>([]);
+    // State variables to manage the stopwatch state
+    const [isTimeRunning, setIsTimeRunning] = useState(false);
+    const [elapsedMilliSecond, setElapsedMilliSecond] = useState(0);
+    const [isLapClicked, setIsLapClicked] = useState(false);
+    const [lapElaspedMilliSecond, setLapElapsedMilliSecond] = useState(0);
+    const [lapList, setLapList] = useState([]);
 
-    // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
-    const handleReset = useCallback(() => {
-        setTimerOn(false); 
-        setTime(0); 
-        setLapTimes([]);
-      }, []);
-
-    // Every time timerOn changes, we start or stop the timer
-    // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
+    // useEffect to handle the intervals for updating elapsed time and lap time
     useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
+        let interval: NodeJS.Timeout | null = null;
 
-        if (timerOn) {
-            interval = setInterval(() => setTime(time => time + 1), 10)
+        // Check if the stopwatch is running.
+        if (isTimeRunning) {
+            // Set interval to update elapsed time every 10 milliseconds
+            interval = setInterval(() => {
+                setElapsedMilliSecond(prevElapsedMilliSec => prevElapsedMilliSec + 10);
+                setLapElapsedMilliSecond(prevLapElapsedMilliSec => prevLapElapsedMilliSec + 10);
+            }, 10);
+
+            // Check if lap button is clicked
+            if (isLapClicked) {
+                // Update lap list with formatted lap time
+                setLapList(currLapList => [formatMilliSeconds(lapElaspedMilliSecond), ...currLapList]);
+                // Set current elapsed lap time to 0
+                setLapElapsedMilliSecond(0);
+                setIsLapClicked(false);
+            }
         }
 
-        return () => {clearInterval(interval)} // Clears the interval when the component unmounts or timerOn changes
-    }, [timerOn])
+        // Cleanup function to clear intervals when component is unmounted or dependencies change
+        return () => {
+            clearInterval(interval);
+        }
+    }, [isTimeRunning, isLapClicked]);
 
-    return(
-        <div className='stopwatch'>
-            <h1 className='stopwatch-title'>StopWatch</h1>
-            <div className='stopwatch-content'>
-                <div className='stopwatch-buttons'>
-                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
-                    <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
+    // Function to format milliseconds into a readable time format
+    function formatMilliSeconds(milliSecond: number) {
+        let second = Math.floor(milliSecond / 1000);
+        let minute = Math.floor(second / 60);
+        let hour = Math.floor(minute / 60);
+        let hundrethSecond = (milliSecond / 10) % 100;
+        let hundrethSecondFormat = hundrethSecond < 10 ? `0${hundrethSecond}` : hundrethSecond;
+
+        return `${hour}h : ${minute % 60}m : ${second % 60}s.${hundrethSecondFormat}`;
+    }
+
+    // Function to display lap table rows
+    function displayLapTable() {
+        return lapList.map((lap, i) => (
+            <tr key={i}>
+                <td>{lapList.length - i}</td>
+                <td>{lap}</td>
+            </tr>
+        ));
+    }
+
+    // Function to handle reset button click
+    function handleReset() {
+        setElapsedMilliSecond(0);
+        setIsTimeRunning(false);
+        setLapElapsedMilliSecond(0);
+        setLapList([]);
+    }
+
+    // JSX structure for rendering the stopwatch UI
+    return (
+        <div>
+            <div className="stopwatchContainer">
+                <div className="displayContainer">
+                    {/* Display elapsed time in a formatted manner */}
+                    <h1>{formatMilliSeconds(elapsedMilliSecond)}</h1>
                 </div>
-                <div className='stopwatch-time'>
-                    <p>{formatTime(time)}</p>
-                    {/* Display the numbered lap times */}
-                    {lapTimes.length > 0 && (
-                        <div className='stopwatch-laptimes'>
-                            <p>Lap times</p>
-                            <ul>
-                                {lapTimes.map((lapTime, index) => {
-                                    return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>
-                                })}
-                            </ul>
-                        </div>
-                    )}
+                {/* Display the current running lap time */}
+                <div className="lapDisplay">Lap: {formatMilliSeconds(lapElaspedMilliSecond)}</div>
+                <div className="buttonContainer">
+                    {!isTimeRunning && <StopWatchButton className="startButton" onClick={() => setIsTimeRunning(true)} label={elapsedMilliSecond === 0 ? "Start" : "Resume"} />}
+                    {isTimeRunning && <StopWatchButton className="lapButton" onClick={() => isTimeRunning && setIsLapClicked(true)} label="Lap" />}
+                    {isTimeRunning && <StopWatchButton className="stopButton" onClick={() => setIsTimeRunning(false)} label="Stop" />}
+                    {<StopWatchButton className="resetButton" onClick={() => handleReset()} label="Reset" />}
                 </div>
             </div>
+
+            <div className="lapTableContainer">
+                {/* Display lap table if there are recorded laps */}
+                {lapList.length > 0 && (
+                    <table className="lapTable">
+                        <thead>
+                            <tr>
+                                <th>Lap No.</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>{displayLapTable()}</tbody>
+                    </table>
+                )}
+            </div>
         </div>
-    )
+    );
 }

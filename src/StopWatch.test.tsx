@@ -1,68 +1,58 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import { render, fireEvent, act } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import StopWatch from './StopWatch';
 
-// Test the formatTime function
-describe('formatTime', () => {
-  test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
-  });
-
-  test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
-  });
-});
-
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
-
-// Use fake timers for timer-related tests
 jest.useFakeTimers();
 
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
+describe('StopWatch component', () => {
+  test('starts the stopwatch', () => {
+    const { getByText } = render(<StopWatch />);
+    fireEvent.click(getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000); // Simulate 1 second passing
+    });
+    expect(getByText('0h : 0m : 1s.00')).toBeInTheDocument();
+  });
+  
+  test('stops the stopwatch', () => {
+    const { getByText } = render(<StopWatch />);
+    fireEvent.click(getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000); // Simulate 1 second passing
+    });
+    fireEvent.click(getByText('Stop'));
+    act(() => {
+      jest.advanceTimersByTime(1000); // Simulate another second passing
+    });
+    expect(getByText('0h : 0m : 1s.00')).toBeInTheDocument(); // Should still be the same time as before stopping
+  });
 
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
+  test('resets the stopwatch', () => {
+    const { getByText } = render(<StopWatch />);
+    fireEvent.click(getByText('Start'));
+    act(() => {
+      jest.advanceTimersByTime(1000); // Simulate 1 second passing
+    });
+    fireEvent.click(getByText('Reset'));
+    expect(getByText('0h : 0m : 0s.00')).toBeInTheDocument(); // Should be back to 0 after resetting
+  });
 
-beforeEach(() => {
-  jest.useRealTimers();
-});
+  test('records laps', () => {
+    const { getByText } = render(<StopWatch />);
+    fireEvent.click(getByText('Start'));
 
-afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
-});
+    act(() => {
+      jest.advanceTimersByTime(1000); // Simulate 1 second passing
+    });
 
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
+    fireEvent.click(getByText('Lap'));
+    act(() => {
+      jest.advanceTimersByTime(1000); // Simulate another second passing
+    });
+
+    expect(getByText('0h : 0m : 2s.00')).toBeInTheDocument(); // Check the main display
+    expect(getByText('0h : 0m : 1s.00')).toBeInTheDocument(); // Check if the lap is displayed
+  
+  });
 });
