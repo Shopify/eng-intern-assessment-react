@@ -1,12 +1,13 @@
-
 # StopWatch Project Overview
 
 ## Introduction
+
 The StopWatch project is a React and TypeScript-based application designed to function as a stopwatch. It provides basic stopwatch functionalities such as start, stop, lap recording, and reset. T
 
 ## Features
 
 The stopwatch offers the following features:
+
 - **Start/Stop**: Begin counting time or pause the timer.
 - **Lap**: Record the current time without stopping the timer.
 - **Reset**: Reset the stopwatch time to zero.
@@ -38,8 +39,8 @@ A demonstration of the StopWatch project can be found [here](https://github.com/
 ## Contributing
 
 Contributions to the StopWatch project are welcome! If you have suggestions for improvement or have identified issues, please feel free to contribute. Follow the standard fork-branch-PR workflow:
+
 1. **Fork** the repository.
 2. **Create a Branch** for your feature or bug fix.
 3. **Commit** your changes with clear and concise messages.
 4. **Push** your branch and open a **Pull Request**.
-
