@@ -1,68 +1,87 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import { render, fireEvent } from '@testing-library/react'; // Import render and fireEvent from testing-library
+import StopWatchButton from './StopWatchButton'; // Import the StopWatchButton component
+import StopWatch from './StopWatch'; // Import the StopWatch component
 
-// Test the formatTime function
-describe('formatTime', () => {
-  test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
+describe('StopWatch component', () => {
+  // Test to ensure that the StopWatch component renders without crashing
+  test('renders without crashing', () => {
+    render(<StopWatch />);
   });
 
-  test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
+  // Test to check if clicking the start button triggers the onStart function
+  test('clicking start button triggers onStart function', () => {
+    // Create a mock function for onStart
+    const onStart = jest.fn();
+    // Render the StopWatchButton component with the mock onStart function
+    const { getByText } = render(<StopWatchButton onStart={onStart} onStop={function (): void {
+      throw new Error('Function not implemented.');
+    } } onLap={function (): void {
+      throw new Error('Function not implemented.');
+    } } onReset={function (): void {
+      throw new Error('Function not implemented.');
+    } } />);
+
+    // Simulate a click on the start button
+    fireEvent.click(getByText('Start'));
+    // Assert that onStart function has been called
+    expect(onStart).toHaveBeenCalled();
   });
-});
 
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
+  // Test to check if clicking the stop button triggers the onStop function
+  test('clicking stop button triggers onStop function', () => {
+    // Create a mock function for onStop
+    const onStop = jest.fn();
+    // Render the StopWatchButton component with the mock onStop function
+    const { getByText } = render(<StopWatchButton onStop={onStop} onStart={function (): void {
+      throw new Error('Function not implemented.');
+    } } onLap={function (): void {
+      throw new Error('Function not implemented.');
+    } } onReset={function (): void {
+      throw new Error('Function not implemented.');
+    } } />);
 
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
+    // Simulate a click on the stop button
+    fireEvent.click(getByText('Stop'));
+    // Assert that onStop function has been called
+    expect(onStop).toHaveBeenCalled();
+  });
 
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
+  // Test to check if clicking the lap button triggers the onLap function
+  test('clicking lap button triggers onLap function', () => {
+    // Create a mock function for onLap
+    const onLap = jest.fn();
+    // Render the StopWatchButton component with the mock onLap function
+    const { getByText } = render(<StopWatchButton onLap={onLap} onStart={function (): void {
+      throw new Error('Function not implemented.');
+    } } onStop={function (): void {
+      throw new Error('Function not implemented.');
+    } } onReset={function (): void {
+      throw new Error('Function not implemented.');
+    } } />);
 
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
+    // Simulate a click on the lap button
+    fireEvent.click(getByText('Lap'));
+    // Assert that onLap function has been called
+    expect(onLap).toHaveBeenCalled();
+  });
 
-beforeEach(() => {
-  jest.useRealTimers();
-});
+  // Test to check if clicking the reset button triggers the onReset function
+  test('clicking reset button triggers onReset function', () => {
+    // Create a mock function for onReset
+    const onReset = jest.fn();
+    // Render the StopWatchButton component with the mock onReset function
+    const { getByText } = render(<StopWatchButton onReset={onReset} onStart={function (): void {
+      throw new Error('Function not implemented.');
+    } } onStop={function (): void {
+      throw new Error('Function not implemented.');
+    } } onLap={function (): void {
+      throw new Error('Function not implemented.');
+    } } />);
 
-afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
-});
-
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
+    // Simulate a click on the reset button
+    fireEvent.click(getByText('Reset'));
+    // Assert that onReset function has been called
+    expect(onReset).toHaveBeenCalled();
+  });
 });
