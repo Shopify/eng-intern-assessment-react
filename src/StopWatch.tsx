@@ -12,7 +12,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import StopWatchButton from './StopWatchButton';
+
 import './StopWatch.css';
+
+/**
+ * Formats the time from milliseconds to a desired format (Minutes:Second:Hundredths of a second).
+ * @param {number} time - The time in milliseconds to format.
+ * @return {string} The formatted time string.
+ */
+export const formatTime = (time: number): string => {
+  // Calculate hours, minutes, seconds, and milliseconds
+  const hours = Math.floor(time / 3600000);
+  const minutes = Math.floor((time % 3600000) / 60000);
+  const seconds = Math.floor((time % 60000) / 1000);
+  const milliseconds = Math.floor((time % 1000) / 10);
+
+  // Helper function to format time components
+  const format = (num: number) => num.toString().padStart(2, '0');
+
+  // Construct the formatted time string
+  if (hours > 0) {
+    return `${format(hours)}:${format(minutes)}:${format(seconds)}:${format(
+      milliseconds
+    )}`;
+  } else {
+    return `${format(minutes)}:${format(seconds)}:${format(milliseconds)}`;
+  }
+};
 
 export default function StopWatch() {
   // State to track if the stopwatch is active (running).
@@ -77,27 +103,10 @@ export default function StopWatch() {
    * Resets the stopwatch and clears all laps.
    */
   const handleReset = () => {
+    setIsActive(false);
     setTime(0);
+    setLastLapTime(0);
     setLaps([]);
-  };
-
-  /**
-   * Formats the time from milliseconds to a desired format (Minutes:Second:Hundredths of a second).
-   * @param {number} time - The time in milliseconds to format.
-   * @return {string} The formatted time string.
-   */
-  const formatTime = (time: number): string => {
-    //1 Minute = 60000 milliseconds, %60 to ensure minute count roll over after 59
-    const minutes = Math.floor((time / 60000) % 60);
-
-    //1 Second = 1000 milliseconds, %60 to ensure second count roll over after 59
-    const seconds = Math.floor((time / 1000) % 60);
-
-    // Divided by 10 for two digits, %100 to ensure minute count roll over after 99
-    const milliseconds = Math.floor((time / 10) % 100);
-    return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}:${(
-      '0' + milliseconds
-    ).slice(-2)}`;
   };
 
   return (
