@@ -1,0 +1,60 @@
+main {
+	/* Center */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	background-color: aliceblue;
+	box-shadow: 5px 7px 12px rgba(0, 0, 0, 0.4);
+	height: 500px;
+	width: 50vw;
+	max-width: 500px;
+	border-radius: 10px;
+
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+}
+
+.title {
+	font-weight: 800;
+	font-size: 3.5rem;
+	margin: 0.5em auto 0.5em;
+}
+
+.time {
+	font-weight: 700;
+	font-size: 3rem;
+	margin: 0 auto 0.3em;
+}
+
+.lap-title {
+	font-weight: 400;
+	font-size: 1rem;
+	margin: 0.5em auto 0.5em;
+}
+
+.lap-list {
+	margin: 0 auto 1em;
+	width: 30%;
+	border: 1px solid;
+	flex: 1;
+	overflow: scroll;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
+}
+
+.lap-list li {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0 1em;
+	gap: 1em;
+}
+
+.lap-list li p:first-child {
+	font-weight: 600;
+}
