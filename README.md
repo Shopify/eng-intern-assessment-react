@@ -1,86 +1,46 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Test your work using the provided tests
-4. Create a Pull Request against the Shopify Main branch when you're done and all tests are passing
+# StopWatch Project Overview
 
-# Project Overview
-The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
+## Introduction
 
-- Start the stopwatch to begin counting time.
-- Stop the stopwatch to pause the timer.
-- Displays Laps when a button is pressed.
-- Reset the stopwatch to zero.
+The StopWatch project is a React and TypeScript-based application designed to function as a stopwatch. It provides basic stopwatch functionalities such as start, stop, lap recording, and reset. T
 
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
+## Features
 
-## Project Setup
-To get started with the project, follow these steps:
+The stopwatch offers the following features:
 
-1. Clone the project repository to your local development environment.
+- **Start/Stop**: Begin counting time or pause the timer.
+- **Lap**: Record the current time without stopping the timer.
+- **Reset**: Reset the stopwatch time to zero.
+- **Display Laps**: Show recorded laps on the screen.
 
-2. Install the required dependencies by running npm install in the project directory.
+## Timer Behavior
 
-3. Familiarize yourself with the project structure. The main files you will be working with are:
-    - src/App.tsx: The main component that renders the stopwatch and handles its functionality.
-    - src/Stopwatch.tsx: A separate component that represents the stopwatch display.
-    - src/StopwatchButton.tsx: A separate component that represents the start, stop, and reset buttons.
+- **Initial State**: The stopwatch initially displays the Start and Reset buttons.
+- **Starting the Timer**: Pressing Start changes the button to Stop, and the Reset button changes to Lap.
+- **Recording Laps**: While the timer is running, pressing the Lap button records the current time and displays it.
+- **Stopping the Timer**: Pressing Stop pauses the timer, and the Lap button reverts to Reset.
+- **Resuming or Resetting**: Pressing Start again resumes the timer. Pressing Reset clears the current time and recorded laps.
 
-4. Review the existing code in the above files to understand the initial structure and component hierarchy.
+## Setup Instructions
 
-## Project Goals
-Your specific goals for this project are as follows:
+1. **Install Dependencies**:
+   Run `npm install` to install the necessary React dependencies and Jest for unit testing.
 
-1. Implement the stopwatch functionality:
-    - The stopwatch should start counting when the user clicks the start button.
-    - The stopwatch should stop counting when the user clicks the stop button.
-    - The stopwatch should reset to zero when the user clicks the reset button.
-    - The stopwatch should record and display laps when user clicks the lap button.
+2. **Start the Application**:
+   Execute `npm start` to run the application in development mode. Access it at [http://localhost:3000](http://localhost:3000).
 
-2. Ensure code quality:
-    - Write clean, well-structured, and maintainable code.
-    - Follow best practices and adhere to the React and TypeScript coding conventions.
-    - Pay attention to code readability, modularity, and performance.
+3. **Run Tests**:
+   Use `npm test` to execute unit tests and verify the application's functionality aligns with the expected behaviors.
 
-3. Test your code:
-    - Run the application and test the stopwatch functionality to ensure it works correctly.
-    - Verify that the stopwatch starts, stops, resets, and records laps as expected.
+## Demo
 
-4. Code documentation:
-    - Document your code by adding comments and explanatory notes where necessary.
-    - Provide clear explanations of the implemented functionality and any important details.
+A demonstration of the StopWatch project can be found [here](https://github.com/vyhoangquocnguyen/eng-intern-assessment-react/assets/36269757/181a452d-1738-4f4f-a305-a464c4d39745).
 
-5. Version control:
-    - Use Git for version control. Commit your changes regularly and push them to a branch in your forked repository.
+## Contributing
 
- 6. Create a Pull Request:
-    - Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-    - Provide a clear description of the changes made and any relevant information for the code review.
+Contributions to the StopWatch project are welcome! If you have suggestions for improvement or have identified issues, please feel free to contribute. Follow the standard fork-branch-PR workflow:
 
-## Getting Started
-To start working on the project, follow these steps:
-
-1. Clone the repository to your local development environment.
-
-2. Install the required dependencies by running npm install in the project directory.
-
-3. Open the project in your preferred code editor.
-
-4. Review the existing code in the src directory to understand the initial structure and component hierarchy.
-
-5. Implement the stopwatch functionality by modifying the necessary components (App.tsx, Stopwatch.tsx, StopwatchButton.tsx).
-
-6. Run the application using npm start and test the stopwatch functionality.
-
-7. Commit your changes regularly and push them to a branch in your forked repository.
-
-8. Once you have completed the project goals, create a pull request to merge your changes into the main repository.
-
-## Resources
-Here are some resources that may be helpful during your work on this project:
-
-- [React Documentation](https://reactjs.org/docs/getting-started.html) - Official documentation for React, providing detailed information on React concepts and usage.
-
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - Official documentation for TypeScript, offering guidance on TypeScript features and usage.
-
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Explore React Testing Library, a popular testing library for React applications.
+1. **Fork** the repository.
+2. **Create a Branch** for your feature or bug fix.
+3. **Commit** your changes with clear and concise messages.
+4. **Push** your branch and open a **Pull Request**.
