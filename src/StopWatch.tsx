@@ -1,77 +1,109 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import StopWatchButton from './StopWatchButton'
+import React, { useState, useEffect, useRef } from "react";
+import StopWatchArc from "./StopWatchArc";
+import StopWatchButton from "./StopWatchButton";
+import "./styles/stopwatch.css";
 
-// Function to format the time. This is necessary since both the time and lap times need to be formatted
-export function formatTime(time: number): string {
-    // Format the time in mm:ss:ms. Display hours only if reached
-    const hours = Math.floor(time / 360000);
-    const minutes = Math.floor((time % 360000) / 6000);
-    const seconds = Math.floor((time % 6000) / 100);
-    const milliseconds = time % 100;
-    // Format the minutes, seconds, and milliseconds to be two digits
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = seconds.toString().padStart(2, '0');
-    const formattedMilliseconds = milliseconds.toString().padStart(2, '0');
-    // If stopwatch reaches at least an hour, display the hours
-    if (hours > 0) {
-        const formattedHours = hours.toString().padStart(2, '0');
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
+const Stopwatch = () => {
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [laps, setLaps] = useState<Array<number>>([]);
+  const intervalRef = useRef<null | NodeJS.Timer>(null);
+
+  useEffect(() => {
+    if (isRunning) {
+      const startTime = Date.now() - elapsedTime;
+      intervalRef.current = setInterval(() => {
+        setElapsedTime(Date.now() - startTime);
+      }, 1);
+    } else {
+      clearInterval(intervalRef.current);
     }
-    // Combine the values into a string
-    const formattedTime = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    return formattedTime;
-}
 
-export default function StopWatch() {
-    // State to track the time, whether the timer is on/off, and the lap times
-    const [time, setTime] = useState(0);
-    const [timerOn, setTimerOn] = useState(false);
-    const [lapTimes, setLapTimes] = useState<number[]>([]);
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning]);
 
-    // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
-    const handleReset = useCallback(() => {
-        setTimerOn(false); 
-        setTime(0); 
-        setLapTimes([]);
-      }, []);
+  const startStopWatch = () => {
+    setIsRunning(true);
+  };
 
-    // Every time timerOn changes, we start or stop the timer
-    // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
-    useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
+  const pauseStopwatch = () => {
+    clearInterval(intervalRef.current);
+    setIsRunning(false);
+  };
 
-        if (timerOn) {
-            interval = setInterval(() => setTime(time => time + 1), 10)
-        }
+  const resetStopWatch = () => {
+    setElapsedTime(0);
+    setIsRunning(false);
+    setLaps([]);
+  };
 
-        return () => {clearInterval(interval)} // Clears the interval when the component unmounts or timerOn changes
-    }, [timerOn])
+  const stopWatchLap = () => {
+    setLaps([...laps, elapsedTime]);
+  };
 
-    return(
-        <div className='stopwatch'>
-            <h1 className='stopwatch-title'>StopWatch</h1>
-            <div className='stopwatch-content'>
-                <div className='stopwatch-buttons'>
-                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
-                    <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
-                </div>
-                <div className='stopwatch-time'>
-                    <p>{formatTime(time)}</p>
-                    {/* Display the numbered lap times */}
-                    {lapTimes.length > 0 && (
-                        <div className='stopwatch-laptimes'>
-                            <p>Lap times</p>
-                            <ul>
-                                {lapTimes.map((lapTime, index) => {
-                                    return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>
-                                })}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    )
-}
+  const formatTime = (time: number) => {
+    let seconds: any = Math.floor(time / 1000);
+    let minutes: any = Math.floor(seconds / 60);
+    seconds = `0${seconds % 60}`.slice(-2);
+    minutes = `0${minutes % 60}`.slice(-2);
+
+    return `${minutes}:${seconds}`;
+  };
+
+  const formatMS = (time: number) => {
+    const milliseconds = `00${time % 100}`.slice(-2);
+
+    return `${milliseconds}`;
+  };
+
+  return (
+    <div className="stopwatch">
+      <h1 className="stopwatch__heading">Shopify Internship S'24 — Challenge<span className="float-right">✶✶✶</span></h1>
+      <div className={`stopwatch__timer 
+                      ${elapsedTime === 0 ? "stopwatch__timer--initialize " : ""}
+                      ${isRunning ? "stopwatch__timer--active " : ""}
+                      ${laps.length > 0 ? "stopwatch__timer--laps" : ""}`}>
+        <StopWatchArc />
+        <span className="stopwatch__time">
+            {formatTime(elapsedTime)}
+          <span className="stopwatch__milliseconds">{formatMS(elapsedTime)}</span>
+          </span>
+        {laps.length > 0 && (
+          <div className="stopwatch__laps">
+            <ul className="stopwatch__list">
+              {laps.map((lap, index) => (
+                <li key={index}>
+                  Lap {index + 1}: {formatTime(lap)}.{formatMS(lap)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="stopwatch__actions">
+        <StopWatchButton onClick={startStopWatch}
+                         label="Play"
+                         hidden={isRunning}>
+          <span className="shape__play">Play</span>
+        </StopWatchButton>
+        <StopWatchButton onClick={pauseStopwatch}
+                         label="Pause"
+                         hidden={!isRunning}>
+          <span className="shape__pause">Pause</span>
+        </StopWatchButton>
+        <StopWatchButton onClick={resetStopWatch}
+                         label="Reset"
+                         hidden={isRunning}>
+          Reset
+        </StopWatchButton>
+        <StopWatchButton onClick={stopWatchLap}
+                         label="Lap"
+                         hidden={!isRunning}>
+          Lap
+        </StopWatchButton>
+      </div>
+    </div>
+  );
+};
+
+export default Stopwatch;
