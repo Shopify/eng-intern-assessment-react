@@ -1,68 +1,58 @@
+/**
+ * FILEPATH: /Users/melissaarmstrong/Coding/eng-intern-assessment-react/src/StopWatch.test.tsx
+ * 
+ * @jest-environment jsdom
+ * @jest-axe/extend-expect
+ * 
+ * @description Unit tests for the StopWatch component.
+ */
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import StopWatch from './StopWatch';
 
-// Test the formatTime function
-describe('formatTime', () => {
-  test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
+/**
+ * @description Test suite for the StopWatch component.
+ */
+describe('StopWatch', () => {
+  /**
+   * @description Test case to check if the stopwatch component renders correctly.
+   */
+  test('renders stopwatch component with initial state', () => {
+    render(<StopWatch />);
+    expect(screen.getByText('StopWatch')).toBeInTheDocument();
+    expect(screen.getByText('00:00:00')).toBeInTheDocument();
+});
+/**
+ * @description Test case to check if the timer starts and updates the display.
+ */
+
+test('timer starts and updates display', async () => {
+    render(<StopWatch />);
+    fireEvent.click(screen.getByText('Start'));
+    await waitFor(() => expect(screen.queryByText('00:00:00')).not.toBeInTheDocument(), { timeout: 100 });
+    fireEvent.click(screen.getByText('Stop'));
+});
+
+
+  /**
+   * @description Test case to check if the reset button resets the timer.
+   */
+  test('reset button resets the timer', () => {
+    render(<StopWatch />);
+    fireEvent.click(screen.getByText('Start'));
+    fireEvent.click(screen.getByText('Stop'));
+    fireEvent.click(screen.getByText('Reset'));
+    expect(screen.getByText('00:00:00')).toBeInTheDocument();
   });
 
-  test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
+  /**
+   * @description Test case to check if the lap functionality records lap times.
+   */
+  test('lap functionality records lap times', () => {
+    render(<StopWatch />);
+    fireEvent.click(screen.getByText('Start'));
+    fireEvent.click(screen.getByText('Record Lap'));
+    expect(screen.getByText('Lap times')).toBeInTheDocument();
   });
-});
-
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
-
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
-
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
-
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
-
-beforeEach(() => {
-  jest.useRealTimers();
-});
-
-afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
-});
-
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
 });

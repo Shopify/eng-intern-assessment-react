@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-// Maximum number of laps that can be recorded
 const maxLaps = 25;
 
-// Define the props for the StopWatchButton component
+// Map button types to display text and tabIndex
+const buttonConfig = {
+    'start': { text: 'Start', tabIndex: 1 },
+    'stop': { text: 'Stop', tabIndex: 2 },
+    'lap': { text: 'Record Lap', tabIndex: 3 },
+    'reset': { text: 'Reset', tabIndex: 4 }
+};
+
 type StopWatchButtonProps = {
     type: 'start' | 'stop' | 'lap' | 'reset';
     onClick?: () => void;
@@ -11,44 +17,43 @@ type StopWatchButtonProps = {
     time?: number;
     lapTimes?: number[];
 };
-  
-  export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes }: StopWatchButtonProps) {
-    // Determine the button text based on the type and add corresponding tabIndex
-    let buttonText, tabIndex;
-    switch(type) {
-        case 'start':
-            buttonText = 'Start';
-            tabIndex = 1;
-            break;
-        case 'stop':
-            buttonText = 'Stop';
-            tabIndex = 2;
-            break;
-        case 'lap':
-            buttonText = 'Record Lap';
-            tabIndex = 3;
-            break;
-        case 'reset':
-            buttonText = 'Reset';
-            tabIndex = 4;
-            break;
-        default: 
-        buttonText = '';
-        tabIndex = 0;
-    }
-    // Determine whether the reset or lap buttons should be disabled
-    const isLapDisabled = !timerOn || (lapTimes && lapTimes.length === 25);
+export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes }: StopWatchButtonProps) {
+    const [isFlashing, setIsFlashing] = useState(false);
+
+    useEffect(() => {
+        let timeout: string | number | NodeJS.Timeout;
+        if (isFlashing) {
+            timeout = setTimeout(() => setIsFlashing(false), 200);
+        }
+        return () => clearTimeout(timeout);
+    }, [isFlashing]);
+
+    // Function to handle click and apply the flashing effect
+    const handleLapClick = () => {
+        if (onClick && type === 'lap') {
+            onClick();
+            setIsFlashing(true);
+        }
+    };
+    // Extract buttonText and tabIndex based on the type
+    const { text: buttonText, tabIndex } = buttonConfig[type];
+
+    // Determine whether the lap or reset buttons should be disabled
+    const isLapDisabled = !timerOn || (lapTimes && lapTimes.length >= maxLaps);
     const isResetDisabled = time === 0;
-    return(
-        <button 
-            onClick={onClick} 
+
+    // Apply the flashing style if the button is in the flashing state
+    const buttonStyle = isFlashing ? { borderColor: 'blue', borderWidth: '2px', borderStyle: 'solid' } : {};
+
+    return (
+        <button
+            onClick={type === 'lap' ? handleLapClick : onClick}
             aria-label={type}
             tabIndex={tabIndex}
-            // Disable the lap button when the timer is stopped or when the max number of lap times is reached. Disable reset button when the timer is already reset
             disabled={(type === 'lap' && isLapDisabled) || (type === 'reset' && isResetDisabled)}
-            >
-            {/* Display the button text, otherwise display the max laps reached message when max number is reached */}
-            {lapTimes && lapTimes.length === maxLaps && timerOn && type === 'lap' ? "Maximum laps reached" : buttonText}
+            style={buttonStyle}
+        >
+            {lapTimes && lapTimes.length >= maxLaps && timerOn && type === 'lap' ? "Maximum laps reached" : buttonText}
         </button>
-    )
+    );
 }

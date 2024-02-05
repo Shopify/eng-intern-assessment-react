@@ -1,77 +1,70 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import StopWatchButton from './StopWatchButton'
+import React, { useState, useEffect, useRef } from 'react';
+import StopWatchButton from './StopWatchButton';
 
-// Function to format the time. This is necessary since both the time and lap times need to be formatted
 export function formatTime(time: number): string {
-    // Format the time in mm:ss:ms. Display hours only if reached
-    const hours = Math.floor(time / 360000);
-    const minutes = Math.floor((time % 360000) / 6000);
-    const seconds = Math.floor((time % 6000) / 100);
-    const milliseconds = time % 100;
-    // Format the minutes, seconds, and milliseconds to be two digits
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = seconds.toString().padStart(2, '0');
-    const formattedMilliseconds = milliseconds.toString().padStart(2, '0');
-    // If stopwatch reaches at least an hour, display the hours
-    if (hours > 0) {
-        const formattedHours = hours.toString().padStart(2, '0');
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    }
-    // Combine the values into a string
-    const formattedTime = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-    return formattedTime;
+    const hours = Math.floor(time / 3600000);
+    const minutes = Math.floor((time % 3600000) / 60000);
+    const seconds = Math.floor((time % 60000) / 1000);
+    const milliseconds = Math.round(time % 1000 / 10);
+
+    return `${hours > 0 ? `${hours.toString().padStart(2, '0')}:` : ''}${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
 }
 
 export default function StopWatch() {
-    // State to track the time, whether the timer is on/off, and the lap times
     const [time, setTime] = useState(0);
     const [timerOn, setTimerOn] = useState(false);
-    const [lapTimes, setLapTimes] = useState<number[]>([]);
+    const [lapTimes, setLapTimes] = useState([]);
+    const [lastLapTime, setLastLapTime] = useState(0);
+    const intervalRef = useRef(null);
 
-    // Stops the timer, resets the time, and clears the lap times. useCallback is used to prevent unnecessary re-renders
-    const handleReset = useCallback(() => {
-        setTimerOn(false); 
-        setTime(0); 
+    const handleReset = () => {
+        setTimerOn(false);
+        setTime(0);
         setLapTimes([]);
-      }, []);
+        setLastLapTime(0);
+    };
 
-    // Every time timerOn changes, we start or stop the timer
-    // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
     useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
-
-        if (timerOn) {
-            interval = setInterval(() => setTime(time => time + 1), 10)
+        if (!timerOn) {
+            clearInterval(intervalRef.current);
+            return;
         }
 
-        return () => {clearInterval(interval)} // Clears the interval when the component unmounts or timerOn changes
-    }, [timerOn])
+        intervalRef.current = setInterval(() => {
+            setTime(time => time + 10);
+        }, 10);
 
-    return(
+        return () => clearInterval(intervalRef.current);
+    }, [timerOn]);
+
+    const recordLap = () => {
+        const currentLapTime = time - lastLapTime;
+        setLapTimes([...lapTimes, currentLapTime]);
+        setLastLapTime(time);
+    };
+
+    return (
         <div className='stopwatch'>
             <h1 className='stopwatch-title'>StopWatch</h1>
             <div className='stopwatch-content'>
                 <div className='stopwatch-buttons'>
-                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
-                    <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
+                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)} />
+                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)} />
+                    <StopWatchButton type={'lap'} onClick={recordLap} timerOn={timerOn} lapTimes={lapTimes} />
+                    <StopWatchButton type={'reset'} onClick={handleReset} time={time} />
                 </div>
                 <div className='stopwatch-time'>
                     <p>{formatTime(time)}</p>
-                    {/* Display the numbered lap times */}
                     {lapTimes.length > 0 && (
                         <div className='stopwatch-laptimes'>
                             <p>Lap times</p>
                             <ul>
-                                {lapTimes.map((lapTime, index) => {
-                                    return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>
-                                })}
+                                {lapTimes.map((lapTime, index) => <li key={index}>{index + 1}. {formatTime(lapTime)}</li>)}
                             </ul>
                         </div>
                     )}
                 </div>
             </div>
         </div>
-    )
+    );
 }
