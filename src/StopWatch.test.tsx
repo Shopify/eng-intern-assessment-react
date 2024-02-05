@@ -1,68 +1,62 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
 import StopWatch, { formatTime } from './StopWatch';
+import {fireEvent, render, screen} from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-// Test the formatTime function
-describe('formatTime', () => {
+describe('Stopwatch Tests', () => {
   test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
+    expect(formatTime(5900)).toBe('0:00:59:00');
+    expect(formatTime(6000)).toBe('0:01:00:00');
+    expect(formatTime(359900)).toBe('0:59:59:00');
   });
 
   test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
+    expect(formatTime(360000)).toBe('1:00:00:00');
+    expect(formatTime(366100)).toBe('1:01:01:00');
   });
-});
 
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
+  test('renders with initial state correctly', () => {
+    render(<StopWatch />);
+    const startButton = screen.getByRole('button', { name: 'Start' });
+    const lapButton = screen.getByRole('button', { name: 'Lap' });
+    const resetButton = screen.getByRole('button', { name: 'Reset' });
 
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
+    expect(screen.getByText('0:00:00:00')).toBeTruthy();
+    expect(startButton).toBeTruthy();
+    expect(lapButton).toHaveAttribute('disabled');
+    expect(resetButton).toBeTruthy();
+  });
 
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
+  test('starts and stops the timer', () => {
+    const { getByRole } = render(<StopWatch />);
+    const startStopButton = getByRole('button', { name: 'Start' });
+    fireEvent.click(startStopButton);
+    expect(startStopButton.textContent).toBe('Stop');
 
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
+    jest.advanceTimersByTime(1000);
 
-beforeEach(() => {
-  jest.useRealTimers();
-});
+    fireEvent.click(startStopButton);
+    expect(startStopButton.textContent).toBe('Start');
+  });
 
-afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
-});
+  test('resets the stopwatch', () => {
+    const { getByText, getByRole, queryByText } = render(<StopWatch />);
+    const startButton = getByRole('button', { name: 'Start' });
+    fireEvent.click(startButton);
 
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
+    jest.advanceTimersByTime(1000);
+    const resetButton = getByRole('button', { name: 'Reset' });
+    fireEvent.click(resetButton);
+
+    expect(getByText('0:00:00:00')).toBeTruthy();
+    expect(queryByText('Lap 1:')).toBeNull();
+  });
+
+  test('lap button is disabled when stopwatch is not running', () => {
+    const { getByRole } = render(<StopWatch />);
+    const lapButton = getByRole('button', { name: 'Lap' });
+    expect(lapButton).toHaveAttribute('disabled');
+  });
+
+
 });
