@@ -35,14 +35,10 @@ The app includes a comprehensive suite of tests using React Testing Library and 
 ## User Interface
 The app features a simple yet elegant user interface, balancing aesthetic appeal with functionality, demonstrating a keen eye for user-centric design.
 
-![Stopwatch Interface](./images/stopwatchInterface.png)
-
-
 ## Demonstration Video
 Experience the app's functionality firsthand through this demonstration video:
 
-https://github.com/EDHE08232001/InternAssessmentSolution/assets/80665238/bde18c12-814e-4319-85c6-a28ec85829c7
-
+https://github.com/EDHE08232001/InternAssessment/assets/80665238/eb1799da-a79f-402c-a96a-831639ab1e82
 
 ## Getting Started
 To start exploring this project, clone the repository and install dependencies with `npm install`. Launch the app with `npm start` and experience a harmonious blend of modern technology and design.
