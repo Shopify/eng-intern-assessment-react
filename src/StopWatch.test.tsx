@@ -1,68 +1,90 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import StopWatch from './StopWatch';
+import '@testing-library/jest-dom';
 
-// Test the formatTime function
-describe('formatTime', () => {
-  test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
-  });
-
-  test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
-  });
-});
-
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
-
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
-
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
-
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
-
+// Setup: Mocking timers for the setInterval used in the StopWatch component
 beforeEach(() => {
-  jest.useRealTimers();
+    jest.useFakeTimers();
 });
 
 afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
+    jest.useRealTimers();
 });
 
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
+// Test suite for the StopWatch Component
+describe('StopWatch Component', () => {
+    // Test case for start/stop functionality
+    test('should start and stop counting when start/stop button is clicked', () => {
+        render(<StopWatch />);
+        const startStopButton = screen.getByText('Start/Stop');
+
+        // Start the stopwatch and advance time by 1 second
+        fireEvent.click(startStopButton);
+        act(() => {
+            jest.advanceTimersByTime(1000);
+        });
+        let display = screen.getByText(/0:00:01/);
+        expect(display).toBeInTheDocument();
+
+        // Stop the stopwatch and ensure time remains the same
+        fireEvent.click(startStopButton);
+        act(() => {
+            jest.advanceTimersByTime(1000);
+        });
+        display = screen.getByText(/0:00:01/);
+        expect(display).toBeInTheDocument();
+    });
+
+    // Test case for lap recording functionality
+    test('should record lap times correctly', () => {
+        render(<StopWatch />);
+        const startStopButton = screen.getByText('Start/Stop');
+        const lapButton = screen.getByText('Lap');
+
+        // Start the stopwatch, advance time, and record a lap
+        fireEvent.click(startStopButton);
+        act(() => {
+            jest.advanceTimersByTime(5000);
+        });
+        fireEvent.click(lapButton);
+
+        // Verify that lap times are displayed correctly
+        const lapTimes = screen.getAllByText(/0:00:05/);
+        expect(lapTimes.length).toBe(2);
+    });
+
+    // Test case for reset functionality
+    test('should reset the time and laps when reset button is clicked', () => {
+        render(<StopWatch />);
+        const startStopButton = screen.getByText('Start/Stop');
+        const resetButton = screen.getByText('Reset');
+
+        // Start the stopwatch, advance time, and then reset
+        fireEvent.click(startStopButton);
+        act(() => {
+            jest.advanceTimersByTime(1000);
+        });
+        fireEvent.click(resetButton);
+
+        // Verify that the stopwatch resets to zero
+        const display = screen.getByText(/0:00:00/);
+        expect(display).toBeInTheDocument();
+    });
+
+    // Test case for time display format
+    test('should display time in the correct format', () => {
+        render(<StopWatch />);
+        const startStopButton = screen.getByText('Start/Stop');
+
+        // Start the stopwatch and advance time to check format
+        fireEvent.click(startStopButton);
+        act(() => {
+            jest.advanceTimersByTime(3661000); // 1 hour, 1 minute, and 1 second
+        });
+
+        // Verify that time is displayed in the correct format
+        const display = screen.getByText(/01:01:01/);
+        expect(display).toBeInTheDocument();
+    });
 });
