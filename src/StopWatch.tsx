@@ -54,7 +54,7 @@ export default function StopWatch() {
      */
     const recordLap = () => {
         if (running) {
-            setLaps(prevLaps => [...prevLaps, formatTime()]);
+            setLaps(prevLaps => [...prevLaps, `${formatTime()}:${milliseconds % 1000}`]);
         }
     };
 
