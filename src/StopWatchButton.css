@@ -1,0 +1,50 @@
+.button-container {
+  display: flex; /* Use flex display */
+  flex-direction: row; /* Center items vertically */
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+button {
+  font-size: 1.7em;
+  margin: 5px ;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: hsl(146, 62%, 52%);
+  color: white;
+  min-width: 125px;
+  border: none;
+}
+
+button:hover {
+  background-color: hsl(146, 62%, 62%);
+}
+
+button.stop-button {
+  background-color: rgb(226, 70, 70);
+}
+
+button.stop-button:hover {
+  background-color: rgb(240, 139, 139);
+}
+
+button.lap-button {
+  background-color: rgb(109, 193, 245);
+}
+
+button.lap-button:hover {
+  background-color: rgb(136, 199, 238);
+}
+
+button.reset-button {
+  background-color: rgb(181, 149, 246);
+}
+
+button.reset-button:hover {
+  background-color: rgb(200, 177, 246);
+}
+
+
