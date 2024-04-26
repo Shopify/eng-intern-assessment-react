@@ -13,9 +13,9 @@ To get started with the project, follow these steps:
 
 2. Install the required dependencies by running npm install in the project directory.
 
-3. you can run:
+3. you can run: `npm start`
 
-        `npm start`
+        
 
         Runs the app in the development mode.\
         Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
