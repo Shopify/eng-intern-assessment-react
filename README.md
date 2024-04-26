@@ -1,9 +1,3 @@
-# Technical Instructions
-1. Fork this repo to your local Github account.
-2. Create a new branch to complete all your work in.
-3. Write tests to ensure you've completed the requirements
-3. Create a Pull Request against the main branch when you're done and all tests are passing
-
 # Project Overview
 The goal of this project is to implement a stopwatch application using React and TypeScript. The stopwatch should have the following functionality:
 
@@ -11,8 +5,6 @@ The goal of this project is to implement a stopwatch application using React and
 - Stop the stopwatch to pause the timer.
 - Displays Laps when a button is pressed.
 - Reset the stopwatch to zero.
-
-You will be provided with a basic project structure that includes the necessary files and dependencies. Your task is to write the code to implement the stopwatch functionality and ensure that it works correctly.
 
 ## Project Setup
 To get started with the project, follow these steps:
