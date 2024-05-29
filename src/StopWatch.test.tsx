@@ -1,68 +1,53 @@
-import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import StopWatchButton from "./StopWatchButton";
+//import StopWatchButtonProps from "./StopWatchButton";
 
-// Test the formatTime function
-describe('formatTime', () => {
-  test('formats time less than an hour correctly', () => {
-    expect(formatTime(5900)).toBe('00:59:00');
-    expect(formatTime(6000)).toBe('01:00:00');
-    expect(formatTime(359900)).toBe('59:59:00');
+describe("StopWatchButton functionality", () => {
+  test("onClick function is called when button is clicked", () => {
+    // Mock onClick function
+    const onClick = jest.fn();
+
+    // Render the button
+    const { getByText } = render(
+      <StopWatchButton onClick={onClick}>Start</StopWatchButton>
+    );
+
+    // Click the button
+    fireEvent.click(getByText("Start"));
+
+    // Verify onClick function is called
+    expect(onClick).toHaveBeenCalled();
   });
 
-  test('formats time greater than an hour correctly', () => {
-    expect(formatTime(360000)).toBe('01:00:00:00');
-    expect(formatTime(366100)).toBe('01:01:01:00');
+  test("Button is disabled when disabled prop is true", () => {
+    // Mock onClick function
+    const onClick = jest.fn();
+
+    // Render the button with disabled prop set to true
+    const { getByText } = render(
+      <StopWatchButton onClick={onClick} disabled={true}>
+        Start
+      </StopWatchButton>
+    );
+
+    // Verify button is disabled
+    expect(getByText("Start")).toBeDisabled();
   });
-});
 
-test('renders correctly', () => {
-  const { getByText } = render(<StopWatch />);
-  const stopwatchElement = getByText('StopWatch');
-  expect(stopwatchElement).not.toBeNull();
-});
+  test("Button is not disabled when disabled prop is false", () => {
+    // Mock onClick function
+    const onClick = jest.fn();
 
-// Use fake timers for timer-related tests
-jest.useFakeTimers();
+    // Render the button with disabled prop set to false
+    const { getByText } = render(
+      <StopWatchButton onClick={onClick} disabled={false}>
+        Start
+      </StopWatchButton>
+    );
 
-test('starts timer when start button is clicked', () => {
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  expect(setIntervalSpy).toHaveBeenCalledTimes(1);
-  expect(setIntervalSpy).toHaveBeenLastCalledWith(expect.any(Function), 10);
-});
-
-test('stops timer when stop button is clicked', () => {
-  const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
-  const setIntervalSpy = jest.spyOn(global, 'setInterval');
-  setIntervalSpy.mockImplementation(() => 123 as unknown as NodeJS.Timeout);
-  render(<StopWatch />);
-  const startButton = screen.getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const stopButton = screen.getByRole('button', { name: /stop/i });
-  fireEvent.click(stopButton);
-  expect(clearIntervalSpy).toHaveBeenCalledWith(123);
-});
-
-beforeEach(() => {
-  jest.useRealTimers();
-});
-
-afterEach(() => {
-  jest.useFakeTimers();
-  jest.clearAllMocks();
-});
-
-test('resets timer when reset button is clicked', () => {
-  const { getByRole, getByText } = render(<StopWatch />);
-  const startButton = getByRole('button', { name: /start/i });
-  fireEvent.click(startButton);
-  jest.advanceTimersByTime(1000);
-  const resetButton = getByRole('button', { name: /reset/i });
-  fireEvent.click(resetButton);
-  expect(getByText('00:00:00')).not.toBeNull();
+    // Verify button is not disabled
+    expect(getByText("Start")).not.toBeDisabled();
+  });
 });
