@@ -1,5 +1,5 @@
-
-
+# Please click this link for direct access to my work:
+https://github.com/Shopify/eng-intern-assessment-react/pull/233
 
 Welcome to my React Stopwatch project! This project is designed to provide a simple yet visually appealing stopwatch experience. 
 
