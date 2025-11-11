@@ -1,0 +1,94 @@
+.stopwatch-container {
+  font-family: Cambria, serif;
+  text-align: center;
+  padding: 20px;
+  max-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  flex: content;
+}
+
+.stopwatch-head {
+  padding-bottom: 10px;
+  position: sticky;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+.stopwatch-title {
+  font-size: 4em;
+}
+
+.stopwatch-display {
+  font-size: 4.5em;
+}
+
+.stopwatch-buttons {
+  margin-top: 20px;
+  padding: 0;
+}
+button {
+  border-width: 1px;
+  width: 250px;
+  height: 100px;
+  margin: 20px;
+  font-size: 2em;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+button:hover {
+  color: white;
+  background-color: rgb(155, 147, 147);
+}
+.lap-container {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px);
+}
+.lap-item {
+  padding: 5px;
+  font-size: 3em;
+}
+
+/* ==========================For reponsive website, edit html file=======================================*/
+
+/* @media (max-width: 768px) {
+  .stopwatch-container {
+    padding: 30px;
+  }
+  .stopwatch-title {
+    font-size: 2.5em;
+  }
+  .stopwatch-display {
+    font-size: 3em;
+  }
+  .stopwatch-buttons button {
+    width: 200px;
+    height: 90px;
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 576px) {
+  .stopwatch-container {
+    padding: 15px;
+  }
+  .stopwatch-title {
+    font-size: 3em;
+  }
+  .stopwatch-display {
+    font-size: 2.5em;
+  }
+  .stopwatch-buttons button {
+    width: 170px;
+    height: 70px;
+    font-size: 1.5em;
+  }
+  .lap-item {
+    padding: 15px;
+    font-size: 2em;
+  }
+} */
