@@ -1,0 +1,238 @@
+.stopwatch {
+    display: grid;
+
+    width: 42.25rem;
+    overflow: hidden;
+    border: var(--black) solid 0.125rem;
+    border-radius: 1.5625rem;
+
+    box-shadow: 1rem 1rem 0 0 var(--black);
+
+    text-align: left;
+
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.stopwatch__heading {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 2rem 0.725rem 2rem;
+    margin: 0;
+    border-bottom: 0.125rem solid;
+
+    background-color: var(--main-accent-color);
+
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+
+    grid-column: 1 / span 2;
+}
+
+.stopwatch__timer {
+    position: relative;
+    display: flex;
+
+    width: 19.625rem;
+    height: 19.625rem;
+    overflow: hidden;
+    margin: 0 1rem 0 2rem;
+    border-radius: 50%;
+
+    color: var(--black-2);
+
+    transform: scale(0.8);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.stopwatch__button {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1rem;
+    border: rgb(0 0 0) solid 0.125rem;
+    border-radius: 50%;
+
+    background-color: transparent;
+    box-shadow: 0.1875rem 0.1875rem 0 0 var(--black);
+
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.75rem;
+    font-weight: bolder;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.stopwatch__button:hover {
+    background-color: transparent;
+}
+
+.stopwatch__button:active {
+    box-shadow: 0 0 0 0 var(--black);
+
+    transform: translate(0.1875rem, 0.1875rem);
+}
+
+.stopwatch__laps {
+    position: absolute;
+    bottom: 5rem;
+
+    width: 50%;
+    height: 3.2812rem;
+    overflow-y: auto;
+    margin-right: -0.25rem;
+}
+
+.stopwatch__laps {
+    scrollbar-gutter: stable;
+}
+
+.stopwatch__list {
+    display: flex;
+
+    padding: 0;
+    margin: 0;
+
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    line-height: 1.25;
+
+    flex-flow: column-reverse;
+    list-style-type: none;
+}
+
+.stopwatch__arc {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
+.stopwatch__line:after {
+    position: absolute;
+    top: -0.1875rem;
+    right: 0;
+    left: 0;
+
+    width: 0.3125rem;
+    height: 0.9375rem;
+    margin: auto;
+    border: #f2f2f2 solid 0.1875rem;
+    border-bottom-left-radius: 0.5625rem;
+    border-bottom-right-radius: 0.5625rem;
+    outline: none;
+
+    background: var(--black);
+
+    content: "";
+}
+
+.stopwatch__line {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    animation: rotate 35s linear infinite;
+    transform: rotateZ(0deg);
+
+    animation-play-state: paused;
+}
+
+.stopwatch__time {
+    font-family: "Public Sans", sans-serif;
+    font-size: 2.6rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    letter-spacing: -0.125rem;
+}
+
+.stopwatch__milliseconds {
+    font-size: 2rem;
+}
+
+.stopwatch__milliseconds::before {
+    font-size: 2rem;
+    content: ".";
+}
+
+.stopwatch__actions {
+    display: flex;
+}
+
+.float-right {
+    float: right;
+}
+
+.shape__play {
+    display: inline-block;
+
+    width: 0;
+    border-color: transparent transparent transparent var(--black);
+    border-style: solid;
+    border-width: 0.5625rem 0 0.5625rem 1rem;
+
+    font-size: 0;
+}
+
+.shape__pause {
+    display: inline-block;
+    vertical-align: top;
+
+    width: 0;
+    height: 1rem;
+    border-color: transparent transparent transparent var(--black);
+    border-style: double;
+    border-width: 0 0 0 1rem;
+
+    font-size: 0;
+}
+
+.stopwatch__timer--laps .stopwatch__time {
+    transform: translate(0, -1rem);
+}
+
+.stopwatch__timer--initialize .arc__mask,.stopwatch__timer--initialize .stopwatch__line {
+    animation: none;
+}
+
+.stopwatch__timer--active .arc__mask,.stopwatch__timer--active .stopwatch__line {
+    animation-play-state: running;
+}
+
+.stopwatch__laps::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+.stopwatch__laps::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.stopwatch__laps::-webkit-scrollbar-thumb {
+    border: 0.1875rem solid;
+    border-radius: 1.25rem;
+
+    color: transparent;
+}
+
+.stopwatch__laps:hover::-webkit-scrollbar-thumb {
+    border: 0.1875rem solid;
+    border-radius: 1.25rem;
+
+    color: var(--main-accent-color);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
