@@ -49,7 +49,7 @@ export default function StopWatch() {
 
     return(
         <div className='stopwatch'>
-            <h1 className='stopwatch-title'>StopWatch</h1>
+            <h1 className='stopwatch-title'>Shopi-Watch</h1>
             <div className='stopwatch-content'>
                 <div className='stopwatch-buttons'>
                     <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
