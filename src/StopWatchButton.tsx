@@ -1,54 +1,30 @@
 import React from 'react'
 
-// Maximum number of laps that can be recorded
-const maxLaps = 25;
-
-// Define the props for the StopWatchButton component
+/**
+ * Defines the type for the properties accepted by the StopWatchButton component.
+ * @property {string} name - The name of the button, which will be displayed as the button text.
+ * @property {() => void} onClick - Optional click event handler for the button.
+ * @property {boolean} isDisabled - Optional flag to disable the button.
+ */
 type StopWatchButtonProps = {
-    type: 'start' | 'stop' | 'lap' | 'reset';
+    name: string;
     onClick?: () => void;
-    timerOn?: boolean;
-    time?: number;
-    lapTimes?: number[];
+    isDisabled?: boolean; 
+    className?:string; 
 };
   
-  export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes }: StopWatchButtonProps) {
-    // Determine the button text based on the type and add corresponding tabIndex
-    let buttonText, tabIndex;
-    switch(type) {
-        case 'start':
-            buttonText = 'Start';
-            tabIndex = 1;
-            break;
-        case 'stop':
-            buttonText = 'Stop';
-            tabIndex = 2;
-            break;
-        case 'lap':
-            buttonText = 'Record Lap';
-            tabIndex = 3;
-            break;
-        case 'reset':
-            buttonText = 'Reset';
-            tabIndex = 4;
-            break;
-        default: 
-        buttonText = '';
-        tabIndex = 0;
-    }
-    // Determine whether the reset or lap buttons should be disabled
-    const isLapDisabled = !timerOn || (lapTimes && lapTimes.length === 25);
-    const isResetDisabled = time === 0;
+/**
+ * A functional component that renders a button for the stopwatch.
+ * @param {StopWatchButtonProps} props - The props for this component.
+ * @returns A React element representing a button.
+ */
+  export default function StopWatchButton({ name, onClick, isDisabled, className }: StopWatchButtonProps) {
+    // Rendering the button element
+    // - The 'onClick' prop is used to handle click events on the button.
+    // - 'aria-label' is set for accessibility, making the button more accessible to screen readers.
+    // - The 'disabled' prop determines whether the button is disabled.
+    // - The button text is set to the value of the 'name' prop.
     return(
-        <button 
-            onClick={onClick} 
-            aria-label={type}
-            tabIndex={tabIndex}
-            // Disable the lap button when the timer is stopped or when the max number of lap times is reached. Disable reset button when the timer is already reset
-            disabled={(type === 'lap' && isLapDisabled) || (type === 'reset' && isResetDisabled)}
-            >
-            {/* Display the button text, otherwise display the max laps reached message when max number is reached */}
-            {lapTimes && lapTimes.length === maxLaps && timerOn && type === 'lap' ? "Maximum laps reached" : buttonText}
-        </button>
+        <button className={className} onClick={onClick} aria-label={name} disabled={isDisabled}>{name}</button>
     )
 }
