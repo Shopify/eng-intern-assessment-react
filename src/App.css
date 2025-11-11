@@ -1,71 +1,29 @@
-html, body, #root, .stopwatch, .stopwatch-content, .stopwatch-buttons {
-  height: -webkit-fill-available;
+body{
+  font-family: 'roboto', sans-serif;
 }
 
-body {
-  background-color: #f1f1f1;
-  margin: 0px;
-}
-
-.stopwatch-title {
-  background-color: #303030;
-  margin: 0px;
-  color: white;
-  padding-left: 16px;
-  padding: 10px 0px 10px 16px;
-}
-
-.stopwatch-content {
-  display: flex;
-}
-
-.stopwatch-buttons {
+.container{
   display: flex;
   flex-direction: column;
-  background-color: #ebebeb;
-  padding: 16px 12px;
-  width: 200px;
+  justify-content: center;
+  align-items: center;
 }
 
-.stopwatch-buttons button:focus {
-  outline: none;
-  border: 2px solid #000000;
+.stopwatch-display{
+  font-size: 100px;
+  font-family: 'roboto mono', monospace;
 }
 
-.stopwatch-buttons button {
-  margin: 7px 0px;
-  background-color: #fafafa;
-  border: 0px solid #fafafa;
-  text-align: left;
-  border-radius: 0.5rem;
-  padding: 7px 0px 7px 15px;
-  box-shadow: 0.5px 0.5px gray;
+.button{
+  margin: 0.5em;
+  font-size: 25px;
+  width: 7rem;
+  padding: 0.5em;
 }
 
-.stopwatch-time {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  padding: 50px;
-  background-color: #ffffff;
-  height: fit-content;
-  border-radius: 0.75rem;
-  width: 50%;
-  text-align: -webkit-center;
-  box-shadow: 0.5px 0.5px gray;
-}
-
-.stopwatch-time p {
-  font-size: xxx-large;
-}
-
-.stopwatch-laptimes ul {
-  list-style: none;
-  padding: 0px;
-}
-
-.stopwatch-laptimes li {
-  padding: 10px 0px;
-  border-bottom: 1px solid #ebebeb;
-  font-size: x-large;
+.lap-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
