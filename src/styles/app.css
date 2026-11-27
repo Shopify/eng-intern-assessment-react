@@ -1,0 +1,20 @@
+:root {
+    --main-accent-color: #FF5E5E;
+    --main-bg-color: #F1F0F0;
+
+    --black: #000000;
+    --black-2: #060606;
+}
+
+html, body {
+    display: flex;
+
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+
+    background-color: var(--main-bg-color);
+
+    justify-content: center;
+    align-items: center;
+}

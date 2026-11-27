@@ -1,0 +1,27 @@
+.arc {
+    stroke-width: 0.5rem;
+    stroke: var(--black);
+}
+
+.arc__mask {
+    animation: maskArc 60s linear infinite;
+    transform: rotateZ(-90deg);
+    transform-origin: center;
+
+    stroke-dasharray: 820;
+    stroke-dashoffset: 820;
+    animation-play-state: paused;
+}
+
+.arc__primary {
+    stroke: var(--main-accent-color);
+}
+
+@keyframes maskArc {
+    from {
+        stroke-dashoffset: 820;
+    }
+    to {
+        stroke-dashoffset: -820;
+    }
+}
