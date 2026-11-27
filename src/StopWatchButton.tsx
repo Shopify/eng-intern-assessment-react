@@ -18,19 +18,19 @@ type StopWatchButtonProps = {
     switch(type) {
         case 'start':
             buttonText = 'Start';
-            tabIndex = 1;
+            tabIndex = 0;
             break;
         case 'stop':
             buttonText = 'Stop';
-            tabIndex = 2;
+            tabIndex = 0;
             break;
         case 'lap':
             buttonText = 'Record Lap';
-            tabIndex = 3;
+            tabIndex = 0;
             break;
         case 'reset':
             buttonText = 'Reset';
-            tabIndex = 4;
+            tabIndex = 0;
             break;
         default: 
         buttonText = '';
