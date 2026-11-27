@@ -47,6 +47,20 @@ export default function StopWatch() {
         return () => {clearInterval(interval)} // Clears the interval when the component unmounts or timerOn changes
     }, [timerOn])
 
+    // Calculate the average lap time by adding all the lap times and dividing by the number of laps
+    const calculateAverageLapTime = () => {
+        if (lapTimes.length === 0) {
+            return 0;
+        }
+        const total = lapTimes.reduce((a, b) => a + b, 0);
+        return Math.round(total / lapTimes.length);
+    };
+    // Record the lap time by adding the current time to the lapTimes array
+    const handleLap = () => {
+        const newLapTimes = [...lapTimes, time];
+        setLapTimes(newLapTimes);
+    };
+
     return(
         <div className='stopwatch'>
             <h1 className='stopwatch-title'>StopWatch</h1>
@@ -54,7 +68,7 @@ export default function StopWatch() {
                 <div className='stopwatch-buttons'>
                     <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
                     <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
+                    <StopWatchButton type={'lap'} onClick={handleLap} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
                     <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
                 </div>
                 <div className='stopwatch-time'>
@@ -63,6 +77,7 @@ export default function StopWatch() {
                     {lapTimes.length > 0 && (
                         <div className='stopwatch-laptimes'>
                             <p>Lap times</p>
+                            <h5>Average Lap Time: {formatTime(calculateAverageLapTime())}</h5>
                             <ul>
                                 {lapTimes.map((lapTime, index) => {
                                     return <li key={index}>{(index + 1)+'.'} {formatTime(lapTime)}</li>

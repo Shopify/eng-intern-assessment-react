@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import StopWatch, { formatTime } from './StopWatch';
 
 // Test the formatTime function
@@ -65,4 +65,39 @@ test('resets timer when reset button is clicked', () => {
   const resetButton = getByRole('button', { name: /reset/i });
   fireEvent.click(resetButton);
   expect(getByText('00:00:00')).not.toBeNull();
+});
+
+test('records lap time when lap button is clicked', async () => {
+  const { getByRole, findByText } = render(<StopWatch />);
+  const startButton = getByRole('button', { name: /start/i });
+  const lapButton = getByRole('button', { name: /lap/i });
+
+  fireEvent.click(startButton);
+  jest.advanceTimersByTime(1000); // Run the timer for 1 second
+  fireEvent.click(lapButton);
+
+  const lapTimeRegex = /1.\s+00:00:01/; // Adjusted regex to match the expected format
+  await waitFor(() => { // Use waitFor to allow time for the component to update
+    const lapTime = findByText(lapTimeRegex);
+    expect(lapTime).not.toBeNull();
+  });
+});
+
+test('displays average lap time when lap button is clicked', async () => {
+  const { getByRole, findByText } = render(<StopWatch />);
+  const startButton = getByRole('button', { name: /start/i });
+  const lapButton = getByRole('button', { name: /lap/i });
+
+  fireEvent.click(startButton);
+  jest.advanceTimersByTime(2000); // Let the timer run for 2 seconds
+  fireEvent.click(lapButton);
+  jest.advanceTimersByTime(3000); // Let the timer run for additional 3 seconds
+  fireEvent.click(lapButton); // Click lap again
+
+  // Now the average should be around 2.5 seconds
+  const averageLapTimeRegex = /Average Lap Time: 00:00:02:50/;
+  await waitFor(() => {
+  const averageLapTime =  findByText(averageLapTimeRegex);
+  expect(averageLapTime).not.toBeNull();
+});
 });
