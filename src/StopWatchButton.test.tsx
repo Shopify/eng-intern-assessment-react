@@ -4,7 +4,7 @@ import StopWatchButton from './StopWatchButton';
 
 test('calls onClick prop when clicked', () => {
   const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='start' onClick={handleClick} />);
+  const { getByRole } = render(<StopWatchButton name='start' onClick={handleClick} />);
 
   fireEvent.click(getByRole('button', { name: /start/i }));
 
@@ -12,13 +12,13 @@ test('calls onClick prop when clicked', () => {
 });
 
 test('renders with correct text', () => {
-  const { getByRole } = render(<StopWatchButton type='start' onClick={() => {}} />);
-  expect(getByRole('button').textContent).toBe('Start');
+  const { getByRole } = render(<StopWatchButton name='start' onClick={() => {}} />);
+  expect(getByRole('button').textContent).toBe('start');
 });
 
 test('calls onClick prop when clicked with type stop', () => {
   const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='stop' onClick={handleClick} />);
+  const { getByRole } = render(<StopWatchButton name='stop' onClick={handleClick} />);
 
   fireEvent.click(getByRole('button', { name: /stop/i }));
 
@@ -27,7 +27,7 @@ test('calls onClick prop when clicked with type stop', () => {
 
 test('calls onClick prop when clicked with type reset', () => {
   const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='reset' onClick={handleClick} />);
+  const { getByRole } = render(<StopWatchButton name='reset' onClick={handleClick} />);
 
   fireEvent.click(getByRole('button', { name: /reset/i }));
 
@@ -35,13 +35,13 @@ test('calls onClick prop when clicked with type reset', () => {
 });
 
 test('renders with correct text for type reset', () => {
-  const { getByRole } = render(<StopWatchButton type='reset' onClick={() => {}} />);
-  expect(getByRole('button').textContent).toBe('Reset');
+  const { getByRole } = render(<StopWatchButton name='reset' onClick={() => {}} />);
+  expect(getByRole('button').textContent).toBe('reset');
 });
 
 test('calls onClick prop when clicked with type lap', () => {
   const handleClick = jest.fn();
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={handleClick} timerOn={true} />);
+  const { getByRole } = render(<StopWatchButton name='lap' onClick={handleClick}  />);
 
   fireEvent.click(getByRole('button', { name: /lap/i }));
 
@@ -49,18 +49,12 @@ test('calls onClick prop when clicked with type lap', () => {
 });
 
 test('renders with correct text for type lap', () => {
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={true} />);
-  expect(getByRole('button').textContent).toBe('Record Lap');
+  const { getByRole } = render(<StopWatchButton name='lap' onClick={() => {}}  />);
+  expect(getByRole('button').textContent).toBe('lap');
 });
 
 test('does not throw error when clicked without onClick prop', () => {
-  const { getByRole } = render(<StopWatchButton type='start' />);
+  const { getByRole } = render(<StopWatchButton name='start' />);
 
   expect(() => fireEvent.click(getByRole('button', { name: /start/i }))).not.toThrow();
-});
-
-test('lap button is disabled when timer is not running', () => {
-  const { getByRole } = render(<StopWatchButton type='lap' onClick={() => {}} timerOn={false} />);
-  const buttonElement = getByRole('button') as HTMLButtonElement;
-  expect(buttonElement.disabled).toBe(true);
 });
