@@ -12,7 +12,7 @@ type StopWatchButtonProps = {
     lapTimes?: number[];
 };
   
-  export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes }: StopWatchButtonProps) {
+  export default function StopWatchButton({ type, onClick, timerOn, time, lapTimes}: StopWatchButtonProps) {
     // Determine the button text based on the type and add corresponding tabIndex
     let buttonText, tabIndex;
     switch(type) {
