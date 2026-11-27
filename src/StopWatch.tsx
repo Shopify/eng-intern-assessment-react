@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import StopWatchButton from './StopWatchButton'
+import { maxLaps } from './StopWatchButton';
 
 // Function to format the time. This is necessary since both the time and lap times need to be formatted
 export function formatTime(time: number): string {
@@ -35,6 +36,17 @@ export default function StopWatch() {
         setLapTimes([]);
       }, []);
 
+    // Triggered when the "Start" button is clicked. Sets the 'timerOn' state to true, which starts the timer.
+    const handleStart = () => setTimerOn(true);
+
+    // Triggered when the "Stop" button is clicked. Sets the 'timerOn' state to false, which stops the timer.
+    const handleStop = () => setTimerOn(false);
+
+    const handleLap = () => {
+        if (!timerOn || lapTimes.length >= maxLaps) return; // Checks if timer is running and maximum lap limit has not been exceeded
+        setLapTimes([...lapTimes, time]); // Adds the current time to the lapTimes array
+    };
+
     // Every time timerOn changes, we start or stop the timer
     // useEffect is necessary since setInterval changes the state and we don't want to create an infinite loop
     useEffect(() => {
@@ -52,9 +64,9 @@ export default function StopWatch() {
             <h1 className='stopwatch-title'>StopWatch</h1>
             <div className='stopwatch-content'>
                 <div className='stopwatch-buttons'>
-                    <StopWatchButton type={'start'} onClick={() => setTimerOn(true)}></StopWatchButton>
-                    <StopWatchButton type={'stop'} onClick={() => setTimerOn(false)}></StopWatchButton>
-                    <StopWatchButton type={'lap'} onClick={() => setLapTimes([...lapTimes, time])} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
+                    <StopWatchButton type={'start'} onClick={handleStart}></StopWatchButton>
+                    <StopWatchButton type={'stop'} onClick={handleStop}></StopWatchButton>
+                    <StopWatchButton type={'lap'} onClick={handleLap} timerOn={timerOn} lapTimes={lapTimes}></StopWatchButton>
                     <StopWatchButton type={'reset'} onClick={handleReset} time={time}></StopWatchButton>
                 </div>
                 <div className='stopwatch-time'>
