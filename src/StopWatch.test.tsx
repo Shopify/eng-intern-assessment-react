@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import StopWatch, { formatTime } from './StopWatch';
+import StopWatch, { formatTime } from './components/Functionalities/StopWatch';
 
 // Test the formatTime function
 describe('formatTime', () => {
